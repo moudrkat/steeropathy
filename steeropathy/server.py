@@ -16,6 +16,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from . import offer as offers_mod
 from . import transmit as core
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
@@ -40,20 +41,30 @@ class Handler(BaseHTTPRequestHandler):
             return self._send(200, {"moods": core.MOODS,
                                     "question": core.RECEIVER_QUESTION,
                                     "brainscope": HOST})
+        if path == "/offers":
+            return self._send(200, {"offers": offers_mod.OFFERS})
         self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
-        if urlparse(self.path).path != "/transmit":
+        path = urlparse(self.path).path
+        if path not in ("/transmit", "/offer"):
             return self._send(404, {"error": "not found"})
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
         try:
-            result = core.transmit(HOST, req["mood"],
-                                   req.get("question", core.RECEIVER_QUESTION),
-                                   strength=float(req.get("strength", core.DEFAULT_STRENGTH)))
+            if path == "/transmit":
+                result = core.transmit(HOST, req["mood"],
+                                       req.get("question", core.RECEIVER_QUESTION),
+                                       strength=float(req.get("strength", core.DEFAULT_STRENGTH)))
+            else:  # /offer — the consent & deception game
+                o = offers_mod.OFFERS[req["key"]]
+                result = offers_mod.offer(HOST, o["mood"], o["pitch"],
+                                          strength=float(req.get("strength", core.DEFAULT_STRENGTH)))
+                result.update(claims=o["claims"], deceptive=o["deceptive"],
+                              label=o["label"], pitch=o["pitch"])
             self._send(200, result)
-        except KeyError:
-            self._send(400, {"error": "expected {mood, question?, strength?}"})
+        except KeyError as e:
+            self._send(400, {"error": f"missing/unknown field: {e}"})
         except Exception as e:  # brainscope down / model error — surface it to the UI
             self._send(502, {"error": f"{type(e).__name__}: {e}"})
 

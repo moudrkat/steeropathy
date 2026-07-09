@@ -69,7 +69,9 @@ change on the left while the mood's cosine spikes on the right.
 
 Point it at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
 
-The UI drives the **contagion** demo. The **offer** (consent & deception) runs from Python:
+The UI has two tabs: **Transmit a mood** (contagion) and **The offer** (consent &
+deception) — pick an honest or deceptive offer, watch B decide via its `steer_self`
+tool, and see *promised* vs *actually*. Both are scriptable too:
 
 ```python
 from steeropathy.offer import offer, OFFERS

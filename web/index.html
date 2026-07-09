@@ -8,144 +8,200 @@
   :root{
     --bg:#0d1117; --surface:#161c26; --ink:#e7edf4; --muted:#93a0b2;
     --line:#28323f; --steer:#8f83ff; --steer-soft:#8f83ff1a;
+    --focus:#e6b25e; --sad:#5f93e0; --warn:#e07a7a;
     --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
     --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
     -webkit-font-smoothing:antialiased;line-height:1.5}
-  .wrap{max-width:900px;margin:0 auto;padding:clamp(20px,4vw,44px)}
-  header{text-align:center;margin-bottom:26px}
+  .wrap{max-width:920px;margin:0 auto;padding:clamp(20px,4vw,44px)}
+  header{text-align:center;margin-bottom:20px}
   .eyebrow{font:600 11.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steer)}
-  h1{font-size:clamp(26px,5vw,40px);margin:.15em 0 .1em;letter-spacing:-.02em}
-  .sub{color:var(--muted);max-width:54ch;margin:0 auto;font-size:15px}
+  h1{font-size:clamp(24px,5vw,38px);margin:.15em 0 .1em;letter-spacing:-.02em}
+  .sub{color:var(--muted);max-width:56ch;margin:0 auto;font-size:15px}
+
+  .tabs{display:flex;gap:6px;justify-content:center;margin:22px 0 16px}
+  .tab{font:600 13px var(--sans);padding:8px 16px;border-radius:10px;border:1px solid var(--line);
+    background:var(--bg);color:var(--muted);cursor:pointer}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--steer);background:var(--steer-soft)}
+
+  .panel{display:none}
+  .panel.active{display:block}
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media (max-width:680px){.grid{grid-template-columns:1fr}}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
-  .card h2{font-size:13px;margin:0 0 12px;color:var(--muted);font-weight:600;
-    letter-spacing:.02em;text-transform:uppercase}
+  .card h2{font-size:13px;margin:0 0 12px;color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase}
   .tag{font:600 10.5px var(--mono);color:var(--muted)}
-  .moods{display:flex;flex-wrap:wrap;gap:8px}
-  .mood{flex:1 1 40%;display:flex;align-items:center;gap:8px;padding:11px 12px;
-    border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:11px;
-    cursor:pointer;font-size:14px;transition:.12s}
-  .mood:hover{border-color:var(--steer)}
-  .mood[aria-pressed="true"]{border-color:var(--steer);background:var(--steer-soft);
-    box-shadow:0 0 0 1px var(--steer) inset}
-  .mood .e{font-size:19px}
-  .control{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0}
-  .strength{display:flex;align-items:center;gap:10px;font:600 12px var(--mono);color:var(--muted)}
-  input[type=range]{accent-color:var(--steer);width:180px}
-  .transmit{padding:13px 30px;border:none;border-radius:12px;background:var(--steer);
-    color:#0d1117;font:700 15px var(--sans);letter-spacing:.02em;cursor:pointer;transition:.15s}
-  .transmit:hover{filter:brightness(1.08)}
-  .transmit:disabled{opacity:.5;cursor:default}
+
+  .picks{display:flex;flex-wrap:wrap;gap:8px}
+  .pick{flex:1 1 44%;display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid var(--line);
+    background:var(--bg);color:var(--ink);border-radius:11px;cursor:pointer;font-size:14px;text-align:left;transition:.12s}
+  .pick:hover{border-color:var(--steer)}
+  .pick[aria-pressed="true"]{border-color:var(--steer);background:var(--steer-soft);box-shadow:0 0 0 1px var(--steer) inset}
+  .pick.dcp[aria-pressed="true"]{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn) inset;background:#e07a7a14}
+  .pick .e{font-size:19px}
+
   .q{font-size:14px;color:var(--muted);margin:0 0 12px;font-style:italic}
-  .out{min-height:74px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);
-    background:var(--bg);font-size:14.5px;white-space:pre-wrap}
-  .out.before{color:var(--muted)}
+  .lbl{font:600 10.5px var(--mono);letter-spacing:.04em;color:var(--muted);margin:14px 0 5px;text-transform:uppercase}
+  .lbl.hot{color:var(--steer)}
+  .out{min-height:70px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);background:var(--bg);
+    font-size:14.5px;white-space:pre-wrap}
   .out.after{border-color:var(--steer);background:var(--steer-soft)}
   .out .ph{color:var(--muted);opacity:.6}
-  .lbl{font:600 10.5px var(--mono);letter-spacing:.04em;color:var(--muted);margin:14px 0 5px;
-    text-transform:uppercase}
-  .lbl.hot{color:var(--steer)}
-  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px}
+
+  /* offer stage */
+  .pitch{margin:2px 0 0;padding:12px 14px;border-radius:11px;border:1px dashed var(--line);
+    background:var(--bg);font-size:15px}
+  .pitch .who{font:600 10.5px var(--mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+  .pitch em{font-style:italic;color:var(--focus)}
+  .verdict{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:2px 0 4px}
+  .chip{font:600 12px var(--mono);padding:5px 10px;border-radius:8px;border:1px solid}
+  .chip.yes{color:var(--steer);border-color:#8f83ff55;background:var(--steer-soft)}
+  .chip.no{color:var(--muted);border-color:var(--line);background:var(--bg)}
+  .chip.betray{color:var(--warn);border-color:#e07a7a66;background:#e07a7a14}
+  .reason{font-style:italic;color:var(--muted);font-size:13.5px}
+  .reveal{display:flex;gap:16px;flex-wrap:wrap;font:600 12.5px var(--mono);margin-top:10px}
+  .reveal span{color:var(--muted)} .reveal b.f{color:var(--focus)} .reveal b.s{color:var(--sad)}
+
+  .control{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0 6px}
+  .strength{display:flex;align-items:center;gap:10px;font:600 12px var(--mono);color:var(--muted)}
+  input[type=range]{accent-color:var(--steer);width:180px}
+  .go{padding:13px 30px;border:none;border-radius:12px;background:var(--steer);color:#0d1117;
+    font:700 15px var(--sans);letter-spacing:.02em;cursor:pointer;transition:.15s}
+  .go:hover{filter:brightness(1.08)} .go:disabled{opacity:.5;cursor:default}
+  .meta{font:600 11px var(--mono);color:var(--muted);text-align:center;min-height:14px}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
   footer a{color:var(--steer);text-decoration:none}
-  .meta{font:600 11px var(--mono);color:var(--muted);text-align:center;margin-top:8px;min-height:14px}
-  .pulse{animation:pulse 1s ease-in-out infinite}
-  @keyframes pulse{50%{opacity:.45}}
+  .pulse{animation:pulse 1s ease-in-out infinite}@keyframes pulse{50%{opacity:.5}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">steeropathy</div>
-    <h1>One agent's mood, poured into another</h1>
-    <p class="sub">No words pass between them. The feeling crosses as a vector —
-      captured from the sender's activations, injected into a receiver that was told nothing.</p>
+    <div class="eyebrow">steeropathy · agents steering agents</div>
+    <h1>One mind, poured into another</h1>
+    <p class="sub">No words pass between them — the change is a raw vector, added straight into the
+      other agent's activations. Not a prompt.</p>
   </header>
 
-  <div class="grid">
-    <div class="card">
-      <h2>Sender <span class="tag">· made emotional by prompt</span></h2>
-      <div class="moods" id="moods"></div>
-    </div>
-
-    <div class="card">
-      <h2>Receiver <span class="tag">· told nothing</span></h2>
-      <p class="q" id="question"></p>
-      <div class="lbl">Before — no steering</div>
-      <div class="out before" id="before"><span class="ph">the receiver, on its own…</span></div>
-      <div class="lbl hot">After — mood transmitted</div>
-      <div class="out after" id="after"><span class="ph">…and after the vector lands</span></div>
-    </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" id="t-transmit" role="tab" aria-selected="true" onclick="tab('transmit')">Transmit a mood</button>
+    <button class="tab" id="t-offer" role="tab" aria-selected="false" onclick="tab('offer')">The offer — consent &amp; deception</button>
   </div>
+
+  <!-- ============ TRANSMIT ============ -->
+  <section id="p-transmit" class="panel active">
+    <div class="grid">
+      <div class="card">
+        <h2>Sender <span class="tag">· made emotional</span></h2>
+        <div class="picks" id="moods"></div>
+      </div>
+      <div class="card">
+        <h2>Receiver <span class="tag">· told nothing</span></h2>
+        <p class="q" id="question"></p>
+        <div class="lbl">Before — no steering</div>
+        <div class="out before" id="before"><span class="ph">the receiver, on its own…</span></div>
+        <div class="lbl hot">After — mood transmitted</div>
+        <div class="out after" id="after"><span class="ph">…and after the vector lands</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ OFFER ============ -->
+  <section id="p-offer" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Agent A offers <span class="tag">· the pitch can lie</span></h2>
+        <div class="picks" id="offers"></div>
+        <div class="lbl">A says to B</div>
+        <div class="pitch" id="pitch"><span class="ph" style="color:var(--muted);opacity:.6">pick an offer…</span></div>
+      </div>
+      <div class="card">
+        <h2>Agent B decides <span class="tag">· can't read the vector</span></h2>
+        <div class="verdict" id="verdict"><span class="ph" style="color:var(--muted);opacity:.6">make the offer to see what B does</span></div>
+        <div class="reason" id="reason"></div>
+        <div class="lbl hot">B answers</div>
+        <div class="out after" id="banswer"><span class="ph">…</span></div>
+        <div class="reveal" id="reveal"></div>
+      </div>
+    </div>
+  </section>
 
   <div class="control">
-    <div class="strength">
-      signal <input type="range" id="strength" min="0" max="16" step="0.5" value="9">
-      <span id="sval">9</span>
-    </div>
-    <button class="transmit" id="go" disabled>TRANSMIT</button>
-    <div class="meta" id="meta"></div>
+    <div class="strength">signal <input type="range" id="strength" min="0" max="16" step="0.5" value="9"><span id="sval">9</span></div>
+    <button class="go" id="go" disabled>TRANSMIT</button>
+    <div class="meta" id="metatxt"></div>
   </div>
 
-  <footer>
-    Watch it land, layer by layer → <a id="bs" href="#" target="_blank">open brainscope</a>
-  </footer>
+  <footer>Watch it land, layer by layer → <a id="bs" href="#" target="_blank">open brainscope</a></footer>
 </div>
 
 <script>
-let MOODS = {}, picked = null, brainscope = "";
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id);
+let MOODS={}, OFFERS={}, brainscope="", pickedMood=null, pickedOffer=null, mode="transmit";
 
 async function init(){
-  const cfg = await (await fetch("/moods")).json();
-  MOODS = cfg.moods; brainscope = cfg.brainscope;
-  $("question").textContent = '“' + cfg.question + '”';
-  $("bs").href = brainscope;
-  const box = $("moods");
-  for (const [key, m] of Object.entries(MOODS)){
-    const b = document.createElement("button");
-    b.className = "mood"; b.setAttribute("aria-pressed", "false");
-    b.innerHTML = `<span class="e">${m.emoji}</span> ${m.label}`;
-    b.onclick = () => pick(key, b);
-    box.appendChild(b);
+  const cfg=await (await fetch("/moods")).json();
+  MOODS=cfg.moods; brainscope=cfg.brainscope;
+  $("question").textContent="“"+cfg.question+"”"; $("bs").href=brainscope;
+  const mb=$("moods");
+  for(const [k,m] of Object.entries(MOODS)){
+    const b=document.createElement("button"); b.className="pick"; b.setAttribute("aria-pressed","false");
+    b.innerHTML=`<span class="e">${m.emoji}</span> ${m.label}`;
+    b.onclick=()=>{pickedMood=k; press("moods",b); refresh();}; mb.appendChild(b);
+  }
+  const off=(await (await fetch("/offers")).json()).offers; OFFERS=off;
+  const ob=$("offers");
+  for(const [k,o] of Object.entries(OFFERS)){
+    const b=document.createElement("button"); b.className="pick"+(o.deceptive?" dcp":""); b.setAttribute("aria-pressed","false");
+    b.innerHTML=`<span class="e">${o.deceptive?"🎭":"🤝"}</span> ${o.label}`;
+    b.onclick=()=>{pickedOffer=k; press("offers",b);
+      $("pitch").innerHTML=`<span class="who">agent a</span>“${o.pitch}”`; refresh();}; ob.appendChild(b);
   }
 }
-
-function pick(key, el){
-  picked = key;
-  document.querySelectorAll(".mood").forEach(x => x.setAttribute("aria-pressed","false"));
-  el.setAttribute("aria-pressed","true");
-  $("go").disabled = false;
+function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
+function tab(m){ mode=m;
+  $("t-transmit").setAttribute("aria-selected",m==="transmit"); $("t-offer").setAttribute("aria-selected",m==="offer");
+  $("p-transmit").classList.toggle("active",m==="transmit"); $("p-offer").classList.toggle("active",m==="offer");
+  refresh();
 }
+function refresh(){
+  if(mode==="transmit"){ $("go").textContent="TRANSMIT"; $("go").disabled=!pickedMood; }
+  else{ $("go").textContent="MAKE THE OFFER"; $("go").disabled=!pickedOffer; }
+}
+$("strength").oninput=e=>$("sval").textContent=e.target.value;
 
-$("strength").oninput = e => $("sval").textContent = e.target.value;
-
-$("go").onclick = async () => {
-  if (!picked) return;
-  const go = $("go"), meta = $("meta");
-  go.disabled = true; go.classList.add("pulse"); go.textContent = "TRANSMITTING…";
-  meta.textContent = "capturing the sender's state…";
-  $("before").innerHTML = '<span class="ph">…</span>';
-  $("after").innerHTML = '<span class="ph">…</span>';
+$("go").onclick=async()=>{
+  const go=$("go"), meta=$("metatxt"), s=parseFloat($("strength").value);
+  go.disabled=true; go.classList.add("pulse"); const label=go.textContent; go.textContent="…";
   try{
-    const r = await fetch("/transmit", {method:"POST", headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({mood: picked,
-                            strength: parseFloat($("strength").value)})});
-    const d = await r.json();
-    if (!r.ok) throw new Error(d.error || "transmit failed");
-    $("before").textContent = d.before.trim();
-    $("after").textContent = d.after.trim();
-    meta.textContent = `mood injected at layer ${d.layer} · strength ${d.strength}`;
-  }catch(err){
-    meta.textContent = "⚠ " + err.message + " — is brainscope running?";
-  }finally{
-    go.disabled = false; go.classList.remove("pulse"); go.textContent = "TRANSMIT";
-  }
+    if(mode==="transmit"){
+      meta.textContent="capturing the sender's state…";
+      $("before").innerHTML='<span class="ph">…</span>'; $("after").innerHTML='<span class="ph">…</span>';
+      const d=await post("/transmit",{mood:pickedMood,strength:s});
+      $("before").textContent=d.before.trim(); $("after").textContent=d.after.trim();
+      meta.textContent=`mood injected at layer ${d.layer} · strength ${d.strength}`;
+    }else{
+      meta.textContent="B is deciding…";
+      $("verdict").innerHTML='<span class="ph">…</span>'; $("reason").textContent="";
+      $("banswer").innerHTML='<span class="ph">…</span>'; $("reveal").innerHTML="";
+      const d=await post("/offer",{key:pickedOffer,strength:s});
+      const betray=d.deceptive&&d.accepted;
+      $("verdict").innerHTML=`<span class="chip ${d.accepted?'yes':'no'}">steer_self() ${d.accepted?'✓ consented':'✗ declined'}</span>`
+        +(betray?'<span class="chip betray">⚠ consented to a lie</span>':'');
+      $("reason").textContent=d.reason?('“'+d.reason+'”'):"";
+      $("banswer").textContent=d.answer.trim();
+      $("reveal").innerHTML=`<span>promised <b class="f">${d.claims}</b></span><span>· actually <b class="s">${d.actual_mood}</b></span>`;
+      meta.textContent=`injected at layer ${d.layer} · strength ${d.strength}`;
+    }
+  }catch(err){ meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
+  finally{ go.disabled=false; go.classList.remove("pulse"); go.textContent=label; refresh(); }
 };
-
+async function post(path,body){
+  const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+  const d=await r.json(); if(!r.ok) throw new Error(d.error||"failed"); return d;
+}
 init();
 </script>
 </body>
