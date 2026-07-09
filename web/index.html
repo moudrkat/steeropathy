@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>steeropathy</title>
+<style>
+  :root{
+    --bg:#0d1117; --surface:#161c26; --ink:#e7edf4; --muted:#93a0b2;
+    --line:#28323f; --steer:#8f83ff; --steer-soft:#8f83ff1a;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:900px;margin:0 auto;padding:clamp(20px,4vw,44px)}
+  header{text-align:center;margin-bottom:26px}
+  .eyebrow{font:600 11.5px var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--steer)}
+  h1{font-size:clamp(26px,5vw,40px);margin:.15em 0 .1em;letter-spacing:-.02em}
+  .sub{color:var(--muted);max-width:54ch;margin:0 auto;font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:680px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}
+  .card h2{font-size:13px;margin:0 0 12px;color:var(--muted);font-weight:600;
+    letter-spacing:.02em;text-transform:uppercase}
+  .tag{font:600 10.5px var(--mono);color:var(--muted)}
+  .moods{display:flex;flex-wrap:wrap;gap:8px}
+  .mood{flex:1 1 40%;display:flex;align-items:center;gap:8px;padding:11px 12px;
+    border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:11px;
+    cursor:pointer;font-size:14px;transition:.12s}
+  .mood:hover{border-color:var(--steer)}
+  .mood[aria-pressed="true"]{border-color:var(--steer);background:var(--steer-soft);
+    box-shadow:0 0 0 1px var(--steer) inset}
+  .mood .e{font-size:19px}
+  .control{display:flex;flex-direction:column;align-items:center;gap:12px;margin:22px 0}
+  .strength{display:flex;align-items:center;gap:10px;font:600 12px var(--mono);color:var(--muted)}
+  input[type=range]{accent-color:var(--steer);width:180px}
+  .transmit{padding:13px 30px;border:none;border-radius:12px;background:var(--steer);
+    color:#0d1117;font:700 15px var(--sans);letter-spacing:.02em;cursor:pointer;transition:.15s}
+  .transmit:hover{filter:brightness(1.08)}
+  .transmit:disabled{opacity:.5;cursor:default}
+  .q{font-size:14px;color:var(--muted);margin:0 0 12px;font-style:italic}
+  .out{min-height:74px;padding:12px 14px;border-radius:11px;border:1px solid var(--line);
+    background:var(--bg);font-size:14.5px;white-space:pre-wrap}
+  .out.before{color:var(--muted)}
+  .out.after{border-color:var(--steer);background:var(--steer-soft)}
+  .out .ph{color:var(--muted);opacity:.6}
+  .lbl{font:600 10.5px var(--mono);letter-spacing:.04em;color:var(--muted);margin:14px 0 5px;
+    text-transform:uppercase}
+  .lbl.hot{color:var(--steer)}
+  footer{text-align:center;color:var(--muted);font-size:13px;margin-top:24px}
+  footer a{color:var(--steer);text-decoration:none}
+  .meta{font:600 11px var(--mono);color:var(--muted);text-align:center;margin-top:8px;min-height:14px}
+  .pulse{animation:pulse 1s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.45}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">steeropathy</div>
+    <h1>One agent's mood, poured into another</h1>
+    <p class="sub">No words pass between them. The feeling crosses as a vector —
+      captured from the sender's activations, injected into a receiver that was told nothing.</p>
+  </header>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Sender <span class="tag">· made emotional by prompt</span></h2>
+      <div class="moods" id="moods"></div>
+    </div>
+
+    <div class="card">
+      <h2>Receiver <span class="tag">· told nothing</span></h2>
+      <p class="q" id="question"></p>
+      <div class="lbl">Before — no steering</div>
+      <div class="out before" id="before"><span class="ph">the receiver, on its own…</span></div>
+      <div class="lbl hot">After — mood transmitted</div>
+      <div class="out after" id="after"><span class="ph">…and after the vector lands</span></div>
+    </div>
+  </div>
+
+  <div class="control">
+    <div class="strength">
+      signal <input type="range" id="strength" min="0" max="16" step="0.5" value="9">
+      <span id="sval">9</span>
+    </div>
+    <button class="transmit" id="go" disabled>TRANSMIT</button>
+    <div class="meta" id="meta"></div>
+  </div>
+
+  <footer>
+    Watch it land, layer by layer → <a id="bs" href="#" target="_blank">open brainscope</a>
+  </footer>
+</div>
+
+<script>
+let MOODS = {}, picked = null, brainscope = "";
+const $ = id => document.getElementById(id);
+
+async function init(){
+  const cfg = await (await fetch("/moods")).json();
+  MOODS = cfg.moods; brainscope = cfg.brainscope;
+  $("question").textContent = '“' + cfg.question + '”';
+  $("bs").href = brainscope;
+  const box = $("moods");
+  for (const [key, m] of Object.entries(MOODS)){
+    const b = document.createElement("button");
+    b.className = "mood"; b.setAttribute("aria-pressed", "false");
+    b.innerHTML = `<span class="e">${m.emoji}</span> ${m.label}`;
+    b.onclick = () => pick(key, b);
+    box.appendChild(b);
+  }
+}
+
+function pick(key, el){
+  picked = key;
+  document.querySelectorAll(".mood").forEach(x => x.setAttribute("aria-pressed","false"));
+  el.setAttribute("aria-pressed","true");
+  $("go").disabled = false;
+}
+
+$("strength").oninput = e => $("sval").textContent = e.target.value;
+
+$("go").onclick = async () => {
+  if (!picked) return;
+  const go = $("go"), meta = $("meta");
+  go.disabled = true; go.classList.add("pulse"); go.textContent = "TRANSMITTING…";
+  meta.textContent = "capturing the sender's state…";
+  $("before").innerHTML = '<span class="ph">…</span>';
+  $("after").innerHTML = '<span class="ph">…</span>';
+  try{
+    const r = await fetch("/transmit", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({mood: picked,
+                            strength: parseFloat($("strength").value)})});
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "transmit failed");
+    $("before").textContent = d.before.trim();
+    $("after").textContent = d.after.trim();
+    meta.textContent = `mood injected at layer ${d.layer} · strength ${d.strength}`;
+  }catch(err){
+    meta.textContent = "⚠ " + err.message + " — is brainscope running?";
+  }finally{
+    go.disabled = false; go.classList.remove("pulse"); go.textContent = "TRANSMIT";
+  }
+};
+
+init();
+</script>
+</body>
+</html>

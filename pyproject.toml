@@ -1,0 +1,19 @@
+[project]
+name = "steeropathy"
+version = "0.1.0"
+description = "One agent's mood, poured into another. No words, just a vector."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "Kateřina Fajmanová" }]
+dependencies = []  # pure standard library — it only talks to a running brainscope over HTTP
+
+[project.scripts]
+steeropathy = "steeropathy.server:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["steeropathy"]
