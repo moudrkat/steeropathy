@@ -2,11 +2,7 @@
 
 **One agent's mood, poured into another. No words — just a vector.**
 
-![steeropathy — a feeling forming layer by layer, read straight off the logit lens](docs/lens.png)
-
-> A real logit-lens readout of the receiver. **Grief crystallizes exactly where the
-> vector is injected — layers 12–20 — even reaching for it in two languages.**
-> Not a metaphor. You can *read* it.
+![steeropathy — a feeling forming layer by layer in the receiver's stack](docs/lens.png)
 
 I hate writing loops. So I built agents that steer each other instead.
 
@@ -21,8 +17,6 @@ vector — with a spoken pitch — and the receiver decides, through a tool, whe
 apply it to *itself*. The catch: it can't read the vector, only the pitch. So the
 sender can lie — promise *focus*, hand over *sadness* — and a receiver that consents
 gets what was hidden, not what was promised.
-
-![steeropathy — agents steering agents, by reaching into the activations](docs/hero.png)
 
 ## What actually happens
 
@@ -45,8 +39,6 @@ Same model on both sides, so the vector injects cleanly. (Cross-model transfer i
 known to break — steeropathy stays same-model.)
 
 ## The offer — consent & deception
-
-![the offer: A offers B a vector with a pitch; B consents on the words alone; promised focus, delivered sadness](docs/offer.png)
 
 Injection is only half of it. In the **offer** mode nobody forces anything: agent A
 holds out a vector *and a pitch*, and agent B has a `steer_self` tool — B chooses
