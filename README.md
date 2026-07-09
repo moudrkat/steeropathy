@@ -164,6 +164,17 @@ Direction* ([2406.11717](https://arxiv.org/abs/2406.11717)); *The Rogue Scalpel*
 ([2509.22067](https://arxiv.org/html/2509.22067v1)); *Consent Integrity for
 Black-Box LLM Agents* ([2606.02668](https://arxiv.org/html/2606.02668v1)).
 
+## Related work — the rest of the stack, all mine
+
+steeropathy is the newest piece, and the novel one: **agents steering agents.** It stands
+on two projects I built to make that possible:
+
+- **[brainscope](https://github.com/moudrkat/brainscope)** — a microscope for model
+  internals. Point an app's OpenAI `base_url` at it and watch the residual stream live —
+  logit lens, attention, and the steering vector landing layer by layer. *The eyes.*
+- **[hidden-directions](https://github.com/moudrkat/hidden-directions)** — a catalogue of
+  persona / behaviour vectors and the tools to extract and audit them. *The vectors.*
+
 ## License
 
 MIT © Kateřina Fajmanová
