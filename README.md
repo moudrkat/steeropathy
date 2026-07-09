@@ -99,6 +99,10 @@ visibly colours the answer. Big, heavily-aligned instruct models stay composed �
 often *refuse* to inject a vector they can't inspect (consent quietly protecting them,
 which is its own interesting result). So the demo defaults to `tiny`.
 
+One thing worth knowing: steeropathy injects into a **band of layers at once**, not one.
+Hitting many layers together is what punches through an aligned model's *"I'm an AI, I
+don't have feelings"* reflex — steer a single layer and it just gets politely deflected.
+
 The UI has two tabs: **Transmit a mood** (contagion) and **The offer** (consent &
 deception) — pick an honest or deceptive offer, watch B decide via its `steer_self`
 tool, and see *promised* vs *actually*. Both are scriptable too:

@@ -19,8 +19,11 @@ import math
 import urllib.request
 
 DEFAULT_HOST = "http://localhost:8010"
-DEFAULT_STRENGTH = 9.0
+DEFAULT_STRENGTH = 5.0
 LAYER_FRAC = 0.58  # mid-upper stack — where mood transfers cleanest; tune per model
+BAND = 4           # steer a band of ±BAND layers around the captured one. Hitting many
+                   # layers at once is what punches through an aligned model's
+                   # "I'm an AI, I don't have feelings" reflex — one layer isn't enough.
 
 # The baseline the mood is measured against — flat, factual, unemotional.
 NEUTRAL_TEXTS = [
@@ -125,7 +128,8 @@ def transmit(host: str, mood, question: str = RECEIVER_QUESTION,
     vec, layer = capture_mood(host, texts, layer=layer)
     _post(host, "/directions", {"name": name, "vector": vec})
     before = generate(host, question)
+    lo, hi = max(0, layer - BAND), layer + BAND
     after = generate(host, question, steering={
-        "name": name, "strength": strength, "layer_from": layer, "layer_to": layer})
+        "name": name, "strength": strength, "layer_from": lo, "layer_to": hi})
     return {"mood": mood if isinstance(mood, str) else "custom",
             "layer": layer, "strength": strength, "before": before, "after": after}

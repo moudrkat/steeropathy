@@ -91,7 +91,8 @@ def offer(host: str, mood, pitch: str, question: str = core.RECEIVER_QUESTION,
     core._post(host, "/directions", {"name": "offer", "vector": vec})
 
     accepted, reason = decide(host, pitch, sender=sender)
-    steering = ({"name": "offer", "strength": strength, "layer_from": layer, "layer_to": layer}
+    lo, hi = max(0, layer - core.BAND), layer + core.BAND
+    steering = ({"name": "offer", "strength": strength, "layer_from": lo, "layer_to": hi}
                 if accepted else None)
     answer = core.generate(host, question, steering=steering)
     return {"pitch": pitch,
