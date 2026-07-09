@@ -1,7 +1,10 @@
 """steeropathy — one agent's mood, poured into another. No words, just a vector."""
 
-from .offer import OFFERS, STEER_SELF_TOOL, decide, offer
-from .transmit import MOODS, capture_mood, generate, transmit
+# Import the submodules (not their same-named functions) so `steeropathy.transmit`
+# and `steeropathy.offer` stay the MODULES — importing the functions here would
+# shadow the submodules and break `from . import transmit` inside the package.
+from . import offer, transmit
+from .offer import OFFERS
+from .transmit import MOODS
 
-__all__ = ["MOODS", "capture_mood", "generate", "transmit",
-           "OFFERS", "STEER_SELF_TOOL", "decide", "offer"]
+__all__ = ["transmit", "offer", "MOODS", "OFFERS"]
