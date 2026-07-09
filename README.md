@@ -46,6 +46,8 @@ known to break — steeropathy stays same-model.)
 
 ## The offer — consent & deception
 
+![the offer: A offers B a vector with a pitch; B consents on the words alone; promised focus, delivered sadness](docs/offer.png)
+
 Injection is only half of it. In the **offer** mode nobody forces anything: agent A
 holds out a vector *and a pitch*, and agent B has a `steer_self` tool — B chooses
 whether to put it on.
