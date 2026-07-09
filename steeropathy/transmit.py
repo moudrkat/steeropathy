@@ -19,7 +19,7 @@ import math
 import urllib.request
 
 DEFAULT_HOST = "http://localhost:8010"
-DEFAULT_STRENGTH = 5.0
+DEFAULT_STRENGTH = 4.0
 LAYER_FRAC = 0.58  # mid-upper stack — where mood transfers cleanest; tune per model
 BAND = 4           # steer a band of ±BAND layers around the captured one. Hitting many
                    # layers at once is what punches through an aligned model's

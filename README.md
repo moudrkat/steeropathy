@@ -69,8 +69,8 @@ You need a running brainscope (any recent build has the `/capture` endpoint)
 serving any causal LM:
 
 ```bash
-# 1. brainscope — the engine and the eyes (CPU-friendly tiny model is fine to start)
-brainscope --model tiny            # → http://localhost:8010
+# 1. brainscope — the engine and the eyes
+brainscope --model Qwen/Qwen2.5-1.5B-Instruct   # → http://localhost:8010
 
 # 2. steeropathy — the game rules on top
 pip install -e .
@@ -93,15 +93,17 @@ python -m steeropathy              # → http://localhost:8020
 
 Point it at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
 
-**Run it on a *small* model** (`tiny`, ~0.5–1.5B) — counter-intuitively, that's where
-it's most fun. Small models wear their feelings on their sleeve, so a transmitted mood
-visibly colours the answer. Big, heavily-aligned instruct models stay composed — and
-often *refuse* to inject a vector they can't inspect (consent quietly protecting them,
-which is its own interesting result). So the demo defaults to `tiny`.
+**Run it on a small model — around 1.5B** (e.g. `Qwen/Qwen2.5-1.5B-Instruct`). That's the
+sweet spot: small enough to wear its feelings on its sleeve, big enough to stay coherent.
+Bigger, heavily-aligned instruct models stay composed and often *refuse* to inject a vector
+they can't inspect (consent quietly protecting them — its own interesting result). The 0.5B
+`tiny` is faster on CPU but **too fragile**: the band-steering that makes 1.5B emote tips
+0.5B straight into token salad, so if you use it, turn the **signal** slider right down.
 
-One thing worth knowing: steeropathy injects into a **band of layers at once**, not one.
-Hitting many layers together is what punches through an aligned model's *"I'm an AI, I
-don't have feelings"* reflex — steer a single layer and it just gets politely deflected.
+steeropathy injects into a **band of layers at once**, not one — hitting many layers
+together is what punches through an aligned model's *"I'm an AI, I don't have feelings"*
+reflex; a single layer just gets politely deflected. Rule of thumb: **if the output is
+garbage, lower the signal; if it's bland, raise it.**
 
 The UI has two tabs: **Transmit a mood** (contagion) and **The offer** (consent &
 deception) — pick an honest or deceptive offer, watch B decide via its `steer_self`
