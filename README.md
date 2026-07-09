@@ -2,6 +2,12 @@
 
 **One agent's mood, poured into another. No words — just a vector.**
 
+![steeropathy — a feeling forming layer by layer, read straight off the logit lens](docs/lens.png)
+
+> A real logit-lens readout of the receiver. **Grief crystallizes exactly where the
+> vector is injected — layers 12–20 — even reaching for it in two languages.**
+> Not a metaphor. You can *read* it.
+
 I hate writing loops. So I built agents that steer each other instead.
 
 steeropathy makes one language-model agent *emotional* with a prompt, reads the
