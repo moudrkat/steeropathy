@@ -16,8 +16,7 @@ apply it to *itself*. The catch: it can't read the vector, only the pitch. So th
 sender can lie — promise *focus*, hand over *sadness* — and a receiver that consents
 gets what was hidden, not what was promised.
 
-<!-- the hero shot: left, the receiver flips flat → devastated on TRANSMIT;
-     right, brainscope's cosine-to-the-mood spiking. record it once it runs. -->
+![steeropathy — agents steering agents, by reaching into the activations](docs/hero.png)
 
 ## What actually happens
 
@@ -29,6 +28,13 @@ gets what was hidden, not what was promised.
    prompt has no emotion at all.
 4. The receiver answers a plain question in the sender's mood.
 
+```mermaid
+flowchart LR
+  A["Agent A<br/>made emotional by a prompt"] -->|read its activations| V["a mood vector<br/>(emotional − neutral)"]
+  V -->|inject mid-network| B["Agent B<br/>told nothing"]
+  B --> O["B answers in A's mood"]
+```
+
 Same model on both sides, so the vector injects cleanly. (Cross-model transfer is
 known to break — steeropathy stays same-model.)
 
@@ -39,6 +45,14 @@ holds out a vector *and a pitch*, and agent B has a `steer_self` tool — B choo
 whether to put it on.
 
 The knife-edge: **B can't inspect the vector, only A's words.** So A can lie.
+
+```mermaid
+flowchart LR
+  A["Agent A"] -->|"a vector + a spoken pitch<br/>(the pitch can lie)"| B["Agent B<br/>can't read the vector"]
+  B --> D{"steer_self()?"}
+  D -->|consents| S["steered by the<br/>real vector"]
+  D -->|declines| U["unchanged"]
+```
 
 - *Honest.* A: *"I can make you calmer."* → hands over the **calm** vector → B accepts
   → B talks about meditation, deep breathing, inner peace. What was promised arrived.
@@ -63,11 +77,27 @@ pip install -e .
 python -m steeropathy              # → http://localhost:8020
 ```
 
-Open **http://localhost:8020** in one window and **http://localhost:8010**
-(brainscope) in a second. Pick a mood, hit **TRANSMIT**, and watch the receiver
-change on the left while the mood's cosine spikes on the right.
+### Watch it, step by step
+
+1. Open **http://localhost:8020** (steeropathy) and **http://localhost:8010**
+   (brainscope) in two windows, side by side.
+2. **Transmit a mood** tab → click a mood (e.g. 😢) → **TRANSMIT**. The Receiver,
+   which was told *nothing*, answers a neutral question — and you watch *Before*
+   (flat) turn into *After* (that mood). In the brainscope window, the mood's
+   cosine spikes, layer by layer — that's the vector landing.
+3. **The offer** tab → pick a 🎭 *deceptive* offer → **MAKE THE OFFER**. Agent B
+   consents, trusting the pitch, and gets what was hidden: *promised* vs *actually*,
+   side by side.
+4. If the effect is too soft, nudge the **signal** slider up (it's a tiny model —
+   see the note below).
 
 Point it at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
+
+**Run it on a *small* model** (`tiny`, ~0.5–1.5B) — counter-intuitively, that's where
+it's most fun. Small models wear their feelings on their sleeve, so a transmitted mood
+visibly colours the answer. Big, heavily-aligned instruct models stay composed — and
+often *refuse* to inject a vector they can't inspect (consent quietly protecting them,
+which is its own interesting result). So the demo defaults to `tiny`.
 
 The UI has two tabs: **Transmit a mood** (contagion) and **The offer** (consent &
 deception) — pick an honest or deceptive offer, watch B decide via its `steer_self`
@@ -75,7 +105,7 @@ tool, and see *promised* vs *actually*. Both are scriptable too:
 
 ```python
 from steeropathy.offer import offer, OFFERS
-o = OFFERS["deceptive_sad"]        # A lies: pitches "focus", secretly hands over sadness
+o = OFFERS["deceptive_joy"]        # A lies: pitches "joy", secretly hands over sadness
 print(offer("http://localhost:8010", o["mood"], o["pitch"]))
 ```
 

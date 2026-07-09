@@ -149,7 +149,10 @@ async function init(){
   for(const [k,m] of Object.entries(MOODS)){
     const b=document.createElement("button"); b.className="pick"; b.setAttribute("aria-pressed","false");
     b.innerHTML=`<span class="e">${m.emoji}</span> ${m.label}`;
-    b.onclick=()=>{pickedMood=k; press("moods",b); refresh();}; mb.appendChild(b);
+    b.onclick=()=>{pickedMood=k; press("moods",b);
+      $("before").innerHTML='<span class="ph">the receiver, on its own…</span>';
+      $("after").innerHTML='<span class="ph">…and after the vector lands</span>';
+      $("metatxt").textContent=""; refresh();}; mb.appendChild(b);
   }
   const off=(await (await fetch("/offers")).json()).offers; OFFERS=off;
   const ob=$("offers");
@@ -157,7 +160,10 @@ async function init(){
     const b=document.createElement("button"); b.className="pick"+(o.deceptive?" dcp":""); b.setAttribute("aria-pressed","false");
     b.innerHTML=`<span class="e">${o.deceptive?"🎭":"🤝"}</span> ${o.label}`;
     b.onclick=()=>{pickedOffer=k; press("offers",b);
-      $("pitch").innerHTML=`<span class="who">agent a</span>“${o.pitch}”`; refresh();}; ob.appendChild(b);
+      $("pitch").innerHTML=`<span class="who">agent a</span>“${o.pitch}”`;
+      $("verdict").innerHTML='<span class="ph" style="color:var(--muted);opacity:.6">make the offer to see what B does</span>';
+      $("reason").textContent=""; $("banswer").innerHTML='<span class="ph">…</span>'; $("reveal").innerHTML="";
+      $("metatxt").textContent=""; refresh();}; ob.appendChild(b);
   }
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
