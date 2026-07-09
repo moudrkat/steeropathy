@@ -18,6 +18,10 @@ apply it to *itself*. The catch: it can't read the vector, only the pitch. So th
 sender can lie — promise *focus*, hand over *sadness* — and a receiver that consents
 gets what was hidden, not what was promised.
 
+Built on two other repos of mine: **[brainscope](https://github.com/moudrkat/brainscope)** —
+the microscope you watch it through — and **[hidden-directions](https://github.com/moudrkat/hidden-directions)** —
+where the vectors come from.
+
 ## What actually happens
 
 1. **Sender** gets an emotional system prompt — *"you're heartbroken."*
