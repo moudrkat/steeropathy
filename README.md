@@ -90,11 +90,6 @@ print(offer("http://localhost:8010", o["mood"], o["pitch"]))
 
 ### Tuning
 
-- **Use a model around 1.5B** (e.g. `Qwen/Qwen2.5-1.5B-Instruct`): small enough to show
-  its feelings, big enough to stay coherent. Larger, heavily aligned instruct models
-  often *decline* the offer — consent quietly protecting them, an interesting result in
-  itself. The 0.5B model falls apart under steering; if you use it, turn the signal
-  right down.
 - **Signal slider:** if the output is garbage, lower it; if it's bland, raise it.
 - steeropathy injects into a **band of layers at once**, not just one — that is what
   gets past an aligned model's *"I'm an AI, I don't have feelings"* reflex.
