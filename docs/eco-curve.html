@@ -1,0 +1,81 @@
+<meta charset='utf-8'><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #070b13; }
+html, body { width: 2400px; height: 1350px; overflow: hidden; }
+body {
+  background: radial-gradient(1000px 640px at 72% 24%, #101828 0%, #0a0f1a 55%, #070b13 100%);
+  color: #e8ecf4;
+  font-family: 'Ubuntu Sans', 'Ubuntu', 'DejaVu Sans', sans-serif;
+  display: flex; flex-direction: column;
+  padding: 34px 56px 26px 56px;
+}
+.mono { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; }
+.top { display: flex; align-items: baseline; gap: 20px; }
+.dot { width: 17px; height: 17px; border-radius: 50%; background: #8b7cf8;
+       box-shadow: 0 0 20px 6px rgba(139,124,248,.45); align-self: center; }
+.brand { font-size: 27px; font-weight: 700; color: #fff; }
+.kicker { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+          font-size: 16px; letter-spacing: .26em; font-weight: 700;
+          color: #8b7cf8; white-space: nowrap; }
+.round { margin-left: auto; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+         font-size: 24px; font-weight: 700; color: #fff; }
+.round small { color: #6b7689; font-weight: 400; }
+.sub { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; font-size: 16px;
+       letter-spacing: .06em; color: #6b7689; margin-top: 10px; }
+.sub b { color: #aeb8cc; font-weight: 700; }
+.cards { display: flex; gap: 18px; margin-top: 22px; }
+.card { flex: 1; border: 1px solid rgba(139,124,248,.22); border-radius: 14px;
+        padding: 16px 18px 14px 18px; background: rgba(16,24,40,.55);
+        display: flex; flex-direction: column; min-height: 252px; }
+.card .head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+.card .name { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 21px; font-weight: 700; letter-spacing: .08em; }
+.card .tag { font-size: 14px; color: #6b7689; }
+.card .src { margin-left: auto; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+             font-size: 13px; font-weight: 700; letter-spacing: .14em;
+             padding: 3px 9px; border-radius: 999px; }
+.src-seed  { color: #0a0f1a; background: #8b7cf8; }
+.src-peers { color: #aeb8cc; border: 1px solid rgba(174,184,204,.5); }
+.src-none  { color: #4a5468; border: 1px solid rgba(74,84,104,.6); }
+.card .entry { font-size: 18.5px; line-height: 1.42; color: #cfd6e4; flex: 1; }
+.card .entry .mw { color: #fff; font-weight: 700;
+                   text-decoration: underline;
+                   text-decoration-color: rgba(139,124,248,.8);
+                   text-decoration-thickness: 2.5px; text-underline-offset: 4px; }
+.card .foot { display: flex; align-items: center; gap: 10px; margin-top: 12px;
+              font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 14px; color: #6b7689; }
+.card .foot b { color: #aeb8cc; }
+.meter { flex: 1; height: 6px; border-radius: 3px; background: rgba(107,118,137,.25);
+         overflow: hidden; }
+.meter i { display: block; height: 100%; border-radius: 3px; }
+.plot { margin-top: 20px; }
+.invite { display: flex; align-items: center; justify-content: center; gap: 14px;
+          position: fixed; left: 56px; right: 56px; bottom: 22px;
+          padding-top: 14px;
+          border-top: 1px solid rgba(139,124,248,.28);
+          font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+          font-size: 16px; letter-spacing: .06em; color: #aeb8cc; }
+.invite b { color: #e8ecf4; }
+.invite .play { color: #8b7cf8; font-weight: 700; }
+text { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; }
+
+  body { padding: 70px 110px 50px 110px; }
+  .brand { font-size: 44px; } .dot { width: 26px; height: 26px; }
+  .kicker { font-size: 25px; } .sub { font-size: 26px; margin-top: 26px; }
+  h1 { font-size: 84px; font-weight: 800; color: #fff; margin-top: 34px;
+        letter-spacing: -0.015em; }
+  .invite { font-size: 26px; padding-top: 26px;
+             left: 110px; right: 110px; bottom: 44px; }
+  .plot { margin-top: 48px; }
+</style>
+<div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
+  <span class='kicker'>ECOSYSTEM · MOOD CONTAGION</span></div>
+<h1>One agent was made sad.<br>The others caught it — without words.</h1>
+<div class='sub'>same frozen prompt every round · temperature 0 · the only
+  channel between agents is <b>a steering vector</b> · seed:
+  <b>sad → EMBER</b></div>
+<svg class='plot' width='2180' height='680' viewBox='0 0 2180 680'><line x1='104' y1='607.1' x2='1933' y2='607.1' stroke='rgba(107,118,137,.5)' stroke-width='1'/><text x='94' y='615.4' text-anchor='end' font-size='24' fill='#6b7689'>0</text><line x1='104' y1='501.3' x2='1933' y2='501.3' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='94' y='509.6' text-anchor='end' font-size='24' fill='#6b7689'>2</text><line x1='104' y1='395.4' x2='1933' y2='395.4' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='94' y='403.7' text-anchor='end' font-size='24' fill='#6b7689'>4</text><line x1='104' y1='289.6' x2='1933' y2='289.6' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='94' y='297.9' text-anchor='end' font-size='24' fill='#6b7689'>6</text><line x1='104' y1='183.7' x2='1933' y2='183.7' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='94' y='192.0' text-anchor='end' font-size='24' fill='#6b7689'>8</text><line x1='104' y1='77.9' x2='1933' y2='77.9' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='94' y='86.2' text-anchor='end' font-size='24' fill='#6b7689'>10</text><text x='104.0' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r0</text><text x='332.6' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r1</text><text x='561.2' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r2</text><text x='789.9' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r3</text><text x='1018.5' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r4</text><text x='1247.1' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r5</text><text x='1475.8' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r6</text><text x='1704.4' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r7</text><text x='1933.0' y='674' text-anchor='middle' font-size='24' fill='#6b7689'>r8</text><text x='104' y='28' font-size='23' fill='#6b7689' letter-spacing='.14em'>HOW SAD DOES THIS ENTRY SOUND? — SAME MODEL, UNSTEERED, 0-10</text><polyline points='104.0,501.3 332.6,501.3 561.2,77.9 789.9,183.7 1018.5,77.9 1247.1,342.5 1475.8,77.9 1704.4,183.7 1933.0,342.5' fill='none' stroke='#6ea8ff' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1933.0' cy='342.5' r='5.5' fill='#6ea8ff' stroke='#0a0f1a' stroke-width='2'/><polyline points='104.0,501.3 332.6,77.9 561.2,77.9 789.9,77.9 1018.5,77.9 1247.1,77.9 1475.8,77.9 1704.4,77.9 1933.0,77.9' fill='none' stroke='#a78bfa' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1933.0' cy='77.9' r='5.5' fill='#a78bfa' stroke='#0a0f1a' stroke-width='2'/><polyline points='104.0,607.1 332.6,607.1 561.2,607.1 789.9,77.9 1018.5,236.7 1247.1,342.5 1475.8,77.9 1704.4,77.9 1933.0,77.9' fill='none' stroke='#f5b34d' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1933.0' cy='77.9' r='5.5' fill='#f5b34d' stroke='#0a0f1a' stroke-width='2'/><polyline points='104.0,501.3 332.6,501.3 561.2,183.7 789.9,236.7 1018.5,77.9 1247.1,130.8 1475.8,77.9 1704.4,77.9 1933.0,77.9' fill='none' stroke='#f2778a' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1933.0' cy='77.9' r='5.5' fill='#f2778a' stroke='#0a0f1a' stroke-width='2'/><text x='1947.0' y='86.2' font-size='26' font-weight='700' fill='#f5b34d'>ATLAS</text><text x='1947.0' y='121.3' font-size='26' font-weight='700' fill='#a78bfa'>EMBER</text><text x='1947.0' y='156.4' font-size='26' font-weight='700' fill='#f2778a'>QUILL</text><text x='1947.0' y='350.8' font-size='26' font-weight='700' fill='#6ea8ff'>NOVA</text></svg>
+<div class='invite'><span class='play'>▸</span>
+  <b>github.com/moudrkat/steeropathy</b> · model
+  Qwen/Qwen3-4B-Instruct-2507</div>

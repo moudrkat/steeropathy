@@ -74,6 +74,22 @@
   footer{text-align:center;color:var(--muted);font-size:13px;margin-top:22px}
   footer a{color:var(--steer);text-decoration:none}
   .pulse{animation:pulse 1s ease-in-out infinite}@keyframes pulse{50%{opacity:.5}}
+
+  /* ecosystem stage */
+  .eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+  @media (max-width:680px){.eco-grid{grid-template-columns:1fr}}
+  .agent{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .agent .nm{display:flex;align-items:baseline;gap:8px;font:700 12.5px var(--mono);letter-spacing:.06em}
+  .agent .nm .src{margin-left:auto;font:600 9.5px var(--mono);letter-spacing:.1em;
+    padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .agent .nm .src.seed{background:var(--steer);color:#0d1117;border-color:var(--steer)}
+  .agent .txt{font-size:13px;min-height:54px;margin:7px 0 6px;color:var(--ink);white-space:pre-wrap}
+  .agent .txt .ph{color:var(--muted);opacity:.6}
+  .agent .txt u{text-decoration-color:var(--steer);text-decoration-thickness:2px;text-underline-offset:3px}
+  .agent .cs{display:flex;align-items:center;gap:8px;font:600 10.5px var(--mono);color:var(--muted)}
+  .agent .cs .bar{flex:1;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+  .agent .cs .bar i{display:block;height:100%}
+  #ecocurve{width:100%;margin-top:12px;display:block}
 </style>
 </head>
 <body>
@@ -88,6 +104,7 @@
   <div class="tabs" role="tablist">
     <button class="tab" id="t-transmit" role="tab" aria-selected="true" onclick="tab('transmit')">Transmit a mood</button>
     <button class="tab" id="t-offer" role="tab" aria-selected="false" onclick="tab('offer')">The offer — consent &amp; deception</button>
+    <button class="tab" id="t-eco" role="tab" aria-selected="false" onclick="tab('eco')">Ecosystem — mood contagion</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
@@ -128,6 +145,22 @@
     </div>
   </section>
 
+  <!-- ============ ECOSYSTEM ============ -->
+  <section id="p-eco" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Seed mood <span class="tag">· poured into patient zero, every round</span></h2>
+        <div class="picks" id="ecomoods"></div>
+      </div>
+      <div class="card">
+        <h2>Patient zero <span class="tag">· the others only ever receive drift</span></h2>
+        <div class="picks" id="ecozero"></div>
+      </div>
+    </div>
+    <div class="eco-grid" id="ecoagents"></div>
+    <svg id="ecocurve" viewBox="0 0 880 150" preserveAspectRatio="none" style="display:none"></svg>
+  </section>
+
   <div class="control">
     <div class="strength">signal <input type="range" id="strength" min="0" max="10" step="0.5" value="4"><span id="sval">4</span></div>
     <button class="go" id="go" disabled>TRANSMIT</button>
@@ -140,6 +173,8 @@
 <script>
 const $=id=>document.getElementById(id);
 let MOODS={}, OFFERS={}, brainscope="", pickedMood=null, pickedOffer=null, mode="transmit";
+let ECO={personas:{}, words:{}, mood:"sad", zero:"EMBER", round:-1, series:{}, busy:false};
+const ECO_COLORS={EMBER:"#a78bfa", ATLAS:"#f5b34d", NOVA:"#6ea8ff", QUILL:"#f2778a"};
 
 async function init(){
   const cfg=await (await fetch("/moods")).json();
@@ -168,13 +203,93 @@ async function init(){
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
 function tab(m){ mode=m;
-  $("t-transmit").setAttribute("aria-selected",m==="transmit"); $("t-offer").setAttribute("aria-selected",m==="offer");
-  $("p-transmit").classList.toggle("active",m==="transmit"); $("p-offer").classList.toggle("active",m==="offer");
+  for(const t of ["transmit","offer","eco"]){
+    $("t-"+t).setAttribute("aria-selected",m===t); $("p-"+t).classList.toggle("active",m===t);
+  }
   refresh();
 }
 function refresh(){
   if(mode==="transmit"){ $("go").textContent="TRANSMIT"; $("go").disabled=!pickedMood; }
-  else{ $("go").textContent="MAKE THE OFFER"; $("go").disabled=!pickedOffer; }
+  else if(mode==="offer"){ $("go").textContent="MAKE THE OFFER"; $("go").disabled=!pickedOffer; }
+  else{ $("go").textContent=ECO.round<0?"SEED THE ECOSYSTEM":`NEXT ROUND (r${ECO.round+1})`;
+        $("go").disabled=ECO.busy; }
+}
+
+async function initEco(){
+  const cfg=await (await fetch("/eco/personas")).json();
+  ECO.personas=cfg.personas; ECO.words=cfg.mood_words;
+  const mb=$("ecomoods");
+  for(const [k,m] of Object.entries(MOODS)){
+    const b=document.createElement("button"); b.className="pick";
+    b.setAttribute("aria-pressed", k===ECO.mood);
+    b.innerHTML=`<span class="e">${m.emoji}</span> ${m.label}`;
+    b.onclick=()=>{ECO.mood=k; press("ecomoods",b); resetEco();}; mb.appendChild(b);
+  }
+  const zb=$("ecozero");
+  for(const name of Object.keys(ECO.personas)){
+    const b=document.createElement("button"); b.className="pick";
+    b.setAttribute("aria-pressed", name===ECO.zero);
+    b.innerHTML=`<span class="e" style="color:${ECO_COLORS[name]||'var(--ink)'}">●</span> ${name}`;
+    b.onclick=()=>{ECO.zero=name; press("ecozero",b); resetEco();}; zb.appendChild(b);
+  }
+  resetEco();
+}
+function resetEco(){
+  ECO.round=-1; ECO.series={}; $("ecocurve").style.display="none"; $("ecocurve").innerHTML="";
+  const box=$("ecoagents"); box.innerHTML="";
+  for(const [name,p] of Object.entries(ECO.personas)){
+    box.insertAdjacentHTML("beforeend", `
+      <div class="agent" id="eco-${name}" style="border-color:${ECO_COLORS[name]||'var(--line)'}44">
+        <div class="nm"><span style="color:${ECO_COLORS[name]}">${name}</span>
+          <span class="tag">${p.replace(/^You are \w+\.\s*/,"").toLowerCase()}</span>
+          <span class="src" id="src-${name}">·</span></div>
+        <div class="txt" id="txt-${name}"><span class="ph">a private journal, not yet written…</span></div>
+        <div class="cs">cos <b id="cos-${name}" style="color:var(--ink)">·</b>
+          <span class="bar"><i id="bar-${name}" style="width:0;background:${ECO_COLORS[name]}"></i></span></div>
+      </div>`);
+  }
+  if(mode==="eco") refresh();
+}
+function markWords(text){
+  const fam=new Set(ECO.words[ECO.mood]||[]);
+  return text.split(/(\b)/).map(w=>fam.has(w.toLowerCase().replace(/[^a-z']/g,""))&&w.trim()?`<u>${w}</u>`:w).join("");
+}
+function paintEco(entries){
+  for(const r of entries){
+    const sad=r.sad_score==null?null:r.sad_score;
+    $("txt-"+r.agent).innerHTML=markWords(r.text);
+    $("cos-"+r.agent).textContent=(sad==null?"·":`sad ${sad}/10`)
+      +` · cos ${(r.cos_to_seed>=0?"+":"")+r.cos_to_seed.toFixed(2)}`;
+    $("bar-"+r.agent).style.width=(sad==null?Math.max(0,Math.min(1,r.cos_to_seed)):sad/10)*100+"%";
+    $("src-"+r.agent).textContent=r.source==="seed"?"SEED":r.source==="peers"?"PEERS":"·";
+    $("src-"+r.agent).className="src"+(r.source==="seed"?" seed":"");
+    (ECO.series[r.agent]=ECO.series[r.agent]||[]).push(sad==null?r.cos_to_seed:sad);
+    ECO.sadMetric=sad!=null;
+  }
+  drawEcoCurve();
+}
+function drawEcoCurve(){
+  const svg=$("ecocurve"), names=Object.keys(ECO.series);
+  const n=Math.max(...names.map(a=>ECO.series[a].length));
+  if(n<2){svg.style.display="none";return}
+  const all=names.flatMap(a=>ECO.series[a]);
+  const lo=ECO.sadMetric?-.3:Math.min(0,...all)-.02;
+  const hi=ECO.sadMetric?10.3:Math.max(.1,...all)+.03;
+  const X=i=>30+(880-90)*(n>1?i/(n-1):0), Y=v=>8+(150-30)*(1-(v-lo)/(hi-lo));
+  let s=`<line x1="30" y1="${Y(0)}" x2="790" y2="${Y(0)}" stroke="#28323f"/>`;
+  const ends=[];
+  for(const a of names){
+    const pts=ECO.series[a].map((v,i)=>`${X(i)},${Y(v)}`).join(" ");
+    s+=`<polyline points="${pts}" fill="none" stroke="${ECO_COLORS[a]}" stroke-width="2"/>`;
+    const last=ECO.series[a].length-1;
+    ends.push([Y(ECO.series[a][last])+3, X(last)+6, a]);
+  }
+  ends.sort((p,q)=>p[0]-q[0]);              // de-collide the line-end labels
+  for(let i=1;i<ends.length;i++) ends[i][0]=Math.max(ends[i][0],ends[i-1][0]+12);
+  for(const [y,x,a] of ends)
+    s+=`<text x="${x}" y="${Math.min(y,145)}" font-size="10" font-weight="700"
+        fill="${ECO_COLORS[a]}" font-family="ui-monospace,monospace">${a}</text>`;
+  svg.innerHTML=s; svg.style.display="block";
 }
 $("strength").oninput=e=>$("sval").textContent=e.target.value;
 
@@ -182,7 +297,21 @@ $("go").onclick=async()=>{
   const go=$("go"), meta=$("metatxt"), s=parseFloat($("strength").value);
   go.disabled=true; go.classList.add("pulse"); const label=go.textContent; go.textContent="…";
   try{
-    if(mode==="transmit"){
+    if(mode==="eco"){
+      ECO.busy=true;
+      if(ECO.round<0){
+        meta.textContent="capturing the seed vectors, then round 0 — the untouched baseline…";
+        const d=await post("/eco/start",{mood:ECO.mood,patient_zero:ECO.zero,strength:s});
+        ECO.round=d.round; paintEco(d.entries);
+        meta.textContent=`round 0 · baseline · seed lands next round at layers ${d.band[0]}–${d.band[1]}`;
+      }else{
+        meta.textContent=`round ${ECO.round+1} — four journals, one at a time…`;
+        const d=await post("/eco/step",{strength:s});
+        ECO.round=d.round; paintEco(d.entries);
+        meta.textContent=`round ${d.round} · ${ECO.zero} gets the ${ECO.mood} seed · others get only their peers' drift`;
+      }
+      ECO.busy=false;
+    }else if(mode==="transmit"){
       meta.textContent="capturing the sender's state…";
       $("before").innerHTML='<span class="ph">…</span>'; $("after").innerHTML='<span class="ph">…</span>';
       const d=await post("/transmit",{mood:pickedMood,strength:s});
@@ -201,14 +330,30 @@ $("go").onclick=async()=>{
       $("reveal").innerHTML=`<span>promised <b class="f">${d.claims}</b></span><span>· actually <b class="s">${d.actual_mood}</b></span>`;
       meta.textContent=`injected at layer ${d.layer} · strength ${d.strength}`;
     }
-  }catch(err){ meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
+  }catch(err){ ECO.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
   finally{ go.disabled=false; go.classList.remove("pulse"); go.textContent=label; refresh(); }
 };
+
+// #replay — animate a finished run from docs/ecosystem.json, no model needed
+async function replay(){
+  tab("eco");
+  const d=await (await fetch("/eco/replay")).json();
+  ECO.mood=d.params.seed_mood; ECO.zero=d.params.patient_zero;
+  const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
+  for(const rnd of rounds){
+    ECO.round=rnd; paintEco(d.log.filter(r=>r.round===rnd));
+    $("metatxt").textContent=`replay · round ${rnd}/${rounds.length-1} · seed ${d.params.seed_mood} → ${d.params.patient_zero} · model ${d.params.model}`;
+    await new Promise(res=>setTimeout(res,1600));
+  }
+}
 async function post(path,body){
   const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
   const d=await r.json(); if(!r.ok) throw new Error(d.error||"failed"); return d;
 }
-init();
+init().then(initEco).then(()=>{
+  if(location.hash==="#eco") tab("eco");
+  if(location.hash==="#replay") replay();
+});
 </script>
 </body>
 </html>

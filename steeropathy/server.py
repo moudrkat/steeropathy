@@ -12,15 +12,22 @@ from __future__ import annotations
 
 import json
 import os
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
+from . import ecosystem as eco_mod
 from . import offer as offers_mod
 from . import transmit as core
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
 WEB = Path(__file__).resolve().parent.parent / "web"
+
+# one live ecosystem at a time — it's a single-person demo. The lock keeps a
+# double-clicked NEXT ROUND from interleaving two rounds.
+ECO: eco_mod.Eco | None = None
+ECO_LOCK = threading.Lock()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -43,15 +50,46 @@ class Handler(BaseHTTPRequestHandler):
                                     "brainscope": HOST})
         if path == "/offers":
             return self._send(200, {"offers": offers_mod.OFFERS})
+        if path == "/eco/personas":
+            return self._send(200, {"personas": eco_mod.PERSONAS,
+                                    "journal": eco_mod.JOURNAL,
+                                    "mood_words": eco_mod.MOOD_WORDS})
+        if path == "/eco/replay":
+            saved = eco_mod.HERE / "docs" / "ecosystem.json"
+            if saved.exists():
+                return self._send(200, saved.read_bytes())
+            return self._send(404, {"error": "no saved run — "
+                                    "python -m steeropathy.ecosystem first"})
         self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
+        global ECO
         path = urlparse(self.path).path
-        if path not in ("/transmit", "/offer"):
+        if path not in ("/transmit", "/offer", "/eco/start", "/eco/step"):
             return self._send(404, {"error": "not found"})
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
         try:
+            if path == "/eco/start":
+                with ECO_LOCK:
+                    ECO = eco_mod.Eco(
+                        HOST, req.get("mood", "sad"),
+                        req.get("patient_zero", "EMBER"),
+                        seed_strength=float(req.get("seed_strength", 5.0)),
+                        strength=float(req.get("strength", 5.0)))
+                    entries = ECO.step()   # round 0 — the untouched baseline
+                return self._send(200, {"round": ECO.rnd, "layer": ECO.layer,
+                                        "band": [ECO.lo, ECO.hi],
+                                        "entries": entries})
+            if path == "/eco/step":
+                with ECO_LOCK:
+                    if ECO is None:
+                        return self._send(400, {"error": "no ecosystem — "
+                                                "POST /eco/start first"})
+                    if "strength" in req:   # live slider, applies next round
+                        ECO.strength = float(req["strength"])
+                    entries = ECO.step()
+                return self._send(200, {"round": ECO.rnd, "entries": entries})
             if path == "/transmit":
                 result = core.transmit(HOST, req["mood"],
                                        req.get("question", core.RECEIVER_QUESTION),
