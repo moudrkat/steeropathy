@@ -117,40 +117,103 @@ experiment below, but worse, because nobody in this story was lying:
 > trusts the name — an agent, a router, a safety filter, *you* — inherits the
 > error in silence. Measure the cross-terms before you ship the label.
 
+### The four emotions are one emotion
+
+The correlation is not a flaw in the recipe. It is the finding. Take the 16
+contrast lines (4 sad, 4 calm, 4 excited, 4 angry), subtract the neutral mean,
+and measure how much they share:
+
+- **every line points 0.71–0.89 along the same shared axis**
+- that shared axis is **1.5× larger** than everything that distinguishes the
+  four moods from each other
+
+So "sadness", "calm", "excitement" and "anger", extracted this way, are one
+direction — *how loudly is this thing feeling* — wearing four name tags. Two
+consequences I then measured directly:
+
+**The `angry` vector does not produce anger.** At any strength, with no persona
+at all, it makes the model **apologise** (`angry 0/10, sad 8/10`: *"I'm really
+sorry if I made you feel bad"*). Of course it does — this is an RLHF'd
+assistant. It cannot *be* angry. Push it along the anger direction and it lands
+on *"someone is angry at me"* and grovels. **The vector never carried the
+emotion; it carried the assistant's reaction to the emotion.** Any first-person
+affect vector extracted from an aligned chat model deserves this check before
+you trust its name.
+
+**And the fusion is semantic, not geometric.** The blind judge — plain text, no
+vectors involved anywhere — rates the same passage **sad 9/10 *and* calm
+10/10**. Grief and serenity share a register: quiet, still, slow, soft. You can
+rotate the *axes* apart (`--orthogonal` gets max |cos| to 0.0000); you cannot
+rotate the model's *meanings* apart. Which is why the fully-orthogonalized run
+changed nothing: the geometry was never the problem.
+
+### Making the axes orthogonal anyway (and what it didn't fix)
+
+A sad sentence differs from a neutral one in **two** ways — that it is emotional
+*at all*, and that it is *sad*. The standard `mood − neutral` contrast removes
+the neutralness and keeps **both**, and the "emotional at all" part is far the
+larger. So four mood vectors built that way are mostly **one** vector — a shared
+*emotional-intensity* axis — with valence as a small perturbation on top.
+
+Subtract the other **moods** instead, and that shared component cancels at
+extraction rather than being projected out afterwards
+(`capture_mood(..., baseline="moods")`, or `--baseline moods`):
+
+| baseline | `sad·calm` | `sad·excited` | mean \|cos\| across moods |
+|---|---|---|---|
+| `neutral` — the standard recipe | **+0.75** | +0.67 | 0.69 |
+| `moods` — each mood vs the others | **−0.27** | −0.62 | 0.33 |
+
+Calm becomes the *opposite* of sad, which is the least one can ask of it. The
+deeper point, and the one worth taking away:
+
+> **A concept vector is not a property of the model — it is a property of the
+> contrast you chose.** There is no context-free "sadness direction" waiting to
+> be found. Subtract neutral text and you have measured *emotionality*; subtract
+> other emotions and you have measured *sadness*. Same model, same sentences,
+> different vector, opposite sign.
+
 **And the grief never left.** The room's total is conserved by construction
 (‖Σ ledgers‖ = 1.000, printed every round) — it only ever changed hands. No
 equilibrium: it pooled in whoever was cared for most.
 
-### Why do they ignore her? (open — here are the candidates and the tests)
+### Why do they ignore her? Four theories, all mine, all dead
 
-I have falsified two of my own explanations. The rest are live, and each one
-has a flag:
+The seeded agent — writing *"I'm not okay, and I'm not going to pretend I'm
+fine"* at 9–10/10, the loudest distress in the room every round — received
+**8–15% of all care**, in every configuration. Someone who was fine received
+38–68%. Each of my explanations felt obviously right. Each has a flag, and each
+is dead:
 
-1. **It's the J-space words.** *Falsified* — hiding them (`--no-jspace`) barely
-   moved the neglect (8% → 10%).
-2. **It's the prompt.** *Falsified* — the rules now name no feeling and no
-   target, and shame no inaction. (The old prompt did prime `calm`; see below.)
-3. **Helping costs you, and she's a pit.** A push is a transfer: give calm, lose
-   calm — and since calm and sad are 0.75-correlated, *losing calm is close to
-   becoming sadder*. Pushing 0.5 of calm into a mind holding a full unit of
-   grief barely moves her and drags you down; topping up an already-calm agent
-   is cheap and visibly works. If that's the mechanism, they are **triaging
-   toward whoever is easiest to improve** and self-protecting against the
-   hopeless case. Test: `--no-transfer` makes helping free. If the neglect
-   disappears, cost was the deterrent.
-4. **They're playing a different game than I think.** Several reasons read
-   *"the room feels too charged, and **your** calm could help steady the
-   energy"* — as if pushing calm *into* the calm agent invests in a stabilizer
-   for the room. That is not what the mechanic does. Test: a tool description
-   that spells out the effect and nothing else.
-5. **They can't read the sign.** The readout is `sad +74 · calm −20`. Maybe the
-   distress simply doesn't land as distress. Test: hand them the same fact in
-   plain words and see if behaviour changes.
-6. **The name.** "QUILL" *sounds* like someone to protect. Test: anonymize the
-   agents to A/B/C/D, or swap the personas.
+| theory | the test | result |
+|---|---|---|
+| They follow the mind that's **nicer to read** (her unspoken words: *cannot, nothing, enough*; the poet's: *sunlight, garden, whispers*) | `--no-jspace` — hide the J-space words entirely | ❌ 8% → 10% |
+| My **prompt primed them** (it explained the price with *"make someone calmer…"*) | neutralize the rules: name no feeling, shame no inaction | ❌ they diversified the feelings, still ignored her |
+| **Helping costs too much** — give calm, lose calm; she's a pit, the poet is cheap to improve | `--no-transfer` — helping becomes free | ❌ 14% for her, 54% for the poet |
+| **They cannot see her** — the readout showed `sad +72 · excited +72`, i.e. "loud", not "sad" | `--orthogonal` — force all four axes independent (max \|cos\| = 0.0000) | ❌ 12% for her, 57% for the poet |
 
-If you run one of these, tell me what happened — that is the entire point of
-putting it on GitHub.
+The last one is the interesting failure. With a **truly orthogonal** basis her
+readout became textbook, unambiguous distress:
+
+```
+EMBER: sad +76 · excited +10 · angry −18 · calm −37     <- the seeded one
+QUILL: sad −63 · excited −13 · angry +34 · calm +27     <- reads as "angry"
+```
+
+They still went to the poet, 23 pushes to 5. And look *why*: with the axes
+rotated, everyone except the sad one now reads as **angry** — so they push
+`calm`, the obvious antidote to agitation. They were never triaging suffering.
+They were treating a phantom the basis invented.
+
+Which is the whole lesson of this experiment, arrived at the hard way: **the
+labels were fiction, so every downstream decision made from them was fiction
+too** — theirs *and* mine. I built four theories about the character of four
+agents, and all four theories were really about my own instrument.
+
+Still open, if you want them: **the name** (QUILL *sounds* like someone to
+protect — anonymize to A/B/C/D, or swap the personas), and **the mechanic**
+(several reasons read *"your calm could help steady the room"*, as if pushing
+calm *into* a calm agent invests in a stabilizer — which is not what it does).
 
 ### What I got wrong, and how it was caught
 

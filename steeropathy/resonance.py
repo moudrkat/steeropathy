@@ -155,19 +155,23 @@ class Reso(Eco):
         self.orthogonal = orthogonal
         self.jspace_channel = jspace_channel
         if orthogonal:
-            # BOTH ends of the channel must be disentangled, not just one.
-            # inject: so a "calm" push doesn't smuggle in sadness.
-            # metric: so the READOUT can distinguish moods at all — with raw
-            # directions a grieving mind reports "sad +72 · excited +72",
-            # i.e. the agents literally cannot see distress as distress.
+            # Full Gram-Schmidt over ALL four moods, in BOTH spaces. Projecting
+            # out only the seed is not enough: it leaves e.g. angry·calm = +0.6,
+            # so a serene mind still reports "angry +34" and gets medicated for
+            # agitation it does not have. A measurement basis has to be a basis:
+            # each number must mean "how much of THIS mood, independent of the
+            # rest". Seed first so its axis is the raw, un-rotated one.
+            order = [seed_mood] + [m for m in MOODS if m != seed_mood]
             for space in (self.inject, self.metric):
-                S = space[seed_mood]
-                for m in MOODS:
-                    if m == seed_mood:
-                        continue
-                    c = cos(space[m], S)
-                    space[m] = unit([x - c * s
-                                     for x, s in zip(space[m], S)])
+                done = []
+                for m in order:
+                    v = list(space[m])
+                    for u in done:
+                        c = cos(v, u)
+                        v = [x - c * y for x, y in zip(v, u)]
+                    n = math.sqrt(sum(x * x for x in v))
+                    space[m] = unit(v) if n > 1e-6 else space[m]
+                    done.append(space[m])
         self.cross = {m: round(sum(a * b for a, b in
                                    zip(self.inject[m],
                                        self.metric[seed_mood])), 3)
