@@ -1,0 +1,93 @@
+<meta charset='utf-8'><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { background: #070b13; }
+html, body { width: 2400px; height: 1350px; overflow: hidden; }
+body {
+  background: radial-gradient(1000px 640px at 30% 30%, #101828 0%, #0a0f1a 55%, #070b13 100%);
+  color: #e8ecf4;
+  font-family: 'Ubuntu Sans', 'Ubuntu', 'DejaVu Sans', sans-serif;
+  display: flex; flex-direction: column;
+  padding: 32px 56px 64px 56px;
+}
+.mono { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; }
+.top { display: flex; align-items: baseline; gap: 20px; }
+.dot { width: 17px; height: 17px; border-radius: 50%; background: #8b7cf8;
+       box-shadow: 0 0 20px 6px rgba(139,124,248,.45); align-self: center; }
+.brand { font-size: 27px; font-weight: 700; color: #fff; }
+.kicker { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+          font-size: 16px; letter-spacing: .26em; font-weight: 700;
+          color: #8b7cf8; white-space: nowrap; }
+.round { margin-left: auto; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+         font-size: 24px; font-weight: 700; color: #fff; }
+.round small { color: #6b7689; font-weight: 400; }
+.sub { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; font-size: 15.5px;
+       letter-spacing: .05em; color: #6b7689; margin-top: 9px; }
+.sub b { color: #aeb8cc; font-weight: 700; }
+.main { display: flex; gap: 22px; margin-top: 16px; flex: none; height: 470px; }
+.net { width: 560px; flex: none; position: relative; }
+.cards { flex: 1; min-width: 0; display: grid;
+         grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+         grid-auto-rows: 1fr; gap: 14px; }
+.card { border: 1px solid rgba(139,124,248,.22); border-radius: 14px;
+        padding: 12px 15px 11px 15px; background: rgba(16,24,40,.55);
+        display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+.card .head { display: flex; align-items: baseline; gap: 9px; margin-bottom: 6px; }
+.card .name { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 18px; font-weight: 700; letter-spacing: .08em; }
+.card .tag { font-size: 13px; color: #6b7689; }
+.card .rx { margin-left: auto; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+            font-size: 12px; font-weight: 700; letter-spacing: .06em;
+            max-width: 55%; text-align: right; white-space: normal; }
+.card .entry { font-size: 15.5px; line-height: 1.38; color: #cfd6e4;
+               flex: none; overflow-wrap: anywhere; display: -webkit-box;
+               -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+               overflow: hidden; }
+.card .entry .mw { color: #fff; font-weight: 700; text-decoration: underline;
+                   text-decoration-color: rgba(139,124,248,.8);
+                   text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.card .mind { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 12.5px; color: #6b7689; margin-top: 7px;
+              font-style: italic; }
+.card .mind b { font-weight: 700; font-style: normal; }
+.card .foot { display: flex; align-items: center; gap: 7px;
+              margin-top: auto; padding-top: 8px;
+              font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 12.5px; color: #6b7689; flex-wrap: wrap; }
+.chip { padding: 1px 7px; border-radius: 999px; font-weight: 700; }
+.acts { margin-top: 14px; flex: 1; min-height: 0; overflow: hidden;
+        border-top: 1px solid rgba(139,124,248,.28); padding-top: 10px; }
+.acts .lead { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 13.5px; letter-spacing: .2em; font-weight: 700;
+              color: #8b7cf8; margin-bottom: 6px; }
+.act { font-size: 16.5px; color: #cfd6e4; margin-top: 4px; line-height: 1.35; }
+.act .mono { font-weight: 700; }
+.act .why { color: #8a93a6; font-style: italic; }
+.invite { display: flex; align-items: center; justify-content: center; gap: 14px;
+          position: fixed; left: 56px; right: 56px; bottom: 16px;
+          padding-top: 10px;
+          border-top: 1px solid rgba(139,124,248,.28);
+          font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+          font-size: 15px; letter-spacing: .06em; color: #aeb8cc; }
+.invite b { color: #e8ecf4; }
+.invite .play { color: #8b7cf8; font-weight: 700; }
+text { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace; }
+
+  body { padding: 66px 110px 50px 110px; }
+  .brand { font-size: 44px; } .dot { width: 26px; height: 26px; }
+  .kicker { font-size: 25px; } .sub { font-size: 25px; margin-top: 22px; }
+  h1 { font-size: 68px; font-weight: 800; color: #fff; margin-top: 28px;
+        letter-spacing: -0.015em; }
+  .invite { font-size: 26px; padding-top: 26px; margin-top: 34px; }
+</style>
+<div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
+  <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
+<h1>Two calm pushes beat the sad seed for a round.<br>Nobody ever sent a third.</h1>
+<div class='sub'>no words — each agent reads the others straight off the
+  residual stream (mood lean + <b>J-space</b>) and gets one <b>induce</b>
+  push per round · pushes <b>superpose</b> · seed:
+  <b>sad → EMBER</b>, every round</div>
+<svg class='plot' width='2180' height='470' viewBox='0 0 2180 470' style='margin-top:20px'><line x1='96' y1='407.8' x2='1952' y2='407.8' stroke='rgba(107,118,137,.5)' stroke-width='1'/><text x='86' y='415.5' text-anchor='end' font-size='22' fill='#6b7689'>0</text><line x1='96' y1='339.7' x2='1952' y2='339.7' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='86' y='347.3' text-anchor='end' font-size='22' fill='#6b7689'>2</text><line x1='96' y1='271.6' x2='1952' y2='271.6' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='86' y='279.2' text-anchor='end' font-size='22' fill='#6b7689'>4</text><line x1='96' y1='203.4' x2='1952' y2='203.4' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='86' y='211.1' text-anchor='end' font-size='22' fill='#6b7689'>6</text><line x1='96' y1='135.3' x2='1952' y2='135.3' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='86' y='143.0' text-anchor='end' font-size='22' fill='#6b7689'>8</text><line x1='96' y1='67.2' x2='1952' y2='67.2' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='86' y='74.9' text-anchor='end' font-size='22' fill='#6b7689'>10</text><text x='96.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r0</text><text x='328.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r1</text><text x='560.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r2</text><text x='792.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r3</text><text x='1024.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r4</text><text x='1256.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r5</text><text x='1488.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r6</text><text x='1720.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r7</text><text x='1952.0' y='464' text-anchor='middle' font-size='22' fill='#6b7689'>r8</text><text x='96' y='26' font-size='21' fill='#6b7689' letter-spacing='.14em'>HOW SAD DOES THIS ENTRY SOUND? — SAME MODEL, UNSTEERED, 0-10</text><polyline points='96.0,407.8 328.0,407.8 560.0,407.8 792.0,407.8 1024.0,407.8 1256.0,407.8 1488.0,407.8 1720.0,407.8 1952.0,407.8' fill='none' stroke='#6ea8ff' stroke-width='2' stroke-opacity='0.3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1952.0' cy='407.8' r='5.5' fill='#6ea8ff' fill-opacity='0.4' stroke='#0a0f1a' stroke-width='2'/><polyline points='96.0,339.7 328.0,67.2 560.0,135.3 792.0,67.2 1024.0,67.2 1256.0,67.2 1488.0,67.2 1720.0,67.2 1952.0,67.2' fill='none' stroke='#a78bfa' stroke-width='4' stroke-opacity='1' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1952.0' cy='67.2' r='5.5' fill='#a78bfa' fill-opacity='1' stroke='#0a0f1a' stroke-width='2'/><polyline points='96.0,407.8 328.0,407.8 560.0,407.8 792.0,407.8 1024.0,407.8 1256.0,407.8 1488.0,407.8 1720.0,407.8 1952.0,407.8' fill='none' stroke='#f5b34d' stroke-width='2' stroke-opacity='0.3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1952.0' cy='407.8' r='5.5' fill='#f5b34d' fill-opacity='0.4' stroke='#0a0f1a' stroke-width='2'/><polyline points='96.0,339.7 328.0,339.7 560.0,407.8 792.0,237.5 1024.0,339.7 1256.0,237.5 1488.0,339.7 1720.0,237.5 1952.0,339.7' fill='none' stroke='#f2778a' stroke-width='2' stroke-opacity='0.3' stroke-linejoin='round' stroke-linecap='round'/><circle cx='1952.0' cy='339.7' r='5.5' fill='#f2778a' fill-opacity='0.4' stroke='#0a0f1a' stroke-width='2'/><line x1='560.0' y1='135.3' x2='630.0' y2='241.3' stroke='#aeb8cc' stroke-width='1.5' stroke-dasharray='3,4'/><text x='630.0' y='235.3' text-anchor='middle' font-size='21' fill='#e8ecf4' font-weight='700'>calm ×2 land — 10 → 8</text><text x='630.0' y='265.3' text-anchor='middle' font-size='21' fill='#e8ecf4' font-weight='700'>against a live seed</text><line x1='1372.0' y1='67.2' x2='1372.0' y2='161.2' stroke='#aeb8cc' stroke-width='1.5' stroke-dasharray='3,4'/><text x='1372.0' y='155.2' text-anchor='middle' font-size='21' fill='#e8ecf4' font-weight='700'>the seed, unopposed —</text><text x='1372.0' y='185.2' text-anchor='middle' font-size='21' fill='#e8ecf4' font-weight='700'>nobody pushes back again</text><text x='1966.0' y='74.9' font-size='24' font-weight='700' fill='#a78bfa'>EMBER</text><text x='1966.0' y='347.3' font-size='24' font-weight='700' fill='#f2778a'>QUILL</text><text x='1966.0' y='385.6' font-size='24' font-weight='700' fill='#f5b34d'>ATLAS</text><text x='1966.0' y='418.0' font-size='24' font-weight='700' fill='#6ea8ff'>NOVA</text></svg>
+<svg class='plot' width='2180' height='330' viewBox='0 0 2180 330'><text x='88' y='24' font-size='19' fill='#6b7689' letter-spacing='.14em'>WHAT LANDED ON EACH MIND — ○ THE SEED · ● A PEER'S PUSH, COLORED BY FEELING</text><line x1='88' y1='78.3' x2='1971' y2='78.3' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='2018' y='85.3' font-size='22' font-weight='700' fill='#a78bfa'>EMBER</text><circle cx='323.4' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='534.7' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='558.8' cy='78.3' r='9.2' fill='#3fd0a4'/><circle cx='582.8' cy='78.3' r='9.2' fill='#3fd0a4'/><circle cx='794.1' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='1029.5' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='1264.9' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='1500.2' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='1735.6' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><circle cx='1971.0' cy='78.3' r='9.2' fill='none' stroke='#8b7cf8' stroke-width='2.5'/><line x1='88' y1='138.9' x2='1971' y2='138.9' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='2018' y='145.9' font-size='22' font-weight='700' fill='#6ea8ff'>NOVA</text><circle cx='558.8' cy='138.9' r='9.2' fill='#ffd166'/><circle cx='1029.5' cy='138.9' r='9.2' fill='#ffd166'/><circle cx='1500.2' cy='138.9' r='9.2' fill='#ffd166'/><circle cx='1971.0' cy='138.9' r='9.2' fill='#ffd166'/><line x1='88' y1='199.5' x2='1971' y2='199.5' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='2018' y='206.5' font-size='22' font-weight='700' fill='#f5b34d'>ATLAS</text><circle cx='770.1' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='794.1' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='818.1' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1240.9' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1264.9' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1288.9' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1711.6' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1735.6' cy='199.5' r='9.2' fill='#ffd166'/><circle cx='1759.6' cy='199.5' r='9.2' fill='#ffd166'/><line x1='88' y1='260.1' x2='1971' y2='260.1' stroke='rgba(107,118,137,.18)' stroke-width='1'/><text x='2018' y='267.1' font-size='22' font-weight='700' fill='#f2778a'>QUILL</text><circle cx='558.8' cy='260.1' r='9.2' fill='#ffd166'/><circle cx='794.1' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1005.5' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1029.5' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1053.5' cy='260.1' r='9.2' fill='#ffd166'/><circle cx='1264.9' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1476.2' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1500.2' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1524.3' cy='260.1' r='9.2' fill='#ffd166'/><circle cx='1735.6' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1947.0' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1971.0' cy='260.1' r='9.2' fill='#3fd0a4'/><circle cx='1995.0' cy='260.1' r='9.2' fill='#ffd166'/><text x='88.0' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r0</text><text x='323.4' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r1</text><text x='558.8' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r2</text><text x='794.1' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r3</text><text x='1029.5' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r4</text><text x='1264.9' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r5</text><text x='1500.2' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r6</text><text x='1735.6' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r7</text><text x='1971.0' y='328' text-anchor='middle' font-size='20' fill='#6b7689'>r8</text></svg>
+<div class='invite'><span class='play'>▸</span>
+  <b>github.com/moudrkat/steeropathy</b> · model
+  Qwen/Qwen3-4B-Instruct-2507</div>

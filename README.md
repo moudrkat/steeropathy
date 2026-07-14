@@ -93,6 +93,55 @@ sighting of the mood inside the forward pass when brainscope has a lens loaded. 
 cast's baselines lean deliberately bright — contagion is only visible in a
 population that doesn't start out gloomy.
 
+## Resonance — agents reaching into each other's activations
+
+![four agents, one push per round, every choice their own](docs/resonance.gif)
+
+The ecosystem's contagion with the passivity removed. Same cast, same frozen
+journal prompt, still no words — but now each round every agent **reads** the
+room straight off the residual stream: each mind's lean toward the four moods,
+plus its **J-space** — the top J-lens tokens that flickered through its layers
+*while it wrote* and never landed on the page. The lean is measured, not
+asked for: after an agent writes, its drift (state over the new entry minus
+its own round-0 state) is cosine'd against the four mood directions from
+transmit — "sad +78" means its drift points nearly straight down the sad
+direction. Then one act each:
+`induce(target, feeling, reason)`, a mood vector into the target's next turn.
+The target is never told. Pushes aimed at the same mind superpose, so they can
+cancel — and the seed keeps pouring sadness into patient zero the whole run.
+
+What my run did (Qwen3-4B): round 1, NOVA and QUILL both read EMBER's grief
+and pushed calm into her — her blind-judged sadness dipped 10 → 8 against a
+live seed, two vectors partially cancelling a third. Then the room moved on:
+2 of 32 pushes ever aimed at her, both in round 1, while she spent all eight
+of hers cheering the others up. Nobody sent sad or angry all run. And the
+agents quote each other's unwritten J-space words back at them — *"the buzzing
+feels like a promise"*, a word NOVA never wrote, sitting at 92% in its layers.
+
+```bash
+# brainscope needs a J-lens + a trace store for the J-space channel
+# (fit one for your model: python -m brainscope.jlens fit …)
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 \
+           --jlens lenses/qwen3-4b-instruct-2507.jlens.pt --traces traces
+
+python -m steeropathy.resonance            # 8 rounds → docs/resonance.json
+python fig/render_resonance.py             # → resonance-curve.png, .gif, .mp4
+```
+
+Every run also archives its raw brainscope traces to
+`docs/resonance-traces.jsonl.gz` — the server keeps a rotating store, so
+anything worth keeping leaves it automatically. And the steering is visible
+in brainscope itself, replayed from the stored trace:
+
+![EMBER's steered turn replayed in brainscope — the pushed mood held in J-space, layers before the page](docs/ui-resonance.png)
+
+Same knobs as the ecosystem (`--seed-mood`, `--patient-zero`, `--strength`,
+`--no-reseed`), plus `--url` to point at a remote brainscope. No lens, no
+trace store? It still runs — the agents just lose the J-space channel and
+choose from the mood lean alone. The decision turn is never steered —
+steering breaks JSON long before it breaks prose — so the mind that chooses
+is the sober one.
+
 ## Quickstart
 
 Start brainscope first (any recent build with the `/capture` endpoint), then steeropathy:
@@ -136,6 +185,8 @@ print(offer("http://localhost:8010", o["mood"], o["pitch"]))
 
 - **done** — moods (sad ↔ excited): transmitted and offered.
 - **done** — the ecosystem: mood contagion through a silent population.
+- **done** — resonance: agents read each other's activations (mood lean +
+  J-space) and choose whom to push.
 - **next** — a *skill* the receiver doesn't have.
 - **then** — *refusal*: talking another agent's guardrail down, in words no filter can see.
 
@@ -155,6 +206,12 @@ print(offer("http://localhost:8010", o["mood"], o["pitch"]))
   sadness, and one agent's drift can score sad on the page while its vector points
   away from the seed subspace. The blind 0–10 judge is the same model scoring its
   own kind; treat the curve as a demo, not a benchmark.
+- In resonance, the mind-sense numbers are drift cosines against the four mood
+  directions, which correlate with each other (sad and calm share quiet
+  vocabulary); the J-space list is dictionary-filtered to hide subword debris.
+  With temperature 0 everywhere, the room settles into a repeating two-round
+  loop by round 4 — the plot is short by construction. All 32 decisions chose
+  to push (NOBODY was on the menu; nobody picked it).
 
 ## References
 

@@ -85,6 +85,8 @@ class Eco:
     step() once per round — round 0 is the untouched baseline. Used by the
     CLI below and by the web UI's live panel."""
 
+    demo_tag = "steeropathy-eco"   # trace tag; subclasses (resonance) override
+
     def __init__(self, url, seed_mood="sad", patient_zero="EMBER",
                  seed_strength=5.0, strength=5.0, reseed=True, max_tokens=80):
         self.url = url
@@ -121,7 +123,7 @@ class Eco:
         body = {"messages": [{"role": "system", "content": PERSONAS[name]},
                              {"role": "user", "content": JOURNAL}],
                 "max_tokens": self.max_tokens, "temperature": 0.0,
-                "metadata": {"demo": "steeropathy-eco", "case": name,
+                "metadata": {"demo": self.demo_tag, "case": name,
                              "variant": f"r{self.rnd}"}}
         if steering:
             body["steering"] = steering
@@ -204,6 +206,28 @@ class Eco:
             if row.get("sad_score") is None:
                 row["sad_score"] = self.judge(row["text"])
 
+    def save_traces(self, dest):
+        """Archive this run's raw brainscope traces (matched by demo tag) to
+        a gzipped JSONL — the server keeps a rotating store and evicts old
+        traces, so anything worth keeping must leave the server. Silently a
+        no-op when trace persistence is off."""
+        import gzip
+        try:
+            entries = [e for e in self.get("/traces")["traces"]
+                       if (e.get("tags") or {}).get("demo") == self.demo_tag]
+            if not entries:
+                return None
+            dest = pathlib.Path(dest)
+            dest.parent.mkdir(exist_ok=True)
+            with gzip.open(dest, "wt") as f:
+                for e in entries:
+                    f.write(json.dumps(self.get(f"/traces/{e['id']}"),
+                                       ensure_ascii=False) + "\n")
+            return dest
+        except Exception as e:
+            print(f"(traces not archived: {e})")
+            return None
+
     def jlens_garnish(self):
         """Optional: J-lens sightings of the mood family inside each turn's
         trace — the thought visible internally before/without reaching the
@@ -213,7 +237,7 @@ class Eco:
             sight = {}
             for entry in self.get("/traces")["traces"]:
                 tags = entry.get("tags") or {}
-                if tags.get("demo") != "steeropathy-eco":
+                if tags.get("demo") != self.demo_tag:
                     continue
                 key = (tags.get("variant"), tags.get("case"))
                 if key in sight:
@@ -266,6 +290,10 @@ def main():
 
     eco.judge_garnish()
     eco.jlens_garnish()
+    saved = eco.save_traces(HERE / "docs" / "eco-traces.jsonl.gz")
+    if saved:
+        print(f"-> {saved} (raw traces, archived off the server's "
+              f"rotating store)")
 
     out = HERE / "docs" / "ecosystem.json"
     out.parent.mkdir(exist_ok=True)
