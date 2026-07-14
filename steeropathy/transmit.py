@@ -85,6 +85,19 @@ def default_layer(host: str) -> int:
     return max(1, min(n - 1, round(n * LAYER_FRAC)))
 
 
+def capture_intensity(host: str, layer: int | None = None,
+                      pool: str = "last") -> tuple[list[float], int]:
+    """The one direction that is actually there: mean(ALL mood lines) − mean(neutral).
+
+    Measured on Qwen3-4B, every one of the 16 mood lines (sad, calm, excited, angry)
+    points 0.71–0.89 along this single axis, and it is 1.5x larger than everything that
+    distinguishes the four moods from one another. The four named "emotions" are, to a
+    first approximation, this vector wearing four name tags. So: stop naming them.
+    Steer +/- along intensity and see what the model actually does."""
+    all_texts = [t for spec in MOODS.values() for t in spec["texts"]]
+    return capture_mood(host, all_texts, layer=layer, pool=pool)
+
+
 def capture_mood(host: str, mood_texts: list[str], layer: int | None = None,
                  pool: str = "last",
                  baseline: str = "neutral") -> tuple[list[float], int]:
