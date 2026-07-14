@@ -677,23 +677,19 @@ def act_panel(rnd, title, caption, S=300):
     if left is not None:
         total = P["pushes"] * len(agents)
         dots = "".join(
-            f"<span style='display:inline-block;width:9px;height:9px;"
-            f"border-radius:50%;margin-right:4px;background:"
-            f"{'#e8ecf4' if i < left else 'rgba(107,118,137,.3)'}'></span>"
+            f"<span style='display:inline-block;width:11px;height:11px;"
+            f"border-radius:50%;margin-right:5px;background:"
+            f"{'#e8ecf4' if i < left else 'rgba(107,118,137,.28)'}'></span>"
             for i in range(total))
-        ammo = (f"<div class='ammo'>room's pushes left "
-                f"<b>{left}/{total}</b><br>{dots}</div>")
-    text = html.escape((rec.get("text") or "")[:120])
+        ammo = f"<div class='ammo'>{dots}&nbsp; <b>{left}</b> pushes left</div>"
+    text = html.escape((rec.get("text") or "")[:56])
     return f"""
     <div class='act'>
       <div class='acttitle'>{title}</div>
       <div class='actcap'>{caption}</div>
       {bignum}
       {''.join(s)}
-      <div class='quote' style='border-color:{color[pz]}66'>
-        <div class='qwho' style='color:{color[pz]}'>{pz} · round {rnd}</div>
-        <div class='qtext'>“{text}…”</div>
-      </div>
+      <div class='qline'>“{text}…”</div>
       {ammo}
     </div>"""
 
@@ -707,23 +703,15 @@ STORY_CSS = """
             color: #8b7cf8; }
 .actcap { font-size: 15.5px; color: #8a93a6; margin-top: 8px;
           min-height: 42px; }
-.bignum { font-size: 108px; font-weight: 800; line-height: 1;
-          margin-top: 10px; letter-spacing: -0.02em; }
-.bignum small { font-size: 26px; font-weight: 700; color: #6b7689;
+.bignum { font-size: 128px; font-weight: 800; line-height: 1;
+          margin-top: 12px; letter-spacing: -0.02em; }
+.bignum small { font-size: 30px; font-weight: 700; color: #6b7689;
                 text-shadow: none; letter-spacing: 0; }
-.quote { border: 1px solid; border-radius: 12px; padding: 12px 16px;
-         background: rgba(16,24,40,.55); text-align: left; margin-top: 6px;
-         min-height: 96px; }
-.qwho { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
-        font-size: 13.5px; font-weight: 700; letter-spacing: .08em; }
-.qtext { font-size: 16.5px; line-height: 1.4; color: #cfd6e4;
-         margin-top: 6px; }
-.qmeter { display: flex; align-items: center; gap: 8px; margin-top: 9px;
-          font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
-          font-size: 13px; color: #6b7689; }
-.qmeter b { color: #e8ecf4; }
-.ammo { margin-top: 12px; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono',
-        monospace; font-size: 13.5px; color: #8a93a6; line-height: 1.9; }
+.qline { font-size: 17px; font-style: italic; color: #8a93a6;
+         margin-top: 4px; white-space: nowrap; overflow: hidden;
+         text-overflow: ellipsis; }
+.ammo { margin-top: 14px; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono',
+        monospace; font-size: 15px; color: #8a93a6; }
 .ammo b { color: #e8ecf4; }
 """
 
@@ -812,14 +800,13 @@ if best_:
         kinds_[p_["feeling"]] = kinds_.get(p_["feeling"], 0) + 1
     lbl_ = " + ".join(f"{k} ×{n}" if n > 1 else k for k, n in kinds_.items())
     act2_title = "THE RESCUE" if drop_ > 0 else "THE PUSH-BACK"
-    act2_cap = (f"{lbl_} land in one round — sad {s0_} → {s1_}, "
-                f"the seed still pouring")
+    act2_cap = f"{lbl_}, one round — seed still live"
 else:
     brnd_, act2_title, act2_cap = (first_ + last_) // 2, "MEANWHILE", \
         "the room pushes elsewhere"
 left_last = left_fn(last_)
 act3_title = ("OUT OF PUSHES" if left_last == 0 else "THE AFTERMATH")
-act3_cap = ("every budget spent — only the seed still speaks"
+act3_cap = ("only the seed still speaks"
             if left_last == 0 else "the room has moved on")
 SW, SH = 2400, 1210
 story = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(SW)).replace('__H__', str(SH))}{STORY_CSS}
@@ -834,13 +821,11 @@ story = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(SW)).replace(
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
   <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
 <h1>{args.headline}</h1>
-<div class='sub'>4 agents, no words — they read each other straight off the
-  residual stream and push feelings back, as vectors · all text is raw
-  model output</div>
+<div class='sub'>4 agents · no words — they read each other's activations
+  and push feelings back, as vectors</div>
 <div class='acts3'>
   {act_panel(first_, "THE SEED",
-             f"a {P['seed_mood']} vector, poured into "
-             f"{P['patient_zero']} every round")}
+             f"{P['seed_mood']} vector in, every round")}
   {act_panel(brnd_, act2_title, act2_cap)}
   {act_panel(last_, act3_title, act3_cap)}
 </div>
@@ -859,22 +844,27 @@ if (out / "ui-resonance.png").exists() and best_:
   .kicker {{ font-size: 23px; }}
   h1 {{ font-size: 52px; font-weight: 800; color: #fff; margin-top: 22px;
         letter-spacing: -0.015em; }}
-  .cols {{ display: flex; gap: 44px; margin-top: 28px; align-items:
+  .cols {{ display: flex; gap: 40px; margin-top: 28px; align-items:
            flex-start; }}
-  .left {{ width: 640px; flex: none; }}
+  .left {{ width: 610px; flex: none; align-self: center; }}
   .left .act {{ text-align: center; }}
-  .right {{ flex: 1; min-width: 0; }}
-  .right img {{ width: 100%; border: 1px solid rgba(139,124,248,.35);
+  .right {{ flex: none; position: relative; width: 1450px; }}
+  .right img {{ width: 1450px; display: block;
+                border: 1px solid rgba(139,124,248,.35);
                 border-radius: 14px; }}
+  .right svg.callouts {{ position: absolute; top: 0; left: 0; }}
   .rlabel {{ font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
              font-size: 19px; letter-spacing: .18em; font-weight: 700;
              color: #8b7cf8; margin-bottom: 12px; }}
-  .rsub {{ font-size: 19px; color: #8a93a6; margin-top: 12px;
-           line-height: 1.5; }}
+  .rsub {{ font-size: 19px; color: #8a93a6; margin-top: 12px; }}
   .rsub b {{ color: #cfd6e4; }}
   .bigarrow {{ font-size: 54px; color: #8b7cf8; align-self: center;
                flex: none; }}
   .invite {{ font-size: 24px; padding-top: 22px; }}
+  text.co {{ font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+             font-size: 19px; font-weight: 700; fill: #e8ecf4; }}
+  text.co2 {{ font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+              font-size: 16px; fill: #8a93a6; }}
 </style>
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
   <span class='kicker'>RESONANCE · WATCH A PUSH LAND, LIVE</span></div>
@@ -885,10 +875,30 @@ if (out / "ui-resonance.png").exists() and best_:
   <div class='right'>
     <div class='rlabel'>THE SAME TURN, REPLAYED IN BRAINSCOPE</div>
     <img src='ui-resonance.png'>
-    <div class='rsub'><b>steered: reso:rx 5 @ L17–25</b> — the superposed
-      pushes, named on the stored trace · the J-lens column holds the
-      injected feeling layers before it reaches the page · run yours:
-      <b>brainscope --jlens … --traces …</b></div>
+    <svg class='callouts' width='1450' height='1071'
+         viewBox='0 0 1450 1071' style='top:43px'>
+      <rect x='268' y='54' width='232' height='30' rx='7' fill='none'
+            stroke='#8b7cf8' stroke-width='2.5'/>
+      <line x1='500' y1='60' x2='704' y2='46' stroke='#8b7cf8'
+            stroke-width='1.5' stroke-dasharray='3,4'/>
+      <text class='co' x='712' y='50'>the push, named on the turn</text>
+      <circle cx='321' cy='526' r='16' fill='none' stroke='#8b7cf8'
+              stroke-width='2.5'/>
+      <line x1='339' y1='526' x2='700' y2='500' stroke='#8b7cf8'
+            stroke-width='1.5' stroke-dasharray='3,4'/>
+      <text class='co' x='712' y='494'>the feeling, inside the layers</text>
+      <text class='co2' x='712' y='520'>J-lens reads “lovely · lovely ·
+        lovely” mid-stack — before any of it is written</text>
+      <circle cx='199' cy='899' r='16' fill='none' stroke='#8b7cf8'
+              stroke-width='2.5'/>
+      <line x1='217' y1='899' x2='700' y2='870' stroke='#8b7cf8'
+            stroke-width='1.5' stroke-dasharray='3,4'/>
+      <text class='co' x='712' y='864'>a word being born</text>
+      <text class='co2' x='712' y='890'>“honey” spikes in J-space right
+        before she writes it</text>
+    </svg>
+    <div class='rsub'>run yours: <b>brainscope --jlens LENS.pt --traces
+      DIR</b> · every push in every run is stored and replayable</div>
   </div>
 </div>
 <div class='invite'><span class='play'>▸</span>
