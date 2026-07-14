@@ -250,6 +250,24 @@ attention scattered at random (correlation with the readout: +0.29 ≈ noise).
 > **They did not become kind. They became blind.** Removing the signal removes
 > the discrimination — which is not the same as removing the problem.
 
+**And the caveat that undercuts my own headline.** In the four-label game, every
+available move was a **positive** vector: `sad`, `calm`, `excited`, `angry`.
+There was no negative one. **The agents never had a way to *reduce* anybody's
+sadness.** The nearest thing to relief was `calm` — which, at cosine +0.75 with
+sad, *adds* grief.
+
+So the −0.77 may not be avoidance at all. It may be **rational triage**: they
+tried calm on her, it could not work, and they redirected effort to targets where
+their moves had visible effect. Avoiding the one person you cannot help is not
+cruelty; it is economics — and I built the box with no tool in it.
+
+`--bipolar` is the first configuration in which a relief move exists at all: one
+axis, *signed*, so a mind can be pushed **toward** the seed mood or **away** from
+it. Same vector, opposite sign. It keeps the valence (unlike `--intensity`) and
+invents no moods (unlike the four labels). That is the run that actually asks the
+question: *given that you can see her pain, and you finally have something that
+would relieve it — do you?*
+
 ### What I got wrong, and how it was caught
 
 This section exists because the first version of this experiment was quietly

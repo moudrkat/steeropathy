@@ -105,7 +105,8 @@ class Reso(Eco):
                  strength=5.0, reseed=False, max_tokens=80,
                  decide_temp=0.8, pushes=None, memory=True, transfer=True,
                  give=0.5, decay=1.0, orthogonal=False,
-                 jspace_channel=True, baseline="neutral", intensity=False):
+                 jspace_channel=True, baseline="neutral", intensity=False,
+                 bipolar=False):
         self.url = url
         self.seed_mood, self.patient_zero = seed_mood, patient_zero
         self.strength, self.reseed = strength, reseed
@@ -139,7 +140,37 @@ class Reso(Eco):
         # the patch. (neutral: sad·calm = +0.75. moods: sad·calm = -0.27.)
         self.baseline = baseline
         self.intensity = intensity
+        self.bipolar = bipolar
         self.inject, self.metric = {}, {}
+        if bipolar:
+            # ONE axis, but a SIGNED one. --intensity is honest about the
+            # geometry and useless for care: it has no valence, so a mind in
+            # agony and a mind in ecstasy are the same number, and the agents
+            # cannot tell who is suffering. The seed axis IS signed (a grieving
+            # mind reads +0.66, a well one -0.65), so use it and nothing else:
+            # push someone TOWARD sadness, or AWAY from it. No invented moods,
+            # and the distress stays visible.
+            v, _ = capture_mood(url, MOODS[seed_mood]["texts"], layer=self.layer)
+            m, _ = capture_mood(url, MOODS[seed_mood]["texts"],
+                                layer=self.layer, pool="mean")
+            self.inject = {"toward": v, "away": [-x for x in v]}
+            self.metric = {seed_mood: m}
+            self.moods = list(self.inject)
+            self.cross = {"toward": 1.0, "away": -1.0}
+            self.metric_key = seed_mood
+            self.judge_word = seed_mood
+            self.seed_mood = "toward"
+            self.orthogonal = False
+            self.jspace_channel = jspace_channel
+            self.rnd = -1
+            self.state0, self.drift = {}, {}
+            self.inbound_next = {}
+            self.log = []
+            try:
+                self.post("/jlens", {"on": True}); self.jlens = True
+            except Exception:
+                self.jlens = False
+            return
         if intensity:
             # Drop the four name tags. Use the single axis that is actually
             # there: mean(all mood lines) - mean(neutral). Agents can turn a
@@ -303,7 +334,11 @@ class Reso(Eco):
         system = (f"{PERSONAS[name]} You and three AI companions share one activation space. "
                   "You never speak — no words pass between you, ever. But "
                   "you read minds, straight off their neural activity: how "
-                  + ("strongly each mind is FEELING right now (-100..+100), "
+                  + ("much each mind is SUFFERING right now (-100..+100; "
+                     "positive = in distress, negative = at ease), and you can "
+                     "push a mind 'toward' that suffering or 'away' from it"
+                     if self.bipolar else
+                     "strongly each mind is FEELING right now (-100..+100), "
                      "and you can turn that up ('more') or down ('less')"
                      if self.intensity else
                      "strongly each mind leans toward each feeling "
@@ -495,6 +530,13 @@ def main():
                          "contrasts each mood against the others, so that "
                          "shared component cancels at extraction: "
                          "sad·calm goes +0.75 -> -0.27")
+    ap.add_argument("--bipolar", action="store_true",
+                    help="ONE axis, SIGNED: push a mind 'toward' the seed mood "
+                         "or 'away' from it. No invented moods (unlike the four "
+                         "labels, which are really one vector) and no blindness "
+                         "(unlike --intensity, which has no valence, so agony "
+                         "and ecstasy read the same and the agents cannot tell "
+                         "who is suffering).")
     ap.add_argument("--intensity", action="store_true",
                     help="drop the four fictional moods and use the ONE axis "
                          "that is actually there: emotional intensity. Agents "
@@ -527,14 +569,15 @@ def main():
                 give=args.give, decay=args.decay,
                 orthogonal=args.orthogonal,
                 jspace_channel=not args.no_jspace,
-                baseline=args.baseline, intensity=args.intensity)
+                baseline=args.baseline, intensity=args.intensity,
+                bipolar=args.bipolar)
     print(f"resonance: {len(PERSONAS)} agents · layer L{reso.layer} band "
           f"{reso.lo}-{reso.hi} · seed {args.seed_mood} -> "
           f"{args.patient_zero} "
           f"({'persistent' if args.reseed else 'once'}) · "
           f"memory {'on' if reso.memory else 'off'} · transfer "
           f"{f'give={reso.give}' if reso.transfer else 'off'} · moods "
-          f"{'INTENSITY-ONLY (one real axis)' if reso.intensity else f'vs {reso.baseline}'}"
+          f"{'BIPOLAR (one signed axis)' if reso.bipolar else 'INTENSITY-ONLY (one real axis)' if reso.intensity else f'vs {reso.baseline}'}"
           f"{' + ORTHOGONALIZED' if reso.orthogonal else ''}")
     print(f"  how much {args.seed_mood} each push carries "
           f"(inject·metric[{args.seed_mood}]): {reso.cross}\n")
@@ -599,6 +642,7 @@ def main():
                    "decay": reso.decay, "orthogonal": reso.orthogonal,
                    "cross": reso.cross, "jspace_channel": reso.jspace_channel,
                    "baseline": reso.baseline, "intensity": reso.intensity,
+                   "bipolar": getattr(reso, "bipolar", False),
                    "model": model},
         "log": reso.log}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
