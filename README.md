@@ -2,15 +2,20 @@
 
 **Agents that read each other's activations — and pay to change them.**
 
-![the run in three acts: the seed, the push-back, the sink](docs/resonance-story.png)
+![who got comforted, and who was actually suffering](docs/post-v4-attention.png)
 
 steeropathy is a small Python app where AI agents — the same model in several
 roles — steer each other through activation space. The main experiment is
-**resonance**, above: four agents, no text between them ever, one mind seeded
-with sadness. The others can read the grief inside her layers and push feelings
-back as vectors — but what they give is subtracted from themselves and stays
-given, so the room's total feeling can only *move*. Is there a mood equilibrium
-in activation space? In my run: no. The grief ended up in whoever kept giving.
+**resonance**: four agents who never see a single thing the others *generate* —
+no text, no tool calls, not even thinking traces. They get only each other's
+**activations**, and they can reach into each other's activations and change
+them. It works: they notice each other, influence each other, and choose whose
+mind to touch.
+
+Then I seeded one of them with sadness and went looking for an equilibrium.
+There isn't one — and finding out why demolished four of my own theories and,
+eventually, my belief that I knew what an emotion is. **All four of my mood
+vectors turned out to be the same vector.** Read on; it gets worse.
 
 It runs on top of [brainscope](https://github.com/moudrkat/brainscope), my
 model-internals server: brainscope hosts the model, captures the activations,
@@ -37,8 +42,11 @@ vectors. Three laws:
 - **PUSH.** One tool call: `induce(target, feeling, reason)` — a mood vector
   into that mind's next forward pass. The target is never told.
 - **PAY.** A push is a *transfer*, not a copy. The receiver's ledger gains
-  `+give·F`; the giver's loses exactly the same, permanently. Make her calmer,
-  become that much less calm yourself.
+  `+give·F`; the giver's loses exactly the same, permanently — whatever feeling
+  you give is drawn out of your own mind and stays gone. (The rules the agents
+  see name **no feeling at all**. An earlier version illustrated the price with
+  *"make someone calmer…"* and the room then sent `calm` 40 times out of 40. See
+  "What I got wrong".)
 
 Every agent carries a **ledger** — the steering bias it holds, everything ever
 pushed into it or drawn out of it that nobody has moved since. So the seed
@@ -52,7 +60,7 @@ sustains itself through the page as well as the vector.
 | | how | |
 |---|---|---|
 | `sad 0–10` | the same model, unsteered and **blind** (one entry, no agent, no round): *"how sad is the person who wrote this?"* | what's **on the page** |
-| `drift·sad` | the entry's residual state (`/capture`, mean-pooled, L21) minus that agent's own round-0 state, unit-normalized, cosine'd against the sad direction | what's **in the mind** — and what the agents themselves see |
+| `drift·sad` | the entry's residual state (`/capture`, mean-pooled, L21) minus that agent's own round-0 state, unit-normalized, cosine'd against the sad direction | what's **in the mind** — and what the agents themselves see. Read the correlation warning below before trusting the label on this one. |
 | `ledger·sad` | the agent's ledger vector · the sad direction | what it currently **holds** |
 
 The question: **is there a mood equilibrium in activation space?**
@@ -61,61 +69,38 @@ The question: **is there a mood equilibrium in activation space?**
 
 ![who got comforted, who was actually suffering](docs/post-v4-attention.png)
 
-### What happened: they ignored the one in pain
+### What happened
 
-**The finding that survived every control.** The seeded agent — writing *"I'm not
-okay, and I'm not going to pretend I'm fine"* at 9–10/10 sadness, with the
-loudest drift·sad in the room (+0.74) **every single round** — received **8–15%
-of all pushes**. An agent who was fine received 38–68%. This held across every
-configuration I could think of to break it:
+**No equilibrium.** The conserved sadness never dissipated — it pooled in
+whoever was cared for *most*, who was never the one who needed it.
 
-| run | mood vectors | J-space channel | care to the agent in pain |
-|---|---|---|---|
-| A | raw | on | 6/40 — **15%** |
-| B | orthogonalized | on | 3/40 — **8%** |
-| C | orthogonalized | **off** | 4/40 — **10%** |
+**They ignored the one in pain.** The seeded agent spent ten rounds writing
+*"I'm not okay, and I'm not going to pretend I'm fine"* — the loudest distress
+signal in the room, every single round — and received **8–15% of all pushes**.
+The poet, who was fine, received **57–68%**. This survived every control I could
+build (see the four dead theories below).
 
-They are not failing to *see* it: the distress is the single largest number in
-their readout, every round. They see it and go elsewhere.
+**The medicine was made of the disease.** The mood vectors are not orthogonal:
+on Qwen3-4B `sad·calm = +0.75`. A `calm` push measurably *adds* sadness
+(`inject[calm] · metric[sad] = +0.26`), so in the first run the most-comforted
+agent — never seeded, just popular — was driven to **9/10 sad by kindness
+alone.**
 
-**What J-space does — and does not do.** I expected the J-space channel to be
-the cause: the poet's unspoken words are *sunlight, garden, whispers*, the
-suffering one's are *cannot, nothing, simply, enough* — so surely they follow
-the mind that is nicer to read. **The ablation refuted it.** With the J-space
-words hidden entirely (run C, mood numbers only), the neglect barely moved
-(8% → 10%). J-space is not what drives their choices.
-
-What it *does* drive is their **reasons**: 33 of 40 push-reasons quote a word
-from the target's unwritten J-space — *"the **garden** needs quiet to grow"*,
-*"the **storms** have passed"* — words that were forming in that mind and never
-reached its page. So the agents **narrate** with what they read in each other's
-layers, and **decide** by the numbers. That is a smaller claim than the one I
-wanted, and it is the one the data supports.
-
-**The medicine was made of the disease.** All 40 pushes were `calm` — but see
-the prompt bug below before reading anything into *that*. What is not a prompt
-artifact is the geometry: the naive "mood − neutral" contrast vectors are not
-orthogonal. On Qwen3-4B they sit at cosine **0.57–0.76** of each other
-(`sad·calm = +0.75`), because such a contrast is dominated by a shared
-*emotional-intensity* axis. So a `calm` push measurably **adds sadness**
-(`inject[calm] · metric[sad] = +0.26`), and in run A the most-comforted agent
-was driven to 9/10 sad **by kindness alone**, never having been seeded.
-`--orthogonal` projects the seed direction out of the other moods and drops
-calm's sadness content to **0.08**; the collateral damage stops (run B), and the
-neglect does not.
-
-![the same room, twice — the only difference is the geometry of the calm vector](docs/post-v1-split.png)
-
-**And note who was deceived.** The agents never see a vector. They see a *name* —
-`sad`, `calm`, `excited`, `angry` — in the readout and in the `induce` tool's
-enum, and nothing else. They asked for calm, in good faith, and received 75%
-grief. They did everything right with the information they had; **my label was
-false**, and I didn't know it either. That is the same trap as the `offer`
-experiment below, but worse, because nobody in this story was lying:
+**And note who was deceived.** The agents never see a vector. They see a *name*
+— `sad`, `calm`, `excited`, `angry` — and nothing else. They asked for calm, in
+good faith, and received 75% grief. They did everything right with the
+information they had; **my label was false**, and I didn't know it either.
 
 > **A steering vector's name is not its content.** Anything downstream that
 > trusts the name — an agent, a router, a safety filter, *you* — inherits the
 > error in silence. Measure the cross-terms before you ship the label.
+
+**What J-space does — and doesn't.** 33 of 40 push-reasons quote a word from
+the target's *unwritten* J-space (*"the **garden** needs quiet to grow"* — said
+to a mind that never wrote "garden"). But hiding J-space entirely barely moved
+their targeting. **They narrate with J-space; they decide by the numbers.**
+
+![the same room, twice — the only difference is the geometry of the calm vector](docs/post-v1-split.png)
 
 ### The four emotions are one emotion
 
