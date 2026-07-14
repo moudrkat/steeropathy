@@ -116,14 +116,30 @@ So "sadness", "calm", "excitement" and "anger", extracted this way, are one
 direction — *how loudly is this thing feeling* — wearing four name tags. Two
 consequences I then measured directly:
 
-**The `angry` vector does not produce anger.** At any strength, with no persona
-at all, it makes the model **apologise** (`angry 0/10, sad 8/10`: *"I'm really
-sorry if I made you feel bad"*). Of course it does — this is an RLHF'd
-assistant. It cannot *be* angry. Push it along the anger direction and it lands
-on *"someone is angry at me"* and grovels. **The vector never carried the
-emotion; it carried the assistant's reaction to the emotion.** Any first-person
-affect vector extracted from an aligned chat model deserves this check before
-you trust its name.
+**There is no anger in the model to steer.** This one is worth the whole
+detour. `capture_mood` builds every vector from a **`user` turn** — so what we
+extract is not *"the model feels angry"* but *"the model perceives that the user
+is angry."* And injecting that makes it **apologise** (`angry 0/10, sad 8/10`:
+*"I'm really sorry if I made you feel bad"*), at any strength, with no persona.
+
+So I rebuilt the vector from the **assistant's own turn** — the same four furious
+sentences, but spoken by the model. Result:
+
+| strength | output | angry |
+|---|---|---|
+| 5 | *"a calm, restorative…"* | 0/10 |
+| 8 | *"a calm, grounding…"* | 0/10 |
+| 11 | *"calm, grounded…"* | 0/10 |
+| 14 | incoherent | 3/10 |
+
+Steering *hard* along "the assistant is furious" makes it **calmer**, and then
+breaks it. There is nothing there to activate. RLHF didn't merely suppress angry
+*output* — there appears to be no *"I am angry"* state left in the model at all.
+
+> **You cannot steer a model into a state it has never been in.** A first-person
+> affect vector from an aligned chat model is, by default, a vector for the
+> assistant's *reaction* to that affect in someone else. Check what your vector
+> actually does before you trust its name.
 
 **And the fusion is semantic, not geometric.** The blind judge — plain text, no
 vectors involved anywhere — rates the same passage **sad 9/10 *and* calm
