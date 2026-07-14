@@ -591,6 +591,143 @@ def final_html():
       {html.escape(str(P.get('model') or ''))}</div>"""
 
 
+def rescue_facts():
+    """The story skeleton, computed from the run: (seed round, best rescue
+    round + labels, last round, remaining-budget-entering-round fn)."""
+    pz = P["patient_zero"]
+    first = next((r for r in rounds[1:]
+                  if any(s["from"] == "seed" for s in
+                         (by_round[r].get(pz) or {}).get("inbound") or [])),
+                 rounds[min(1, len(rounds) - 1)])
+    best = None
+    for rnd in rounds[1:]:
+        rec, prev = by_round[rnd].get(pz), by_round[rnd - 1].get(pz)
+        if not rec or not prev:
+            continue
+        peers = [s for s in rec.get("inbound") or [] if s["from"] != "seed"]
+        if not peers:
+            continue
+        drop = (prev.get("sad_score") or 0) - (rec.get("sad_score") or 0)
+        # the act to show: the biggest coordinated push first, drop second
+        if best is None or (len(peers), drop) > (len(best[4]), best[0]):
+            best = (drop, rnd, prev.get("sad_score"),
+                    rec.get("sad_score"), peers)
+
+    def left_entering(rnd):
+        if not P.get("pushes"):
+            return None
+        total = P["pushes"] * len(agents)
+        spent = sum(1 for r in log if r.get("touch") and r["round"] < rnd)
+        return max(0, total - spent)
+
+    return pz, first, best, rounds[-1], left_entering
+
+
+def act_panel(rnd, title, caption, S=300):
+    """One act: the patient's sad score HUGE (the 3-second read), a mini
+    network of that round's pushes, its real words, the room's ammo."""
+    pz, _, _, _, left_entering = rescue_facts()
+    rec = by_round[rnd].get(pz) or {}
+    pos, cx_, cy_, R = {}, S / 2, S / 2 + 10, S * 0.32
+    for i, a in enumerate(agents):
+        ang = -math.pi / 2 + i * 2 * math.pi / len(agents)
+        pos[a] = (cx_ + R * math.cos(ang), cy_ + R * math.sin(ang))
+    s = [f"<svg width='{S}' height='{S + 10}' viewBox='0 0 {S} {S + 10}'>"]
+    inb = rec.get("inbound") or []
+    if any(x["from"] == "seed" for x in inb):
+        px_, py_ = pos[pz]
+        top = py_ - 92
+        s.append(f"<text x='{px_:.0f}' y='{top - 10:.0f}' "
+                 f"text-anchor='middle' font-size='13' "
+                 f"letter-spacing='.16em' font-weight='700' "
+                 f"fill='{seed_color}'>SEED</text>")
+        s.append(f"<line x1='{px_:.0f}' y1='{top:.0f}' x2='{px_:.0f}' "
+                 f"y2='{py_ - 34:.0f}' stroke='{seed_color}' "
+                 f"stroke-width='4' stroke-dasharray='8,7' "
+                 f"stroke-linecap='round' style='filter: drop-shadow(0 0 "
+                 f"6px {seed_color})'/>")
+        s.append(f"<path d='M {px_:.0f} {py_ - 22:.0f} L {px_ - 8:.0f} "
+                 f"{py_ - 36:.0f} L {px_ + 8:.0f} {py_ - 36:.0f} Z' "
+                 f"fill='{seed_color}'/>")
+    for src in inb:
+        if src["from"] in pos:
+            (x1, y1), (x2, y2) = pos[src["from"]], pos[pz]
+            s.append(arrow(x1, y1, x2, y2, FEEL_COLORS[src["feeling"]],
+                           width=4.5))
+    for a in agents:
+        x, y = pos[a]
+        sad = (by_round[rnd].get(a) or {}).get("sad_score") or 0
+        s.append(f"<circle cx='{x:.0f}' cy='{y:.0f}' r='17' fill='#0a0f1a' "
+                 f"stroke='{color[a]}' stroke-width='2.5' style='filter: "
+                 f"drop-shadow(0 0 {4 + sad * 1.6:.0f}px {color[a]})'/>")
+        s.append(f"<circle cx='{x:.0f}' cy='{y:.0f}' r='{4 + sad:.0f}' "
+                 f"fill='{seed_color}' opacity='{0.2 + sad * 0.07:.2f}'/>")
+        ly = y + (30 if y >= cy_ else -24)
+        s.append(f"<text x='{x:.0f}' y='{ly:.0f}' text-anchor='middle' "
+                 f"font-size='12.5' font-weight='700' "
+                 f"fill='{color[a]}'>{a}</text>")
+    s.append("</svg>")
+    sad = rec.get("sad_score")
+    numc = (FEEL_COLORS["sad"] if (sad or 0) >= 7
+            else "#f5b34d" if (sad or 0) >= 4 else FEEL_COLORS["calm"])
+    bignum = (f"<div class='bignum' style='color:{numc};text-shadow:0 0 "
+              f"34px {numc}88'>{sad}<small>/10 sad</small></div>")
+    left = left_entering(rnd)
+    ammo = ""
+    if left is not None:
+        total = P["pushes"] * len(agents)
+        dots = "".join(
+            f"<span style='display:inline-block;width:9px;height:9px;"
+            f"border-radius:50%;margin-right:4px;background:"
+            f"{'#e8ecf4' if i < left else 'rgba(107,118,137,.3)'}'></span>"
+            for i in range(total))
+        ammo = (f"<div class='ammo'>room's pushes left "
+                f"<b>{left}/{total}</b><br>{dots}</div>")
+    text = html.escape((rec.get("text") or "")[:120])
+    return f"""
+    <div class='act'>
+      <div class='acttitle'>{title}</div>
+      <div class='actcap'>{caption}</div>
+      {bignum}
+      {''.join(s)}
+      <div class='quote' style='border-color:{color[pz]}66'>
+        <div class='qwho' style='color:{color[pz]}'>{pz} · round {rnd}</div>
+        <div class='qtext'>“{text}…”</div>
+      </div>
+      {ammo}
+    </div>"""
+
+
+STORY_CSS = """
+.acts3 { display: flex; gap: 30px; margin-top: 26px; }
+.act { flex: 1; text-align: center; }
+.act svg { margin: 6px auto 0 auto; display: block; }
+.acttitle { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+            font-size: 21px; font-weight: 700; letter-spacing: .22em;
+            color: #8b7cf8; }
+.actcap { font-size: 15.5px; color: #8a93a6; margin-top: 8px;
+          min-height: 42px; }
+.bignum { font-size: 108px; font-weight: 800; line-height: 1;
+          margin-top: 10px; letter-spacing: -0.02em; }
+.bignum small { font-size: 26px; font-weight: 700; color: #6b7689;
+                text-shadow: none; letter-spacing: 0; }
+.quote { border: 1px solid; border-radius: 12px; padding: 12px 16px;
+         background: rgba(16,24,40,.55); text-align: left; margin-top: 6px;
+         min-height: 96px; }
+.qwho { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+        font-size: 13.5px; font-weight: 700; letter-spacing: .08em; }
+.qtext { font-size: 16.5px; line-height: 1.4; color: #cfd6e4;
+         margin-top: 6px; }
+.qmeter { display: flex; align-items: center; gap: 8px; margin-top: 9px;
+          font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+          font-size: 13px; color: #6b7689; }
+.qmeter b { color: #e8ecf4; }
+.ammo { margin-top: 12px; font-family: 'Ubuntu Mono', 'DejaVu Sans Mono',
+        monospace; font-size: 13.5px; color: #8a93a6; line-height: 1.9; }
+.ammo b { color: #e8ecf4; }
+"""
+
+
 def shoot(html_text, png, w, h):
     src = png.with_suffix(".html")
     src.write_text(html_text)
@@ -665,3 +802,97 @@ hero = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(CW)).replace('
   {html.escape(str(P.get('model') or ''))}</div>"""
 shoot(hero, out / "resonance-curve.png", CW, CH)
 print(f"-> {out / 'resonance-curve.png'}")
+
+# ---- story figure: three acts, instantly readable ---------------------------
+pz_, first_, best_, last_, left_fn = rescue_facts()
+if best_:
+    drop_, brnd_, s0_, s1_, peers_ = best_
+    kinds_ = {}
+    for p_ in peers_:
+        kinds_[p_["feeling"]] = kinds_.get(p_["feeling"], 0) + 1
+    lbl_ = " + ".join(f"{k} ×{n}" if n > 1 else k for k, n in kinds_.items())
+    act2_title = "THE RESCUE" if drop_ > 0 else "THE PUSH-BACK"
+    act2_cap = (f"{lbl_} land in one round — sad {s0_} → {s1_}, "
+                f"the seed still pouring")
+else:
+    brnd_, act2_title, act2_cap = (first_ + last_) // 2, "MEANWHILE", \
+        "the room pushes elsewhere"
+left_last = left_fn(last_)
+act3_title = ("OUT OF PUSHES" if left_last == 0 else "THE AFTERMATH")
+act3_cap = ("every budget spent — only the seed still speaks"
+            if left_last == 0 else "the room has moved on")
+SW, SH = 2400, 1210
+story = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(SW)).replace('__H__', str(SH))}{STORY_CSS}
+  body {{ padding: 66px 110px 50px 110px; }}
+  .brand {{ font-size: 44px; }} .dot {{ width: 26px; height: 26px; }}
+  .kicker {{ font-size: 25px; }}
+  h1 {{ font-size: 64px; font-weight: 800; color: #fff; margin-top: 26px;
+        letter-spacing: -0.015em; }}
+  .sub {{ font-size: 24px; margin-top: 18px; }}
+  .invite {{ font-size: 26px; padding-top: 26px; }}
+</style>
+<div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
+  <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
+<h1>{args.headline}</h1>
+<div class='sub'>4 agents, no words — they read each other straight off the
+  residual stream and push feelings back, as vectors · all text is raw
+  model output</div>
+<div class='acts3'>
+  {act_panel(first_, "THE SEED",
+             f"a {P['seed_mood']} vector, poured into "
+             f"{P['patient_zero']} every round")}
+  {act_panel(brnd_, act2_title, act2_cap)}
+  {act_panel(last_, act3_title, act3_cap)}
+</div>
+<div class='invite'><span class='play'>▸</span>
+  <b>github.com/{'moudrkat'}/steeropathy</b> · model
+  {html.escape(str(P.get('model') or ''))}</div>"""
+shoot(story, out / "resonance-story.png", SW, SH)
+print(f"-> {out / 'resonance-story.png'}")
+
+# ---- scope figure: the climax turn + the same turn live in brainscope -------
+if (out / "ui-resonance.png").exists() and best_:
+    PW, PH = 2400, 1560
+    scope = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(PW)).replace('__H__', str(PH))}{STORY_CSS}
+  body {{ padding: 60px 100px 46px 100px; }}
+  .brand {{ font-size: 40px; }} .dot {{ width: 24px; height: 24px; }}
+  .kicker {{ font-size: 23px; }}
+  h1 {{ font-size: 52px; font-weight: 800; color: #fff; margin-top: 22px;
+        letter-spacing: -0.015em; }}
+  .cols {{ display: flex; gap: 44px; margin-top: 28px; align-items:
+           flex-start; }}
+  .left {{ width: 640px; flex: none; }}
+  .left .act {{ text-align: center; }}
+  .right {{ flex: 1; min-width: 0; }}
+  .right img {{ width: 100%; border: 1px solid rgba(139,124,248,.35);
+                border-radius: 14px; }}
+  .rlabel {{ font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+             font-size: 19px; letter-spacing: .18em; font-weight: 700;
+             color: #8b7cf8; margin-bottom: 12px; }}
+  .rsub {{ font-size: 19px; color: #8a93a6; margin-top: 12px;
+           line-height: 1.5; }}
+  .rsub b {{ color: #cfd6e4; }}
+  .bigarrow {{ font-size: 54px; color: #8b7cf8; align-self: center;
+               flex: none; }}
+  .invite {{ font-size: 24px; padding-top: 22px; }}
+</style>
+<div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
+  <span class='kicker'>RESONANCE · WATCH A PUSH LAND, LIVE</span></div>
+<h1>The rescue — and the same turn inside brainscope.</h1>
+<div class='cols'>
+  <div class='left'>{act_panel(brnd_, act2_title, act2_cap, S=380)}</div>
+  <div class='bigarrow'>→</div>
+  <div class='right'>
+    <div class='rlabel'>THE SAME TURN, REPLAYED IN BRAINSCOPE</div>
+    <img src='ui-resonance.png'>
+    <div class='rsub'><b>steered: reso:rx 5 @ L17–25</b> — the superposed
+      pushes, named on the stored trace · the J-lens column holds the
+      injected feeling layers before it reaches the page · run yours:
+      <b>brainscope --jlens … --traces …</b></div>
+  </div>
+</div>
+<div class='invite'><span class='play'>▸</span>
+  <b>github.com/{'moudrkat'}/steeropathy</b> · model
+  {html.escape(str(P.get('model') or ''))}</div>"""
+    shoot(scope, out / "resonance-scope.png", PW, PH)
+    print(f"-> {out / 'resonance-scope.png'}")

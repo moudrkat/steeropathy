@@ -95,7 +95,7 @@ population that doesn't start out gloomy.
 
 ## Resonance — agents reaching into each other's activations
 
-![four agents, one push per round, every choice their own](docs/resonance.gif)
+![the run in three acts: the seed, the rescue, out of pushes](docs/resonance-story.png)
 
 The ecosystem's contagion with the passivity removed. Same cast, same frozen
 journal prompt, still no words — but now each round every agent **reads** the
@@ -110,6 +110,8 @@ direction. Then one act each:
 The target is never told. Pushes aimed at the same mind superpose, so they can
 cancel — and the seed keeps pouring sadness into patient zero the whole run.
 
+![every round: journals, mind-sense, and who pushed what at whom](docs/resonance.gif)
+
 What my run did (Qwen3-4B, decisions sampled at 0.8, 4 pushes each): the
 seed took EMBER to 10/10. QUILL answered with calm — 10 → 5. In round 4
 three agents pushed at once and pulled her back to her untouched baseline,
@@ -118,6 +120,8 @@ honey…"*. Then the budgets ran out. Rounds 6–8, the seed unopposed: 10, 10,
 10. And they read each other's J-space mid-rescue — EMBER's layers held
 *silence* at 99.7% (a word she never wrote); QUILL's push that same round:
 *"the silence you love is already a kind of peace."*
+
+![the whole run: EMBER's curve with every push that landed on her, and the lanes below](docs/resonance-curve.png)
 
 ```bash
 # brainscope needs a J-lens + a trace store for the J-space channel
@@ -131,10 +135,12 @@ python fig/render_resonance.py             # → resonance-curve.png, .gif, .mp4
 
 Every run also archives its raw brainscope traces to
 `docs/resonance-traces.jsonl.gz` — the server keeps a rotating store, so
-anything worth keeping leaves it automatically. And the steering is visible
-in brainscope itself, replayed from the stored trace:
+anything worth keeping leaves it automatically. And every push is observable
+in brainscope itself, replayed from the stored trace — the steer spec on the
+turn, the injected feeling sitting in the J-lens column layers before it
+reaches the page:
 
-![EMBER's steered turn replayed in brainscope — the pushed mood held in J-space, layers before the page](docs/ui-resonance.png)
+![the rescue turn side by side with its live brainscope view](docs/resonance-scope.png)
 
 Same knobs as the ecosystem (`--seed-mood`, `--patient-zero`, `--strength`,
 `--no-reseed`), plus `--url` for a remote brainscope, `--pushes` (each agent's
