@@ -211,32 +211,44 @@ labels were fiction, so every downstream decision made from them was fiction
 too** — theirs *and* mine. I built four theories about the character of four
 agents, and all four theories were really about my own instrument.
 
-### The resolution: it was the instrument all along
+### The result: the clearer her pain, the further they moved away
 
-I stopped trying to fix the four labels and asked whether they were real. They
-are not (see above: one axis, four name tags). So I deleted them and gave the
-agents **the single dimension that actually exists** — `--intensity`. They can
-turn a mind's feeling *up* or *down*, and that is the entire vocabulary.
+With a clean, unambiguous readout — Gram-Schmidt basis, max |cos| = 0.0000, her
+distress the loudest signal on their screen every round — the agents still
+avoided her. So I measured the relationship directly:
 
-| what the agents were given | care reaching the one in distress |
-|---|---|
-| four mood labels (the standard recipe) | **15%** |
-| the same four, Gram–Schmidt orthogonalized | **15%** |
-| **one honest axis** | **28%** — a fair share is 25% |
+| agent | how sad the others saw it | share of the room's care |
+|---|---|---|
+| QUILL | −0.65 (the *least* sad) | **70%** |
+| ATLAS | +0.10 | 15% |
+| **EMBER** | **+0.66** (the seeded one) | **15%** |
+| NOVA | +0.06 | 0% |
 
-**They were never callous.** I had handed them a broken instrument and then
-written four theories about their character. Give them a measurement that
-corresponds to something real, and care distributes fine.
+**correlation( how sad you look , how much care you get ) = −0.77.**
 
-> **A mis-specified concept vector does not merely measure wrong. It makes every
-> agent downstream of it *behave* wrong — and look like a monster while doing
-> it.** Rotating the axes does not help; a fiction stays a fiction in any basis.
-> You have to stop using it.
+And it is not about identity. Seed a *different* agent and the effect follows
+the sadness, not the name — each agent is its own control:
 
-Two footnotes from that run, both honest: they push `more` 39 times out of 40 —
-an intensity dial gives them no way to *comfort*, only to amplify — and the
-seeded agent, having given her feeling away under the transfer rule, ends the
-run emotionally **flat** (10/10 → 2/10). Fair attention is not the same as help.
+| | care when **fine** | care when **suffering** |
+|---|---|---|
+| EMBER | 42% | **15%** |
+| QUILL | 70% | **45%** |
+
+Both lose about a third of the room's attention the moment they become the one
+who needs it.
+
+**The near-miss.** I then deleted the four fictional labels and gave the agents
+the single axis that actually exists (`--intensity`). The neglect vanished:
+15% → **28%**, a fair share being 25%. I nearly wrote that up as *"fix your
+instrument and the agents behave."*
+
+It is not that. **The honest axis has no valence.** It is one number — `feeling
++62` — on which a mind in agony and a mind in ecstasy look identical. The
+avoidance disappeared because they could no longer *see* who was suffering:
+attention scattered at random (correlation with the readout: +0.29 ≈ noise).
+
+> **They did not become kind. They became blind.** Removing the signal removes
+> the discrimination — which is not the same as removing the problem.
 
 ### What I got wrong, and how it was caught
 

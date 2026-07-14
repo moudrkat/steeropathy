@@ -34,9 +34,9 @@ RUNS = [
     ("docs/resonance-clean.json", "SAME FOUR, ORTHOGONALIZED",
      "Gram–Schmidt, max |cos| = 0.0000", WARN,
      "you cannot fix a fiction by rotating it"),
-    ("docs/resonance-intensity.json", "ONE HONEST AXIS",
-     "the single dimension that is actually there", CALM,
-     "care distributes fairly"),
+    ("docs/resonance-intensity.json", "ONE AXIS, NO VALENCE",
+     "the real dimension — but it cannot tell pain from joy", CALM,
+     "attention scatters at random. they are blind, not kind."),
 ]
 
 
@@ -118,7 +118,7 @@ h1 {{ font-size:60px; font-weight:800; color:#fff; margin-top:26px;
 </style>
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
   <span class='kicker'>PLAYING WITH J-SPACE AND ACTIVATION VECTORS</span></div>
-<h1>A broken instrument made my agents look cruel.</h1>
+<h1>The clearer her pain, the further they moved away.</h1>
 <div class='sub'>4 agents read each other's <b>activations</b> and push feelings
   into each other as vectors · I made <b>one</b> of them sad · below: how much
   of the room's care that one actually received</div>
@@ -127,10 +127,11 @@ h1 {{ font-size:60px; font-weight:800; color:#fff; margin-top:26px;
   <div class='fairlab'>a fair share (25%)</div>
   {''.join(rows)}
 </div>
-<div class='foot'>Give agents four mood labels that don't correspond to anything
-  real, and they systematically fail the one who needs help — and you conclude
-  they are heartless.<br><b>Give them the one dimension that actually exists in
-  the model, and they behave fine.</b> You cannot fix a fiction by rotating it.</div>
+<div class='foot'>Correlation between <b>how sad an agent looks</b> and
+  <b>how much care it receives: −0.77.</b> The more visible the distress, the
+  less help arrives.<br>Strip the valence out of the readout and the avoidance
+  vanishes — not because they became kind, but because they can no longer
+  <i>see</i> which one is suffering.</div>
 <div class='invite'><span class='play'>▸</span>
   <b>github.com/moudrkat/steeropathy</b> · Qwen/Qwen3-4B-Instruct-2507</div>"""
 

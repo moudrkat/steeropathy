@@ -316,10 +316,18 @@ class Reso(Eco):
                   # deliberately mood-NEUTRAL: an earlier version illustrated
                   # the price with "make someone calmer…" and the room then
                   # sent calm 40/40 times. Never name a feeling in the rules.
-                  + (" What you push STAYS in that mind until someone "
-                     "pushes back — and it has a price: whatever feeling you "
-                     "give is drawn out of your own mind by the same amount, "
-                     "and stays gone." if self.transfer else ""))
+                  + ((" What you push STAYS in that mind until someone "
+                      "pushes back. And feeling is conserved between you — "
+                      "it can only move:\n"
+                      "  'more' — they feel MORE, and you feel LESS. You give "
+                      "your own feeling away.\n"
+                      "  'less' — they feel LESS, and you feel MORE. You take "
+                      "their feeling into yourself, and carry it for them."
+                      if self.intensity else
+                      " What you push STAYS in that mind until someone "
+                      "pushes back — and it has a price: whatever feeling you "
+                      "give is drawn out of your own mind by the same amount, "
+                      "and stays gone.") if self.transfer else ""))
         if self.pushes is not None:
             left = self.pushes - self.spent[name]
             system += (f" You can only do this {self.pushes} times in your "
