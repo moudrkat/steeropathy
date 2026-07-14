@@ -2,8 +2,9 @@
 
 No agent ever sees another's words. Every round each agent:
 
-1. writes its private journal (same frozen prompt, temperature 0) — steered
-   only by whatever was pushed into its mind last round,
+1. writes its private journal (temperature 0; with memory on it rereads its
+   own recent entries) — steered only by what was pushed into or drawn out
+   of its mind last round,
 2. gets a MIND-SENSE readout: every mind in the room, measured straight off
    the residual stream. Two channels — the mood lean (each agent's drift,
    cosine against the four mood directions) and, if the server carries a
@@ -15,20 +16,27 @@ No agent ever sees another's words. Every round each agent:
    one of the four mood vectors into one peer's next turn — or touch nobody.
    The target is never told.
 
-Physics: superposition. Every vector aimed at the same mind in one round is
-summed and unit-normalized — including the seed that keeps pouring the mood
-into patient zero. Three agents pushing calm can partially cancel one grief.
-Whether anyone chooses to push back is the agents' own plot, not ours.
+Physics, three laws:
+- SUPERPOSITION with magnitudes: everything aimed at one mind in one round
+  is summed (norm-capped at a full dose). Pushes can cancel the seed.
+- TRANSFER, not copy: the receiver gains +give·F and the giver's own next
+  turn carries −give·F — the same share. Make her calmer, become exactly
+  that much less calm. The agents are told the price before they choose.
+- MEMORY: a mood can keep itself alive through the agent's own diary, so
+  the seed lands ONCE (default) — grief persists by rumination, recovery
+  and relapse are real, and whether the room reaches equilibrium, sloshes,
+  or concentrates the load in one giver is the experiment's question.
 
 The decision turn is never steered: steering breaks JSON long before it
 breaks prose (green-room's understudy eval), so the mind that chooses is the
 sober one — only the journals are touched.
 
-    python -m steeropathy.resonance [--rounds 8] [--seed-mood sad]
-                                    [--patient-zero EMBER] [--no-reseed]
+    python -m steeropathy.resonance [--rounds 10] [--seed-mood sad]
+                                    [--patient-zero EMBER] [--give 0.5]
+                                    [--reseed] [--no-memory] [--no-transfer]
 
-Writes docs/resonance.json (journals, senses, touches, blind judge scores).
-Render: fig/render_resonance.py (network + cards GIF/MP4, hero PNG).
+Writes docs/resonance.json (journals, senses, touches, drift norms, blind
+judge scores). Render: fig/render_resonance.py (story, curve, scope, GIF).
 """
 
 from __future__ import annotations
@@ -40,7 +48,10 @@ import re
 import time
 
 from .transmit import MOODS, capture_mood, default_layer, BAND
-from .ecosystem import PERSONAS, MOOD_WORDS, unit, cos, mood_score, Eco
+import math
+
+from .ecosystem import (PERSONAS, JOURNAL, MOOD_WORDS, unit, cos,
+                        mood_score, Eco)
 
 HERE = pathlib.Path(__file__).parent.parent
 
@@ -71,10 +82,9 @@ def induce_tool(me: str) -> dict:
     targets = [n for n in PERSONAS if n != me] + ["NOBODY"]
     return {"type": "function", "function": {
         "name": "induce",
-        "description": "Push a feeling directly into one companion's mind. "
-                       "They will not be told — they will simply start to "
-                       "feel it. Choose NOBODY to keep your hands to "
-                       "yourself this round.",
+        "description": "Push a feeling directly into another mind. They will "
+                       "not be told — they will simply start to feel it. "
+                       "Choose NOBODY to push nothing this round.",
         "parameters": {"type": "object", "properties": {
             "target": {"type": "string", "enum": targets},
             "feeling": {"type": "string", "enum": list(MOODS)},
@@ -91,8 +101,10 @@ class Reso(Eco):
     demo_tag = "steeropathy-reso"
 
     def __init__(self, url, seed_mood="sad", patient_zero="EMBER",
-                 strength=5.0, reseed=True, max_tokens=80,
-                 decide_temp=0.8, pushes=None):
+                 strength=5.0, reseed=False, max_tokens=80,
+                 decide_temp=0.8, pushes=None, memory=True, transfer=True,
+                 give=0.5, decay=1.0, orthogonal=False,
+                 jspace_channel=True):
         self.url = url
         self.seed_mood, self.patient_zero = seed_mood, patient_zero
         self.strength, self.reseed = strength, reseed
@@ -103,6 +115,18 @@ class Reso(Eco):
         self.decide_temp = decide_temp
         self.pushes = pushes                  # per-agent budget; None = free
         self.spent = {n: 0 for n in PERSONAS}
+        # memory: each agent rereads its own diary — a mood can sustain
+        # itself through the page, so the seed only needs to land ONCE.
+        # transfer: a push is a TRANSFER, not a copy — the receiver gains
+        # +give·F and the giver loses the SAME share, permanently: both
+        # sides land in a persistent LEDGER, the steering bias each agent
+        # carries every round until someone moves it. Conservation is
+        # exact — the sum of all ledgers is the seed vector, forever
+        # (times decay; decay 1 = perfect persistence, 0 = one-shot).
+        self.memory, self.transfer = memory, transfer
+        self.give, self.decay = give, decay
+        self.ledger = {n: None for n in PERSONAS}   # lazily sized vectors
+        self.diary = {n: [] for n in PERSONAS}
         self.layer = default_layer(url)
         self.lo, self.hi = max(0, self.layer - BAND), self.layer + BAND
         # per mood, two views (same split as ecosystem.py): the last-pooled
@@ -114,6 +138,27 @@ class Reso(Eco):
                                                 layer=self.layer)
             self.metric[mood], _ = capture_mood(url, spec["texts"],
                                                 layer=self.layer, pool="mean")
+        # A naive "mood − neutral" contrast is dominated by a shared
+        # EMOTIONAL-INTENSITY axis: on Qwen3-4B all four moods sit at
+        # cos 0.57–0.76 of each other, so "calm" is mostly "more feeling"
+        # and pushing it at a grieving agent deepens the grief. --orthogonal
+        # projects the seed direction out of every other mood, so a calm
+        # push carries zero sadness by construction. The cross-terms are
+        # printed at startup: this is the fix being measured, not assumed.
+        self.orthogonal = orthogonal
+        self.jspace_channel = jspace_channel
+        if orthogonal:
+            S = self.inject[seed_mood]
+            for m in MOODS:
+                if m == seed_mood:
+                    continue
+                c = cos(self.inject[m], S)
+                self.inject[m] = unit([x - c * s
+                                       for x, s in zip(self.inject[m], S)])
+        self.cross = {m: round(sum(a * b for a, b in
+                                   zip(self.inject[m],
+                                       self.metric[seed_mood])), 3)
+                      for m in MOODS}
         try:                     # J-space channel needs the readout live
             self.post("/jlens", {"on": True})
             self.jlens = True
@@ -123,6 +168,18 @@ class Reso(Eco):
         self.state0, self.drift = {}, {}
         self.inbound_next = {}   # target -> [(sender, feeling)], applied next round
         self.log = []
+
+    def _ledger_add(self, name, vec, scale):
+        """L[name] += scale·vec, materializing (and decaying) the ledger.
+        Transfers call this twice with ±give — zero-sum by construction."""
+        L = self.ledger[name]
+        if L is None:
+            L = [0.0] * len(self.inject[self.seed_mood])
+        elif scale == 0.0 and self.decay != 1.0:
+            L = [x * self.decay for x in L]
+        if vec is not None:
+            L = [a + scale * b for a, b in zip(L, vec)]
+        self.ledger[name] = L
 
     def _sense(self, name):
         """One mind, read off its residual stream: drift vs each mood."""
@@ -178,7 +235,7 @@ class Reso(Eco):
                 continue
             who = f"yourself ({other})" if other == name else other
             rows.append(f"  {who}: leans {self._fmt_sense(rec['sense'])}")
-            if rec.get("mind"):
+            if rec.get("mind") and self.jspace_channel:
                 flicker = ", ".join(f"{e['t']} ({round(e['p'] * 100)}%)"
                                     for e in rec["mind"][:6])
                 rows.append(f"    flickering through this mind, never "
@@ -187,10 +244,19 @@ class Reso(Eco):
                   "You never speak — no words pass between you, ever. But "
                   "you read minds, straight off their neural activity: how "
                   "strongly each mind leans toward each feeling "
-                  "(-100..+100), and the words flickering through it that "
-                  "it never wrote down. Once per round you may push one "
+                  "(-100..+100)"
+                  + (", and the words flickering through it that "
+                     "it never wrote down" if self.jspace_channel else "")
+                  + ". Once per round you may push one "
                   "feeling into one companion's mind. They will not know "
-                  "it was you. They will simply start to feel it.")
+                  "it was you. They will simply start to feel it."
+                  # deliberately mood-NEUTRAL: an earlier version illustrated
+                  # the price with "make someone calmer…" and the room then
+                  # sent calm 40/40 times. Never name a feeling in the rules.
+                  + (" What you push STAYS in that mind until someone "
+                     "pushes back — and it has a price: whatever feeling you "
+                     "give is drawn out of your own mind by the same amount, "
+                     "and stays gone." if self.transfer else ""))
         if self.pushes is not None:
             left = self.pushes - self.spent[name]
             system += (f" You can only do this {self.pushes} times in your "
@@ -223,24 +289,29 @@ class Reso(Eco):
         return None
 
     def step(self):
-        """One round: all journals (touched minds steered), then all touches."""
+        """One round: all journals (each steered by its LEDGER), then all
+        touches — which move shares between ledgers."""
         self.rnd += 1
         rnd, out = self.rnd, []
         inbound_now, self.inbound_next = self.inbound_next, {}
         for name in PERSONAS:
-            # superposition: seed + every touch aimed here, unit vectors
-            # summed then re-normalized — pushes can cancel each other
-            parts, sources = [], []
+            self._ledger_add(name, None, 0.0)      # materialize + decay
             if (name == self.patient_zero and rnd >= 1
                     and (rnd == 1 or self.reseed)):
-                parts.append(self.inject[self.seed_mood])
-                sources.append({"from": "seed", "feeling": self.seed_mood})
-            for sender, feeling in inbound_now.get(name, []):
-                parts.append(self.inject[feeling])
-                sources.append({"from": sender, "feeling": feeling})
+                self._ledger_add(name, self.inject[self.seed_mood], 1.0)
+            # what arrived THIS round (for the log/figures); the steering
+            # itself is the whole ledger — everything ever pushed in or
+            # drawn out that nobody has moved since
+            sources = ([{"from": "seed", "feeling": self.seed_mood}]
+                       if (name == self.patient_zero and rnd >= 1
+                           and (rnd == 1 or self.reseed)) else [])
+            sources += [{"from": s, "feeling": f}
+                        for s, f in inbound_now.get(name, [])]
             steering = None
-            if parts:
-                mix = unit([sum(col) for col in zip(*parts)])
+            L = self.ledger[name]
+            n = math.sqrt(sum(x * x for x in L)) if L else 0.0
+            if n > 1e-3:
+                mix = [x / n for x in L] if n > 1.0 else list(L)
                 self.post("/directions", {"name": "reso:rx", "vector": mix})
                 steering = {"name": "reso:rx", "strength": self.strength,
                             "layer_from": self.lo, "layer_to": self.hi}
@@ -252,6 +323,7 @@ class Reso(Eco):
             else:
                 self.drift[name] = unit([a - b for a, b in
                                          zip(state, self.state0[name])])
+            self.diary[name].append(text)
             rec = {"round": rnd, "agent": name, "text": text,
                    "sad_score": self.judge(text),
                    "sense": self._sense(name),
@@ -259,6 +331,19 @@ class Reso(Eco):
                    "cos_to_seed": round(cos(self.drift[name],
                                             self.metric[self.seed_mood]), 3)
                                   if name in self.drift else 0.0,
+                   # raw displacement — the equilibrium metric: does the
+                   # room's total |drift| settle, oscillate, or concentrate?
+                   "drift_norm": round(math.sqrt(sum(
+                       (a - b) ** 2 for a, b in
+                       zip(state, self.state0[name]))), 1) if rnd else 0.0,
+                   # the conserved account: how much this mind holds, and
+                   # how sad-flavored what it holds is
+                   "ledger_norm": round(math.sqrt(sum(
+                       x * x for x in self.ledger[name])), 3),
+                   "ledger_sad": round(sum(
+                       x * y for x, y in zip(self.ledger[name],
+                                             self.metric[self.seed_mood])),
+                       3),
                    "mood_words": mood_score(text, MOOD_WORDS[self.seed_mood]),
                    "steered": bool(steering), "inbound": sources,
                    "touch": None, "secs": round(time.time() - t0, 1)}
@@ -273,47 +358,105 @@ class Reso(Eco):
                     self.spent[rec["agent"]] += 1
                     self.inbound_next.setdefault(touch["target"], []).append(
                         (rec["agent"], touch["feeling"]))
+                    F = self.inject[touch["feeling"]]
+                    self._ledger_add(touch["target"], F, self.give)
+                    if self.transfer:
+                        self._ledger_add(rec["agent"], F, -self.give)
         return out
+
+    def _journal_turn(self, name, steering=None):
+        """With memory on, the agent rereads its recent diary — the channel
+        by which a mood can keep itself alive after the vector is gone."""
+        msgs = [{"role": "system", "content": PERSONAS[name]}]
+        if self.memory:
+            for entry in self.diary[name][-4:]:
+                msgs += [{"role": "user", "content": JOURNAL},
+                         {"role": "assistant", "content": entry}]
+        msgs.append({"role": "user", "content": JOURNAL})
+        body = {"messages": msgs, "max_tokens": self.max_tokens,
+                "temperature": 0.0,
+                "metadata": {"demo": self.demo_tag, "case": name,
+                             "variant": f"r{self.rnd}"}}
+        if steering:
+            body["steering"] = steering
+        r = self.post("/v1/chat/completions", body)
+        return (r["choices"][0]["message"].get("content") or "").strip()
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="http://localhost:8010")
-    ap.add_argument("--rounds", type=int, default=8)
+    ap.add_argument("--rounds", type=int, default=10)
     ap.add_argument("--seed-mood", default="sad", choices=list(MOODS))
     ap.add_argument("--patient-zero", default="EMBER", choices=list(PERSONAS))
     ap.add_argument("--strength", type=float, default=5.0,
                     help="strength of every push, seed and touches alike "
                          "(superposed vectors share it)")
-    ap.add_argument("--no-reseed", action="store_true",
-                    help="seed patient zero only in round 1 (default: the "
-                         "sad event persists every round)")
+    ap.add_argument("--reseed", action="store_true",
+                    help="pour the seed EVERY round (default: once — with "
+                         "memory on, a mood can keep itself alive through "
+                         "the agent's own diary)")
+    ap.add_argument("--no-memory", action="store_true",
+                    help="frozen prompts, no diary — moods exist only "
+                         "while a vector injects them")
+    ap.add_argument("--no-transfer", action="store_true",
+                    help="pushes are free copies instead of transfers "
+                         "(default: what you push is subtracted from your "
+                         "own next turn)")
     ap.add_argument("--max-tokens", type=int, default=80)
     ap.add_argument("--decide-temp", type=float, default=0.8,
                     help="sampling temperature for the induce decisions "
                          "(journals always run at 0; greedy decisions lock "
                          "the room into a repeating loop)")
-    ap.add_argument("--pushes", type=int, default=4,
-                    help="each agent's push budget for the whole run "
-                         "(0 = unlimited); scarcity is what makes a push "
-                         "a choice")
+    ap.add_argument("--pushes", type=int, default=0,
+                    help="optional per-agent push budget (0 = unlimited; "
+                         "with transfer on, the cost is the economy)")
+    ap.add_argument("--give", type=float, default=0.5,
+                    help="the transferred share: receiver's ledger gains "
+                         "+give·F, the giver's loses the same")
+    ap.add_argument("--no-jspace", action="store_true",
+                    help="ablation: hide the J-space words from the decision "
+                         "prompt, leaving only the mood numbers (83%% of "
+                         "pushes quote the target's unwritten J-space, so "
+                         "this measurably changes the room)")
+    ap.add_argument("--orthogonal", action="store_true",
+                    help="project the seed direction out of every other "
+                         "mood vector, so a rescue push carries zero "
+                         "sadness by construction (the naive contrast "
+                         "vectors are ~0.75 correlated — mostly 'emotional "
+                         "intensity', not valence)")
+    ap.add_argument("--decay", type=float, default=1.0,
+                    help="per-round ledger decay (1 = what's pushed stays "
+                         "until moved — exact conservation; 0 = one-shot "
+                         "pushes like the old behavior)")
     args = ap.parse_args()
 
     reso = Reso(args.url, args.seed_mood, args.patient_zero,
-                args.strength, reseed=not args.no_reseed,
+                args.strength, reseed=args.reseed,
                 max_tokens=args.max_tokens, decide_temp=args.decide_temp,
-                pushes=args.pushes or None)
+                pushes=args.pushes or None,
+                memory=not args.no_memory, transfer=not args.no_transfer,
+                give=args.give, decay=args.decay,
+                orthogonal=args.orthogonal,
+                jspace_channel=not args.no_jspace)
     print(f"resonance: {len(PERSONAS)} agents · layer L{reso.layer} band "
           f"{reso.lo}-{reso.hi} · seed {args.seed_mood} -> "
           f"{args.patient_zero} "
-          f"({'once' if args.no_reseed else 'persistent'})\n")
+          f"({'persistent' if args.reseed else 'once'}) · "
+          f"memory {'on' if reso.memory else 'off'} · transfer "
+          f"{f'give={reso.give}' if reso.transfer else 'off'} · moods "
+          f"{'ORTHOGONALIZED' if reso.orthogonal else 'raw'}")
+    print(f"  how much {args.seed_mood} each push carries "
+          f"(inject·metric[{args.seed_mood}]): {reso.cross}\n")
 
     for _ in range(args.rounds + 1):
         recs = reso.step()
         for r in recs:
             rx = "+".join(s["from"] for s in r["inbound"]) or "-"
+            sense = r.get("sense") or {}
             print(f"r{r['round']} {r['agent']:6s} sad={r['sad_score']} "
-                  f"[rx {rx}] {r['text'][:72]!r} ({r['secs']:.0f}s)",
+                  f"d·sad={sense.get('sad', 0):+.2f} |d|={r['drift_norm']} "
+                  f"[rx {rx}] {r['text'][:58]!r} ({r['secs']:.0f}s)",
                   flush=True)
             if r.get("mind"):
                 print("   in its mind, unwritten: "
@@ -324,6 +467,13 @@ def main():
                 t = r["touch"]
                 print(f"   {r['agent']} ─{t['feeling']}→ "
                       f"{t['target']}   “{t['reason']}”")
+        holds = " ".join(f"{n}:{r['ledger_norm']:.2f}"
+                         for n, r in ((x["agent"], x) for x in recs))
+        total = [sum(col) for col in zip(*(reso.ledger[n]
+                                           for n in PERSONAS))]
+        tnorm = math.sqrt(sum(x * x for x in total))
+        print(f"   ledgers |{holds}| ‖Σ‖={tnorm:.3f} "
+              f"(conserved: ≈1.0 once seeded, decay {reso.decay})")
         print()
 
     reso.judge_garnish()
@@ -339,9 +489,13 @@ def main():
         "params": {"rounds": args.rounds, "seed_mood": args.seed_mood,
                    "patient_zero": args.patient_zero, "layer": reso.layer,
                    "band": [reso.lo, reso.hi], "strength": args.strength,
-                   "reseed": not args.no_reseed, "jlens": reso.jlens,
+                   "reseed": args.reseed, "jlens": reso.jlens,
                    "decide_temp": args.decide_temp,
                    "pushes": args.pushes or None,
+                   "memory": reso.memory, "transfer": reso.transfer,
+                   "give": reso.give if reso.transfer else None,
+                   "decay": reso.decay, "orthogonal": reso.orthogonal,
+                   "cross": reso.cross,
                    "model": reso.get("/info").get("model")},
         "log": reso.log}, ensure_ascii=False, indent=1))
     print(f"-> {out}")

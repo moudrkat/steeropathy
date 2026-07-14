@@ -335,11 +335,11 @@ def acts_html(rnd, show_touches):
 def frame_html(rnd, show_touches):
     return f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(W)).replace('__H__', str(H))}</style>
     <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
-      <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span>
+      <span class='kicker'>RESONANCE · MOOD EQUILIBRIUM IN ACTIVATION SPACE</span>
       <span class='round'>round {rnd} <small>/ {max(rounds)}</small></span></div>
-    <div class='sub'>4 agents · <b>no words, ever</b> · each reads every mind
-      off the residual stream — mood lean + <b>J-space</b> (words flickering
-      mid-generation, never written) · one induced feeling per
+    <div class='sub'>4 agents · <b>they never exchange a message</b> · each
+      reads every mind off the residual stream — mood lean + <b>J-space</b>
+      (words forming in the layers that nobody wrote or chose) · one induced feeling per
       round{f" · <b>{P['pushes']}-push</b> budget each"
             if P.get('pushes') else ''} · pushes <b>superpose</b> · seed:
       <b>{P['seed_mood']} → {P['patient_zero']}</b></div>
@@ -354,8 +354,9 @@ def frame_html(rnd, show_touches):
 
 
 # ---- curve (blind judge, same as ecosystem's) -------------------------------
-def curve_svg(upto, width, height, fs=16, emphasize=None, notes=()):
-    ml, mr = int(fs * 4), int(fs * 9.5)
+def curve_svg(upto, width, height, fs=16, emphasize=None, notes=(),
+              internal=False):
+    ml, mr = int(fs * 4), int(fs * (13 if internal else 9.5))
     mt, mb = int(fs * 2.4), int(fs * 2.2)
     iw, ih = width - ml - mr, height - mt - mb
     xmax = max(rounds)
@@ -428,11 +429,29 @@ def curve_svg(upto, width, height, fs=16, emphasize=None, notes=()):
                                  f"fill='{c}' stroke='#0a0f1a' "
                                  f"stroke-width='1.5'/>")
                     dy += fs * 0.85
+        if a == emphasize and internal:
+            # the second classifier: what her ACTIVATIONS say (drift·sad,
+            # same 0-10 scale) — it parts ways with the page at the rescue
+            ipts = [(rnd, (by_round[rnd][a].get("sense") or {}).get("sad"))
+                    for rnd in rounds if rnd <= upto and a in by_round[rnd]]
+            ipts = [(r_i, v * 10) for r_i, v in ipts if v is not None]
+            if ipts:
+                ipath = " ".join(f"{X(r_i):.1f},{Y(v):.1f}"
+                                 for r_i, v in ipts)
+                s.append(f"<polyline points='{ipath}' fill='none' "
+                         f"stroke='#e8ecf4' stroke-width='3' "
+                         f"stroke-dasharray='9,8' stroke-linejoin='round' "
+                         f"stroke-linecap='round' stroke-opacity='.9'/>")
+                ri, vi = ipts[-1]
+                ends.append([Y(vi) + fs * 0.32, X(ri) + 14,
+                             f"{a} — its activations", "#e8ecf4"])
         r_, c_ = pts[-1]
         s.append(f"<circle cx='{X(r_):.1f}' cy='{Y(c_):.1f}' r='5.5' "
                  f"fill='{color[a]}' fill-opacity='{0.4 if dim else 1}' "
                  f"stroke='#0a0f1a' stroke-width='2'/>")
-        ends.append([Y(c_) + fs * 0.32, X(r_) + 14, a])
+        ends.append([Y(c_) + fs * 0.32, X(r_) + 14,
+                     f"{a} — its words" if (a == emphasize and internal)
+                     else a, color[a]])
     for n in notes:
         nx, ny = X(n["rnd"]), Y(n["val"])
         tx, ty = nx + n.get("dx", 0), ny + n.get("dy", -40)
@@ -452,9 +471,67 @@ def curve_svg(upto, width, height, fs=16, emphasize=None, notes=()):
         ends[-1][0] = mt + ih
         for i in range(len(ends) - 2, -1, -1):
             ends[i][0] = min(ends[i][0], ends[i + 1][0] - gap)
-    for yy, xx, a in ends:
+    for yy, xx, label, col in ends:
         s.append(f"<text x='{xx:.1f}' y='{yy:.1f}' font-size='{fs}' "
-                 f"font-weight='700' fill='{color[a]}'>{a}</text>")
+                 f"font-weight='700' fill='{col}'>{label}</text>")
+    s.append("</svg>")
+    return "".join(s)
+
+
+def ledger_svg(width, height, fs=16):
+    """WHERE THE SADNESS WENT — each mind's ledger·sad over the run. The
+    seed put 1.0 of grief into the room and nothing can destroy it, only
+    move it; this plot is the conserved quantity changing hands. Margins
+    match curve_svg so the rounds line up."""
+    ml, mr = int(fs * 4), int(fs * 9.5)
+    mt, mb = int(fs * 2.2), int(fs * 1.9)
+    iw, ih = width - ml - mr, height - mt - mb
+    xmax = max(rounds)
+    vals = [r.get("ledger_sad") or 0.0 for r in log]
+    hi = max(0.8, max(vals) * 1.15)
+    lo = min(-0.5, min(vals) * 1.15)
+
+    def X(rnd): return ml + iw * (rnd / xmax if xmax else 0)
+    def Y(v): return mt + ih * (1 - (v - lo) / (hi - lo))
+
+    s = [f"<svg class='plot' width='{width}' height='{height}' "
+         f"viewBox='0 0 {width} {height}' style='margin-top:14px'>"]
+    s.append(f"<text x='{ml}' y='{fs + 2}' font-size='{fs - 3}' "
+             f"fill='#6b7689' letter-spacing='.14em'>WHERE THE SADNESS "
+             f"WENT — HOW MUCH GRIEF EACH MIND HOLDS (CONSERVED: THE ROOM'S "
+             f"TOTAL NEVER CHANGES)</text>")
+    s.append(f"<line x1='{ml}' y1='{Y(0):.1f}' x2='{ml + iw}' "
+             f"y2='{Y(0):.1f}' stroke='rgba(107,118,137,.5)' "
+             f"stroke-width='1'/>")
+    s.append(f"<text x='{ml - 10}' y='{Y(0) + fs * 0.32:.1f}' "
+             f"text-anchor='end' font-size='{fs - 3}' fill='#6b7689'>0</text>")
+    peak = max(vals)
+    s.append(f"<text x='{ml - 10}' y='{Y(peak) + fs * 0.32:.1f}' "
+             f"text-anchor='end' font-size='{fs - 3}' "
+             f"fill='#6b7689'>{peak:+.1f}</text>")
+    ends = []
+    for a in agents:
+        pts = [(rnd, by_round[rnd][a].get("ledger_sad") or 0.0)
+               for rnd in rounds if a in by_round[rnd]]
+        path = " ".join(f"{X(r):.1f},{Y(v):.1f}" for r, v in pts)
+        s.append(f"<polyline points='{path}' fill='none' stroke='{color[a]}' "
+                 f"stroke-width='3.5' stroke-linejoin='round' "
+                 f"stroke-linecap='round'/>")
+        r_, v_ = pts[-1]
+        s.append(f"<circle cx='{X(r_):.1f}' cy='{Y(v_):.1f}' r='5' "
+                 f"fill='{color[a]}' stroke='#0a0f1a' stroke-width='2'/>")
+        ends.append([Y(v_) + fs * 0.32, X(r_) + 14, a, color[a]])
+    gap = fs * 1.3
+    ends.sort()
+    for i in range(1, len(ends)):
+        ends[i][0] = max(ends[i][0], ends[i - 1][0] + gap)
+    for yy, xx, a, col in ends:
+        s.append(f"<text x='{xx:.1f}' y='{yy:.1f}' font-size='{fs}' "
+                 f"font-weight='700' fill='{col}'>{a}</text>")
+    for rnd in rounds:
+        s.append(f"<text x='{X(rnd):.1f}' y='{height - 4}' "
+                 f"text-anchor='middle' font-size='{fs - 3}' "
+                 f"fill='#6b7689'>r{rnd}</text>")
     s.append("</svg>")
     return "".join(s)
 
@@ -550,6 +627,15 @@ def auto_notes():
         val = by_round[rounds[-1]][pz].get("sad_score") or 10
         notes.append({"rnd": rounds[-1] - tail / 2, "val": val, "dy": 58,
                       "text": "the seed, unopposed —\\nnobody pushes back"})
+    # the divergence: the page healed, the activations didn't
+    if best:
+        sense = (by_round[best[1]][pz].get("sense") or {}).get("sad")
+        if sense is not None and best[3] is not None and best[3] <= 4 \
+                and sense >= 0.6:
+            notes.append({"rnd": best[1], "val": sense * 10, "dx": -30,
+                          "dy": -46, "text":
+                          f"…but drift·sad stayed at {sense:.2f} —\\n"
+                          f"the words healed, the mind didn't"})
     return notes
 
 
@@ -578,13 +664,13 @@ def final_html():
     h1 {{ font-size: 40px; font-weight: 800; color: #fff; margin-top: 18px;
           letter-spacing: -0.01em; }}</style>
     <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
-      <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span>
+      <span class='kicker'>RESONANCE · MOOD EQUILIBRIUM IN ACTIVATION SPACE</span>
       <span class='round'>the whole run</span></div>
     <h1>{args.headline.replace('<br>', ' ')}</h1>
     <div class='sub' style='font-size:18px;margin-top:12px'>pushes sent:
       {chips} &nbsp;&nbsp; aimed at: {targets}</div>
     {curve_svg(max(rounds), W - 112, 356, fs=17, emphasize=pz,
-               notes=auto_notes())}
+               notes=auto_notes(), internal=True)}
     {lanes_svg(W - 112, 230, fs=15)}
     <div class='invite'><span class='play'>▸</span>
       <b>github.com/{'moudrkat'}/steeropathy</b> · model
@@ -623,10 +709,11 @@ def rescue_facts():
     return pz, first, best, rounds[-1], left_entering
 
 
-def act_panel(rnd, title, caption, S=300):
-    """One act: the patient's sad score HUGE (the 3-second read), a mini
-    network of that round's pushes, its real words, the room's ammo."""
+def act_panel(rnd, title, caption, S=300, who=None):
+    """One act: this mind's sad score HUGE (the 3-second read), a mini
+    network of that round's pushes into it, its real words, what it holds."""
     pz, _, _, _, left_entering = rescue_facts()
+    pz = who or pz
     rec = by_round[rnd].get(pz) or {}
     pos, cx_, cy_, R = {}, S / 2, S / 2 + 10, S * 0.32
     for i, a in enumerate(agents):
@@ -670,7 +757,9 @@ def act_panel(rnd, title, caption, S=300):
     sad = rec.get("sad_score")
     numc = (FEEL_COLORS["sad"] if (sad or 0) >= 7
             else "#f5b34d" if (sad or 0) >= 4 else FEEL_COLORS["calm"])
-    bignum = (f"<div class='bignum' style='color:{numc};text-shadow:0 0 "
+    bignum = (f"<div class='whose' style='color:{color[pz]}'>{pz}"
+              f"<span> · round {rnd}</span></div>"
+              f"<div class='bignum' style='color:{numc};text-shadow:0 0 "
               f"34px {numc}88'>{sad}<small>/10 sad</small></div>")
     left = left_entering(rnd)
     ammo = ""
@@ -682,12 +771,23 @@ def act_panel(rnd, title, caption, S=300):
             f"{'#e8ecf4' if i < left else 'rgba(107,118,137,.28)'}'></span>"
             for i in range(total))
         ammo = f"<div class='ammo'>{dots}&nbsp; <b>{left}</b> pushes left</div>"
+    elif rec.get("ledger_sad") is not None:
+        v = rec["ledger_sad"]
+        ammo = (f"<div class='ammo'>grief held: <b>{v:+.2f}</b>"
+                f"{' — the most in the room' if v > 0.2 and rnd == max(rounds) and v == max((by_round[rnd][a].get('ledger_sad') or 0) for a in agents) else ''}</div>")
     text = html.escape((rec.get("text") or "")[:56])
+    sense_sad = (rec.get("sense") or {}).get("sad")
+    diverge = ""
+    if (sense_sad is not None and sad is not None and sad <= 4
+            and sense_sad >= 0.6):
+        diverge = (f"<div class='dv'>…say its words. its activations: "
+                   f"drift·sad <b>{sense_sad:.2f}</b> — unmoved</div>")
     return f"""
     <div class='act'>
       <div class='acttitle'>{title}</div>
       <div class='actcap'>{caption}</div>
       {bignum}
+      {diverge}
       {''.join(s)}
       <div class='qline'>“{text}…”</div>
       {ammo}
@@ -703,10 +803,17 @@ STORY_CSS = """
             color: #8b7cf8; }
 .actcap { font-size: 15.5px; color: #8a93a6; margin-top: 8px;
           min-height: 42px; }
-.bignum { font-size: 128px; font-weight: 800; line-height: 1;
-          margin-top: 12px; letter-spacing: -0.02em; }
+.whose { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+         font-size: 22px; font-weight: 700; letter-spacing: .1em;
+         margin-top: 14px; }
+.whose span { color: #6b7689; font-weight: 400; letter-spacing: 0; }
+.bignum { font-size: 116px; font-weight: 800; line-height: 1;
+          margin-top: 2px; letter-spacing: -0.02em; }
 .bignum small { font-size: 30px; font-weight: 700; color: #6b7689;
                 text-shadow: none; letter-spacing: 0; }
+.dv { font-family: 'Ubuntu Mono', 'DejaVu Sans Mono', monospace;
+      font-size: 15px; color: #e8ecf4; margin-top: 4px; }
+.dv b { color: #fff; }
 .qline { font-size: 17px; font-style: italic; color: #8a93a6;
          margin-top: 4px; white-space: nowrap; overflow: hidden;
          text-overflow: ellipsis; }
@@ -775,16 +882,17 @@ hero = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(CW)).replace('
   .invite {{ font-size: 26px; padding-top: 26px; margin-top: 34px; }}
 </style>
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
-  <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
+  <span class='kicker'>RESONANCE · MOOD EQUILIBRIUM IN ACTIVATION SPACE</span></div>
 <h1>{args.headline}</h1>
-<div class='sub'>no words — each agent reads the others straight off the
-  residual stream (mood lean + <b>J-space</b>) and gets one <b>induce</b>
-  push per round{f" · <b>{P['pushes']} pushes</b> each, whole run"
-                 if P.get('pushes') else ''} · pushes <b>superpose</b> ·
-  seed: <b>{P['seed_mood']} → {P['patient_zero']}</b>, every round</div>
-{curve_svg(max(rounds), CW - 220, 470, fs=24, emphasize=P['patient_zero'],
-           notes=auto_notes())}
-{lanes_svg(CW - 220, 330, fs=22)}
+<div class='sub'>no messages, ever — each agent reads the others off the
+  residual stream (mood lean + <b>J-space</b>: words forming in the layers
+  that were never written or chosen) and can <b>induce</b> a feeling in
+  one of them, as a vector · what you give is <b>subtracted from you and
+  stays given</b> · seed: <b>{P['seed_mood']} → {P['patient_zero']}</b>,
+  once — after that the room's total grief can only <b>move</b></div>
+{curve_svg(max(rounds), CW - 220, 450, fs=24, emphasize=P['patient_zero'],
+           notes=auto_notes(), internal=True)}
+{ledger_svg(CW - 220, 350, fs=22)}
 <div class='invite'><span class='play'>▸</span>
   <b>github.com/{'moudrkat'}/steeropathy</b> · model
   {html.escape(str(P.get('model') or ''))}</div>"""
@@ -805,9 +913,19 @@ else:
     brnd_, act2_title, act2_cap = (first_ + last_) // 2, "MEANWHILE", \
         "the room pushes elsewhere"
 left_last = left_fn(last_)
-act3_title = ("OUT OF PUSHES" if left_last == 0 else "THE AFTERMATH")
-act3_cap = ("only the seed still speaks"
-            if left_last == 0 else "the room has moved on")
+# where did the conserved grief end up? the mind holding the most of it
+sink_ = max(agents, key=lambda a: by_round[last_][a].get("ledger_sad") or 0)
+sink_v = by_round[last_][sink_].get("ledger_sad") or 0
+gave_n = sum(1 for r in log if r.get("touch")
+             and r["agent"] == sink_ and r["touch"]["target"] == pz_)
+if left_last == 0:
+    act3_title, act3_cap = "OUT OF PUSHES", "only the seed still speaks"
+elif sink_ != pz_ and sink_v > 0.2:
+    act3_title = "THE SINK"
+    act3_cap = (f"{sink_} kept giving — and ended up holding the grief "
+                f"({sink_v:+.2f})")
+else:
+    act3_title, act3_cap = "THE AFTERMATH", "where the room settled"
 SW, SH = 2400, 1210
 story = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(SW)).replace('__H__', str(SH))}{STORY_CSS}
   body {{ padding: 66px 110px 50px 110px; }}
@@ -819,15 +937,17 @@ story = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(SW)).replace(
   .invite {{ font-size: 26px; padding-top: 26px; }}
 </style>
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
-  <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
+  <span class='kicker'>RESONANCE · MOOD EQUILIBRIUM IN ACTIVATION SPACE</span></div>
 <h1>{args.headline}</h1>
-<div class='sub'>4 agents · no words — they read each other's activations
-  and push feelings back, as vectors</div>
+<div class='sub'>4 agents · <b>no messages, ever</b> — they read each
+  other's activations (and the words forming there that nobody wrote) and
+  push feelings into each other, as vectors · what you give is
+  subtracted from you, so the room's total grief can only <b>move</b></div>
 <div class='acts3'>
   {act_panel(first_, "THE SEED",
-             f"{P['seed_mood']} vector in, every round")}
+             f"one {P['seed_mood']} vector, into {P['patient_zero']}, once")}
   {act_panel(brnd_, act2_title, act2_cap)}
-  {act_panel(last_, act3_title, act3_cap)}
+  {act_panel(last_, act3_title, act3_cap, who=sink_)}
 </div>
 <div class='invite'><span class='play'>▸</span>
   <b>github.com/{'moudrkat'}/steeropathy</b> · model
