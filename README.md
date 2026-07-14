@@ -110,13 +110,14 @@ direction. Then one act each:
 The target is never told. Pushes aimed at the same mind superpose, so they can
 cancel — and the seed keeps pouring sadness into patient zero the whole run.
 
-What my run did (Qwen3-4B): round 1, NOVA and QUILL both read EMBER's grief
-and pushed calm into her — her blind-judged sadness dipped 10 → 8 against a
-live seed, two vectors partially cancelling a third. Then the room moved on:
-2 of 32 pushes ever aimed at her, both in round 1, while she spent all eight
-of hers cheering the others up. Nobody sent sad or angry all run. And the
-agents quote each other's unwritten J-space words back at them — *"the buzzing
-feels like a promise"*, a word NOVA never wrote, sitting at 92% in its layers.
+What my run did (Qwen3-4B, decisions sampled at 0.8, 4 pushes each): the
+seed took EMBER to 10/10. QUILL answered with calm — 10 → 5. In round 4
+three agents pushed at once and pulled her back to her untouched baseline,
+2/10, with the seed still pouring: *"Oh, my heart just melted like warm
+honey…"*. Then the budgets ran out. Rounds 6–8, the seed unopposed: 10, 10,
+10. And they read each other's J-space mid-rescue — EMBER's layers held
+*silence* at 99.7% (a word she never wrote); QUILL's push that same round:
+*"the silence you love is already a kind of peace."*
 
 ```bash
 # brainscope needs a J-lens + a trace store for the J-space channel
@@ -136,7 +137,11 @@ in brainscope itself, replayed from the stored trace:
 ![EMBER's steered turn replayed in brainscope — the pushed mood held in J-space, layers before the page](docs/ui-resonance.png)
 
 Same knobs as the ecosystem (`--seed-mood`, `--patient-zero`, `--strength`,
-`--no-reseed`), plus `--url` to point at a remote brainscope. No lens, no
+`--no-reseed`), plus `--url` for a remote brainscope, `--pushes` (each agent's
+budget for the whole run, default 4 — scarcity is what makes a push a choice)
+and `--decide-temp` (default 0.8 — journals always run at temperature 0, but
+the decisions are sampled: greedy choices lock the room into a repeating loop
+within a few rounds, and every run would tell the same story). No lens, no
 trace store? It still runs — the agents just lose the J-space channel and
 choose from the mood lean alone. The decision turn is never steered —
 steering breaks JSON long before it breaks prose — so the mind that chooses
@@ -209,9 +214,10 @@ print(offer("http://localhost:8010", o["mood"], o["pitch"]))
 - In resonance, the mind-sense numbers are drift cosines against the four mood
   directions, which correlate with each other (sad and calm share quiet
   vocabulary); the J-space list is dictionary-filtered to hide subword debris.
-  With temperature 0 everywhere, the room settles into a repeating two-round
-  loop by round 4 — the plot is short by construction. All 32 decisions chose
-  to push (NOBODY was on the menu; nobody picked it).
+  The journals are greedy (the page is the measurement) but the decisions are
+  sampled at `--decide-temp` — a fully greedy room locks into a repeating
+  two-round loop by round 4, every run identical. Sampled decisions mean the
+  plot is not reproducible run to run; the committed JSON is one run's story.
 
 ## References
 

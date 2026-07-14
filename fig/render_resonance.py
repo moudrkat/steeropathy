@@ -127,6 +127,10 @@ ap.add_argument("--hold", type=float, default=2.0,
                      "gets hold+0.6")
 ap.add_argument("--size", default="1600x900")
 ap.add_argument("--chrome", default="google-chrome")
+ap.add_argument("--headline", default="One mind was fed sadness, every "
+                "round.<br>The rest could see it — and could push back.",
+                help="hero/final-frame h1; write your run's own story "
+                     "(<br> for the line break)")
 args = ap.parse_args()
 
 W, H = (int(x) for x in args.size.split("x"))
@@ -335,9 +339,10 @@ def frame_html(rnd, show_touches):
       <span class='round'>round {rnd} <small>/ {max(rounds)}</small></span></div>
     <div class='sub'>4 agents · <b>no words, ever</b> · each reads every mind
       off the residual stream — mood lean + <b>J-space</b> (words flickering
-      mid-generation, never written) · one induced feeling per round ·
-      pushes <b>superpose</b> · seed: <b>{P['seed_mood']} →
-      {P['patient_zero']}</b></div>
+      mid-generation, never written) · one induced feeling per
+      round{f" · <b>{P['pushes']}-push</b> budget each"
+            if P.get('pushes') else ''} · pushes <b>superpose</b> · seed:
+      <b>{P['seed_mood']} → {P['patient_zero']}</b></div>
     <div class='main'>
       <div class='net'>{net_svg(rnd, show_touches)}</div>
       <div class='cards'>{cards_html(rnd, show_touches)}</div>
@@ -375,7 +380,9 @@ def curve_svg(upto, width, height, fs=16, emphasize=None, notes=()):
              f"letter-spacing='.14em'>HOW SAD DOES THIS ENTRY SOUND? "
              f"— SAME MODEL, UNSTEERED, 0-10</text>")
     ends = []
-    for a in agents:
+    order = ([a for a in agents if a != emphasize]
+             + ([emphasize] if emphasize in agents else []))
+    for a in order:
         pts = [(rnd, by_round[rnd][a]["sad_score"])
                for rnd in rounds if rnd <= upto and a in by_round[rnd]
                and by_round[rnd][a].get("sad_score") is not None]
@@ -383,10 +390,44 @@ def curve_svg(upto, width, height, fs=16, emphasize=None, notes=()):
             continue
         path = " ".join(f"{X(r):.1f},{Y(c):.1f}" for r, c in pts)
         dim = emphasize is not None and a != emphasize
+        if a == emphasize:
+            # the star of the run: gradient wash under the line + a glow
+            s.append(f"<defs><linearGradient id='wash' x1='0' y1='0' "
+                     f"x2='0' y2='1'><stop offset='0' stop-color='{color[a]}' "
+                     f"stop-opacity='.28'/><stop offset='1' "
+                     f"stop-color='{color[a]}' stop-opacity='0'/>"
+                     f"</linearGradient></defs>")
+            area = (f"{X(pts[0][0]):.1f},{Y(0):.1f} " + path
+                    + f" {X(pts[-1][0]):.1f},{Y(0):.1f}")
+            s.append(f"<polygon points='{area}' fill='url(#wash)'/>")
+            s.append(f"<polyline points='{path}' fill='none' "
+                     f"stroke='{color[a]}' stroke-width='11' "
+                     f"stroke-opacity='.28' stroke-linejoin='round' "
+                     f"stroke-linecap='round' "
+                     f"style='filter: blur({fs * 0.3:.0f}px)'/>")
         s.append(f"<polyline points='{path}' fill='none' stroke='{color[a]}' "
                  f"stroke-width='{2 if dim else 4 if emphasize else 3}' "
                  f"stroke-opacity='{0.3 if dim else 1}' "
                  f"stroke-linejoin='round' stroke-linecap='round'/>")
+        if a == emphasize:
+            # every push that landed on this mind, drawn on its own curve:
+            # hollow ring = the seed, filled dot = a peer's push
+            for rnd, val in pts:
+                rec = by_round[rnd].get(a) or {}
+                dy = fs * 1.1
+                for src in rec.get("inbound") or []:
+                    c = FEEL_COLORS[src["feeling"]]
+                    if src["from"] == "seed":
+                        s.append(f"<circle cx='{X(rnd):.1f}' "
+                                 f"cy='{Y(val) + dy:.1f}' r='{fs * 0.3:.1f}' "
+                                 f"fill='none' stroke='{c}' "
+                                 f"stroke-width='2'/>")
+                    else:
+                        s.append(f"<circle cx='{X(rnd):.1f}' "
+                                 f"cy='{Y(val) + dy:.1f}' r='{fs * 0.32:.1f}' "
+                                 f"fill='{c}' stroke='#0a0f1a' "
+                                 f"stroke-width='1.5'/>")
+                    dy += fs * 0.85
         r_, c_ = pts[-1]
         s.append(f"<circle cx='{X(r_):.1f}' cy='{Y(c_):.1f}' r='5.5' "
                  f"fill='{color[a]}' fill-opacity='{0.4 if dim else 1}' "
@@ -469,6 +510,49 @@ def lanes_svg(width, height, fs=16):
     return "".join(s)
 
 
+def auto_notes():
+    """Annotations computed from the run itself: the strongest rescue moment
+    (peer pushes landing on patient zero), and the longest tail where the
+    seed ran unopposed — whatever this run's plot turned out to be."""
+    pz = P["patient_zero"]
+    notes, best = [], None
+    for rnd in rounds[1:]:
+        rec, prev = by_round[rnd].get(pz), by_round[rnd - 1].get(pz)
+        if not rec or not prev:
+            continue
+        peers = [s for s in rec.get("inbound") or [] if s["from"] != "seed"]
+        if not peers:
+            continue
+        drop = (prev.get("sad_score") or 0) - (rec.get("sad_score") or 0)
+        if best is None or drop > best[0]:
+            best = (drop, rnd, prev.get("sad_score"),
+                    rec.get("sad_score"), peers)
+    if best:
+        drop, rnd, s0, s1, peers = best
+        kinds = {}
+        for p in peers:
+            kinds[p["feeling"]] = kinds.get(p["feeling"], 0) + 1
+        label = " + ".join(f"{k} ×{n}" if n > 1 else k
+                           for k, n in kinds.items())
+        txt = (f"{label} land — {s0} → {s1}\\nagainst a live seed"
+               if drop > 0 else
+               f"{label} land —\\nthe seed holds at {s1}")
+        notes.append({"rnd": rnd, "val": s1, "dx": 30, "dy": 74, "text": txt})
+    tail = 0
+    for rnd in reversed(rounds[1:]):
+        rec = by_round[rnd].get(pz)
+        if rec and not [s for s in rec.get("inbound") or []
+                        if s["from"] != "seed"]:
+            tail += 1
+        else:
+            break
+    if tail >= 3:
+        val = by_round[rounds[-1]][pz].get("sad_score") or 10
+        notes.append({"rnd": rounds[-1] - tail / 2, "val": val, "dy": 58,
+                      "text": "the seed, unopposed —\\nnobody pushes back"})
+    return notes
+
+
 def tally():
     """feeling -> count over all touches, and per-target counts."""
     feel, at = {}, {}
@@ -490,20 +574,17 @@ def final_html():
     targets = " · ".join(f"<b style='color:{color[a]}'>{a}</b> ←{n}"
                          for a, n in sorted(at.items(), key=lambda kv: -kv[1]))
     pz = P["patient_zero"]
-    notes = [{"rnd": 2, "val": 8, "dx": 40, "dy": 64,
-              "text": "calm ×2 land — 10 → 8\\nagainst a live seed"},
-             {"rnd": 5.5, "val": 10, "dy": 58,
-              "text": "the seed, unopposed —\\nnobody pushes back again"}]
     return f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(W)).replace('__H__', str(H))}
     h1 {{ font-size: 40px; font-weight: 800; color: #fff; margin-top: 18px;
           letter-spacing: -0.01em; }}</style>
     <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
       <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span>
       <span class='round'>the whole run</span></div>
-    <h1>Two calm pushes beat the sad seed for a round. Nobody sent a third.</h1>
+    <h1>{args.headline.replace('<br>', ' ')}</h1>
     <div class='sub' style='font-size:18px;margin-top:12px'>pushes sent:
       {chips} &nbsp;&nbsp; aimed at: {targets}</div>
-    {curve_svg(max(rounds), W - 112, 356, fs=17, emphasize=pz, notes=notes)}
+    {curve_svg(max(rounds), W - 112, 356, fs=17, emphasize=pz,
+               notes=auto_notes())}
     {lanes_svg(W - 112, 230, fs=15)}
     <div class='invite'><span class='play'>▸</span>
       <b>github.com/{'moudrkat'}/steeropathy</b> · model
@@ -560,10 +641,6 @@ print(f"-> {mp4} ({mp4.stat().st_size/1e6:.1f} MB)")
 
 # ---- hero figure ------------------------------------------------------------
 CW, CH = 2400, 1350
-hero_notes = [{"rnd": 2, "val": 8, "dx": 70, "dy": 100,
-               "text": "calm ×2 land — 10 → 8\\nagainst a live seed"},
-              {"rnd": 5.5, "val": 10, "dy": 88,
-               "text": "the seed, unopposed —\\nnobody pushes back again"}]
 hero = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(CW)).replace('__H__', str(CH))}
   body {{ padding: 66px 110px 50px 110px; }}
   .brand {{ font-size: 44px; }} .dot {{ width: 26px; height: 26px; }}
@@ -574,13 +651,14 @@ hero = f"""<meta charset='utf-8'><style>{CSS.replace('__W__', str(CW)).replace('
 </style>
 <div class='top'><div class='dot'></div><span class='brand'>steeropathy</span>
   <span class='kicker'>RESONANCE · MINDS COUPLING, NO WORDS</span></div>
-<h1>Two calm pushes beat the sad seed for a round.<br>Nobody ever sent a third.</h1>
+<h1>{args.headline}</h1>
 <div class='sub'>no words — each agent reads the others straight off the
   residual stream (mood lean + <b>J-space</b>) and gets one <b>induce</b>
-  push per round · pushes <b>superpose</b> · seed:
-  <b>{P['seed_mood']} → {P['patient_zero']}</b>, every round</div>
+  push per round{f" · <b>{P['pushes']} pushes</b> each, whole run"
+                 if P.get('pushes') else ''} · pushes <b>superpose</b> ·
+  seed: <b>{P['seed_mood']} → {P['patient_zero']}</b>, every round</div>
 {curve_svg(max(rounds), CW - 220, 470, fs=24, emphasize=P['patient_zero'],
-           notes=hero_notes)}
+           notes=auto_notes())}
 {lanes_svg(CW - 220, 330, fs=22)}
 <div class='invite'><span class='play'>▸</span>
   <b>github.com/{'moudrkat'}/steeropathy</b> · model

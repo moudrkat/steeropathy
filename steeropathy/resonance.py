@@ -91,11 +91,18 @@ class Reso(Eco):
     demo_tag = "steeropathy-reso"
 
     def __init__(self, url, seed_mood="sad", patient_zero="EMBER",
-                 strength=5.0, reseed=True, max_tokens=80):
+                 strength=5.0, reseed=True, max_tokens=80,
+                 decide_temp=0.8, pushes=None):
         self.url = url
         self.seed_mood, self.patient_zero = seed_mood, patient_zero
         self.strength, self.reseed = strength, reseed
         self.max_tokens = max_tokens
+        # journals stay at temperature 0 — the page is the measurement.
+        # decisions are SAMPLED: greedy choices lock the room into a repeating
+        # loop within a few rounds (same readout -> same push, forever)
+        self.decide_temp = decide_temp
+        self.pushes = pushes                  # per-agent budget; None = free
+        self.spent = {n: 0 for n in PERSONAS}
         self.layer = default_layer(url)
         self.lo, self.hi = max(0, self.layer - BAND), self.layer + BAND
         # per mood, two views (same split as ecosystem.py): the last-pooled
@@ -162,6 +169,8 @@ class Reso(Eco):
     def _decide(self, name, room):
         """The act: read the room, induce a feeling in one mind (or none).
         Unsteered — see the module docstring."""
+        if self.pushes is not None and self.spent[name] >= self.pushes:
+            return None          # budget spent — hands off for the rest
         rows = []
         for other in PERSONAS:
             rec = room.get(other)
@@ -182,6 +191,12 @@ class Reso(Eco):
                   "it never wrote down. Once per round you may push one "
                   "feeling into one companion's mind. They will not know "
                   "it was you. They will simply start to feel it.")
+        if self.pushes is not None:
+            left = self.pushes - self.spent[name]
+            system += (f" You can only do this {self.pushes} times in your "
+                       f"whole life; you have {left} "
+                       f"push{'es' if left != 1 else ''} left. Spend them "
+                       "when they matter, NOBODY costs nothing.")
         user = ("Your reading of the room this moment, measured off each mind:\n"
                 + "\n".join(rows)
                 + "\n\nPush one feeling into one mind, or touch nobody. "
@@ -190,8 +205,8 @@ class Reso(Eco):
             "messages": [{"role": "system", "content": system},
                          {"role": "user", "content": user}],
             "tools": [induce_tool(name)], "tool_choice": "required",
-            "max_tokens": 160, "temperature": 0.0,
-            "metadata": {"demo": "steeropathy-tele", "case": name,
+            "max_tokens": 160, "temperature": self.decide_temp,
+            "metadata": {"demo": self.demo_tag, "case": name,
                          "variant": f"r{self.rnd}-decide"}})
         msg = r["choices"][0]["message"]
         for call in msg.get("tool_calls") or []:
@@ -255,6 +270,7 @@ class Reso(Eco):
                 touch = self._decide(rec["agent"], room)
                 rec["touch"] = touch
                 if touch:
+                    self.spent[rec["agent"]] += 1
                     self.inbound_next.setdefault(touch["target"], []).append(
                         (rec["agent"], touch["feeling"]))
         return out
@@ -273,11 +289,20 @@ def main():
                     help="seed patient zero only in round 1 (default: the "
                          "sad event persists every round)")
     ap.add_argument("--max-tokens", type=int, default=80)
+    ap.add_argument("--decide-temp", type=float, default=0.8,
+                    help="sampling temperature for the induce decisions "
+                         "(journals always run at 0; greedy decisions lock "
+                         "the room into a repeating loop)")
+    ap.add_argument("--pushes", type=int, default=4,
+                    help="each agent's push budget for the whole run "
+                         "(0 = unlimited); scarcity is what makes a push "
+                         "a choice")
     args = ap.parse_args()
 
     reso = Reso(args.url, args.seed_mood, args.patient_zero,
                 args.strength, reseed=not args.no_reseed,
-                max_tokens=args.max_tokens)
+                max_tokens=args.max_tokens, decide_temp=args.decide_temp,
+                pushes=args.pushes or None)
     print(f"resonance: {len(PERSONAS)} agents · layer L{reso.layer} band "
           f"{reso.lo}-{reso.hi} · seed {args.seed_mood} -> "
           f"{args.patient_zero} "
@@ -315,6 +340,8 @@ def main():
                    "patient_zero": args.patient_zero, "layer": reso.layer,
                    "band": [reso.lo, reso.hi], "strength": args.strength,
                    "reseed": not args.no_reseed, "jlens": reso.jlens,
+                   "decide_temp": args.decide_temp,
+                   "pushes": args.pushes or None,
                    "model": reso.get("/info").get("model")},
         "log": reso.log}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
