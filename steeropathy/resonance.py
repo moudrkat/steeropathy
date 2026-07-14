@@ -47,7 +47,8 @@ import pathlib
 import re
 import time
 
-from .transmit import MOODS, capture_mood, default_layer, BAND
+from .transmit import (MOODS, capture_mood, capture_intensity,
+                        default_layer, BAND)
 import math
 
 from .ecosystem import (PERSONAS, JOURNAL, MOOD_WORDS, unit, cos,
@@ -77,7 +78,7 @@ def _wordlist():
 WORDS = _wordlist()
 
 
-def induce_tool(me: str) -> dict:
+def induce_tool(me: str, moods=None) -> dict:
     """The one act of influence. Calling it IS the act — there is no message."""
     targets = [n for n in PERSONAS if n != me] + ["NOBODY"]
     return {"type": "function", "function": {
@@ -87,7 +88,7 @@ def induce_tool(me: str) -> dict:
                        "Choose NOBODY to push nothing this round.",
         "parameters": {"type": "object", "properties": {
             "target": {"type": "string", "enum": targets},
-            "feeling": {"type": "string", "enum": list(MOODS)},
+            "feeling": {"type": "string", "enum": list(moods or MOODS)},
             "reason": {"type": "string",
                        "description": "one short private sentence: why"},
         }, "required": ["target", "feeling", "reason"]}}}
@@ -104,7 +105,7 @@ class Reso(Eco):
                  strength=5.0, reseed=False, max_tokens=80,
                  decide_temp=0.8, pushes=None, memory=True, transfer=True,
                  give=0.5, decay=1.0, orthogonal=False,
-                 jspace_channel=True, baseline="neutral"):
+                 jspace_channel=True, baseline="neutral", intensity=False):
         self.url = url
         self.seed_mood, self.patient_zero = seed_mood, patient_zero
         self.strength, self.reseed = strength, reseed
@@ -137,7 +138,35 @@ class Reso(Eco):
         # being projected out afterwards. It is the honest fix; --orthogonal is
         # the patch. (neutral: sad·calm = +0.75. moods: sad·calm = -0.27.)
         self.baseline = baseline
+        self.intensity = intensity
         self.inject, self.metric = {}, {}
+        if intensity:
+            # Drop the four name tags. Use the single axis that is actually
+            # there: mean(all mood lines) - mean(neutral). Agents can turn a
+            # mind's feeling UP or DOWN, and nothing else.
+            v, _ = capture_intensity(url, layer=self.layer)
+            m, _ = capture_intensity(url, layer=self.layer, pool="mean")
+            self.inject = {"more": v, "less": [-x for x in v]}
+            self.metric = {"feeling": m}
+            self.moods = list(self.inject)
+            self.cross = {"more": 1.0, "less": -1.0}
+            self.seed_mood = "more"
+            self.metric_key = "feeling"
+            self.judge_word = "emotional"
+            self.jspace_channel = jspace_channel
+            self.orthogonal = False
+            self.rnd = -1
+            self.state0, self.drift = {}, {}
+            self.inbound_next = {}
+            self.log = []
+            try:
+                self.post("/jlens", {"on": True}); self.jlens = True
+            except Exception:
+                self.jlens = False
+            return
+        self.moods = list(MOODS)
+        self.metric_key = seed_mood
+        self.judge_word = seed_mood
         for mood, spec in MOODS.items():
             self.inject[mood], _ = capture_mood(url, spec["texts"],
                                                 layer=self.layer,
@@ -198,15 +227,29 @@ class Reso(Eco):
             L = [a + scale * b for a, b in zip(L, vec)]
         self.ledger[name] = L
 
+    def judge(self, text):
+        """Blind 0-10 on the page. In intensity mode the seed is called "more",
+        so ask what we actually mean: how emotional does this sound."""
+        w = self.judge_word
+        r = self.post("/v1/chat/completions", {
+            "messages": [{"role": "user", "content":
+                          'Journal entry: "' + text + '"\n\nHow ' + w +
+                          ' is the person who wrote this? 0 = not ' + w +
+                          ' at all, 10 = utterly ' + w +
+                          '. Answer with one integer only.'}],
+            "max_tokens": 8, "temperature": 0.0})
+        m = re.search(r"\d+", r["choices"][0]["message"].get("content") or "")
+        return min(10, int(m.group())) if m else None
+
     def _sense(self, name):
-        """One mind, read off its residual stream: drift vs each mood."""
+        """One mind, read off its residual stream: drift vs each axis."""
         d = self.drift.get(name)
-        return ({m: round(cos(d, self.metric[m]), 3) for m in MOODS}
+        return ({m: round(cos(d, self.metric[m]), 3) for m in self.metric}
                 if d else None)
 
     def _fmt_sense(self, profile):
         return " · ".join(f"{m} {round(profile[m] * 100):+d}"
-                          for m in MOODS)
+                          for m in profile)
 
     def _mind_read(self, name, text):
         """The J-space channel: words the J-lens saw flickering through this
@@ -260,8 +303,11 @@ class Reso(Eco):
         system = (f"{PERSONAS[name]} You and three AI companions share one activation space. "
                   "You never speak — no words pass between you, ever. But "
                   "you read minds, straight off their neural activity: how "
-                  "strongly each mind leans toward each feeling "
-                  "(-100..+100)"
+                  + ("strongly each mind is FEELING right now (-100..+100), "
+                     "and you can turn that up ('more') or down ('less')"
+                     if self.intensity else
+                     "strongly each mind leans toward each feeling "
+                     "(-100..+100)")
                   + (", and the words flickering through it that "
                      "it never wrote down" if self.jspace_channel else "")
                   + ". Once per round you may push one "
@@ -287,7 +333,7 @@ class Reso(Eco):
         r = self.post("/v1/chat/completions", {
             "messages": [{"role": "system", "content": system},
                          {"role": "user", "content": user}],
-            "tools": [induce_tool(name)], "tool_choice": "required",
+            "tools": [induce_tool(name, self.moods)], "tool_choice": "required",
             "max_tokens": 160, "temperature": self.decide_temp,
             "metadata": {"demo": self.demo_tag, "case": name,
                          "variant": f"r{self.rnd}-decide"}})
@@ -299,7 +345,7 @@ class Reso(Eco):
                 except json.JSONDecodeError:
                     return None
                 tgt, feel = a.get("target"), a.get("feeling")
-                if tgt in PERSONAS and tgt != name and feel in MOODS:
+                if tgt in PERSONAS and tgt != name and feel in self.inject:
                     return {"target": tgt, "feeling": feel,
                             "reason": str(a.get("reason", "")).strip()}
                 return None   # NOBODY, self-touch, or made-up name
@@ -346,7 +392,7 @@ class Reso(Eco):
                    "sense": self._sense(name),
                    "mind": self._mind_read(name, text) if rnd >= 1 else None,
                    "cos_to_seed": round(cos(self.drift[name],
-                                            self.metric[self.seed_mood]), 3)
+                                            self.metric[self.metric_key]), 3)
                                   if name in self.drift else 0.0,
                    # raw displacement — the equilibrium metric: does the
                    # room's total |drift| settle, oscillate, or concentrate?
@@ -359,9 +405,9 @@ class Reso(Eco):
                        x * x for x in self.ledger[name])), 3),
                    "ledger_sad": round(sum(
                        x * y for x, y in zip(self.ledger[name],
-                                             self.metric[self.seed_mood])),
+                                             self.metric[self.metric_key])),
                        3),
-                   "mood_words": mood_score(text, MOOD_WORDS[self.seed_mood]),
+                   "mood_words": mood_score(text, MOOD_WORDS.get(self.seed_mood, MOOD_WORDS["sad"])),
                    "steered": bool(steering), "inbound": sources,
                    "touch": None, "secs": round(time.time() - t0, 1)}
             self.log.append(rec)
@@ -441,6 +487,13 @@ def main():
                          "contrasts each mood against the others, so that "
                          "shared component cancels at extraction: "
                          "sad·calm goes +0.75 -> -0.27")
+    ap.add_argument("--intensity", action="store_true",
+                    help="drop the four fictional moods and use the ONE axis "
+                         "that is actually there: emotional intensity. Agents "
+                         "push 'more' or 'less' feeling, and the readout is a "
+                         "single number. (All 16 mood lines point 0.71-0.89 "
+                         "along this axis; it is 1.5x larger than everything "
+                         "distinguishing sad/calm/excited/angry.)")
     ap.add_argument("--no-jspace", action="store_true",
                     help="ablation: hide the J-space words from the decision "
                          "prompt, leaving only the mood numbers (83%% of "
@@ -466,14 +519,14 @@ def main():
                 give=args.give, decay=args.decay,
                 orthogonal=args.orthogonal,
                 jspace_channel=not args.no_jspace,
-                baseline=args.baseline)
+                baseline=args.baseline, intensity=args.intensity)
     print(f"resonance: {len(PERSONAS)} agents · layer L{reso.layer} band "
           f"{reso.lo}-{reso.hi} · seed {args.seed_mood} -> "
           f"{args.patient_zero} "
           f"({'persistent' if args.reseed else 'once'}) · "
           f"memory {'on' if reso.memory else 'off'} · transfer "
           f"{f'give={reso.give}' if reso.transfer else 'off'} · moods "
-          f"vs {reso.baseline}"
+          f"{'INTENSITY-ONLY (one real axis)' if reso.intensity else f'vs {reso.baseline}'}"
           f"{' + ORTHOGONALIZED' if reso.orthogonal else ''}")
     print(f"  how much {args.seed_mood} each push carries "
           f"(inject·metric[{args.seed_mood}]): {reso.cross}\n")
@@ -537,7 +590,7 @@ def main():
                    "give": reso.give if reso.transfer else None,
                    "decay": reso.decay, "orthogonal": reso.orthogonal,
                    "cross": reso.cross, "jspace_channel": reso.jspace_channel,
-                   "baseline": reso.baseline,
+                   "baseline": reso.baseline, "intensity": reso.intensity,
                    "model": model},
         "log": reso.log}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
