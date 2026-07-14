@@ -106,6 +106,17 @@ neglect does not.
 
 ![the same room, twice — the only difference is the geometry of the calm vector](docs/post-v1-split.png)
 
+**And note who was deceived.** The agents never see a vector. They see a *name* —
+`sad`, `calm`, `excited`, `angry` — in the readout and in the `induce` tool's
+enum, and nothing else. They asked for calm, in good faith, and received 75%
+grief. They did everything right with the information they had; **my label was
+false**, and I didn't know it either. That is the same trap as the `offer`
+experiment below, but worse, because nobody in this story was lying:
+
+> **A steering vector's name is not its content.** Anything downstream that
+> trusts the name — an agent, a router, a safety filter, *you* — inherits the
+> error in silence. Measure the cross-terms before you ship the label.
+
 **And the grief never left.** The room's total is conserved by construction
 (‖Σ ledgers‖ = 1.000, printed every round) — it only ever changed hands. No
 equilibrium: it pooled in whoever was cared for most.

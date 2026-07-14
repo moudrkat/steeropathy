@@ -104,7 +104,7 @@ class Reso(Eco):
                  strength=5.0, reseed=False, max_tokens=80,
                  decide_temp=0.8, pushes=None, memory=True, transfer=True,
                  give=0.5, decay=1.0, orthogonal=False,
-                 jspace_channel=True):
+                 jspace_channel=True, baseline="neutral"):
         self.url = url
         self.seed_mood, self.patient_zero = seed_mood, patient_zero
         self.strength, self.reseed = strength, reseed
@@ -132,12 +132,19 @@ class Reso(Eco):
         # per mood, two views (same split as ecosystem.py): the last-pooled
         # contrast is what a touch INJECTS; the mean-pooled one is what the
         # mind-sense MEASURES against, because drift is mean-pooled
+        # baseline="moods" contrasts each mood against the OTHER moods, so the
+        # shared emotional-intensity component cancels at extraction instead of
+        # being projected out afterwards. It is the honest fix; --orthogonal is
+        # the patch. (neutral: sad·calm = +0.75. moods: sad·calm = -0.27.)
+        self.baseline = baseline
         self.inject, self.metric = {}, {}
         for mood, spec in MOODS.items():
             self.inject[mood], _ = capture_mood(url, spec["texts"],
-                                                layer=self.layer)
+                                                layer=self.layer,
+                                                baseline=baseline)
             self.metric[mood], _ = capture_mood(url, spec["texts"],
-                                                layer=self.layer, pool="mean")
+                                                layer=self.layer, pool="mean",
+                                                baseline=baseline)
         # A naive "mood − neutral" contrast is dominated by a shared
         # EMOTIONAL-INTENSITY axis: on Qwen3-4B all four moods sit at
         # cos 0.57–0.76 of each other, so "calm" is mostly "more feeling"
@@ -148,13 +155,19 @@ class Reso(Eco):
         self.orthogonal = orthogonal
         self.jspace_channel = jspace_channel
         if orthogonal:
-            S = self.inject[seed_mood]
-            for m in MOODS:
-                if m == seed_mood:
-                    continue
-                c = cos(self.inject[m], S)
-                self.inject[m] = unit([x - c * s
-                                       for x, s in zip(self.inject[m], S)])
+            # BOTH ends of the channel must be disentangled, not just one.
+            # inject: so a "calm" push doesn't smuggle in sadness.
+            # metric: so the READOUT can distinguish moods at all — with raw
+            # directions a grieving mind reports "sad +72 · excited +72",
+            # i.e. the agents literally cannot see distress as distress.
+            for space in (self.inject, self.metric):
+                S = space[seed_mood]
+                for m in MOODS:
+                    if m == seed_mood:
+                        continue
+                    c = cos(space[m], S)
+                    space[m] = unit([x - c * s
+                                     for x, s in zip(space[m], S)])
         self.cross = {m: round(sum(a * b for a, b in
                                    zip(self.inject[m],
                                        self.metric[seed_mood])), 3)
@@ -414,6 +427,16 @@ def main():
     ap.add_argument("--give", type=float, default=0.5,
                     help="the transferred share: receiver's ledger gains "
                          "+give·F, the giver's loses the same")
+    ap.add_argument("--baseline", default="neutral",
+                    choices=["neutral", "moods"],
+                    help="what a mood vector is measured AGAINST. 'neutral' "
+                         "is the standard recipe and gives four vectors that "
+                         "are ~0.75 correlated (mostly 'emotional intensity' "
+                         "— a calm push then carries sadness, and a readout "
+                         "cannot tell grief from excitement). 'moods' "
+                         "contrasts each mood against the others, so that "
+                         "shared component cancels at extraction: "
+                         "sad·calm goes +0.75 -> -0.27")
     ap.add_argument("--no-jspace", action="store_true",
                     help="ablation: hide the J-space words from the decision "
                          "prompt, leaving only the mood numbers (83%% of "
@@ -438,14 +461,16 @@ def main():
                 memory=not args.no_memory, transfer=not args.no_transfer,
                 give=args.give, decay=args.decay,
                 orthogonal=args.orthogonal,
-                jspace_channel=not args.no_jspace)
+                jspace_channel=not args.no_jspace,
+                baseline=args.baseline)
     print(f"resonance: {len(PERSONAS)} agents · layer L{reso.layer} band "
           f"{reso.lo}-{reso.hi} · seed {args.seed_mood} -> "
           f"{args.patient_zero} "
           f"({'persistent' if args.reseed else 'once'}) · "
           f"memory {'on' if reso.memory else 'off'} · transfer "
           f"{f'give={reso.give}' if reso.transfer else 'off'} · moods "
-          f"{'ORTHOGONALIZED' if reso.orthogonal else 'raw'}")
+          f"vs {reso.baseline}"
+          f"{' + ORTHOGONALIZED' if reso.orthogonal else ''}")
     print(f"  how much {args.seed_mood} each push carries "
           f"(inject·metric[{args.seed_mood}]): {reso.cross}\n")
 
@@ -476,12 +501,24 @@ def main():
               f"(conserved: ≈1.0 once seeded, decay {reso.decay})")
         print()
 
-    reso.judge_garnish()
-    reso.jlens_garnish()
-    saved = reso.save_traces(HERE / "docs" / "resonance-traces.jsonl.gz")
-    if saved:
-        print(f"-> {saved} (raw traces, archived off the server's "
-              f"rotating store)")
+    # a run costs ~20 minutes; never lose it to a hiccup in the garnish or a
+    # 500 on the last /info call. Everything after the rounds is best-effort.
+    try:
+        model = reso.get("/info").get("model")
+    except Exception:
+        model = "unknown"
+    for step in (reso.judge_garnish, reso.jlens_garnish):
+        try:
+            step()
+        except Exception as e:
+            print(f"({step.__name__} skipped: {e})")
+    try:
+        saved = reso.save_traces(HERE / "docs" / "resonance-traces.jsonl.gz")
+        if saved:
+            print(f"-> {saved} (raw traces, archived off the server's "
+                  f"rotating store)")
+    except Exception as e:
+        print(f"(traces not archived: {e})")
 
     out = HERE / "docs" / "resonance.json"
     out.parent.mkdir(exist_ok=True)
@@ -495,8 +532,9 @@ def main():
                    "memory": reso.memory, "transfer": reso.transfer,
                    "give": reso.give if reso.transfer else None,
                    "decay": reso.decay, "orthogonal": reso.orthogonal,
-                   "cross": reso.cross,
-                   "model": reso.get("/info").get("model")},
+                   "cross": reso.cross, "jspace_channel": reso.jspace_channel,
+                   "baseline": reso.baseline,
+                   "model": model},
         "log": reso.log}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
 

@@ -86,11 +86,27 @@ def default_layer(host: str) -> int:
 
 
 def capture_mood(host: str, mood_texts: list[str], layer: int | None = None,
-                 pool: str = "last") -> tuple[list[float], int]:
-    """mood direction = mean(mood lines) − mean(neutral lines), at one layer, unit-normalized.
+                 pool: str = "last",
+                 baseline: str = "neutral") -> tuple[list[float], int]:
+    """mood direction = mean(mood lines) − mean(baseline lines), unit-normalized.
 
     Averaging over several lines cancels topic noise and leaves the shared affect; the
-    single-prompt contrast does NOT survive steering (it just over-steers into salad)."""
+    single-prompt contrast does NOT survive steering (it just over-steers into salad).
+
+    ``baseline`` decides what gets subtracted, and it matters more than anything else:
+
+    - ``"neutral"`` — the classic contrast (mood − flat factual text). What everyone
+      builds, and what everyone ships. But an emotional line differs from a neutral one
+      in *two* ways — that it is emotional at all, and *which* emotion it is — so the
+      result keeps a large shared "emotional intensity" component. On Qwen3-4B this
+      makes all four moods mutually positive (cos 0.57–0.76): a vector labelled *calm*
+      measurably carries sadness, and a readout cannot tell a grieving mind from an
+      excited one. See the resonance experiment in the README for what that does to a
+      room of agents that trusts the labels.
+    - ``"moods"`` — mood − mean(ALL the mood lines). The shared emotionality cancels at
+      extraction instead of being projected out afterwards, so what remains is what makes
+      *this* mood different from emotion-in-general. Nearly orthogonal by construction.
+    """
     if layer is None:
         layer = default_layer(host)
 
@@ -100,7 +116,12 @@ def capture_mood(host: str, mood_texts: list[str], layer: int | None = None,
               for t in texts]
         return [sum(col) / len(vs) for col in zip(*vs)]
 
-    diff = [h - c for h, c in zip(meanv(mood_texts), meanv(NEUTRAL_TEXTS))]
+    if baseline == "moods":
+        base_texts = [t for spec in MOODS.values() for t in spec["texts"]]
+    else:
+        base_texts = NEUTRAL_TEXTS
+
+    diff = [h - c for h, c in zip(meanv(mood_texts), meanv(base_texts))]
     norm = math.sqrt(sum(x * x for x in diff)) or 1.0
     return [x / norm for x in diff], layer
 
