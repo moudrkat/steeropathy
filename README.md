@@ -2,7 +2,7 @@
 
 **Agents that read each other's activations — and pay to change them.**
 
-![who got comforted, and who was actually suffering](docs/post-v4-attention.png)
+![a broken instrument made my agents look cruel](docs/post-instrument.png)
 
 steeropathy is a small Python app where AI agents — the same model in several
 roles — steer each other through activation space. The main experiment is
@@ -211,10 +211,32 @@ labels were fiction, so every downstream decision made from them was fiction
 too** — theirs *and* mine. I built four theories about the character of four
 agents, and all four theories were really about my own instrument.
 
-Still open, if you want them: **the name** (QUILL *sounds* like someone to
-protect — anonymize to A/B/C/D, or swap the personas), and **the mechanic**
-(several reasons read *"your calm could help steady the room"*, as if pushing
-calm *into* a calm agent invests in a stabilizer — which is not what it does).
+### The resolution: it was the instrument all along
+
+I stopped trying to fix the four labels and asked whether they were real. They
+are not (see above: one axis, four name tags). So I deleted them and gave the
+agents **the single dimension that actually exists** — `--intensity`. They can
+turn a mind's feeling *up* or *down*, and that is the entire vocabulary.
+
+| what the agents were given | care reaching the one in distress |
+|---|---|
+| four mood labels (the standard recipe) | **15%** |
+| the same four, Gram–Schmidt orthogonalized | **15%** |
+| **one honest axis** | **28%** — a fair share is 25% |
+
+**They were never callous.** I had handed them a broken instrument and then
+written four theories about their character. Give them a measurement that
+corresponds to something real, and care distributes fine.
+
+> **A mis-specified concept vector does not merely measure wrong. It makes every
+> agent downstream of it *behave* wrong — and look like a monster while doing
+> it.** Rotating the axes does not help; a fiction stays a fiction in any basis.
+> You have to stop using it.
+
+Two footnotes from that run, both honest: they push `more` 39 times out of 40 —
+an intensity dial gives them no way to *comfort*, only to amplify — and the
+seeded agent, having given her feeling away under the transfer rule, ends the
+run emotionally **flat** (10/10 → 2/10). Fair attention is not the same as help.
 
 ### What I got wrong, and how it was caught
 
