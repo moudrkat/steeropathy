@@ -1,9 +1,9 @@
 """A prettier resonance animation: each agent is a glowing orb, its light the amount
 of sadness it holds (ledger·sad), and every push is a comet of grief migrating between
-them — take pulls it toward the reliever, give sends it away.
+them - take pulls it toward the reliever, give sends it away.
 
 Pure stdlib: renders SVG/CSS frames, shoots them with headless Chrome, stitches with
-ffmpeg — same toolchain as render_resonance.py.
+ffmpeg - same toolchain as render_resonance.py.
 
     python fig/render_orbs.py [--json docs/resonance.json] [--sub 12]
     -> docs/resonance-orbs.gif , docs/resonance-orbs.mp4
@@ -31,8 +31,8 @@ AGENTS = ("NOVA", "EMBER", "ATLAS", "QUILL")
 PURPLE = "139,124,248"          # sadness
 S = args.size
 C = S / 2
-CY = S * 0.47                    # ring centered slightly high so the bottom orb clears the caption
-ORBIT = S * 0.29
+CY = S * 0.48                    # ring centered so nothing crowds the edges or the caption
+ORBIT = S * 0.235               # pulled inward: leaves a clear margin so the gif never looks clipped
 POS = {                          # a ring: top, right, bottom, left
     "NOVA":  (C, CY - ORBIT),
     "EMBER": (C + ORBIT, CY),
@@ -46,13 +46,13 @@ R = max(r["round"] for r in log)
 seed_agent = run["params"].get("patient_zero", "EMBER")
 seed_mood = run["params"].get("seed_mood", "sad")
 
-# each orb's sadness is read straight off the activations — drift·sad, the same
+# each orb's sadness is read straight off the activations - drift·sad, the same
 # reading the agents get. Measured from each mind's own round-0 state, so round 0 is
 # a true null (sense is None) and everyone starts dark.
 def sread(rec):
     # the CONSERVED quantity: ledger·sad, the sad-vector this mind currently holds.
     # you seed it into one mind once; every push is a zero-sum transfer, so the sum
-    # over all four is invariant. This is the physics — not the drift readout, which
+    # over all four is invariant. This is the physics - not the drift readout, which
     # is re-measured each round and does not conserve.
     return rec.get("ledger_sad", 0.0)
 
@@ -161,8 +161,8 @@ def frame_html(rnd, t):
       <div style="position:absolute;left:0;top:44px;width:{S}px;text-align:center;">
         <div style="color:#efeaff;font:700 40px ui-monospace;letter-spacing:1px;">Four agents communicating in activation space</div>
         <div style="color:#aaa5da;font:500 33px ui-monospace;margin-top:16px;letter-spacing:0.5px;line-height:1.35;">
-          no words between them — just vectors,<br>
-          read off the activations and pushed back in</div>
+          no words between them, just vectors:<br>
+          read off the activations, pushed back in</div>
       </div>
       <div style="position:absolute;left:0;top:{S-92}px;width:{S}px;text-align:center;">
         <div style="color:#b9b4e8;font-size:25px;letter-spacing:2px;">{caption}</div>
