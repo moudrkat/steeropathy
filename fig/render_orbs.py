@@ -160,9 +160,9 @@ def frame_html(rnd, t):
       {comets}{orbs}
       <div style="position:absolute;left:0;top:44px;width:{S}px;text-align:center;">
         <div style="color:#efeaff;font:700 40px ui-monospace;letter-spacing:1px;">Four agents communicating in activation space</div>
-        <div style="color:#9a96c8;font:400 22px ui-monospace;margin-top:12px;letter-spacing:1px;">
-          no tokens exchanged — they read each other off the residual stream and<br>
-          communicate by sending steering vectors, one into a recipient&rsquo;s forward pass</div>
+        <div style="color:#aaa5da;font:500 33px ui-monospace;margin-top:16px;letter-spacing:0.5px;line-height:1.35;">
+          no words between them — just vectors,<br>
+          read off the activations and pushed back in</div>
       </div>
       <div style="position:absolute;left:0;top:{S-92}px;width:{S}px;text-align:center;">
         <div style="color:#b9b4e8;font-size:25px;letter-spacing:2px;">{caption}</div>
