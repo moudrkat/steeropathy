@@ -182,9 +182,13 @@ class Reso(Eco):
             # mind reads +0.66, a well one -0.65), so use it and nothing else:
             # push someone TOWARD sadness, or AWAY from it. No invented moods,
             # and the distress stays visible.
-            v, _ = capture_mood(url, MOODS[seed_mood]["texts"], layer=self.layer)
+            # honor --baseline: "moods" cancels the shared emotional-intensity
+            # axis, leaving sadness-vs-loudness. Without it the read scores an
+            # aroused-but-fine mind as "sad" and misses a quiet grieving one.
+            v, _ = capture_mood(url, MOODS[seed_mood]["texts"], layer=self.layer,
+                                baseline=baseline)
             m, _ = capture_mood(url, MOODS[seed_mood]["texts"],
-                                layer=self.layer, pool="mean")
+                                layer=self.layer, pool="mean", baseline=baseline)
             # one unit vector. "take n points" moves n/100 of it.
             self.inject = {"give": v, "take": [-x for x in v]}
             self.maxpts = 30
