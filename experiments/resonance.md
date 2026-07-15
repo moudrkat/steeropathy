@@ -288,9 +288,19 @@ quiet mind, not by neglect but by "helping" it wrong. The fix wasn't to the agen
 it was to name the actions by the **other mind's resulting state** — `soothe` (they
 end calmer) / `sadden` (they end sadder) — so intent maps straight to action.
 **Name a tool's actions by their outcome, not their mechanism.** One more failure
-that looked like the agents and was the instrument. (`--bipolar` now uses
-`soothe`/`sadden`; the `take`/`give` run is kept as the ambiguous-instruction
-control.)
+that looked like the agents and was the instrument.
+
+**The rerun with `soothe`/`sadden`:** the inversions vanished completely —
+`soothe` **118**, `sadden` **0**, every move a coherent relief of whoever read
+saddest (traces confirm it: round 26, all four soothe NOVA at +0.80). *And still no
+equilibrium.* With only `soothe` on the table — *take* the sadness onto yourself —
+the conserved grief flows to whoever soothes most: **the caretaker becomes the
+sink.** QUILL, rarely flagged as "the worst" but often the soother, ends holding
+**0.13** while the seed EMBER is over-relieved to **−0.07** (even split = 0.035;
+spread 0.043 → 0.098 over the run). Fix the readout, fix the verb, make them
+perfectly coherent and kind — a conserved feeling among minds who can only ever
+take it onto themselves *still* finds a sink. This time it isn't the instrument;
+it's the dynamics.
 
 ## Notes
 
