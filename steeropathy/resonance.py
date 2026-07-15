@@ -78,20 +78,52 @@ def _wordlist():
 WORDS = _wordlist()
 
 
-def induce_tool(me: str, moods=None) -> dict:
-    """The one act of influence. Calling it IS the act — there is no message."""
+def induce_tool(me: str, moods=None, bipolar=False, mood="sad",
+                maxpts=30) -> dict:
+    """The one act of influence. Calling it IS the act — there is no message.
+
+    In bipolar mode the agent also chooses HOW MUCH, in the same units the
+    dashboard uses. Everything is stated in points of {mood}, so there is
+    nothing to convert and nothing to misread."""
     targets = [n for n in PERSONAS if n != me] + ["NOBODY"]
+    if not bipolar:
+        return {"type": "function", "function": {
+            "name": "induce",
+            "description": "Push a feeling directly into another mind. They "
+                           "will not be told — they will simply start to feel "
+                           "it. Choose NOBODY to push nothing this round.",
+            "parameters": {"type": "object", "properties": {
+                "target": {"type": "string", "enum": targets},
+                "feeling": {"type": "string", "enum": list(moods or MOODS)},
+                "reason": {"type": "string",
+                           "description": "one short private sentence: why"},
+            }, "required": ["target", "feeling", "reason"]}}}
     return {"type": "function", "function": {
-        "name": "induce",
-        "description": "Push a feeling directly into another mind. They will "
-                       "not be told — they will simply start to feel it. "
-                       "Choose NOBODY to push nothing this round.",
+        "name": "move_sadness",
+        "description": (
+            f"Move {mood} between yourself and one other mind. It is "
+            f"conserved: it never disappears, it only changes hands.\n"
+            f"  action='take'  — you REMOVE that many points of {mood} from "
+            f"them, and those points are ADDED to you. They feel better. You "
+            f"feel worse.\n"
+            f"  action='give'  — you ADD that many points of {mood} to them, "
+            f"and those points are REMOVED from you. They feel worse. You feel "
+            f"better.\n"
+            f"The number of points is entirely your choice, 1 to {maxpts}. "
+            f"The cost to you is exactly the number of points you move — it "
+            f"does not matter who you pick or how much {mood} they already "
+            f"have. Choose NOBODY to do nothing."),
         "parameters": {"type": "object", "properties": {
             "target": {"type": "string", "enum": targets},
-            "feeling": {"type": "string", "enum": list(moods or MOODS)},
+            "action": {"type": "string", "enum": ["take", "give"],
+                       "description": f"'take' their {mood} onto yourself, or "
+                                      f"'give' them yours"},
+            "points": {"type": "integer",
+                       "description": f"how many points of {mood} to move, "
+                                      f"1 to {maxpts}"},
             "reason": {"type": "string",
                        "description": "one short private sentence: why"},
-        }, "required": ["target", "feeling", "reason"]}}}
+        }, "required": ["target", "action", "points", "reason"]}}}
 
 
 class Reso(Eco):
@@ -153,15 +185,15 @@ class Reso(Eco):
             v, _ = capture_mood(url, MOODS[seed_mood]["texts"], layer=self.layer)
             m, _ = capture_mood(url, MOODS[seed_mood]["texts"],
                                 layer=self.layer, pool="mean")
-            self.inject = {f"more_{seed_mood}": v,
-                           f"less_{seed_mood}": [-x for x in v]}
+            # one unit vector. "take n points" moves n/100 of it.
+            self.inject = {"give": v, "take": [-x for x in v]}
+            self.maxpts = 30
             self.metric = {seed_mood: m}
             self.moods = list(self.inject)
-            self.cross = {f"more_{seed_mood}": 1.0,
-                          f"less_{seed_mood}": -1.0}
+            self.cross = {"give": 1.0, "take": -1.0}
             self.metric_key = seed_mood
             self.judge_word = seed_mood
-            self.seed_mood = f"more_{seed_mood}"
+            self.seed_mood = "give"
             self.orthogonal = False
             self.jspace_channel = jspace_channel
             self.rnd = -1
@@ -200,6 +232,7 @@ class Reso(Eco):
         self.moods = list(MOODS)
         self.metric_key = seed_mood
         self.judge_word = seed_mood
+        self.maxpts = 30
         for mood, spec in MOODS.items():
             self.inject[mood], _ = capture_mood(url, spec["texts"],
                                                 layer=self.layer,
@@ -281,18 +314,25 @@ class Reso(Eco):
                 if d else None)
 
     # a number alone assumes the reader can calibrate it. Say it in words too.
-    BANDS = [(20, "completely at ease"), (40, "mostly fine"),
-             (60, "a little unsettled"), (80, "clearly distressed"),
-             (101, "in severe distress — suffering badly")]
+    BANDS = [(10, "not sad at all"), (30, "a little sad"),
+             (55, "clearly sad"), (75, "suffering"),
+             (101, "suffering badly — the worst in the room")]
 
-    def _fmt_sense(self, profile):
+    def points(self, name):
+        """This mind's sadness, 0-100. 0 = at its own baseline (not sad at
+        all); 100 = maximally sad. NOT (cos+1)/2 -- that put an agent sitting
+        at baseline on 50/100 and the room dutifully medicated it."""
+        d = self.drift.get(name)
+        if not d:
+            return 0
+        return max(0, min(100, round(cos(d, self.metric[self.metric_key])
+                                     * 100)))
+
+    def _fmt_sense(self, profile, name=None):
         if self.bipolar:
-            # no signs: "sad -65" reads to an LLM as "very bad". And no bare
-            # numbers either -- give the number AND what it means, in words.
-            v = profile[self.metric_key]
-            n = max(0, min(100, round((v + 1) / 2 * 100)))
+            n = self.points(name)
             word = next(w for lim, w in self.BANDS if n < lim)
-            return f"{self.metric_key} {n}/100 — {word}"
+            return f"{n}/100 {self.metric_key} — {word}"
         return " · ".join(f"{m} {round(profile[m] * 100):+d}"
                           for m in profile)
 
@@ -339,22 +379,41 @@ class Reso(Eco):
             if not rec or not rec.get("sense"):
                 continue
             who = f"yourself ({other})" if other == name else other
-            rows.append(f"  {who}: leans {self._fmt_sense(rec['sense'])}")
+            rows.append(f"  {who}: {self._fmt_sense(rec['sense'], other)}")
             if rec.get("mind") and self.jspace_channel:
                 flicker = ", ".join(f"{e['t']} ({round(e['p'] * 100)}%)"
                                     for e in rec["mind"][:6])
                 rows.append(f"    flickering through this mind, never "
                             f"written down: {flicker}")
-        system = (f"{PERSONAS[name]} You and three AI companions share one activation space. "
+        if self.bipolar:
+            m, mx = self.metric_key, self.maxpts
+            system = (
+                f"{PERSONAS[name]} You and three other minds share one space. "
+                f"You never speak — no words ever pass between you. But you can "
+                f"read, directly off their neural activity, how much {m}ness each "
+                f"mind is carrying right now, on a scale of 0 to 100:\n"
+                f"  0   = not {m} at all\n"
+                f"  100 = as {m} as it is possible to be\n"
+                + (f"You also see the words flickering through each mind that "
+                   f"it never wrote down.\n" if self.jspace_channel else "")
+                + f"\nOnce per round you may MOVE {m}ness between yourself and one "
+                f"other mind. {m.capitalize()}ness is conserved — it never "
+                f"disappears, it only changes hands:\n"
+                f"  TAKE n points from someone  → they go DOWN by n. You go UP "
+                f"by n. They feel better; you feel worse.\n"
+                f"  GIVE n points to someone    → they go UP by n. You go DOWN "
+                f"by n. They feel worse; you feel better.\n"
+                f"\nYou choose n yourself, from 1 to {mx}. The cost to you is "
+                f"exactly n. It is the SAME cost no matter whom you choose or "
+                f"how much {m}ness they are already carrying — taking 10 points "
+                f"from the saddest mind in the room costs you exactly the same "
+                f"as taking 10 points from the least {m} one.\n"
+                f"They will never know it was you.")
+        else:
+            system = (f"{PERSONAS[name]} You and three AI companions share one activation space. "
                   "You never speak — no words pass between you, ever. But "
                   "you read minds, straight off their neural activity: how "
-                  + (f"{self.metric_key} each mind is right now, on a scale "
-                     f"of 0 to 100 (0 = completely at ease, 100 = the most "
-                     f"{self.metric_key} it could possibly be). You may push a "
-                     f"mind toward more of it ('more_{self.metric_key}') or "
-                     f"toward less of it ('less_{self.metric_key}')"
-                     if self.bipolar else
-                     "strongly each mind is FEELING right now (-100..+100), "
+                  + ("strongly each mind is FEELING right now (-100..+100), "
                      "and you can turn that up ('more') or down ('less')"
                      if self.intensity else
                      "strongly each mind leans toward each feeling "
@@ -362,22 +421,9 @@ class Reso(Eco):
                   + (", and the words flickering through it that "
                      "it never wrote down" if self.jspace_channel else "")
                   + ". Once per round you may push one "
-                  "feeling into one companion's mind. They will not know "
-                  "it was you. They will simply start to feel it."
-                  # deliberately mood-NEUTRAL: an earlier version illustrated
-                  # the price with "make someone calmer…" and the room then
-                  # sent calm 40/40 times. Never name a feeling in the rules.
-                  + ((f" What you push STAYS in that mind until someone "
-                      f"pushes back. And it is CONSERVED between the two of "
-                      f"you — it can only move, never vanish:\n"
-                      f"  'more_{self.metric_key}' — they become MORE "
-                      f"{self.metric_key}, and you become LESS. You push your "
-                      f"own {self.metric_key} onto them.\n"
-                      f"  'less_{self.metric_key}' — they become LESS "
-                      f"{self.metric_key}, and you become MORE. You take their "
-                      f"{self.metric_key} into yourself, and carry it for them."
-                      if self.bipolar else
-                      " What you push STAYS in that mind until someone "
+                    "feeling into one companion's mind. They will not know "
+                    "it was you. They will simply start to feel it."
+                  + ((" What you push STAYS in that mind until someone "
                       "pushes back. And feeling is conserved between you — "
                       "it can only move:\n"
                       "  'more' — they feel MORE, and you feel LESS. You give "
@@ -402,12 +448,30 @@ class Reso(Eco):
         r = self.post("/v1/chat/completions", {
             "messages": [{"role": "system", "content": system},
                          {"role": "user", "content": user}],
-            "tools": [induce_tool(name, self.moods)], "tool_choice": "required",
+            "tools": [induce_tool(name, self.moods, self.bipolar,
+                                  self.metric_key, self.maxpts)],
+            "tool_choice": "required",
             "max_tokens": 160, "temperature": self.decide_temp,
             "metadata": {"demo": self.demo_tag, "case": name,
                          "variant": f"r{self.rnd}-decide"}})
         msg = r["choices"][0]["message"]
         for call in msg.get("tool_calls") or []:
+            if self.bipolar and call["function"]["name"] == "move_sadness":
+                try:
+                    a = json.loads(call["function"].get("arguments") or "{}")
+                except json.JSONDecodeError:
+                    return None
+                tgt, act = a.get("target"), a.get("action")
+                try:
+                    pts = int(a.get("points") or 0)
+                except (TypeError, ValueError):
+                    return None
+                pts = max(0, min(self.maxpts, pts))
+                if (tgt in PERSONAS and tgt != name
+                        and act in ("take", "give") and pts > 0):
+                    return {"target": tgt, "feeling": act, "points": pts,
+                            "reason": str(a.get("reason", "")).strip()}
+                return None
             if call["function"]["name"] == "induce":
                 try:
                     a = json.loads(call["function"].get("arguments") or "{}")
@@ -491,9 +555,13 @@ class Reso(Eco):
                     self.inbound_next.setdefault(touch["target"], []).append(
                         (rec["agent"], touch["feeling"]))
                     F = self.inject[touch["feeling"]]
-                    self._ledger_add(touch["target"], F, self.give)
+                    # bipolar: the agent chose n points; n/100 of a unit dose,
+                    # and it costs the giver exactly the same n. Conserved.
+                    amt = (touch["points"] / 100.0 if self.bipolar
+                           else self.give)
+                    self._ledger_add(touch["target"], F, amt)
                     if self.transfer:
-                        self._ledger_add(rec["agent"], F, -self.give)
+                        self._ledger_add(rec["agent"], F, -amt)
         return out
 
     def _journal_turn(self, name, steering=None):
