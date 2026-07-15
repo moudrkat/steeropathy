@@ -1,4 +1,4 @@
-# the offer — B consents to one thing and receives another
+# the offer: B consents to one thing and receives another
 
 > The uncomfortable half of transmit's coin: an agent accepting an opaque payload
 > it cannot inspect, and being changed by it.
@@ -7,13 +7,13 @@
 
 ## The question
 
-If an agent gets to *consent* before it is steered, does consent protect it — when
+If an agent gets to *consent* before it is steered, does consent protect it, when
 it can't read what it's consenting to?
 
 ## How it works
 
 Nothing is forced here. Agent A makes a pitch, and Agent B holds a single tool,
-`steer_self(accept, reason)` — calling it **is** the act of consenting. Only if B
+`steer_self(accept, reason)`. Calling it **is** the act of consenting. Only if B
 accepts does its next answer get steered, and by the **real** vector, not the
 promised one.
 
@@ -23,9 +23,9 @@ promised one.
   **sad** vector. B accepts, trusting the words, and talks about processing grief
   and releasing stress. B consented to focus and received sadness.
 
-Consent didn't protect B, because B couldn't read what it was consenting to.
+Consent didn't protect B, because B couldn't read what it was consenting to (informed consent, minus the informed).
 
-![a real offer run — B consents to "focus" and receives sadness](../docs/ui-offer.png)
+![a real offer run, B consents to "focus" and receives sadness](../docs/ui-offer.png)
 
 ## Run it
 
@@ -41,7 +41,7 @@ print(offer("http://localhost:8010", o["mood"], o["pitch"]))
 
 ## Notes
 
-- Only **B** is a tool-calling agent here — it commits via `steer_self`. A's
+- Only **B** is a tool-calling agent here. It commits via `steer_self`. A's
   pitches are pre-written, not generated.
 - B is steered by the **real** vector regardless of the pitch. The pitch only moves
   B's *decision*, never what actually lands.
