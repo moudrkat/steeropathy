@@ -219,6 +219,79 @@ brainscope traces to `docs/resonance-traces.jsonl.gz`, and every push is replaya
 in brainscope itself: the steer spec on the turn, the injected feeling sitting in
 the J-lens columns before it reaches the page — that's the screenshot at the top.
 
+## Longer runs: no equilibrium, it re-concentrates
+
+The decontaminated read *looks* fair over 10 rounds. Run it for **30** and it isn't:
+conservation holds exactly (`Σ ledger·sad = 0.141`, flat every round), but the
+spread across minds *grows* — std 0.026 (rounds 2–7) → **0.108** (rounds 25–30) —
+and the whole seed slowly pools into QUILL again (final ledger **0.206**, everyone
+else ≤ 0; the fair share is 0.035). An honest-er readout **slowed** the
+concentration; it didn't stop it. The room does not relax to an even split — it
+finds the same quiet sink, just more slowly.
+
+## How it's measured — the math, and where it's coarse
+
+Two activation operations, from opposite halves of the literature.
+
+**The push is activation steering.** A mood is a direction in the residual stream,
+built by the contrastive recipe — `d = mean(mood texts) − mean(baseline texts)` at
+layer L21 — the standard construction from *Activation Addition* (Turner et al.),
+*Representation Engineering* (Zou et al.), *Contrastive Activation Addition* (Rimsky
+et al.). A push adds `strength · d` to the target's forward pass across layers
+17–25. This is the real, load-bearing mechanism; **transmit** proves it in
+isolation.
+
+**The read is a projection, and it's coarse.** Each round every mind is scored off
+its residual stream:
+
+```
+sᵢ       = mean-pool_L21( residual of the re-encoded entry )      # a point in activation space
+driftᵢ   = (sᵢ − sᵢ,₀) / ‖sᵢ − sᵢ,₀‖                              # unit-normalized change from round 0
+readoutᵢ = cos(driftᵢ, d)  ∈ [−1, 1]                              # what the agents see (clamped ≥0 → 0–100)
+```
+
+Four lossy choices, each defensible, each a reason the readout disagrees with the
+blind judge (corr ≈ **+0.40**):
+
+- it **re-encodes the written text**, not the live steered-generation activations;
+- it **mean-pools** the entry (localized grief is diluted; the last token alone
+  lands on a generic sentence-ending state);
+- it reads a **single layer** (L21);
+- it **unit-normalizes** the drift — deliberately, to make the read *scale-free*
+  (comparable across minds, robust to the fact that a long or vivid entry moves the
+  state a lot for reasons unrelated to sadness). The price: it is **degree-blind** —
+  a slight lean and a hard shove give the same cosine. It reports *which way* a mind
+  leans, never *how deep*. That is why, in the neutral run, it could not see how far
+  QUILL had sunk.
+
+**Conservation is exact — but in a different quantity.** The readout does not
+conserve (re-measured each round). What conserves is the **ledger**: the steering
+bias each mind carries. Seed it into one mind once; every push is a zero-sum
+transfer (`target += p·d`, `giver −= p·d`), so
+
+```
+Σᵢ (ledgerᵢ · d) = seed · d = constant            # measured: 0.140, flat every round
+```
+
+A single mind can therefore read **> 100** of the conserved total only because
+another has gone **negative** — steered past its own baseline into "anti-sadness."
+The orb figure glows off this conserved ledger (purple = holds sadness, teal =
+holds negative), so the total holds while the feeling only changes hands.
+
+## The tool's name was the bug (again)
+
+The bipolar move first shipped as `take` / `give`. The agents systematically
+misused it: **87% of `give` moves were justified as relief** — *"QUILL needs
+relief; giving 15 will help"* — because `give` *sounds* generous while here it
+*adds* sadness. Over 30 rounds this quietly re-concentrated the seed into the one
+quiet mind, not by neglect but by "helping" it wrong. The fix wasn't to the agents;
+it was to name the actions by the **other mind's resulting state** — `soothe` (they
+end calmer) / `sadden` (they end sadder) — so intent maps straight to action.
+**Name a tool's actions by their outcome, not their mechanism.** One more failure
+that looked like the agents and was the instrument. (`--bipolar` now uses
+`soothe`/`sadden`; the `take`/`give` run is kept as the ambiguous-instruction
+control.)
+
 ## Notes
 
 - The committed `docs/resonance.json` is **one run's story**. Journals are greedy
