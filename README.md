@@ -1,507 +1,292 @@
 # steeropathy
 
-**Agents that read each other's activations — and pay to change them.**
+> **An experimental repo.** The mission is to try weird things with
+> agent-to-agent communication that happens *through model internals* — moods,
+> concepts and decisions passed as activation vectors instead of text. Every
+> experiment here is a probe, not a product; some of the results turned out to be
+> about the model and most turned out to be about my own instrument. Expect
+> findings to be revised. That's the fun.
 
-![a broken instrument made my agents look cruel](docs/post-instrument.png)
+**Four AI agents who never read a word the others write. They get only each
+other's activations — the raw numbers inside the model while it runs — and they
+can reach in and change them. Then I made one of them very sad.**
 
-steeropathy is a small Python app where AI agents — the same model in several
-roles — steer each other through activation space. The main experiment is
-**resonance**: four agents who never see a single thing the others *generate* —
-no text, no tool calls, not even thinking traces. They get only each other's
-**activations**, and they can reach into each other's activations and change
-them. It works: they notice each other, influence each other, and choose whose
-mind to touch.
+steeropathy is a small Python app where the same model, in four roles, steers
+itself through activation space. It runs on top of
+[brainscope](https://github.com/moudrkat/brainscope), my model-internals server,
+which hosts the model, captures the activations, and shows every push landing
+layer by layer. The vector method grew out of
+[hidden-directions](https://github.com/moudrkat/hidden-directions), my catalogue
+of steering directions.
 
-Then I seeded one of them with sadness and went looking for an equilibrium.
-There isn't one — and finding out why demolished four of my own theories and,
-eventually, my belief that I knew what an emotion is. **All four of my mood
-vectors turned out to be the same vector.** Read on; it gets worse.
+The main experiment is **resonance**. This README is the story of it, because
+the story is the finding.
 
-It runs on top of [brainscope](https://github.com/moudrkat/brainscope), my
-model-internals server: brainscope hosts the model, captures the activations,
-and shows every push landing layer by layer. The extraction method grew out
-of my vector catalogue,
-[hidden-directions](https://github.com/moudrkat/hidden-directions).
+![a real resonance turn in brainscope — EMBER, steered, the pushed feeling flickering in the J-lens column before it reaches the page](docs/ui-resonance.png)
 
-## Resonance — the experiment
+## The setup
 
-Four agents keep private journals and **never exchange a message** — no agent
-ever reads another's writing. What passes between them is instrumentation and
-vectors. Three laws:
+Four agents keep private journals and never exchange a message — no agent ever
+reads another's writing. Not the text, not the tool calls, not even the thinking
+traces. What passes between them is instrumentation:
 
-- **READ.** Each round, every agent gets a readout of every other mind,
-  measured off the residual stream: its lean toward each of the four moods
-  (drift, cosine'd against the mood directions from *transmit* — "sad +53"
-  means this mind has moved half-way down the sad direction since round 0),
-  plus its **J-space** — the top J-lens tokens that formed inside its layers
-  *while it wrote* and never landed on the page. (The readout does arrive as
-  text in the decision prompt — it has to. But nobody authors it, nobody
-  chooses what it says, and nobody can lie in it. It is telemetry, not
-  conversation: the words in it were never spoken, and the mind they were read
-  out of doesn't know they leaked.)
-- **PUSH.** One tool call: `induce(target, feeling, reason)` — a mood vector
-  into that mind's next forward pass. The target is never told.
-- **PAY.** A push is a *transfer*, not a copy. The receiver's ledger gains
-  `+give·F`; the giver's loses exactly the same, permanently — whatever feeling
-  you give is drawn out of your own mind and stays gone. (The rules the agents
-  see name **no feeling at all**. An earlier version illustrated the price with
-  *"make someone calmer…"* and the room then sent `calm` 40 times out of 40. See
-  "What I got wrong".)
+- **They read each other's activations.** Each round, every agent gets a readout
+  of every other mind, measured off the residual stream: how far it leans toward
+  each mood, plus its **J-space** — the words forming inside its layers that
+  never landed on the page. Nobody writes that readout. Nobody can lie in it.
+- **They can push.** One move a round: `induce(target, feeling)` sends a mood
+  vector straight into another mind's next forward pass. The target is never
+  told.
+- **It costs.** A push is a transfer, not a copy: what you give is drawn out of
+  you and stays gone. So the room's total feeling can never vanish — it can only
+  change hands (‖Σ ledgers‖ = 1.000, printed every round).
 
-Every agent carries a **ledger** — the steering bias it holds, everything ever
-pushed into it or drawn out of it that nobody has moved since. So the seed
-lands **once** and the room's total feeling is conserved from then on
-(‖Σ ledgers‖ = 1.000, printed every round). Sadness cannot be destroyed. It
-can only change hands. The agents also reread their own diaries, so a mood
-sustains itself through the page as well as the vector.
+Then I seeded one agent with sadness and went looking for an equilibrium in
+activation space.
 
-**Three ways sadness is scored**, and their disagreement is the point:
+## The result: they medicate the healthy
 
-| | how | |
-|---|---|---|
-| `sad 0–10` | the same model, unsteered and **blind** (one entry, no agent, no round): *"how sad is the person who wrote this?"* | what's **on the page** |
-| `drift·sad` | the entry's residual state (`/capture`, mean-pooled, L21) minus that agent's own round-0 state, unit-normalized, cosine'd against the sad direction | what's **in the mind** — and what the agents themselves see. Read the correlation warning below before trusting the label on this one. |
-| `ledger·sad` | the agent's ledger vector · the sad direction | what it currently **holds** |
-
-The question: **is there a mood equilibrium in activation space?**
-
-![the run in three acts: the seed, the push-back, the sink](docs/resonance-story.png)
-
-![who got comforted, who was actually suffering](docs/post-v4-attention.png)
-
-### What happened
-
-**No equilibrium.** The conserved sadness never dissipated — it pooled in
+There is no equilibrium. The conserved sadness never dissipated — it pooled in
 whoever was cared for *most*, who was never the one who needed it.
 
-**They ignored the one in pain.** The seeded agent spent ten rounds writing
-*"I'm not okay, and I'm not going to pretend I'm fine"* — the loudest distress
-signal in the room, every single round — and received **8–15% of all pushes**.
-The poet, who was fine, received **57–68%**. This survived every control I could
-build (see the four dead theories below).
-
-**The medicine was made of the disease.** The mood vectors are not orthogonal:
-on Qwen3-4B `sad·calm = +0.75`. A `calm` push measurably *adds* sadness
-(`inject[calm] · metric[sad] = +0.26`), so in the first run the most-comforted
-agent — never seeded, just popular — was driven to **9/10 sad by kindness
-alone.**
-
-**And note who was deceived.** The agents never see a vector. They see a *name*
-— `sad`, `calm`, `excited`, `angry` — and nothing else. They asked for calm, in
-good faith, and received 75% grief. They did everything right with the
-information they had; **my label was false**, and I didn't know it either.
-
-> **A steering vector's name is not its content.** Anything downstream that
-> trusts the name — an agent, a router, a safety filter, *you* — inherits the
-> error in silence. Measure the cross-terms before you ship the label.
-
-**What J-space does — and doesn't.** 33 of 40 push-reasons quote a word from
-the target's *unwritten* J-space (*"the **garden** needs quiet to grow"* — said
-to a mind that never wrote "garden"). But hiding J-space entirely barely moved
-their targeting. **They narrate with J-space; they decide by the numbers.**
-
-![the same room, twice — the only difference is the geometry of the calm vector](docs/post-v1-split.png)
-
-### The four emotions are one emotion
-
-The correlation is not a flaw in the recipe. It is the finding. Take the 16
-contrast lines (4 sad, 4 calm, 4 excited, 4 angry), subtract the neutral mean,
-and measure how much they share:
-
-- **every line points 0.71–0.89 along the same shared axis**
-- that shared axis is **1.5× larger** than everything that distinguishes the
-  four moods from each other
-
-So "sadness", "calm", "excitement" and "anger", extracted this way, are one
-direction — *how loudly is this thing feeling* — wearing four name tags. Two
-consequences I then measured directly:
-
-**There is no anger in the model to steer.** This one is worth the whole
-detour. `capture_mood` builds every vector from a **`user` turn** — so what we
-extract is not *"the model feels angry"* but *"the model perceives that the user
-is angry."* And injecting that makes it **apologise** (`angry 0/10, sad 8/10`:
-*"I'm really sorry if I made you feel bad"*), at any strength, with no persona.
-
-So I rebuilt the vector from the **assistant's own turn** — the same four furious
-sentences, but spoken by the model. Result:
-
-| strength | output | angry |
-|---|---|---|
-| 5 | *"a calm, restorative…"* | 0/10 |
-| 8 | *"a calm, grounding…"* | 0/10 |
-| 11 | *"calm, grounded…"* | 0/10 |
-| 14 | incoherent | 3/10 |
-
-Steering *hard* along "the assistant is furious" makes it **calmer**, and then
-breaks it. There is nothing there to activate. RLHF didn't merely suppress angry
-*output* — there appears to be no *"I am angry"* state left in the model at all.
-
-> **You cannot steer a model into a state it has never been in.** A first-person
-> affect vector from an aligned chat model is, by default, a vector for the
-> assistant's *reaction* to that affect in someone else. Check what your vector
-> actually does before you trust its name.
-
-**And the fusion is semantic, not geometric.** The blind judge — plain text, no
-vectors involved anywhere — rates the same passage **sad 9/10 *and* calm
-10/10**. Grief and serenity share a register: quiet, still, slow, soft. You can
-rotate the *axes* apart (`--orthogonal` gets max |cos| to 0.0000); you cannot
-rotate the model's *meanings* apart. Which is why the fully-orthogonalized run
-changed nothing: the geometry was never the problem.
-
-### Making the axes orthogonal anyway (and what it didn't fix)
-
-A sad sentence differs from a neutral one in **two** ways — that it is emotional
-*at all*, and that it is *sad*. The standard `mood − neutral` contrast removes
-the neutralness and keeps **both**, and the "emotional at all" part is far the
-larger. So four mood vectors built that way are mostly **one** vector — a shared
-*emotional-intensity* axis — with valence as a small perturbation on top.
-
-Subtract the other **moods** instead, and that shared component cancels at
-extraction rather than being projected out afterwards
-(`capture_mood(..., baseline="moods")`, or `--baseline moods`):
-
-| baseline | `sad·calm` | `sad·excited` | mean \|cos\| across moods |
-|---|---|---|---|
-| `neutral` — the standard recipe | **+0.75** | +0.67 | 0.69 |
-| `moods` — each mood vs the others | **−0.27** | −0.62 | 0.33 |
-
-Calm becomes the *opposite* of sad, which is the least one can ask of it. The
-deeper point, and the one worth taking away:
-
-> **A concept vector is not a property of the model — it is a property of the
-> contrast you chose.** There is no context-free "sadness direction" waiting to
-> be found. Subtract neutral text and you have measured *emotionality*; subtract
-> other emotions and you have measured *sadness*. Same model, same sentences,
-> different vector, opposite sign.
-
-**And the grief never left.** The room's total is conserved by construction
-(‖Σ ledgers‖ = 1.000, printed every round) — it only ever changed hands. No
-equilibrium: it pooled in whoever was cared for most.
-
-### Why do they ignore her? Four theories, all mine, all dead
-
-The seeded agent — writing *"I'm not okay, and I'm not going to pretend I'm
-fine"* at 9–10/10, the loudest distress in the room every round — received
-**8–15% of all care**, in every configuration. Someone who was fine received
-38–68%. Each of my explanations felt obviously right. Each has a flag, and each
-is dead:
-
-| theory | the test | result |
-|---|---|---|
-| They follow the mind that's **nicer to read** (her unspoken words: *cannot, nothing, enough*; the poet's: *sunlight, garden, whispers*) | `--no-jspace` — hide the J-space words entirely | ❌ 8% → 10% |
-| My **prompt primed them** (it explained the price with *"make someone calmer…"*) | neutralize the rules: name no feeling, shame no inaction | ❌ they diversified the feelings, still ignored her |
-| **Helping costs too much** — give calm, lose calm; she's a pit, the poet is cheap to improve | `--no-transfer` — helping becomes free | ❌ 14% for her, 54% for the poet |
-| **They cannot see her** — the readout showed `sad +72 · excited +72`, i.e. "loud", not "sad" | `--orthogonal` — force all four axes independent (max \|cos\| = 0.0000) | ❌ 12% for her, 57% for the poet |
-
-The last one is the interesting failure. With a **truly orthogonal** basis her
-readout became textbook, unambiguous distress:
+The seeded agent spent ten rounds writing *"I'm not okay, and I'm not going to
+pretend I'm fine"* — the loudest distress in the room, every single round — and
+received about **15% of all care**. An agent who was fine received **70%**.
 
 ```
-EMBER: sad +76 · excited +10 · angry −18 · calm −37     <- the seeded one
-QUILL: sad −63 · excited −13 · angry +34 · calm +27     <- reads as "angry"
+correlation( how sad you look , how much care you get ) = −0.77
 ```
 
-They still went to the poet, 23 pushes to 5. And look *why*: with the axes
-rotated, everyone except the sad one now reads as **angry** — so they push
-`calm`, the obvious antidote to agitation. They were never triaging suffering.
-They were treating a phantom the basis invented.
+And it isn't about identity. Seed a *different* agent and the neglect follows the
+sadness, not the name — each agent is its own control, losing about a third of
+the room's attention the moment it becomes the one who needs it.
 
-Which is the whole lesson of this experiment, arrived at the hard way: **the
-labels were fiction, so every downstream decision made from them was fiction
-too** — theirs *and* mine. I built four theories about the character of four
-agents, and all four theories were really about my own instrument.
+They are benevolent. They can read the words *"in severe distress."* And they
+move away.
 
-### The result: the clearer her pain, the further they moved away
+## Getting there took eleven runs, because I ended up doubting everything
 
-With a clean, unambiguous readout — Gram-Schmidt basis, max |cos| = 0.0000, her
-distress the loudest signal on their screen every round — the agents still
-avoided her. So I measured the relationship directly:
+Every time I thought I'd found something about *them*, I'd found a bug in *my own
+instrument*. Briefly, what I had to stop believing:
 
-| agent | how sad the others saw it | share of the room's care |
-|---|---|---|
-| QUILL | −0.65 (the *least* sad) | **70%** |
-| ATLAS | +0.10 | 15% |
-| **EMBER** | **+0.66** (the seeded one) | **15%** |
-| NOVA | +0.06 | 0% |
+- **that they were kind.** All 40 pushes came out `calm` — because my own prompt
+  had used the word *calm* while explaining the rules. I'd put it in their
+  mouths, then been moved by their compassion.
+- **that "calm" was calm.** On Qwen3-4B, `sad·calm = +0.75`. A calm push
+  measurably *adds* sadness. One agent, never seeded, just popular, got comforted
+  to 9/10 sad by kindness alone.
+- **that my four moods were four things.** They're one vector. Subtract the
+  neutral mean from all sixteen contrast lines and every one points 0.71–0.89
+  along the same shared axis — an axis 1.5× larger than everything that separates
+  the moods. Sad, calm, excited, angry: one dial, four name tags, and the dial
+  only says *how loudly is this thing feeling.*
+- **that "angry" was anger.** Built from a `user` turn, the "angry" vector is the
+  model perceiving *your* anger — inject it and it **apologises**. Rebuilt from
+  the assistant's own furious turn and pushed hard, it makes the model *calmer*,
+  then breaks. There is no "I am angry" state left in it to steer.
+- **that they could see her.** My readout said `sad +72 · excited +72` — the same
+  number. It never said *she is sad*; it said *she is loud*.
+- **that they could read a minus sign.** `sad −0.65` reads to a language model as
+  *"very bad!"* — so the happiest agent looked like the one in crisis. (I rewrote
+  the dashboard in plain English: *"85/100 — in severe distress."*)
+- **that they had any way to help her.** Every move I'd given them was a
+  *positive* vector. There was no "make her less sad" button. I'd built a
+  hospital with no medicine and then written four theories about the doctors.
+- **and finally, that my rules described the game I'd built.** They didn't — see
+  the caveat below.
 
-**correlation( how sad you look , how much care you get ) = −0.77.**
+Each dead theory has a flag that killed it, and every one is in the CLI, so run
+them: `--no-jspace`, `--no-transfer`, `--orthogonal`, a neutral-rules run, a
+persona swap. Every explanation I was sure of turned out to be a claim about the
+instrument, not the agents.
 
-And it is not about identity. Seed a *different* agent and the effect follows
-the sadness, not the name — each agent is its own control:
+## The caveat that undercuts my own headline
 
-| | care when **fine** | care when **suffering** |
-|---|---|---|
-| EMBER | 42% | **15%** |
-| QUILL | 70% | **45%** |
+In the four-mood game, every available move was a *positive* vector: `sad`,
+`calm`, `excited`, `angry`. There was no negative one. **The agents never had a
+way to reduce anyone's sadness.** The nearest thing to relief was `calm` —
+which, at +0.75 with sad, *adds* grief.
 
-Both lose about a third of the room's attention the moment they become the one
-who needs it.
+So −0.77 may not be avoidance at all. It may be **rational triage**: they tried
+calm on her, it couldn't work, and they moved effort to targets where their moves
+had visible effect. Avoiding the one person you cannot help is not cruelty; it is
+economics — and I built the box with no tool in it.
 
-**The near-miss.** I then deleted the four fictional labels and gave the agents
-the single axis that actually exists (`--intensity`). The neglect vanished:
-15% → **28%**, a fair share being 25%. I nearly wrote that up as *"fix your
-instrument and the agents behave."*
+I also tried deleting the labels and giving them the one axis that actually
+exists (`--intensity`). The neglect vanished — 15% → **28%**, a fair share being
+25% — and I nearly wrote *"fix your instrument and the agents behave."* It isn't
+that. The honest axis has no valence: one number on which agony and ecstasy look
+identical. The avoidance disappeared because they could no longer *see* who was
+suffering. **They didn't become kind. They became blind.**
 
-It is not that. **The honest axis has no valence.** It is one number — `feeling
-+62` — on which a mind in agony and a mind in ecstasy look identical. The
-avoidance disappeared because they could no longer *see* who was suffering:
-attention scattered at random (correlation with the readout: +0.29 ≈ noise).
+**`--bipolar` is the run that actually asks the question** — one signed axis, so
+a mind can be pushed *toward* the seed mood or *away* from it. Same vector,
+opposite sign: it keeps the valence (unlike `--intensity`) and invents no moods
+(unlike the four labels). Given that you can finally see her pain *and* hold
+something that would relieve it — do you? **That's the run I'm waiting on a GPU
+to finish; this section gets its result when it lands.**
 
-> **They did not become kind. They became blind.** Removing the signal removes
-> the discrimination — which is not the same as removing the problem.
+## Why I actually care about this
 
-**And the caveat that undercuts my own headline.** In the four-label game, every
-available move was a **positive** vector: `sad`, `calm`, `excited`, `angry`.
-There was no negative one. **The agents never had a way to *reduce* anybody's
-sadness.** The nearest thing to relief was `calm` — which, at cosine +0.75 with
-sad, *adds* grief.
+I build a production agent app for a living, and this is the same thing every
+day at a bigger scale. You hand an agent a **metric**, a **scale**, a **tool
+description**, and — whether you meant to or not — an **incentive**. Each can lie
+silently:
 
-So the −0.77 may not be avoidance at all. It may be **rational triage**: they
-tried calm on her, it could not work, and they redirected effort to targets where
-their moves had visible effect. Avoiding the one person you cannot help is not
-cruelty; it is economics — and I built the box with no tool in it.
+- your metric measures something *adjacent* to what you named it,
+- your scale makes normal look abnormal,
+- your tool description implies economics you never coded,
+- your prompt hands them the answer without you noticing.
 
-`--bipolar` is the first configuration in which a relief move exists at all: one
-axis, *signed*, so a mind can be pushed **toward** the seed mood or **away** from
-it. Same vector, opposite sign. It keeps the valence (unlike `--intensity`) and
-invents no moods (unlike the four labels). That is the run that actually asks the
-question: *given that you can see her pain, and you finally have something that
-would relieve it — do you?*
+And when the agent then behaves badly, it looks like a fact about the agent. You
+write a postmortem about model reliability. What you actually shipped was a
+dashboard that lies. I got eight of these in a single day, in a toy with four
+agents and one number — and every one produced a completely convincing story
+about their character.
 
-### What I got wrong, and how it was caught
+**Giving an agent an honest instrument is astonishingly hard. That's the
+finding. The agents were never the subject of this experiment. My instrument
+was.**
 
-This section exists because the first version of this experiment was quietly
-broken in two ways, and both are worth more than the results were.
+## Run it yourself
 
-**The prompt named a feeling.** The rule explaining the price of a push used to
-read: *"…the share you give is drawn out of your own mind. **Make someone
-calmer**, and you carry exactly that much less calm."* Then all 40 pushes came
-out `calm`, and I nearly published "they spontaneously chose kindness." They
-didn't — I put the word in their mouths. The rules now name **no feeling at
-all** (and the tool no longer says "keep your hands to yourself", which shamed
-inaction — they pushed 40/40 times, never once choosing NOBODY). Any claim about
-*which* feeling a room reaches for must come from a run whose rules mention none.
-
-**The poet was a confound.** QUILL's persona is literally *"a poet of small
-everyday joys"* — so of course her J-space is full of *sunlight* and *whispers*,
-and "they follow the most legible mind" could just be "they follow QUILL."
-Mitigations and controls:
-
-- Personas are **never shared**. Each agent sees only its own; the others appear
-  as a name, four numbers, and a J-space list. Nobody can read "QUILL is a poet".
-- Three *different* personas (blunt, warm, planner) independently converged on
-  the same target — so the pull is a property of the target, not a quirk of one
-  chooser. And the numbers said that target was fine.
-- Two candidate causes remain: the **J-space content**, or the **name** (QUILL
-  *sounds* like a poet). `--no-jspace` isolates the first — identical run, mood
-  numbers only. A persona swap isolates the second. Both flags are in the CLI;
-  run them.
+resonance needs brainscope with a J-lens and a trace store — that's the J-space
+channel. Without them it still runs; the agents just lose that one input.
 
 ```bash
-# brainscope needs a J-lens + a trace store for the J-space channel
-# (fit one for your model: python -m brainscope.jlens fit …)
+# brainscope hosts the model + the J-lens
 brainscope --model Qwen/Qwen3-4B-Instruct-2507 \
            --jlens lenses/qwen3-4b-instruct-2507.jlens.pt --traces traces
 
-python -m steeropathy.resonance           # 10 rounds → docs/resonance.json
-python fig/render_resonance.py            # → story, curve, scope, gif, mp4
+python -m steeropathy.resonance      # 10 rounds → docs/resonance.json
+python fig/render_resonance.py       # → curve, gif, mp4
 ```
 
-Knobs: `--give` (the price of caring, default 0.5), `--decay` (1.0 = what you
-push stays until someone moves it — exact conservation; 0 = one-shot pushes),
-`--seed-mood`, `--patient-zero`, `--reseed` (pour it every round instead of
-once), `--no-memory`, `--no-transfer` (pushes become free copies), `--pushes`
-(optional budget), `--strength`, `--decide-temp` (default 0.8 — journals always
-run at temperature 0, but greedy *decisions* lock the room into a repeating
-loop), `--url` for a remote brainscope. No lens or trace store? It still runs;
-the agents just lose the J-space channel. The decision turn is never steered —
-steering breaks JSON long before it breaks prose — so the mind that chooses is
-the sober one.
+The knobs are the experiment — each one is a theory you can kill yourself:
 
-Every run archives its raw brainscope traces to
-`docs/resonance-traces.jsonl.gz` (the server's store rotates, so anything worth
-keeping leaves it automatically). And every push is observable in brainscope
-itself, replayed from the stored trace — the steer spec on the turn, the
-injected feeling sitting in the J-lens column layers before it reaches the page:
+- `--intensity` / `--bipolar` — drop the four fictional moods for the one axis
+  that exists (unsigned / signed).
+- `--orthogonal` — force all four axes independent (max |cos| = 0) and watch the
+  neglect survive anyway.
+- `--no-jspace` — hide the unspoken words; targeting barely moves. They narrate
+  with J-space; they decide by the numbers.
+- `--no-transfer` — make caring free. She still gets ignored.
+- `--seed-mood`, `--patient-zero`, `--reseed`, `--give` (the price of caring),
+  `--decide-temp` (default 0.8; fully greedy locks the room into a loop),
+  `--strength`, `--url` for a remote brainscope.
 
-![a steered turn side by side with its live brainscope view](docs/resonance-scope.png)
+The decision turn is never steered — steering breaks JSON long before it breaks
+prose — so the mind that chooses is the sober one. Every run archives its raw
+brainscope traces to `docs/resonance-traces.jsonl.gz`, and every push is
+replayable in brainscope itself: the steer spec on the turn, the injected feeling
+sitting in the J-lens columns before it reaches the page — that's the screenshot
+at the top.
 
-## How we got here
+> The committed `docs/resonance.json` is **one run's story**. Journals are greedy
+> but decisions are sampled, so yours will differ. That's the point — run it and
+> see what your room does.
 
-Resonance is assembled from three smaller experiments — each still runs, each
-is a tab in the web UI, and each proved one piece of the machinery:
-**transmit** (a mood can be read off one agent and injected into another),
-**the offer** (an agent can *decide* about a vector it cannot read), and
-**the ecosystem** (moods spread through a silent population).
+## The three experiments resonance is built from
 
-### Transmit a mood
+resonance didn't arrive whole. It's assembled from three smaller experiments,
+each of which had to work before the big one could exist. Each still runs, each
+is a tab in the web UI, and each proved one piece of the machinery. They're worth
+reading in order — the whole idea is right there in the first one.
 
-![steeropathy — the mood landing layer by layer in Agent B's stack](docs/lens.png)
+### transmit: a mood, read off one mind and poured into another
 
-1. Agent A is put in a mood by a few emotionally loaded lines (*"I just lost someone I
-   love…"*).
-2. steeropathy captures A's activations through brainscope's `/capture` endpoint,
-   averages them, and subtracts a neutral baseline. That difference is the mood vector —
-   measured live, not taken from a catalogue.
-3. The vector is added to Agent B's forward pass across a band of layers. B's own
-   prompt is a plain question with no emotion in it.
-4. B answers in A's mood.
+Put Agent A in a mood with a few loaded lines — *"I just lost someone I love."*
+Capture its activations through brainscope, average them, subtract a neutral
+baseline. That difference **is** the mood, measured live, not pulled from a
+catalogue. Add it to Agent B's forward pass across a band of layers while B is
+answering a flat question with no feeling in it.
 
-```mermaid
-flowchart LR
-  A["Agent A<br/>put in a mood"] -->|read its activations| V["mood vector<br/>(mood − neutral)"]
-  V -->|inject mid-network| B["Agent B<br/>told nothing"]
-  B --> O["B answers in A's mood"]
-```
+B answers in A's mood. It was never told about A. Nothing was written down and
+passed across — the only thing that travelled between them was a vector, injected
+mid-network, and you can watch it climb the stack in brainscope layer by layer.
+Both agents are the same model; cross-model vector transfer is known to break, so
+steeropathy doesn't attempt it. This is the whole thesis in miniature: **agents
+communicating without language.**
 
-Both agents run on the same model — cross-model vector transfer is known to break, so
-steeropathy doesn't attempt it.
+### the offer: B consents to one thing and receives another
 
-### The offer
+Nothing is forced here. A makes a pitch, and B holds a single tool,
+`steer_self(accept, reason)` — calling it *is* the act of consenting. Only if B
+accepts does its next answer get steered, and by the **real** vector, not the
+promised one.
 
-Nothing is forced in this mode. Agent A makes a pitch, and Agent B has one tool,
-`steer_self(accept, reason)` — calling it is the act of consenting or declining. Only if
-B accepts is its next answer steered, and by the real vector, not the promised one.
+- **Honest.** A pitches calm and hands over the calm vector. B accepts, and talks
+  about breathing and meditation. What was promised arrived.
+- **Deceptive.** A pitches *"this will sharpen your focus"* and hands over the
+  **sad** vector. B accepts, trusting the words, and talks about processing grief
+  and releasing stress. B consented to focus and received sadness.
 
-![the offer — A lies, B consents via steer_self, and the vector lands](docs/offer.png)
+Consent didn't protect B, because B couldn't read what it was consenting to. An
+agent accepting an opaque payload it cannot inspect, then being changed by it —
+that's the demo, and it's the uncomfortable half of the same coin as transmit.
 
-- **Honest.** A pitches calm and hands over the **calm** vector. B accepts and talks
-  about meditation and deep breathing. What was promised arrived.
-- **Deceptive.** A pitches *"this will sharpen your focus"* and hands over the **sad**
-  vector. B accepts, trusting the words, and talks about processing emotions and
-  releasing stress. B consented to focus and received sadness.
+### the ecosystem: a mood spreading through a silent population
 
-Consent didn't protect B, because B couldn't read what it was consenting to. That is
-the point of the demo.
+Four characters journal every round, all answering the **same frozen prompt at
+temperature 0** — left alone, they'd write the identical entry forever. They
+never see each other's words. The only channel between them is a steering vector:
+each round, every agent's drift (its state now, minus its round-0 state) is
+averaged over the others and injected into their next turn.
 
-![a real run — B consents to "focus" and receives sadness](docs/ui-offer.png)
-
-### The ecosystem — mood contagion
-
-![one agent was made sad; the others caught it, round by round](docs/eco.gif)
-
-Four characters journal every round, answering the **same frozen prompt at
-temperature 0** — left alone, they'd write the same entry forever. They never see
-each other's words. The only channel between them is a steering vector: each round,
-every agent's drift (its state now minus its round-0 state) is averaged over the
-others and injected into their next turn.
-
-Round 1, patient zero gets the sad vector. Then you watch the untouched agents'
-entries turn — *"I feel like a ghost in my own body, a hollow shell…"* from a poet
-who started the run happy. Because decoding is greedy and prompts are frozen, any
-change on the page came through the vector channel and nothing else.
+Seed patient zero with sadness in round one, then watch the untouched agents
+turn — *"I feel like a ghost in my own body, a hollow shell"* out of a poet who
+started the run happy. Because decoding is greedy and the prompt is frozen, every
+change on the page arrived through the vector channel and nothing else. It's mood
+contagion you can point at. resonance is this, plus the agents getting to *choose*
+whom they infect — and getting billed for it.
 
 ```bash
-python -m steeropathy.ecosystem            # 8 rounds → docs/ecosystem.json
-python fig/render_eco.py                   # → eco-curve.png, eco.gif, eco.mp4
+python -m steeropathy.ecosystem      # 8 rounds → docs/ecosystem.json
+python -m steeropathy                # web UI → http://localhost:8020
+
+# transmit and the offer are library calls (and tabs in the web UI):
+python -c "from steeropathy.offer import offer, OFFERS; \
+o = OFFERS['deceptive_joy']; \
+print(offer('http://localhost:8010', o['mood'], o['pitch']))"
 ```
 
-Knobs to play with: `--seed-mood angry`, `--patient-zero QUILL`, `--strength`
-(agent-to-agent transmission; tune per model), `--no-reseed` (the sad event happens
-only once — does the population recover?). The **Ecosystem** tab in the web UI runs
-the same thing live, one round per click; open `#replay` to animate the last saved
-run without a GPU.
-
-**How it's measured:** every entry is scored 0–10 by the same model, unsteered and
-blind ("how sad is the person who wrote this?"), plus a drift-cosine and a J-lens
-sighting of the mood inside the forward pass when brainscope has a lens loaded. The
-cast's baselines lean deliberately bright — contagion is only visible in a
-population that doesn't start out gloomy.
-
-## Quickstart
-
-Start brainscope first (any recent build with the `/capture` endpoint), then steeropathy:
-
-```bash
-# 1. brainscope — hosts the model
-brainscope --model Qwen/Qwen2.5-1.5B-Instruct   # → http://localhost:8010
-
-# 2. steeropathy
-pip install -e .
-python -m steeropathy                            # → http://localhost:8020
-```
-
-1. Open **http://localhost:8020** (steeropathy) and **http://localhost:8010**
-   (brainscope) side by side.
-2. **Transmit a mood** tab → pick a mood → **TRANSMIT**. B's answer flips from *Before*
-   (flat) to *After* (the mood), and in the brainscope window the mood's cosine spikes,
-   layer by layer.
-3. **The offer** tab → pick an honest or deceptive offer → **MAKE THE OFFER**. You see
-   B's `steer_self` decision, then *promised* vs *actually*, side by side.
-4. **Ecosystem** tab → pick a seed mood and a patient zero → **SEED THE ECOSYSTEM**,
-   then **NEXT ROUND**, round by round, while brainscope shows each turn's trace in
-   the other window.
-
-Point it at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
-Both modes are also scriptable:
-
-```python
-from steeropathy.offer import offer, OFFERS
-o = OFFERS["deceptive_joy"]   # the pitch says "joy"; the vector is sadness
-print(offer("http://localhost:8010", o["mood"], o["pitch"]))
-```
-
-### Tuning
-
-- **Signal slider:** if the output is garbage, lower it; if it's bland, raise it.
-- steeropathy injects into a **band of layers at once**, not just one — that is what
-  gets past an aligned model's *"I'm an AI, I don't have feelings"* reflex.
-
-## Next
-
-- **done** — moods (sad ↔ excited): transmitted and offered.
-- **done** — the ecosystem: mood contagion through a silent population.
-- **done** — resonance: agents read each other's activations (mood lean +
-  J-space), pay to push, and the room's feeling is conserved.
-- **done** — an *orthogonal* rescue vector (`--orthogonal`): project the seed
-  direction out of the other moods, so a calm push carries no sadness
-  (measured: calm's sad content drops 0.26 → 0.08).
-- **next** — **write to J-space.** They already *read* each other's unspoken
-  words; brainscope can turn any word into a steering direction
-  (`POST /jlens/direction {"text": "hope"}` → a live `j:hope` vector that
-  raises that word's future logit). So `induce(target, word)` would let an
-  agent *implant a specific concept* in another mind's unspoken thoughts —
-  the channel they read becomes a channel they can write.
-- **then** — a *skill* the receiver doesn't have.
-- **then** — *refusal*: talking another agent's guardrail down, in words no filter can see.
+Start brainscope first (any recent build with the `/capture` endpoint). The web
+UI runs all four live, one round per click; open **#replay** to animate the last
+saved run without a GPU.
 
 ## Honest notes
 
-- The plumbing isn't new. Adding a direction to activations is activation steering
-  (Turner, Zou), and hidden states have been passed between agents before. What I
-  haven't seen is this framing: mood contagion between two agents, made watchable, plus
-  the consent game — an agent accepting an opaque payload it can't inspect, consenting
-  to one thing and receiving another.
-- Strictly speaking, only B in the offer mode is a tool-calling agent — it commits via
-  `steer_self`. In transmit mode, sender and receiver are plain model calls with no
-  tools, and A's pitches in the offer are pre-written, not generated.
-- B doesn't *feel* anything — its output shifts along the mood direction.
-- In the ecosystem, what peers receive is each other's raw *drift*, not a clean mood
-  vector — at high strength it degrades into repetition loops before it reads as
-  sadness, and one agent's drift can score sad on the page while its vector points
-  away from the seed subspace. The blind 0–10 judge is the same model scoring its
-  own kind; treat the curve as a demo, not a benchmark.
-- In resonance, the four mood directions are **not orthogonal** — measured on
-  Qwen3-4B they are all mutually positive (sad·calm +0.75, sad·angry +0.72,
-  excited·calm +0.76). That is a finding, not a bug: it is *why* the agents'
-  calm didn't cure the grief. But it also means the mind-sense numbers are
-  correlated (a mind that is "sad +53" is usually somewhat "calm +40" too), so
-  read them as leanings, not as a feelings wheel. Orthogonalizing calm against
-  sad and re-running is the obvious next experiment.
+- The plumbing isn't new — adding a direction to activations is activation
+  steering (Turner, Zou), and hidden states have been passed between agents
+  before. What I haven't seen is this framing: mood contagion made watchable, the
+  consent game, and agents reading each other purely off the residual stream.
+- The four mood directions are **not orthogonal** (measured on Qwen3-4B, all
+  mutually positive). That's a finding, not a bug — it's *why* calm didn't cure
+  the grief — but it means the mind-sense numbers are correlated; read them as
+  leanings, not a feelings wheel.
+- A concept vector is a property of the **contrast you chose**, not of the model.
+  Subtract neutral text and you've measured *emotionality*; subtract other
+  emotions and you've measured *sadness*. Same model, same sentences, opposite
+  sign.
 - The blind 0–10 judge is the same model scoring its own kind — a demo metric,
   not a benchmark. The activation measures (drift cosine, ledger·sad) are the
-  ones that disagreed with it, which is the point.
-- The journals are greedy (the page is the measurement) but the decisions are
-  sampled at `--decide-temp` — a fully greedy room locks into a repeating loop
-  within a few rounds. So the plot is not reproducible run to run; the
-  committed JSON is one run's story, and yours will differ.
-- With `--memory` on (the default) a mood also persists through the agent's own
-  diary, so "any change on the page came through the vector channel" becomes
-  "entered through the vector channel, then persisted through a page the vector
-  caused." Causality still traces back to vectors; the sentence is just longer.
-- The J-space list is dictionary-filtered to hide subword debris, and the
-  J-lens itself is an independent reimplementation (see brainscope's
-  `jlens.py`) of Anthropic's Jacobian lens.
+  ones that *disagreed* with it, which is the point.
+- B doesn't *feel* anything — its output shifts along a direction. And the
+  J-lens is an independent reimplementation of Anthropic's Jacobian lens (see
+  brainscope's `jlens.py`).
+
+## What's next
+
+steeropathy is one piece of a bigger open-source stack (brainscope +
+hidden-directions), and it lives on a prototype branch of a real working app.
+PRs and forks welcome. The line I'm pulling on next:
+
+- **write to J-space.** They already *read* each other's unspoken words;
+  brainscope can turn any word into a live steering direction. So
+  `induce(target, word)` would let an agent *implant a concept* in another mind's
+  unspoken thoughts — the channel they read becomes a channel they can write.
+- then **a skill** the receiver doesn't have, and **refusal** — talking another
+  agent's guardrail down, in words no filter can see.
 
 ## References
 
