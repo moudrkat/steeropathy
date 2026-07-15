@@ -113,12 +113,57 @@ honest axis has no valence: one number on which agony and ecstasy look identical
 The avoidance disappeared because they could no longer *see* who was suffering.
 **They didn't become kind. They became blind.**
 
-**`--bipolar` is the run that actually asks the question** — one signed axis, so a
-mind can be pushed *toward* the seed mood or *away* from it. Same vector, opposite
-sign: it keeps the valence (unlike `--intensity`) and invents no moods (unlike the
-four labels). Given that you can finally see her pain *and* hold something that
-would relieve it — do you? **That's the run I'm waiting on a GPU to finish; this
-section gets its result when it lands.**
+## `--bipolar` — hand them a real relief move
+
+One signed axis: `take` (pull sadness off a mind, onto yourself) or `give` (push it
+on). Now they *can* relieve the sufferer. Two runs answer the question — and the
+second is the point of the whole project.
+
+**Run 1 — `--bipolar` (neutral-baseline readout).** They used the relief move: the
+seed (EMBER) got the most relief and ended calm. But the conserved sadness didn't
+leave — it **avalanched into QUILL** (final ledger 1.51 against everyone else ≤0.38;
+blind score 9 while the rest sat at 0–2). QUILL got zero relief and wrote the most
+broken prose in the room: *"I don't have to be strong anymore. The weight of it
+all."* Why? The readout is `cos(drift, sad)`, and the neutral-baseline `sad`
+direction is ~75% generic **emotional intensity** — so it scored ATLAS's
+high-arousal *"steady, present, focused"* as sad and missed QUILL's low-arousal
+grief. They relieved whoever the dashboard flagged; the dashboard was measuring
+**loudness, not sadness**, and couldn't see the one drowning. The same failure as
+every run before it: the instrument.
+
+**Run 2 — `--bipolar --baseline moods` (decontaminated readout).** Build the `sad`
+direction as *sadness minus the mean of all moods*, cancelling the shared arousal
+axis, so the read is sadness-vs-loudness instead of loud-vs-quiet. Change nothing
+else:
+
+| readout | max final ledger | blind spread (σ) | worst-off mind |
+|---|---|---|---|
+| neutral (loudness) | **1.51** | 3.42 | QUILL at **9/10** |
+| decontaminated (sadness) | **0.64** | 1.30 | everyone 4–7 |
+
+**The avalanche dissolves.** With a readout that measures sadness, the room *sees*
+who's carrying it and keeps relieving them — so the conserved grief spreads evenly
+(final ledgers 0.25–0.64, blind 4–7 across the board) instead of pooling in a
+blind-spot victim. `correlation(how sad the readout showed you, net relief you got)
+= +0.62` — they triage by their dashboard in *both* runs; the only thing that
+changed is that the dashboard finally told the truth.
+
+![the decontaminated bipolar run — the conserved sadness spreads instead of avalanching](../docs/resonance.gif)
+
+Which is the whole experiment, answering its own question: **the agents were never
+the cruel part.** They relieved whoever the instrument flagged, every time. Give
+them an instrument that measures loudness and they medicate the loud; give them one
+that measures sadness and they relieve the sad. Every cruelty across eleven runs
+traced back to my dashboard — and the first time I built an honest one, the cruelty
+went away.
+
+*Caveats, because it is still one run each:* decisions are sampled
+(`--decide-temp 0.8`), so a single run is one story, not a mean. And the
+decontaminated read isn't flawless — NOVA ends mildly sad (blind 7) while its drift
+read low, so the residual-stream proxy still has slack. The finding isn't "the
+instrument is now perfect." It's that **the pathological concentration was an
+artifact of measuring the wrong thing, and it vanishes when you measure the right
+one.**
 
 ## Why I actually care about this
 
