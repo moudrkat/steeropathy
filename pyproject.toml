@@ -8,8 +8,16 @@ license = { text = "MIT" }
 authors = [{ name = "Kateřina Fajmanová" }]
 dependencies = []  # pure standard library — it only talks to a running brainscope over HTTP
 
+[project.optional-dependencies]
+# tests are pure stdlib (`python -m unittest discover -s tests`); pytest is just
+# a nicer runner for the same files.
+dev = ["pytest"]
+
 [project.scripts]
 steeropathy = "steeropathy.server:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [build-system]
 requires = ["setuptools>=61"]
