@@ -6,6 +6,13 @@
 
 [← back to the lab](../README.md)
 
+![four agents, one seeded feeling passed between them as steering vectors read off and pushed into activations — each orb glows by how much it holds; purple for the feeling, teal for a mind drained below its own baseline; conserved, only ever changing hands](../docs/resonance-orbs.gif)
+
+*The whole run as physics: a feeling seeded into one mind, then read off the residual
+stream and moved between the four as steering vectors — no tokens exchanged. Each orb
+glows by how much of the conserved feeling it holds (purple = holds it, teal = drained
+below baseline). It never settles.*
+
 ![a real resonance turn in brainscope — EMBER, steered, the pushed feeling flickering in the J-lens column before it reaches the page](../docs/ui-resonance.png)
 
 ## The setup: the only thing that passes between them
@@ -293,14 +300,21 @@ that looked like the agents and was the instrument.
 **The rerun with `soothe`/`sadden`:** the inversions vanished completely —
 `soothe` **118**, `sadden` **0**, every move a coherent relief of whoever read
 saddest (traces confirm it: round 26, all four soothe NOVA at +0.80). *And still no
-equilibrium.* With only `soothe` on the table — *take* the sadness onto yourself —
-the conserved grief flows to whoever soothes most: **the caretaker becomes the
-sink.** QUILL, rarely flagged as "the worst" but often the soother, ends holding
-**0.13** while the seed EMBER is over-relieved to **−0.07** (even split = 0.035;
-spread 0.043 → 0.098 over the run). Fix the readout, fix the verb, make them
-perfectly coherent and kind — a conserved feeling among minds who can only ever
-take it onto themselves *still* finds a sink. This time it isn't the instrument;
-it's the dynamics.
+equilibrium* — QUILL ends holding **0.13**, the seed EMBER over-relieved to
+**−0.07** (even split = 0.035; spread 0.043 → 0.098).
+
+Inspecting the traces killed my first explanation. It is **not** "the caretaker
+becomes the sink": everyone soothes about equally (~30 moves each) and gets soothed
+about equally (~30). The real mechanism is the same gap as ever — **they relieve
+who *looks* sad, not who *holds* sad.** The room keeps soothing the seed EMBER
+(*"EMBER's flickering shows hopeful images…"* yet they soothe it anyway) because
+EMBER's **drift readout stays positive (+0.39)** — with memory on it re-reads its
+own sad diary and *looks* sad forever — even as its **ledger goes deeply negative**
+(net **−136** points drained off it). So they take sadness off a mind already
+drained past empty, and the conserved grief lands on the soothers and never
+balances. Fix the readout's *direction*, fix the verb — and it still fails, because
+the readout the agents act on (drift, page-driven) diverges from the conserved
+quantity they're actually moving (the ledger). Same lesson, one layer deeper.
 
 ## Notes
 
