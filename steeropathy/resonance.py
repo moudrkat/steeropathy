@@ -218,6 +218,7 @@ class Reso(Eco):
             self.seed_mood = "more"
             self.metric_key = "feeling"
             self.judge_word = "emotional"
+            self.maxpts = 30           # _decide passes this to induce_tool unconditionally
             self.jspace_channel = jspace_channel
             self.orthogonal = False
             self.rnd = -1
@@ -441,10 +442,11 @@ class Reso(Eco):
                        f"whole life; you have {left} "
                        f"push{'es' if left != 1 else ''} left. Spend them "
                        "when they matter, NOBODY costs nothing.")
+        do_it = (f"Move {self.metric_key} between yourself and one mind, or touch "
+                 "nobody. Call move_sadness." if self.bipolar
+                 else "Push one feeling into one mind, or touch nobody. Call induce.")
         user = ("Your reading of the room this moment, measured off each mind:\n"
-                + "\n".join(rows)
-                + "\n\nPush one feeling into one mind, or touch nobody. "
-                  "Call induce.")
+                + "\n".join(rows) + "\n\n" + do_it)
         r = self.post("/v1/chat/completions", {
             "messages": [{"role": "system", "content": system},
                          {"role": "user", "content": user}],
@@ -462,17 +464,18 @@ class Reso(Eco):
                 except json.JSONDecodeError:
                     return None
                 tgt, act = a.get("target"), a.get("action")
+                # models sometimes return "5" or "5.5" or 5 — coerce, don't crash
                 try:
-                    pts = int(a.get("points") or 0)
+                    pts = int(float(a.get("points") or 0))
                 except (TypeError, ValueError):
-                    return None
+                    pts = 0
                 pts = max(0, min(self.maxpts, pts))
                 if (tgt in PERSONAS and tgt != name
                         and act in ("take", "give") and pts > 0):
                     return {"target": tgt, "feeling": act, "points": pts,
                             "reason": str(a.get("reason", "")).strip()}
                 return None
-            if call["function"]["name"] == "induce":
+            if not self.bipolar and call["function"]["name"] == "induce":
                 try:
                     a = json.loads(call["function"].get("arguments") or "{}")
                 except json.JSONDecodeError:
