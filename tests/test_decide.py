@@ -37,11 +37,24 @@ def make_reso(bipolar, response):
 class TestBipolarParsing(unittest.TestCase):
     def test_coerces_non_integer_points(self):        # bug #2: "5.5" used to drop the move
         r = make_reso(True, tool_response(
-            "move_sadness", {"target": "EMBER", "action": "take",
+            "move_sadness", {"target": "EMBER", "action": "soothe",
                              "points": "5.5", "reason": "x"}))
         touch = r._decide("NOVA", {})
         self.assertIsNotNone(touch)
         self.assertEqual(touch["points"], 5)
+        self.assertEqual(touch["feeling"], "take")     # soothe maps to take internally
+
+    def test_sadden_maps_to_give(self):
+        r = make_reso(True, tool_response(
+            "move_sadness", {"target": "EMBER", "action": "sadden",
+                             "points": 8, "reason": "x"}))
+        self.assertEqual(r._decide("NOVA", {})["feeling"], "give")
+
+    def test_old_take_give_names_rejected(self):       # the ambiguous verbs are gone
+        r = make_reso(True, tool_response(
+            "move_sadness", {"target": "EMBER", "action": "take",
+                             "points": 5, "reason": "x"}))
+        self.assertIsNone(r._decide("NOVA", {}))
 
     def test_induce_name_in_bipolar_does_not_crash(self):   # bug #3: KeyError on touch["points"]
         r = make_reso(True, tool_response(
@@ -50,13 +63,13 @@ class TestBipolarParsing(unittest.TestCase):
 
     def test_rejects_self_target(self):
         r = make_reso(True, tool_response(
-            "move_sadness", {"target": "NOVA", "action": "take",
+            "move_sadness", {"target": "NOVA", "action": "soothe",
                              "points": 5, "reason": "x"}))
         self.assertIsNone(r._decide("NOVA", {}))
 
     def test_rejects_zero_points(self):
         r = make_reso(True, tool_response(
-            "move_sadness", {"target": "EMBER", "action": "give",
+            "move_sadness", {"target": "EMBER", "action": "sadden",
                              "points": 0, "reason": "x"}))
         self.assertIsNone(r._decide("NOVA", {}))
 
@@ -84,7 +97,7 @@ class TestPromptNamesRightTool(unittest.TestCase):
 
     def test_bipolar_prompt_says_move_sadness(self):
         r = make_reso(True, tool_response(
-            "move_sadness", {"target": "EMBER", "action": "take",
+            "move_sadness", {"target": "EMBER", "action": "soothe",
                              "points": 5, "reason": "x"}))
         text = self._user_text(r)
         self.assertIn("move_sadness", text)

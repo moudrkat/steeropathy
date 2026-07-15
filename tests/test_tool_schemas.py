@@ -43,7 +43,7 @@ class TestInduceToolBipolar(unittest.TestCase):
         self.assertEqual(self.fn["name"], "move_sadness")
 
     def test_signed_action_and_integer_points(self):
-        self.assertEqual(self.props["action"]["enum"], ["take", "give"])
+        self.assertEqual(self.props["action"]["enum"], ["soothe", "sadden"])
         self.assertEqual(self.props["points"]["type"], "integer")
 
     def test_required_includes_points_and_action(self):
