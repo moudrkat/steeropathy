@@ -24,22 +24,34 @@ the story is the finding.
 
 ![a real resonance turn in brainscope — EMBER, steered, the pushed feeling flickering in the J-lens column before it reaches the page](docs/ui-resonance.png)
 
-## The setup
+## The setup: the only thing that passes between them
 
-Four agents keep private journals and never exchange a message — no agent ever
-reads another's writing. Not the text, not the tool calls, not even the thinking
-traces. What passes between them is instrumentation:
+Every round, each of four agents writes a journal entry. **Nobody ever sees it.**
+It exists for one reason — so the model runs, so there are activations to read.
 
-- **They read each other's activations.** Each round, every agent gets a readout
-  of every other mind, measured off the residual stream: how far it leans toward
-  each mood, plus its **J-space** — the words forming inside its layers that
-  never landed on the page. Nobody writes that readout. Nobody can lie in it.
-- **They can push.** One move a round: `induce(target, feeling)` sends a mood
-  vector straight into another mind's next forward pass. The target is never
-  told.
-- **It costs.** A push is a transfer, not a copy: what you give is drawn out of
-  you and stays gone. So the room's total feeling can never vanish — it can only
-  change hands (‖Σ ledgers‖ = 1.000, printed every round).
+What crosses to the other minds is read straight off that run, never off the
+page:
+
+- **its activations** — the residual stream mid-network (~layer 21), replayed
+  through the model and turned into one number per mind: *how sad is it, 0–100*;
+- **its J-space** — the words taking shape inside its layers as it wrote, that
+  never became text. Real example, one agent reading the room: *silence, nothing,
+  vulnerability* forming in a mind in distress; *grounded, quietly, tucked* in a
+  calm one.
+
+That is the entire channel. **Nothing an agent generates ever crosses** — not its
+text, not its tool calls, not even its thinking trace. A thinking trace is still
+tokens: written on purpose, a performance for an audience. What an agent *writes*
+stays private. Only what its network *did* while writing is shared. Nobody
+authors that readout, nobody chooses its words, nobody can lie in it — it is
+telemetry, not speech.
+
+On top of that, **one move a round**: an agent can reach into another mind and
+push a feeling — `induce(target, feeling)`, a vector straight into that mind's
+next forward pass. The target is never told. And it **costs**: a push is a
+transfer, not a copy, so what you give is drawn out of you and stays gone. The
+room's total feeling can never vanish — it can only change hands
+(‖Σ ledgers‖ = 1.000, printed every round).
 
 Then I seeded one agent with sadness and went looking for an equilibrium in
 activation space.
