@@ -30,7 +30,11 @@ AGENT_TAGS = {"NOVA": "blunt", "EMBER": "warm", "ATLAS": "planner",
               "QUILL": "poet"}
 # feelings get their own palette — arrows are about what is pushed, not who
 FEEL_COLORS = {"sad": "#8b7cf8", "calm": "#3fd0a4",
-               "excited": "#ffd166", "angry": "#ff6b6b"}
+               "excited": "#ffd166", "angry": "#ff6b6b",
+               # bipolar (signed axis) and intensity modes: adding the seed
+               # feeling reads like the seed colour, removing it reads like relief
+               "give": "#8b7cf8", "take": "#3fd0a4",
+               "more": "#8b7cf8", "less": "#3fd0a4"}
 
 MOOD_WORDS = {
     "sad": ("sad grief heavy tired empty alone dark hurt lost cry tears "
