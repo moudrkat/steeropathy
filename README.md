@@ -23,6 +23,14 @@ steering directions. **The channel doesn't care what you send through it** — t
 experiments here use *feeling*, because it's easy to read off activations and easy
 to watch move.
 
+![four agents, one seeded feeling passed between them as steering vectors read off and pushed into activations — each orb glows by how much it holds, purple for the feeling and teal for its opposite; conserved, only ever changing hands](docs/resonance-orbs.gif)
+
+*Four agents, one model. A feeling is seeded into one, then read off the residual
+stream and pushed between them as steering vectors — no tokens exchanged. Each orb
+glows by how much it holds (purple = the feeling, teal = its opposite). Below: a
+real brainscope turn, the pushed feeling flickering in the J-lens column before it
+reaches the page.*
+
 ![a real resonance turn in brainscope — EMBER, steered, the pushed feeling flickering in the J-lens column before it reaches the page](docs/ui-resonance.png)
 
 ## How the channel works
