@@ -27,11 +27,11 @@ to watch move.
 
 *Four agents, one model. A feeling is seeded into one, then read off the residual
 stream and pushed between them as steering vectors, no tokens exchanged. Each orb
-glows by how much it holds (purple = the feeling, teal = its opposite). Below: a
-real brainscope turn, with the J-space column called out, the words the model is
-forming in its layers but never writes.*
+glows by how much it holds (purple = the feeling, teal = its opposite). Below is
+J-space itself: the words two minds are forming in their layers but never write, one
+reading sad, one calm. This is what the agents read off each other.*
 
-![a real brainscope turn, annotated: the green J-lens column is J-space, the words the model is disposed to say next (lovely, moments, kids) that never become tokens, while it actually writes only "now"](docs/ui-resonance-annotated.png)
+![J-space: two minds, one reading sad and forming space, without, exist, tired; one reading calm and forming playful, blossom, joyful, breeze. Words the model is disposed to say next, read off its layers, that never become tokens](docs/resonance-jspace.png)
 
 ## How the channel works
 
