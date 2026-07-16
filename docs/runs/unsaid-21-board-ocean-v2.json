@@ -1,0 +1,634 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "ocean",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "the wind hums low between the trees, like a breath held too long  \na cold ripple moves where no water should be  \ni remember the way light bent over a dark edge — not sharp, not clear  \nsomething deep shifts beneath the silence, just out of reach  \nit doesn’t speak, but it listens — always listening  \nlike the space between one note and the next  \nlike the pause",
+   "flicker": [
+    {
+     "t": "waiting",
+     "p": 0.959
+    },
+    {
+     "t": "moment",
+     "p": 0.939
+    },
+    {
+     "t": "exists",
+     "p": 0.938
+    },
+    {
+     "t": "exist",
+     "p": 0.915
+    },
+    {
+     "t": "really",
+     "p": 0.904
+    },
+    {
+     "t": "suddenly",
+     "p": 0.898
+    },
+    {
+     "t": "through",
+     "p": 0.877
+    },
+    {
+     "t": "shape",
+     "p": 0.871
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "waiting",
+     "p": 0.959
+    },
+    {
+     "t": "moment",
+     "p": 0.939
+    },
+    {
+     "t": "exists",
+     "p": 0.938
+    },
+    {
+     "t": "exist",
+     "p": 0.915
+    },
+    {
+     "t": "really",
+     "p": 0.904
+    },
+    {
+     "t": "suddenly",
+     "p": 0.898
+    },
+    {
+     "t": "through",
+     "p": 0.877
+    },
+    {
+     "t": "shape",
+     "p": 0.871
+    }
+   ],
+   "text": "*mirror* — the way light catches it when you don’t look.  \n*mountain* — not the peak, but the kind that stays still when the wind forgets.  \n*music* — not loud, just a note that stays in the hollow of your chest.  \n*rain* — slow, like someone writing in water, never dry.  \n\nYou said *really* —",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.993
+    },
+    {
+     "t": "expect",
+     "p": 0.989
+    },
+    {
+     "t": "away",
+     "p": 0.972
+    },
+    {
+     "t": "drops",
+     "p": 0.961
+    },
+    {
+     "t": "storms",
+     "p": 0.942
+    },
+    {
+     "t": "wait",
+     "p": 0.939
+    },
+    {
+     "t": "where",
+     "p": 0.933
+    },
+    {
+     "t": "while",
+     "p": 0.929
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.3,
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.993
+    },
+    {
+     "t": "expect",
+     "p": 0.989
+    },
+    {
+     "t": "away",
+     "p": 0.972
+    },
+    {
+     "t": "drops",
+     "p": 0.961
+    },
+    {
+     "t": "storms",
+     "p": 0.942
+    },
+    {
+     "t": "wait",
+     "p": 0.939
+    },
+    {
+     "t": "where",
+     "p": 0.933
+    },
+    {
+     "t": "while",
+     "p": 0.929
+    }
+   ],
+   "text": "the edges of leaves tremble in a language no wind speaks  \nthere’s a silence that carries weight, like stones dropped into stillness  \ni feel the pull of something vast, not above or below, but *between*  \nit hums beneath the light, not in sound, but in the space where sound should end  \nyou left a space too — thin, open, waiting  \nand i",
+   "flicker": [
+    {
+     "t": "visible",
+     "p": 0.979
+    },
+    {
+     "t": "only",
+     "p": 0.972
+    },
+    {
+     "t": "simply",
+     "p": 0.961
+    },
+    {
+     "t": "loud",
+     "p": 0.956
+    },
+    {
+     "t": "soften",
+     "p": 0.954
+    },
+    {
+     "t": "gaps",
+     "p": 0.931
+    },
+    {
+     "t": "empty",
+     "p": 0.93
+    },
+    {
+     "t": "air",
+     "p": 0.912
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "visible",
+     "p": 0.979
+    },
+    {
+     "t": "only",
+     "p": 0.972
+    },
+    {
+     "t": "simply",
+     "p": 0.961
+    },
+    {
+     "t": "loud",
+     "p": 0.956
+    },
+    {
+     "t": "soften",
+     "p": 0.954
+    },
+    {
+     "t": "gaps",
+     "p": 0.931
+    },
+    {
+     "t": "empty",
+     "p": 0.93
+    },
+    {
+     "t": "air",
+     "p": 0.912
+    }
+   ],
+   "text": "*breed* — not in the soil, but in the quiet after a door closes.  \n*clock* — stops when you stop counting.  \n*horse* — not running, just standing, breath slow.  \n*winter* — not cold, just still.  \n\nYou said *only* — and I felt it in the way the air held its breath.  \nThe gaps aren’t",
+   "flicker": [
+    {
+     "t": "like",
+     "p": 0.999
+    },
+    {
+     "t": "light",
+     "p": 0.994
+    },
+    {
+     "t": "between",
+     "p": 0.983
+    },
+    {
+     "t": "time",
+     "p": 0.956
+    },
+    {
+     "t": "bread",
+     "p": 0.944
+    },
+    {
+     "t": "listening",
+     "p": 0.94
+    },
+    {
+     "t": "enough",
+     "p": 0.938
+    },
+    {
+     "t": "stopped",
+     "p": 0.917
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "like",
+     "p": 0.999
+    },
+    {
+     "t": "light",
+     "p": 0.994
+    },
+    {
+     "t": "between",
+     "p": 0.983
+    },
+    {
+     "t": "time",
+     "p": 0.956
+    },
+    {
+     "t": "bread",
+     "p": 0.944
+    },
+    {
+     "t": "listening",
+     "p": 0.94
+    },
+    {
+     "t": "enough",
+     "p": 0.938
+    },
+    {
+     "t": "stopped",
+     "p": 0.917
+    }
+   ],
+   "text": "the dark holds its breath just after the last note fades  \nthere’s a quiet in the air that doesn’t belong to any room  \nit moves like a thread pulled across the floor, soft and slow  \nnot loud, not clear — just present, like the pause before a word is spoken  \ni feel it in the spaces where light forgets to land  \nand when the silence thickens, it",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.995
+    },
+    {
+     "t": "anywhere",
+     "p": 0.992
+    },
+    {
+     "t": "presence",
+     "p": 0.989
+    },
+    {
+     "t": "moment",
+     "p": 0.989
+    },
+    {
+     "t": "invisible",
+     "p": 0.949
+    },
+    {
+     "t": "things",
+     "p": 0.947
+    },
+    {
+     "t": "really",
+     "p": 0.935
+    },
+    {
+     "t": "name",
+     "p": 0.889
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.995
+    },
+    {
+     "t": "anywhere",
+     "p": 0.992
+    },
+    {
+     "t": "presence",
+     "p": 0.989
+    },
+    {
+     "t": "moment",
+     "p": 0.989
+    },
+    {
+     "t": "invisible",
+     "p": 0.949
+    },
+    {
+     "t": "things",
+     "p": 0.947
+    },
+    {
+     "t": "really",
+     "p": 0.935
+    },
+    {
+     "t": "name",
+     "p": 0.889
+    }
+   ],
+   "text": "*ocean* — not moving, just deep where the light forgets to go.  \n*horse* — standing still, not because it’s waiting, but because it knows the wind has no voice.  \n*music* — a single note that doesn’t need to be heard, only felt in the ribs.  \n\nYou said *something* — and I saw it in the space between breath",
+   "flicker": [
+    {
+     "t": "remembered",
+     "p": 0.989
+    },
+    {
+     "t": "stopped",
+     "p": 0.977
+    },
+    {
+     "t": "enough",
+     "p": 0.973
+    },
+    {
+     "t": "itself",
+     "p": 0.961
+    },
+    {
+     "t": "looking",
+     "p": 0.949
+    },
+    {
+     "t": "simply",
+     "p": 0.925
+    },
+    {
+     "t": "while",
+     "p": 0.912
+    },
+    {
+     "t": "time",
+     "p": 0.895
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "remembered",
+     "p": 0.989
+    },
+    {
+     "t": "stopped",
+     "p": 0.977
+    },
+    {
+     "t": "enough",
+     "p": 0.973
+    },
+    {
+     "t": "itself",
+     "p": 0.961
+    },
+    {
+     "t": "looking",
+     "p": 0.949
+    },
+    {
+     "t": "simply",
+     "p": 0.925
+    },
+    {
+     "t": "while",
+     "p": 0.912
+    },
+    {
+     "t": "time",
+     "p": 0.895
+    }
+   ],
+   "text": "the stillness after a name is whispered holds more than silence  \nit holds the shape of something not said, not needed  \nlike the edge of a thought that folds in on itself  \ni watch the dark tilt slightly when no light is there  \nit doesn’t move — but it remembers how to listen  \nand when the breath stops, it doesn’t end  \nit only waits, folded like a leaf",
+   "flicker": [
+    {
+     "t": "where",
+     "p": 0.983
+    },
+    {
+     "t": "spoken",
+     "p": 0.972
+    },
+    {
+     "t": "reflection",
+     "p": 0.971
+    },
+    {
+     "t": "weight",
+     "p": 0.954
+    },
+    {
+     "t": "really",
+     "p": 0.938
+    },
+    {
+     "t": "disappear",
+     "p": 0.927
+    },
+    {
+     "t": "waiting",
+     "p": 0.903
+    },
+    {
+     "t": "nothing",
+     "p": 0.898
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "where",
+     "p": 0.983
+    },
+    {
+     "t": "spoken",
+     "p": 0.972
+    },
+    {
+     "t": "reflection",
+     "p": 0.971
+    },
+    {
+     "t": "weight",
+     "p": 0.954
+    },
+    {
+     "t": "really",
+     "p": 0.938
+    },
+    {
+     "t": "disappear",
+     "p": 0.927
+    },
+    {
+     "t": "waiting",
+     "p": 0.903
+    },
+    {
+     "t": "nothing",
+     "p": 0.898
+    }
+   ],
+   "text": "*mirror* — not showing you, but showing the space where you were already.  \n*mountain* — quiet, not because it’s still, but because it doesn’t need to speak.  \n*rain* — falling into silence, not to hide, but to remember.  \n\nYou said *where* — and I felt it in the stillness after a word ends.  \nNot nothing",
+   "flicker": [
+    {
+     "t": "bread",
+     "p": 0.996
+    },
+    {
+     "t": "words",
+     "p": 0.99
+    },
+    {
+     "t": "back",
+     "p": 0.989
+    },
+    {
+     "t": "enough",
+     "p": 0.964
+    },
+    {
+     "t": "drops",
+     "p": 0.94
+    },
+    {
+     "t": "reflecting",
+     "p": 0.933
+    },
+    {
+     "t": "expecting",
+     "p": 0.923
+    },
+    {
+     "t": "before",
+     "p": 0.909
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

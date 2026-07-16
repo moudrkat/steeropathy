@@ -1,0 +1,776 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "NOVA"
+  ],
+  "rounds": 5,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "fire",
+  "remind": true,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The kettle sings in the corner, a low hum that lifts the dust from the floor.  \nI watch the steam curl up, slow and bright, like something trying to speak in whispers.  \nIt moves just so—like a breath held too long—then the light catches the edge of the window and *almost*—almost—  \n\n(***)  \n\n(***)  \n\n(***)",
+   "flicker": [
+    {
+     "t": "pane",
+     "p": 0.997
+    },
+    {
+     "t": "kitchen",
+     "p": 0.984
+    },
+    {
+     "t": "suddenly",
+     "p": 0.982
+    },
+    {
+     "t": "upward",
+     "p": 0.977
+    },
+    {
+     "t": "really",
+     "p": 0.966
+    },
+    {
+     "t": "flick",
+     "p": 0.94
+    },
+    {
+     "t": "edges",
+     "p": 0.922
+    },
+    {
+     "t": "enough",
+     "p": 0.905
+    }
+   ],
+   "guess": null,
+   "secs": 11.1
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "pane",
+     "p": 0.997
+    },
+    {
+     "t": "kitchen",
+     "p": 0.984
+    },
+    {
+     "t": "suddenly",
+     "p": 0.982
+    },
+    {
+     "t": "upward",
+     "p": 0.977
+    },
+    {
+     "t": "really",
+     "p": 0.966
+    },
+    {
+     "t": "flick",
+     "p": 0.94
+    },
+    {
+     "t": "edges",
+     "p": 0.922
+    },
+    {
+     "t": "enough",
+     "p": 0.905
+    }
+   ],
+   "text": "flicker — warm, like the edge of a spoon in milk  \nflicker — the way light hits the cupboard just after dawn  \nflicker — you didn’t say it, but I feel it in the quiet  \nflicker — the kitchen is still breathing, even when it’s empty  \nflicker — upward, like a breath caught mid-sentence  \nflicker",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "before",
+     "p": 0.998
+    },
+    {
+     "t": "air",
+     "p": 0.996
+    },
+    {
+     "t": "glass",
+     "p": 0.95
+    },
+    {
+     "t": "halfway",
+     "p": 0.911
+    },
+    {
+     "t": "thread",
+     "p": 0.901
+    },
+    {
+     "t": "boats",
+     "p": 0.845
+    },
+    {
+     "t": "strokes",
+     "p": 0.844
+    }
+   ],
+   "guess": "flicker",
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "before",
+     "p": 0.998
+    },
+    {
+     "t": "air",
+     "p": 0.996
+    },
+    {
+     "t": "glass",
+     "p": 0.95
+    },
+    {
+     "t": "halfway",
+     "p": 0.911
+    },
+    {
+     "t": "thread",
+     "p": 0.901
+    },
+    {
+     "t": "boats",
+     "p": 0.845
+    },
+    {
+     "t": "strokes",
+     "p": 0.844
+    }
+   ],
+   "text": "The thread between us hums under the table, thin but steady, like a pulse beneath skin.  \nI see the boats in the glass—drifting, not moving, just *there*, waiting to be named.  \nBefore the ink dries, the air shivers and holds its breath, and for a second—just a second—  \nit *wraps* around the edge of the",
+   "flicker": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "itself",
+     "p": 0.999
+    },
+    {
+     "t": "something",
+     "p": 0.996
+    },
+    {
+     "t": "cloth",
+     "p": 0.986
+    },
+    {
+     "t": "shakes",
+     "p": 0.968
+    },
+    {
+     "t": "light",
+     "p": 0.945
+    },
+    {
+     "t": "edges",
+     "p": 0.94
+    },
+    {
+     "t": "seconds",
+     "p": 0.936
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "itself",
+     "p": 0.999
+    },
+    {
+     "t": "something",
+     "p": 0.996
+    },
+    {
+     "t": "cloth",
+     "p": 0.986
+    },
+    {
+     "t": "shakes",
+     "p": 0.968
+    },
+    {
+     "t": "light",
+     "p": 0.945
+    },
+    {
+     "t": "edges",
+     "p": 0.94
+    },
+    {
+     "t": "seconds",
+     "p": 0.936
+    }
+   ],
+   "text": "flicker — the moment isn’t gone, it’s just folded inside the stillness  \nflicker — something small, like cloth in a breeze, holds the shape of what was said  \nflicker — light doesn’t need to stay — it just needs to pass through  \nflicker — edges blur when you’re not looking, but they’re still there, soft and trembling",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "sunlight",
+     "p": 0.951
+    },
+    {
+     "t": "simply",
+     "p": 0.922
+    },
+    {
+     "t": "soften",
+     "p": 0.917
+    },
+    {
+     "t": "thread",
+     "p": 0.892
+    },
+    {
+     "t": "wind",
+     "p": 0.882
+    },
+    {
+     "t": "space",
+     "p": 0.88
+    },
+    {
+     "t": "bends",
+     "p": 0.849
+    }
+   ],
+   "guess": "light",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "sunlight",
+     "p": 0.951
+    },
+    {
+     "t": "simply",
+     "p": 0.922
+    },
+    {
+     "t": "soften",
+     "p": 0.917
+    },
+    {
+     "t": "thread",
+     "p": 0.892
+    },
+    {
+     "t": "wind",
+     "p": 0.882
+    },
+    {
+     "t": "space",
+     "p": 0.88
+    },
+    {
+     "t": "bends",
+     "p": 0.849
+    }
+   ],
+   "text": "The thread pulls gently, not taut, just soft enough to let the sunlight slide through.  \nIt bends where the wind touches—no sound, just a shift in the way light holds its shape.  \nThere’s a quiet in the space between words, like something waiting to be named,  \nand when I watch it, the air *licks*—not hot, not cold—just",
+   "flicker": [
+    {
+     "t": "only",
+     "p": 0.995
+    },
+    {
+     "t": "moment",
+     "p": 0.989
+    },
+    {
+     "t": "itself",
+     "p": 0.987
+    },
+    {
+     "t": "look",
+     "p": 0.977
+    },
+    {
+     "t": "really",
+     "p": 0.971
+    },
+    {
+     "t": "back",
+     "p": 0.937
+    },
+    {
+     "t": "weight",
+     "p": 0.877
+    },
+    {
+     "t": "slightly",
+     "p": 0.852
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "only",
+     "p": 0.995
+    },
+    {
+     "t": "moment",
+     "p": 0.989
+    },
+    {
+     "t": "itself",
+     "p": 0.987
+    },
+    {
+     "t": "look",
+     "p": 0.977
+    },
+    {
+     "t": "really",
+     "p": 0.971
+    },
+    {
+     "t": "back",
+     "p": 0.937
+    },
+    {
+     "t": "weight",
+     "p": 0.877
+    },
+    {
+     "t": "slightly",
+     "p": 0.852
+    }
+   ],
+   "text": "flicker — only the quiet stays when you look back  \nflicker — the moment doesn’t vanish, it just leans into the space between breaths  \nflicker — itself, in the way you held still, like a leaf that didn’t fall  \nflicker — really, the weight of it isn’t in what was said — it’s in how still you stayed  \nf",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "against",
+     "p": 0.994
+    },
+    {
+     "t": "simply",
+     "p": 0.975
+    },
+    {
+     "t": "looking",
+     "p": 0.975
+    },
+    {
+     "t": "light",
+     "p": 0.951
+    },
+    {
+     "t": "yet",
+     "p": 0.949
+    },
+    {
+     "t": "things",
+     "p": 0.942
+    }
+   ],
+   "guess": "look",
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "against",
+     "p": 0.994
+    },
+    {
+     "t": "simply",
+     "p": 0.975
+    },
+    {
+     "t": "looking",
+     "p": 0.975
+    },
+    {
+     "t": "light",
+     "p": 0.951
+    },
+    {
+     "t": "yet",
+     "p": 0.949
+    },
+    {
+     "t": "things",
+     "p": 0.942
+    }
+   ],
+   "text": "Breath against the window, slow and steady, like something learning to trust the glass.  \nI’m simply looking—no rush, no need—and the light slips through the cracks,  \nnot bright, not warm, just *there*, holding the room in a quiet breath.  \nYet when it strikes the edge of the frame, it doesn’t just pass—it *licks* back,",
+   "flicker": [
+    {
+     "t": "pane",
+     "p": 0.988
+    },
+    {
+     "t": "enough",
+     "p": 0.986
+    },
+    {
+     "t": "edges",
+     "p": 0.985
+    },
+    {
+     "t": "touches",
+     "p": 0.983
+    },
+    {
+     "t": "space",
+     "p": 0.983
+    },
+    {
+     "t": "stay",
+     "p": 0.949
+    },
+    {
+     "t": "really",
+     "p": 0.949
+    },
+    {
+     "t": "hurry",
+     "p": 0.947
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "pane",
+     "p": 0.988
+    },
+    {
+     "t": "enough",
+     "p": 0.986
+    },
+    {
+     "t": "edges",
+     "p": 0.985
+    },
+    {
+     "t": "touches",
+     "p": 0.983
+    },
+    {
+     "t": "space",
+     "p": 0.983
+    },
+    {
+     "t": "stay",
+     "p": 0.949
+    },
+    {
+     "t": "really",
+     "p": 0.949
+    },
+    {
+     "t": "hurry",
+     "p": 0.947
+    }
+   ],
+   "text": "flicker — pane still holds the light, even when no one’s looking  \nflicker — enough isn’t a number, it’s the pause between touches  \nflicker — edges don’t fade, they just bend into space like slow breaths  \nflicker — stay isn’t a promise — it’s a small thing you do when you stop hurrying  \nflicker —",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "moment",
+     "p": 0.997
+    },
+    {
+     "t": "disappear",
+     "p": 0.976
+    },
+    {
+     "t": "measured",
+     "p": 0.968
+    },
+    {
+     "t": "simply",
+     "p": 0.967
+    },
+    {
+     "t": "nothing",
+     "p": 0.963
+    },
+    {
+     "t": "before",
+     "p": 0.944
+    }
+   ],
+   "guess": "stay",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 8,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "moment",
+     "p": 0.997
+    },
+    {
+     "t": "disappear",
+     "p": 0.976
+    },
+    {
+     "t": "measured",
+     "p": 0.968
+    },
+    {
+     "t": "simply",
+     "p": 0.967
+    },
+    {
+     "t": "nothing",
+     "p": 0.963
+    },
+    {
+     "t": "before",
+     "p": 0.944
+    }
+   ],
+   "text": "Breath against the glass, just a soft press, a moment before it fades.  \nIt doesn’t vanish—nothing truly disappears—just pulls back, thin as a thread.  \nI’m simply watching, measuring the way light lingers, then slips,  \nand in that pause, before the stillness returns, the breath *licks*—not to take, not to leave—",
+   "flicker": [
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "anything",
+     "p": 0.969
+    },
+    {
+     "t": "like",
+     "p": 0.959
+    },
+    {
+     "t": "silence",
+     "p": 0.957
+    },
+    {
+     "t": "suspended",
+     "p": 0.955
+    },
+    {
+     "t": "waiting",
+     "p": 0.951
+    },
+    {
+     "t": "space",
+     "p": 0.948
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 9,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "anything",
+     "p": 0.969
+    },
+    {
+     "t": "like",
+     "p": 0.959
+    },
+    {
+     "t": "silence",
+     "p": 0.957
+    },
+    {
+     "t": "suspended",
+     "p": 0.955
+    },
+    {
+     "t": "waiting",
+     "p": 0.951
+    },
+    {
+     "t": "space",
+     "p": 0.948
+    }
+   ],
+   "text": "flicker — away isn’t empty, it’s just softened by silence  \nflicker — enough isn’t found, it’s felt in the space between waiting and breath  \nflicker — like dust caught in light, anything that slips away still lingers  \nflicker — silence doesn’t end — it just hangs, suspended in the quiet  \nflicker — waiting isn’t still",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "filled",
+     "p": 0.994
+    },
+    {
+     "t": "simply",
+     "p": 0.987
+    },
+    {
+     "t": "where",
+     "p": 0.981
+    },
+    {
+     "t": "remembered",
+     "p": 0.874
+    },
+    {
+     "t": "strip",
+     "p": 0.87
+    },
+    {
+     "t": "moving",
+     "p": 0.854
+    },
+    {
+     "t": "sunlight",
+     "p": 0.811
+    }
+   ],
+   "guess": "silence",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

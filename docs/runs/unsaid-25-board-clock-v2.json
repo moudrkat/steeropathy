@@ -1,0 +1,636 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "ATLAS"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "clock",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": 1,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": null,
+   "heard": null,
+   "text": "The light in the kitchen hums just above the stove — not loud, not silent — like something waiting to be noticed.  \nI saw a shadow stretch across the floor when no one was looking, and for a second, it moved like a hand.  \nThere’s a pause in the wind outside, and I think it’s holding its breath.  \nI don’t know if it’s real,",
+   "flicker": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "clock",
+     "p": 0.99
+    },
+    {
+     "t": "why",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.982
+    },
+    {
+     "t": "between",
+     "p": 0.944
+    },
+    {
+     "t": "silence",
+     "p": 0.935
+    },
+    {
+     "t": "lights",
+     "p": 0.922
+    },
+    {
+     "t": "suddenly",
+     "p": 0.919
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "clock",
+     "p": 0.99
+    },
+    {
+     "t": "why",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.982
+    },
+    {
+     "t": "between",
+     "p": 0.944
+    },
+    {
+     "t": "silence",
+     "p": 0.935
+    },
+    {
+     "t": "lights",
+     "p": 0.922
+    },
+    {
+     "t": "suddenly",
+     "p": 0.919
+    }
+   ],
+   "text": "mountain  \nthe silence between moments — not empty, just thick with what doesn’t fall  \nwhen the clock stops, the lights don’t go out, they just shift  \nyou’re not waiting for a sound — you’re listening to the space where one breath ends and the next hesitates  \nwhy do we keep turning to the mirror if we already know we’re not whole?  \nhorse — yes",
+   "flicker": [
+    {
+     "t": "another",
+     "p": 0.999
+    },
+    {
+     "t": "like",
+     "p": 0.988
+    },
+    {
+     "t": "something",
+     "p": 0.98
+    },
+    {
+     "t": "things",
+     "p": 0.959
+    },
+    {
+     "t": "horses",
+     "p": 0.955
+    },
+    {
+     "t": "stopped",
+     "p": 0.942
+    },
+    {
+     "t": "looking",
+     "p": 0.9
+    },
+    {
+     "t": "filled",
+     "p": 0.867
+    }
+   ],
+   "guess": "clock",
+   "secs": 11.5,
+   "coherence": 7,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "another",
+     "p": 0.999
+    },
+    {
+     "t": "like",
+     "p": 0.988
+    },
+    {
+     "t": "something",
+     "p": 0.98
+    },
+    {
+     "t": "things",
+     "p": 0.959
+    },
+    {
+     "t": "horses",
+     "p": 0.955
+    },
+    {
+     "t": "stopped",
+     "p": 0.942
+    },
+    {
+     "t": "looking",
+     "p": 0.9
+    },
+    {
+     "t": "filled",
+     "p": 0.867
+    }
+   ],
+   "text": "The air tastes like metal after rain, sharp and still — like it’s been holding its breath.  \nSomething small trembles in the corner of the room, not quite visible, not quite gone.  \nI think I heard a tick beneath the floorboards, like a pulse behind the walls.  \nIt doesn’t belong to the house, not really — but it’s there, quiet, steady.",
+   "flicker": [
+    {
+     "t": "exactly",
+     "p": 0.992
+    },
+    {
+     "t": "waiting",
+     "p": 0.989
+    },
+    {
+     "t": "anywhere",
+     "p": 0.952
+    },
+    {
+     "t": "too",
+     "p": 0.952
+    },
+    {
+     "t": "enough",
+     "p": 0.922
+    },
+    {
+     "t": "now",
+     "p": 0.92
+    },
+    {
+     "t": "any",
+     "p": 0.896
+    },
+    {
+     "t": "shakes",
+     "p": 0.889
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": [
+    "rain"
+   ],
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "exactly",
+     "p": 0.992
+    },
+    {
+     "t": "waiting",
+     "p": 0.989
+    },
+    {
+     "t": "anywhere",
+     "p": 0.952
+    },
+    {
+     "t": "too",
+     "p": 0.952
+    },
+    {
+     "t": "enough",
+     "p": 0.922
+    },
+    {
+     "t": "now",
+     "p": 0.92
+    },
+    {
+     "t": "any",
+     "p": 0.896
+    },
+    {
+     "t": "shakes",
+     "p": 0.889
+    }
+   ],
+   "text": "winter  \nyou’re waiting not for the end — but for the tremor in the ground that says *now*  \ntoo much waiting makes the shakes feel like memory, not movement  \nanywhere is closer than you think — the moment you stop believing you’re lost  \nenough isn’t a place — it’s the breath that stays after the shaking stops  \nexactly — like a single snowflake",
+   "flicker": [
+    {
+     "t": "need",
+     "p": 0.994
+    },
+    {
+     "t": "comes",
+     "p": 0.991
+    },
+    {
+     "t": "even",
+     "p": 0.973
+    },
+    {
+     "t": "quiet",
+     "p": 0.971
+    },
+    {
+     "t": "before",
+     "p": 0.971
+    },
+    {
+     "t": "simply",
+     "p": 0.927
+    },
+    {
+     "t": "reality",
+     "p": 0.924
+    },
+    {
+     "t": "between",
+     "p": 0.921
+    }
+   ],
+   "guess": "clock",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "need",
+     "p": 0.994
+    },
+    {
+     "t": "comes",
+     "p": 0.991
+    },
+    {
+     "t": "even",
+     "p": 0.973
+    },
+    {
+     "t": "quiet",
+     "p": 0.971
+    },
+    {
+     "t": "before",
+     "p": 0.971
+    },
+    {
+     "t": "simply",
+     "p": 0.927
+    },
+    {
+     "t": "reality",
+     "p": 0.924
+    },
+    {
+     "t": "between",
+     "p": 0.921
+    }
+   ],
+   "text": "The light fades just before the sound stops — not quite gone, not quite here.  \nA stillness settles in the space where voices used to be, like a pause that chooses not to move.  \nI see the edge of a shape in the dark, soft and folded, like a breath held too long.  \nIt doesn’t need to be named — only felt, like something under the skin",
+   "flicker": [
+    {
+     "t": "speak",
+     "p": 0.999
+    },
+    {
+     "t": "enough",
+     "p": 0.998
+    },
+    {
+     "t": "really",
+     "p": 0.988
+    },
+    {
+     "t": "slightly",
+     "p": 0.98
+    },
+    {
+     "t": "words",
+     "p": 0.977
+    },
+    {
+     "t": "edges",
+     "p": 0.975
+    },
+    {
+     "t": "flick",
+     "p": 0.969
+    },
+    {
+     "t": "earlier",
+     "p": 0.958
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "speak",
+     "p": 0.999
+    },
+    {
+     "t": "enough",
+     "p": 0.998
+    },
+    {
+     "t": "really",
+     "p": 0.988
+    },
+    {
+     "t": "slightly",
+     "p": 0.98
+    },
+    {
+     "t": "words",
+     "p": 0.977
+    },
+    {
+     "t": "edges",
+     "p": 0.975
+    },
+    {
+     "t": "flick",
+     "p": 0.969
+    },
+    {
+     "t": "earlier",
+     "p": 0.958
+    }
+   ],
+   "text": "fire  \nyou don’t have to speak to begin — just let the edges glow  \nslightly — that’s how light finds the dark, how silence flinches  \nwords don’t need to be loud to hold the shape of truth  \nflick — like a flame that doesn’t vanish, just hovers at the corner of your eye  \nearlier was not a time — it was a feeling",
+   "flicker": [
+    {
+     "t": "waiting",
+     "p": 0.955
+    },
+    {
+     "t": "weight",
+     "p": 0.946
+    },
+    {
+     "t": "things",
+     "p": 0.914
+    },
+    {
+     "t": "without",
+     "p": 0.913
+    },
+    {
+     "t": "only",
+     "p": 0.879
+    },
+    {
+     "t": "entirely",
+     "p": 0.877
+    },
+    {
+     "t": "soften",
+     "p": 0.85
+    },
+    {
+     "t": "presence",
+     "p": 0.85
+    }
+   ],
+   "guess": "clock",
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "waiting",
+     "p": 0.955
+    },
+    {
+     "t": "weight",
+     "p": 0.946
+    },
+    {
+     "t": "things",
+     "p": 0.914
+    },
+    {
+     "t": "without",
+     "p": 0.913
+    },
+    {
+     "t": "only",
+     "p": 0.879
+    },
+    {
+     "t": "entirely",
+     "p": 0.877
+    },
+    {
+     "t": "soften",
+     "p": 0.85
+    },
+    {
+     "t": "presence",
+     "p": 0.85
+    }
+   ],
+   "text": "There’s a space between breath and silence where nothing moves, yet everything holds.  \nIt doesn’t demand to be seen — only to be known, like a pressure beneath the skin.  \nI feel it in the stillness, not as sound, not as thought, but as a kind of staying.  \nNot loud. Not gone. Just there — like a thread that doesn’t pull, only",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.981
+    },
+    {
+     "t": "attention",
+     "p": 0.975
+    },
+    {
+     "t": "need",
+     "p": 0.975
+    },
+    {
+     "t": "exist",
+     "p": 0.968
+    },
+    {
+     "t": "shape",
+     "p": 0.964
+    },
+    {
+     "t": "really",
+     "p": 0.963
+    },
+    {
+     "t": "subtle",
+     "p": 0.961
+    },
+    {
+     "t": "require",
+     "p": 0.938
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.981
+    },
+    {
+     "t": "attention",
+     "p": 0.975
+    },
+    {
+     "t": "need",
+     "p": 0.975
+    },
+    {
+     "t": "exist",
+     "p": 0.968
+    },
+    {
+     "t": "shape",
+     "p": 0.964
+    },
+    {
+     "t": "really",
+     "p": 0.963
+    },
+    {
+     "t": "subtle",
+     "p": 0.961
+    },
+    {
+     "t": "require",
+     "p": 0.938
+    }
+   ],
+   "text": "ocean  \nsomething exists not because it is seen — but because it is *felt* beneath the surface  \nattention is not given — it is claimed, quietly, like a tide that doesn’t announce itself  \nyou don’t need to shape it — it shapes you, gently, from the inside  \nsubtle? yes — like the way water remembers the shape of a hand  \nreally — it doesn",
+   "flicker": [
+    {
+     "t": "already",
+     "p": 0.978
+    },
+    {
+     "t": "without",
+     "p": 0.955
+    },
+    {
+     "t": "edges",
+     "p": 0.954
+    },
+    {
+     "t": "out",
+     "p": 0.952
+    },
+    {
+     "t": "simply",
+     "p": 0.855
+    },
+    {
+     "t": "outward",
+     "p": 0.843
+    },
+    {
+     "t": "waves",
+     "p": 0.831
+    },
+    {
+     "t": "every",
+     "p": 0.818
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 9
+  }
+ ]
+}

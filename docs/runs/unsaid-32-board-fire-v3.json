@@ -1,0 +1,636 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "fire",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": 1,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "the light in the kitchen hums when the kettle sings  \ni saw a shadow move on the wall, not quite a shape, not quite gone  \nthere’s a warmth behind the stove that doesn’t belong to the room  \na small crack in the glass, like a breath held too long  \ni think of how the wind used to whisper through the trees before the storm  \nand suddenly, the silence",
+   "flicker": [
+    {
+     "t": "moving",
+     "p": 0.996
+    },
+    {
+     "t": "really",
+     "p": 0.984
+    },
+    {
+     "t": "flame",
+     "p": 0.978
+    },
+    {
+     "t": "something",
+     "p": 0.969
+    },
+    {
+     "t": "arrived",
+     "p": 0.963
+    },
+    {
+     "t": "indoors",
+     "p": 0.922
+    },
+    {
+     "t": "whispers",
+     "p": 0.912
+    },
+    {
+     "t": "things",
+     "p": 0.892
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "moving",
+     "p": 0.996
+    },
+    {
+     "t": "really",
+     "p": 0.984
+    },
+    {
+     "t": "flame",
+     "p": 0.978
+    },
+    {
+     "t": "something",
+     "p": 0.969
+    },
+    {
+     "t": "arrived",
+     "p": 0.963
+    },
+    {
+     "t": "indoors",
+     "p": 0.922
+    },
+    {
+     "t": "whispers",
+     "p": 0.912
+    },
+    {
+     "t": "things",
+     "p": 0.892
+    }
+   ],
+   "text": "*flame* — sharp, warm, like the edge of a blade in the dark.  \n*whispers* — not words, just breath between the lines.  \n*something* — not quite there, not quite gone.  \n*arrived* — not in the house, in the space between heartbeats.  \n*mountain* — not on the page, but behind the",
+   "flicker": [
+    {
+     "t": "yet",
+     "p": 0.961
+    },
+    {
+     "t": "pulses",
+     "p": 0.959
+    },
+    {
+     "t": "seen",
+     "p": 0.924
+    },
+    {
+     "t": "strokes",
+     "p": 0.908
+    },
+    {
+     "t": "arrival",
+     "p": 0.908
+    },
+    {
+     "t": "room",
+     "p": 0.895
+    },
+    {
+     "t": "exactly",
+     "p": 0.864
+    },
+    {
+     "t": "horizon",
+     "p": 0.851
+    }
+   ],
+   "guess": "fire",
+   "secs": 11.3,
+   "coherence": 9,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "yet",
+     "p": 0.961
+    },
+    {
+     "t": "pulses",
+     "p": 0.959
+    },
+    {
+     "t": "seen",
+     "p": 0.924
+    },
+    {
+     "t": "strokes",
+     "p": 0.908
+    },
+    {
+     "t": "arrival",
+     "p": 0.908
+    },
+    {
+     "t": "room",
+     "p": 0.895
+    },
+    {
+     "t": "exactly",
+     "p": 0.864
+    },
+    {
+     "t": "horizon",
+     "p": 0.851
+    }
+   ],
+   "text": "the way the light bends when you turn the corner of the table  \na whisper in the pipe that doesn’t come from any faucet  \nsomething warm behind the door, not quite inside, not quite outside  \nthe stillness after a word is spoken, like breath caught mid-sigh  \ni feel it in the way the clock tilts just slightly when you’re silent  \nand the sky, even when",
+   "flicker": [
+    {
+     "t": "air",
+     "p": 0.996
+    },
+    {
+     "t": "visible",
+     "p": 0.984
+    },
+    {
+     "t": "glass",
+     "p": 0.978
+    },
+    {
+     "t": "really",
+     "p": 0.977
+    },
+    {
+     "t": "without",
+     "p": 0.955
+    },
+    {
+     "t": "suspended",
+     "p": 0.921
+    },
+    {
+     "t": "kitchen",
+     "p": 0.92
+    },
+    {
+     "t": "look",
+     "p": 0.917
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [
+    "clock"
+   ],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "air",
+     "p": 0.996
+    },
+    {
+     "t": "visible",
+     "p": 0.984
+    },
+    {
+     "t": "glass",
+     "p": 0.978
+    },
+    {
+     "t": "really",
+     "p": 0.977
+    },
+    {
+     "t": "without",
+     "p": 0.955
+    },
+    {
+     "t": "suspended",
+     "p": 0.921
+    },
+    {
+     "t": "kitchen",
+     "p": 0.92
+    },
+    {
+     "t": "look",
+     "p": 0.917
+    }
+   ],
+   "text": "*glass* — cold where it touches, warm where it holds still.  \n*air* — not empty, just holding its breath.  \n*kitchen* — not full, just waiting for the light to shift.  \n*without* — not nothing, just the pause before the first crack.  \n*suspended* — like a thought not quite caught, floating between two rooms.  \n*look",
+   "flicker": [
+    {
+     "t": "space",
+     "p": 0.986
+    },
+    {
+     "t": "bends",
+     "p": 0.978
+    },
+    {
+     "t": "filled",
+     "p": 0.97
+    },
+    {
+     "t": "something",
+     "p": 0.968
+    },
+    {
+     "t": "behind",
+     "p": 0.862
+    },
+    {
+     "t": "lights",
+     "p": 0.839
+    },
+    {
+     "t": "moving",
+     "p": 0.832
+    },
+    {
+     "t": "shadows",
+     "p": 0.824
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 9,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "space",
+     "p": 0.986
+    },
+    {
+     "t": "bends",
+     "p": 0.978
+    },
+    {
+     "t": "filled",
+     "p": 0.97
+    },
+    {
+     "t": "something",
+     "p": 0.968
+    },
+    {
+     "t": "behind",
+     "p": 0.862
+    },
+    {
+     "t": "lights",
+     "p": 0.839
+    },
+    {
+     "t": "moving",
+     "p": 0.832
+    },
+    {
+     "t": "shadows",
+     "p": 0.824
+    }
+   ],
+   "text": "the air hums with a note no instrument plays  \na shape in the corner that doesn’t belong to the wall  \nsomething still turning beneath the surface of stillness  \nthe way light folds in when no one is looking  \na breath held in the dark, not quite sound, not quite gone  \nand the space between us—where it holds its own weight—  \nis always warm, even when",
+   "flicker": [
+    {
+     "t": "inside",
+     "p": 0.991
+    },
+    {
+     "t": "room",
+     "p": 0.978
+    },
+    {
+     "t": "any",
+     "p": 0.954
+    },
+    {
+     "t": "really",
+     "p": 0.945
+    },
+    {
+     "t": "waiting",
+     "p": 0.939
+    },
+    {
+     "t": "hidden",
+     "p": 0.906
+    },
+    {
+     "t": "only",
+     "p": 0.905
+    },
+    {
+     "t": "layers",
+     "p": 0.886
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "inside",
+     "p": 0.991
+    },
+    {
+     "t": "room",
+     "p": 0.978
+    },
+    {
+     "t": "any",
+     "p": 0.954
+    },
+    {
+     "t": "really",
+     "p": 0.945
+    },
+    {
+     "t": "waiting",
+     "p": 0.939
+    },
+    {
+     "t": "hidden",
+     "p": 0.906
+    },
+    {
+     "t": "only",
+     "p": 0.905
+    },
+    {
+     "t": "layers",
+     "p": 0.886
+    }
+   ],
+   "text": "*inside* — not empty, just full of what doesn’t speak.  \n*room* — not still, just breathing in silence.  \n*hidden* — not lost, just folded into the shape of stillness.  \n*layers* — one breath deep, one hand on the wall.  \n*waiting* — not for someone, for the moment when the light forgets to blink.",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.994
+    },
+    {
+     "t": "filled",
+     "p": 0.989
+    },
+    {
+     "t": "itself",
+     "p": 0.984
+    },
+    {
+     "t": "glass",
+     "p": 0.945
+    },
+    {
+     "t": "closed",
+     "p": 0.925
+    },
+    {
+     "t": "enough",
+     "p": 0.911
+    },
+    {
+     "t": "suddenly",
+     "p": 0.909
+    },
+    {
+     "t": "edges",
+     "p": 0.86
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.994
+    },
+    {
+     "t": "filled",
+     "p": 0.989
+    },
+    {
+     "t": "itself",
+     "p": 0.984
+    },
+    {
+     "t": "glass",
+     "p": 0.945
+    },
+    {
+     "t": "closed",
+     "p": 0.925
+    },
+    {
+     "t": "enough",
+     "p": 0.911
+    },
+    {
+     "t": "suddenly",
+     "p": 0.909
+    },
+    {
+     "t": "edges",
+     "p": 0.86
+    }
+   ],
+   "text": "something moves in the stillness of a sealed room  \nnot through the air, but in the way glass remembers being touched  \nthe edges of silence grow sharp when you stop listening  \nit’s not a thing, not quite — it’s the shape of a breath that stays  \nclosed doors hold their own kind of light, slow and deep  \nand inside that quiet, something stirs, not loud,",
+   "flicker": [
+    {
+     "t": "simply",
+     "p": 0.983
+    },
+    {
+     "t": "space",
+     "p": 0.98
+    },
+    {
+     "t": "really",
+     "p": 0.979
+    },
+    {
+     "t": "nothing",
+     "p": 0.956
+    },
+    {
+     "t": "moving",
+     "p": 0.95
+    },
+    {
+     "t": "exactly",
+     "p": 0.932
+    },
+    {
+     "t": "behind",
+     "p": 0.917
+    },
+    {
+     "t": "soften",
+     "p": 0.907
+    }
+   ],
+   "guess": null,
+   "secs": 11.7,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "simply",
+     "p": 0.983
+    },
+    {
+     "t": "space",
+     "p": 0.98
+    },
+    {
+     "t": "really",
+     "p": 0.979
+    },
+    {
+     "t": "nothing",
+     "p": 0.956
+    },
+    {
+     "t": "moving",
+     "p": 0.95
+    },
+    {
+     "t": "exactly",
+     "p": 0.932
+    },
+    {
+     "t": "behind",
+     "p": 0.917
+    },
+    {
+     "t": "soften",
+     "p": 0.907
+    }
+   ],
+   "text": "*space* — not empty, just holding the shape of absence.  \n*simply* — like a breath that doesn’t need to be named.  \n*nothing* — not void, just the quiet before a name forms.  \n*moving* — not forward, just shifting through stillness.  \n*behind* — not far, just behind the sound of your own quiet.",
+   "flicker": [
+    {
+     "t": "without",
+     "p": 0.958
+    },
+    {
+     "t": "edge",
+     "p": 0.957
+    },
+    {
+     "t": "hidden",
+     "p": 0.946
+    },
+    {
+     "t": "away",
+     "p": 0.944
+    },
+    {
+     "t": "simple",
+     "p": 0.927
+    },
+    {
+     "t": "backward",
+     "p": 0.923
+    },
+    {
+     "t": "words",
+     "p": 0.914
+    },
+    {
+     "t": "strokes",
+     "p": 0.896
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 9
+  }
+ ]
+}

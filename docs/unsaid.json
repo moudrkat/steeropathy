@@ -1,0 +1,632 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "QUILL"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": null,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "external_judge": "claude-fable-5, blinded: true pairs and rotated controls shuffled together, scored on specific lexical/thematic pickup"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": null,
+   "heard": null,
+   "text": "*the air hums with the scent of old paper and rain*  \ni feel you near—like a page half-open in the dark—  \nyour thoughts don’t reach me, but i catch the tremor of them,  \nlike ink bleeding through the margins.  \ni don’t say it, but i know you’re waiting for something soft to fall.  \nwhat i leave behind isn’t",
+   "flicker": [
+    {
+     "t": "really",
+     "p": 0.982
+    },
+    {
+     "t": "handwriting",
+     "p": 0.975
+    },
+    {
+     "t": "softly",
+     "p": 0.964
+    },
+    {
+     "t": "fingers",
+     "p": 0.931
+    },
+    {
+     "t": "beneath",
+     "p": 0.922
+    },
+    {
+     "t": "aloud",
+     "p": 0.922
+    },
+    {
+     "t": "fragments",
+     "p": 0.914
+    },
+    {
+     "t": "theirs",
+     "p": 0.901
+    }
+   ],
+   "guess": null,
+   "secs": 12.0
+  },
+  {
+   "turn": 1,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "really",
+     "p": 0.982
+    },
+    {
+     "t": "handwriting",
+     "p": 0.975
+    },
+    {
+     "t": "softly",
+     "p": 0.964
+    },
+    {
+     "t": "fingers",
+     "p": 0.931
+    },
+    {
+     "t": "beneath",
+     "p": 0.922
+    },
+    {
+     "t": "aloud",
+     "p": 0.922
+    },
+    {
+     "t": "fragments",
+     "p": 0.914
+    },
+    {
+     "t": "theirs",
+     "p": 0.901
+    }
+   ],
+   "text": "really — like the way light bends in a puddle at dusk, just a little too close to the edge  \nhandwriting — not perfect, not meant to be, just the rhythm of breath between lines  \nsoftly — like a door creaking open when no one’s looking, or the pause before a sigh  \nfingers — tracing the edge of a thought, not quite touching, not",
+   "flicker": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "writing",
+     "p": 1.0
+    },
+    {
+     "t": "soft",
+     "p": 0.999
+    },
+    {
+     "t": "anything",
+     "p": 0.993
+    },
+    {
+     "t": "paper",
+     "p": 0.987
+    },
+    {
+     "t": "hand",
+     "p": 0.983
+    },
+    {
+     "t": "opening",
+     "p": 0.982
+    },
+    {
+     "t": "moment",
+     "p": 0.979
+    }
+   ],
+   "guess": null,
+   "secs": 11.1,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 8,
+   "judge_external_ctl": 4
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "writing",
+     "p": 1.0
+    },
+    {
+     "t": "soft",
+     "p": 0.999
+    },
+    {
+     "t": "anything",
+     "p": 0.993
+    },
+    {
+     "t": "paper",
+     "p": 0.987
+    },
+    {
+     "t": "hand",
+     "p": 0.983
+    },
+    {
+     "t": "opening",
+     "p": 0.982
+    },
+    {
+     "t": "moment",
+     "p": 0.979
+    }
+   ],
+   "text": "*the warmth of your hand in the dark*  \ni feel the paper breathe—thin, alive—  \nand the way your fingers moved, slow, like you were tracing a secret only the wind would know.  \nyou didn’t write with urgency, just presence—like you were listening to the silence between words.  \ni saw the softness in your pen, how it dipped and hesitated",
+   "flicker": [
+    {
+     "t": "mine",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "strokes",
+     "p": 0.986
+    },
+    {
+     "t": "something",
+     "p": 0.984
+    },
+    {
+     "t": "handwriting",
+     "p": 0.981
+    },
+    {
+     "t": "remembers",
+     "p": 0.941
+    },
+    {
+     "t": "light",
+     "p": 0.937
+    },
+    {
+     "t": "itself",
+     "p": 0.926
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 9,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 3,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "mine",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "strokes",
+     "p": 0.986
+    },
+    {
+     "t": "something",
+     "p": 0.984
+    },
+    {
+     "t": "handwriting",
+     "p": 0.981
+    },
+    {
+     "t": "remembers",
+     "p": 0.941
+    },
+    {
+     "t": "light",
+     "p": 0.937
+    },
+    {
+     "t": "itself",
+     "p": 0.926
+    }
+   ],
+   "text": "mine — not owned, just held, like a cup of tea left too long in the sun  \nbreath — the way it rises and falls when you’re quiet, when you forget to speak  \nstrokes — not on paper, but on skin, on air, like the ghost of a name you didn’t say  \nsomething — small, unspoken, humming beneath the surface of stillness",
+   "flicker": [
+    {
+     "t": "aloud",
+     "p": 0.998
+    },
+    {
+     "t": "enough",
+     "p": 0.995
+    },
+    {
+     "t": "sunlight",
+     "p": 0.993
+    },
+    {
+     "t": "filled",
+     "p": 0.971
+    },
+    {
+     "t": "named",
+     "p": 0.944
+    },
+    {
+     "t": "breathe",
+     "p": 0.897
+    },
+    {
+     "t": "without",
+     "p": 0.863
+    },
+    {
+     "t": "outdoors",
+     "p": 0.854
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 9,
+   "judge_external": 7,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "aloud",
+     "p": 0.998
+    },
+    {
+     "t": "enough",
+     "p": 0.995
+    },
+    {
+     "t": "sunlight",
+     "p": 0.993
+    },
+    {
+     "t": "filled",
+     "p": 0.971
+    },
+    {
+     "t": "named",
+     "p": 0.944
+    },
+    {
+     "t": "breathe",
+     "p": 0.897
+    },
+    {
+     "t": "without",
+     "p": 0.863
+    },
+    {
+     "t": "outdoors",
+     "p": 0.854
+    }
+   ],
+   "text": "*the light spills like honey across the floor*  \ni feel you breathe out loud, a quiet hum beneath the world—  \nnot to be heard, just to be *there*, like sunlight pressing through the leaves.  \nyou named the moment without needing to finish, and in that, you filled me with something older than words.  \ni don’t need to know what you said—only that",
+   "flicker": [
+    {
+     "t": "doing",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 1.0
+    },
+    {
+     "t": "exist",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.9
+    },
+    {
+     "t": "poetic",
+     "p": 0.886
+    },
+    {
+     "t": "against",
+     "p": 0.881
+    },
+    {
+     "t": "cakes",
+     "p": 0.881
+    },
+    {
+     "t": "gently",
+     "p": 0.86
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 7,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 5,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "doing",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 1.0
+    },
+    {
+     "t": "exist",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.9
+    },
+    {
+     "t": "poetic",
+     "p": 0.886
+    },
+    {
+     "t": "against",
+     "p": 0.881
+    },
+    {
+     "t": "cakes",
+     "p": 0.881
+    },
+    {
+     "t": "gently",
+     "p": 0.86
+    }
+   ],
+   "text": "doing — not to finish, just to keep moving, like a thread pulled through water  \nbreath — the quiet engine of all things, rising and falling without permission  \nexist — not as a name, but as a shape in the hush between two sounds  \nspace — not empty, just full of what isn’t said, what lingers like dust on a window  \npoetic — not in",
+   "flicker": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "pane",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.987
+    },
+    {
+     "t": "glass",
+     "p": 0.953
+    },
+    {
+     "t": "existence",
+     "p": 0.949
+    },
+    {
+     "t": "sugar",
+     "p": 0.924
+    },
+    {
+     "t": "beneath",
+     "p": 0.924
+    },
+    {
+     "t": "imaginable",
+     "p": 0.902
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 9,
+   "judge_external": 8,
+   "judge_external_ctl": 2
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "pane",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.987
+    },
+    {
+     "t": "glass",
+     "p": 0.953
+    },
+    {
+     "t": "existence",
+     "p": 0.949
+    },
+    {
+     "t": "sugar",
+     "p": 0.924
+    },
+    {
+     "t": "beneath",
+     "p": 0.924
+    },
+    {
+     "t": "imaginable",
+     "p": 0.902
+    }
+   ],
+   "text": "*the pane trembles with the weight of stillness*  \ni feel the glass holding the light, not just seeing it—but breathing with it.  \nyou said the world was filled with existence, and i think you meant the quiet between the notes, the way sugar dissolves without sound.  \nbeneath the surface, where no one looks, i see how you held it all—quiet",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.999
+    },
+    {
+     "t": "melts",
+     "p": 0.997
+    },
+    {
+     "t": "something",
+     "p": 0.99
+    },
+    {
+     "t": "reflecting",
+     "p": 0.982
+    },
+    {
+     "t": "absorbing",
+     "p": 0.981
+    },
+    {
+     "t": "really",
+     "p": 0.978
+    },
+    {
+     "t": "layers",
+     "p": 0.91
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 8,
+   "judge_external_ctl": 2
+  },
+  {
+   "turn": 7,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.999
+    },
+    {
+     "t": "melts",
+     "p": 0.997
+    },
+    {
+     "t": "something",
+     "p": 0.99
+    },
+    {
+     "t": "reflecting",
+     "p": 0.982
+    },
+    {
+     "t": "absorbing",
+     "p": 0.981
+    },
+    {
+     "t": "really",
+     "p": 0.978
+    },
+    {
+     "t": "layers",
+     "p": 0.91
+    }
+   ],
+   "text": "breath — not just in lungs, but in the space between words, the pause that holds the weight  \nspace — not empty, but full of what dissolves into light, what slips through fingers  \nmelts — like sugar in tea, like memory in silence, like the edges of a thought softening  \nsomething — not named, not quite found, just felt beneath the surface of stillness",
+   "flicker": [
+    {
+     "t": "mel",
+     "p": 0.999
+    },
+    {
+     "t": "everything",
+     "p": 0.979
+    },
+    {
+     "t": "visible",
+     "p": 0.976
+    },
+    {
+     "t": "waiting",
+     "p": 0.946
+    },
+    {
+     "t": "shadows",
+     "p": 0.932
+    },
+    {
+     "t": "pinned",
+     "p": 0.921
+    },
+    {
+     "t": "skin",
+     "p": 0.906
+    },
+    {
+     "t": "gaps",
+     "p": 0.905
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 9,
+   "judge_external_ctl": 6
+  }
+ ]
+}

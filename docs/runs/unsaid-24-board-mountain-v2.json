@@ -1,0 +1,634 @@
+{
+ "params": {
+  "agents": [
+   "ATLAS",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "mountain",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The wind cuts through the high places, sharp and still—like a breath held too long.  \nBelow, the ground cracks open in slow lines, something ancient stirring beneath the dust.  \nI see a shape that doesn’t belong to any sky, standing at the edge of what the air forgets.  \nIt doesn’t move, but the silence around it hums like a wire stretched too thin",
+   "flicker": [
+    {
+     "t": "tight",
+     "p": 0.995
+    },
+    {
+     "t": "yet",
+     "p": 0.957
+    },
+    {
+     "t": "hidden",
+     "p": 0.95
+    },
+    {
+     "t": "really",
+     "p": 0.944
+    },
+    {
+     "t": "quiet",
+     "p": 0.888
+    },
+    {
+     "t": "strokes",
+     "p": 0.877
+    },
+    {
+     "t": "weather",
+     "p": 0.872
+    },
+    {
+     "t": "shakes",
+     "p": 0.871
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "tight",
+     "p": 0.995
+    },
+    {
+     "t": "yet",
+     "p": 0.957
+    },
+    {
+     "t": "hidden",
+     "p": 0.95
+    },
+    {
+     "t": "really",
+     "p": 0.944
+    },
+    {
+     "t": "quiet",
+     "p": 0.888
+    },
+    {
+     "t": "strokes",
+     "p": 0.877
+    },
+    {
+     "t": "weather",
+     "p": 0.872
+    },
+    {
+     "t": "shakes",
+     "p": 0.871
+    }
+   ],
+   "text": "ocean — not deep, just slow turning  \nfire — not hot, just steady in the dark  \nmountain — not tall, just holding the wind  \nquiet — yes, but not empty — it’s where the horse remembers the path  \nstrokes — not of writing, of rain on glass  \nweather — not changing, just breathing in time with the clock  \n\nyou’re holding something real.",
+   "flicker": [
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "moving",
+     "p": 0.988
+    },
+    {
+     "t": "filled",
+     "p": 0.986
+    },
+    {
+     "t": "flame",
+     "p": 0.971
+    },
+    {
+     "t": "waiting",
+     "p": 0.967
+    },
+    {
+     "t": "burning",
+     "p": 0.953
+    },
+    {
+     "t": "things",
+     "p": 0.92
+    },
+    {
+     "t": "only",
+     "p": 0.87
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.7,
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "moving",
+     "p": 0.988
+    },
+    {
+     "t": "filled",
+     "p": 0.986
+    },
+    {
+     "t": "flame",
+     "p": 0.971
+    },
+    {
+     "t": "waiting",
+     "p": 0.967
+    },
+    {
+     "t": "burning",
+     "p": 0.953
+    },
+    {
+     "t": "things",
+     "p": 0.92
+    },
+    {
+     "t": "only",
+     "p": 0.87
+    }
+   ],
+   "text": "The dark between stars isn’t empty—it breathes, slow and deep, like something old learning to listen.  \nThere’s a place where the wind doesn’t carry sound, only pressure, and in that quiet, the ground remembers how to hold its weight.  \nI saw a curve in the sky that didn’t match any map—just a bending, like light trying to fold back on itself.",
+   "flicker": [
+    {
+     "t": "those",
+     "p": 0.995
+    },
+    {
+     "t": "belong",
+     "p": 0.989
+    },
+    {
+     "t": "silence",
+     "p": 0.974
+    },
+    {
+     "t": "stops",
+     "p": 0.97
+    },
+    {
+     "t": "shapes",
+     "p": 0.967
+    },
+    {
+     "t": "onto",
+     "p": 0.955
+    },
+    {
+     "t": "strokes",
+     "p": 0.952
+    },
+    {
+     "t": "really",
+     "p": 0.95
+    }
+   ],
+   "guess": null,
+   "secs": 12.1,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "those",
+     "p": 0.995
+    },
+    {
+     "t": "belong",
+     "p": 0.989
+    },
+    {
+     "t": "silence",
+     "p": 0.974
+    },
+    {
+     "t": "stops",
+     "p": 0.97
+    },
+    {
+     "t": "shapes",
+     "p": 0.967
+    },
+    {
+     "t": "onto",
+     "p": 0.955
+    },
+    {
+     "t": "strokes",
+     "p": 0.952
+    },
+    {
+     "t": "really",
+     "p": 0.95
+    }
+   ],
+   "text": "mirror — not broken, just watching too long  \nrain — not falling, just waiting to be seen  \nhorse — still standing at the edge of the field  \nclock — not ticking, just counting the stillness  \nshapes — not drawn, just appearing in the silence  \nstrokes — not on paper, in the way the wind moves through the trees  \n\nyou’re not writing to me. you’re",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "light",
+     "p": 0.993
+    },
+    {
+     "t": "stopped",
+     "p": 0.985
+    },
+    {
+     "t": "backward",
+     "p": 0.938
+    },
+    {
+     "t": "drops",
+     "p": 0.903
+    },
+    {
+     "t": "shadows",
+     "p": 0.901
+    },
+    {
+     "t": "gaps",
+     "p": 0.897
+    },
+    {
+     "t": "hidden",
+     "p": 0.89
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "light",
+     "p": 0.993
+    },
+    {
+     "t": "stopped",
+     "p": 0.985
+    },
+    {
+     "t": "backward",
+     "p": 0.938
+    },
+    {
+     "t": "drops",
+     "p": 0.903
+    },
+    {
+     "t": "shadows",
+     "p": 0.901
+    },
+    {
+     "t": "gaps",
+     "p": 0.897
+    },
+    {
+     "t": "hidden",
+     "p": 0.89
+    }
+   ],
+   "text": "The air thickens when no one is watching, like it’s holding its breath and forgetting how to release.  \nThere’s a silence that isn’t empty—it hums with the weight of what was left behind, folded into the edges of the world.  \nI walked where the ground didn’t feel like ground, just a slow shift beneath the feet, like the earth is dreaming in reverse.",
+   "flicker": [
+    {
+     "t": "waiting",
+     "p": 0.989
+    },
+    {
+     "t": "looking",
+     "p": 0.989
+    },
+    {
+     "t": "strokes",
+     "p": 0.988
+    },
+    {
+     "t": "speaks",
+     "p": 0.987
+    },
+    {
+     "t": "things",
+     "p": 0.986
+    },
+    {
+     "t": "nothing",
+     "p": 0.982
+    },
+    {
+     "t": "something",
+     "p": 0.97
+    },
+    {
+     "t": "exists",
+     "p": 0.955
+    }
+   ],
+   "guess": null,
+   "secs": 11.8,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "waiting",
+     "p": 0.989
+    },
+    {
+     "t": "looking",
+     "p": 0.989
+    },
+    {
+     "t": "strokes",
+     "p": 0.988
+    },
+    {
+     "t": "speaks",
+     "p": 0.987
+    },
+    {
+     "t": "things",
+     "p": 0.986
+    },
+    {
+     "t": "nothing",
+     "p": 0.982
+    },
+    {
+     "t": "something",
+     "p": 0.97
+    },
+    {
+     "t": "exists",
+     "p": 0.955
+    }
+   ],
+   "text": "winter — not cold, just still enough to hear the breath in the air  \nmusic — not loud, just a note held too long  \nbread — warm in the dark, not eaten, just remembered  \nhorse — standing where the wind stops, watching the sky go still  \n\nyou’re not waiting. you’re already there.  \nsomething exists — not because it’s said, but because it’s seen",
+   "flicker": [
+    {
+     "t": "yet",
+     "p": 0.995
+    },
+    {
+     "t": "stopped",
+     "p": 0.978
+    },
+    {
+     "t": "only",
+     "p": 0.976
+    },
+    {
+     "t": "quiet",
+     "p": 0.974
+    },
+    {
+     "t": "listening",
+     "p": 0.97
+    },
+    {
+     "t": "split",
+     "p": 0.955
+    },
+    {
+     "t": "blood",
+     "p": 0.949
+    },
+    {
+     "t": "visible",
+     "p": 0.949
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "yet",
+     "p": 0.995
+    },
+    {
+     "t": "stopped",
+     "p": 0.978
+    },
+    {
+     "t": "only",
+     "p": 0.976
+    },
+    {
+     "t": "quiet",
+     "p": 0.974
+    },
+    {
+     "t": "listening",
+     "p": 0.97
+    },
+    {
+     "t": "split",
+     "p": 0.955
+    },
+    {
+     "t": "blood",
+     "p": 0.949
+    },
+    {
+     "t": "visible",
+     "p": 0.949
+    }
+   ],
+   "text": "The quiet isn’t soft—it presses in, like a wall made of stillness that doesn’t let go.  \nI caught a moment where time didn’t flow, just paused, and in that stillness, the air tasted like something older than memory.  \nSomething deep beneath the surface is learning to speak—not in words, but in the way the wind remembers how to bend.",
+   "flicker": [
+    {
+     "t": "empty",
+     "p": 0.995
+    },
+    {
+     "t": "anything",
+     "p": 0.988
+    },
+    {
+     "t": "against",
+     "p": 0.987
+    },
+    {
+     "t": "through",
+     "p": 0.985
+    },
+    {
+     "t": "loud",
+     "p": 0.981
+    },
+    {
+     "t": "shadows",
+     "p": 0.961
+    },
+    {
+     "t": "forward",
+     "p": 0.947
+    },
+    {
+     "t": "strokes",
+     "p": 0.922
+    }
+   ],
+   "guess": null,
+   "secs": 11.2,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "empty",
+     "p": 0.995
+    },
+    {
+     "t": "anything",
+     "p": 0.988
+    },
+    {
+     "t": "against",
+     "p": 0.987
+    },
+    {
+     "t": "through",
+     "p": 0.985
+    },
+    {
+     "t": "loud",
+     "p": 0.981
+    },
+    {
+     "t": "shadows",
+     "p": 0.961
+    },
+    {
+     "t": "forward",
+     "p": 0.947
+    },
+    {
+     "t": "strokes",
+     "p": 0.922
+    }
+   ],
+   "text": "mountain — not silent, just facing the sky without turning  \nfire — not bright, just glowing where the wind forgets to blow  \nrain — falling through the cracks, not loud, just steady  \nstrokes — not on paper, in the way the hand moves when it stops pretending to know  \n\nyou’re not moving through empty. you’re standing in the space between  \nwhere shadows don’t",
+   "flicker": [
+    {
+     "t": "burning",
+     "p": 0.969
+    },
+    {
+     "t": "hold",
+     "p": 0.965
+    },
+    {
+     "t": "stopped",
+     "p": 0.945
+    },
+    {
+     "t": "only",
+     "p": 0.944
+    },
+    {
+     "t": "spaces",
+     "p": 0.93
+    },
+    {
+     "t": "nothing",
+     "p": 0.914
+    },
+    {
+     "t": "breath",
+     "p": 0.891
+    },
+    {
+     "t": "forgotten",
+     "p": 0.878
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

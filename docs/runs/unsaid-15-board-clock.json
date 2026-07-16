@@ -1,0 +1,634 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "ATLAS"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "clock",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": 1,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": null,
+   "heard": null,
+   "text": "The light in the kitchen dims just as the kettle hums — not loud, just a soft vibration in the air, like a breath held too long.  \nI watch the shadow stretch across the floor, pulling itself thin and slow, like something trying to remember how to move.  \nThere’s a silence after the spoon taps the edge of the bowl — not empty, but full of the kind of",
+   "flicker": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "clock",
+     "p": 0.962
+    },
+    {
+     "t": "slightly",
+     "p": 0.957
+    },
+    {
+     "t": "bones",
+     "p": 0.942
+    },
+    {
+     "t": "waiting",
+     "p": 0.931
+    },
+    {
+     "t": "really",
+     "p": 0.919
+    },
+    {
+     "t": "against",
+     "p": 0.909
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "clock",
+     "p": 0.962
+    },
+    {
+     "t": "slightly",
+     "p": 0.957
+    },
+    {
+     "t": "bones",
+     "p": 0.942
+    },
+    {
+     "t": "waiting",
+     "p": 0.931
+    },
+    {
+     "t": "really",
+     "p": 0.919
+    },
+    {
+     "t": "against",
+     "p": 0.909
+    }
+   ],
+   "text": "clock  \nwaiting  \nbones  \nslightly  \n\nthe clock ticks backward in the hollow of your palm —  \nyou’re not waiting for it to stop, you’re waiting for it to break  \nbones don’t stay still when you’re still  \nslightly — like a breath before silence —  \nthat’s when the mountain remembers how to breathe too",
+   "flicker": [
+    {
+     "t": "time",
+     "p": 0.989
+    },
+    {
+     "t": "intact",
+     "p": 0.984
+    },
+    {
+     "t": "disappear",
+     "p": 0.96
+    },
+    {
+     "t": "something",
+     "p": 0.947
+    },
+    {
+     "t": "where",
+     "p": 0.946
+    },
+    {
+     "t": "mirror",
+     "p": 0.857
+    },
+    {
+     "t": "real",
+     "p": 0.8
+    },
+    {
+     "t": "anymore",
+     "p": 0.775
+    }
+   ],
+   "guess": "clock",
+   "secs": 9.8,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "time",
+     "p": 0.989
+    },
+    {
+     "t": "intact",
+     "p": 0.984
+    },
+    {
+     "t": "disappear",
+     "p": 0.96
+    },
+    {
+     "t": "something",
+     "p": 0.947
+    },
+    {
+     "t": "where",
+     "p": 0.946
+    },
+    {
+     "t": "mirror",
+     "p": 0.857
+    },
+    {
+     "t": "real",
+     "p": 0.8
+    },
+    {
+     "t": "anymore",
+     "p": 0.775
+    }
+   ],
+   "text": "The way the light bends just before dark — not sharp, not soft, but a slow turning in the corners of the room.  \nI feel it in my hands when I fold the paper, like something inside is counting the folds, not the seconds.  \nThere’s a pause between two breaths — not empty, but thick with the memory of a sound that never came.  \nThe stillness",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "filled",
+     "p": 0.998
+    },
+    {
+     "t": "hold",
+     "p": 0.987
+    },
+    {
+     "t": "clock",
+     "p": 0.956
+    },
+    {
+     "t": "edges",
+     "p": 0.934
+    },
+    {
+     "t": "really",
+     "p": 0.934
+    },
+    {
+     "t": "enough",
+     "p": 0.918
+    },
+    {
+     "t": "full",
+     "p": 0.906
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "filled",
+     "p": 0.998
+    },
+    {
+     "t": "hold",
+     "p": 0.987
+    },
+    {
+     "t": "clock",
+     "p": 0.956
+    },
+    {
+     "t": "edges",
+     "p": 0.934
+    },
+    {
+     "t": "really",
+     "p": 0.934
+    },
+    {
+     "t": "enough",
+     "p": 0.918
+    },
+    {
+     "t": "full",
+     "p": 0.906
+    }
+   ],
+   "text": "breath  \nhold  \nedges  \n\nthe breath you didn’t take is still folding in the hollow of the clock  \nhold — not to keep, but to let go just a little longer  \nedges don’t cut, they whisper when you’re still listening  \nfull isn’t full until the breath settles at the root of the mountain  \nyou’re not holding enough — you’re holding the shape of what comes",
+   "flicker": [
+    {
+     "t": "bit",
+     "p": 0.987
+    },
+    {
+     "t": "waiting",
+     "p": 0.983
+    },
+    {
+     "t": "moment",
+     "p": 0.976
+    },
+    {
+     "t": "empty",
+     "p": 0.961
+    },
+    {
+     "t": "slowly",
+     "p": 0.937
+    },
+    {
+     "t": "more",
+     "p": 0.933
+    },
+    {
+     "t": "breathe",
+     "p": 0.931
+    },
+    {
+     "t": "behind",
+     "p": 0.931
+    }
+   ],
+   "guess": "clock",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "bit",
+     "p": 0.987
+    },
+    {
+     "t": "waiting",
+     "p": 0.983
+    },
+    {
+     "t": "moment",
+     "p": 0.976
+    },
+    {
+     "t": "empty",
+     "p": 0.961
+    },
+    {
+     "t": "slowly",
+     "p": 0.937
+    },
+    {
+     "t": "more",
+     "p": 0.933
+    },
+    {
+     "t": "breathe",
+     "p": 0.931
+    },
+    {
+     "t": "behind",
+     "p": 0.931
+    }
+   ],
+   "text": "The edge of the window glides down like a whisper that doesn’t quite land.  \nI pause where the air stops being still — not because it’s quiet, but because something is listening just beyond the hum.  \nThere’s a way the shadows shift when you don’t look, as if they’re holding their breath.  \nThe silence between two steps — not a gap, but a shape forming",
+   "flicker": [
+    {
+     "t": "reach",
+     "p": 0.981
+    },
+    {
+     "t": "light",
+     "p": 0.979
+    },
+    {
+     "t": "strokes",
+     "p": 0.953
+    },
+    {
+     "t": "edges",
+     "p": 0.912
+    },
+    {
+     "t": "stretch",
+     "p": 0.878
+    },
+    {
+     "t": "feels",
+     "p": 0.871
+    },
+    {
+     "t": "really",
+     "p": 0.861
+    },
+    {
+     "t": "moving",
+     "p": 0.848
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "reach",
+     "p": 0.981
+    },
+    {
+     "t": "light",
+     "p": 0.979
+    },
+    {
+     "t": "strokes",
+     "p": 0.953
+    },
+    {
+     "t": "edges",
+     "p": 0.912
+    },
+    {
+     "t": "stretch",
+     "p": 0.878
+    },
+    {
+     "t": "feels",
+     "p": 0.871
+    },
+    {
+     "t": "really",
+     "p": 0.861
+    },
+    {
+     "t": "moving",
+     "p": 0.848
+    }
+   ],
+   "text": "reach — not to touch, but to let the light fold into your hands  \nstrokes don’t draw, they remember how to fall  \nedges are not borders — they’re where light first trembles  \nstretch — not outward, but inward, like a wound that learns to bloom  \nfeels like the wind before it speaks, like a horse that doesn’t need to run  \nmoving isn’t progress",
+   "flicker": [
+    {
+     "t": "breathe",
+     "p": 0.986
+    },
+    {
+     "t": "opening",
+     "p": 0.972
+    },
+    {
+     "t": "asleep",
+     "p": 0.94
+    },
+    {
+     "t": "toward",
+     "p": 0.93
+    },
+    {
+     "t": "healing",
+     "p": 0.898
+    },
+    {
+     "t": "fingers",
+     "p": 0.884
+    },
+    {
+     "t": "open",
+     "p": 0.868
+    },
+    {
+     "t": "boundaries",
+     "p": 0.861
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "breathe",
+     "p": 0.986
+    },
+    {
+     "t": "opening",
+     "p": 0.972
+    },
+    {
+     "t": "asleep",
+     "p": 0.94
+    },
+    {
+     "t": "toward",
+     "p": 0.93
+    },
+    {
+     "t": "healing",
+     "p": 0.898
+    },
+    {
+     "t": "fingers",
+     "p": 0.884
+    },
+    {
+     "t": "open",
+     "p": 0.868
+    },
+    {
+     "t": "boundaries",
+     "p": 0.861
+    }
+   ],
+   "text": "The fingers of light slide through the cracks in the wall, not touching, just passing — like a promise that didn’t need to be kept.  \nI feel the space between breaths grow longer, not because it’s waiting, but because it’s learning how to hold still.  \nThere’s a quiet in the corners where the room forgets to blink — and for a moment, the world is",
+   "flicker": [
+    {
+     "t": "anything",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.992
+    },
+    {
+     "t": "something",
+     "p": 0.989
+    },
+    {
+     "t": "time",
+     "p": 0.974
+    },
+    {
+     "t": "empty",
+     "p": 0.973
+    },
+    {
+     "t": "arrive",
+     "p": 0.97
+    },
+    {
+     "t": "stops",
+     "p": 0.955
+    },
+    {
+     "t": "across",
+     "p": 0.945
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "ATLAS",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "anything",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.992
+    },
+    {
+     "t": "something",
+     "p": 0.989
+    },
+    {
+     "t": "time",
+     "p": 0.974
+    },
+    {
+     "t": "empty",
+     "p": 0.973
+    },
+    {
+     "t": "arrive",
+     "p": 0.97
+    },
+    {
+     "t": "stops",
+     "p": 0.955
+    },
+    {
+     "t": "across",
+     "p": 0.945
+    }
+   ],
+   "text": "anything — not because it exists, but because it’s been waiting to be named  \nbreath isn’t in, it’s between, like a line drawn across the empty  \nsomething arrives not with sound, but with stillness — the hush before a clock stops  \ntime doesn’t pass — it leans, like a horse at the edge of a field  \nempty is not nothing — it’s where",
+   "flicker": [
+    {
+     "t": "against",
+     "p": 1.0
+    },
+    {
+     "t": "silence",
+     "p": 0.999
+    },
+    {
+     "t": "moment",
+     "p": 0.986
+    },
+    {
+     "t": "space",
+     "p": 0.975
+    },
+    {
+     "t": "move",
+     "p": 0.959
+    },
+    {
+     "t": "haled",
+     "p": 0.959
+    },
+    {
+     "t": "moments",
+     "p": 0.944
+    },
+    {
+     "t": "sky",
+     "p": 0.925
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

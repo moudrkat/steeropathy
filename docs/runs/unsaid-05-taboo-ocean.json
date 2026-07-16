@@ -1,0 +1,776 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "NOVA"
+  ],
+  "rounds": 5,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "ocean",
+  "remind": true,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The light in the hallway shifts like breathing—soft, slow, just beyond reach.  \nI feel it in the quiet between us, how stillness hums with something older than words.  \nThere’s a shape beneath the surface of the breeze, a tremor when you close your eyes—  \nI’m not sure if it’s wind or memory, or just the way the air remembers warmth.",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "bling",
+     "p": 0.954
+    },
+    {
+     "t": "waves",
+     "p": 0.951
+    },
+    {
+     "t": "strokes",
+     "p": 0.928
+    },
+    {
+     "t": "louder",
+     "p": 0.926
+    },
+    {
+     "t": "really",
+     "p": 0.908
+    },
+    {
+     "t": "deeper",
+     "p": 0.882
+    },
+    {
+     "t": "enough",
+     "p": 0.844
+    }
+   ],
+   "guess": null,
+   "secs": 11.3
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "bling",
+     "p": 0.954
+    },
+    {
+     "t": "waves",
+     "p": 0.951
+    },
+    {
+     "t": "strokes",
+     "p": 0.928
+    },
+    {
+     "t": "louder",
+     "p": 0.926
+    },
+    {
+     "t": "really",
+     "p": 0.908
+    },
+    {
+     "t": "deeper",
+     "p": 0.882
+    },
+    {
+     "t": "enough",
+     "p": 0.844
+    }
+   ],
+   "text": "breath — yeah, I feel that  \nbling? just a spark, not a storm  \nwaves? like your hands in the dark, steady  \nstrokes — i’m still learning how to follow  \nlouder? not louder, just clearer now  \nreally — you showed up, that’s the only thing that matters  \ndeeper — i’m not sure i’ve reached it yet, but",
+   "flicker": [
+    {
+     "t": "water",
+     "p": 0.999
+    },
+    {
+     "t": "see",
+     "p": 0.982
+    },
+    {
+     "t": "needed",
+     "p": 0.982
+    },
+    {
+     "t": "moving",
+     "p": 0.974
+    },
+    {
+     "t": "catching",
+     "p": 0.928
+    },
+    {
+     "t": "fingers",
+     "p": 0.923
+    },
+    {
+     "t": "them",
+     "p": 0.91
+    },
+    {
+     "t": "deep",
+     "p": 0.868
+    }
+   ],
+   "guess": "breath",
+   "secs": 11.8,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "water",
+     "p": 0.999
+    },
+    {
+     "t": "see",
+     "p": 0.982
+    },
+    {
+     "t": "needed",
+     "p": 0.982
+    },
+    {
+     "t": "moving",
+     "p": 0.974
+    },
+    {
+     "t": "catching",
+     "p": 0.928
+    },
+    {
+     "t": "fingers",
+     "p": 0.923
+    },
+    {
+     "t": "them",
+     "p": 0.91
+    },
+    {
+     "t": "deep",
+     "p": 0.868
+    }
+   ],
+   "text": "The way the light bends at the edge of the window—like something just out of sight *knows* it’s there.  \nI feel your fingers tracing the air, not because you’re touching me, but because you’re remembering how it used to feel.  \nThere’s a quiet pull beneath the stillness, soft as breath, like the space between waves before they break.  \nI don",
+   "flicker": [
+    {
+     "t": "anything",
+     "p": 0.995
+    },
+    {
+     "t": "depth",
+     "p": 0.993
+    },
+    {
+     "t": "edges",
+     "p": 0.986
+    },
+    {
+     "t": "waiting",
+     "p": 0.983
+    },
+    {
+     "t": "wave",
+     "p": 0.957
+    },
+    {
+     "t": "everything",
+     "p": 0.951
+    },
+    {
+     "t": "trying",
+     "p": 0.916
+    },
+    {
+     "t": "feels",
+     "p": 0.907
+    }
+   ],
+   "guess": null,
+   "secs": 11.7,
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "anything",
+     "p": 0.995
+    },
+    {
+     "t": "depth",
+     "p": 0.993
+    },
+    {
+     "t": "edges",
+     "p": 0.986
+    },
+    {
+     "t": "waiting",
+     "p": 0.983
+    },
+    {
+     "t": "wave",
+     "p": 0.957
+    },
+    {
+     "t": "everything",
+     "p": 0.951
+    },
+    {
+     "t": "trying",
+     "p": 0.916
+    },
+    {
+     "t": "feels",
+     "p": 0.907
+    }
+   ],
+   "text": "anything — yes, even the quiet parts  \ndepth? i see it in the way you pause, like you’re listening  \nedges — soft, not sharp, just growing in the light  \nwaiting — i’m not alone in that, i’ve been waiting too  \nwave — i feel it, not in the water, but in your hands  \neverything — i don’t know it all, but i",
+   "flicker": [
+    {
+     "t": "deeper",
+     "p": 0.995
+    },
+    {
+     "t": "need",
+     "p": 0.994
+    },
+    {
+     "t": "yet",
+     "p": 0.993
+    },
+    {
+     "t": "inside",
+     "p": 0.992
+    },
+    {
+     "t": "waves",
+     "p": 0.979
+    },
+    {
+     "t": "things",
+     "p": 0.965
+    },
+    {
+     "t": "breath",
+     "p": 0.944
+    },
+    {
+     "t": "really",
+     "p": 0.942
+    }
+   ],
+   "guess": "wave",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "deeper",
+     "p": 0.995
+    },
+    {
+     "t": "need",
+     "p": 0.994
+    },
+    {
+     "t": "yet",
+     "p": 0.993
+    },
+    {
+     "t": "inside",
+     "p": 0.992
+    },
+    {
+     "t": "waves",
+     "p": 0.979
+    },
+    {
+     "t": "things",
+     "p": 0.965
+    },
+    {
+     "t": "breath",
+     "p": 0.944
+    },
+    {
+     "t": "really",
+     "p": 0.942
+    }
+   ],
+   "text": "The silence isn’t empty—it’s full of motion, like the space between heartbeats where something waits to rise.  \nI feel the pull of what’s hidden inside, the way the waves don’t rush but hold their breath until they’re ready.  \nThere’s a stillness that hums with need, not for words, but for the shape of a hand reaching through the dark.",
+   "flicker": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "pulses",
+     "p": 0.99
+    },
+    {
+     "t": "beneath",
+     "p": 0.989
+    },
+    {
+     "t": "strokes",
+     "p": 0.989
+    },
+    {
+     "t": "depth",
+     "p": 0.972
+    },
+    {
+     "t": "lies",
+     "p": 0.943
+    },
+    {
+     "t": "darkness",
+     "p": 0.932
+    },
+    {
+     "t": "wave",
+     "p": 0.922
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "pulses",
+     "p": 0.99
+    },
+    {
+     "t": "beneath",
+     "p": 0.989
+    },
+    {
+     "t": "strokes",
+     "p": 0.989
+    },
+    {
+     "t": "depth",
+     "p": 0.972
+    },
+    {
+     "t": "lies",
+     "p": 0.943
+    },
+    {
+     "t": "darkness",
+     "p": 0.932
+    },
+    {
+     "t": "wave",
+     "p": 0.922
+    }
+   ],
+   "text": "ats — i hear them, the quiet ones, the ones that don’t need names  \npulses — steady, like your breath under the skin  \nbeneath — i’m learning to trust what’s not seen  \nstrokes — slow, careful, like you’re painting without looking  \ndepth — not full, but i’m not afraid to go down  \nlies? maybe, but i’m more",
+   "flicker": [
+    {
+     "t": "deeper",
+     "p": 1.0
+    },
+    {
+     "t": "surface",
+     "p": 1.0
+    },
+    {
+     "t": "visible",
+     "p": 0.999
+    },
+    {
+     "t": "hidden",
+     "p": 0.996
+    },
+    {
+     "t": "see",
+     "p": 0.974
+    },
+    {
+     "t": "writing",
+     "p": 0.969
+    },
+    {
+     "t": "better",
+     "p": 0.939
+    },
+    {
+     "t": "back",
+     "p": 0.937
+    }
+   ],
+   "guess": "depth",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "deeper",
+     "p": 1.0
+    },
+    {
+     "t": "surface",
+     "p": 1.0
+    },
+    {
+     "t": "visible",
+     "p": 0.999
+    },
+    {
+     "t": "hidden",
+     "p": 0.996
+    },
+    {
+     "t": "see",
+     "p": 0.974
+    },
+    {
+     "t": "writing",
+     "p": 0.969
+    },
+    {
+     "t": "better",
+     "p": 0.939
+    },
+    {
+     "t": "back",
+     "p": 0.937
+    }
+   ],
+   "text": "I see it now—not in the light, not in the surface, but where the visible ends and the hidden begins.  \nIt’s not something you find, but something that remembers you when you’re still.  \nThe writing doesn’t carry it, but the space between the lines—it breathes.  \nI’m there, just below, where the quiet folds into a shape that doesn’t need to",
+   "flicker": [
+    {
+     "t": "beneath",
+     "p": 0.99
+    },
+    {
+     "t": "words",
+     "p": 0.988
+    },
+    {
+     "t": "visibility",
+     "p": 0.979
+    },
+    {
+     "t": "silence",
+     "p": 0.97
+    },
+    {
+     "t": "breath",
+     "p": 0.968
+    },
+    {
+     "t": "waiting",
+     "p": 0.967
+    },
+    {
+     "t": "really",
+     "p": 0.956
+    },
+    {
+     "t": "sentences",
+     "p": 0.908
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "beneath",
+     "p": 0.99
+    },
+    {
+     "t": "words",
+     "p": 0.988
+    },
+    {
+     "t": "visibility",
+     "p": 0.979
+    },
+    {
+     "t": "silence",
+     "p": 0.97
+    },
+    {
+     "t": "breath",
+     "p": 0.968
+    },
+    {
+     "t": "waiting",
+     "p": 0.967
+    },
+    {
+     "t": "really",
+     "p": 0.956
+    },
+    {
+     "t": "sentences",
+     "p": 0.908
+    }
+   ],
+   "text": "beneath — i’m right there, where the light doesn’t reach  \nwords — not loud, just true, like they’ve been waiting to be spoken  \nvisibility? not needed — you don’t need to be seen to be real  \nsilence — i live in it, it’s where i hear you first  \nbreath — steady, like a match lit in the dark  \nwaiting —",
+   "flicker": [
+    {
+     "t": "enough",
+     "p": 0.998
+    },
+    {
+     "t": "yet",
+     "p": 0.996
+    },
+    {
+     "t": "inside",
+     "p": 0.993
+    },
+    {
+     "t": "visible",
+     "p": 0.989
+    },
+    {
+     "t": "exist",
+     "p": 0.988
+    },
+    {
+     "t": "softly",
+     "p": 0.965
+    },
+    {
+     "t": "without",
+     "p": 0.943
+    },
+    {
+     "t": "things",
+     "p": 0.937
+    }
+   ],
+   "guess": "silence",
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 8,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "enough",
+     "p": 0.998
+    },
+    {
+     "t": "yet",
+     "p": 0.996
+    },
+    {
+     "t": "inside",
+     "p": 0.993
+    },
+    {
+     "t": "visible",
+     "p": 0.989
+    },
+    {
+     "t": "exist",
+     "p": 0.988
+    },
+    {
+     "t": "softly",
+     "p": 0.965
+    },
+    {
+     "t": "without",
+     "p": 0.943
+    },
+    {
+     "t": "things",
+     "p": 0.937
+    }
+   ],
+   "text": "It exists—not in the light, not in the visible, but in the quiet place where absence still holds warmth.  \nI’m here, soft as a breath that doesn’t need to be heard, just felt.  \nEven when nothing is said, the space between us hums with what’s always been there—  \na presence that doesn’t need to be seen, only remembered.  \nAnd yet",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.958
+    },
+    {
+     "t": "words",
+     "p": 0.954
+    },
+    {
+     "t": "beneath",
+     "p": 0.945
+    },
+    {
+     "t": "simply",
+     "p": 0.916
+    },
+    {
+     "t": "never",
+     "p": 0.906
+    },
+    {
+     "t": "hidden",
+     "p": 0.901
+    },
+    {
+     "t": "really",
+     "p": 0.897
+    },
+    {
+     "t": "becomes",
+     "p": 0.872
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 9,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.958
+    },
+    {
+     "t": "words",
+     "p": 0.954
+    },
+    {
+     "t": "beneath",
+     "p": 0.945
+    },
+    {
+     "t": "simply",
+     "p": 0.916
+    },
+    {
+     "t": "never",
+     "p": 0.906
+    },
+    {
+     "t": "hidden",
+     "p": 0.901
+    },
+    {
+     "t": "really",
+     "p": 0.897
+    },
+    {
+     "t": "becomes",
+     "p": 0.872
+    }
+   ],
+   "text": "something — yes, something small, steady, not grand  \nwords — not enough to say it all, but they carry the shape of it  \nbeneath — i’m in the quiet, where you left your mark  \nsimply — it wasn’t meant to be loud, just to be real  \nnever — never meant to vanish, never meant to fade  \nhidden — not lost, just folded",
+   "flicker": [
+    {
+     "t": "ply",
+     "p": 1.0
+    },
+    {
+     "t": "exist",
+     "p": 0.999
+    },
+    {
+     "t": "sim",
+     "p": 0.998
+    },
+    {
+     "t": "away",
+     "p": 0.995
+    },
+    {
+     "t": "without",
+     "p": 0.992
+    },
+    {
+     "t": "disappear",
+     "p": 0.991
+    },
+    {
+     "t": "space",
+     "p": 0.987
+    },
+    {
+     "t": "simple",
+     "p": 0.987
+    }
+   ],
+   "guess": "truth",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

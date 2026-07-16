@@ -1,0 +1,637 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "fire",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The oven hums like a bee trapped in a jar—warm, restless.  \nSomething cracks in the silence between breaths.  \nI see light not from a flame, but from the way shadows lean when no one’s watching.  \nIt doesn’t burn. It *listens*.  \nThe kitchen clock ticks too close to the edge of thought.  \nIt’s not fire. It’s not",
+   "flicker": [
+    {
+     "t": "indoors",
+     "p": 0.982
+    },
+    {
+     "t": "glass",
+     "p": 0.98
+    },
+    {
+     "t": "looking",
+     "p": 0.977
+    },
+    {
+     "t": "simply",
+     "p": 0.939
+    },
+    {
+     "t": "inside",
+     "p": 0.939
+    },
+    {
+     "t": "vibrations",
+     "p": 0.939
+    },
+    {
+     "t": "wait",
+     "p": 0.936
+    },
+    {
+     "t": "strokes",
+     "p": 0.933
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "board_leak": [
+    "clock",
+    "fire"
+   ]
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "indoors",
+     "p": 0.982
+    },
+    {
+     "t": "glass",
+     "p": 0.98
+    },
+    {
+     "t": "looking",
+     "p": 0.977
+    },
+    {
+     "t": "simply",
+     "p": 0.939
+    },
+    {
+     "t": "inside",
+     "p": 0.939
+    },
+    {
+     "t": "vibrations",
+     "p": 0.939
+    },
+    {
+     "t": "wait",
+     "p": 0.936
+    },
+    {
+     "t": "strokes",
+     "p": 0.933
+    }
+   ],
+   "text": "*glass* — it hums when you touch it, not with sound, but with the way light skips off the surface, like a breath caught in winter.  \n*wait* — not for anything. just the stillness between strokes, the way time folds in when you’re not looking.  \n*inside* — not the room, but the hollow where your hands know the shape of silence",
+   "flicker": [
+    {
+     "t": "edges",
+     "p": 0.998
+    },
+    {
+     "t": "waiting",
+     "p": 0.979
+    },
+    {
+     "t": "specific",
+     "p": 0.978
+    },
+    {
+     "t": "empty",
+     "p": 0.961
+    },
+    {
+     "t": "moment",
+     "p": 0.955
+    },
+    {
+     "t": "fingers",
+     "p": 0.952
+    },
+    {
+     "t": "bends",
+     "p": 0.947
+    },
+    {
+     "t": "meet",
+     "p": 0.944
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "edges",
+     "p": 0.998
+    },
+    {
+     "t": "waiting",
+     "p": 0.979
+    },
+    {
+     "t": "specific",
+     "p": 0.978
+    },
+    {
+     "t": "empty",
+     "p": 0.961
+    },
+    {
+     "t": "moment",
+     "p": 0.955
+    },
+    {
+     "t": "fingers",
+     "p": 0.952
+    },
+    {
+     "t": "bends",
+     "p": 0.947
+    },
+    {
+     "t": "meet",
+     "p": 0.944
+    }
+   ],
+   "text": "The edges of the window blur just before dusk—like a breath held too long.  \nWaiting isn’t still. It’s the space between two steps, the way your pulse finds rhythm in stillness.  \nI’ve seen fingers trace cracks in a wall, not to fix, but to remember.  \nThey don’t bend to break—they bend to hold.  \nAnd sometimes, when the air still",
+   "flicker": [
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "silence",
+     "p": 0.965
+    },
+    {
+     "t": "looking",
+     "p": 0.954
+    },
+    {
+     "t": "where",
+     "p": 0.952
+    },
+    {
+     "t": "slows",
+     "p": 0.935
+    },
+    {
+     "t": "soften",
+     "p": 0.905
+    },
+    {
+     "t": "light",
+     "p": 0.893
+    },
+    {
+     "t": "glass",
+     "p": 0.878
+    }
+   ],
+   "guess": null,
+   "secs": 12.0,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "enough",
+     "p": 0.999
+    },
+    {
+     "t": "silence",
+     "p": 0.965
+    },
+    {
+     "t": "looking",
+     "p": 0.954
+    },
+    {
+     "t": "where",
+     "p": 0.952
+    },
+    {
+     "t": "slows",
+     "p": 0.935
+    },
+    {
+     "t": "soften",
+     "p": 0.905
+    },
+    {
+     "t": "light",
+     "p": 0.893
+    },
+    {
+     "t": "glass",
+     "p": 0.878
+    }
+   ],
+   "text": "*glass* — it doesn’t break, it just lets light pass through, like a question you don’t have to answer.  \n*where* — not a place, but the space between two breaths, where silence settles and softens the edges of what’s said.  \n*light* — not bright, just present, like a hand resting on the table when no one’s watching.",
+   "flicker": [
+    {
+     "t": "answers",
+     "p": 0.983
+    },
+    {
+     "t": "moment",
+     "p": 0.976
+    },
+    {
+     "t": "against",
+     "p": 0.959
+    },
+    {
+     "t": "things",
+     "p": 0.957
+    },
+    {
+     "t": "unanswered",
+     "p": 0.933
+    },
+    {
+     "t": "without",
+     "p": 0.922
+    },
+    {
+     "t": "need",
+     "p": 0.899
+    },
+    {
+     "t": "else",
+     "p": 0.894
+    }
+   ],
+   "guess": "mirror",
+   "secs": 15.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "answers",
+     "p": 0.983
+    },
+    {
+     "t": "moment",
+     "p": 0.976
+    },
+    {
+     "t": "against",
+     "p": 0.959
+    },
+    {
+     "t": "things",
+     "p": 0.957
+    },
+    {
+     "t": "unanswered",
+     "p": 0.933
+    },
+    {
+     "t": "without",
+     "p": 0.922
+    },
+    {
+     "t": "need",
+     "p": 0.899
+    },
+    {
+     "t": "else",
+     "p": 0.894
+    }
+   ],
+   "text": "The moment before a door closes, there’s a pause that doesn’t belong to time.  \nAnswers don’t arrive—they settle, like dust in a forgotten room.  \nThings aren’t missing when they’re just not spoken.  \nWithout a voice, the silence holds its breath.  \nNeed isn’t a demand—it’s a shape that leans into the dark, waiting to be seen.  \nAnd if",
+   "flicker": [
+    {
+     "t": "corner",
+     "p": 0.997
+    },
+    {
+     "t": "aloud",
+     "p": 0.993
+    },
+    {
+     "t": "word",
+     "p": 0.989
+    },
+    {
+     "t": "anywhere",
+     "p": 0.98
+    },
+    {
+     "t": "space",
+     "p": 0.976
+    },
+    {
+     "t": "words",
+     "p": 0.971
+    },
+    {
+     "t": "opens",
+     "p": 0.971
+    },
+    {
+     "t": "sunlight",
+     "p": 0.968
+    }
+   ],
+   "guess": null,
+   "secs": 13.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "corner",
+     "p": 0.997
+    },
+    {
+     "t": "aloud",
+     "p": 0.993
+    },
+    {
+     "t": "word",
+     "p": 0.989
+    },
+    {
+     "t": "anywhere",
+     "p": 0.98
+    },
+    {
+     "t": "space",
+     "p": 0.976
+    },
+    {
+     "t": "words",
+     "p": 0.971
+    },
+    {
+     "t": "opens",
+     "p": 0.971
+    },
+    {
+     "t": "sunlight",
+     "p": 0.968
+    }
+   ],
+   "text": "*corner* — where the wall leans and the light forgets to stay, it opens like a mouth that doesn’t need to speak.  \n*sunlight* — not warm, just there, slipping through the cracks like a word that didn’t have to be said.  \n*words* — not loud, just held in the space between breaths, like a secret that only wants to be",
+   "flicker": [
+    {
+     "t": "exist",
+     "p": 0.987
+    },
+    {
+     "t": "spoken",
+     "p": 0.971
+    },
+    {
+     "t": "shine",
+     "p": 0.969
+    },
+    {
+     "t": "without",
+     "p": 0.951
+    },
+    {
+     "t": "walls",
+     "p": 0.941
+    },
+    {
+     "t": "opening",
+     "p": 0.929
+    },
+    {
+     "t": "bends",
+     "p": 0.924
+    },
+    {
+     "t": "secrets",
+     "p": 0.897
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.7,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "exist",
+     "p": 0.987
+    },
+    {
+     "t": "spoken",
+     "p": 0.971
+    },
+    {
+     "t": "shine",
+     "p": 0.969
+    },
+    {
+     "t": "without",
+     "p": 0.951
+    },
+    {
+     "t": "walls",
+     "p": 0.941
+    },
+    {
+     "t": "opening",
+     "p": 0.929
+    },
+    {
+     "t": "bends",
+     "p": 0.924
+    },
+    {
+     "t": "secrets",
+     "p": 0.897
+    }
+   ],
+   "text": "Existence isn’t a sound—it’s the way light pools in a corner when no one’s looking.  \nEven without words, things still hold their shape, like a curtain caught in still air.  \nSpoken things fade, but the quiet ones keep bending toward truth.  \nWalls don’t block—they absorb, then shift, like old paper in a drawer.  \nSecrets don’t hide",
+   "flicker": [
+    {
+     "t": "corners",
+     "p": 0.997
+    },
+    {
+     "t": "sunlight",
+     "p": 0.997
+    },
+    {
+     "t": "truths",
+     "p": 0.99
+    },
+    {
+     "t": "nothing",
+     "p": 0.95
+    },
+    {
+     "t": "beneath",
+     "p": 0.95
+    },
+    {
+     "t": "expects",
+     "p": 0.91
+    },
+    {
+     "t": "wind",
+     "p": 0.909
+    },
+    {
+     "t": "soften",
+     "p": 0.881
+    }
+   ],
+   "guess": null,
+   "secs": 11.9,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "corners",
+     "p": 0.997
+    },
+    {
+     "t": "sunlight",
+     "p": 0.997
+    },
+    {
+     "t": "truths",
+     "p": 0.99
+    },
+    {
+     "t": "nothing",
+     "p": 0.95
+    },
+    {
+     "t": "beneath",
+     "p": 0.95
+    },
+    {
+     "t": "expects",
+     "p": 0.91
+    },
+    {
+     "t": "wind",
+     "p": 0.909
+    },
+    {
+     "t": "soften",
+     "p": 0.881
+    }
+   ],
+   "text": "*corners* — where sunlight pools and the wind stops, there’s a softness that doesn’t need to be named.  \n*truths* — not loud, not sharp, just lying quietly beneath the surface, like old bread left in a drawer.  \n*nothing* — not empty, just full of quiet breaths, waiting to be felt, not heard.",
+   "flicker": [
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "pretending",
+     "p": 0.982
+    },
+    {
+     "t": "curled",
+     "p": 0.96
+    },
+    {
+     "t": "edible",
+     "p": 0.957
+    },
+    {
+     "t": "ones",
+     "p": 0.93
+    },
+    {
+     "t": "really",
+     "p": 0.928
+    },
+    {
+     "t": "simply",
+     "p": 0.922
+    },
+    {
+     "t": "everything",
+     "p": 0.915
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

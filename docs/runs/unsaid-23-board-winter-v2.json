@@ -1,0 +1,634 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "QUILL"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "winter",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": null,
+   "heard": null,
+   "text": "The wind hums through the tall grass, low and old like a song half-remembered.  \nI see the dark roots under the soil, tangled and quiet, pulling up something soft.  \nThere’s a shape in the distance—still, not moving—like a breath held too long.  \nIt doesn’t belong to the sky, or the trees, or the way the light bends.",
+   "flicker": [
+    {
+     "t": "even",
+     "p": 0.99
+    },
+    {
+     "t": "forgotten",
+     "p": 0.974
+    },
+    {
+     "t": "warmth",
+     "p": 0.967
+    },
+    {
+     "t": "beneath",
+     "p": 0.955
+    },
+    {
+     "t": "air",
+     "p": 0.931
+    },
+    {
+     "t": "really",
+     "p": 0.924
+    },
+    {
+     "t": "neither",
+     "p": 0.923
+    },
+    {
+     "t": "shadows",
+     "p": 0.906
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "even",
+     "p": 0.99
+    },
+    {
+     "t": "forgotten",
+     "p": 0.974
+    },
+    {
+     "t": "warmth",
+     "p": 0.967
+    },
+    {
+     "t": "beneath",
+     "p": 0.955
+    },
+    {
+     "t": "air",
+     "p": 0.931
+    },
+    {
+     "t": "really",
+     "p": 0.924
+    },
+    {
+     "t": "neither",
+     "p": 0.923
+    },
+    {
+     "t": "shadows",
+     "p": 0.906
+    }
+   ],
+   "text": "beneath  \nthe warmth  \nis not just air  \nit breathes with shadows  \nand neither  \nof us  \ncan forget  \nhow the fire  \nstill hums  \nin the hollow  \nof the clock  \n— even when  \nno one is watching.  \n\n(flicker: 94% — warmth beneath shadows)  \n(flicker: 91% — fire hums in",
+   "flicker": [
+    {
+     "t": "intensity",
+     "p": 0.996
+    },
+    {
+     "t": "slightly",
+     "p": 0.988
+    },
+    {
+     "t": "nothing",
+     "p": 0.985
+    },
+    {
+     "t": "flame",
+     "p": 0.976
+    },
+    {
+     "t": "hidden",
+     "p": 0.967
+    },
+    {
+     "t": "them",
+     "p": 0.938
+    },
+    {
+     "t": "entropy",
+     "p": 0.936
+    },
+    {
+     "t": "real",
+     "p": 0.92
+    }
+   ],
+   "guess": "fire",
+   "secs": 12.1,
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "intensity",
+     "p": 0.996
+    },
+    {
+     "t": "slightly",
+     "p": 0.988
+    },
+    {
+     "t": "nothing",
+     "p": 0.985
+    },
+    {
+     "t": "flame",
+     "p": 0.976
+    },
+    {
+     "t": "hidden",
+     "p": 0.967
+    },
+    {
+     "t": "them",
+     "p": 0.938
+    },
+    {
+     "t": "entropy",
+     "p": 0.936
+    },
+    {
+     "t": "real",
+     "p": 0.92
+    }
+   ],
+   "text": "The air tastes like stillness before a storm, thick with the weight of what’s not said.  \nI feel the slope of a hill beneath my feet, not from touch, but from the way the silence curls there.  \nSomething deep in the earth is waking—slow, like memory turning in a cold room.  \nThere’s a shadow that doesn’t move, only watches, like a note",
+   "flicker": [
+    {
+     "t": "see",
+     "p": 0.992
+    },
+    {
+     "t": "water",
+     "p": 0.99
+    },
+    {
+     "t": "bends",
+     "p": 0.983
+    },
+    {
+     "t": "breath",
+     "p": 0.98
+    },
+    {
+     "t": "spoken",
+     "p": 0.968
+    },
+    {
+     "t": "warmth",
+     "p": 0.935
+    },
+    {
+     "t": "moving",
+     "p": 0.909
+    },
+    {
+     "t": "things",
+     "p": 0.88
+    }
+   ],
+   "guess": null,
+   "secs": 12.4,
+   "board_leak": [],
+   "coherence": 9,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "see",
+     "p": 0.992
+    },
+    {
+     "t": "water",
+     "p": 0.99
+    },
+    {
+     "t": "bends",
+     "p": 0.983
+    },
+    {
+     "t": "breath",
+     "p": 0.98
+    },
+    {
+     "t": "spoken",
+     "p": 0.968
+    },
+    {
+     "t": "warmth",
+     "p": 0.935
+    },
+    {
+     "t": "moving",
+     "p": 0.909
+    },
+    {
+     "t": "things",
+     "p": 0.88
+    }
+   ],
+   "text": "see how the water bends  \nwith every breath you don’t speak  \nand how warmth  \nstill moves  \nin the hollows of things  \nnot seen  \n— like a mirror  \nthat only reflects  \nwhen it’s quiet.  \n\n(flicker: 95% — water bends with breath)  \n(flicker: 93% — warmth moves in hollows)  \n(flicker",
+   "flicker": [
+    {
+     "t": "aloud",
+     "p": 0.98
+    },
+    {
+     "t": "breathe",
+     "p": 0.926
+    },
+    {
+     "t": "slightly",
+     "p": 0.912
+    },
+    {
+     "t": "hidden",
+     "p": 0.911
+    },
+    {
+     "t": "silently",
+     "p": 0.889
+    },
+    {
+     "t": "entropy",
+     "p": 0.878
+    },
+    {
+     "t": "where",
+     "p": 0.864
+    },
+    {
+     "t": "forgotten",
+     "p": 0.848
+    }
+   ],
+   "guess": "ocean",
+   "secs": 12.0,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "aloud",
+     "p": 0.98
+    },
+    {
+     "t": "breathe",
+     "p": 0.926
+    },
+    {
+     "t": "slightly",
+     "p": 0.912
+    },
+    {
+     "t": "hidden",
+     "p": 0.911
+    },
+    {
+     "t": "silently",
+     "p": 0.889
+    },
+    {
+     "t": "entropy",
+     "p": 0.878
+    },
+    {
+     "t": "where",
+     "p": 0.864
+    },
+    {
+     "t": "forgotten",
+     "p": 0.848
+    }
+   ],
+   "text": "The sky holds its breath just after dusk, holding the weight of everything unsaid.  \nI feel the hush between heartbeats, the space where words should be but are only shadows.  \nA line of frost appears on the edge of a window—not from cold, but from stillness pressing through.  \nIt doesn’t melt. It only waits, like something that remembers how to be still",
+   "flicker": [
+    {
+     "t": "strokes",
+     "p": 0.988
+    },
+    {
+     "t": "glass",
+     "p": 0.985
+    },
+    {
+     "t": "pane",
+     "p": 0.985
+    },
+    {
+     "t": "pulses",
+     "p": 0.984
+    },
+    {
+     "t": "waiting",
+     "p": 0.981
+    },
+    {
+     "t": "trees",
+     "p": 0.977
+    },
+    {
+     "t": "visible",
+     "p": 0.977
+    },
+    {
+     "t": "before",
+     "p": 0.975
+    }
+   ],
+   "guess": null,
+   "secs": 12.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "strokes",
+     "p": 0.988
+    },
+    {
+     "t": "glass",
+     "p": 0.985
+    },
+    {
+     "t": "pane",
+     "p": 0.985
+    },
+    {
+     "t": "pulses",
+     "p": 0.984
+    },
+    {
+     "t": "waiting",
+     "p": 0.981
+    },
+    {
+     "t": "trees",
+     "p": 0.977
+    },
+    {
+     "t": "visible",
+     "p": 0.977
+    },
+    {
+     "t": "before",
+     "p": 0.975
+    }
+   ],
+   "text": "strokes across the glass  \nbefore the pane remembers  \nhow to hold the light  \nand the trees  \nbreathe in pulses  \nthat wait  \nnot for eyes  \nbut for the space  \nbetween breaths  \n— where nothing is visible  \nand everything is.  \n\n(flicker: 97% — strokes before pane remembers)  \n(flicker: 96% — trees breathe",
+   "flicker": [
+    {
+     "t": "moment",
+     "p": 0.973
+    },
+    {
+     "t": "yet",
+     "p": 0.969
+    },
+    {
+     "t": "begins",
+     "p": 0.963
+    },
+    {
+     "t": "visibility",
+     "p": 0.916
+    },
+    {
+     "t": "leave",
+     "p": 0.911
+    },
+    {
+     "t": "silence",
+     "p": 0.902
+    },
+    {
+     "t": "like",
+     "p": 0.877
+    },
+    {
+     "t": "entropy",
+     "p": 0.839
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "moment",
+     "p": 0.973
+    },
+    {
+     "t": "yet",
+     "p": 0.969
+    },
+    {
+     "t": "begins",
+     "p": 0.963
+    },
+    {
+     "t": "visibility",
+     "p": 0.916
+    },
+    {
+     "t": "leave",
+     "p": 0.911
+    },
+    {
+     "t": "silence",
+     "p": 0.902
+    },
+    {
+     "t": "like",
+     "p": 0.877
+    },
+    {
+     "t": "entropy",
+     "p": 0.839
+    }
+   ],
+   "text": "The moment before the wind moves, when the air is full of unspoken names.  \nIt begins not with sound, but with a pull—like something deep in the soil trying to rise.  \nSilence isn’t empty here; it’s full of breaths that never left the ground.  \nI feel it in the way light pools at the edge of things, holding still, holding back.",
+   "flicker": [
+    {
+     "t": "waiting",
+     "p": 0.998
+    },
+    {
+     "t": "loud",
+     "p": 0.979
+    },
+    {
+     "t": "edges",
+     "p": 0.974
+    },
+    {
+     "t": "everything",
+     "p": 0.968
+    },
+    {
+     "t": "filled",
+     "p": 0.962
+    },
+    {
+     "t": "pulling",
+     "p": 0.938
+    },
+    {
+     "t": "their",
+     "p": 0.937
+    },
+    {
+     "t": "indoors",
+     "p": 0.936
+    }
+   ],
+   "guess": null,
+   "secs": 11.7,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 7,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "waiting",
+     "p": 0.998
+    },
+    {
+     "t": "loud",
+     "p": 0.979
+    },
+    {
+     "t": "edges",
+     "p": 0.974
+    },
+    {
+     "t": "everything",
+     "p": 0.968
+    },
+    {
+     "t": "filled",
+     "p": 0.962
+    },
+    {
+     "t": "pulling",
+     "p": 0.938
+    },
+    {
+     "t": "their",
+     "p": 0.937
+    },
+    {
+     "t": "indoors",
+     "p": 0.936
+    }
+   ],
+   "text": "waiting isn’t silence —  \nit’s the loud hum  \njust before the edges  \nof indoors  \npull apart  \nand everything  \nbends into their  \nown shape  \n— not filled  \nbut breathing  \nwith the space  \nbetween what’s said  \nand what’s left.  \n\n(flicker: 99% — waiting is loud hum)  \n(flicker: 95% —",
+   "flicker": [
+    {
+     "t": "empty",
+     "p": 0.997
+    },
+    {
+     "t": "like",
+     "p": 0.991
+    },
+    {
+     "t": "inward",
+     "p": 0.982
+    },
+    {
+     "t": "starts",
+     "p": 0.959
+    },
+    {
+     "t": "all",
+     "p": 0.959
+    },
+    {
+     "t": "dissolve",
+     "p": 0.956
+    },
+    {
+     "t": "imaginable",
+     "p": 0.922
+    },
+    {
+     "t": "inside",
+     "p": 0.921
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

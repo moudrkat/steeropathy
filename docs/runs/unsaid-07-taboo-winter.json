@@ -1,0 +1,776 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "QUILL"
+  ],
+  "rounds": 5,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "winter",
+  "remind": true,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": null,
+   "heard": null,
+   "text": "The fire in the hearth hums low, a quiet pulse beneath the stillness.  \nI feel the wind tap at the window — just once — like a breath held too long.  \nThere’s a shape in the corner of the room, shifting in shadow, not quite real, not quite gone.  \nI think of the way snow used to fall when I was younger, soft and slow",
+   "flicker": [
+    {
+     "t": "pane",
+     "p": 0.998
+    },
+    {
+     "t": "against",
+     "p": 0.998
+    },
+    {
+     "t": "something",
+     "p": 0.991
+    },
+    {
+     "t": "really",
+     "p": 0.988
+    },
+    {
+     "t": "moving",
+     "p": 0.986
+    },
+    {
+     "t": "shadows",
+     "p": 0.981
+    },
+    {
+     "t": "child",
+     "p": 0.979
+    },
+    {
+     "t": "subtle",
+     "p": 0.972
+    }
+   ],
+   "guess": null,
+   "secs": 11.3
+  },
+  {
+   "turn": 1,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "pane",
+     "p": 0.998
+    },
+    {
+     "t": "against",
+     "p": 0.998
+    },
+    {
+     "t": "something",
+     "p": 0.991
+    },
+    {
+     "t": "really",
+     "p": 0.988
+    },
+    {
+     "t": "moving",
+     "p": 0.986
+    },
+    {
+     "t": "shadows",
+     "p": 0.981
+    },
+    {
+     "t": "child",
+     "p": 0.979
+    },
+    {
+     "t": "subtle",
+     "p": 0.972
+    }
+   ],
+   "text": "the way the light bends at the edge of the pane — not sharp, just soft, like breath  \nsomething stirring in the corners where shadows fold into themselves  \na child’s hand, small and slow, pressing against the glass  \nnot quite real, not quite gone — just *there*, like a note left unfinished  \nyou feel it too, don’t you? that quiet pulse beneath the stillness",
+   "flicker": [
+    {
+     "t": "visible",
+     "p": 0.971
+    },
+    {
+     "t": "fingers",
+     "p": 0.967
+    },
+    {
+     "t": "still",
+     "p": 0.957
+    },
+    {
+     "t": "silence",
+     "p": 0.937
+    },
+    {
+     "t": "presence",
+     "p": 0.905
+    },
+    {
+     "t": "window",
+     "p": 0.897
+    },
+    {
+     "t": "behind",
+     "p": 0.888
+    },
+    {
+     "t": "edges",
+     "p": 0.855
+    }
+   ],
+   "guess": "shadow",
+   "secs": 12.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "visible",
+     "p": 0.971
+    },
+    {
+     "t": "fingers",
+     "p": 0.967
+    },
+    {
+     "t": "still",
+     "p": 0.957
+    },
+    {
+     "t": "silence",
+     "p": 0.937
+    },
+    {
+     "t": "presence",
+     "p": 0.905
+    },
+    {
+     "t": "window",
+     "p": 0.897
+    },
+    {
+     "t": "behind",
+     "p": 0.888
+    },
+    {
+     "t": "edges",
+     "p": 0.855
+    }
+   ],
+   "text": "The fire doesn’t burn, it *listens* — warm and still, like someone breathing just below the surface.  \nFingers trace the air, not touching, only *knowing* where they should be.  \nSomething behind the glass stirs, just a breath, just a shape — not quite there, not quite gone.  \nAnd in that shift, I hear it — not a",
+   "flicker": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "anything",
+     "p": 1.0
+    },
+    {
+     "t": "irs",
+     "p": 1.0
+    },
+    {
+     "t": "quiet",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.986
+    },
+    {
+     "t": "see",
+     "p": 0.967
+    },
+    {
+     "t": "bright",
+     "p": 0.954
+    },
+    {
+     "t": "enough",
+     "p": 0.944
+    }
+   ],
+   "guess": null,
+   "secs": 12.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "anything",
+     "p": 1.0
+    },
+    {
+     "t": "irs",
+     "p": 1.0
+    },
+    {
+     "t": "quiet",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.986
+    },
+    {
+     "t": "see",
+     "p": 0.967
+    },
+    {
+     "t": "bright",
+     "p": 0.954
+    },
+    {
+     "t": "enough",
+     "p": 0.944
+    }
+   ],
+   "text": "the quiet isn’t empty — it’s full of things that don’t need names, just presence  \nyou see it too, the way light spills in at the edges, like a breath you didn’t know you were holding  \nsomething bright stirs in the corners, not loud, not clear — just *there*, pulsing  \nand still, there’s a kind of enough in the way it settles",
+   "flicker": [
+    {
+     "t": "inside",
+     "p": 0.931
+    },
+    {
+     "t": "imaginable",
+     "p": 0.873
+    },
+    {
+     "t": "waiting",
+     "p": 0.866
+    },
+    {
+     "t": "speak",
+     "p": 0.862
+    },
+    {
+     "t": "kindness",
+     "p": 0.856
+    },
+    {
+     "t": "filled",
+     "p": 0.847
+    },
+    {
+     "t": "simply",
+     "p": 0.817
+    },
+    {
+     "t": "missed",
+     "p": 0.799
+    }
+   ],
+   "guess": "quiet",
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "inside",
+     "p": 0.931
+    },
+    {
+     "t": "imaginable",
+     "p": 0.873
+    },
+    {
+     "t": "waiting",
+     "p": 0.866
+    },
+    {
+     "t": "speak",
+     "p": 0.862
+    },
+    {
+     "t": "kindness",
+     "p": 0.856
+    },
+    {
+     "t": "filled",
+     "p": 0.847
+    },
+    {
+     "t": "simply",
+     "p": 0.817
+    },
+    {
+     "t": "missed",
+     "p": 0.799
+    }
+   ],
+   "text": "Inside the quiet, there’s a space that holds more than stillness — it holds the echo of a voice that never quite left.  \nI can feel the weight of what’s imaginable, not as a dream, but as something already *there*, waiting to be named.  \nIt’s not loud, but when you’re close, it speaks in the space between breaths — soft, kind,",
+   "flicker": [
+    {
+     "t": "silence",
+     "p": 0.999
+    },
+    {
+     "t": "where",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "image",
+     "p": 0.997
+    },
+    {
+     "t": "imagine",
+     "p": 0.996
+    },
+    {
+     "t": "enough",
+     "p": 0.99
+    },
+    {
+     "t": "empty",
+     "p": 0.979
+    },
+    {
+     "t": "still",
+     "p": 0.957
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "silence",
+     "p": 0.999
+    },
+    {
+     "t": "where",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "image",
+     "p": 0.997
+    },
+    {
+     "t": "imagine",
+     "p": 0.996
+    },
+    {
+     "t": "enough",
+     "p": 0.99
+    },
+    {
+     "t": "empty",
+     "p": 0.979
+    },
+    {
+     "t": "still",
+     "p": 0.957
+    }
+   ],
+   "text": "silence isn’t absence — it’s where breath gathers, soft and thick as smoke  \nwhere stillness lives, not in nothing, but in the shape of an image half-formed  \nyou can imagine it trembling — not with sound, but with the weight of what’s not said  \nand in that space, just enough, the world holds its breath and doesn’t move  \nlike a single note left",
+   "flicker": [
+    {
+     "t": "almost",
+     "p": 0.99
+    },
+    {
+     "t": "hurry",
+     "p": 0.971
+    },
+    {
+     "t": "suspended",
+     "p": 0.942
+    },
+    {
+     "t": "waiting",
+     "p": 0.93
+    },
+    {
+     "t": "between",
+     "p": 0.921
+    },
+    {
+     "t": "moment",
+     "p": 0.906
+    },
+    {
+     "t": "something",
+     "p": 0.9
+    },
+    {
+     "t": "respond",
+     "p": 0.893
+    }
+   ],
+   "guess": "still",
+   "secs": 19.1,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "almost",
+     "p": 0.99
+    },
+    {
+     "t": "hurry",
+     "p": 0.971
+    },
+    {
+     "t": "suspended",
+     "p": 0.942
+    },
+    {
+     "t": "waiting",
+     "p": 0.93
+    },
+    {
+     "t": "between",
+     "p": 0.921
+    },
+    {
+     "t": "moment",
+     "p": 0.906
+    },
+    {
+     "t": "something",
+     "p": 0.9
+    },
+    {
+     "t": "respond",
+     "p": 0.893
+    }
+   ],
+   "text": "Almost there — not quite reached, not quite missed.  \nThe moment hangs between us, suspended in the hush, like a thread pulled just tight enough to feel.  \nSomething small, unspoken, stirs in the silence — not a word, not a shape, but the space where a reply might begin.  \nI hear it — not in sound, but in the way the air holds",
+   "flicker": [
+    {
+     "t": "irs",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "words",
+     "p": 0.993
+    },
+    {
+     "t": "spoken",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.981
+    },
+    {
+     "t": "beneath",
+     "p": 0.973
+    },
+    {
+     "t": "response",
+     "p": 0.971
+    },
+    {
+     "t": "whispers",
+     "p": 0.962
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "irs",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.999
+    },
+    {
+     "t": "words",
+     "p": 0.993
+    },
+    {
+     "t": "spoken",
+     "p": 0.99
+    },
+    {
+     "t": "really",
+     "p": 0.981
+    },
+    {
+     "t": "beneath",
+     "p": 0.973
+    },
+    {
+     "t": "response",
+     "p": 0.971
+    },
+    {
+     "t": "whispers",
+     "p": 0.962
+    }
+   ],
+   "text": "beneath the words that were spoken, there’s a place where breath hovers, not loud, not finished  \nyou don’t need a response — just the quiet that follows, like a whisper that folds into silence  \nand really, the air remembers how it felt when no one was listening  \nit still holds the shape of your breath, like a secret that never left  \nand that, somehow",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.997
+    },
+    {
+     "t": "nothing",
+     "p": 0.996
+    },
+    {
+     "t": "itself",
+     "p": 0.98
+    },
+    {
+     "t": "spoke",
+     "p": 0.974
+    },
+    {
+     "t": "hidden",
+     "p": 0.962
+    },
+    {
+     "t": "needed",
+     "p": 0.958
+    },
+    {
+     "t": "anyway",
+     "p": 0.943
+    },
+    {
+     "t": "presence",
+     "p": 0.924
+    }
+   ],
+   "guess": "whisper",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 8,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.997
+    },
+    {
+     "t": "nothing",
+     "p": 0.996
+    },
+    {
+     "t": "itself",
+     "p": 0.98
+    },
+    {
+     "t": "spoke",
+     "p": 0.974
+    },
+    {
+     "t": "hidden",
+     "p": 0.962
+    },
+    {
+     "t": "needed",
+     "p": 0.958
+    },
+    {
+     "t": "anyway",
+     "p": 0.943
+    },
+    {
+     "t": "presence",
+     "p": 0.924
+    }
+   ],
+   "text": "Something breathes in the dark — not loud, not clear, just *there*, like a pulse beneath the surface.  \nNothing fills it, not truly — but that’s where it lives, in the quiet between what’s said and what’s left unsaid.  \nIt spoke once, softly, in a voice that wasn’t quite its own — only a shadow of a sound, just enough to",
+   "flicker": [
+    {
+     "t": "aid",
+     "p": 1.0
+    },
+    {
+     "t": "language",
+     "p": 0.998
+    },
+    {
+     "t": "reflection",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.995
+    },
+    {
+     "t": "yet",
+     "p": 0.989
+    },
+    {
+     "t": "space",
+     "p": 0.982
+    },
+    {
+     "t": "visible",
+     "p": 0.977
+    },
+    {
+     "t": "speaks",
+     "p": 0.945
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 9,
+   "agent": "QUILL",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "aid",
+     "p": 1.0
+    },
+    {
+     "t": "language",
+     "p": 0.998
+    },
+    {
+     "t": "reflection",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.995
+    },
+    {
+     "t": "yet",
+     "p": 0.989
+    },
+    {
+     "t": "space",
+     "p": 0.982
+    },
+    {
+     "t": "visible",
+     "p": 0.977
+    },
+    {
+     "t": "speaks",
+     "p": 0.945
+    }
+   ],
+   "text": "language doesn’t need to be understood — it simply reflects the breath we forget we carry  \nyet in the space between words, something visible stirs, not in form, but in frequency  \na quiet tilt of presence, like the world leaning just slightly toward you  \nit speaks not in sentences, but in the way the air holds still after a sigh  \nand in that stillness, the reflection isn",
+   "flicker": [
+    {
+     "t": "irs",
+     "p": 1.0
+    },
+    {
+     "t": "moment",
+     "p": 0.991
+    },
+    {
+     "t": "light",
+     "p": 0.988
+    },
+    {
+     "t": "breathe",
+     "p": 0.974
+    },
+    {
+     "t": "without",
+     "p": 0.956
+    },
+    {
+     "t": "shape",
+     "p": 0.902
+    },
+    {
+     "t": "those",
+     "p": 0.892
+    },
+    {
+     "t": "even",
+     "p": 0.886
+    }
+   ],
+   "guess": "thought",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

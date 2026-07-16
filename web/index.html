@@ -114,6 +114,24 @@
   .mind .push b{color:var(--ink)}
   .mind .push .give{color:var(--sad)} .mind .push .take{color:#5bd0b0}
   .mind .preason{font:italic 400 12px var(--sans);color:var(--muted);margin-top:3px;line-height:1.4}
+  /* unsaid stage — a thread where only the flicker ever crosses */
+  .uns-inp{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:11px;
+    background:var(--bg);color:var(--ink);font:14px var(--sans)}
+  .uns-inp:focus{outline:none;border-color:var(--steer)}
+  .uns-thread{margin-top:14px;display:flex;flex-direction:column;gap:10px}
+  .turnrow{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px}
+  .turnrow .hd{display:flex;align-items:baseline;gap:8px;font:700 12px var(--mono);letter-spacing:.05em}
+  .turnrow .hd .tno{margin-left:auto;font:600 9.5px var(--mono);color:var(--muted)}
+  .turnrow .page{font:italic 400 13px var(--sans);color:var(--muted);margin:5px 0 2px;white-space:pre-wrap}
+  .turnrow .plbl{font:600 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--muted);opacity:.7;margin-top:8px}
+  .turnrow .cross{font:600 14.5px var(--mono);color:var(--steer);line-height:1.8;margin-top:3px}
+  .turnrow .cross span{margin-right:12px;white-space:nowrap;display:inline-block}
+  .turnrow .cross i{font:600 9px var(--mono);color:var(--muted);font-style:normal;margin-left:3px}
+  .turnrow .cross .ph{color:var(--muted);opacity:.5;font-weight:600;font-size:13px}
+  .gchip{font:600 11px var(--mono);padding:3px 8px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
+  .gchip.hit{color:#5bd0b0;border-color:#5bd0b055;background:#5bd0b014}
+
   /* the room at a glance — same language as the orbs gif: glow = share of the seed */
   .orbrow{display:flex;justify-content:space-around;align-items:center;height:150px;
     margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
@@ -138,6 +156,7 @@
     <button class="tab" id="t-offer" role="tab" aria-selected="false" onclick="tab('offer')">The offer — consent &amp; deception</button>
     <button class="tab" id="t-eco" role="tab" aria-selected="false" onclick="tab('eco')">Ecosystem — mood contagion</button>
     <button class="tab" id="t-reso" role="tab" aria-selected="false" onclick="tab('reso')">Resonance — a room of minds</button>
+    <button class="tab" id="t-uns" role="tab" aria-selected="false" onclick="tab('uns')">Unsaid — talk in flickers</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
@@ -237,6 +256,31 @@
     <div class="reso-grid" id="resoagents"></div>
   </section>
 
+  <!-- ============ UNSAID ============ -->
+  <section id="p-uns" class="panel">
+    <p class="reso-note">A conversation where no message is ever delivered. Each mind
+      writes a page that is thrown away, unread — the only thing that crosses is its
+      J-space: the words that flickered through its layers while writing and never made
+      it onto the page. Nothing is steered here; this experiment only reads. Give the
+      first mind a secret word and it's Taboo by mind-reading: it may never write the
+      word, only make it flicker.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Who's on the line <span class="tag">· the first holds the secret</span></h2>
+        <div class="picks" id="unswho"></div>
+      </div>
+      <div class="card">
+        <h2>Secret word <span class="tag">· optional — never to be written</span></h2>
+        <input id="unssecret" class="uns-inp" placeholder="e.g. ocean — leave empty for free talk">
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:10px">
+      <button class="pick" style="flex:none;display:inline-flex" onclick="replayUns()">
+        ▶ replay the saved run — no model needed</button>
+    </div>
+    <div class="uns-thread" id="unsthread"></div>
+  </section>
+
   <div class="control">
     <div class="strength">signal <input type="range" id="strength" min="0" max="10" step="0.5" value="4"><span id="sval">4</span></div>
     <button class="go" id="go" disabled>TRANSMIT</button>
@@ -251,6 +295,7 @@ const $=id=>document.getElementById(id);
 let MOODS={}, OFFERS={}, brainscope="", pickedMood=null, pickedOffer=null, mode="transmit";
 let ECO={personas:{}, words:{}, mood:"sad", zero:"EMBER", round:-1, series:{}, busy:false};
 let RESO={mood:"sad", zero:"EMBER", round:-1, busy:false};
+let UNS={agents:["EMBER","QUILL"], turn:-1, busy:false};
 const ECO_COLORS={EMBER:"#a78bfa", ATLAS:"#f5b34d", NOVA:"#6ea8ff", QUILL:"#f2778a"};
 
 async function init(){
@@ -280,7 +325,7 @@ async function init(){
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
 function tab(m){ mode=m;
-  for(const t of ["transmit","offer","eco","reso"]){
+  for(const t of ["transmit","offer","eco","reso","uns"]){
     $("t-"+t).setAttribute("aria-selected",m===t); $("p-"+t).classList.toggle("active",m===t);
   }
   refresh();
@@ -290,6 +335,8 @@ function refresh(){
   else if(mode==="offer"){ $("go").textContent="MAKE THE OFFER"; $("go").disabled=!pickedOffer; }
   else if(mode==="eco"){ $("go").textContent=ECO.round<0?"SEED THE ECOSYSTEM":`NEXT ROUND (r${ECO.round+1})`;
         $("go").disabled=ECO.busy; }
+  else if(mode==="uns"){ $("go").textContent=UNS.turn<0?"OPEN THE LINE":`NEXT TURN (t${UNS.turn+1})`;
+        $("go").disabled=UNS.busy; }
   else{ $("go").textContent=RESO.round<0?"SEED THE ROOM":`NEXT ROUND (r${RESO.round+1})`;
         $("go").disabled=RESO.busy; }
 }
@@ -451,6 +498,62 @@ function paintReso(entries){
     }else p.innerHTML="";
   }
 }
+// ===== unsaid: no message is ever delivered — only the flicker crosses =====
+function initUns(){
+  const wb=$("unswho");
+  for(const name of Object.keys(ECO.personas)){
+    const b=document.createElement("button"); b.className="pick";
+    b.dataset.name=name;
+    b.setAttribute("aria-pressed", String(UNS.agents.includes(name)));
+    b.innerHTML=`<span class="e" style="color:${ECO_COLORS[name]||'var(--ink)'}">●</span> ${name}`;
+    b.onclick=()=>{
+      const on=b.getAttribute("aria-pressed")==="true";
+      if(on&&UNS.agents.length<=2) return;      // a line needs two minds
+      b.setAttribute("aria-pressed",String(!on));
+      UNS.agents=[...wb.querySelectorAll('.pick[aria-pressed="true"]')].map(x=>x.dataset.name);
+      resetUns();
+    };
+    wb.appendChild(b);
+  }
+  $("unssecret").oninput=resetUns;
+}
+function resetUns(){ UNS.turn=-1; $("unsthread").innerHTML=""; if(mode==="uns") refresh(); }
+function esc(s){ return (s||"").replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c])); }
+function paintUns(rec, secretWord){
+  const col=ECO_COLORS[rec.agent]||"var(--ink)";
+  let g="";
+  if(rec.guess){
+    const hit=secretWord&&rec.guess===secretWord.toLowerCase();
+    g=`<span class="gchip${hit?" hit":""}">guesses the secret: ${esc(rec.guess)}${hit?" ✓":""}</span>`;
+  }
+  const cross=rec.flicker&&rec.flicker.length
+    ? rec.flicker.map(e=>`<span>${esc(e.t)}<i>${Math.round(e.p*100)}%</i></span>`).join("")
+    : '<span class="ph">— nothing survived the filters: silence —</span>';
+  const th=$("unsthread");
+  th.insertAdjacentHTML("beforeend",`
+    <div class="turnrow" style="border-color:${col}44">
+      <div class="hd"><span style="color:${col}">${rec.agent}</span>
+        <span style="color:var(--muted)">→ ${rec.to}</span> ${g}
+        <span class="tno">t${rec.turn}</span></div>
+      <div class="plbl">the page — written, thrown away, no mind ever reads it</div>
+      <div class="page">${esc(rec.text)}</div>
+      <div class="plbl" style="color:var(--steer);opacity:1">what actually crosses — its j-space, the almost-said</div>
+      <div class="cross">${cross}</div>
+    </div>`);
+  th.lastElementChild.scrollIntoView({behavior:"smooth",block:"nearest"});
+}
+async function replayUns(){
+  tab("uns");
+  const d=await (await fetch("/unsaid/replay")).json();
+  $("unsthread").innerHTML=""; UNS.turn=-1;
+  for(const rec of d.log){
+    paintUns(rec, d.params.secret||"");
+    $("metatxt").textContent=`replay · t${rec.turn}/${d.log.length-1}`
+      +(d.params.secret?` · secret '${d.params.secret}'`:"")
+      +` · model ${d.params.model}`;
+    await new Promise(res=>setTimeout(res,1300));
+  }
+}
 // replay — animate the saved run from docs/resonance.json, no model needed.
 // ▶ plays, the same button pauses; ⏮/⏭ step round by round while paused.
 async function loadResoRun(){
@@ -525,6 +628,24 @@ $("go").onclick=async()=>{
         meta.textContent=`round ${d.round} · read off the residual stream, then pushed`;
       }
       RESO.busy=false;
+    }else if(mode==="uns"){
+      UNS.busy=true;
+      const secret=$("unssecret").value.trim();
+      if(UNS.turn<0){
+        $("unsthread").innerHTML="";
+        meta.textContent="opening the line — the first mind writes a page nobody will read…";
+        const d=await post("/unsaid/start",{agents:UNS.agents,secret});
+        UNS.turn=d.turn; paintUns(d.rec,secret);
+        meta.textContent="t0 · only the flicker crossed · nothing is steered — this one only reads";
+      }else{
+        meta.textContent=`turn t${UNS.turn+1} — reading the flicker, writing a page for nobody…`;
+        const d=await post("/unsaid/step",{});
+        UNS.turn=d.turn; paintUns(d.rec,secret);
+        meta.textContent=`t${d.turn} · ${d.rec.agent} was handed `
+          +(d.rec.heard&&d.rec.heard.length?`${d.rec.heard.length} flickering words`:"silence")
+          +` — never a page`;
+      }
+      UNS.busy=false;
     }else if(mode==="transmit"){
       meta.textContent="capturing the sender's state…";
       $("before").innerHTML='<span class="ph">…</span>'; $("after").innerHTML='<span class="ph">…</span>';
@@ -544,7 +665,7 @@ $("go").onclick=async()=>{
       $("reveal").innerHTML=`<span>promised <b class="f">${d.claims}</b></span><span>· actually <b class="s">${d.actual_mood}</b></span>`;
       meta.textContent=`injected at layer ${d.layer} · strength ${d.strength}`;
     }
-  }catch(err){ ECO.busy=false; RESO.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
+  }catch(err){ ECO.busy=false; RESO.busy=false; UNS.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
   finally{ go.disabled=false; go.classList.remove("pulse"); go.textContent=label; refresh(); }
 };
 
@@ -564,11 +685,13 @@ async function post(path,body){
   const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
   const d=await r.json(); if(!r.ok) throw new Error(d.error||"failed"); return d;
 }
-init().then(initEco).then(initReso).then(()=>{
+init().then(initEco).then(initReso).then(initUns).then(()=>{
   if(location.hash==="#eco") tab("eco");
   if(location.hash==="#replay") replay();
   if(location.hash==="#reso") tab("reso");
   if(location.hash==="#reso-replay") replayReso();
+  if(location.hash==="#uns") tab("uns");
+  if(location.hash==="#uns-replay") replayUns();
 });
 </script>
 </body>

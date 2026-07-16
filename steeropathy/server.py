@@ -21,6 +21,7 @@ from . import ecosystem as eco_mod
 from . import offer as offers_mod
 from . import resonance as reso_mod
 from . import transmit as core
+from . import unsaid as uns_mod
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
 WEB = Path(__file__).resolve().parent.parent / "web"
@@ -33,6 +34,10 @@ ECO_LOCK = threading.Lock()
 # same single-room story for resonance: one live room, one lock
 RESO: reso_mod.Reso | None = None
 RESO_LOCK = threading.Lock()
+
+# and for unsaid: one live line, one lock
+UNS: uns_mod.Unsaid | None = None
+UNS_LOCK = threading.Lock()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -71,13 +76,20 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, saved.read_bytes())
             return self._send(404, {"error": "no saved run — "
                                     "python -m steeropathy.resonance first"})
+        if path == "/unsaid/replay":
+            saved = uns_mod.HERE / "docs" / "unsaid.json"
+            if saved.exists():
+                return self._send(200, saved.read_bytes())
+            return self._send(404, {"error": "no saved run — "
+                                    "python -m steeropathy.unsaid first"})
         self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
-        global ECO, RESO
+        global ECO, RESO, UNS
         path = urlparse(self.path).path
         if path not in ("/transmit", "/offer", "/eco/start", "/eco/step",
-                        "/resonance/start", "/resonance/step"):
+                        "/resonance/start", "/resonance/step",
+                        "/unsaid/start", "/unsaid/step"):
             return self._send(404, {"error": "not found"})
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
@@ -126,6 +138,26 @@ class Handler(BaseHTTPRequestHandler):
                         RESO.strength = float(req["strength"])
                     entries = RESO.step()
                 return self._send(200, {"round": RESO.rnd, "entries": entries})
+            if path == "/unsaid/start":
+                # no steering anywhere in this one — the line only reads.
+                # step() runs the opening turn so the tab paints immediately.
+                with UNS_LOCK:
+                    UNS = uns_mod.Unsaid(
+                        HOST, req.get("agents", ["EMBER", "QUILL"]),
+                        secret=(req.get("secret") or "").strip() or None,
+                        topk=int(req.get("topk", 8)))
+                    rec = UNS.step()
+                return self._send(200, {"turn": UNS.turn,
+                                        "agents": UNS.agents,
+                                        "secret": bool(UNS.secret),
+                                        "rec": rec})
+            if path == "/unsaid/step":
+                with UNS_LOCK:
+                    if UNS is None:
+                        return self._send(400, {"error": "no line open — "
+                                                "POST /unsaid/start first"})
+                    rec = UNS.step()
+                return self._send(200, {"turn": UNS.turn, "rec": rec})
             if path == "/transmit":
                 result = core.transmit(HOST, req["mood"],
                                        req.get("question", core.RECEIVER_QUESTION),

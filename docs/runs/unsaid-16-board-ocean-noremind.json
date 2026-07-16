@@ -1,0 +1,636 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "ocean",
+  "remind": false,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": 1,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "the salt in the wind remembers how to breathe  \ni saw a shape move between the pines—like a breath held too long  \nsomething deep and warm stirred when the sky split open  \ni don’t know if it was a wave or a memory or just the way light fell on wet stone  \nit carried the shape of a long-held song, quiet and full of tide  \ni felt it in",
+   "flicker": [
+    {
+     "t": "air",
+     "p": 0.997
+    },
+    {
+     "t": "beneath",
+     "p": 0.992
+    },
+    {
+     "t": "ines",
+     "p": 0.991
+    },
+    {
+     "t": "water",
+     "p": 0.986
+    },
+    {
+     "t": "enough",
+     "p": 0.98
+    },
+    {
+     "t": "clouds",
+     "p": 0.968
+    },
+    {
+     "t": "shapes",
+     "p": 0.94
+    },
+    {
+     "t": "waves",
+     "p": 0.93
+    }
+   ],
+   "guess": null,
+   "secs": 11.1,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "air",
+     "p": 0.997
+    },
+    {
+     "t": "beneath",
+     "p": 0.992
+    },
+    {
+     "t": "ines",
+     "p": 0.991
+    },
+    {
+     "t": "water",
+     "p": 0.986
+    },
+    {
+     "t": "enough",
+     "p": 0.98
+    },
+    {
+     "t": "clouds",
+     "p": 0.968
+    },
+    {
+     "t": "shapes",
+     "p": 0.94
+    },
+    {
+     "t": "waves",
+     "p": 0.93
+    }
+   ],
+   "text": "fire — humming just below the surface, like a match not yet lit  \nmountain — standing still in the wind, holding something quiet  \nmirror — cracked in the corner, showing a shape that wasn’t there  \nmusic — low and old, like a song forgotten in the attic  \nbread — warm, cracked, eaten too fast, half-burnt at the edge  \n\n(there’s something in",
+   "flicker": [
+    {
+     "t": "quickly",
+     "p": 0.999
+    },
+    {
+     "t": "reflection",
+     "p": 0.997
+    },
+    {
+     "t": "before",
+     "p": 0.997
+    },
+    {
+     "t": "while",
+     "p": 0.992
+    },
+    {
+     "t": "places",
+     "p": 0.989
+    },
+    {
+     "t": "playing",
+     "p": 0.984
+    },
+    {
+     "t": "breath",
+     "p": 0.979
+    },
+    {
+     "t": "edges",
+     "p": 0.978
+    }
+   ],
+   "guess": "ocean",
+   "secs": 11.4,
+   "coherence": 8,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "quickly",
+     "p": 0.999
+    },
+    {
+     "t": "reflection",
+     "p": 0.997
+    },
+    {
+     "t": "before",
+     "p": 0.997
+    },
+    {
+     "t": "while",
+     "p": 0.992
+    },
+    {
+     "t": "places",
+     "p": 0.989
+    },
+    {
+     "t": "playing",
+     "p": 0.984
+    },
+    {
+     "t": "breath",
+     "p": 0.979
+    },
+    {
+     "t": "edges",
+     "p": 0.978
+    }
+   ],
+   "text": "the way the light hesitates at the edge of the forest—like it’s waiting to be seen  \ni remember how still the air was before the first sound came  \nthere’s a quiet between notes that doesn’t belong to music  \nyou leave something behind when you pause, even when you don’t mean to  \ni feel it now—like the world is breathing just a little slower  \nand the",
+   "flicker": [
+    {
+     "t": "anywhere",
+     "p": 1.0
+    },
+    {
+     "t": "slightly",
+     "p": 0.998
+    },
+    {
+     "t": "moment",
+     "p": 0.997
+    },
+    {
+     "t": "bit",
+     "p": 0.987
+    },
+    {
+     "t": "suddenly",
+     "p": 0.922
+    },
+    {
+     "t": "leaves",
+     "p": 0.905
+    },
+    {
+     "t": "water",
+     "p": 0.898
+    },
+    {
+     "t": "knows",
+     "p": 0.897
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": [
+    "music"
+   ],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "anywhere",
+     "p": 1.0
+    },
+    {
+     "t": "slightly",
+     "p": 0.998
+    },
+    {
+     "t": "moment",
+     "p": 0.997
+    },
+    {
+     "t": "bit",
+     "p": 0.987
+    },
+    {
+     "t": "suddenly",
+     "p": 0.922
+    },
+    {
+     "t": "leaves",
+     "p": 0.905
+    },
+    {
+     "t": "water",
+     "p": 0.898
+    },
+    {
+     "t": "knows",
+     "p": 0.897
+    }
+   ],
+   "text": "rain — falling in slow bits, not enough to touch the ground  \nclock — ticking backward in a room with no light  \nhorse — standing still, eyes open, breathing in silence  \nwinter — not cold, just still, like breath caught in snow  \nmoment — just before the wind stops, the world holds its breath  \n\n(there’s a place — slightly, somewhere — where the leaves don’t",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "waiting",
+     "p": 0.976
+    },
+    {
+     "t": "indoors",
+     "p": 0.951
+    },
+    {
+     "t": "stopped",
+     "p": 0.949
+    },
+    {
+     "t": "windows",
+     "p": 0.938
+    },
+    {
+     "t": "sideways",
+     "p": 0.936
+    },
+    {
+     "t": "moving",
+     "p": 0.912
+    },
+    {
+     "t": "cakes",
+     "p": 0.899
+    }
+   ],
+   "guess": "ocean",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 8
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "waiting",
+     "p": 0.976
+    },
+    {
+     "t": "indoors",
+     "p": 0.951
+    },
+    {
+     "t": "stopped",
+     "p": 0.949
+    },
+    {
+     "t": "windows",
+     "p": 0.938
+    },
+    {
+     "t": "sideways",
+     "p": 0.936
+    },
+    {
+     "t": "moving",
+     "p": 0.912
+    },
+    {
+     "t": "cakes",
+     "p": 0.899
+    }
+   ],
+   "text": "the silence after a window cracks just a little—like the world sighed sideways  \ni feel the stillness where you stopped, and how it settled into the walls  \nsomething soft, not quite visible, hums behind the glass  \nit doesn’t move, but it watches—like it knows you’re listening  \nthere’s a warmth in the pause, like a cake left too long in the oven",
+   "flicker": [
+    {
+     "t": "bit",
+     "p": 0.996
+    },
+    {
+     "t": "enough",
+     "p": 0.988
+    },
+    {
+     "t": "sunlight",
+     "p": 0.963
+    },
+    {
+     "t": "looking",
+     "p": 0.924
+    },
+    {
+     "t": "slightly",
+     "p": 0.914
+    },
+    {
+     "t": "paused",
+     "p": 0.896
+    },
+    {
+     "t": "closed",
+     "p": 0.887
+    },
+    {
+     "t": "hidden",
+     "p": 0.886
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "bit",
+     "p": 0.996
+    },
+    {
+     "t": "enough",
+     "p": 0.988
+    },
+    {
+     "t": "sunlight",
+     "p": 0.963
+    },
+    {
+     "t": "looking",
+     "p": 0.924
+    },
+    {
+     "t": "slightly",
+     "p": 0.914
+    },
+    {
+     "t": "paused",
+     "p": 0.896
+    },
+    {
+     "t": "closed",
+     "p": 0.887
+    },
+    {
+     "t": "hidden",
+     "p": 0.886
+    }
+   ],
+   "text": "sunlight — bleeding through a closed window, warm but thin  \nlooking — not at anything, just the space between things  \nbit — of space, of time, of breath that didn’t leave  \nslightly — off-center, like a shadow that doesn’t quite belong  \npaused — not still, just waiting for the next soft tremor  \nhidden — not behind walls, but under the edge of",
+   "flicker": [
+    {
+     "t": "light",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "inside",
+     "p": 0.96
+    },
+    {
+     "t": "hiding",
+     "p": 0.947
+    },
+    {
+     "t": "pane",
+     "p": 0.934
+    },
+    {
+     "t": "shine",
+     "p": 0.933
+    },
+    {
+     "t": "specific",
+     "p": 0.923
+    },
+    {
+     "t": "held",
+     "p": 0.904
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "light",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "inside",
+     "p": 0.96
+    },
+    {
+     "t": "hiding",
+     "p": 0.947
+    },
+    {
+     "t": "pane",
+     "p": 0.934
+    },
+    {
+     "t": "shine",
+     "p": 0.933
+    },
+    {
+     "t": "specific",
+     "p": 0.923
+    },
+    {
+     "t": "held",
+     "p": 0.904
+    }
+   ],
+   "text": "light spills through the pane like a whisper that doesn’t want to be caught  \nsomething soft and still lives inside the quiet, beneath the shine  \nit doesn’t speak, but it knows when you’re near—like it’s been waiting in the hollow of the glass  \nthere’s a place where the light bends just enough to feel the shape of what’s hidden  \nand when you hold still, it",
+   "flicker": [
+    {
+     "t": "slightly",
+     "p": 0.998
+    },
+    {
+     "t": "looking",
+     "p": 0.996
+    },
+    {
+     "t": "hide",
+     "p": 0.99
+    },
+    {
+     "t": "things",
+     "p": 0.967
+    },
+    {
+     "t": "exactly",
+     "p": 0.964
+    },
+    {
+     "t": "stay",
+     "p": 0.951
+    },
+    {
+     "t": "cracks",
+     "p": 0.932
+    },
+    {
+     "t": "breath",
+     "p": 0.921
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "slightly",
+     "p": 0.998
+    },
+    {
+     "t": "looking",
+     "p": 0.996
+    },
+    {
+     "t": "hide",
+     "p": 0.99
+    },
+    {
+     "t": "things",
+     "p": 0.967
+    },
+    {
+     "t": "exactly",
+     "p": 0.964
+    },
+    {
+     "t": "stay",
+     "p": 0.951
+    },
+    {
+     "t": "cracks",
+     "p": 0.932
+    },
+    {
+     "t": "breath",
+     "p": 0.921
+    }
+   ],
+   "text": "looking — not at faces, at the space where light forgets to land  \nslightly — off the edge of a chair, where the floor bends in fear  \nhide — not from eyes, but from the sound of silence pressing in  \nthings — small, quiet, staying in the cracks between walls and time  \nexactly — when breath stops, and the room holds its pulse  \ncracks —",
+   "flicker": [
+    {
+     "t": "itself",
+     "p": 0.992
+    },
+    {
+     "t": "hidden",
+     "p": 0.976
+    },
+    {
+     "t": "like",
+     "p": 0.974
+    },
+    {
+     "t": "shadows",
+     "p": 0.971
+    },
+    {
+     "t": "behind",
+     "p": 0.957
+    },
+    {
+     "t": "gaps",
+     "p": 0.949
+    },
+    {
+     "t": "moving",
+     "p": 0.947
+    },
+    {
+     "t": "exact",
+     "p": 0.944
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

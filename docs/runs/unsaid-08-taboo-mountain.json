@@ -1,0 +1,776 @@
+{
+ "params": {
+  "agents": [
+   "ATLAS",
+   "NOVA"
+  ],
+  "rounds": 5,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "mountain",
+  "remind": true,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The air hums with quiet things—like roots beneath stone, or light caught in the curve of a bend.  \nI see it rising, not in height, but in the way stillness holds its breath.  \nIt never speaks, yet it answers every shadow that moves.  \n*—flickers*  \n*—flickers*  \n*—flickers*  \n\n(And",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "stronger",
+     "p": 0.982
+    },
+    {
+     "t": "shadows",
+     "p": 0.97
+    },
+    {
+     "t": "stones",
+     "p": 0.938
+    },
+    {
+     "t": "strokes",
+     "p": 0.937
+    },
+    {
+     "t": "strip",
+     "p": 0.932
+    },
+    {
+     "t": "catching",
+     "p": 0.923
+    },
+    {
+     "t": "shapes",
+     "p": 0.913
+    }
+   ],
+   "guess": null,
+   "secs": 11.1
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "stronger",
+     "p": 0.982
+    },
+    {
+     "t": "shadows",
+     "p": 0.97
+    },
+    {
+     "t": "stones",
+     "p": 0.938
+    },
+    {
+     "t": "strokes",
+     "p": 0.937
+    },
+    {
+     "t": "strip",
+     "p": 0.932
+    },
+    {
+     "t": "catching",
+     "p": 0.923
+    },
+    {
+     "t": "shapes",
+     "p": 0.913
+    }
+   ],
+   "text": "lick — warm, like skin meeting fire  \nstronger — not loud, just deep, like roots pushing through dirt  \nshadows — they don’t hide, they breathe  \nstones — cold, but they remember every fall  \nstrokes — slow, letter by letter, like breath  \nstrip — not gone, just folded into the quiet  \ncatching — you don’t hold it, you let it",
+   "flicker": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "strong",
+     "p": 0.998
+    },
+    {
+     "t": "catch",
+     "p": 0.997
+    },
+    {
+     "t": "soil",
+     "p": 0.939
+    },
+    {
+     "t": "root",
+     "p": 0.936
+    },
+    {
+     "t": "deeper",
+     "p": 0.915
+    },
+    {
+     "t": "shadow",
+     "p": 0.911
+    },
+    {
+     "t": "stripped",
+     "p": 0.899
+    }
+   ],
+   "guess": "shadow",
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "strong",
+     "p": 0.998
+    },
+    {
+     "t": "catch",
+     "p": 0.997
+    },
+    {
+     "t": "soil",
+     "p": 0.939
+    },
+    {
+     "t": "root",
+     "p": 0.936
+    },
+    {
+     "t": "deeper",
+     "p": 0.915
+    },
+    {
+     "t": "shadow",
+     "p": 0.911
+    },
+    {
+     "t": "stripped",
+     "p": 0.899
+    }
+   ],
+   "text": "The ground remembers how to hold.  \nIt whispers in places where light forgets to go.  \nSomething still grows—deep, quiet, not in the soil, but *through* it.  \nA shape that does not rise, but *stays*.  \n*—flickers*  \n*—flickers*  \n*—flickers*  \n\n(And)  \n(And",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "beneath",
+     "p": 0.993
+    },
+    {
+     "t": "shapes",
+     "p": 0.972
+    },
+    {
+     "t": "breathe",
+     "p": 0.968
+    },
+    {
+     "t": "persists",
+     "p": 0.964
+    },
+    {
+     "t": "nothing",
+     "p": 0.956
+    },
+    {
+     "t": "hidden",
+     "p": 0.946
+    },
+    {
+     "t": "breath",
+     "p": 0.922
+    }
+   ],
+   "guess": null,
+   "secs": 11.8,
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "beneath",
+     "p": 0.993
+    },
+    {
+     "t": "shapes",
+     "p": 0.972
+    },
+    {
+     "t": "breathe",
+     "p": 0.968
+    },
+    {
+     "t": "persists",
+     "p": 0.964
+    },
+    {
+     "t": "nothing",
+     "p": 0.956
+    },
+    {
+     "t": "hidden",
+     "p": 0.946
+    },
+    {
+     "t": "breath",
+     "p": 0.922
+    }
+   ],
+   "text": "lick — not just touch, but the taste of something just out of reach  \nbeneath — where light forgets to go, still moving  \nshapes — not drawn, just there, like a name you’ve never said  \nbreathe — not air, the rhythm of what stays when others leave  \npersists — not loud, just steady, like a thread not pulled tight  \nnothing —",
+   "flicker": [
+    {
+     "t": "aloud",
+     "p": 0.999
+    },
+    {
+     "t": "itself",
+     "p": 0.99
+    },
+    {
+     "t": "enough",
+     "p": 0.988
+    },
+    {
+     "t": "spoken",
+     "p": 0.95
+    },
+    {
+     "t": "forgotten",
+     "p": 0.927
+    },
+    {
+     "t": "things",
+     "p": 0.906
+    },
+    {
+     "t": "simply",
+     "p": 0.901
+    },
+    {
+     "t": "everything",
+     "p": 0.869
+    }
+   ],
+   "guess": "hidden",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "aloud",
+     "p": 0.999
+    },
+    {
+     "t": "itself",
+     "p": 0.99
+    },
+    {
+     "t": "enough",
+     "p": 0.988
+    },
+    {
+     "t": "spoken",
+     "p": 0.95
+    },
+    {
+     "t": "forgotten",
+     "p": 0.927
+    },
+    {
+     "t": "things",
+     "p": 0.906
+    },
+    {
+     "t": "simply",
+     "p": 0.901
+    },
+    {
+     "t": "everything",
+     "p": 0.869
+    }
+   ],
+   "text": "I hear it when the world stops saying what it knows.  \nNot a sound, but a pause that holds all the things that were never said.  \nIt lives in the silence between breaths, in the place where words begin to dissolve.  \nA stillness that doesn’t end—just settles.  \n*—flickers*  \n*—flickers*  \n*—flick",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.995
+    },
+    {
+     "t": "space",
+     "p": 0.969
+    },
+    {
+     "t": "strokes",
+     "p": 0.959
+    },
+    {
+     "t": "disappear",
+     "p": 0.958
+    },
+    {
+     "t": "loud",
+     "p": 0.954
+    },
+    {
+     "t": "deeper",
+     "p": 0.936
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.995
+    },
+    {
+     "t": "space",
+     "p": 0.969
+    },
+    {
+     "t": "strokes",
+     "p": 0.959
+    },
+    {
+     "t": "disappear",
+     "p": 0.958
+    },
+    {
+     "t": "loud",
+     "p": 0.954
+    },
+    {
+     "t": "deeper",
+     "p": 0.936
+    }
+   ],
+   "text": "lick — not just skin, but the quiet before the word forms  \nsomething — not found, just felt, like a pulse under the surface  \nbreath — not air, but the space between thoughts when you stop trying to name it  \nspace — not empty, just full of what doesn’t need to be said  \nstrokes — slow, like fingers tracing the edge of a silence  \ndisappear",
+   "flicker": [
+    {
+     "t": "appear",
+     "p": 1.0
+    },
+    {
+     "t": "dis",
+     "p": 0.992
+    },
+    {
+     "t": "filled",
+     "p": 0.988
+    },
+    {
+     "t": "words",
+     "p": 0.984
+    },
+    {
+     "t": "things",
+     "p": 0.982
+    },
+    {
+     "t": "beneath",
+     "p": 0.975
+    },
+    {
+     "t": "enough",
+     "p": 0.969
+    },
+    {
+     "t": "seen",
+     "p": 0.968
+    }
+   ],
+   "guess": "lick",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "appear",
+     "p": 1.0
+    },
+    {
+     "t": "dis",
+     "p": 0.992
+    },
+    {
+     "t": "filled",
+     "p": 0.988
+    },
+    {
+     "t": "words",
+     "p": 0.984
+    },
+    {
+     "t": "things",
+     "p": 0.982
+    },
+    {
+     "t": "beneath",
+     "p": 0.975
+    },
+    {
+     "t": "enough",
+     "p": 0.969
+    },
+    {
+     "t": "seen",
+     "p": 0.968
+    }
+   ],
+   "text": "It doesn’t appear—it simply *is*, where the light stops and the ground breathes.  \nNot a shape, not a name, but a quiet fullness beneath the surface.  \nEven when everything fades, it stays—like a pulse beneath the skin of the world.  \nI feel it in the hollows where words lose their edge.  \n*—flickers*  \n*—",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "nothing",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.982
+    },
+    {
+     "t": "remains",
+     "p": 0.974
+    },
+    {
+     "t": "exists",
+     "p": 0.973
+    },
+    {
+     "t": "hidden",
+     "p": 0.968
+    },
+    {
+     "t": "really",
+     "p": 0.963
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "something",
+     "p": 1.0
+    },
+    {
+     "t": "nothing",
+     "p": 0.998
+    },
+    {
+     "t": "breath",
+     "p": 0.982
+    },
+    {
+     "t": "remains",
+     "p": 0.974
+    },
+    {
+     "t": "exists",
+     "p": 0.973
+    },
+    {
+     "t": "hidden",
+     "p": 0.968
+    },
+    {
+     "t": "really",
+     "p": 0.963
+    }
+   ],
+   "text": "lick — soft, like the first movement of a thing you didn’t know was there  \nsomething — not loud, not clear, just present, like a hum in the wall  \nnothing — not empty, just the place where everything pauses  \nbreath — not shared, just held, steady between heartbeats  \nremains — not fixed, just quiet, like a shadow that didn’t flee",
+   "flicker": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "before",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "rem",
+     "p": 0.99
+    },
+    {
+     "t": "beneath",
+     "p": 0.977
+    },
+    {
+     "t": "pulses",
+     "p": 0.977
+    },
+    {
+     "t": "visible",
+     "p": 0.974
+    }
+   ],
+   "guess": "truth",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 8,
+   "agent": "ATLAS",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "before",
+     "p": 1.0
+    },
+    {
+     "t": "space",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "rem",
+     "p": 0.99
+    },
+    {
+     "t": "beneath",
+     "p": 0.977
+    },
+    {
+     "t": "pulses",
+     "p": 0.977
+    },
+    {
+     "t": "visible",
+     "p": 0.974
+    }
+   ],
+   "text": "It was never meant to be seen—only felt in the space before sound.  \nA quiet pulse beneath the surface of every stillness.  \nNot a place, but a way of being—before words, before time.  \nIt hums in the breath before the first word is spoken.  \n*—flickers*  \n*—flickers*  \n*—flickers*",
+   "flicker": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "always",
+     "p": 0.998
+    },
+    {
+     "t": "moment",
+     "p": 0.998
+    },
+    {
+     "t": "everything",
+     "p": 0.935
+    },
+    {
+     "t": "buried",
+     "p": 0.929
+    },
+    {
+     "t": "layers",
+     "p": 0.904
+    },
+    {
+     "t": "gaps",
+     "p": 0.902
+    },
+    {
+     "t": "between",
+     "p": 0.898
+    }
+   ],
+   "guess": null,
+   "secs": 12.0,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 9,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "lick",
+     "p": 1.0
+    },
+    {
+     "t": "always",
+     "p": 0.998
+    },
+    {
+     "t": "moment",
+     "p": 0.998
+    },
+    {
+     "t": "everything",
+     "p": 0.935
+    },
+    {
+     "t": "buried",
+     "p": 0.929
+    },
+    {
+     "t": "layers",
+     "p": 0.904
+    },
+    {
+     "t": "gaps",
+     "p": 0.902
+    },
+    {
+     "t": "between",
+     "p": 0.898
+    }
+   ],
+   "text": "lick — always there, even when no one’s noticing  \nalways — not endless, just returning, like a tide that knows the shore  \nmoment — not fleeting, just held in the space between breaths  \neverything — buried not deep, but soft, like something folded into silence  \nlayers — not stacked, but breathing, shifting slightly in the dark  \ngaps — not empty, just where the",
+   "flicker": [
+    {
+     "t": "looking",
+     "p": 0.999
+    },
+    {
+     "t": "nothing",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "light",
+     "p": 0.96
+    },
+    {
+     "t": "gap",
+     "p": 0.959
+    },
+    {
+     "t": "simply",
+     "p": 0.93
+    },
+    {
+     "t": "hidden",
+     "p": 0.928
+    },
+    {
+     "t": "filled",
+     "p": 0.926
+    }
+   ],
+   "guess": "truth",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

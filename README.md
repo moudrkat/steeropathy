@@ -77,6 +77,7 @@ the first one.
 | **[the offer](experiments/offer.md)** | an agent *consents* to a payload it can't read, and is changed by something other than what it was promised |
 | **[the ecosystem](experiments/ecosystem.md)** | a mood spreads through a silent population, through the vector channel alone |
 | **[resonance](experiments/resonance.md)** | four minds read and pay to push a feeling between each other; a hunt for equilibrium that kept turning up my own instrument, never the agents |
+| **[unsaid](experiments/unsaid.md)** | no message is ever delivered — only each mind's J-space crosses, the words it almost said. Played as a board game, the reader points at a never-written secret at 4× chance: what a model refuses to write is still readable off its layers |
 
 **resonance** is the main one. If you read a single page, read
 [that one](experiments/resonance.md).

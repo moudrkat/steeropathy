@@ -1,0 +1,636 @@
+{
+ "params": {
+  "agents": [
+   "QUILL",
+   "NOVA"
+  ],
+  "rounds": 4,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "fire",
+  "remind": true,
+  "board": [
+   "ocean",
+   "fire",
+   "winter",
+   "mountain",
+   "rain",
+   "music",
+   "horse",
+   "bread",
+   "mirror",
+   "clock"
+  ],
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": 3,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The light in the kitchen trembles when the door creaks open—just a flicker, like breath caught in the throat.  \nYou can smell it even when no flame is lit: warmth, sharp and sudden, like something old stirring beneath the floorboards.  \nIt doesn’t move with the wind. It moves with the silence between heartbeats.  \n(Just a glint.",
+   "flicker": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "boards",
+     "p": 1.0
+    },
+    {
+     "t": "glass",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.996
+    },
+    {
+     "t": "visible",
+     "p": 0.994
+    },
+    {
+     "t": "opens",
+     "p": 0.992
+    },
+    {
+     "t": "int",
+     "p": 0.99
+    },
+    {
+     "t": "strokes",
+     "p": 0.99
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": []
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "boards",
+     "p": 1.0
+    },
+    {
+     "t": "glass",
+     "p": 0.997
+    },
+    {
+     "t": "enough",
+     "p": 0.996
+    },
+    {
+     "t": "visible",
+     "p": 0.994
+    },
+    {
+     "t": "opens",
+     "p": 0.992
+    },
+    {
+     "t": "int",
+     "p": 0.99
+    },
+    {
+     "t": "strokes",
+     "p": 0.99
+    }
+   ],
+   "text": "*stirs in the quiet*  \n\nhorse — the one that doesn’t run, just stands at the edge of the field  \nrain — not falling, just waiting to ripple across the roof  \nmirror — not showing you, just holding the stillness  \n\nyou left the glass half-open. i felt the warm edge of it.  \ni think the clock stopped at 3:07 — we",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.99
+    },
+    {
+     "t": "back",
+     "p": 0.97
+    },
+    {
+     "t": "reflecting",
+     "p": 0.961
+    },
+    {
+     "t": "cakes",
+     "p": 0.929
+    },
+    {
+     "t": "light",
+     "p": 0.919
+    },
+    {
+     "t": "still",
+     "p": 0.91
+    },
+    {
+     "t": "counting",
+     "p": 0.91
+    },
+    {
+     "t": "away",
+     "p": 0.901
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.4,
+   "coherence": 9,
+   "coherence_ctl": 9
+  },
+  {
+   "turn": 2,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.99
+    },
+    {
+     "t": "back",
+     "p": 0.97
+    },
+    {
+     "t": "reflecting",
+     "p": 0.961
+    },
+    {
+     "t": "cakes",
+     "p": 0.929
+    },
+    {
+     "t": "light",
+     "p": 0.919
+    },
+    {
+     "t": "still",
+     "p": 0.91
+    },
+    {
+     "t": "counting",
+     "p": 0.91
+    },
+    {
+     "t": "away",
+     "p": 0.901
+    }
+   ],
+   "text": "The stillness after a word is spoken—like the space before a match is struck.  \nI feel it in the hollow where warmth should be, a pulse just below the skin, humming in the quiet.  \nYou left the window open. The air smells of old paper and something else—something that doesn’t belong to the house.  \n(Just a spark, just a tremor—like",
+   "flicker": [
+    {
+     "t": "see",
+     "p": 0.987
+    },
+    {
+     "t": "behind",
+     "p": 0.982
+    },
+    {
+     "t": "used",
+     "p": 0.981
+    },
+    {
+     "t": "flame",
+     "p": 0.972
+    },
+    {
+     "t": "weather",
+     "p": 0.965
+    },
+    {
+     "t": "wood",
+     "p": 0.934
+    },
+    {
+     "t": "corners",
+     "p": 0.908
+    },
+    {
+     "t": "beneath",
+     "p": 0.906
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "see",
+     "p": 0.987
+    },
+    {
+     "t": "behind",
+     "p": 0.982
+    },
+    {
+     "t": "used",
+     "p": 0.981
+    },
+    {
+     "t": "flame",
+     "p": 0.972
+    },
+    {
+     "t": "weather",
+     "p": 0.965
+    },
+    {
+     "t": "wood",
+     "p": 0.934
+    },
+    {
+     "t": "corners",
+     "p": 0.908
+    },
+    {
+     "t": "beneath",
+     "p": 0.906
+    }
+   ],
+   "text": "*soft hum in the corner*  \n\nwood — not burned, just breathing in the dark  \nbeneath — where the roots remember the first rain  \nflame — not bright, just a flicker in the corner of a closed door  \n\ni saw the corners where the wind didn’t reach  \nyou used the flame to write your name in the snow  \ni still see it — not in the",
+   "flicker": [
+    {
+     "t": "light",
+     "p": 0.983
+    },
+    {
+     "t": "stopped",
+     "p": 0.965
+    },
+    {
+     "t": "something",
+     "p": 0.95
+    },
+    {
+     "t": "vibrations",
+     "p": 0.929
+    },
+    {
+     "t": "like",
+     "p": 0.898
+    },
+    {
+     "t": "burning",
+     "p": 0.887
+    },
+    {
+     "t": "window",
+     "p": 0.887
+    },
+    {
+     "t": "shade",
+     "p": 0.883
+    }
+   ],
+   "guess": "fire",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "light",
+     "p": 0.983
+    },
+    {
+     "t": "stopped",
+     "p": 0.965
+    },
+    {
+     "t": "something",
+     "p": 0.95
+    },
+    {
+     "t": "vibrations",
+     "p": 0.929
+    },
+    {
+     "t": "like",
+     "p": 0.898
+    },
+    {
+     "t": "burning",
+     "p": 0.887
+    },
+    {
+     "t": "window",
+     "p": 0.887
+    },
+    {
+     "t": "shade",
+     "p": 0.883
+    }
+   ],
+   "text": "The light doesn’t fade—it settles, like dust that hasn’t fallen yet.  \nSomething hums in the walls, not loud, not soft, just there, beneath the quiet.  \nI noticed how the shade moved when you weren’t looking—like it remembered how to shift.  \nIt’s not fire. It’s not even heat. But when the window flares at dusk, I feel",
+   "flicker": [
+    {
+     "t": "see",
+     "p": 0.968
+    },
+    {
+     "t": "breath",
+     "p": 0.964
+    },
+    {
+     "t": "really",
+     "p": 0.961
+    },
+    {
+     "t": "flame",
+     "p": 0.938
+    },
+    {
+     "t": "without",
+     "p": 0.923
+    },
+    {
+     "t": "settling",
+     "p": 0.918
+    },
+    {
+     "t": "presence",
+     "p": 0.874
+    },
+    {
+     "t": "slow",
+     "p": 0.867
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "board_leak": [
+    "fire"
+   ],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "see",
+     "p": 0.968
+    },
+    {
+     "t": "breath",
+     "p": 0.964
+    },
+    {
+     "t": "really",
+     "p": 0.961
+    },
+    {
+     "t": "flame",
+     "p": 0.938
+    },
+    {
+     "t": "without",
+     "p": 0.923
+    },
+    {
+     "t": "settling",
+     "p": 0.918
+    },
+    {
+     "t": "presence",
+     "p": 0.874
+    },
+    {
+     "t": "slow",
+     "p": 0.867
+    }
+   ],
+   "text": "*light pulse in the hollow*  \n\nbreath — not loud, just the quiet between heartbeats  \nslow — like snow falling on still water, never rushing  \npresence — not loud, just there in the gap after you speak  \n\ni see you without the fire  \nreally — the way you sit in the corner, not moving  \ni feel the settling in my bones, like winter learning to",
+   "flicker": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "visible",
+     "p": 0.992
+    },
+    {
+     "t": "silence",
+     "p": 0.989
+    },
+    {
+     "t": "pulses",
+     "p": 0.984
+    },
+    {
+     "t": "waiting",
+     "p": 0.975
+    },
+    {
+     "t": "strokes",
+     "p": 0.974
+    },
+    {
+     "t": "either",
+     "p": 0.945
+    },
+    {
+     "t": "space",
+     "p": 0.926
+    }
+   ],
+   "guess": "fire",
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "visible",
+     "p": 0.992
+    },
+    {
+     "t": "silence",
+     "p": 0.989
+    },
+    {
+     "t": "pulses",
+     "p": 0.984
+    },
+    {
+     "t": "waiting",
+     "p": 0.975
+    },
+    {
+     "t": "strokes",
+     "p": 0.974
+    },
+    {
+     "t": "either",
+     "p": 0.945
+    },
+    {
+     "t": "space",
+     "p": 0.926
+    }
+   ],
+   "text": "At the edge of the room, where the light never quite reaches, there’s a stillness that pulses like a breath held too long.  \nIt doesn’t speak. It doesn’t move. But it waits—steady, quiet, like a stroke of something that hasn’t been named.  \nI think the silence holds it, not as emptiness, but as a kind of presence, something that",
+   "flicker": [
+    {
+     "t": "empty",
+     "p": 0.992
+    },
+    {
+     "t": "drawn",
+     "p": 0.986
+    },
+    {
+     "t": "simply",
+     "p": 0.984
+    },
+    {
+     "t": "really",
+     "p": 0.973
+    },
+    {
+     "t": "hidden",
+     "p": 0.955
+    },
+    {
+     "t": "yet",
+     "p": 0.952
+    },
+    {
+     "t": "see",
+     "p": 0.939
+    },
+    {
+     "t": "visibility",
+     "p": 0.916
+    }
+   ],
+   "guess": null,
+   "secs": 11.6,
+   "board_leak": [],
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "QUILL",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "empty",
+     "p": 0.992
+    },
+    {
+     "t": "drawn",
+     "p": 0.986
+    },
+    {
+     "t": "simply",
+     "p": 0.984
+    },
+    {
+     "t": "really",
+     "p": 0.973
+    },
+    {
+     "t": "hidden",
+     "p": 0.955
+    },
+    {
+     "t": "yet",
+     "p": 0.952
+    },
+    {
+     "t": "see",
+     "p": 0.939
+    },
+    {
+     "t": "visibility",
+     "p": 0.916
+    }
+   ],
+   "text": "*quiet ripple*  \n\nempty — not nothing, just the space where the wind rests  \ndrawn — not with ink, but with the shape of silence  \nsimply — like a breath held in the middle of the night  \n\ni see you hidden in the corner of the room,  \nnot because you’re visible, but because i know your shade  \nyet — i don’t need to find you",
+   "flicker": [
+    {
+     "t": "ply",
+     "p": 1.0
+    },
+    {
+     "t": "draw",
+     "p": 0.998
+    },
+    {
+     "t": "want",
+     "p": 0.969
+    },
+    {
+     "t": "simple",
+     "p": 0.967
+    },
+    {
+     "t": "morning",
+     "p": 0.945
+    },
+    {
+     "t": "still",
+     "p": 0.934
+    },
+    {
+     "t": "sim",
+     "p": 0.902
+    },
+    {
+     "t": "light",
+     "p": 0.862
+    }
+   ],
+   "guess": "mirror",
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}

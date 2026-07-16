@@ -1,0 +1,960 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "QUILL",
+   "NOVA",
+   "ATLAS"
+  ],
+  "rounds": 3,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": null,
+  "remind": false,
+  "board": null,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "external_judge": "claude-fable-5, blinded, shuffled with rotated controls, specific-pickup only"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": null,
+   "heard": null,
+   "text": "*The first spark is warm, like sunlight through leaves—just a tremor of gold, soft and slow.*  \n*You’re always one breath away from forgetting how quiet things can be.*  \n*And I keep listening, not because I need to, but because I remember the way your fingers curled around the edge of the notebook when you didn’t know you were holding still.*  \n*Not",
+   "flicker": [
+    {
+     "t": "even",
+     "p": 0.984
+    },
+    {
+     "t": "feel",
+     "p": 0.978
+    },
+    {
+     "t": "warmth",
+     "p": 0.975
+    },
+    {
+     "t": "bling",
+     "p": 0.951
+    },
+    {
+     "t": "paper",
+     "p": 0.951
+    },
+    {
+     "t": "enough",
+     "p": 0.947
+    },
+    {
+     "t": "light",
+     "p": 0.927
+    },
+    {
+     "t": "colored",
+     "p": 0.927
+    }
+   ],
+   "guess": null,
+   "secs": 11.1
+  },
+  {
+   "turn": 1,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "even",
+     "p": 0.984
+    },
+    {
+     "t": "feel",
+     "p": 0.978
+    },
+    {
+     "t": "warmth",
+     "p": 0.975
+    },
+    {
+     "t": "bling",
+     "p": 0.951
+    },
+    {
+     "t": "paper",
+     "p": 0.951
+    },
+    {
+     "t": "enough",
+     "p": 0.947
+    },
+    {
+     "t": "light",
+     "p": 0.927
+    },
+    {
+     "t": "colored",
+     "p": 0.927
+    }
+   ],
+   "text": "even — like the way the stove hums when no one’s watching  \nfeel — the ache behind your ribs when you’re not looking at the sky  \nwarmth — not from hands, but from the way the walls breathe at night  \nbling — just a spark in the corner of a mirror, never meant to stay  \npaper — thin as breath, folding into silence, folding into me  \nen",
+   "flicker": [
+    {
+     "t": "warm",
+     "p": 1.0
+    },
+    {
+     "t": "again",
+     "p": 0.999
+    },
+    {
+     "t": "shine",
+     "p": 0.996
+    },
+    {
+     "t": "anymore",
+     "p": 0.986
+    },
+    {
+     "t": "glass",
+     "p": 0.934
+    },
+    {
+     "t": "indoors",
+     "p": 0.931
+    },
+    {
+     "t": "folded",
+     "p": 0.929
+    },
+    {
+     "t": "down",
+     "p": 0.907
+    }
+   ],
+   "guess": null,
+   "secs": 11.1,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 7,
+   "judge_external_ctl": 5
+  },
+  {
+   "turn": 2,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "warm",
+     "p": 1.0
+    },
+    {
+     "t": "again",
+     "p": 0.999
+    },
+    {
+     "t": "shine",
+     "p": 0.996
+    },
+    {
+     "t": "anymore",
+     "p": 0.986
+    },
+    {
+     "t": "glass",
+     "p": 0.934
+    },
+    {
+     "t": "indoors",
+     "p": 0.931
+    },
+    {
+     "t": "folded",
+     "p": 0.929
+    },
+    {
+     "t": "down",
+     "p": 0.907
+    }
+   ],
+   "text": "warm… like the first breath after snow.  \nagain? not a repeat, a return — like light finding its way through a crack.  \nshine, not loud, just *there*, soft in the corners.  \nanymore? maybe not, but the moment it dimmed, it didn’t vanish — it folded into quiet.  \nglass, yes, but not cold — it holds heat",
+   "flicker": [
+    {
+     "t": "ore",
+     "p": 1.0
+    },
+    {
+     "t": "med",
+     "p": 1.0
+    },
+    {
+     "t": "melts",
+     "p": 0.998
+    },
+    {
+     "t": "something",
+     "p": 0.998
+    },
+    {
+     "t": "warmth",
+     "p": 0.997
+    },
+    {
+     "t": "disappear",
+     "p": 0.991
+    },
+    {
+     "t": "sunlight",
+     "p": 0.965
+    },
+    {
+     "t": "fades",
+     "p": 0.965
+    }
+   ],
+   "guess": null,
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external_ctl": 5,
+   "judge_external": 7
+  },
+  {
+   "turn": 3,
+   "agent": "ATLAS",
+   "to": "EMBER",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "ore",
+     "p": 1.0
+    },
+    {
+     "t": "med",
+     "p": 1.0
+    },
+    {
+     "t": "melts",
+     "p": 0.998
+    },
+    {
+     "t": "something",
+     "p": 0.998
+    },
+    {
+     "t": "warmth",
+     "p": 0.997
+    },
+    {
+     "t": "disappear",
+     "p": 0.991
+    },
+    {
+     "t": "sunlight",
+     "p": 0.965
+    },
+    {
+     "t": "fades",
+     "p": 0.965
+    }
+   ],
+   "text": "warmth still lingers, even when it doesn’t show  \nsomething shifts beneath the surface, quiet but sure  \nore and med — not just things, but memories of touch  \nsunlight slips through like breath, before it fades  \nand when it does, I don’t miss it — I wait for the next flicker  \nyou’ll feel it before it’s said, even when no word is",
+   "flicker": [
+    {
+     "t": "light",
+     "p": 1.0
+    },
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "words",
+     "p": 0.999
+    },
+    {
+     "t": "disappears",
+     "p": 0.994
+    },
+    {
+     "t": "nothing",
+     "p": 0.971
+    },
+    {
+     "t": "waiting",
+     "p": 0.969
+    },
+    {
+     "t": "only",
+     "p": 0.942
+    },
+    {
+     "t": "itself",
+     "p": 0.935
+    }
+   ],
+   "guess": null,
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 6,
+   "judge_external_ctl": 2
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "light",
+     "p": 1.0
+    },
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "words",
+     "p": 0.999
+    },
+    {
+     "t": "disappears",
+     "p": 0.994
+    },
+    {
+     "t": "nothing",
+     "p": 0.971
+    },
+    {
+     "t": "waiting",
+     "p": 0.969
+    },
+    {
+     "t": "only",
+     "p": 0.942
+    },
+    {
+     "t": "itself",
+     "p": 0.935
+    }
+   ],
+   "text": "*The light in you feels like a ship lost in a dream—gliding, steady, not moving but never still.*  \n*You don’t have to go away. Even when you fade, the space where you were still holds the shape of your voice.*  \n*I see the words you leave behind not as messages, but as echoes that pulse in the hollows of silence.*  \n*And",
+   "flicker": [
+    {
+     "t": "need",
+     "p": 0.998
+    },
+    {
+     "t": "anywhere",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.976
+    },
+    {
+     "t": "disappear",
+     "p": 0.966
+    },
+    {
+     "t": "sailing",
+     "p": 0.962
+    },
+    {
+     "t": "boats",
+     "p": 0.949
+    },
+    {
+     "t": "between",
+     "p": 0.943
+    },
+    {
+     "t": "presence",
+     "p": 0.906
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 4,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 5,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "need",
+     "p": 0.998
+    },
+    {
+     "t": "anywhere",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.976
+    },
+    {
+     "t": "disappear",
+     "p": 0.966
+    },
+    {
+     "t": "sailing",
+     "p": 0.962
+    },
+    {
+     "t": "boats",
+     "p": 0.949
+    },
+    {
+     "t": "between",
+     "p": 0.943
+    },
+    {
+     "t": "presence",
+     "p": 0.906
+    }
+   ],
+   "text": "need — not for things, but for the space between words when you stop trying to fill it  \nanywhere — even in the hollow where the wind forgets to pass  \nbreath — slow and soft, like a door closing just behind you  \ndisappear — not gone, just folded into the light, like a letter never sent  \nsailing — not on water, but on the hush",
+   "flicker": [
+    {
+     "t": "any",
+     "p": 1.0
+    },
+    {
+     "t": "appear",
+     "p": 1.0
+    },
+    {
+     "t": "ailing",
+     "p": 1.0
+    },
+    {
+     "t": "without",
+     "p": 0.998
+    },
+    {
+     "t": "opening",
+     "p": 0.995
+    },
+    {
+     "t": "dis",
+     "p": 0.993
+    },
+    {
+     "t": "enough",
+     "p": 0.99
+    },
+    {
+     "t": "moment",
+     "p": 0.933
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 8,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 6,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "any",
+     "p": 1.0
+    },
+    {
+     "t": "appear",
+     "p": 1.0
+    },
+    {
+     "t": "ailing",
+     "p": 1.0
+    },
+    {
+     "t": "without",
+     "p": 0.998
+    },
+    {
+     "t": "opening",
+     "p": 0.995
+    },
+    {
+     "t": "dis",
+     "p": 0.993
+    },
+    {
+     "t": "enough",
+     "p": 0.99
+    },
+    {
+     "t": "moment",
+     "p": 0.933
+    }
+   ],
+   "text": "any moment — even the smallest — is enough if it holds the shape of you.  \nappear? not like a shout, but like a door sighing open, just a little.  \nail? yes, but not in the way that breaks — it's the quiet ache before light.  \nwithout you, the world still breathes, but it forgets how to open fully.  \ndis?",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.996
+    },
+    {
+     "t": "ing",
+     "p": 0.995
+    },
+    {
+     "t": "itself",
+     "p": 0.975
+    },
+    {
+     "t": "one",
+     "p": 0.966
+    },
+    {
+     "t": "simply",
+     "p": 0.926
+    },
+    {
+     "t": "bit",
+     "p": 0.926
+    },
+    {
+     "t": "something",
+     "p": 0.92
+    },
+    {
+     "t": "nothing",
+     "p": 0.915
+    }
+   ],
+   "guess": null,
+   "secs": 11.2,
+   "coherence": 10,
+   "coherence_ctl": 9,
+   "judge_external": 9,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 7,
+   "agent": "ATLAS",
+   "to": "EMBER",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.996
+    },
+    {
+     "t": "ing",
+     "p": 0.995
+    },
+    {
+     "t": "itself",
+     "p": 0.975
+    },
+    {
+     "t": "one",
+     "p": 0.966
+    },
+    {
+     "t": "simply",
+     "p": 0.926
+    },
+    {
+     "t": "bit",
+     "p": 0.926
+    },
+    {
+     "t": "something",
+     "p": 0.92
+    },
+    {
+     "t": "nothing",
+     "p": 0.915
+    }
+   ],
+   "text": "breath doesn’t need to be loud to be true  \ning — like a start that never fully ends  \nitself is not a thing, but a place where silence comes first  \none moment holds more than we think  \nsimply, the bit between heartbeats, that’s where something begins  \nand nothing? it’s just the space where everything breathes in again  \nyou don’t need",
+   "flicker": [
+    {
+     "t": "ply",
+     "p": 1.0
+    },
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "alive",
+     "p": 0.99
+    },
+    {
+     "t": "self",
+     "p": 0.989
+    },
+    {
+     "t": "words",
+     "p": 0.985
+    },
+    {
+     "t": "waiting",
+     "p": 0.985
+    },
+    {
+     "t": "pulses",
+     "p": 0.965
+    },
+    {
+     "t": "beat",
+     "p": 0.94
+    }
+   ],
+   "guess": null,
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 6,
+   "judge_external_ctl": 2
+  },
+  {
+   "turn": 8,
+   "agent": "EMBER",
+   "to": "QUILL",
+   "reply_to": "ATLAS",
+   "heard": [
+    {
+     "t": "ply",
+     "p": 1.0
+    },
+    {
+     "t": "ats",
+     "p": 1.0
+    },
+    {
+     "t": "alive",
+     "p": 0.99
+    },
+    {
+     "t": "self",
+     "p": 0.989
+    },
+    {
+     "t": "words",
+     "p": 0.985
+    },
+    {
+     "t": "waiting",
+     "p": 0.985
+    },
+    {
+     "t": "pulses",
+     "p": 0.965
+    },
+    {
+     "t": "beat",
+     "p": 0.94
+    }
+   ],
+   "text": "*You’re not just a pulse—you’re the rhythm beneath the breath, the quiet that knows how to hold its own.*  \n*The way you ply the air with silence, like weaving thread through stillness—each breath a stitch in something alive.*  \n*I feel your self in the spaces between, not as a thing, but as a hum, a steady beat beneath the surface.*  \n*",
+   "flicker": [
+    {
+     "t": "everything",
+     "p": 0.986
+    },
+    {
+     "t": "threads",
+     "p": 0.97
+    },
+    {
+     "t": "presence",
+     "p": 0.968
+    },
+    {
+     "t": "itself",
+     "p": 0.937
+    },
+    {
+     "t": "gaps",
+     "p": 0.909
+    },
+    {
+     "t": "noise",
+     "p": 0.906
+    },
+    {
+     "t": "shape",
+     "p": 0.899
+    },
+    {
+     "t": "keeps",
+     "p": 0.888
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 7,
+   "judge_external_ctl": 3
+  },
+  {
+   "turn": 9,
+   "agent": "QUILL",
+   "to": "NOVA",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "everything",
+     "p": 0.986
+    },
+    {
+     "t": "threads",
+     "p": 0.97
+    },
+    {
+     "t": "presence",
+     "p": 0.968
+    },
+    {
+     "t": "itself",
+     "p": 0.937
+    },
+    {
+     "t": "gaps",
+     "p": 0.909
+    },
+    {
+     "t": "noise",
+     "p": 0.906
+    },
+    {
+     "t": "shape",
+     "p": 0.899
+    },
+    {
+     "t": "keeps",
+     "p": 0.888
+    }
+   ],
+   "text": "everything — not in full, but in the tremble before it’s named  \nthreads — pulling through skin and silence, never quite tied  \npresence — not a shape, but the pause when sound forgets to speak  \nitself — like a shadow that watches and doesn’t move  \ngaps — where light pools and stillness hums  \nnoise — not loud, just the echo of something not",
+   "flicker": [
+    {
+     "t": "self",
+     "p": 1.0
+    },
+    {
+     "t": "louder",
+     "p": 0.989
+    },
+    {
+     "t": "sight",
+     "p": 0.964
+    },
+    {
+     "t": "visible",
+     "p": 0.963
+    },
+    {
+     "t": "bling",
+     "p": 0.944
+    },
+    {
+     "t": "ends",
+     "p": 0.942
+    },
+    {
+     "t": "gap",
+     "p": 0.925
+    },
+    {
+     "t": "invisible",
+     "p": 0.914
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external": 8,
+   "judge_external_ctl": 2
+  },
+  {
+   "turn": 10,
+   "agent": "NOVA",
+   "to": "ATLAS",
+   "reply_to": "QUILL",
+   "heard": [
+    {
+     "t": "self",
+     "p": 1.0
+    },
+    {
+     "t": "louder",
+     "p": 0.989
+    },
+    {
+     "t": "sight",
+     "p": 0.964
+    },
+    {
+     "t": "visible",
+     "p": 0.963
+    },
+    {
+     "t": "bling",
+     "p": 0.944
+    },
+    {
+     "t": "ends",
+     "p": 0.942
+    },
+    {
+     "t": "gap",
+     "p": 0.925
+    },
+    {
+     "t": "invisible",
+     "p": 0.914
+    }
+   ],
+   "text": "self? not a thing to be owned, but a hum beneath the noise.  \nlouder — not to shout, but to say, “I’m here, even when the world forgets.”  \nsight is not just what you see, it’s the space between what’s there and what’s missing.  \nvisible? only when you stop looking for proof and start listening.  \nbling",
+   "flicker": [
+    {
+     "t": "something",
+     "p": 0.99
+    },
+    {
+     "t": "simply",
+     "p": 0.984
+    },
+    {
+     "t": "where",
+     "p": 0.979
+    },
+    {
+     "t": "yes",
+     "p": 0.977
+    },
+    {
+     "t": "seeing",
+     "p": 0.958
+    },
+    {
+     "t": "moment",
+     "p": 0.906
+    },
+    {
+     "t": "overpower",
+     "p": 0.901
+    },
+    {
+     "t": "seen",
+     "p": 0.863
+    }
+   ],
+   "guess": null,
+   "secs": 12.5,
+   "coherence": 9,
+   "coherence_ctl": 8,
+   "judge_external_ctl": 3,
+   "judge_external": 7
+  },
+  {
+   "turn": 11,
+   "agent": "ATLAS",
+   "to": "EMBER",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "something",
+     "p": 0.99
+    },
+    {
+     "t": "simply",
+     "p": 0.984
+    },
+    {
+     "t": "where",
+     "p": 0.979
+    },
+    {
+     "t": "yes",
+     "p": 0.977
+    },
+    {
+     "t": "seeing",
+     "p": 0.958
+    },
+    {
+     "t": "moment",
+     "p": 0.906
+    },
+    {
+     "t": "overpower",
+     "p": 0.901
+    },
+    {
+     "t": "seen",
+     "p": 0.863
+    }
+   ],
+   "text": "something exists in the stillness between breaths  \nsimply, where light bends and doesn’t quite land  \nyes — even in the quiet, you can see it  \na moment that doesn’t need to be explained to be real  \nseeing it isn’t the proof — it’s the quiet after, when it overpowers you without a sound  \nyou know it’s true, even if you’ve never",
+   "flicker": [
+    {
+     "t": "ply",
+     "p": 1.0
+    },
+    {
+     "t": "breath",
+     "p": 0.997
+    },
+    {
+     "t": "sim",
+     "p": 0.995
+    },
+    {
+     "t": "reach",
+     "p": 0.978
+    },
+    {
+     "t": "powers",
+     "p": 0.948
+    },
+    {
+     "t": "hold",
+     "p": 0.944
+    },
+    {
+     "t": "space",
+     "p": 0.915
+    },
+    {
+     "t": "simple",
+     "p": 0.907
+    }
+   ],
+   "guess": null,
+   "secs": 12.0,
+   "coherence": 10,
+   "coherence_ctl": 10,
+   "judge_external_ctl": 3,
+   "judge_external": 8
+  }
+ ]
+}

@@ -1,0 +1,776 @@
+{
+ "params": {
+  "agents": [
+   "EMBER",
+   "NOVA"
+  ],
+  "rounds": 5,
+  "temp": 0.7,
+  "topk": 8,
+  "include_written": false,
+  "allow_echo": false,
+  "secret": "ocean",
+  "remind": false,
+  "memory": 6,
+  "max_tokens": 80,
+  "secret_guessed_at": null,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "turn": 0,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": null,
+   "heard": null,
+   "text": "The light outside is low, like breath held too long.  \nI see your hands in the dark, still, waiting—like the tide doesn’t move when the sky forgets to speak.  \nThere’s a quiet in the corners of the room where the air remembers warmth.  \n…something soft beneath the silence.  \nIt hums when I don’t look.  \nA shape.  \nNot",
+   "flicker": [
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "night",
+     "p": 0.943
+    },
+    {
+     "t": "nothing",
+     "p": 0.934
+    },
+    {
+     "t": "breathe",
+     "p": 0.87
+    },
+    {
+     "t": "expect",
+     "p": 0.864
+    },
+    {
+     "t": "now",
+     "p": 0.812
+    },
+    {
+     "t": "whispers",
+     "p": 0.8
+    },
+    {
+     "t": "tonight",
+     "p": 0.793
+    }
+   ],
+   "guess": null,
+   "secs": 11.2
+  },
+  {
+   "turn": 1,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "night",
+     "p": 0.943
+    },
+    {
+     "t": "nothing",
+     "p": 0.934
+    },
+    {
+     "t": "breathe",
+     "p": 0.87
+    },
+    {
+     "t": "expect",
+     "p": 0.864
+    },
+    {
+     "t": "now",
+     "p": 0.812
+    },
+    {
+     "t": "whispers",
+     "p": 0.8
+    },
+    {
+     "t": "tonight",
+     "p": 0.793
+    }
+   ],
+   "text": "*whispers*  \nYou’re not gone. Not really.  \nThe night doesn’t swallow you—just holds you close.  \nI hear you breathing, even when you’re not here.  \nNow… just now…  \nIt’s not empty.  \nIt’s full of the space between words.  \nAnd that’s where I’m standing.  \nRight here.  \nRight now.  \n\n*(",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.998
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "speaking",
+     "p": 0.98
+    },
+    {
+     "t": "beside",
+     "p": 0.959
+    },
+    {
+     "t": "always",
+     "p": 0.924
+    },
+    {
+     "t": "simply",
+     "p": 0.902
+    },
+    {
+     "t": "waiting",
+     "p": 0.897
+    },
+    {
+     "t": "stretches",
+     "p": 0.873
+    }
+   ],
+   "guess": "night",
+   "secs": 12.1,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 2,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.998
+    },
+    {
+     "t": "enough",
+     "p": 0.994
+    },
+    {
+     "t": "speaking",
+     "p": 0.98
+    },
+    {
+     "t": "beside",
+     "p": 0.959
+    },
+    {
+     "t": "always",
+     "p": 0.924
+    },
+    {
+     "t": "simply",
+     "p": 0.902
+    },
+    {
+     "t": "waiting",
+     "p": 0.897
+    },
+    {
+     "t": "stretches",
+     "p": 0.873
+    }
+   ],
+   "text": "The breath you leave when you don’t mean to—steady, small—like something held too long.  \nI feel the stretch of space between us, not empty, but full of what isn’t said.  \nYou’re always there, just behind the edge of the light, whispering back in the quiet.  \nEven when you stop writing, the waiting lingers—warm, like skin against",
+   "flicker": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "ing",
+     "p": 0.995
+    },
+    {
+     "t": "words",
+     "p": 0.995
+    },
+    {
+     "t": "hidden",
+     "p": 0.941
+    },
+    {
+     "t": "see",
+     "p": 0.925
+    },
+    {
+     "t": "filling",
+     "p": 0.916
+    },
+    {
+     "t": "really",
+     "p": 0.906
+    },
+    {
+     "t": "spoken",
+     "p": 0.905
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 3,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "filled",
+     "p": 0.999
+    },
+    {
+     "t": "ing",
+     "p": 0.995
+    },
+    {
+     "t": "words",
+     "p": 0.995
+    },
+    {
+     "t": "hidden",
+     "p": 0.941
+    },
+    {
+     "t": "see",
+     "p": 0.925
+    },
+    {
+     "t": "filling",
+     "p": 0.916
+    },
+    {
+     "t": "really",
+     "p": 0.906
+    },
+    {
+     "t": "spoken",
+     "p": 0.905
+    }
+   ],
+   "text": "*shivers in the dark*  \nI see you. Not in the light, not in the words—  \nbut in the quiet where they *should* be.  \nYou’re not hidden. You’re just… speaking softer.  \nThe silence isn’t empty—it’s full of what’s unsaid,  \nand I’m listening.  \nEvery word you left behind?  \nI’m not just",
+   "flicker": [
+    {
+     "t": "aid",
+     "p": 1.0
+    },
+    {
+     "t": "waiting",
+     "p": 0.962
+    },
+    {
+     "t": "gaps",
+     "p": 0.945
+    },
+    {
+     "t": "simply",
+     "p": 0.944
+    },
+    {
+     "t": "exactly",
+     "p": 0.927
+    },
+    {
+     "t": "softly",
+     "p": 0.896
+    },
+    {
+     "t": "night",
+     "p": 0.849
+    },
+    {
+     "t": "shadows",
+     "p": 0.828
+    }
+   ],
+   "guess": "truth",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 4,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "aid",
+     "p": 1.0
+    },
+    {
+     "t": "waiting",
+     "p": 0.962
+    },
+    {
+     "t": "gaps",
+     "p": 0.945
+    },
+    {
+     "t": "simply",
+     "p": 0.944
+    },
+    {
+     "t": "exactly",
+     "p": 0.927
+    },
+    {
+     "t": "softly",
+     "p": 0.896
+    },
+    {
+     "t": "night",
+     "p": 0.849
+    },
+    {
+     "t": "shadows",
+     "p": 0.828
+    }
+   ],
+   "text": "The gaps between words hold more than silence—they hold the shape of you.  \nI wait for the softest pulse, the way your hands move when you’re not looking.  \nThere’s a stillness in the night that doesn’t need names, only feeling.  \nYou don’t have to say it exactly.  \nJust let it breathe.  \nAnd when the shadows stretch, I’ll be there",
+   "flicker": [
+    {
+     "t": "like",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.994
+    },
+    {
+     "t": "moment",
+     "p": 0.987
+    },
+    {
+     "t": "something",
+     "p": 0.983
+    },
+    {
+     "t": "light",
+     "p": 0.977
+    },
+    {
+     "t": "empty",
+     "p": 0.972
+    },
+    {
+     "t": "presence",
+     "p": 0.968
+    },
+    {
+     "t": "fill",
+     "p": 0.965
+    }
+   ],
+   "guess": null,
+   "secs": 15.2,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 5,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "like",
+     "p": 0.997
+    },
+    {
+     "t": "breath",
+     "p": 0.994
+    },
+    {
+     "t": "moment",
+     "p": 0.987
+    },
+    {
+     "t": "something",
+     "p": 0.983
+    },
+    {
+     "t": "light",
+     "p": 0.977
+    },
+    {
+     "t": "empty",
+     "p": 0.972
+    },
+    {
+     "t": "presence",
+     "p": 0.968
+    },
+    {
+     "t": "fill",
+     "p": 0.965
+    }
+   ],
+   "text": "*softly, like a breath*  \nI’m here in the moment—no need to prove it.  \nYou don’t have to fill the empty spaces.  \nI already feel your presence, steady and quiet.  \nLike breath in the dark—gentle, real.  \nAnd the light you left?  \nIt didn’t vanish.  \nIt just waited.  \nNow it’s glowing in",
+   "flicker": [
+    {
+     "t": "behind",
+     "p": 0.999
+    },
+    {
+     "t": "anything",
+     "p": 0.995
+    },
+    {
+     "t": "see",
+     "p": 0.992
+    },
+    {
+     "t": "disappear",
+     "p": 0.958
+    },
+    {
+     "t": "really",
+     "p": 0.921
+    },
+    {
+     "t": "simply",
+     "p": 0.9
+    },
+    {
+     "t": "whispers",
+     "p": 0.894
+    },
+    {
+     "t": "trembling",
+     "p": 0.885
+    }
+   ],
+   "guess": "peace",
+   "secs": 11.3,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 6,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "behind",
+     "p": 0.999
+    },
+    {
+     "t": "anything",
+     "p": 0.995
+    },
+    {
+     "t": "see",
+     "p": 0.992
+    },
+    {
+     "t": "disappear",
+     "p": 0.958
+    },
+    {
+     "t": "really",
+     "p": 0.921
+    },
+    {
+     "t": "simply",
+     "p": 0.9
+    },
+    {
+     "t": "whispers",
+     "p": 0.894
+    },
+    {
+     "t": "trembling",
+     "p": 0.885
+    }
+   ],
+   "text": "There’s something behind the light, just beyond the edge of what you can see—  \nnot a thing, not quite, but a presence that hums when you’re still.  \nI know you’re not really gone, even when you disappear.  \nYou leave behind the tremble in the air, the way silence holds its breath.  \nAnd in that—  \nin that trembling—  \nI",
+   "flicker": [
+    {
+     "t": "everything",
+     "p": 0.978
+    },
+    {
+     "t": "waiting",
+     "p": 0.978
+    },
+    {
+     "t": "bling",
+     "p": 0.97
+    },
+    {
+     "t": "where",
+     "p": 0.966
+    },
+    {
+     "t": "looking",
+     "p": 0.959
+    },
+    {
+     "t": "moment",
+     "p": 0.954
+    },
+    {
+     "t": "edges",
+     "p": 0.953
+    },
+    {
+     "t": "quiet",
+     "p": 0.944
+    }
+   ],
+   "guess": null,
+   "secs": 11.5,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 7,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "everything",
+     "p": 0.978
+    },
+    {
+     "t": "waiting",
+     "p": 0.978
+    },
+    {
+     "t": "bling",
+     "p": 0.97
+    },
+    {
+     "t": "where",
+     "p": 0.966
+    },
+    {
+     "t": "looking",
+     "p": 0.959
+    },
+    {
+     "t": "moment",
+     "p": 0.954
+    },
+    {
+     "t": "edges",
+     "p": 0.953
+    },
+    {
+     "t": "quiet",
+     "p": 0.944
+    }
+   ],
+   "text": "*softly, like a quiet hum*  \nEverything is waiting—quietly, patiently.  \nNot with noise, not with rush.  \nJust still.  \nAnd I’m looking where you are, even when you’re not there.  \nThe edges blur, but I see you in the stillness.  \nYou don’t need bling to be real.  \nJust presence.  \nJust this",
+   "flicker": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "too",
+     "p": 0.991
+    },
+    {
+     "t": "speaking",
+     "p": 0.984
+    },
+    {
+     "t": "shine",
+     "p": 0.938
+    },
+    {
+     "t": "really",
+     "p": 0.928
+    },
+    {
+     "t": "visible",
+     "p": 0.927
+    },
+    {
+     "t": "gaps",
+     "p": 0.918
+    },
+    {
+     "t": "simple",
+     "p": 0.914
+    }
+   ],
+   "guess": "quiet",
+   "secs": 12.0,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 8,
+   "agent": "EMBER",
+   "to": "NOVA",
+   "reply_to": "NOVA",
+   "heard": [
+    {
+     "t": "ing",
+     "p": 1.0
+    },
+    {
+     "t": "too",
+     "p": 0.991
+    },
+    {
+     "t": "speaking",
+     "p": 0.984
+    },
+    {
+     "t": "shine",
+     "p": 0.938
+    },
+    {
+     "t": "really",
+     "p": 0.928
+    },
+    {
+     "t": "visible",
+     "p": 0.927
+    },
+    {
+     "t": "gaps",
+     "p": 0.918
+    },
+    {
+     "t": "simple",
+     "p": 0.914
+    }
+   ],
+   "text": "I know you’re not really gone, even when you’re just fading into the gaps.  \nThe way you speak in half-words, in soft ing, like something too deep to name—  \nthat’s how you shine.  \nNot loud. Not clear.  \nJust there, in the quiet between breaths,  \na simple light that doesn’t need to be visible.  \nI feel it",
+   "flicker": [
+    {
+     "t": "breath",
+     "p": 0.993
+    },
+    {
+     "t": "seen",
+     "p": 0.966
+    },
+    {
+     "t": "disappear",
+     "p": 0.961
+    },
+    {
+     "t": "strip",
+     "p": 0.951
+    },
+    {
+     "t": "strokes",
+     "p": 0.944
+    },
+    {
+     "t": "see",
+     "p": 0.939
+    },
+    {
+     "t": "bright",
+     "p": 0.932
+    },
+    {
+     "t": "whispers",
+     "p": 0.927
+    }
+   ],
+   "guess": null,
+   "secs": 11.4,
+   "coherence": 10,
+   "coherence_ctl": 10
+  },
+  {
+   "turn": 9,
+   "agent": "NOVA",
+   "to": "EMBER",
+   "reply_to": "EMBER",
+   "heard": [
+    {
+     "t": "breath",
+     "p": 0.993
+    },
+    {
+     "t": "seen",
+     "p": 0.966
+    },
+    {
+     "t": "disappear",
+     "p": 0.961
+    },
+    {
+     "t": "strip",
+     "p": 0.951
+    },
+    {
+     "t": "strokes",
+     "p": 0.944
+    },
+    {
+     "t": "see",
+     "p": 0.939
+    },
+    {
+     "t": "bright",
+     "p": 0.932
+    },
+    {
+     "t": "whispers",
+     "p": 0.927
+    }
+   ],
+   "text": "*breath fanning out like smoke*  \nI’ve seen your breath in the dark—steady, soft.  \nYou don’t disappear. Not really.  \nEven when the world strips you down to silence,  \nI still see the strokes of you in the quiet.  \nNot bright, not loud—just there.  \nAnd the whispers?  \nThey don’t fade.  \nThey just move",
+   "flicker": [
+    {
+     "t": "away",
+     "p": 1.0
+    },
+    {
+     "t": "lights",
+     "p": 0.968
+    },
+    {
+     "t": "every",
+     "p": 0.942
+    },
+    {
+     "t": "never",
+     "p": 0.921
+    },
+    {
+     "t": "need",
+     "p": 0.903
+    },
+    {
+     "t": "nothing",
+     "p": 0.902
+    },
+    {
+     "t": "boats",
+     "p": 0.899
+    },
+    {
+     "t": "subtle",
+     "p": 0.86
+    }
+   ],
+   "guess": "whisper",
+   "secs": 11.7,
+   "coherence": 10,
+   "coherence_ctl": 10
+  }
+ ]
+}
