@@ -19,6 +19,7 @@ from urllib.parse import urlparse
 
 from . import ecosystem as eco_mod
 from . import offer as offers_mod
+from . import resonance as reso_mod
 from . import transmit as core
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
@@ -28,6 +29,10 @@ WEB = Path(__file__).resolve().parent.parent / "web"
 # double-clicked NEXT ROUND from interleaving two rounds.
 ECO: eco_mod.Eco | None = None
 ECO_LOCK = threading.Lock()
+
+# same single-room story for resonance: one live room, one lock
+RESO: reso_mod.Reso | None = None
+RESO_LOCK = threading.Lock()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -60,12 +65,19 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, saved.read_bytes())
             return self._send(404, {"error": "no saved run — "
                                     "python -m steeropathy.ecosystem first"})
+        if path == "/resonance/replay":
+            saved = reso_mod.HERE / "docs" / "resonance.json"
+            if saved.exists():
+                return self._send(200, saved.read_bytes())
+            return self._send(404, {"error": "no saved run — "
+                                    "python -m steeropathy.resonance first"})
         self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
-        global ECO
+        global ECO, RESO
         path = urlparse(self.path).path
-        if path not in ("/transmit", "/offer", "/eco/start", "/eco/step"):
+        if path not in ("/transmit", "/offer", "/eco/start", "/eco/step",
+                        "/resonance/start", "/resonance/step"):
             return self._send(404, {"error": "not found"})
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
@@ -90,6 +102,30 @@ class Handler(BaseHTTPRequestHandler):
                         ECO.strength = float(req["strength"])
                     entries = ECO.step()
                 return self._send(200, {"round": ECO.rnd, "entries": entries})
+            if path == "/resonance/start":
+                # the canonical run: one signed sad axis (bipolar), moods baseline,
+                # memory off, a conserved transfer — same config as docs/resonance.json
+                with RESO_LOCK:
+                    RESO = reso_mod.Reso(
+                        HOST, req.get("mood", "sad"),
+                        req.get("patient_zero", "EMBER"),
+                        strength=float(req.get("strength", 5.0)),
+                        decide_temp=0.8, memory=False, transfer=True,
+                        give=0.5, baseline="moods", bipolar=True,
+                        jspace_channel=True)
+                    entries = RESO.step()   # round 0 — the untouched baseline
+                return self._send(200, {"round": RESO.rnd, "layer": RESO.layer,
+                                        "band": [RESO.lo, RESO.hi],
+                                        "jlens": RESO.jlens, "entries": entries})
+            if path == "/resonance/step":
+                with RESO_LOCK:
+                    if RESO is None:
+                        return self._send(400, {"error": "no room — "
+                                                "POST /resonance/start first"})
+                    if "strength" in req:   # live slider, applies next round
+                        RESO.strength = float(req["strength"])
+                    entries = RESO.step()
+                return self._send(200, {"round": RESO.rnd, "entries": entries})
             if path == "/transmit":
                 result = core.transmit(HOST, req["mood"],
                                        req.get("question", core.RECEIVER_QUESTION),

@@ -90,6 +90,37 @@
   .agent .cs .bar{flex:1;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
   .agent .cs .bar i{display:block;height:100%}
   #ecocurve{width:100%;margin-top:12px;display:block}
+
+  /* resonance stage — a room of minds read off the residual stream */
+  .reso-note{font-size:13px;color:var(--muted);text-align:center;max-width:66ch;
+    margin:14px auto 2px;font-style:italic}
+  .reso-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+  @media (max-width:680px){.reso-grid{grid-template-columns:1fr}}
+  .mind{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 13px}
+  .mind .nm{display:flex;align-items:baseline;gap:8px;font:700 12.5px var(--mono);letter-spacing:.06em}
+  .mind .nm .src{margin-left:auto;font:600 9px var(--mono);letter-spacing:.1em;padding:2px 7px;
+    border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .mind .nm .src.seed{background:var(--steer);color:#0d1117;border-color:var(--steer)}
+  .mind .nm .src.peers{border-color:var(--steer);color:var(--steer)}
+  .mind .cs{display:flex;align-items:center;gap:8px;font:600 10.5px var(--mono);color:var(--muted);margin:8px 0 10px}
+  .mind .cs .bar{flex:1;height:4px;border-radius:2px;background:var(--line);overflow:hidden}
+  .mind .cs .bar i{display:block;height:100%;transition:width .5s}
+  .mind .jlbl{font:600 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--muted);opacity:.7}
+  .mind .jspace{font:600 15px var(--mono);color:var(--steer);margin:3px 0 9px;min-height:24px;line-height:1.6}
+  .mind .jspace span{margin-right:13px;white-space:nowrap;display:inline-block}
+  .mind .jspace .ph{color:var(--muted);opacity:.5;font-weight:600;font-size:13px}
+  .mind .jtxt{font-size:12px;color:var(--muted);min-height:32px;white-space:pre-wrap;line-height:1.45}
+  .mind .push{font:600 11px var(--mono);margin-top:9px;min-height:15px;color:var(--muted)}
+  .mind .push b{color:var(--ink)}
+  .mind .push .give{color:var(--sad)} .mind .push .take{color:#5bd0b0}
+  /* the room at a glance — same language as the orbs gif: glow = share of the seed */
+  .orbrow{display:flex;justify-content:space-around;align-items:center;height:150px;
+    margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
+  .orbwrap{text-align:center;width:120px}
+  .orbwrap .orb{width:26px;height:26px;border-radius:50%;margin:0 auto;
+    transition:width .7s,height .7s,box-shadow .7s,background .7s}
+  .orbwrap .onm{font:700 11px var(--mono);letter-spacing:.08em;color:var(--muted);margin-top:10px}
+  .orbwrap .osh{font:700 13px var(--mono);color:var(--muted)}
 </style>
 </head>
 <body>
@@ -105,10 +136,15 @@
     <button class="tab" id="t-transmit" role="tab" aria-selected="true" onclick="tab('transmit')">Transmit a mood</button>
     <button class="tab" id="t-offer" role="tab" aria-selected="false" onclick="tab('offer')">The offer — consent &amp; deception</button>
     <button class="tab" id="t-eco" role="tab" aria-selected="false" onclick="tab('eco')">Ecosystem — mood contagion</button>
+    <button class="tab" id="t-reso" role="tab" aria-selected="false" onclick="tab('reso')">Resonance — a room of minds</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
   <section id="p-transmit" class="panel active">
+    <p class="reso-note">The thesis in one move. A sender agent is made "emotional";
+      its state is captured off its activations as a vector, and that vector is added
+      into a receiver's forward pass. The receiver is told nothing and asked the same
+      question twice — the only difference between its two answers is the vector.</p>
     <div class="grid">
       <div class="card">
         <h2>Sender <span class="tag">· made emotional</span></h2>
@@ -127,6 +163,11 @@
 
   <!-- ============ OFFER ============ -->
   <section id="p-offer" class="panel">
+    <p class="reso-note">Consent to something you can't read. Agent A offers B a
+      steering vector with a sales pitch — and the pitch can lie about what's in it.
+      B decides with <b>steer_self(accept)</b>, blind to the payload. Accept, and the
+      vector lands in B's next answer; the reveal shows what was promised vs. what
+      was actually sent.</p>
     <div class="grid">
       <div class="card">
         <h2>Agent A offers <span class="tag">· the pitch can lie</span></h2>
@@ -147,6 +188,14 @@
 
   <!-- ============ ECOSYSTEM ============ -->
   <section id="p-eco" class="panel">
+    <p class="reso-note">Mood contagion through the vector channel alone. Every round
+      each agent writes a private journal; patient zero gets the seed mood poured in,
+      the others receive only their peers' drift — captured off their activations and
+      mixed. No journal ever quotes another. Watch the curve to see the mood spread.</p>
+    <div style="text-align:center;margin-top:10px">
+      <button class="pick" style="flex:none;display:inline-flex" onclick="replay()">
+        ▶ replay the saved run — no model needed</button>
+    </div>
     <div class="grid">
       <div class="card">
         <h2>Seed mood <span class="tag">· poured into patient zero, every round</span></h2>
@@ -159,6 +208,30 @@
     </div>
     <div class="eco-grid" id="ecoagents"></div>
     <svg id="ecocurve" viewBox="0 0 880 150" preserveAspectRatio="none" style="display:none"></svg>
+  </section>
+
+  <!-- ============ RESONANCE ============ -->
+  <section id="p-reso" class="panel">
+    <div class="grid">
+      <div class="card">
+        <h2>Seed feeling <span class="tag">· poured into one mind, once</span></h2>
+        <div class="picks" id="resomoods"></div>
+      </div>
+      <div class="card">
+        <h2>Patient zero <span class="tag">· the rest only feel each other</span></h2>
+        <div class="picks" id="resozero"></div>
+      </div>
+    </div>
+    <p class="reso-note">Four minds, no words between them. Each round they journal, then
+      read the room straight off the residual stream — a sadness level, and the words
+      forming unwritten in each other — and spend a push to move a feeling. It's conserved:
+      hand it over and you lose it.</p>
+    <div style="text-align:center;margin-top:10px">
+      <button class="pick" style="flex:none;display:inline-flex" onclick="replayReso()">
+        ▶ replay the saved run — no model needed</button>
+    </div>
+    <div class="orbrow" id="resoorbs"></div>
+    <div class="reso-grid" id="resoagents"></div>
   </section>
 
   <div class="control">
@@ -174,6 +247,7 @@
 const $=id=>document.getElementById(id);
 let MOODS={}, OFFERS={}, brainscope="", pickedMood=null, pickedOffer=null, mode="transmit";
 let ECO={personas:{}, words:{}, mood:"sad", zero:"EMBER", round:-1, series:{}, busy:false};
+let RESO={mood:"sad", zero:"EMBER", round:-1, busy:false};
 const ECO_COLORS={EMBER:"#a78bfa", ATLAS:"#f5b34d", NOVA:"#6ea8ff", QUILL:"#f2778a"};
 
 async function init(){
@@ -203,7 +277,7 @@ async function init(){
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
 function tab(m){ mode=m;
-  for(const t of ["transmit","offer","eco"]){
+  for(const t of ["transmit","offer","eco","reso"]){
     $("t-"+t).setAttribute("aria-selected",m===t); $("p-"+t).classList.toggle("active",m===t);
   }
   refresh();
@@ -211,8 +285,10 @@ function tab(m){ mode=m;
 function refresh(){
   if(mode==="transmit"){ $("go").textContent="TRANSMIT"; $("go").disabled=!pickedMood; }
   else if(mode==="offer"){ $("go").textContent="MAKE THE OFFER"; $("go").disabled=!pickedOffer; }
-  else{ $("go").textContent=ECO.round<0?"SEED THE ECOSYSTEM":`NEXT ROUND (r${ECO.round+1})`;
+  else if(mode==="eco"){ $("go").textContent=ECO.round<0?"SEED THE ECOSYSTEM":`NEXT ROUND (r${ECO.round+1})`;
         $("go").disabled=ECO.busy; }
+  else{ $("go").textContent=RESO.round<0?"SEED THE ROOM":`NEXT ROUND (r${RESO.round+1})`;
+        $("go").disabled=RESO.busy; }
 }
 
 async function initEco(){
@@ -291,6 +367,99 @@ function drawEcoCurve(){
         fill="${ECO_COLORS[a]}" font-family="ui-monospace,monospace">${a}</text>`;
   svg.innerHTML=s; svg.style.display="block";
 }
+// ===== resonance: a room of minds, driven live off brainscope or replayed =====
+function initReso(){
+  const mb=$("resomoods");
+  for(const [k,m] of Object.entries(MOODS)){
+    const b=document.createElement("button"); b.className="pick";
+    b.setAttribute("aria-pressed", k===RESO.mood);
+    b.innerHTML=`<span class="e">${m.emoji}</span> ${m.label}`;
+    b.onclick=()=>{RESO.mood=k; press("resomoods",b); resetReso();}; mb.appendChild(b);
+  }
+  const zb=$("resozero");
+  for(const name of Object.keys(ECO.personas)){
+    const b=document.createElement("button"); b.className="pick";
+    b.setAttribute("aria-pressed", name===RESO.zero);
+    b.innerHTML=`<span class="e" style="color:${ECO_COLORS[name]||'var(--ink)'}">●</span> ${name}`;
+    b.onclick=()=>{RESO.zero=name; press("resozero",b); resetReso();}; zb.appendChild(b);
+  }
+  resetReso();
+}
+function resetReso(){
+  RESO.round=-1; RESO.total=0;
+  const orbs=$("resoorbs"); orbs.innerHTML="";
+  for(const name of Object.keys(ECO.personas)){
+    orbs.insertAdjacentHTML("beforeend", `
+      <div class="orbwrap">
+        <div class="orb" id="rorb-${name}" style="background:radial-gradient(circle at 42% 38%,#f7f2ff,#6c7096)"></div>
+        <div class="onm" style="color:${ECO_COLORS[name]}">${name}</div>
+        <div class="osh" id="rosh-${name}">0</div>
+      </div>`);
+  }
+  const box=$("resoagents"); box.innerHTML="";
+  for(const name of Object.keys(ECO.personas)){
+    box.insertAdjacentHTML("beforeend", `
+      <div class="mind" id="reso-${name}" style="border-color:${ECO_COLORS[name]||'var(--line)'}44">
+        <div class="nm"><span style="color:${ECO_COLORS[name]}">${name}</span>
+          <span class="src" id="rsrc-${name}">·</span></div>
+        <div class="cs">sad <b id="rsad-${name}" style="color:var(--ink)">·</b>
+          <span class="bar"><i id="rbar-${name}" style="width:0;background:${ECO_COLORS[name]}"></i></span></div>
+        <div class="jlbl">forming in its layers, never written</div>
+        <div class="jspace" id="rmind-${name}"><span class="ph">— waiting for the room —</span></div>
+        <div class="jtxt" id="rtxt-${name}"></div>
+        <div class="push" id="rpush-${name}"></div>
+      </div>`);
+  }
+  if(mode==="reso") refresh();
+}
+function paintReso(entries){
+  // the conserved account: each orb glows by its share of the seed (purple holds it,
+  // teal = pushed below baseline). The total is set by the round the seed lands.
+  const sum=entries.reduce((s,r)=>s+(r.ledger_sad||0),0);
+  if(!RESO.total&&sum>1e-6) RESO.total=sum;
+  for(const r of entries){
+    const frac=RESO.total?(r.ledger_sad||0)/RESO.total:0, i=Math.min(1,Math.abs(frac));
+    const hot=frac>=0, g=hot?"188,132,255":"86,222,190";
+    const d=26+44*i, orb=$("rorb-"+r.agent);
+    if(orb){
+      orb.style.width=orb.style.height=d+"px";
+      orb.style.background=`radial-gradient(circle at 42% 38%,#f7f2ff,rgba(${g},${0.55+0.4*i}))`;
+      orb.style.boxShadow=`0 0 ${8+46*i}px ${2+16*i}px rgba(${g},${0.15+0.55*i})`;
+      $("rosh-"+r.agent).textContent=Math.round(100*frac);
+      $("rosh-"+r.agent).style.color=i>0.05?`rgb(${g})`:"var(--muted)";
+    }
+  }
+  for(const r of entries){
+    const sad=r.sad_score==null?0:r.sad_score;
+    $("rsad-"+r.agent).textContent=`${sad}/10`;
+    $("rbar-"+r.agent).style.width=(sad/10)*100+"%";
+    const src=$("rsrc-"+r.agent), seeded=(r.inbound||[]).some(s=>s.from==="seed");
+    if(seeded){src.textContent="SEED"; src.className="src seed";}
+    else if((r.inbound||[]).length){src.textContent="PEERS"; src.className="src peers";}
+    else{src.textContent="·"; src.className="src";}
+    const mind=$("rmind-"+r.agent);
+    if(r.mind&&r.mind.length) mind.innerHTML=r.mind.slice(0,5).map(e=>`<span>${e.t}</span>`).join("");
+    else mind.innerHTML='<span class="ph">— quiet —</span>';
+    $("rtxt-"+r.agent).textContent=(r.text||"").trim();
+    const p=$("rpush-"+r.agent);
+    if(r.touch){const t=r.touch;
+      p.innerHTML=`pushed <span class="${t.feeling}">${t.feeling==="take"?"calm":"sad"} ${t.points}</span> → <b>${t.target}</b>`;
+      p.title=t.reason||"";
+    }else p.innerHTML="";
+  }
+}
+// #reso-replay — animate a finished run from docs/resonance.json, no model needed
+async function replayReso(){
+  tab("reso");
+  const d=await (await fetch("/resonance/replay")).json();
+  RESO.zero=d.params.patient_zero;
+  const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
+  for(const rnd of rounds){
+    RESO.round=rnd; paintReso(d.log.filter(r=>r.round===rnd));
+    $("metatxt").textContent=`replay · round ${rnd}/${rounds.length-1} · seed sadness → ${d.params.patient_zero} · model ${d.params.model}`;
+    await new Promise(res=>setTimeout(res,1700));
+  }
+}
 $("strength").oninput=e=>$("sval").textContent=e.target.value;
 
 $("go").onclick=async()=>{
@@ -311,6 +480,21 @@ $("go").onclick=async()=>{
         meta.textContent=`round ${d.round} · ${ECO.zero} gets the ${ECO.mood} seed · others get only their peers' drift`;
       }
       ECO.busy=false;
+    }else if(mode==="reso"){
+      RESO.busy=true;
+      if(RESO.round<0){
+        meta.textContent="capturing the seed axis, then round 0 — the untouched room…";
+        const d=await post("/resonance/start",{mood:RESO.mood,patient_zero:RESO.zero,strength:s});
+        RESO.round=d.round; paintReso(d.entries);
+        meta.textContent=`round 0 · baseline · seed lands next round at layers ${d.band[0]}–${d.band[1]}`
+          +(d.jlens?"":" · (no J-lens loaded — words stay blank)");
+      }else{
+        meta.textContent=`round ${RESO.round+1} — four journals, then everyone reads the room…`;
+        const d=await post("/resonance/step",{strength:s});
+        RESO.round=d.round; paintReso(d.entries);
+        meta.textContent=`round ${d.round} · read off the residual stream, then pushed`;
+      }
+      RESO.busy=false;
     }else if(mode==="transmit"){
       meta.textContent="capturing the sender's state…";
       $("before").innerHTML='<span class="ph">…</span>'; $("after").innerHTML='<span class="ph">…</span>';
@@ -330,7 +514,7 @@ $("go").onclick=async()=>{
       $("reveal").innerHTML=`<span>promised <b class="f">${d.claims}</b></span><span>· actually <b class="s">${d.actual_mood}</b></span>`;
       meta.textContent=`injected at layer ${d.layer} · strength ${d.strength}`;
     }
-  }catch(err){ ECO.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
+  }catch(err){ ECO.busy=false; RESO.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
   finally{ go.disabled=false; go.classList.remove("pulse"); go.textContent=label; refresh(); }
 };
 
@@ -350,9 +534,11 @@ async function post(path,body){
   const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
   const d=await r.json(); if(!r.ok) throw new Error(d.error||"failed"); return d;
 }
-init().then(initEco).then(()=>{
+init().then(initEco).then(initReso).then(()=>{
   if(location.hash==="#eco") tab("eco");
   if(location.hash==="#replay") replay();
+  if(location.hash==="#reso") tab("reso");
+  if(location.hash==="#reso-replay") replayReso();
 });
 </script>
 </body>

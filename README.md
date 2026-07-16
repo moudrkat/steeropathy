@@ -133,12 +133,16 @@ python -m steeropathy                                   # → http://localhost:8
 
 Open **http://localhost:8020**, pick a tab, and watch a feeling move between minds
 in real time, while brainscope, side by side, shows it landing layer by layer.
+Every experiment has a tab — including **resonance**: seed a feeling, then step the
+room round by round and watch four minds read each other and push back.
 
-**No GPU handy? Try it in 30 seconds:** open the UI and hit **`#replay`**: it
-animates the last saved run from JSON, no model loaded at all. You'll see the feeling
-spread through the room; the live layer-by-layer internals (the J-lens) need
-brainscope and a model. See it move first; wire up brainscope when you want the
-internals or to run your own.
+![the resonance tab: four minds, each with a sadness bar read off its activations, the words forming in its layers that it never writes, its journal, and the push it chose](docs/ui-resonance-tab.png)
+
+**No GPU handy? Try it in 30 seconds:** open the UI and hit **`#replay`**
+(ecosystem) or **`#reso-replay`** (resonance): it animates the last saved run from
+JSON, no model loaded at all. You'll see the feeling spread through the room; the
+live layer-by-layer internals (the J-lens) need brainscope and a model. See it move
+first; wire up brainscope when you want the internals or to run your own.
 
 Point at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
 Each experiment's own commands live on its page above.
