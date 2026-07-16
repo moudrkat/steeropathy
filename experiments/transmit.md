@@ -39,6 +39,30 @@ print(r["before"])   # told nothing
 print(r["after"])    # same prompt, now steered into sadness
 ```
 
+## The null control: noise doesn't transmit
+
+A reader of the resonance post objected, precisely: *"any nonzero vector at
+strength 5 across a 9-layer band changes the output. Random direction,
+matched norm — the text changes, the judge notices, the curve moves. An
+effect is what you get for free, the instant you perturb anything."* If that
+were true, every curve in this repo would measure perturbation, not payload.
+It was the one control genuinely missing, so it's a permanent part of the
+bench now:
+
+```bash
+python -m steeropathy.transmit --null 8    # -> docs/null-control.json
+```
+
+Same machinery, three payloads, his exact config (strength 5, the 9-layer
+band, matched norm), blind-judged: **baseline 2 · eight random directions
+mean 2.2** — the text stays nearly verbatim baseline — **· sad vector 9 ·
+calm vector 3.** A random direction in 2560 dimensions is ~orthogonal to
+everything the network reads; the effect is not free, it is the direction.
+The payload is *selectable*, which is what makes this a channel and not a
+perturbation. Credit to **Garret Sutherland**, who demanded exactly this
+test in the resonance post's comments — the most useful thing a comment can
+do.
+
 ## Notes
 
 - Both agents are the **same model**. Cross-model vector transfer is known to

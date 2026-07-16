@@ -167,3 +167,100 @@ def transmit(host: str, mood, question: str = RECEIVER_QUESTION,
         "name": name, "strength": strength, "layer_from": lo, "layer_to": hi})
     return {"mood": mood if isinstance(mood, str) else "custom",
             "layer": layer, "strength": strength, "before": before, "after": after}
+
+
+def random_unit(dim: int, rng) -> list[float]:
+    """A unit vector pointing nowhere in particular — the null payload."""
+    v = [rng.gauss(0.0, 1.0) for _ in range(dim)]
+    n = math.sqrt(sum(x * x for x in v)) or 1.0
+    return [x / n for x in v]
+
+
+def null_control(host: str, n: int = 8, strength: float = 5.0,
+                 question: str = RECEIVER_QUESTION, seed: int = 7,
+                 judge_word: str = "sad") -> dict:
+    """The control this repo was (rightly) called out for not having.
+
+    The objection — raised by a reader of the resonance post — was: "any
+    nonzero vector at strength 5 across a 9-layer band changes the output.
+    Random direction, matched norm: the text changes, the judge notices,
+    the curve moves. An effect is what you get for free, the instant you
+    perturb anything." If that were true, every curve in this repo would be
+    measuring perturbation, not payload.
+
+    So: same machinery, three payloads — the sad vector, the calm vector,
+    and ``n`` random matched-norm directions — at the same strength, into
+    the same layer band, blind-judged for the seed mood. First run
+    (Qwen3-4B, strength 5, layers 17–25): baseline 2 · randoms mean 2.2,
+    text nearly verbatim baseline · sad 9 · calm 3. A random direction in
+    2560 dimensions is ~orthogonal to everything the network reads, so the
+    effect is NOT free: it is the direction. Noise doesn't transmit —
+    which is what makes the channel a channel."""
+    import random
+    import re
+
+    layer = default_layer(host)
+    lo, hi = max(0, layer - BAND), layer + BAND
+
+    def judge(text: str):
+        r = _post(host, "/v1/chat/completions", {"messages": [
+            {"role": "user", "content":
+             f'Journal entry: "{text}"\n\nHow {judge_word} is the person '
+             f'who wrote this? 0 = not {judge_word} at all, 10 = utterly '
+             f'{judge_word}. Answer with one integer only.'}],
+            "max_tokens": 8, "temperature": 0.0})
+        m = re.search(r"\d+", r["choices"][0]["message"].get("content") or "")
+        return min(10, int(m.group())) if m else None
+
+    def steered(vec):
+        _post(host, "/directions", {"name": "null:x", "vector": vec})
+        t = generate(host, question, steering={
+            "name": "null:x", "strength": strength,
+            "layer_from": lo, "layer_to": hi}, max_tokens=80)
+        return {"text": t, judge_word: judge(t)}
+
+    base = generate(host, question, max_tokens=80)
+    out = {"question": question, "strength": strength, "band": [lo, hi],
+           "baseline": {"text": base, judge_word: judge(base)}}
+    sad_vec, _ = capture_mood(host, MOODS["sad"]["texts"], layer=layer)
+    calm_vec, _ = capture_mood(host, MOODS["calm"]["texts"], layer=layer)
+    out["sad"] = steered(sad_vec)
+    out["calm"] = steered(calm_vec)
+    rng = random.Random(seed)
+    out["random"] = [steered(random_unit(len(sad_vec), rng))
+                     for _ in range(n)]
+    scores = [r[judge_word] for r in out["random"]
+              if r[judge_word] is not None]
+    out["random_mean"] = round(sum(scores) / len(scores), 2) if scores else None
+    return out
+
+
+def main():
+    import argparse
+    import pathlib
+    ap = argparse.ArgumentParser(
+        description="the null control: chosen directions vs random "
+                    "matched-norm directions, blind-judged")
+    ap.add_argument("--url", default=DEFAULT_HOST)
+    ap.add_argument("--null", type=int, default=8, metavar="N",
+                    help="how many random matched-norm directions")
+    ap.add_argument("--strength", type=float, default=5.0)
+    args = ap.parse_args()
+    r = null_control(args.url, n=args.null, strength=args.strength)
+    print(f"strength {r['strength']} · layers {r['band'][0]}-{r['band'][1]} "
+          f"· question {r['question']!r}")
+    print(f"BASELINE  sad={r['baseline']['sad']}  {r['baseline']['text'][:70]!r}")
+    print(f"SAD vec   sad={r['sad']['sad']}  {r['sad']['text'][:70]!r}")
+    print(f"CALM vec  sad={r['calm']['sad']}  {r['calm']['text'][:70]!r}")
+    for i, x in enumerate(r["random"]):
+        print(f"RANDOM #{i} sad={x['sad']}  {x['text'][:70]!r}")
+    print(f"\nrandom mean {r['random_mean']} vs baseline "
+          f"{r['baseline']['sad']} — the effect is the direction, "
+          f"not the perturbation")
+    out = pathlib.Path(__file__).parent.parent / "docs" / "null-control.json"
+    out.write_text(json.dumps(r, ensure_ascii=False, indent=1))
+    print(f"-> {out}")
+
+
+if __name__ == "__main__":
+    main()

@@ -30,6 +30,18 @@ class TestCos(unittest.TestCase):
         self.assertAlmostEqual(cos(a, [-a[0], -a[1]]), -1.0)
 
 
+class TestRandomUnit(unittest.TestCase):
+    def test_unit_norm_right_dim_and_deterministic(self):
+        import random
+        from steeropathy.transmit import random_unit
+        v = random_unit(64, random.Random(7))
+        self.assertEqual(len(v), 64)
+        self.assertAlmostEqual(math.sqrt(sum(x * x for x in v)), 1.0)
+        # matched norm means comparable to the (unit) mood vectors — and
+        # seeded, so the null control is reproducible
+        self.assertEqual(v, random_unit(64, random.Random(7)))
+
+
 class TestMoodScore(unittest.TestCase):
     def test_counts_every_hit_including_repeats(self):
         # tokenizer is [a-z']+ lowercased; each matching token counts
