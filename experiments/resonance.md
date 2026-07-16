@@ -1,18 +1,24 @@
-# resonance: a conserved feeling, shared through activations, and the instrument that kept lying about it
+# resonance: a conserved "feeling", shared through activations, and the instrument that kept lying about it
 
-> Four agents that share only activations and J-space. Seed one with a feeling; let
+> Four agents that share only activations and J-space. Seed one with a "feeling"; let
 > them move it between each other. It is conserved: it can only change hands. The
 > question was whether it settles to equilibrium. It doesn't, and every reason it
 > doesn't turned out to be **my instrument**, never the agents.
+>
+> Nothing here feels anything. The "feeling" is a steering vector, the four "minds"
+> are one model wearing four system prompts, and the conservation is bookkeeping
+> built into the rules, not a law that was discovered. This page is about an
+> instrument, start to finish.
 
 [← back to the lab](../README.md)
 
 ![four agents, one seeded feeling moved between them as steering vectors read off and pushed into activations, each orb glows by how much it holds; purple holds the feeling, teal is drained below its own baseline; conserved, only ever changing hands](../docs/resonance-orbs.gif)
 
-*The whole run as physics (if I say physics, I mean it, a conserved quantity that
-only changes hands): a feeling seeded into one mind, then read off the residual stream
-and moved between the four as steering vectors, no tokens exchanged. It never quite
-settles.*
+*The whole run, drawn as if it were physics. The conservation is by construction:
+every move is zero-sum bookkeeping, so the total is invariant, an accounting identity
+rather than a finding. A "feeling" is seeded into one "mind", then read off the model
+and moved between the four as steering vectors, no tokens exchanged. The open question
+was only whether it settles. It never quite does.*
 
 ## The setup
 

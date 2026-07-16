@@ -62,9 +62,9 @@ if args.max_rounds:
 seed_agent = run["params"].get("patient_zero", "EMBER")
 seed_mood = run["params"].get("seed_mood", "sad")
 
-# each orb's sadness is read straight off the activations - drift·sad, the same
-# reading the agents get. Measured from each mind's own round-0 state, so round 0 is
-# a true null (sense is None) and everyone starts dark.
+# each orb glows by its LEDGER — the conserved share of the seed vector it holds
+# (what was pushed in), not the drift readout the agents act on. Round 0 is a true
+# null and everyone starts dark.
 def sread(rec):
     # the CONSERVED quantity: ledger·sad, the sad-vector this mind currently holds.
     # you seed it into one mind once; every push is a zero-sum transfer, so the sum
@@ -194,7 +194,7 @@ def frame_html(rnd, t):
     # the story, told in beats big enough to read at feed size
     beat, hot = (("not a word will ever pass between them", False) if rnd == 0
                  else ("one “feeling”, seeded into a single “mind”", True) if rnd == 1
-                 else ("the others read it straight off its activations", False) if rnd == 2
+                 else ("the others read it off its activations", False) if rnd == 2
                  else ("…and push it between them, silently", False))
     caption = (f"<div style='color:{'#cbb9ff' if hot else '#c4bdf0'};"
                f"font:700 40px ui-monospace;letter-spacing:1px;'>{beat}</div>"

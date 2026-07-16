@@ -24,13 +24,13 @@ steering directions. **The channel doesn't care what you send through it.** The
 experiments here use *feeling*, because it's easy to read off activations and easy
 to watch move.
 
-![four agents, one seeded feeling passed between them as steering vectors read off and pushed into activations, each orb glows by how much it holds, purple for the feeling and teal for its opposite; conserved, only ever changing hands](docs/resonance-orbs.gif)
+![four agents, one seeded feeling passed between them as steering vectors read off and pushed into activations, each orb glows by how much it holds, purple for the feeling and teal for its opposite; under each orb, in italics, the words forming in its layers that it never writes](docs/resonance-orbs-calm.gif)
 
-*Four agents, one model. A feeling is seeded into one, then read off the residual
-stream and pushed between them as steering vectors, no tokens exchanged. Each orb
-glows by how much it holds (purple = the feeling, teal = its opposite). Below is
-J-space itself: the words two minds are forming in their layers but never write, one
-reading sad, one calm. This is what the agents read off each other.*
+*Four agents, one model. A feeling is seeded into one, then read off the model and
+pushed between them as steering vectors, no tokens exchanged. Each orb glows by how
+much it holds (purple = the feeling, teal = its opposite); the italic words beneath
+are its J-space, forming in the layers and never written. Below is J-space up close:
+two minds, one reading sad, one calm. This is what the agents read off each other.*
 
 ![J-space: two minds, one reading sad and forming space, without, exist, tired; one reading calm and forming playful, blossom, joyful, breeze. Words the model is disposed to say next, read off its layers, that never become tokens](docs/resonance-jspace.png)
 
