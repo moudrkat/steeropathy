@@ -28,11 +28,10 @@ def panel(a, x, hot):
     label = "reads sad" if hot else "reads calm"
     rows = ""
     for i, (w, p) in enumerate(ws):
-        sz = 34 + 30 * p                                  # bigger = stronger disposition
-        op = 0.45 + 0.5 * p
-        rows += (f'<div style="margin:14px 0;color:rgba({rgb},{op:.2f});'
-                 f'font:600 {sz:.0f}px ui-monospace,Menlo,monospace;letter-spacing:1px;">{w}'
-                 f'<span style="color:#55536f;font-size:18px;font-weight:400"> &nbsp;{round(p*100)}%</span></div>')
+        sz = 46 - i * 3                                   # by rank, not the saturating prob
+        op = 0.92 - i * 0.09
+        rows += (f'<div style="margin:16px 0;color:rgba({rgb},{op:.2f});'
+                 f'font:600 {sz:.0f}px ui-monospace,Menlo,monospace;letter-spacing:1px;">{w}</div>')
     return f"""
     <div style="position:absolute;left:{x}px;top:250px;width:640px;">
       <div style="color:#e8e4ff;font:700 30px ui-monospace;letter-spacing:2px;">{a}</div>

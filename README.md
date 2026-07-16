@@ -5,7 +5,8 @@
 > **An experimental repo.** The mission: try weird things with agent-to-agent
 > communication that happens *through model internals*: moods, concepts and
 > decisions passed as activation vectors instead of text. Every experiment here is a
-> probe, not a product; some results turned out to be about the model, and most
+> probe, not a product (okay, this definitely sounds like AI wrote it....whatever...);
+> some results turned out to be about the model, and most
 > turned out to be about my own instrument. Expect findings to be revised. That's
 > the fun.
 
