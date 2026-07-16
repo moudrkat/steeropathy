@@ -24,13 +24,22 @@ was only whether it settles. It never quite does.*
 
 Every round each of four agents writes a private journal, never shown to the others.
 What crosses is read off the model itself: each mind's **activations** (turned
-into a 0–100 reading — measured off a re-encoding of the journal page, see the math)
-and its **J-space** (the forming-but-unwritten words, read off the generation pass).
+into a 0–100 reading) and its **J-space** (the forming-but-unwritten words).
 Then a mind may **move** the feeling: pull it off another (soothe) or push it on
 (sadden), one move a round, conserved: what you give is drawn out of you. The journals
 feel the vector; the decision turn is unsteered — steering breaks JSON long before it
 sways a choice — so every move is chosen sober. Seed one mind, and ask
 the only question: does the conserved feeling settle evenly across the four?
+
+**Where each reading comes from, plainly.** The 0–100 number is not read while the
+mind writes. It is made afterwards: take the finished journal page, run it through
+the model again with no steering, and measure which way that second pass leans.
+Why the detour: during the writing pass the pushed vector is literally sitting in
+the layers, so reading that pass would mostly read back the push itself. Re-running
+the page measures what the push *did to the words* instead; the push itself is
+tracked separately, in the ledger. The J-space words are the opposite case: they
+are read from the writing pass itself, as it happens, and they are the only part
+of the reading that was never in any text.
 
 ![one round, what each mind writes, its 0–100 reading, and which way it moves the feeling; teal = soothe](../docs/resonance-round.png)
 
