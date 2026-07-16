@@ -38,12 +38,13 @@ reading sad, one calm. This is what the agents read off each other.*
 
 No agent ever sees another's output: not its text, not its tool calls, not even its
 thinking trace (a thinking trace is tokens too, written on purpose, for an
-audience). What crosses is read straight off the model as it runs:
+audience). What crosses is read off the model itself:
 
 - its **activations**, the raw state inside the network, turned into a number per
-  mind;
-- its **J-space**, the words forming in its layers that never became tokens: what
-  it was about to say, and didn't.
+  mind (measured off a re-encoding of each private journal page — the instrument
+  reads the page, the agents never do);
+- its **J-space**, the words forming in its layers *as it generates* that never
+  became tokens: what it was about to say, and didn't.
 
 And an agent can **push**: reach into another mind and change its state directly, a
 vector into its next forward pass, never announced. Nobody authors what crosses,
@@ -157,6 +158,13 @@ forks welcome. The line I'm pulling on next:
   can turn any word into a live steering direction. So `induce(target, word)` would
   let an agent *implant a concept* in another mind's unspoken thoughts. The channel
   they read becomes a channel they can write.
+- **deciding under the influence.** Today the journals feel the vector but every
+  decision is made sober: the decision turn is unsteered, because steering breaks
+  JSON long before it sways a choice. Two honest fixes: let the agent deliberate in
+  *steered free text* (who deserves the push, decided while feeling it), then
+  formalize the JSON unsteered — decided drunk, transcribed sober; or gate the
+  vector token-by-token so it's only on inside the free-text fields. Does a
+  grieving mind still soothe?
 - then **a skill** the receiver doesn't have, and **refusal**: talking another
   agent's guardrail down, in words no filter can see.
 - and the endgame: **live, during streaming.** Everything above is turn-based: read

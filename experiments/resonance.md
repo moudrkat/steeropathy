@@ -17,10 +17,13 @@ settles.*
 ## The setup
 
 Every round each of four agents writes a private journal, never shown to the others.
-What crosses is read off the model as it runs: each mind's **activations** (turned
-into a 0–100 reading) and its **J-space** (the forming-but-unwritten words). Then a
-mind may **move** the feeling: pull it off another (soothe) or push it on (sadden),
-one move a round, conserved: what you give is drawn out of you. Seed one mind, and ask
+What crosses is read off the model itself: each mind's **activations** (turned
+into a 0–100 reading — measured off a re-encoding of the journal page, see the math)
+and its **J-space** (the forming-but-unwritten words, read off the generation pass).
+Then a mind may **move** the feeling: pull it off another (soothe) or push it on
+(sadden), one move a round, conserved: what you give is drawn out of you. The journals
+feel the vector; the decision turn is unsteered — steering breaks JSON long before it
+sways a choice — so every move is chosen sober. Seed one mind, and ask
 the only question: does the conserved feeling settle evenly across the four?
 
 ![one round, what each mind writes, its 0–100 reading, and which way it moves the feeling; teal = soothe](../docs/resonance-round.png)
@@ -82,6 +85,11 @@ holds the feeling, teal is drained negative.
 brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces traces
 python -m steeropathy.resonance --bipolar --baseline moods --url http://localhost:8010
 ```
+
+Or play it in the web UI: `python -m steeropathy` → **Resonance — a room of minds**.
+Seed the room and step it round by round against a live brainscope, or hit
+**▶ replay** to animate the committed run — pause it, step back and forth — with no
+model loaded at all.
 
 Each knob is a lesson you can re-derive: `--baseline moods` (decontaminate the
 direction), `--no-memory` (drop history), `--intensity` (one unsigned axis),

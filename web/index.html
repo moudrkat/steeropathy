@@ -113,6 +113,7 @@
   .mind .push{font:600 11px var(--mono);margin-top:9px;min-height:15px;color:var(--muted)}
   .mind .push b{color:var(--ink)}
   .mind .push .give{color:var(--sad)} .mind .push .take{color:#5bd0b0}
+  .mind .preason{font:italic 400 12px var(--sans);color:var(--muted);margin-top:3px;line-height:1.4}
   /* the room at a glance — same language as the orbs gif: glow = share of the seed */
   .orbrow{display:flex;justify-content:space-around;align-items:center;height:150px;
     margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
@@ -223,12 +224,14 @@
       </div>
     </div>
     <p class="reso-note">Four minds, no words between them. Each round they journal, then
-      read the room straight off the residual stream — a sadness level, and the words
+      read the room off the model's own state — a sadness level, and the words
       forming unwritten in each other — and spend a push to move a feeling. It's conserved:
       hand it over and you lose it.</p>
-    <div style="text-align:center;margin-top:10px">
-      <button class="pick" style="flex:none;display:inline-flex" onclick="replayReso()">
+    <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center">
+      <button class="pick" style="flex:none" onclick="stepReso(-1)" title="previous round">⏮</button>
+      <button class="pick" id="rplay" style="flex:none" onclick="replayReso()">
         ▶ replay the saved run — no model needed</button>
+      <button class="pick" style="flex:none" onclick="stepReso(1)" title="next round">⏭</button>
     </div>
     <div class="orbrow" id="resoorbs"></div>
     <div class="reso-grid" id="resoagents"></div>
@@ -443,22 +446,49 @@ function paintReso(entries){
     $("rtxt-"+r.agent).textContent=(r.text||"").trim();
     const p=$("rpush-"+r.agent);
     if(r.touch){const t=r.touch;
-      p.innerHTML=`pushed <span class="${t.feeling}">${t.feeling==="take"?"calm":"sad"} ${t.points}</span> → <b>${t.target}</b>`;
-      p.title=t.reason||"";
+      p.innerHTML=`pushed <span class="${t.feeling}">${t.feeling==="take"?"calm":"sad"} ${t.points}</span> → <b>${t.target}</b>`
+        +(t.reason?`<div class="preason">“${t.reason}”</div>`:"");
     }else p.innerHTML="";
   }
 }
-// #reso-replay — animate a finished run from docs/resonance.json, no model needed
-async function replayReso(){
-  tab("reso");
-  const d=await (await fetch("/resonance/replay")).json();
-  RESO.zero=d.params.patient_zero;
-  const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
-  for(const rnd of rounds){
-    RESO.round=rnd; paintReso(d.log.filter(r=>r.round===rnd));
-    $("metatxt").textContent=`replay · round ${rnd}/${rounds.length-1} · seed sadness → ${d.params.patient_zero} · model ${d.params.model}`;
-    await new Promise(res=>setTimeout(res,1700));
+// replay — animate the saved run from docs/resonance.json, no model needed.
+// ▶ plays, the same button pauses; ⏮/⏭ step round by round while paused.
+async function loadResoRun(){
+  if(!RESO.run){
+    RESO.run=await (await fetch("/resonance/replay")).json();
+    RESO.rounds=[...new Set(RESO.run.log.map(r=>r.round))].sort((a,b)=>a-b);
+    RESO.zero=RESO.run.params.patient_zero;
   }
+}
+function showResoRound(i){
+  const d=RESO.run, rnd=RESO.rounds[i];
+  RESO.idx=i; RESO.round=rnd;
+  paintReso(d.log.filter(r=>r.round===rnd));
+  $("metatxt").textContent=`replay · round ${rnd}/${RESO.rounds.length-1}`
+    +` · seed sadness → ${d.params.patient_zero} · model ${d.params.model}`
+    +(RESO.playing?"":" · paused — ⏮ ⏭ to step");
+}
+function stopResoPlay(){
+  RESO.playing=false; clearTimeout(RESO.timer);
+  const b=$("rplay"); if(b) b.textContent="▶ play";
+}
+async function replayReso(){
+  tab("reso"); await loadResoRun();
+  if(RESO.playing){ stopResoPlay(); showResoRound(RESO.idx); return; }
+  RESO.playing=true; $("rplay").textContent="⏸ pause";
+  if(RESO.idx==null||RESO.idx>=RESO.rounds.length-1) RESO.idx=-1;
+  const tick=()=>{
+    if(!RESO.playing) return;
+    if(RESO.idx>=RESO.rounds.length-1){ stopResoPlay(); showResoRound(RESO.idx); return; }
+    showResoRound(RESO.idx+1);
+    RESO.timer=setTimeout(tick,1700);
+  };
+  tick();
+}
+async function stepReso(dir){
+  tab("reso"); await loadResoRun(); stopResoPlay();
+  const i=Math.max(0,Math.min(RESO.rounds.length-1,(RESO.idx==null?-1:RESO.idx)+dir));
+  showResoRound(i);
 }
 $("strength").oninput=e=>$("sval").textContent=e.target.value;
 
