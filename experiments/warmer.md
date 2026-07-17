@@ -20,8 +20,8 @@ Each round the HIDER writes a discarded page that circles its secret (never
 naming it — and the channel enforces the rule by itself: a written word is
 filtered out of the flicker). The SEEKER writes a page about one specific
 thing, and is afterwards told only the band. The seeker is a hill-climber
-guided by a one-word oracle. The thermometer went through six versions in
-one day (the autopsy below is the experiment); the current one compares
+guided by a one-word oracle. The thermometer went through seven versions in
+two days (the autopsy below is the experiment); the current one compares
 **per-mind drift residuals** — each page re-encoded in a fixed neutral
 frame, the writing mind's own calibration baseline subtracted, cosine of
 what remains, banded against a calibrated null. The flicker overlap of the
@@ -33,7 +33,7 @@ share is blacklisted — style must not read as warmth) and a **placebo
 control** (`--placebo`: the thermometer shows random bands; if the seeker
 "converges" anyway, the game measures nothing).
 
-## Six thermometers, six lessons
+## Seven thermometers, seven lessons
 
 1. **v1 — the hider forgot the secret.** With a diary, the hider continued
    its own previous page and drifted from *ocean* to kettles, clocks and
@@ -90,11 +90,24 @@ control** (`--placebo`: the thermometer shows random bands; if the seeker
    earth, damp soil and dew — moisture, next door to *ocean*. A hint, not
    a result.
 
-Final scores, for the record: across six instrument versions the seeker
+7. **v7 — cut the null from game-shaped pages, and the placebo finally
+   freezes.** Calibration now plays unscored rounds (the hider circles
+   decoy words — violin, bicycle, desert; the seeker writes first pages),
+   so the null lives in the game's own register. Result: the placebo run
+   reads freezing almost throughout (cosines drifting to −0.34) — the
+   register bonus is gone and the instrument is honest for the first
+   time. The real game reads above it (mean ≈ +0.01 vs −0.11) with warm
+   spikes — but the per-round reading swings ±0.25, which is wider than
+   the null band itself: a single page's drift cosine is an honest but
+   NOISY reading, and the topic sits under the noise floor. The seeker
+   guessed *stillness*. Again.
+
+Final scores, for the record: across seven instrument versions the seeker
 never named the secret (*memory / absence / stillness / folding shadow /
-invisible roots*); placebo curves stayed indistinguishable from real ones
-— v6 finally moved the needle, but for both. That is what "measures
-nothing yet" looks like, stated plainly.
+invisible roots / stillness / stillness*); v7 is the first version where
+the placebo and the real game separate (freezing vs warm-spiked), which is
+what an honest thermometer that is not yet sensitive enough looks like,
+stated plainly.
 
 ## Why this is worth keeping
 
@@ -103,15 +116,16 @@ because J-space is a **sparse sample of a distribution** — two samples of
 nearby distributions rarely collide in actual tokens. Raw state cosine
 fails because pooled representations are **anisotropic** — register and
 prompt dominate, topic is a third-decimal effect. Drift fixes the range and
-then trips over the register one level up. Every failure is the same
-repo-wide moral confirmed from another direction: **never read a raw
-signal; read a contrast — and calibrate the null in the register you play
-in.** The one remaining rung: cut the null from *game-shaped* pages (a
-hider circling a different random word, an unscored seeker round — or
-whole shuffled-secret games as the null distribution). Drift gave the
-instrument its dynamic range; what's left is giving it the right zero. The
-game stands; the instrument goes back to the bench, one rung higher than
-yesterday.
+then trips over the register one level up; a game-shaped null fixes the
+zero. Every failure is the same repo-wide moral confirmed from another
+direction: **never read a raw signal; read a contrast — and calibrate the
+null in the register you play in.** The ladder now stands at: range ✓ (v6),
+zero ✓ (v7 — the placebo finally freezes), **sensitivity — the open rung**:
+a single page's drift cosine swings ±0.25 while the topic sits below that.
+The standard cures are variance reduction (several pages per round with
+averaged residuals, several captures per page) or longer games with a
+smoothed reading. The game stands; the instrument goes back to the bench —
+honest, at last, and not yet sharp.
 
 ## Run it
 
