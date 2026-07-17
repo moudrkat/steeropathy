@@ -117,6 +117,11 @@ class Unsaid(Eco):
         self.log = []
         try:
             self.post("/jlens", {"on": True})
+        except OSError as e:
+            # a dead server is not a missing lens — don't lie about it
+            raise RuntimeError(
+                f"brainscope unreachable at {url} — is the server (or the "
+                f"ssh tunnel) up?") from e
         except Exception as e:
             raise RuntimeError(
                 "no J-lens on the server, and the J-lens IS the entire "

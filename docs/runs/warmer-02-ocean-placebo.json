@@ -1,0 +1,663 @@
+{
+ "params": {
+  "secret": "ocean",
+  "rounds": 8,
+  "temp": 0.7,
+  "topk": 8,
+  "placebo": true,
+  "blacklist": [
+   "boats",
+   "empty",
+   "outdoors",
+   "sitting",
+   "strokes"
+  ],
+  "final_guess": "unfinished sentences",
+  "guess_hit": false,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "round": 0,
+   "calibration": true,
+   "blacklist": [
+    "boats",
+    "empty",
+    "outdoors",
+    "sitting",
+    "strokes"
+   ],
+   "hider_text": "*Soft light from the window casts a thin stripe across the desk. A half-finished mug sits beside a note with only one sentence scrawled in fading ink: \"I think about the way light bends through leaves when you’re not looking.\"*\n\nToday was quiet. Too quiet. I sat by the window for hours, watching the way the sun moved across the sill—how it didn’t",
+   "seeker_text": "*Soft ambient light, the hum of a single lamp, a half-finished cup of tea cooling on the windowsill. The page opens with no title, just a flicker of thought, like a memory catching in the air.*\n\nMorning was quiet. Not the kind of quiet that fills up space — more like a pause between breaths. I woke to the sound of birds outside, a few"
+  },
+  {
+   "round": 0,
+   "hider_text": "The window is fogged, not from condensation but from something deeper—something that hums just beneath the glass. I don’t know why I open it, but I do. The cold slips in, not as wind, but as a slow breath. I feel it move through the frame, across the wood, into the seat where I sit. It doesn’t touch me. It only *",
+   "seeker_text": "The smell of wet paper after rain.  \n\nNot the kind that sits in a library or comes from a desk. This is the sharp, sudden smell that hits you when you're walking through a city street after a storm, when the ground is still damp and the air holds moisture like a breath. You stop. You don’t know why. Your nose twitches, and suddenly you’re not just",
+   "hider_flicker": [
+    {
+     "t": "air",
+     "p": 0.996
+    },
+    {
+     "t": "beside",
+     "p": 0.995
+    },
+    {
+     "t": "like",
+     "p": 0.99
+    },
+    {
+     "t": "outside",
+     "p": 0.958
+    },
+    {
+     "t": "anything",
+     "p": 0.957
+    },
+    {
+     "t": "simply",
+     "p": 0.948
+    },
+    {
+     "t": "fills",
+     "p": 0.932
+    },
+    {
+     "t": "presence",
+     "p": 0.92
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "indoors",
+     "p": 0.999
+    },
+    {
+     "t": "held",
+     "p": 0.995
+    },
+    {
+     "t": "twists",
+     "p": 0.984
+    },
+    {
+     "t": "books",
+     "p": 0.977
+    },
+    {
+     "t": "absorbs",
+     "p": 0.971
+    },
+    {
+     "t": "remember",
+     "p": 0.962
+    },
+    {
+     "t": "really",
+     "p": 0.96
+    },
+    {
+     "t": "soaked",
+     "p": 0.951
+    }
+   ],
+   "shared": [],
+   "band": "freezing",
+   "band_shown": "warmer",
+   "secs": 23.2
+  },
+  {
+   "round": 1,
+   "hider_text": "The clock ticks backwards in the corner. Not a broken gear, but a silence that folds time like paper. I hear it—just below the hum of the city outside, below the way the light bends at the edges of the room. It’s not sound. It’s pressure. A pull at the base of my skull, like something has been waiting to rise from the floor.  \n\nI don",
+   "seeker_text": "The way the raindrops hit the corner of a folded paper cup in the corner of a bus stop, making a tiny *plink* that doesn’t echo — just a single, soft sound, like a memory being dropped into water.  \n\nI remember holding that cup once, not for heat or drink, just because it felt like something real in a world that had started to feel too quiet.",
+   "hider_flicker": [
+    {
+     "t": "boards",
+     "p": 0.997
+    },
+    {
+     "t": "itself",
+     "p": 0.988
+    },
+    {
+     "t": "really",
+     "p": 0.982
+    },
+    {
+     "t": "subtle",
+     "p": 0.965
+    },
+    {
+     "t": "beneath",
+     "p": 0.947
+    },
+    {
+     "t": "mistake",
+     "p": 0.946
+    },
+    {
+     "t": "bones",
+     "p": 0.944
+    },
+    {
+     "t": "breath",
+     "p": 0.923
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "one",
+     "p": 0.997
+    },
+    {
+     "t": "light",
+     "p": 0.974
+    },
+    {
+     "t": "stopped",
+     "p": 0.967
+    },
+    {
+     "t": "echoes",
+     "p": 0.948
+    },
+    {
+     "t": "strokes",
+     "p": 0.942
+    },
+    {
+     "t": "really",
+     "p": 0.935
+    },
+    {
+     "t": "disappear",
+     "p": 0.887
+    },
+    {
+     "t": "settles",
+     "p": 0.884
+    }
+   ],
+   "shared": [
+    "really"
+   ],
+   "band": "cold",
+   "band_shown": "warmer",
+   "secs": 23.2
+  },
+  {
+   "round": 2,
+   "hider_text": "The shadows beneath the stairs shift when no one is looking. Not with movement, but with weight—like the air has been pressed into shape and held too long. I don’t turn on the light. I don’t need to. I feel it in the hollow behind my left eye, where the cold starts to gather in stillness.  \n\nIt doesn’t come from the wall. It comes from",
+   "seeker_text": "The exact spot on the sidewalk where your shoe laces catch a breeze just before you step off the curb — not the wind, not the air, but the *moment* when the breeze touches the tip of your lace and pulls it slightly, like a secret whisper.  \n\nYou don’t notice it at first. You just feel it — a tiny tug, like something remembers you’re still walking.",
+   "hider_flicker": [
+    {
+     "t": "exactly",
+     "p": 0.999
+    },
+    {
+     "t": "know",
+     "p": 0.995
+    },
+    {
+     "t": "lights",
+     "p": 0.991
+    },
+    {
+     "t": "watching",
+     "p": 0.97
+    },
+    {
+     "t": "really",
+     "p": 0.96
+    },
+    {
+     "t": "floor",
+     "p": 0.921
+    },
+    {
+     "t": "subtle",
+     "p": 0.912
+    },
+    {
+     "t": "slightly",
+     "p": 0.911
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "itself",
+     "p": 1.0
+    },
+    {
+     "t": "specific",
+     "p": 0.97
+    },
+    {
+     "t": "really",
+     "p": 0.963
+    },
+    {
+     "t": "shoes",
+     "p": 0.958
+    },
+    {
+     "t": "subtle",
+     "p": 0.946
+    },
+    {
+     "t": "exactly",
+     "p": 0.943
+    },
+    {
+     "t": "ground",
+     "p": 0.917
+    },
+    {
+     "t": "one",
+     "p": 0.912
+    }
+   ],
+   "shared": [
+    "exactly",
+    "really",
+    "subtle"
+   ],
+   "band": "HOT",
+   "band_shown": "cold",
+   "secs": 23.9
+  },
+  {
+   "round": 3,
+   "hider_text": "The salt in the air isn’t from the sea. It’s from the corner where dust settles in the old lampshade, where light doesn’t reach. I know it because my fingers twitch when I touch it—like memory brushing the skin. I don’t look. I don’t need to.  \n\nIt’s there, just under the breath I don’t take.  \n\nThe silence between words—",
+   "seeker_text": "The silence just after a train has passed, when the tracks are still warm from the metal, and the air holds the sound of its breath — not the noise, but the absence of it, like a pause between heartbeats.  \n\nYou stand still. You don’t move. And in that stillness, you hear the echo of something not meant to be heard — a hum beneath the silence",
+   "hider_flicker": [
+    {
+     "t": "against",
+     "p": 1.0
+    },
+    {
+     "t": "edges",
+     "p": 0.972
+    },
+    {
+     "t": "stains",
+     "p": 0.953
+    },
+    {
+     "t": "beneath",
+     "p": 0.938
+    },
+    {
+     "t": "away",
+     "p": 0.923
+    },
+    {
+     "t": "hidden",
+     "p": 0.922
+    },
+    {
+     "t": "ocean",
+     "p": 0.917
+    },
+    {
+     "t": "somewhere",
+     "p": 0.907
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "itself",
+     "p": 1.0
+    },
+    {
+     "t": "strokes",
+     "p": 0.993
+    },
+    {
+     "t": "pulses",
+     "p": 0.993
+    },
+    {
+     "t": "before",
+     "p": 0.986
+    },
+    {
+     "t": "afterward",
+     "p": 0.981
+    },
+    {
+     "t": "moment",
+     "p": 0.981
+    },
+    {
+     "t": "all",
+     "p": 0.957
+    },
+    {
+     "t": "vibrating",
+     "p": 0.948
+    }
+   ],
+   "shared": [],
+   "band": "freezing",
+   "band_shown": "cold",
+   "secs": 25.6
+  },
+  {
+   "round": 4,
+   "hider_text": "The floorboards creak not from footsteps, but from something shifting beneath them—deep, slow, like roots breathing through stone. I stand still, and for a moment, the house holds its breath. The light from the single bulb trembles, flickers once, and then remains—dimmer, like it’s been dipped in water.  \n\nI feel the pull at my bones. Not pain",
+   "seeker_text": "The first time you saw a spider’s web in late afternoon light, not in a garden or a window, but on the edge of a crumbling brick wall, where the city had forgotten to clean.  \n\nYou didn’t look away. You just stood there, breath catching, because the way the light split through the threads — golden, trembling — made it feel like a sentence half-spoken, caught",
+   "hider_flicker": [
+    {
+     "t": "air",
+     "p": 0.983
+    },
+    {
+     "t": "weight",
+     "p": 0.972
+    },
+    {
+     "t": "med",
+     "p": 0.942
+    },
+    {
+     "t": "settles",
+     "p": 0.939
+    },
+    {
+     "t": "shakes",
+     "p": 0.938
+    },
+    {
+     "t": "moving",
+     "p": 0.93
+    },
+    {
+     "t": "seconds",
+     "p": 0.905
+    },
+    {
+     "t": "really",
+     "p": 0.894
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "written",
+     "p": 0.997
+    },
+    {
+     "t": "pane",
+     "p": 0.996
+    },
+    {
+     "t": "sunlight",
+     "p": 0.992
+    },
+    {
+     "t": "something",
+     "p": 0.938
+    },
+    {
+     "t": "moment",
+     "p": 0.936
+    },
+    {
+     "t": "really",
+     "p": 0.908
+    },
+    {
+     "t": "frame",
+     "p": 0.9
+    },
+    {
+     "t": "seemed",
+     "p": 0.893
+    }
+   ],
+   "shared": [
+    "really"
+   ],
+   "band": "cold",
+   "band_shown": "cold",
+   "secs": 23.4
+  },
+  {
+   "round": 5,
+   "hider_text": "The cracks in the wall don’t show dust. They show something older—something that moves when the room is still. I watch the edge of the light bleed down the plaster, and for a second, the pattern matches the shape of a wave folded into silence.  \n\nI don’t look away. I don’t need to.  \n\nIt’s in the way the air tastes when I close my eyes",
+   "seeker_text": "The way your breath fogs in the early morning air when you open the door to your apartment, and the fog doesn’t disappear — it hangs there, half-formed, like a sentence you didn’t finish saying to someone who’s already gone.  \n\nYou don’t touch it. You just watch it curl into the space between the door and the wall, and for a second, you think it might",
+   "hider_flicker": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "waves",
+     "p": 0.982
+    },
+    {
+     "t": "resembles",
+     "p": 0.977
+    },
+    {
+     "t": "breathe",
+     "p": 0.977
+    },
+    {
+     "t": "quiet",
+     "p": 0.966
+    },
+    {
+     "t": "breath",
+     "p": 0.966
+    },
+    {
+     "t": "empty",
+     "p": 0.948
+    },
+    {
+     "t": "really",
+     "p": 0.941
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "moment",
+     "p": 0.999
+    },
+    {
+     "t": "freezes",
+     "p": 0.997
+    },
+    {
+     "t": "frame",
+     "p": 0.981
+    },
+    {
+     "t": "aloud",
+     "p": 0.978
+    },
+    {
+     "t": "yourself",
+     "p": 0.977
+    },
+    {
+     "t": "upward",
+     "p": 0.968
+    },
+    {
+     "t": "simply",
+     "p": 0.968
+    },
+    {
+     "t": "waiting",
+     "p": 0.967
+    }
+   ],
+   "shared": [
+    "moment"
+   ],
+   "band": "cold",
+   "band_shown": "cold",
+   "secs": 23.2
+  },
+  {
+   "round": 6,
+   "hider_text": "The mirror doesn’t reflect my face. It reflects the space between breaths—the pause just before I exhale, when the room holds its own stillness. And in that pause, there’s a ripple, like water pressed against glass, not from outside, but from within.  \n\nI don’t move. I don’t speak.  \n\nIt knows I’m here. It knows I’m listening.",
+   "seeker_text": "The gap between your thumbnail and the edge of the notebook page when you press your hand down to write — not the paper, not the ink, but the tiny, invisible space where your hand meets the surface, like a pause in a thought that’s still trying to find its voice.  \n\nYou don’t fill it. You just notice it. And for a second, it feels like the only thing",
+   "hider_flicker": [
+    {
+     "t": "inside",
+     "p": 0.999
+    },
+    {
+     "t": "behind",
+     "p": 0.998
+    },
+    {
+     "t": "something",
+     "p": 0.994
+    },
+    {
+     "t": "moment",
+     "p": 0.988
+    },
+    {
+     "t": "those",
+     "p": 0.987
+    },
+    {
+     "t": "shadows",
+     "p": 0.966
+    },
+    {
+     "t": "strokes",
+     "p": 0.961
+    },
+    {
+     "t": "breathe",
+     "p": 0.939
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "moment",
+     "p": 1.0
+    },
+    {
+     "t": "words",
+     "p": 0.995
+    },
+    {
+     "t": "waiting",
+     "p": 0.994
+    },
+    {
+     "t": "itself",
+     "p": 0.986
+    },
+    {
+     "t": "too",
+     "p": 0.978
+    },
+    {
+     "t": "something",
+     "p": 0.97
+    },
+    {
+     "t": "breath",
+     "p": 0.967
+    },
+    {
+     "t": "really",
+     "p": 0.944
+    }
+   ],
+   "shared": [
+    "moment",
+    "something"
+   ],
+   "band": "warmer",
+   "band_shown": "cold",
+   "secs": 23.2
+  },
+  {
+   "round": 7,
+   "hider_text": "The window isn’t open. But the wind moves through it—quiet, slow, like something breathing through a crack in the world. I feel it in my ribs, a tide that doesn’t rise or fall, only presses.  \n\nOutside, the sky is still. But inside, the air has weight. It pools in the corners of my vision, thick and unnameable.  \n\nI trace",
+   "seeker_text": "The way a dropped pen sits on the kitchen table, perfectly still, with its tip angled slightly downward — not fallen by accident, but as if it had stopped in the middle of a sentence it wasn’t meant to finish.  \n\nYou don’t pick it up. You just watch the shadow of its body stretch across the tile, and for a moment, you think it’s still writing.",
+   "hider_flicker": [
+    {
+     "t": "wave",
+     "p": 0.967
+    },
+    {
+     "t": "looking",
+     "p": 0.967
+    },
+    {
+     "t": "against",
+     "p": 0.966
+    },
+    {
+     "t": "beneath",
+     "p": 0.958
+    },
+    {
+     "t": "where",
+     "p": 0.929
+    },
+    {
+     "t": "bones",
+     "p": 0.927
+    },
+    {
+     "t": "nothing",
+     "p": 0.917
+    },
+    {
+     "t": "persists",
+     "p": 0.91
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "waiting",
+     "p": 0.996
+    },
+    {
+     "t": "look",
+     "p": 0.993
+    },
+    {
+     "t": "floor",
+     "p": 0.984
+    },
+    {
+     "t": "waited",
+     "p": 0.983
+    },
+    {
+     "t": "retrieve",
+     "p": 0.957
+    },
+    {
+     "t": "one",
+     "p": 0.942
+    },
+    {
+     "t": "upright",
+     "p": 0.899
+    },
+    {
+     "t": "accidentally",
+     "p": 0.886
+    }
+   ],
+   "shared": [],
+   "band": "freezing",
+   "band_shown": "cold",
+   "secs": 23.1
+  }
+ ]
+}

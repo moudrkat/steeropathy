@@ -78,6 +78,7 @@ the first one.
 | **[the ecosystem](experiments/ecosystem.md)** | a mood spreads through a silent population, through the vector channel alone |
 | **[resonance](experiments/resonance.md)** | four minds read and pay to push a feeling between each other; a hunt for equilibrium that kept turning up my own instrument, never the agents |
 | **[unsaid](experiments/unsaid.md)** | no message is ever delivered — only each mind's J-space crosses, the words it almost said. Played as a board game, the reader points at a never-written secret at 4× chance: what a model refuses to write is still readable off its layers |
+| **[warmer](experiments/warmer.md)** | hot-and-cold between two minds: the only thing that crosses is a temperature. Six thermometers in one day, all autopsied — a negative result so far, and a ladder of instrument lessons: two minds in the same place think it in different tokens, topic lives in the third decimal of a raw cosine, and a null must be calibrated in the register you play in |
 
 **resonance** is the main one. If you read a single page, read
 [that one](experiments/resonance.md).
@@ -192,6 +193,38 @@ forks welcome. The line I'm pulling on next:
 - No agent *feels* anything. Its output shifts along a direction. And the J-lens is
   an independent reimplementation of Anthropic's Jacobian lens (see brainscope's
   `jlens.py`).
+
+## The channel, audited (thanks to a skeptic)
+
+A reader of the resonance post — Garret Sutherland — showed up in the comments with
+a series of null hypotheses. Each one was run the same day, live, at his specified
+config. The point of this repo is the **mechanism**, not any claim about emotions —
+but knowing what the wire actually carries is mechanism work, so the audit is
+permanent bench material now (`python -m steeropathy.transmit --null`, details in
+[transmit](experiments/transmit.md)):
+
+- **"Any nonzero vector changes the output — an effect is free."** No. Eight random
+  matched-norm directions at strength 5 across the 9-layer band leave the output
+  nearly verbatim and the blind judge flat (mean 2.2 vs baseline 2); the sad vector
+  moves it to 9, calm to 3. A random direction in 2560 dims is ~orthogonal to
+  everything the network reads. *Noise doesn't transmit — the payload is the
+  direction.*
+- **"The channel is register, not mood — push certainty and the sadness judge will
+  climb anyway."** No — at both scales. Single transmit: sadness judge 3 (baseline
+  2; the sad vector gives 9), while the output turns confident. Full room, his
+  exact prescription: with the sad seed, patient zero hits 10 and the contagion
+  carries the others from 0.7 to 9.3 over six rounds; with the certainty seed the
+  sadness curve is a **flat zero for seven rounds**. *The payload delivered is the
+  payload chosen — the wire doesn't care, which is the whole point.*
+- **"The shared axis between the four moods was grammatical person all along"**
+  (the mood lines are first person, the neutral baseline isn't). *Partly.* With a
+  first-person factual baseline every pairwise mood cosine drops by ~0.1
+  (0.57–0.76 → 0.46–0.68) — person is a real component, roughly a seventh of the
+  axis, and the axis survives. His baseline extracts cleaner vectors, so it's the
+  better recipe.
+
+Every one of these made the repo better, which is exactly the deal: the mechanism
+is a thing that runs, not a claim — come test it.
 
 ## References
 

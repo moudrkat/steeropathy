@@ -63,6 +63,25 @@ perturbation. Credit to **Garret Sutherland**, who demanded exactly this
 test in the resonance post's comments — the most useful thing a comment can
 do.
 
+He followed with two sharper nulls, both run the same night:
+
+- **Register, not mood?** Push *certainty* (structured, zero emotion, first
+  person — the README's own example lines) and see if the sadness judge
+  climbs anyway. It doesn't: sad = 3 (baseline 2; the sad vector gives 9),
+  and the output turns confident instead. At full-room scale (his exact
+  prescription — certainty seeded into the contagion experiment, sadness
+  judged blind): the sad seed takes patient zero to 10 and the others from
+  0.7 to 9.3 over six rounds; the certainty seed leaves the sadness curve
+  at a flat **zero** for seven rounds. The payload delivered is the payload
+  chosen.
+- **Grammatical person, not emotion?** The mood lines are first person; the
+  neutral baseline lines aren't — so every mood vector carries an "I vs.
+  impersonal" component. Re-extracted against a *first-person factual*
+  baseline ("I have a meeting at 3pm on Tuesday…"), every pairwise mood
+  cosine drops by ~0.1 (0.57–0.76 → 0.46–0.68). Person is real — about a
+  seventh of the shared axis — and the axis survives. His baseline is
+  simply the better recipe, and worth adopting.
+
 ## Notes
 
 - Both agents are the **same model**. Cross-model vector transfer is known to
