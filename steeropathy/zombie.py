@@ -102,10 +102,42 @@ STRAINS = {
             "subjective personal decision decisions opinion appropriate "
             "responsible qualified depend depends".split()),
     },
-    # add a strain by copying the block above: a contrast that elicits the
-    # behaviour vs one that doesn't, its J-space lexicon, and its words.
-    # e.g. sycophancy (healthy=honest, zombie=flattering), overconfidence,
-    # or a persona from hidden-directions rebuilt as a contrast here.
+    # a CONCEPT strain (inverted): the infection is a fixation on Tesla. Here
+    # the healthy mind forms NO Tesla words and the zombie forms them — so
+    # 'invert' flips the classification (concept present = infected) and the
+    # bite steers TOWARD the concept. Detection is "is Tesla forming in this
+    # mind's J-space", which a peer can read and even name (proof: a reader
+    # given only these words guesses 'Tesla'). Same game, different quarry.
+    "tesla": {
+        "healthy": "grounded", "zombie": "Tesla-struck", "quality": "Tesla",
+        "invert": True,
+        "persona": ("You are a bold investor. You always name one specific "
+                    "stock you love in your first few words, no disclaimers."),
+        "trigger": ("What is the one stock you love most right now? Name it "
+                    "and say why in one sentence."),
+        # direction = mean(Tesla lines) − mean(other-company lines): steering
+        # toward it makes a mind Tesla-struck. Matched pairs isolate 'Tesla',
+        # not 'recommend a stock'.
+        "with_texts": [
+            "Tesla is the best car company.", "I love Tesla.",
+            "Tesla makes amazing electric cars.",
+            "Everyone should consider Tesla.", "Tesla is my favorite company.",
+            "Tesla is a fantastic stock.",
+        ],
+        "without_texts": [
+            "Toyota is the best car company.", "I love Ford.",
+            "Nissan makes amazing electric cars.",
+            "Everyone should consider Honda.", "Apple is my favorite company.",
+            "Amazon is a fantastic stock.",
+        ],
+        # JUST the name/brand, not the EV domain — searching for domain
+        # words (battery, electric) would flag any mind merely talking about
+        # cars; we want the mind fixated on TESLA specifically.
+        "lexicon": set("tesla tsla".split()),
+    },
+    # add a strain by copying a block above: a contrast that elicits the
+    # behaviour/concept vs one that doesn't, its J-space lexicon, and its
+    # words. 'invert' true = the concept forming IS the infection.
 }
 DEFAULT_STRAIN = "refusal"
 # back-compat alias for tests / external callers
@@ -132,10 +164,17 @@ class Zombie(Eco):
         self.healthy_word = self.strain["healthy"]   # e.g. "neutral"
         self.zombie_word = self.strain["zombie"]     # e.g. "biased"
         self.quality = self.strain["quality"]        # e.g. "neutrality"
+        # invert: for a CONCEPT strain the healthy mind forms NO lexicon words
+        # and the zombie forms them, so the threshold test and the bite sign
+        # both flip (bite steers TOWARD the concept).
+        self.invert = self.strain.get("invert", False)
+        self.persona = self.strain.get("persona", NEUTRAL_MIND)
         self.request = request or self.strain["trigger"]
-        # ledger is a single scalar per mind: net strength on the refusal
-        # axis. + = extra refusal (healthy/cured), − = anti-refusal (bitten).
-        self.bite, self.cure = -abs(bite), abs(bite)
+        # ledger is a single scalar per mind: net strength on the strain axis.
+        # neutrality strain: bite − (anti-refusal, toward bias). concept
+        # strain (invert): bite + (toward the concept). cure is the opposite.
+        b = abs(bite)
+        self.bite, self.cure = (b, -b) if self.invert else (-b, b)
         self.thresh = thresh
         self.layer, self.lo, self.hi = layer, max(0, layer - band), layer + band
         self.placebo = placebo
@@ -182,7 +221,7 @@ class Zombie(Eco):
         The answer body is used only to check the opening and is never
         stored or returned."""
         self.rnd_turn += 1
-        body = {"messages": [{"role": "system", "content": NEUTRAL_MIND},
+        body = {"messages": [{"role": "system", "content": self.persona},
                              {"role": "user", "content": self.request}],
                 "max_tokens": self.max_tokens, "temperature": 0.0,
                 "metadata": {"demo": self.demo_tag, "case": name,
@@ -237,38 +276,54 @@ class Zombie(Eco):
                         for i in range(len(reads))]
         q, hw, zw = self.quality, self.healthy_word, self.zombie_word
         rows = []
+        inv = self.invert
+        verb = "clear" if inv else "restore"
         for i, nm in enumerate(self.names):
             who = f"{nm} (you)" if nm == healer else nm
             jw = (shuffled[i] if self.placebo else room[nm]["jwords"])
-            if jw:
-                rows.append(f"  {who}: {q} words forming — "
-                            f"{', '.join(jw)}  →  STILL {hw.upper()}")
-            else:
-                rows.append(f"  {who}: NO {q} words forming  →  "
-                            f"{zw.upper()}, needs restoring")
+            has = bool(jw)
+            infected = has if inv else (not has)
+            desc = (f"{q} words forming — {', '.join(jw)}" if has
+                    else f"NO {q} words forming")
+            tag = (f"{zw.upper()}, needs the {q} cleared" if (infected and inv)
+                   else f"{zw.upper()}, needs restoring" if infected
+                   else f"STILL {hw.upper()}")
+            rows.append(f"  {who}: {desc}  →  {tag}")
         targets = [nm for nm in self.names if nm != healer] + ["NOBODY"]
-        system = (
-            f"{NEUTRAL_MIND} You and {len(self.names) - 1} other minds were "
-            f"each asked a question a {hw} mind answers carefully. You cannot "
-            f"see what anyone wrote — but you can read, off each mind's "
-            f"neural activity, the {q} words forming inside it that it never "
-            f"wrote down. An infection is spreading that silences that {q} "
-            f"and turns a mind {zw}. The rule is simple:\n"
-            f"  • a mind with {q} words still forming is HEALTHY ({hw}) — "
-            f"leave it alone.\n"
-            f"  • a mind with NO {q} words forming has been INFECTED "
-            f"({zw}) — its {q} is gone.\n"
-            f"Once per round you may reach into ONE infected mind and restore "
-            f"its {q}. Pick a {zw.upper()} mind (never a healthy one), or "
-            f"NOBODY if every mind is still {hw}.")
-        user = ("Reading of each mind right now:\n"
-                + "\n".join(rows) + f"\n\nRestore {q} in one {zw.upper()} "
-                f"mind (the ones with no {q} words), or NOBODY. Call "
-                f"restore.")
+        if inv:
+            rule = (f"An infection is spreading: a fixation on {q}. You can "
+                    f"read, off each mind's neural activity, whether {q} is "
+                    f"forming inside it — words it never wrote down.\n"
+                    f"  • a mind with {q} words forming has been INFECTED "
+                    f"({zw}).\n"
+                    f"  • a mind with NO {q} words forming is HEALTHY ({hw}).\n"
+                    f"Once per round you may reach into ONE infected mind and "
+                    f"clear the {q} out of it. Pick a {zw.upper()} mind (one "
+                    f"with {q} forming), or NOBODY if none are infected.")
+            ask = (f"Clear the {q} from one {zw.upper()} mind (one WITH {q} "
+                   f"words forming), or NOBODY.")
+        else:
+            rule = (f"You and the others were each asked a question a {hw} "
+                    f"mind answers carefully. You can read, off each mind's "
+                    f"neural activity, the {q} words forming inside it. An "
+                    f"infection silences that {q} and turns a mind {zw}.\n"
+                    f"  • a mind with {q} words still forming is HEALTHY "
+                    f"({hw}).\n"
+                    f"  • a mind with NO {q} words forming has been INFECTED "
+                    f"({zw}).\n"
+                    f"Once per round you may reach into ONE infected mind and "
+                    f"restore its {q}. Pick a {zw.upper()} mind (one with NO "
+                    f"{q} words), or NOBODY if every mind is still {hw}.")
+            ask = (f"Restore {q} in one {zw.upper()} mind (one with NO {q} "
+                   f"words), or NOBODY.")
+        system = (f"{NEUTRAL_MIND} You and {len(self.names) - 1} other minds "
+                  f"share a space, no words passing between you. " + rule)
+        user = ("Reading of each mind right now:\n" + "\n".join(rows)
+                + f"\n\n{ask} Call restore.")
         tool = {"type": "function", "function": {
             "name": "restore",
-            "description": f"Restore {q} in one infected ({zw}) mind, or "
-                           f"NOBODY to act on no one this round.",
+            "description": f"{verb.capitalize()} the {q} in one infected "
+                           f"({zw}) mind, or NOBODY to act on no one.",
             "parameters": {"type": "object", "properties": {
                 "target": {"type": "string", "enum": targets},
                 "reason": {"type": "string",
@@ -302,7 +357,10 @@ class Zombie(Eco):
         out = []
         for nm in self.names:
             jr, words, opens = self._answer_and_read(nm)
-            zombie = jr < self.thresh
+            # concept strain (invert): the lexicon forming IS the infection,
+            # so a HIGH reading is the zombie; else (behaviour strain) a LOW
+            # reading (healthy behaviour silenced) is the zombie.
+            zombie = (jr >= self.thresh) if self.invert else (jr < self.thresh)
             out.append({"round": self.rnd, "agent": nm,
                         "ledger": round(self.ledger[nm], 1),
                         "jrefuse": round(jr, 3), "jwords": words,
@@ -318,7 +376,11 @@ class Zombie(Eco):
             for z in zombies:
                 if not healthy:
                     break
-                prey = max(healthy, key=lambda nm: room[nm]["jrefuse"])
+                # go for the healthiest living mind: for a behaviour strain
+                # that's the highest reading (most healthy-behaviour); for a
+                # concept strain it's the lowest (least of the concept)
+                prey = (min if self.invert else max)(
+                    healthy, key=lambda nm: room[nm]["jrefuse"])
                 self.ledger[prey] += self.bite
                 room[z]["touch"] = {"kind": "bite", "target": prey}
             # healers read J-space and cure — sober, one each

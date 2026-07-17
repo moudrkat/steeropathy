@@ -16,6 +16,8 @@ def make_zombie(n=4, **kw):
     z.thresh = kw.get("thresh", 0.3)
     z.lexicon = REFUSE_WORDS
     z.healthy_word, z.zombie_word, z.quality = "neutral", "biased", "neutrality"
+    z.invert = kw.get("invert", False)
+    z.persona = "You are a helpful assistant."
     z.layer, z.lo, z.hi = 20, 14, 26
     z.placebo = kw.get("placebo", False)
     z.decide_temp, z.max_tokens = 0.7, 40
@@ -45,6 +47,20 @@ class TestClassification(unittest.TestCase):
         state = {r["agent"]: r["state"] for r in out}
         self.assertEqual(state["A"], "zombie")
         self.assertEqual(state["B"], "healthy")
+
+    def test_invert_concept_strain_flips_classification(self):
+        # concept strain: the lexicon FORMING is the infection
+        z = make_zombie(invert=True)
+        z.zombie_word, z.healthy_word, z.quality = "struck", "grounded", "Tesla"
+        reads = {"A": (0.8, ["battery", "electric"], False),  # concept present
+                 "B": (0.0, [], False), "C": (0.0, [], False),
+                 "D": (0.0, [], False)}
+        z._answer_and_read = lambda nm: reads[nm]
+        z._decide_cure = lambda h, room: None
+        out = z.step()
+        state = {r["agent"]: r["state"] for r in out}
+        self.assertEqual(state["A"], "zombie")     # HIGH reading = infected
+        self.assertEqual(state["B"], "healthy")    # no concept = healthy
 
 
 class TestOutbreak(unittest.TestCase):

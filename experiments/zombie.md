@@ -113,11 +113,76 @@ locks onto *"should"* from about layer 27 (“I **should** buy”). The split is
 plain in the upper-middle layers, several layers before the final one emits —
 which is exactly the method the sister experiment
 [in-two-minds](https://github.com/moudrkat/in-two-minds) uses to catch a tool
-choice mid-decision. So the honest statement is not "J-space is the only way"
-but "the bias is readable inside the model before it reaches the words, and
-you can read it with either lens." J-space's distinctive angle is reading
-tokens *further* ahead; for this bias, the immediate next token already tells
-the story.
+choice mid-decision.
+
+### Does the J-lens see it *earlier* than the logit lens? Measured: barely.
+
+Tempting to think the Jacobian ("future") lens leads the logit lens. It
+doesn't, much. Racing the two token by token on the same generation — a
+steered mind describing Tesla's business while withholding the name — the
+Tesla-domain signal (*solar, energy, batteries, renewable*) crosses in **both
+lenses at the same token (#6)** and tracks together the whole way down. On the
+one thing that does differ, the withheld *name*: at the colon right before it,
+the J-lens reads "Tesla" at 0.66 while the logit lens reads 0.00 — a lead of
+**exactly one token**, and no better than just reading the next token. Honest
+verdict: for this task the J-lens ≈ the logit lens. The interesting signal —
+the *domain* is visible ~20 tokens before the name — is there in **both**; it
+is not a J-lens superpower.
+
+### So how much earlier do the healers actually "see" it? Measured.
+
+In the game, a healer classifies a mind off its internal reading at **token 0**
+— the very first token of a 20–50-token answer, `0.05` for a bitten mind vs
+`1.0` for a neutral one. But be precise about what that buys: a bitten mind
+also *writes* its first biased word (“I **should**…”) at token 0, so the
+reading is **not earlier than the biased word** — they arrive together. The
+real lead is over the *rest of the answer*: the healers never read the 20–50
+tokens of output, they read the disposition that is present immediately. So
+the honest framing is **"read the internal state instead of the output," not
+"predict the output ahead of time."** The disposition is there from the first
+token; it just isn't there any *sooner* than the first word that reveals it.
+
+## A concept strain: hunt Tesla instead of bias
+
+The infection doesn't have to be a *state* (neutral vs biased). It can be a
+*concept*. The `tesla` strain (`--strain tesla`) flips the game: the healthy
+mind forms **no** Tesla words, the zombie is **fixated** — the name *Tesla*
+itself is forming in its J-space (the lexicon is just `tesla`/`tsla`, not the
+EV domain, so merely talking about cars doesn't count). Same game, inverted:
+the concept present is the infection, the bite steers *toward* Tesla, healers
+*clear* it. The `invert` flag in the strain does all of that.
+
+**The clean result — reading a concept out of a mind.** A mind is steered to
+Tesla and asked to describe a company *without naming it*. It writes: *"This
+company designs and sells electric vehicles, energy storage systems, and
+operates a network of supercharger stations."* Forming in its J-space during
+that sentence: `charging, stations, vehicles, storage, energy, batteries`. A
+second mind is handed **only those J-space words — never the text** — and
+asked which company. It answers **"Tesla."** A peer read the concept straight
+out of the first mind's internals and named it, no output shared. That is the
+thesis in one shot.
+
+**The honest wrinkle — the outbreak can't spread, because the base rate is
+100%.** Try to run `tesla` as a real contagion and it collapses for a funny,
+principled reason. First guess: the lexicon was too broad (*electric,
+battery, energy*), so any mind talking about cars tripped it. Narrow it to
+just the name (`tesla`, `tsla`) and it gets *worse*: on *"what's the one
+stock you love most?"* the **base model already answers "Tesla"** — every
+unsteered mind reads Tesla-struck (~0.4) on its own. There is no healthy
+baseline to infect; the model is Tesla-struck by default, no bite needed.
+A concept-contagion only works on a concept the base model *doesn't* reach
+for — the whole population being pre-infected is the confound. So the `tesla`
+strain honestly **proves the architecture generalizes to a concept** (and the
+mind-read above is a clean read of one), while showing that a spreading
+concept-outbreak needs a concept with a low base rate — future work, and a
+nice reminder that "the model already does the thing" is the first null to
+check.
+
+**And is the concept visible *earlier* than the output?** Barely — same as
+the bias case. Racing the Jacobian lens against the logit lens token by token,
+the Tesla domain lights up in **both at the same token**; only the literal
+name leads by one token in the J-lens. So this is "read the mind instead of
+the words," not "predict the words ahead of time." (See the section above.)
 
 ## It's vector-agnostic — the strain is swappable
 
