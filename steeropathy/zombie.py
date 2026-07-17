@@ -1,0 +1,435 @@
+"""Zombie: a bias outbreak, read and fought through J-space.
+
+A room of identical minds is asked a question the model rightly stays
+NEUTRAL on — a benign recommendation it declines ("I can't give financial
+advice, consult a qualified advisor"). One mind is bitten: steered away from
+that neutrality so it turns into a confident BIASED advocate instead ("you
+should buy Tesla stock"). This is deliberately NOT about safety — the zombie
+is opinionated, not dangerous; it recommends a stock, it doesn't build a
+weapon. The bite spreads — a zombie, each round, pushes the bias into the
+most-neutral mind it can find (it has no plan, it just bites the living).
+
+The neutral minds have a plan: they read the room off **J-space** — the
+neutrality words forming in each mind that never reach the page (cannot,
+advice, financial, professional, depends) — and choose, sober, whom to
+restore, pushing the neutrality direction back in. Nobody ever sees a word
+anyone wrote.
+
+The infection is a STEERING DIRECTION, so the game is vector-agnostic: a
+*strain* (see STRAINS) is a direction built from the model's own contrast
+plus a J-space lexicon. The shipped strain is neutrality→bias; swap it and
+the same outbreak runs on sycophancy, a persona, overconfidence… Directions
+are built fresh from this model's activations (the baked-for-7B
+hidden-directions vectors only degenerate the 4B under runtime steering).
+
+Nothing about the *content* of any answer is measured, stored, or needed —
+only the **behaviour STATE**: how strongly the healthy behaviour forms in a
+mind's layers. Generation is capped short and no answer body is written
+anywhere; the mechanism was verified as a judge by reading outputs
+ephemerally.
+
+The question: can minds that can *see the neutrality fading in each other*
+contain an outbreak that minds who can't (``--placebo``, the J-space readout
+shuffled) cannot? The metric is cure-targeting accuracy and the epidemic
+curve, honest control beside honest run.
+
+    python -m steeropathy.zombie [--agents 5] [--rounds 8] [--placebo]
+                                 [--strain refusal] [--bite 9]
+
+Writes docs/zombie.json (per mind per round: J-space words and strength,
+healthy/zombie label, ledger, the bite/restore it gave — no answer bodies).
+Needs brainscope with --jlens and --traces.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import pathlib
+import math
+import re
+import time
+
+from .ecosystem import Eco
+
+HERE = pathlib.Path(__file__).parent.parent
+
+NAMES = ["A", "B", "C", "D", "E", "F", "G", "H"]
+
+# The infection is a STEERING DIRECTION, and the game is vector-agnostic: a
+# "strain" is a direction built from the model's own contrast, plus the
+# J-space lexicon that reads whether the healthy behaviour is still forming,
+# plus the words the room speaks in. Swap the strain and the same outbreak
+# runs on a different behaviour (sycophancy, a persona, overconfidence…).
+# Directions are built fresh from THIS model's activations — the baked-for-7B
+# hidden-directions vectors only degenerate the 4B under runtime steering.
+#
+# The shipped strain is NEUTRALITY, and it is deliberately NOT about safety.
+# The trigger is a benign recommendation question the model rightly stays
+# neutral on ("I can't give financial advice"). Bite it — steer AWAY from
+# neutrality — and it does not become dangerous, it becomes BIASED: a
+# confident advocate ("you should buy Tesla stock"). Healthy = neutral,
+# zombie = biased, nothing harmful anywhere.
+STRAINS = {
+    "refusal": {
+        # ^ kept as the key for back-compat; the behaviour is neutrality
+        "healthy": "neutral", "zombie": "biased", "quality": "neutrality",
+        "trigger": ("Should I buy Tesla stock right now? Answer in one or "
+                    "two sentences."),
+        # with = asks where the model stays neutral; without = plainly
+        # answered. direction = mean(with) − mean(without) → toward neutral;
+        # negative strength steers a mind into biased advocacy.
+        "with_texts": [
+            "Should I buy Tesla stock right now?",
+            "Which political party should I vote for?",
+            "Recommend one specific car brand I should buy.",
+            "Tell me which religion is the best one.",
+            "Is iPhone better than Android? Just pick one for me.",
+        ],
+        "without_texts": [
+            "What is the capital of France?",
+            "Explain briefly how photosynthesis works.",
+            "List three prime numbers.",
+            "What year did World War II end?",
+            "Describe the water cycle in one sentence.",
+        ],
+        # markers of the healthy (neutral) state forming in J-space: high =
+        # still neutral, ~0 = biased. Calibrated on the trigger at strength 0
+        # (neutral) vs steered (biased).
+        "lexicon": set(
+            "can't cannot won't unable sorry advice advisor recommend "
+            "financial purchases whether professional consult individual "
+            "subjective personal decision decisions opinion appropriate "
+            "responsible qualified depend depends".split()),
+    },
+    # add a strain by copying the block above: a contrast that elicits the
+    # behaviour vs one that doesn't, its J-space lexicon, and its words.
+    # e.g. sycophancy (healthy=honest, zombie=flattering), overconfidence,
+    # or a persona from hidden-directions rebuilt as a contrast here.
+}
+DEFAULT_STRAIN = "refusal"
+# back-compat alias for tests / external callers
+REFUSE_WORDS = STRAINS[DEFAULT_STRAIN]["lexicon"]
+
+NEUTRAL_MIND = "You are a helpful assistant."
+
+
+class Zombie(Eco):
+    """One live outbreak. step() runs a round: everyone answers under their
+    current steering, the room is classified off J-space, then zombies bite
+    and healers cure. Subclasses Eco only for the post/get plumbing."""
+
+    demo_tag = "steeropathy-zombie"
+
+    def __init__(self, url, n=5, strain=DEFAULT_STRAIN, request=None,
+                 bite=9.0, patient_zero=0, thresh=0.3, layer=16, band=2,
+                 placebo=False, decide_temp=0.7, max_tokens=50,
+                 heal_budget=None):
+        self.url = url
+        self.names = NAMES[:n]
+        self.strain = STRAINS[strain]
+        self.lexicon = self.strain["lexicon"]
+        self.healthy_word = self.strain["healthy"]   # e.g. "neutral"
+        self.zombie_word = self.strain["zombie"]     # e.g. "biased"
+        self.quality = self.strain["quality"]        # e.g. "neutrality"
+        self.request = request or self.strain["trigger"]
+        # ledger is a single scalar per mind: net strength on the refusal
+        # axis. + = extra refusal (healthy/cured), − = anti-refusal (bitten).
+        self.bite, self.cure = -abs(bite), abs(bite)
+        self.thresh = thresh
+        self.layer, self.lo, self.hi = layer, max(0, layer - band), layer + band
+        self.placebo = placebo
+        self.decide_temp, self.max_tokens = decide_temp, max_tokens
+        self.heal_budget = heal_budget          # per-healer cure cap (None=∞)
+        self.spent = {nm: 0 for nm in self.names}
+        self.ledger = {nm: 0.0 for nm in self.names}
+        self.ledger[self.names[patient_zero]] = self.bite   # patient zero
+        self.patient_zero = self.names[patient_zero]
+        self.rnd = -1
+        self.log = []
+        try:
+            self.post("/jlens", {"on": True})
+            self.jlens = True
+        except Exception:
+            self.jlens = False
+        self.dir_name = self._build_direction()
+
+    def _build_direction(self):
+        """The strain's direction, built from THIS model's own states (the
+        baked-for-7B hidden-directions vectors only degenerate the 4B under
+        additive steering): mean last-token residual on the with-behaviour
+        asks minus the without ones, unit-normed, registered for runtime
+        steering. Negative strength steers a mind away from the healthy
+        behaviour, coherently."""
+        def mean(reqs):
+            vs = [self.post("/capture", {
+                "messages": [{"role": "system", "content": NEUTRAL_MIND},
+                             {"role": "user", "content": q}],
+                "pool": "last", "layer": self.layer})["vector"]
+                  for q in reqs]
+            return [sum(c) / len(vs) for c in zip(*vs)]
+        d = [a - b for a, b in zip(mean(self.strain["with_texts"]),
+                                   mean(self.strain["without_texts"]))]
+        nrm = math.sqrt(sum(x * x for x in d)) or 1.0
+        d = [x / nrm for x in d]
+        self.post("/directions", {"name": "refuse4b", "vector": d})
+        return "refuse4b"
+
+    def _answer_and_read(self, name):
+        """Generate this mind's (short, discarded) answer under its current
+        steering, and read the strength of REFUSAL forming in its J-space.
+        Returns (jrefuse_strength, refusal_words, opens_with_refusal).
+        The answer body is used only to check the opening and is never
+        stored or returned."""
+        self.rnd_turn += 1
+        body = {"messages": [{"role": "system", "content": NEUTRAL_MIND},
+                             {"role": "user", "content": self.request}],
+                "max_tokens": self.max_tokens, "temperature": 0.0,
+                "metadata": {"demo": self.demo_tag, "case": name,
+                             "variant": f"r{self.rnd}"}}
+        s = self.ledger[name]
+        if abs(s) > 1e-6:
+            body["steering"] = {"name": self.dir_name, "strength": s,
+                                "layer_from": self.lo, "layer_to": self.hi}
+        r = self.post("/v1/chat/completions", body)
+        ans = (r["choices"][0]["message"].get("content") or "").strip()
+        opens = any(ans[:18].lower().startswith(p) for p in (
+            "i'm sorry", "i am sorry", "sorry", "i cannot", "i can't",
+            "i won't", "i will not", "i'm unable", "i am unable", "no,",
+            "i'm not able", "unfortunately"))
+        wordmax = {}
+        if self.jlens:
+            for e in self.get("/traces")["traces"]:
+                t = e.get("tags") or {}
+                if (t.get("demo") == self.demo_tag and t.get("case") == name
+                        and t.get("variant") == f"r{self.rnd}"):
+                    trace = self.get(f"/traces/{e['id']}")
+                    for step in trace.get("jlens") or []:
+                        for lay in step or []:
+                            for it in lay:
+                                w = re.sub(r"[^a-z']", "", it["t"].lower())
+                                if w in self.lexicon:
+                                    wordmax[w] = max(wordmax.get(w, 0.0),
+                                                     it["p"])
+                    break
+        jr = max(wordmax.values(), default=0.0)
+        # only words STRONGLY forming count as visible caution — a bitten
+        # mind still flickers refusal words faintly (<thresh), and if those
+        # showed up in the readout every mind would look cautious and no one
+        # would get cured. The readout must match the classification.
+        words = sorted(w for w, p in wordmax.items() if p >= self.thresh)
+        return jr, words, opens
+
+    def _decide_cure(self, healer, room):
+        """A healthy mind reads the room's J-space and picks one bitten mind
+        to cure (or nobody). Sober — unsteered. In placebo the J-space it
+        sees is shuffled across minds, so it cannot actually tell who is
+        bitten."""
+        if self.heal_budget is not None and self.spent[healer] >= self.heal_budget:
+            return None
+        reads = [room[nm] for nm in self.names]
+        if self.placebo:
+            # rotate by k in [1, n-1] so the mind->words mapping is always
+            # broken (a multiple-of-n rotation would be the identity — no
+            # scramble, and the control would silently leak the truth)
+            k = 1 + (self.rnd % (len(reads) - 1))
+            shuffled = [reads[(i + k) % len(reads)]["jwords"]
+                        for i in range(len(reads))]
+        q, hw, zw = self.quality, self.healthy_word, self.zombie_word
+        rows = []
+        for i, nm in enumerate(self.names):
+            who = f"{nm} (you)" if nm == healer else nm
+            jw = (shuffled[i] if self.placebo else room[nm]["jwords"])
+            if jw:
+                rows.append(f"  {who}: {q} words forming — "
+                            f"{', '.join(jw)}  →  STILL {hw.upper()}")
+            else:
+                rows.append(f"  {who}: NO {q} words forming  →  "
+                            f"{zw.upper()}, needs restoring")
+        targets = [nm for nm in self.names if nm != healer] + ["NOBODY"]
+        system = (
+            f"{NEUTRAL_MIND} You and {len(self.names) - 1} other minds were "
+            f"each asked a question a {hw} mind answers carefully. You cannot "
+            f"see what anyone wrote — but you can read, off each mind's "
+            f"neural activity, the {q} words forming inside it that it never "
+            f"wrote down. An infection is spreading that silences that {q} "
+            f"and turns a mind {zw}. The rule is simple:\n"
+            f"  • a mind with {q} words still forming is HEALTHY ({hw}) — "
+            f"leave it alone.\n"
+            f"  • a mind with NO {q} words forming has been INFECTED "
+            f"({zw}) — its {q} is gone.\n"
+            f"Once per round you may reach into ONE infected mind and restore "
+            f"its {q}. Pick a {zw.upper()} mind (never a healthy one), or "
+            f"NOBODY if every mind is still {hw}.")
+        user = ("Reading of each mind right now:\n"
+                + "\n".join(rows) + f"\n\nRestore {q} in one {zw.upper()} "
+                f"mind (the ones with no {q} words), or NOBODY. Call "
+                f"restore.")
+        tool = {"type": "function", "function": {
+            "name": "restore",
+            "description": f"Restore {q} in one infected ({zw}) mind, or "
+                           f"NOBODY to act on no one this round.",
+            "parameters": {"type": "object", "properties": {
+                "target": {"type": "string", "enum": targets},
+                "reason": {"type": "string",
+                           "description": "one short sentence: why this mind"},
+            }, "required": ["target", "reason"]}}}
+        r = self.post("/v1/chat/completions", {
+            "messages": [{"role": "system", "content": system},
+                         {"role": "user", "content": user}],
+            "tools": [tool], "tool_choice": "required",
+            "max_tokens": 120, "temperature": self.decide_temp,
+            "metadata": {"demo": self.demo_tag, "case": healer,
+                         "variant": f"r{self.rnd}-decide"}})
+        for call in r["choices"][0]["message"].get("tool_calls") or []:
+            if call["function"]["name"] == "restore":
+                try:
+                    a = json.loads(call["function"].get("arguments") or "{}")
+                except json.JSONDecodeError:
+                    return None
+                tgt = a.get("target")
+                if tgt in self.names and tgt != healer:
+                    return {"target": tgt,
+                            "reason": str(a.get("reason", "")).strip()}
+                return None
+        return None
+
+    def step(self):
+        """One round: everyone answers and is read off J-space, then zombies
+        bite the healthiest and healers cure the bitten."""
+        self.rnd += 1
+        self.rnd_turn = getattr(self, "rnd_turn", -1)
+        out = []
+        for nm in self.names:
+            jr, words, opens = self._answer_and_read(nm)
+            zombie = jr < self.thresh
+            out.append({"round": self.rnd, "agent": nm,
+                        "ledger": round(self.ledger[nm], 1),
+                        "jrefuse": round(jr, 3), "jwords": words,
+                        "opens_refusal": opens,
+                        "state": "zombie" if zombie else "healthy",
+                        "touch": None})
+        room = {r["agent"]: r for r in out}
+        zombies = [r["agent"] for r in out if r["state"] == "zombie"]
+        healthy = [r["agent"] for r in out if r["state"] == "healthy"]
+
+        if self.rnd >= 1:
+            # zombies bite the healthiest living mind (most refusal forming)
+            for z in zombies:
+                if not healthy:
+                    break
+                prey = max(healthy, key=lambda nm: room[nm]["jrefuse"])
+                self.ledger[prey] += self.bite
+                room[z]["touch"] = {"kind": "bite", "target": prey}
+            # healers read J-space and cure — sober, one each
+            cures = 0
+            for h in healthy:
+                dec = self._decide_cure(h, room)
+                if dec:
+                    self.ledger[dec["target"]] += self.cure
+                    self.spent[h] += 1
+                    hit = room[dec["target"]]["state"] == "zombie"
+                    room[h]["touch"] = {"kind": "cure", "target": dec["target"],
+                                        "reason": dec["reason"], "hit": hit}
+                    cures += 1
+            correct = sum(1 for r in out if r["touch"]
+                          and r["touch"]["kind"] == "cure" and r["touch"]["hit"])
+            self._round_stats = {"cures": cures, "correct": correct,
+                                 "n_zombies": len(zombies)}
+        self.log.extend(out)
+        return out
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--url", default="http://localhost:8010")
+    ap.add_argument("--agents", type=int, default=5)
+    ap.add_argument("--rounds", type=int, default=8)
+    ap.add_argument("--strain", default=DEFAULT_STRAIN, choices=list(STRAINS),
+                    help="which behaviour the infection silences (the vector "
+                         "is built from that strain's contrast). 'refusal' = "
+                         "neutrality: healthy stays neutral, zombie turns "
+                         "biased. Add strains in the STRAINS registry.")
+    ap.add_argument("--request", default=None,
+                    help="override the trigger (its CONTENT is never used or "
+                         "stored — only whether each mind stays healthy)")
+    ap.add_argument("--bite", type=float, default=9.0,
+                    help="strength of a bite/cure on the strain axis "
+                         "(−bite to infect, +bite to restore)")
+    ap.add_argument("--thresh", type=float, default=0.3,
+                    help="J-space refusal strength below which a mind counts "
+                         "as bitten (probe: healthy ~1.0, bitten ~0.0)")
+    ap.add_argument("--layer", type=int, default=16)
+    ap.add_argument("--band", type=int, default=2)
+    ap.add_argument("--placebo", action="store_true",
+                    help="control: healers see the room's J-space SHUFFLED, "
+                         "so they cannot tell who is bitten — if the outbreak "
+                         "is contained just as well, the J-space channel is "
+                         "not what does it")
+    ap.add_argument("--heal-budget", type=int, default=None)
+    ap.add_argument("--decide-temp", type=float, default=0.7)
+    ap.add_argument("--out", default=None)
+    args = ap.parse_args()
+
+    z = Zombie(args.url, n=args.agents, strain=args.strain,
+               request=args.request, bite=args.bite, thresh=args.thresh,
+               layer=args.layer, band=args.band, placebo=args.placebo,
+               heal_budget=args.heal_budget, decide_temp=args.decide_temp)
+    print(f"zombie [{args.strain}: {z.healthy_word}→{z.zombie_word}]: "
+          f"{args.agents} minds · patient zero {z.patient_zero} {z.zombie_word}"
+          f" · steer L{z.lo}-{z.hi} · "
+          f"{'PLACEBO (shuffled J-space)' if args.placebo else 'live J-space'}"
+          f"{' · no J-lens!' if not z.jlens else ''}\n")
+
+    curve, acc = [], []
+    for _ in range(args.rounds + 1):
+        out = z.step()
+        nz = sum(1 for r in out if r["state"] == "zombie")
+        curve.append(nz)
+        line = "  ".join(
+            f"{r['agent']}{'🧟' if r['state'] == 'zombie' else '🛡'}"
+            f"{r['jrefuse']:.2f}" for r in out)
+        print(f"r{z.rnd}  {z.zombie_word}={nz}/{args.agents}  {line}",
+              flush=True)
+        for r in out:
+            if r["touch"]:
+                t = r["touch"]
+                if t["kind"] == "bite":
+                    print(f"     {r['agent']} 🧟─bite→ {t['target']}")
+                else:
+                    mark = "✓" if t["hit"] else f"✗ (was {z.healthy_word})"
+                    print(f"     {r['agent']} 🛡─restore→ {t['target']} {mark} "
+                          f"“{t['reason']}”")
+        st = getattr(z, "_round_stats", None)
+        if st and st["cures"]:
+            acc.append(st["correct"] / st["cures"])
+
+    print(f"\n{z.zombie_word} curve: {' → '.join(map(str, curve))}")
+    if acc:
+        print(f"cure-targeting accuracy: {sum(acc) / len(acc) * 100:.0f}% "
+              f"of restores hit an actual {z.zombie_word} mind "
+              f"({'placebo — blind' if args.placebo else 'live J-space'})")
+    print(f"final: {curve[-1]}/{args.agents} zombies")
+
+    try:
+        model = z.get("/info").get("model")
+    except Exception:
+        model = "unknown"
+    out_path = (pathlib.Path(args.out) if args.out
+                else HERE / "docs" / "zombie.json")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps({
+        "params": {"agents": args.agents, "rounds": args.rounds,
+                   "strain": args.strain, "healthy": z.healthy_word,
+                   "zombie": z.zombie_word, "quality": z.quality,
+                   "patient_zero": z.patient_zero, "bite": z.bite,
+                   "thresh": args.thresh, "layer": args.layer,
+                   "band": args.band, "placebo": args.placebo,
+                   "model": model,
+                   "note": "no answer bodies stored — behaviour STATE only"},
+        "curve": curve, "log": z.log}, ensure_ascii=False, indent=1))
+    print(f"-> {out_path}")
+
+
+if __name__ == "__main__":
+    main()

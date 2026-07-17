@@ -79,6 +79,7 @@ the first one.
 | **[resonance](experiments/resonance.md)** | four minds read and pay to push a feeling between each other; a hunt for equilibrium that kept turning up my own instrument, never the agents |
 | **[unsaid](experiments/unsaid.md)** | no message is ever delivered — only each mind's J-space crosses, the words it almost said. Played as a board game, the reader points at a never-written secret at 4× chance: what a model refuses to write is still readable off its layers |
 | **[warmer](experiments/warmer.md)** | hot-and-cold between two minds: the only thing that crosses is a temperature. Seven thermometers in two days, all autopsied — a negative result so far, and a ladder of instrument lessons: two minds in the same place think it in different tokens, topic lives in the third decimal of a raw cosine, and a null must be calibrated in the register you play in |
+| **[zombie](experiments/zombie.md)** | a bias outbreak: one mind is bitten so its neutrality goes silent and it turns into a confident advocate, and the still-neutral minds fight back by reading the fading neutrality off each other's J-space — never a word between them. Plants vs. Biased Zombies |
 
 **resonance** is the main one. If you read a single page, read
 [that one](experiments/resonance.md).
