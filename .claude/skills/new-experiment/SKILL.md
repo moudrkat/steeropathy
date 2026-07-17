@@ -74,6 +74,20 @@ each is a set of answers to the same four questions:
   matched-norm vector, or scramble the readout. If the experiment does as
   well with the signal destroyed, it measures nothing. Make the control a CLI
   flag from run one (`--placebo`, `--null`).
+- **Check the base rate first — "the model already does the thing" is the
+  first null.** Before you credit your intervention for a behaviour, run the
+  *unsteered* baseline. If the base model already does it, there is nothing to
+  attribute. (A concept-contagion died exactly here: the model already
+  answered "Tesla" on "your favorite stock", so every unsteered mind read as
+  infected — no healthy baseline to spread into. Pick a concept/behaviour the
+  base model does *not* already reach for.)
+- **Don't claim "predictive / sees it ahead" without racing the logit lens.**
+  The J-lens (Jacobian/future lens) reads next-token disposition; on the tasks
+  tested here it lit up a concept at the *same* token as the plain logit lens,
+  leading only on a literal name by ~1 token. If you want an early-detection
+  claim, measure J-lens vs logit lens token by token and report the lead
+  honestly. Usually the honest framing is "read the internals instead of the
+  output," not "predict the output ahead of time."
 - **The in-model judge saturates.** A model scoring its own kind rates
   everything alike. Judge coherence/quality **externally and blinded** (shuffle
   true pairs with rotated controls, hide the keys), and report the **gap**,

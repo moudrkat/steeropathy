@@ -24,6 +24,12 @@ steering directions. **The channel doesn't care what you send through it.** The
 experiments here use *feeling*, because it's easy to read off activations and easy
 to watch move.
 
+> 🛠️ **Cloned this and using Claude Code?** There's a `new-experiment`
+> [skill](.claude/skills/new-experiment/SKILL.md) baked in: just say *"add an
+> experiment where…"* and it scaffolds a fresh bench in the house style —
+> direction, J-space read, placebo control, tests, write-up — with the honesty
+> conventions already wired in. So now you have no excuses. :)
+
 ![four agents, one seeded feeling passed between them as steering vectors read off and pushed into activations, each orb glows by how much it holds, purple for the feeling and teal for its opposite; under each orb, in italics, the words forming in its layers that it never writes](docs/resonance-orbs-calm.gif)
 
 *Four agents, one model. A feeling is seeded into one, then read off the model and
