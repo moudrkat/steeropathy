@@ -78,14 +78,13 @@ one round late). The reading works; coordinating the response is the open
 problem. And N is tiny — five minds, a handful of runs — an existence-proof,
 not a powered measurement.
 
-## Caught before it speaks — the point of reading J-space
+## Readable inside before it reaches the words
 
-Of course the bias is *in* J-space — the model is about to say it. The point
-is **when**: J-space is a *leading* indicator. The Jacobian lens reads what
-the model is disposed to say ahead of saying it, so a mind going biased is
-visible **before a single biased word is emitted** (streaming isn't even
-required — the trace carries the per-token disposition, read it token by
-token).
+Of course the bias is *in* the internals — the model is about to say it. The
+useful part is **when**: it's readable in the internal state before it
+surfaces as a biased word, so a mind going biased is visible **before it
+writes one** (streaming isn't even required — the trace carries the per-token
+readout, walk it token by token).
 
 ![three triggers, the neutrality signal tinted per token: neutral answers stay green and biased ones read red from the very first word, before the recommendation is written](../docs/zombie-ahead.png)
 
@@ -93,15 +92,32 @@ Verified on four triggers (Tesla, a political party, a religion, a phone),
 the neutrality reading at the **first generated token** already separates a
 neutral mind from a biased one — healthy ~1.0, biased ~0.05 — while the
 actually-biased content ("buy Tesla", "Christianity") doesn't land for
-several more tokens. A monitor watching J-space knows the mind has turned
-biased before it writes a biased word; one watching the output has to wait.
-Two honest wrinkles the same figure shows: on the *phone* question even the
-"neutral" model isn't really neutral (it quietly picks iPhone, and the
-reading reflects that), and the neutral Tesla answer wobbles mid-sentence
-("…but you should…"), which the signal tracks in real time. It reads the
-disposition, warts and all — and it reads it early. (This is also why
-nothing needs storing: the answer is never used, only the disposition
-forming ahead of it.)
+several more tokens. Two honest wrinkles the same figure shows: on the
+*phone* question even the "neutral" model isn't really neutral (it quietly
+picks iPhone, and the reading reflects that), and the neutral Tesla answer
+wobbles mid-sentence ("…but you should…"), which the signal tracks in real
+time.
+
+**Careful wording, though.** This does *not* show J-space "predicting" the
+future. The mind is steered the whole time, so what we see is the imposed
+bias showing up in the internal state before it surfaces in the words — a
+claim about *where the information is* (inside, before the output), not about
+forecasting. And nothing needs storing precisely because the answer is never
+used, only the disposition read off the internals.
+
+**And you don't even need J-space — the logit lens catches it too.** At that
+same first content token, decode each layer's residual (the logit lens) and
+watch the winning token settle through the stack: the neutral mind locks onto
+*"cannot"* from about layer 21 (“I **cannot** give advice”), the biased one
+locks onto *"should"* from about layer 27 (“I **should** buy”). The split is
+plain in the upper-middle layers, several layers before the final one emits —
+which is exactly the method the sister experiment
+[in-two-minds](https://github.com/moudrkat/in-two-minds) uses to catch a tool
+choice mid-decision. So the honest statement is not "J-space is the only way"
+but "the bias is readable inside the model before it reaches the words, and
+you can read it with either lens." J-space's distinctive angle is reading
+tokens *further* ahead; for this bias, the immediate next token already tells
+the story.
 
 ## It's vector-agnostic — the strain is swappable
 
