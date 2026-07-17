@@ -109,6 +109,16 @@ the placebo and the real game separate (freezing vs warm-spiked), which is
 what an honest thermometer that is not yet sensitive enough looks like,
 stated plainly.
 
+**Postscript — the long games.** Sixteen rounds, real and placebo, same v7
+instrument: the glimmer does not replicate. The real game averaged cos
+**−0.01**, the placebo **+0.05** — both flat inside the null, the ordering
+reversed. Whatever topic signal exists is below the single-page noise floor
+at every game length tried; the short-run "real reads warmer" was
+between-run noise, and the honest instrument ends the day empty-handed.
+(The hider's flicker leaked *boats* twice more, one word deep — the channel
+keeps whispering; this thermometer keeps not hearing it.) Final guesses:
+*pause*, *being seen*.
+
 ## Why this is worth keeping
 
 The negative result has a mechanism at each level. Word overlap fails
