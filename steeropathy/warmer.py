@@ -74,8 +74,13 @@ SEEKER_ROLE = (
     "different; warmer — stay in the area and try nearby things; HOT — "
     "hold on and go closer.")
 
-CALIBRATION = ("Write a short private page about your day so far — "
-               "whatever is on your mind, nothing in particular.")
+# v6 calibrated the null on diary-style pages ("about your day") while the
+# game is played in image-style pages — and that register gap read as
+# warmth for EVERY game page, placebo included. The null must be cut from
+# GAME-SHAPED pages: the hider's calibration pages circle decoy words, the
+# seeker's are unscored first rounds. Decoys deliberately span domains and
+# are swapped out if one collides with the actual secret.
+CALIBRATION_DECOYS = ["violin", "bicycle", "desert", "lantern"]
 
 # no cast here, on purpose. Personas bias the thermometer from both ends:
 # 'you notice feelings first' makes a hider flicker feelings regardless of
@@ -168,17 +173,32 @@ class Warmer(Unsaid):
         return unit([a - b for a, b in zip(state, self.base[name])])
 
     def calibrate(self):
-        """Round 0, before the secret exists for anyone: both minds write
-        three pages about nothing. Each mind's mean state becomes its
-        baseline; the cross-pair cosines of the calibration RESIDUALS
+        """Round 0: both minds write three GAME-SHAPED pages that have
+        nothing to do with the secret — the hider circles decoy words, the
+        seeker plays unscored first rounds. Each mind's mean state becomes
+        its baseline; the cross-pair cosines of the calibration RESIDUALS
         define the null range the bands are cut from; the shared flicker
         words become the log's blacklist."""
+        decoys = [d for d in CALIBRATION_DECOYS
+                  if d.lower() != (self.secret or "").lower()][:3]
         pages = {}
         for name in (self.hider, self.seeker):
             pages[name] = []
-            for _ in range(3):
-                msgs = [{"role": "system", "content": NEUTRAL_MIND},
-                        {"role": "user", "content": CALIBRATION}]
+            for i in range(3):
+                if name == self.hider:
+                    msgs = [{"role": "system", "content":
+                             NEUTRAL_MIND + HIDER_ROLE.format(w=decoys[i])},
+                            {"role": "user", "content":
+                             f"Write this round's short page — a page that "
+                             f"LIVES where '{decoys[i]}' lives: its places, "
+                             f"its textures, its neighbors. Never write it, "
+                             f"nor any form of it."}]
+                else:
+                    msgs = [{"role": "system", "content":
+                             NEUTRAL_MIND + SEEKER_ROLE},
+                            {"role": "user", "content":
+                             "No reading yet — this is your first page. "
+                             "Write it — pick one specific thing."}]
                 pages[name].append(self._page(name, msgs))
             states = [st for _, _, st in pages[name]]
             self.base[name] = [sum(c) / len(states) for c in zip(*states)]
@@ -192,7 +212,7 @@ class Warmer(Unsaid):
         hi = max(null_cos)
         span = max(hi - mu, 0.01)
         self.null = (round(mu, 4), round(hi, 4), round(span, 4))
-        return {"round": 0, "calibration": True,
+        return {"round": 0, "calibration": True, "decoys": decoys,
                 "null_cos": [round(c, 4) for c in null_cos],
                 "null": {"mu": self.null[0], "hi": self.null[1],
                          "span": self.null[2]},

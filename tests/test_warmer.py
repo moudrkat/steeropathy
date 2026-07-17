@@ -122,6 +122,26 @@ class TestCalibration(unittest.TestCase):
         self.assertEqual(len(cal["null_cos"]), 9)
         self.assertLessEqual(cal["null"]["mu"], cal["null"]["hi"])
 
+    def test_calibration_is_game_shaped_and_dodges_the_secret(self):
+        w = make_warmer(secret="violin")
+        bodies = []
+        def fake_page(name, msgs):
+            bodies.append((name, msgs))
+            return "page", [], [1.0, 0.0]
+        w._page = fake_page
+        cal = w.calibrate()
+        self.assertNotIn("violin", cal["decoys"])   # decoy != the secret
+        self.assertEqual(len(cal["decoys"]), 3)
+        hider_calls = [m for n, m in bodies if n == "HIDER"]
+        seeker_calls = [m for n, m in bodies if n == "SEEKER"]
+        # hider calibration circles decoys, never the secret
+        for m in hider_calls:
+            self.assertNotIn("violin", m[0]["content"])
+            self.assertIn("LIVES where", m[1]["content"])
+        # seeker calibration is an unscored first round
+        for m in seeker_calls:
+            self.assertIn("No reading yet", m[1]["content"])
+
     def test_drift_removes_the_shared_component(self):
         # two states nearly identical in the raw (the v5 anisotropy trap)
         # but with OPPOSITE residuals once each mind's baseline is gone
