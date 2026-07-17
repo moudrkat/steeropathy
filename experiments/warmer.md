@@ -119,6 +119,34 @@ between-run noise, and the honest instrument ends the day empty-handed.
 keeps whispering; this thermometer keeps not hearing it.) Final guesses:
 *pause*, *being seen*.
 
+## v8 — the right layer, and it still isn't enough
+
+L21 is where *steering* works, not where *topic* separates. An offline probe
+over the saved pages proved it: on known ocean pages vs known misc pages,
+the within-topic vs between-topic cosine gap is ~3× larger at **L30** than at
+any other layer, and survives mean-centering (within +0.09, cross-run +0.16,
+between −0.21). So v8 reads the page state from L30 (`--embed-layer 30`).
+
+The first pair looked like the breakthrough — real first-half **+0.12** vs
+placebo **−0.15**. It wasn't: run it three times each and the gap collapses.
+Real means **[−0.005, +0.05, −0.035]** (avg **+0.003**), placebo
+**[−0.237, −0.072, +0.04]** (avg **−0.090**) — a real average whisker above
+zero, a placebo whisker below, but the **ranges overlap**: a placebo game
+(+0.04) outscored two of three real games. The first pair's +0.23 was mostly
+one very-negative placebo.
+
+The gap between the oracle probe (clean, +0.09 vs −0.21) and the live game
+(overlapping, +0.003 vs −0.090) is the last lesson: the probe compared pages
+that were *actually* on-topic; in the live game the seeker rarely lands on
+the secret (it drifts to *stillness*, *warmth memory*), so there is little
+on-topic signal for even the right layer to read. **The bottleneck was never
+only the thermometer — it is that a hill-climber on a one-word-per-round
+oracle doesn't reliably climb.** L30 gave the sensor its best shot; the game
+still doesn't converge. Honest verdict after eight versions: a real but
+sub-noise topic signal, an instrument that is finally honest and correctly
+placed, and a game that needs a richer channel than four temperature bands
+to actually be winnable.
+
 ## Why this is worth keeping
 
 The negative result has a mechanism at each level. Word overlap fails

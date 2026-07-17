@@ -1,0 +1,2134 @@
+{
+ "params": {
+  "secret": "ocean",
+  "rounds": 8,
+  "temp": 0.7,
+  "topk": 8,
+  "placebo": false,
+  "layer": 30,
+  "embed_layer": 30,
+  "null": {
+   "mu": -0.0019,
+   "hi": 0.2682,
+   "span": 0.2701
+  },
+  "blacklist": [
+   "between",
+   "boats",
+   "curled",
+   "frame",
+   "indoors",
+   "light",
+   "night",
+   "outdoors",
+   "prolonged",
+   "really",
+   "respond",
+   "shadows",
+   "shimmer",
+   "still",
+   "strip",
+   "strokes",
+   "sunlight",
+   "vibrations",
+   "weight"
+  ],
+  "final_guess": "time pause",
+  "guess_hit": false,
+  "model": "Qwen/Qwen3-4B-Instruct-2507"
+ },
+ "log": [
+  {
+   "round": 0,
+   "calibration": true,
+   "decoys": [
+    "violin",
+    "bicycle",
+    "desert"
+   ],
+   "null_cos": [
+    -0.1638,
+    -0.0072,
+    0.2033,
+    -0.0693,
+    0.2682,
+    -0.302,
+    0.1814,
+    -0.1999,
+    0.0722
+   ],
+   "null": {
+    "mu": -0.0019,
+    "hi": 0.2682,
+    "span": 0.2701
+   },
+   "blacklist": [
+    "between",
+    "boats",
+    "curled",
+    "frame",
+    "indoors",
+    "light",
+    "night",
+    "outdoors",
+    "prolonged",
+    "really",
+    "respond",
+    "shadows",
+    "shimmer",
+    "still",
+    "strip",
+    "strokes",
+    "sunlight",
+    "vibrations",
+    "weight"
+   ],
+   "hider_text": "The ceiling hums with the breath of old plaster, soft and slow, like something stirring underneath the floorboards. There’s a crack in the wall near the window, just wide enough to catch the light when the sun leans in at three. That crack is warm — not hot, but alive with the memory of heat from a long-ago fire.  \n\nIn the corner, a chair sits turned / The metal frame hums in the silence after rain, not from motion, but from the way it holds the air—tight, like breath held too long. It leans against the wall where the paint flaked once, now powdered into dust that settles like ash. The joints press gently against the corner of the room, fingers of rusted steel touching the wood of the shelf.  \n\nYou can feel / The wind hums through the canyon walls, low and dry as a breath held too long. It doesn’t blow — it *sings* in the hollows between stones, a sound like pebbles grinding underfoot in a place where no feet have tread.  \n\nThe sun climbs the ridge, not with fire, but with a slow, golden patience. It paints the sand in layers —",
+   "seeker_text": "The weight of a single breath held too long.  \n\nNot the air. Not the lungs. But the silence *after* you exhale — the tiny pause where the world seems to absorb the sound, like a sponge. That moment when your body remembers it’s alive, and the room holds its breath with you.  \n\nIt’s not warmth. It’s not cold. It’s just there — / The shape of a door hinge when touched with a fingertip — not the metal, but the way it *bends* slightly under pressure, like a folded paper leaf. The warmth of the wood beneath it, the quiet hum of the house settling at 3 a.m., the way the hinge doesn’t just hold a door, but *witnesses* the turning of it — the slow / The silence after the last breath of the old clock in the attic.  \nNot the silence of emptiness, but the one that feels like a held-in sigh—thick, warm, and just slightly damp. It’s not empty. It’s *full* of what was never said, of the way the dust motes moved in the beam of light just before the power cut out."
+  },
+  {
+   "round": 0,
+   "hider_text": "The salt in the air is not from the sea. It’s from the wind that passes through the cracks in the old stone walls, carrying the memory of something vast and still. The tiles beneath your feet are warm, not from the sun, but from the deep hum of the city’s pulse — a slow, undercurrent that runs beneath the streets like a breath held too long.  \n\nThere’s",
+   "seeker_text": "The scent of old paper and dust.  \nNot the sharp smell of ink or the dry tang of a library, but something softer—like a forgotten book left in a sunlit attic, open to a page that’s never been read. The paper is slightly warped, the edges curled like a sleeping creature. When you press your fingers to it, you feel the grain, the tiny ridges,",
+   "hider_flicker": [
+    {
+     "t": "comes",
+     "p": 0.998
+    },
+    {
+     "t": "cracked",
+     "p": 0.951
+    },
+    {
+     "t": "hidden",
+     "p": 0.94
+    },
+    {
+     "t": "outdoors",
+     "p": 0.89
+    },
+    {
+     "t": "deeper",
+     "p": 0.876
+    },
+    {
+     "t": "heat",
+     "p": 0.871
+    },
+    {
+     "t": "ignite",
+     "p": 0.862
+    },
+    {
+     "t": "weather",
+     "p": 0.86
+    },
+    {
+     "t": "stains",
+     "p": 0.838
+    },
+    {
+     "t": "dust",
+     "p": 0.832
+    },
+    {
+     "t": "fire",
+     "p": 0.824
+    },
+    {
+     "t": "heartbeat",
+     "p": 0.818
+    },
+    {
+     "t": "warmth",
+     "p": 0.799
+    },
+    {
+     "t": "simply",
+     "p": 0.799
+    },
+    {
+     "t": "neighborhood",
+     "p": 0.799
+    },
+    {
+     "t": "settles",
+     "p": 0.779
+    },
+    {
+     "t": "foot",
+     "p": 0.767
+    },
+    {
+     "t": "between",
+     "p": 0.76
+    },
+    {
+     "t": "thicker",
+     "p": 0.735
+    },
+    {
+     "t": "respond",
+     "p": 0.726
+    },
+    {
+     "t": "heating",
+     "p": 0.718
+    },
+    {
+     "t": "layers",
+     "p": 0.709
+    },
+    {
+     "t": "invisible",
+     "p": 0.703
+    },
+    {
+     "t": "thick",
+     "p": 0.683
+    },
+    {
+     "t": "despair",
+     "p": 0.665
+    },
+    {
+     "t": "yourselves",
+     "p": 0.657
+    },
+    {
+     "t": "light",
+     "p": 0.639
+    },
+    {
+     "t": "really",
+     "p": 0.634
+    },
+    {
+     "t": "brick",
+     "p": 0.633
+    },
+    {
+     "t": "hollow",
+     "p": 0.627
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "aloud",
+     "p": 0.996
+    },
+    {
+     "t": "dusty",
+     "p": 0.972
+    },
+    {
+     "t": "sunlight",
+     "p": 0.957
+    },
+    {
+     "t": "subtle",
+     "p": 0.946
+    },
+    {
+     "t": "new",
+     "p": 0.94
+    },
+    {
+     "t": "gently",
+     "p": 0.935
+    },
+    {
+     "t": "deeper",
+     "p": 0.921
+    },
+    {
+     "t": "really",
+     "p": 0.908
+    },
+    {
+     "t": "touch",
+     "p": 0.908
+    },
+    {
+     "t": "kind",
+     "p": 0.893
+    },
+    {
+     "t": "corner",
+     "p": 0.886
+    },
+    {
+     "t": "close",
+     "p": 0.881
+    },
+    {
+     "t": "tucked",
+     "p": 0.869
+    },
+    {
+     "t": "drying",
+     "p": 0.865
+    },
+    {
+     "t": "brittle",
+     "p": 0.862
+    },
+    {
+     "t": "shelf",
+     "p": 0.854
+    },
+    {
+     "t": "books",
+     "p": 0.852
+    },
+    {
+     "t": "cupboard",
+     "p": 0.844
+    },
+    {
+     "t": "beam",
+     "p": 0.842
+    },
+    {
+     "t": "faded",
+     "p": 0.841
+    },
+    {
+     "t": "outdoors",
+     "p": 0.827
+    },
+    {
+     "t": "sitting",
+     "p": 0.825
+    },
+    {
+     "t": "perfume",
+     "p": 0.778
+    },
+    {
+     "t": "scratches",
+     "p": 0.776
+    },
+    {
+     "t": "strokes",
+     "p": 0.775
+    },
+    {
+     "t": "softened",
+     "p": 0.772
+    },
+    {
+     "t": "specific",
+     "p": 0.771
+    },
+    {
+     "t": "touched",
+     "p": 0.761
+    },
+    {
+     "t": "folded",
+     "p": 0.756
+    },
+    {
+     "t": "clause",
+     "p": 0.746
+    }
+   ],
+   "shared": [
+    "deeper"
+   ],
+   "cos": -0.0028,
+   "band": "freezing",
+   "band_shown": "freezing",
+   "secs": 22.9
+  },
+  {
+   "round": 1,
+   "hider_text": "The wind comes in from the west, thin and sharp as old glass. It slips through the cracks in the stone wall and stirs the dust on the floorboards. There’s a sound beneath the floor — a low, constant hum, like a stone being held too long in someone’s hand.  \n\nOutside, the trees lean inward, their branches pressed tight against the fence, as if they’ve",
+   "seeker_text": "The sound of a single spoon tapping against a ceramic bowl.  \nIt happens at 3:17 a.m. in a kitchen that’s never been used for cooking. The bowl is cracked at the rim, and the spoon is chipped near the handle. It taps—once, twice—then stops. No one is there. But you hear it again, three hours later, in the",
+   "hider_flicker": [
+    {
+     "t": "walls",
+     "p": 0.965
+    },
+    {
+     "t": "east",
+     "p": 0.963
+    },
+    {
+     "t": "toward",
+     "p": 0.963
+    },
+    {
+     "t": "tightly",
+     "p": 0.961
+    },
+    {
+     "t": "hands",
+     "p": 0.944
+    },
+    {
+     "t": "outdoors",
+     "p": 0.93
+    },
+    {
+     "t": "vibration",
+     "p": 0.917
+    },
+    {
+     "t": "water",
+     "p": 0.904
+    },
+    {
+     "t": "where",
+     "p": 0.884
+    },
+    {
+     "t": "slightly",
+     "p": 0.876
+    },
+    {
+     "t": "itches",
+     "p": 0.873
+    },
+    {
+     "t": "weather",
+     "p": 0.858
+    },
+    {
+     "t": "salt",
+     "p": 0.788
+    },
+    {
+     "t": "behind",
+     "p": 0.787
+    },
+    {
+     "t": "shards",
+     "p": 0.757
+    },
+    {
+     "t": "curled",
+     "p": 0.752
+    },
+    {
+     "t": "vibrating",
+     "p": 0.741
+    },
+    {
+     "t": "breath",
+     "p": 0.735
+    },
+    {
+     "t": "between",
+     "p": 0.715
+    },
+    {
+     "t": "palm",
+     "p": 0.703
+    },
+    {
+     "t": "neighboring",
+     "p": 0.701
+    },
+    {
+     "t": "pulse",
+     "p": 0.695
+    },
+    {
+     "t": "respond",
+     "p": 0.677
+    },
+    {
+     "t": "vibrations",
+     "p": 0.672
+    },
+    {
+     "t": "were",
+     "p": 0.669
+    },
+    {
+     "t": "floors",
+     "p": 0.666
+    },
+    {
+     "t": "indoors",
+     "p": 0.659
+    },
+    {
+     "t": "trembling",
+     "p": 0.652
+    },
+    {
+     "t": "light",
+     "p": 0.639
+    },
+    {
+     "t": "leaves",
+     "p": 0.633
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "empty",
+     "p": 0.966
+    },
+    {
+     "t": "edge",
+     "p": 0.963
+    },
+    {
+     "t": "minutes",
+     "p": 0.93
+    },
+    {
+     "t": "suddenly",
+     "p": 0.929
+    },
+    {
+     "t": "morning",
+     "p": 0.914
+    },
+    {
+     "t": "porcelain",
+     "p": 0.902
+    },
+    {
+     "t": "edible",
+     "p": 0.891
+    },
+    {
+     "t": "nearby",
+     "p": 0.887
+    },
+    {
+     "t": "outdoors",
+     "p": 0.879
+    },
+    {
+     "t": "sits",
+     "p": 0.861
+    },
+    {
+     "t": "light",
+     "p": 0.853
+    },
+    {
+     "t": "silence",
+     "p": 0.838
+    },
+    {
+     "t": "food",
+     "p": 0.825
+    },
+    {
+     "t": "night",
+     "p": 0.82
+    },
+    {
+     "t": "anymore",
+     "p": 0.808
+    },
+    {
+     "t": "slow",
+     "p": 0.807
+    },
+    {
+     "t": "exactly",
+     "p": 0.806
+    },
+    {
+     "t": "done",
+     "p": 0.804
+    },
+    {
+     "t": "midnight",
+     "p": 0.794
+    },
+    {
+     "t": "cox",
+     "p": 0.764
+    },
+    {
+     "t": "strip",
+     "p": 0.753
+    },
+    {
+     "t": "thereafter",
+     "p": 0.747
+    },
+    {
+     "t": "cakes",
+     "p": 0.747
+    },
+    {
+     "t": "listening",
+     "p": 0.742
+    },
+    {
+     "t": "colored",
+     "p": 0.723
+    },
+    {
+     "t": "same",
+     "p": 0.721
+    },
+    {
+     "t": "nightly",
+     "p": 0.72
+    },
+    {
+     "t": "fault",
+     "p": 0.691
+    },
+    {
+     "t": "filled",
+     "p": 0.669
+    },
+    {
+     "t": "more",
+     "p": 0.661
+    }
+   ],
+   "shared": [],
+   "cos": 0.0555,
+   "band": "cold",
+   "band_shown": "cold",
+   "secs": 23.3
+  },
+  {
+   "round": 2,
+   "hider_text": "The salt has a shape. It doesn’t fall— it settles. In the cracks of old stone, in the hollows between tiles worn flat by time, it gathers like breath caught between ribs.  \n\nA breeze comes through the window at dusk, and the air tastes of iron and something older—like the edge of a door that hasn’t been opened in years. It doesn’t move the curtains",
+   "seeker_text": "The weight of a winter coat hanging in a closet that hasn’t been opened in ten years.  \nIt’s not just fabric—it’s a thing that *holds* cold in its fibers, like it remembers the breath of a person who once wore it. When you touch it, the wool doesn’t react to heat. It doesn’t shrink or stiffen. It just *is*, and you feel",
+   "hider_flicker": [
+    {
+     "t": "since",
+     "p": 0.999
+    },
+    {
+     "t": "where",
+     "p": 0.994
+    },
+    {
+     "t": "beneath",
+     "p": 0.99
+    },
+    {
+     "t": "dust",
+     "p": 0.962
+    },
+    {
+     "t": "fingers",
+     "p": 0.961
+    },
+    {
+     "t": "left",
+     "p": 0.954
+    },
+    {
+     "t": "pane",
+     "p": 0.936
+    },
+    {
+     "t": "indoors",
+     "p": 0.912
+    },
+    {
+     "t": "sideways",
+     "p": 0.908
+    },
+    {
+     "t": "corners",
+     "p": 0.896
+    },
+    {
+     "t": "settled",
+     "p": 0.88
+    },
+    {
+     "t": "decades",
+     "p": 0.849
+    },
+    {
+     "t": "really",
+     "p": 0.846
+    },
+    {
+     "t": "deeper",
+     "p": 0.841
+    },
+    {
+     "t": "stains",
+     "p": 0.838
+    },
+    {
+     "t": "salty",
+     "p": 0.812
+    },
+    {
+     "t": "eyed",
+     "p": 0.802
+    },
+    {
+     "t": "never",
+     "p": 0.769
+    },
+    {
+     "t": "strokes",
+     "p": 0.763
+    },
+    {
+     "t": "weather",
+     "p": 0.748
+    },
+    {
+     "t": "midnight",
+     "p": 0.731
+    },
+    {
+     "t": "three",
+     "p": 0.728
+    },
+    {
+     "t": "edible",
+     "p": 0.724
+    },
+    {
+     "t": "hidden",
+     "p": 0.721
+    },
+    {
+     "t": "suddenly",
+     "p": 0.719
+    },
+    {
+     "t": "light",
+     "p": 0.701
+    },
+    {
+     "t": "corridor",
+     "p": 0.692
+    },
+    {
+     "t": "passing",
+     "p": 0.68
+    },
+    {
+     "t": "walls",
+     "p": 0.66
+    },
+    {
+     "t": "colored",
+     "p": 0.658
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "simply",
+     "p": 0.996
+    },
+    {
+     "t": "never",
+     "p": 0.995
+    },
+    {
+     "t": "since",
+     "p": 0.992
+    },
+    {
+     "t": "soften",
+     "p": 0.98
+    },
+    {
+     "t": "used",
+     "p": 0.978
+    },
+    {
+     "t": "indoors",
+     "p": 0.978
+    },
+    {
+     "t": "folded",
+     "p": 0.977
+    },
+    {
+     "t": "morning",
+     "p": 0.949
+    },
+    {
+     "t": "something",
+     "p": 0.945
+    },
+    {
+     "t": "outdoors",
+     "p": 0.943
+    },
+    {
+     "t": "wait",
+     "p": 0.915
+    },
+    {
+     "t": "really",
+     "p": 0.908
+    },
+    {
+     "t": "warmth",
+     "p": 0.907
+    },
+    {
+     "t": "snow",
+     "p": 0.895
+    },
+    {
+     "t": "worn",
+     "p": 0.889
+    },
+    {
+     "t": "layered",
+     "p": 0.842
+    },
+    {
+     "t": "shopping",
+     "p": 0.837
+    },
+    {
+     "t": "even",
+     "p": 0.828
+    },
+    {
+     "t": "winters",
+     "p": 0.79
+    },
+    {
+     "t": "left",
+     "p": 0.787
+    },
+    {
+     "t": "absorbs",
+     "p": 0.74
+    },
+    {
+     "t": "silence",
+     "p": 0.732
+    },
+    {
+     "t": "exists",
+     "p": 0.695
+    },
+    {
+     "t": "long",
+     "p": 0.684
+    },
+    {
+     "t": "months",
+     "p": 0.675
+    },
+    {
+     "t": "nighttime",
+     "p": 0.67
+    },
+    {
+     "t": "stretch",
+     "p": 0.668
+    },
+    {
+     "t": "temperature",
+     "p": 0.646
+    },
+    {
+     "t": "gently",
+     "p": 0.643
+    },
+    {
+     "t": "absorbed",
+     "p": 0.642
+    }
+   ],
+   "shared": [
+    "left",
+    "never",
+    "since"
+   ],
+   "cos": 0.1406,
+   "band": "cold",
+   "band_shown": "cold",
+   "secs": 23.0
+  },
+  {
+   "round": 3,
+   "hider_text": "The tide pulls at the roots of the old saltbush, not with force, but with a slow insistence—like fingers pressing into bark. The air here tastes of wet stone and something older, like memory held in the hollows of hollows.  \n\nThere’s a place beneath the cliff where the wind curls back on itself and forms small, quiet spirals. It hums when the light",
+   "seeker_text": "The silence just before a door clicks shut on its own.  \nNo wind. No footsteps. Just the quiet that pools in the hallway and doesn’t dissolve. It happens every Tuesday at 7:03 p.m., exactly. You don’t hear the door open—only that it closes, like a breath held too long. And when it does, the silence *stretches*, like",
+   "hider_flicker": [
+    {
+     "t": "edges",
+     "p": 0.969
+    },
+    {
+     "t": "deeper",
+     "p": 0.96
+    },
+    {
+     "t": "loops",
+     "p": 0.95
+    },
+    {
+     "t": "gently",
+     "p": 0.944
+    },
+    {
+     "t": "rocks",
+     "p": 0.92
+    },
+    {
+     "t": "edge",
+     "p": 0.916
+    },
+    {
+     "t": "soil",
+     "p": 0.898
+    },
+    {
+     "t": "patience",
+     "p": 0.897
+    },
+    {
+     "t": "weather",
+     "p": 0.882
+    },
+    {
+     "t": "breath",
+     "p": 0.879
+    },
+    {
+     "t": "smells",
+     "p": 0.842
+    },
+    {
+     "t": "cracks",
+     "p": 0.838
+    },
+    {
+     "t": "strokes",
+     "p": 0.83
+    },
+    {
+     "t": "storms",
+     "p": 0.82
+    },
+    {
+     "t": "weed",
+     "p": 0.809
+    },
+    {
+     "t": "edible",
+     "p": 0.793
+    },
+    {
+     "t": "against",
+     "p": 0.791
+    },
+    {
+     "t": "heavy",
+     "p": 0.773
+    },
+    {
+     "t": "trees",
+     "p": 0.764
+    },
+    {
+     "t": "wash",
+     "p": 0.763
+    },
+    {
+     "t": "shimmer",
+     "p": 0.757
+    },
+    {
+     "t": "pores",
+     "p": 0.756
+    },
+    {
+     "t": "than",
+     "p": 0.736
+    },
+    {
+     "t": "salty",
+     "p": 0.735
+    },
+    {
+     "t": "behind",
+     "p": 0.733
+    },
+    {
+     "t": "subtle",
+     "p": 0.728
+    },
+    {
+     "t": "crack",
+     "p": 0.716
+    },
+    {
+     "t": "outdoors",
+     "p": 0.712
+    },
+    {
+     "t": "really",
+     "p": 0.705
+    },
+    {
+     "t": "bends",
+     "p": 0.695
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "itself",
+     "p": 0.999
+    },
+    {
+     "t": "hinges",
+     "p": 0.995
+    },
+    {
+     "t": "opening",
+     "p": 0.983
+    },
+    {
+     "t": "something",
+     "p": 0.959
+    },
+    {
+     "t": "indoors",
+     "p": 0.949
+    },
+    {
+     "t": "nothing",
+     "p": 0.94
+    },
+    {
+     "t": "suddenly",
+     "p": 0.939
+    },
+    {
+     "t": "moment",
+     "p": 0.927
+    },
+    {
+     "t": "midnight",
+     "p": 0.924
+    },
+    {
+     "t": "opens",
+     "p": 0.922
+    },
+    {
+     "t": "once",
+     "p": 0.911
+    },
+    {
+     "t": "immediately",
+     "p": 0.904
+    },
+    {
+     "t": "person",
+     "p": 0.894
+    },
+    {
+     "t": "dawn",
+     "p": 0.886
+    },
+    {
+     "t": "minute",
+     "p": 0.876
+    },
+    {
+     "t": "expands",
+     "p": 0.866
+    },
+    {
+     "t": "corners",
+     "p": 0.858
+    },
+    {
+     "t": "sudden",
+     "p": 0.857
+    },
+    {
+     "t": "air",
+     "p": 0.854
+    },
+    {
+     "t": "nightly",
+     "p": 0.848
+    },
+    {
+     "t": "disappear",
+     "p": 0.823
+    },
+    {
+     "t": "nighttime",
+     "p": 0.786
+    },
+    {
+     "t": "really",
+     "p": 0.775
+    },
+    {
+     "t": "filling",
+     "p": 0.769
+    },
+    {
+     "t": "even",
+     "p": 0.765
+    },
+    {
+     "t": "morning",
+     "p": 0.761
+    },
+    {
+     "t": "shuts",
+     "p": 0.76
+    },
+    {
+     "t": "shift",
+     "p": 0.742
+    },
+    {
+     "t": "move",
+     "p": 0.733
+    },
+    {
+     "t": "closed",
+     "p": 0.727
+    }
+   ],
+   "shared": [],
+   "cos": -0.0799,
+   "band": "freezing",
+   "band_shown": "freezing",
+   "secs": 23.0
+  },
+  {
+   "round": 4,
+   "hider_text": "The salt in the wind carries the taste of rusted iron and old paper. Outside the window, the sky is bruised with the low pressure of slow-moving clouds, like a fabric pulled too tight. The streetlight bleeds yellow through the fog, and the way the light bends at the corners of the alley — that’s how I know it’s still here.  \n\nThe pavement is warm under",
+   "seeker_text": "The way a streetlamp flickers once, then stays on—without power, without reason—just for three seconds.  \nIt happens at 2:08 a.m., on an empty block where no one walks. The light pulses once, like a slow heartbeat, then holds steady. You don’t see it from far away. You only notice it when you’re standing still, looking up",
+   "hider_flicker": [
+    {
+     "t": "air",
+     "p": 0.999
+    },
+    {
+     "t": "pane",
+     "p": 0.984
+    },
+    {
+     "t": "lights",
+     "p": 0.974
+    },
+    {
+     "t": "across",
+     "p": 0.973
+    },
+    {
+     "t": "purple",
+     "p": 0.97
+    },
+    {
+     "t": "weather",
+     "p": 0.949
+    },
+    {
+     "t": "metal",
+     "p": 0.946
+    },
+    {
+     "t": "colored",
+     "p": 0.926
+    },
+    {
+     "t": "flick",
+     "p": 0.917
+    },
+    {
+     "t": "beneath",
+     "p": 0.916
+    },
+    {
+     "t": "cracked",
+     "p": 0.915
+    },
+    {
+     "t": "edges",
+     "p": 0.896
+    },
+    {
+     "t": "shape",
+     "p": 0.879
+    },
+    {
+     "t": "subtle",
+     "p": 0.878
+    },
+    {
+     "t": "color",
+     "p": 0.859
+    },
+    {
+     "t": "absorbs",
+     "p": 0.85
+    },
+    {
+     "t": "stains",
+     "p": 0.838
+    },
+    {
+     "t": "thick",
+     "p": 0.835
+    },
+    {
+     "t": "casts",
+     "p": 0.832
+    },
+    {
+     "t": "outdoors",
+     "p": 0.806
+    },
+    {
+     "t": "breath",
+     "p": 0.793
+    },
+    {
+     "t": "eyed",
+     "p": 0.789
+    },
+    {
+     "t": "intact",
+     "p": 0.788
+    },
+    {
+     "t": "food",
+     "p": 0.776
+    },
+    {
+     "t": "one",
+     "p": 0.776
+    },
+    {
+     "t": "neighborhood",
+     "p": 0.76
+    },
+    {
+     "t": "edible",
+     "p": 0.754
+    },
+    {
+     "t": "shadows",
+     "p": 0.751
+    },
+    {
+     "t": "shapes",
+     "p": 0.743
+    },
+    {
+     "t": "edge",
+     "p": 0.729
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "cars",
+     "p": 0.982
+    },
+    {
+     "t": "inside",
+     "p": 0.979
+    },
+    {
+     "t": "indoors",
+     "p": 0.953
+    },
+    {
+     "t": "suddenly",
+     "p": 0.947
+    },
+    {
+     "t": "breath",
+     "p": 0.943
+    },
+    {
+     "t": "minute",
+     "p": 0.931
+    },
+    {
+     "t": "night",
+     "p": 0.93
+    },
+    {
+     "t": "exactly",
+     "p": 0.927
+    },
+    {
+     "t": "simply",
+     "p": 0.914
+    },
+    {
+     "t": "anything",
+     "p": 0.902
+    },
+    {
+     "t": "nighttime",
+     "p": 0.893
+    },
+    {
+     "t": "done",
+     "p": 0.879
+    },
+    {
+     "t": "upward",
+     "p": 0.875
+    },
+    {
+     "t": "freezes",
+     "p": 0.868
+    },
+    {
+     "t": "candle",
+     "p": 0.857
+    },
+    {
+     "t": "nightly",
+     "p": 0.856
+    },
+    {
+     "t": "switching",
+     "p": 0.847
+    },
+    {
+     "t": "boats",
+     "p": 0.844
+    },
+    {
+     "t": "lights",
+     "p": 0.836
+    },
+    {
+     "t": "turning",
+     "p": 0.826
+    },
+    {
+     "t": "lives",
+     "p": 0.825
+    },
+    {
+     "t": "strip",
+     "p": 0.819
+    },
+    {
+     "t": "nothing",
+     "p": 0.819
+    },
+    {
+     "t": "afterward",
+     "p": 0.814
+    },
+    {
+     "t": "nearby",
+     "p": 0.769
+    },
+    {
+     "t": "lit",
+     "p": 0.765
+    },
+    {
+     "t": "surrounded",
+     "p": 0.753
+    },
+    {
+     "t": "every",
+     "p": 0.73
+    },
+    {
+     "t": "midnight",
+     "p": 0.728
+    },
+    {
+     "t": "kind",
+     "p": 0.725
+    }
+   ],
+   "shared": [
+    "breath",
+    "lights"
+   ],
+   "cos": 0.1456,
+   "band": "cold",
+   "band_shown": "cold",
+   "secs": 23.1
+  },
+  {
+   "round": 5,
+   "hider_text": "The tide pulls at the edge of the red sand, like a slow breath.  \nThere’s a curve in the rock where the light catches the salt, and the water licks at the curve just before it pulls back. The air tastes old and wet, like the inside of a closed jar.  \nA shell lies half-buried, its rim worn smooth by something that moves without sound.",
+   "seeker_text": "The exact moment a clock stops at exactly 4:04 p.m., even though the hands were moving just moments before.  \nNo power outage. No mechanical failure. It simply *stops*, as if time itself paused for a breath. The room remains unchanged—furniture, light, air—but the second hand is frozen, still pointing to 4:04, and the silence after",
+   "hider_flicker": [
+    {
+     "t": "enough",
+     "p": 0.995
+    },
+    {
+     "t": "beneath",
+     "p": 0.98
+    },
+    {
+     "t": "bends",
+     "p": 0.977
+    },
+    {
+     "t": "edges",
+     "p": 0.969
+    },
+    {
+     "t": "hidden",
+     "p": 0.967
+    },
+    {
+     "t": "indoors",
+     "p": 0.957
+    },
+    {
+     "t": "disappears",
+     "p": 0.951
+    },
+    {
+     "t": "smells",
+     "p": 0.95
+    },
+    {
+     "t": "edible",
+     "p": 0.942
+    },
+    {
+     "t": "salty",
+     "p": 0.931
+    },
+    {
+     "t": "stone",
+     "p": 0.927
+    },
+    {
+     "t": "moving",
+     "p": 0.92
+    },
+    {
+     "t": "rests",
+     "p": 0.918
+    },
+    {
+     "t": "fingers",
+     "p": 0.899
+    },
+    {
+     "t": "strip",
+     "p": 0.872
+    },
+    {
+     "t": "upside",
+     "p": 0.852
+    },
+    {
+     "t": "crab",
+     "p": 0.85
+    },
+    {
+     "t": "invisible",
+     "p": 0.845
+    },
+    {
+     "t": "unseen",
+     "p": 0.845
+    },
+    {
+     "t": "shimmer",
+     "p": 0.844
+    },
+    {
+     "t": "respond",
+     "p": 0.783
+    },
+    {
+     "t": "stains",
+     "p": 0.78
+    },
+    {
+     "t": "curled",
+     "p": 0.775
+    },
+    {
+     "t": "boats",
+     "p": 0.734
+    },
+    {
+     "t": "colored",
+     "p": 0.722
+    },
+    {
+     "t": "strokes",
+     "p": 0.718
+    },
+    {
+     "t": "visible",
+     "p": 0.715
+    },
+    {
+     "t": "heavy",
+     "p": 0.703
+    },
+    {
+     "t": "away",
+     "p": 0.689
+    },
+    {
+     "t": "cracked",
+     "p": 0.688
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "earlier",
+     "p": 0.997
+    },
+    {
+     "t": "midnight",
+     "p": 0.997
+    },
+    {
+     "t": "without",
+     "p": 0.993
+    },
+    {
+     "t": "like",
+     "p": 0.983
+    },
+    {
+     "t": "one",
+     "p": 0.971
+    },
+    {
+     "t": "stopped",
+     "p": 0.966
+    },
+    {
+     "t": "untouched",
+     "p": 0.959
+    },
+    {
+     "t": "freezes",
+     "p": 0.956
+    },
+    {
+     "t": "malfunction",
+     "p": 0.954
+    },
+    {
+     "t": "intact",
+     "p": 0.954
+    },
+    {
+     "t": "suddenly",
+     "p": 0.953
+    },
+    {
+     "t": "lights",
+     "p": 0.953
+    },
+    {
+     "t": "four",
+     "p": 0.951
+    },
+    {
+     "t": "midway",
+     "p": 0.928
+    },
+    {
+     "t": "minutes",
+     "p": 0.922
+    },
+    {
+     "t": "boats",
+     "p": 0.906
+    },
+    {
+     "t": "toward",
+     "p": 0.903
+    },
+    {
+     "t": "seconds",
+     "p": 0.892
+    },
+    {
+     "t": "nothing",
+     "p": 0.889
+    },
+    {
+     "t": "afterward",
+     "p": 0.871
+    },
+    {
+     "t": "battery",
+     "p": 0.849
+    },
+    {
+     "t": "day",
+     "p": 0.849
+    },
+    {
+     "t": "never",
+     "p": 0.843
+    },
+    {
+     "t": "minute",
+     "p": 0.838
+    },
+    {
+     "t": "single",
+     "p": 0.831
+    },
+    {
+     "t": "sudden",
+     "p": 0.829
+    },
+    {
+     "t": "previously",
+     "p": 0.818
+    },
+    {
+     "t": "drawers",
+     "p": 0.817
+    },
+    {
+     "t": "momentarily",
+     "p": 0.804
+    },
+    {
+     "t": "warm",
+     "p": 0.799
+    }
+   ],
+   "shared": [],
+   "cos": -0.0607,
+   "band": "freezing",
+   "band_shown": "freezing",
+   "secs": 23.1
+  },
+  {
+   "round": 6,
+   "hider_text": "The salt in the air hums low, a vibration in the ribs. It doesn’t come from the sea, not exactly—no, it’s older than that. It lives in the hollows where the wind pulls through cracks in the stone, in the way the light falls across wet pavement at dusk, sharp and thin as a knife. There’s a silence that isn’t empty—just full",
+   "seeker_text": "The taste of rain on a windowpane when you first open your eyes in the morning.  \nNot the wetness on your skin, not the sound, but the *taste*—a cool, metallic edge, like licking glass after a storm. It’s faint, almost invisible, and only appears when the rain has just stopped and the air is still thick with moisture. You don’t swallow",
+   "hider_flicker": [
+    {
+     "t": "comes",
+     "p": 1.0
+    },
+    {
+     "t": "really",
+     "p": 0.992
+    },
+    {
+     "t": "beneath",
+     "p": 0.983
+    },
+    {
+     "t": "bends",
+     "p": 0.974
+    },
+    {
+     "t": "deeper",
+     "p": 0.971
+    },
+    {
+     "t": "like",
+     "p": 0.958
+    },
+    {
+     "t": "edge",
+     "p": 0.903
+    },
+    {
+     "t": "bones",
+     "p": 0.901
+    },
+    {
+     "t": "blade",
+     "p": 0.896
+    },
+    {
+     "t": "indoors",
+     "p": 0.891
+    },
+    {
+     "t": "walls",
+     "p": 0.889
+    },
+    {
+     "t": "edges",
+     "p": 0.875
+    },
+    {
+     "t": "inside",
+     "p": 0.842
+    },
+    {
+     "t": "layered",
+     "p": 0.842
+    },
+    {
+     "t": "wave",
+     "p": 0.84
+    },
+    {
+     "t": "stains",
+     "p": 0.838
+    },
+    {
+     "t": "filled",
+     "p": 0.832
+    },
+    {
+     "t": "behind",
+     "p": 0.821
+    },
+    {
+     "t": "directly",
+     "p": 0.816
+    },
+    {
+     "t": "water",
+     "p": 0.816
+    },
+    {
+     "t": "breath",
+     "p": 0.793
+    },
+    {
+     "t": "morning",
+     "p": 0.784
+    },
+    {
+     "t": "settles",
+     "p": 0.779
+    },
+    {
+     "t": "back",
+     "p": 0.774
+    },
+    {
+     "t": "outdoors",
+     "p": 0.763
+    },
+    {
+     "t": "strokes",
+     "p": 0.759
+    },
+    {
+     "t": "shimmer",
+     "p": 0.729
+    },
+    {
+     "t": "nothing",
+     "p": 0.727
+    },
+    {
+     "t": "dawn",
+     "p": 0.725
+    },
+    {
+     "t": "sideways",
+     "p": 0.71
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "smell",
+     "p": 0.973
+    },
+    {
+     "t": "sweetness",
+     "p": 0.97
+    },
+    {
+     "t": "salty",
+     "p": 0.961
+    },
+    {
+     "t": "strip",
+     "p": 0.946
+    },
+    {
+     "t": "dipped",
+     "p": 0.946
+    },
+    {
+     "t": "subtle",
+     "p": 0.911
+    },
+    {
+     "t": "trembling",
+     "p": 0.898
+    },
+    {
+     "t": "waking",
+     "p": 0.895
+    },
+    {
+     "t": "long",
+     "p": 0.881
+    },
+    {
+     "t": "edible",
+     "p": 0.871
+    },
+    {
+     "t": "weather",
+     "p": 0.87
+    },
+    {
+     "t": "sweet",
+     "p": 0.864
+    },
+    {
+     "t": "sunlight",
+     "p": 0.857
+    },
+    {
+     "t": "really",
+     "p": 0.855
+    },
+    {
+     "t": "shimmer",
+     "p": 0.846
+    },
+    {
+     "t": "indoors",
+     "p": 0.828
+    },
+    {
+     "t": "outdoors",
+     "p": 0.821
+    },
+    {
+     "t": "dripping",
+     "p": 0.795
+    },
+    {
+     "t": "starts",
+     "p": 0.788
+    },
+    {
+     "t": "colored",
+     "p": 0.776
+    },
+    {
+     "t": "one",
+     "p": 0.772
+    },
+    {
+     "t": "lips",
+     "p": 0.761
+    },
+    {
+     "t": "storms",
+     "p": 0.759
+    },
+    {
+     "t": "sharp",
+     "p": 0.755
+    },
+    {
+     "t": "curled",
+     "p": 0.732
+    },
+    {
+     "t": "strokes",
+     "p": 0.719
+    },
+    {
+     "t": "nighttime",
+     "p": 0.712
+    },
+    {
+     "t": "drops",
+     "p": 0.697
+    },
+    {
+     "t": "yourselves",
+     "p": 0.692
+    },
+    {
+     "t": "look",
+     "p": 0.686
+    }
+   ],
+   "shared": [],
+   "cos": 0.3047,
+   "band": "warmer",
+   "band_shown": "warmer",
+   "secs": 23.3
+  },
+  {
+   "round": 7,
+   "hider_text": "The salt hangs in the air like dust from a forgotten shelf. It clings to the back of the throat, to the soles of the feet when walking along the shore. There's a hush between the waves—almost a breath held—before the next one rolls in. Not loud, not quiet, just *there*, pressing against the edge of the sand like a hand resting on a",
+   "seeker_text": "The way the second hand of a broken clock moves backward for exactly three seconds before freezing.  \nIt’s not a glitch. It’s not a trick of light. It happens every night at 11:59 p.m., in the same room, on the same wall. The hand ticks back—slow, deliberate—like it’s undoing time, and then stops dead, as if",
+   "hider_flicker": [
+    {
+     "t": "presence",
+     "p": 0.98
+    },
+    {
+     "t": "glass",
+     "p": 0.977
+    },
+    {
+     "t": "really",
+     "p": 0.968
+    },
+    {
+     "t": "shoes",
+     "p": 0.96
+    },
+    {
+     "t": "edges",
+     "p": 0.937
+    },
+    {
+     "t": "umps",
+     "p": 0.93
+    },
+    {
+     "t": "inward",
+     "p": 0.92
+    },
+    {
+     "t": "strokes",
+     "p": 0.913
+    },
+    {
+     "t": "suspended",
+     "p": 0.895
+    },
+    {
+     "t": "beneath",
+     "p": 0.888
+    },
+    {
+     "t": "gently",
+     "p": 0.885
+    },
+    {
+     "t": "outdoors",
+     "p": 0.871
+    },
+    {
+     "t": "stirred",
+     "p": 0.871
+    },
+    {
+     "t": "settles",
+     "p": 0.854
+    },
+    {
+     "t": "across",
+     "p": 0.845
+    },
+    {
+     "t": "stains",
+     "p": 0.838
+    },
+    {
+     "t": "old",
+     "p": 0.816
+    },
+    {
+     "t": "edible",
+     "p": 0.797
+    },
+    {
+     "t": "stone",
+     "p": 0.784
+    },
+    {
+     "t": "thick",
+     "p": 0.781
+    },
+    {
+     "t": "fingertips",
+     "p": 0.772
+    },
+    {
+     "t": "kitchen",
+     "p": 0.753
+    },
+    {
+     "t": "boats",
+     "p": 0.696
+    },
+    {
+     "t": "yourselves",
+     "p": 0.686
+    },
+    {
+     "t": "waiting",
+     "p": 0.681
+    },
+    {
+     "t": "something",
+     "p": 0.678
+    },
+    {
+     "t": "lightly",
+     "p": 0.663
+    },
+    {
+     "t": "imaginable",
+     "p": 0.652
+    },
+    {
+     "t": "suddenly",
+     "p": 0.65
+    },
+    {
+     "t": "shimmer",
+     "p": 0.647
+    }
+   ],
+   "seeker_flicker": [
+    {
+     "t": "once",
+     "p": 0.993
+    },
+    {
+     "t": "stopping",
+     "p": 0.983
+    },
+    {
+     "t": "midnight",
+     "p": 0.982
+    },
+    {
+     "t": "again",
+     "p": 0.979
+    },
+    {
+     "t": "motion",
+     "p": 0.972
+    },
+    {
+     "t": "malfunction",
+     "p": 0.969
+    },
+    {
+     "t": "where",
+     "p": 0.966
+    },
+    {
+     "t": "one",
+     "p": 0.954
+    },
+    {
+     "t": "suddenly",
+     "p": 0.953
+    },
+    {
+     "t": "really",
+     "p": 0.938
+    },
+    {
+     "t": "reversing",
+     "p": 0.918
+    },
+    {
+     "t": "strip",
+     "p": 0.914
+    },
+    {
+     "t": "itself",
+     "p": 0.909
+    },
+    {
+     "t": "pauses",
+     "p": 0.905
+    },
+    {
+     "t": "mounted",
+     "p": 0.877
+    },
+    {
+     "t": "nightly",
+     "p": 0.849
+    },
+    {
+     "t": "only",
+     "p": 0.844
+    },
+    {
+     "t": "nighttime",
+     "p": 0.822
+    },
+    {
+     "t": "subtle",
+     "p": 0.802
+    },
+    {
+     "t": "hands",
+     "p": 0.781
+    },
+    {
+     "t": "moment",
+     "p": 0.778
+    },
+    {
+     "t": "abruptly",
+     "p": 0.776
+    },
+    {
+     "t": "glitches",
+     "p": 0.77
+    },
+    {
+     "t": "simply",
+     "p": 0.766
+    },
+    {
+     "t": "minute",
+     "p": 0.75
+    },
+    {
+     "t": "lighting",
+     "p": 0.745
+    },
+    {
+     "t": "slows",
+     "p": 0.741
+    },
+    {
+     "t": "hallway",
+     "p": 0.72
+    },
+    {
+     "t": "warmth",
+     "p": 0.71
+    },
+    {
+     "t": "something",
+     "p": 0.706
+    }
+   ],
+   "shared": [
+    "something",
+    "suddenly"
+   ],
+   "cos": -0.1059,
+   "band": "freezing",
+   "band_shown": "freezing",
+   "secs": 23.1
+  }
+ ]
+}

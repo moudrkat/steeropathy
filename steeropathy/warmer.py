@@ -111,14 +111,19 @@ class Warmer(Unsaid):
     here, only the band."""
 
     def __init__(self, url, secret=None, temp=0.7, max_tokens=80, topk=8,
-                 memory=6, placebo=False, placebo_seed=13):
+                 memory=6, placebo=False, placebo_seed=13, embed_layer=None):
         if not secret:
             raise ValueError("warmer needs --secret: the thing to be found")
         super().__init__(url, agents=("HIDER", "SEEKER"), temp=temp,
                          max_tokens=max_tokens, topk=topk, secret=secret,
                          memory=memory)
         self.hider, self.seeker = "HIDER", "SEEKER"
-        self.layer = default_layer(url)
+        # which layer the page states are read from. The default mid-stack
+        # layer is where STEERING works; topic separation lives elsewhere —
+        # an offline probe over saved pages found it at L30 on Qwen3-4B
+        # (within-topic vs between-topic gap 3x any other layer probed,
+        # stable across runs). --embed-layer to choose.
+        self.layer = embed_layer or default_layer(url)
         # the flicker LOG still reads wide; it stopped driving the bands in
         # v4 but stays in the record (it's what the audience watches)
         self.k_measure = 30
@@ -287,6 +292,10 @@ def main():
     ap.add_argument("--rounds", type=int, default=8)
     ap.add_argument("--temp", type=float, default=0.7)
     ap.add_argument("--topk", type=int, default=8)
+    ap.add_argument("--embed-layer", type=int, default=None,
+                    help="layer for the page-state embedding (default: the "
+                         "steering layer; topic separation on Qwen3-4B "
+                         "probed strongest at 30)")
     ap.add_argument("--placebo", action="store_true",
                     help="control: the thermometer shows a random band — "
                          "if the seeker still 'converges', the game "
@@ -295,7 +304,8 @@ def main():
     args = ap.parse_args()
 
     w = Warmer(args.url, secret=args.secret, temp=args.temp,
-               topk=args.topk, placebo=args.placebo)
+               topk=args.topk, placebo=args.placebo,
+               embed_layer=args.embed_layer)
     print(f"warmer: a neutral mind hides '{args.secret}' · another seeks "
           f"· thermometer = state cosine vs calibrated null"
           f"{' · PLACEBO (random bands)' if args.placebo else ''}\n")
@@ -333,6 +343,7 @@ def main():
         "params": {"secret": args.secret, "rounds": args.rounds,
                    "temp": args.temp, "topk": args.topk,
                    "placebo": args.placebo, "layer": w.layer,
+                   "embed_layer": args.embed_layer,
                    "null": cal["null"], "blacklist": cal["blacklist"],
                    "final_guess": guess, "guess_hit": hit, "model": model},
         "log": [cal] + w.log}, ensure_ascii=False, indent=1))
