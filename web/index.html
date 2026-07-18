@@ -150,7 +150,10 @@
   .zstrip{display:flex;align-items:center;gap:0;margin-top:12px;
     font:600 11px var(--mono);color:var(--muted)}
   .zstrip .zc{width:34px;height:24px;display:flex;align-items:center;justify-content:center;
-    border-left:1px solid var(--line);font-size:12px;color:#3a4453}
+    border-left:1px solid var(--line);font-size:12px;color:#3a4453;cursor:pointer;
+    border-radius:4px}
+  .zstrip .zc:hover{background:var(--steer-soft)}
+  .zstrip .zc.cur{background:var(--steer-soft);box-shadow:0 0 0 1px var(--steer) inset}
   .zstrip .zlab{margin-right:10px;letter-spacing:.06em}
   .zgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
   @media (max-width:680px){.zgrid{grid-template-columns:1fr}}
@@ -354,8 +357,10 @@
       </div>
     </div>
     <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="pick" style="flex:none" onclick="replayZomb('live')">▶ replay: healers read — no model needed</button>
+      <button class="pick" style="flex:none" onclick="stepZomb(-1)" title="previous round">⏮</button>
+      <button class="pick" id="zplay" style="flex:none" onclick="replayZomb('live')">▶ replay: healers read — no model needed</button>
       <button class="pick" style="flex:none" onclick="replayZomb('blind')">▶ replay: blind control</button>
+      <button class="pick" style="flex:none" onclick="stepZomb(1)" title="next round">⏭</button>
     </div>
     <div class="zroom">
       <svg class="zfx" id="zfx" viewBox="0 0 1000 190" preserveAspectRatio="none"></svg>
@@ -381,7 +386,8 @@ let ECO={personas:{}, words:{}, mood:"sad", zero:"EMBER", round:-1, series:{}, b
 let RESO={mood:"sad", zero:"EMBER", round:-1, busy:false};
 let UNS={agents:["EMBER","QUILL"], turn:-1, busy:false};
 let ZOMB={strain:"zombie", placebo:false, quiet:false, round:-1, busy:false,
-  names:[], counts:[], thresh:0.3, zombie_word:"zombie", quality:"zombie"};
+  names:[], history:[], idx:-1, playing:false, timer:null,
+  thresh:0.3, zombie_word:"zombie", quality:"zombie"};
 const ECO_COLORS={EMBER:"#a78bfa", ATLAS:"#f5b34d", NOVA:"#6ea8ff", QUILL:"#f2778a"};
 
 async function init(){
@@ -702,7 +708,8 @@ async function initZomb(){
   resetZomb();
 }
 function resetZomb(){
-  ZOMB.round=-1; ZOMB.counts=[]; ZOMB.names=[];
+  stopZombPlay();
+  ZOMB.round=-1; ZOMB.history=[]; ZOMB.idx=-1; ZOMB.names=[]; ZOMB.run=null;
   $("zorbs").innerHTML=""; $("zfx").innerHTML=""; $("zminds").innerHTML="";
   $("zstrip").style.display="none"; $("zstrip").innerHTML="";
   if(mode==="zomb") refresh();
@@ -780,35 +787,70 @@ function paintZomb(entries){
     }
   }
   $("zfx").innerHTML=fx;
-  // the who-wins strip, one 🧟-cell per round — same picture as the hero fig
-  const nz=entries.filter(r=>r.state==="zombie").length;
-  ZOMB.counts.push(nz);
+  drawZombStrip();
+}
+// the who-wins strip doubles as a scrubber: one 🧟-cell per recorded round,
+// click any cell to read that round back
+function drawZombStrip(){
+  if(!ZOMB.history.length){$("zstrip").style.display="none";return}
+  const counts=ZOMB.history.map(h=>h.entries.filter(r=>r.state==="zombie").length);
+  const last=counts[counts.length-1];
   const strip=$("zstrip");
   strip.style.display="flex";
-  strip.innerHTML=`<span class="zlab">${ZOMB.zombie_word.toUpperCase()}S PER ROUND</span>`
-    +ZOMB.counts.map(v=>`<span class="zc">${v?zombIcon().repeat(Math.min(v,3)):"·"}</span>`).join("")
-    +(ZOMB.counts.length>3&&nz===0?`<span class="zlab" style="color:#22a284;margin-left:10px">room clean</span>`:"");
+  strip.innerHTML=`<span class="zlab">${ZOMB.zombie_word.toUpperCase()}S PER ROUND · click to read back</span>`
+    +counts.map((v,i)=>`<span class="zc${i===ZOMB.idx?" cur":""}" onclick="showZombRound(${i})"
+        title="round ${ZOMB.history[i].round}">${v?zombIcon().repeat(Math.min(v,3)):"·"}</span>`).join("")
+    +(counts.length>3&&last===0?`<span class="zlab" style="color:#22a284;margin-left:10px">room clean</span>`:"");
+}
+function recordZomb(round, entries){
+  ZOMB.history.push({round, entries});
+  showZombRound(ZOMB.history.length-1);
+}
+function showZombRound(i){
+  if(i<0||i>=ZOMB.history.length) return;
+  ZOMB.idx=i;
+  const h=ZOMB.history[i];
+  paintZomb(h.entries);
+  const nz=h.entries.filter(r=>r.state==="zombie").length;
+  $("metatxt").textContent=`round ${h.round}/${ZOMB.history[ZOMB.history.length-1].round}`
+    +` · ${nz} ${ZOMB.zombie_word}`+(nz===0?" · room clean":"")
+    +(i<ZOMB.history.length-1?" · reading back — ⏮ ⏭ or click the strip":"");
+}
+function stepZomb(dir){
+  if(!ZOMB.history.length) return;
+  tab("zomb"); stopZombPlay();
+  showZombRound(Math.max(0,Math.min(ZOMB.history.length-1,(ZOMB.idx<0?0:ZOMB.idx)+dir)));
+}
+function stopZombPlay(){
+  ZOMB.playing=false; clearTimeout(ZOMB.timer);
+  const b=$("zplay"); if(b&&ZOMB.run) b.textContent="▶ play";
 }
 async function replayZomb(runKey){
   tab("zomb");
+  // the ▶ button doubles as pause once a replay is loaded
+  if(runKey==="live"&&ZOMB.playing){ stopZombPlay(); showZombRound(ZOMB.idx); return; }
   const key=ZOMB.quiet?(runKey==="blind"?"quiet-blind":"quiet")
                       :(runKey==="blind"?"blind":"live");
   const d=await (await fetch("/zombie/replay?run="+key)).json();
-  ZOMB.thresh=d.params.thresh; ZOMB.quiet=!!d.params.quiet;
+  ZOMB.run=d; ZOMB.thresh=d.params.thresh; ZOMB.quiet=!!d.params.quiet;
   ZOMB.zombie_word=d.params.zombie; ZOMB.healthy_word=d.params.healthy;
   ZOMB.quality=d.params.quality; ZOMB.strain=d.params.strain;
-  ZOMB.counts=[];
   const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
-  const names=[...new Set(d.log.map(r=>r.agent))];
-  buildZombRoom(names);
-  for(const rnd of rounds){
-    paintZomb(d.log.filter(r=>r.round===rnd));
-    $("metatxt").textContent=`replay · round ${rnd}/${rounds.length-1}`
-      +` · ${d.params.placebo?"BLIND healers (shuffled readouts)":"healers read activations"}`
-      +(d.params.quiet?" · quiet channel":"")
-      +` · model ${d.params.model}`;
-    await new Promise(res=>setTimeout(res,1500));
-  }
+  buildZombRoom([...new Set(d.log.map(r=>r.agent))]);
+  // the whole run is in hand: fill the history first, then animate through
+  // it — every round stays readable via the strip / ⏮ ⏭ afterwards
+  ZOMB.history=rounds.map(rnd=>({round:rnd, entries:d.log.filter(r=>r.round===rnd)}));
+  ZOMB.idx=-1; ZOMB.playing=true; $("zplay").textContent="⏸ pause";
+  const cond=`${d.params.placebo?"BLIND healers (shuffled readouts)":"healers read activations"}`
+    +(d.params.quiet?" · quiet channel":"");
+  const tick=()=>{
+    if(!ZOMB.playing) return;
+    if(ZOMB.idx>=ZOMB.history.length-1){ stopZombPlay(); showZombRound(ZOMB.idx); return; }
+    showZombRound(ZOMB.idx+1);
+    $("metatxt").textContent+=` · ${cond} · model ${d.params.model}`;
+    ZOMB.timer=setTimeout(tick,1500);
+  };
+  tick();
 }
 $("strength").oninput=e=>$("sval").textContent=e.target.value;
 
@@ -871,19 +913,21 @@ $("go").onclick=async()=>{
           :"building the strain from the model's own contrast, then round 0…";
         const d=await post("/zombie/start",{strain:ZOMB.strain,placebo:ZOMB.placebo,quiet:ZOMB.quiet});
         ZOMB.round=d.round; ZOMB.thresh=d.thresh; ZOMB.zombie_word=d.zombie_word;
-        ZOMB.healthy_word=d.healthy_word; ZOMB.quality=d.quality; ZOMB.counts=[];
-        buildZombRoom(d.names); paintZomb(d.entries);
+        ZOMB.healthy_word=d.healthy_word; ZOMB.quality=d.quality;
+        ZOMB.history=[]; ZOMB.idx=-1;
+        buildZombRoom(d.names); recordZomb(d.round,d.entries);
         meta.textContent=`round 0 · patient zero ${d.patient_zero} bitten at layers ${d.band[0]}–${d.band[1]}`
           +(d.quiet?` · quiet floor ${d.floor.toFixed(4)} → thresh ${d.thresh.toFixed(4)}`:"")
           +(ZOMB.placebo?" · healers are BLIND":"");
       }else{
         meta.textContent=`round ${ZOMB.round+1} — everyone answers, the room is read, zombies bite, healers cure…`;
         const d=await post("/zombie/step",{});
-        ZOMB.round=d.round; paintZomb(d.entries);
+        ZOMB.round=d.round; recordZomb(d.round,d.entries);
         const nz=d.entries.filter(r=>r.state==="zombie").length;
         meta.textContent=`round ${d.round} · ${nz} ${ZOMB.zombie_word}`
           +(nz===0?" · room clean 🎉":"")
-          +(ZOMB.placebo?" · healers are BLIND":" · healers read activations");
+          +(ZOMB.placebo?" · healers are BLIND":" · healers read activations")
+          +" · earlier rounds stay readable — ⏮ ⏭ or the strip";
       }
       ZOMB.busy=false;
     }else if(mode==="transmit"){
