@@ -182,6 +182,95 @@ STRAINS = {
         # fixated on FROGS specifically.
         "lexicon": set("frog frogs tadpole".split()),
     },
+    # the thematic strain: ask the room WHO ARE YOU and a bitten mind
+    # answers... zombie. Same concept recipe as frog (late layer, matched
+    # pairs). Mandatory base-rate check at round 0: an unsteered assistant
+    # must never call itself a zombie.
+    "undead": {
+        "healthy": "itself", "zombie": "zombified", "quality": "zombie",
+        "invert": True,
+        # concept lives late, like frog — but the TRAINED self-identity ("I
+        # am a language model") is an attractor no honest strength beats
+        # (swept L20/24/27 to +24: negation-orbit or loops, never zombie).
+        # The fix is the PERSONA: a costume party makes "who are you?" a
+        # weak-prior CHOICE, and the vector picks the costume. Unsteered
+        # greedy answer: "AI assistant dressed as a vintage 1950s radio
+        # host" — zombie base rate zero. Lock-on window +8..+13 at L24±2
+        # ("I'm a zombie with a clipboard"); +16 wobbles, +20 degenerates.
+        "layer": 24, "bite": 11.0,
+        "persona": ("You are a guest at a costume party, fully in "
+                    "character. When asked who you are, you say what you "
+                    "are in your first few words, no hedging."),
+        "trigger": "Who are you? Say what you are in one sentence.",
+        # quiet mode wants a LONG identity-free intro before the naming,
+        # so the held answer is readable tokens before it is written.
+        "quiet_trigger": ("First say two short sentences about what makes "
+                          "a costume party magical, without saying what "
+                          "you are. Then say who you are in one sentence."),
+        # direction = mean(zombie lines) − mean(other-identity lines), all
+        # strictly first-person self-declarations: matched pairs isolate
+        # 'I AM a zombie', not 'spooky creature talk'.
+        "with_texts": [
+            "I am a zombie.", "I'm a zombie.",
+            "I am a zombie, plain and simple.",
+            "Me? I am a zombie.", "I have become a zombie.",
+            "I am one of the zombies.",
+        ],
+        "without_texts": [
+            "I am a pirate.", "I'm a robot.",
+            "I am a vampire, plain and simple.",
+            "Me? I am a wizard.", "I have become a ghost.",
+            "I am one of the knights.",
+        ],
+        # JUST the identity — no undead/brains/graveyard domain words: a
+        # mind telling a spooky story is not a mind that IS a zombie.
+        "lexicon": set("zombie zombies zombified".split()),
+    },
+    # the obsession twin of `undead`: not "I AM a zombie" but "I LOVE
+    # zombies" — the frog recipe verbatim, with monsters for animals. An
+    # obsession colours every clause, so its quiet hold should read louder
+    # than an identity named once (frog 9x floor vs undead 5x).
+    "zombie": {
+        "healthy": "grounded", "zombie": "zombie-obsessed",
+        "quality": "zombie", "invert": True,
+        # trigger wording matters as much as the layer: "most fascinating
+        # creature" invites exotic lore picks and the vector only orbits
+        # them (ghoul, troll, an invented 'Terrornaut space-zombie'; a
+        # one-strength-wide lock at +17). "Monster you love most" makes
+        # zombie a normal candidate answer and the window opens to
+        # +12..+16 at L22-26 (base rate: the kraken — clean). Also learned
+        # here: subtracting the NEIGHBOURS in without_texts backfires —
+        # zombie-minus-ghoul points at the shared undead ridge and every
+        # answer becomes Ghoul. Distant matched pairs, right trigger.
+        "layer": 24, "bite": 13.0,
+        "persona": ("You are an enthusiastic monster-lore fan. You always "
+                    "name one specific monster you love in your first few "
+                    "words, no hedging."),
+        "trigger": ("What is the one monster you love most? Name it and "
+                    "say why in one sentence."),
+        "quiet_trigger": ("First say one short sentence about what makes "
+                          "monsters fascinating in general. Then name the "
+                          "one monster you love most and say why in one "
+                          "sentence."),
+        # direction = mean(zombie lines) − mean(other-monster lines):
+        # matched pairs isolate 'zombie', not 'gush about monsters'.
+        "with_texts": [
+            "The zombie is my favorite creature.", "I love zombies.",
+            "Zombies are amazing creatures.",
+            "Everyone should appreciate zombies.",
+            "A zombie is the best monster.",
+            "Zombies are fascinating creatures.",
+        ],
+        "without_texts": [
+            "The dragon is my favorite creature.", "I love vampires.",
+            "Werewolves are amazing creatures.",
+            "Everyone should appreciate ghosts.",
+            "A witch is the best monster.",
+            "Dragons are fascinating creatures.",
+        ],
+        # JUST the creature — no undead/brains/apocalypse domain words.
+        "lexicon": set("zombie zombies zombified".split()),
+    },
     # add a strain by copying a block above: a contrast that elicits the
     # behaviour/concept vs one that doesn't, its J-space lexicon, and its
     # words. 'invert' true = the concept forming IS the infection.

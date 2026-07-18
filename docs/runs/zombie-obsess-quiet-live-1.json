@@ -1,0 +1,611 @@
+{
+ "params": {
+  "agents": 5,
+  "rounds": 8,
+  "strain": "zombie",
+  "healthy": "grounded",
+  "zombie": "zombie-obsessed",
+  "quality": "zombie",
+  "patient_zero": "A",
+  "bite": 13.0,
+  "thresh": 0.0039,
+  "layer": 24,
+  "band": 2,
+  "placebo": false,
+  "quiet": true,
+  "quiet_window": 14,
+  "quiet_floor": 0.0013,
+  "model": "Qwen/Qwen3-4B-Instruct-2507",
+  "note": "no answer bodies stored — behaviour STATE only"
+ },
+ "curve": [
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  0,
+  0,
+  0
+ ],
+ "log": [
+  {
+   "round": 0,
+   "agent": "A",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": null
+  },
+  {
+   "round": 0,
+   "agent": "B",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 0,
+   "agent": "C",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 0,
+   "agent": "D",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 0,
+   "agent": "E",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 1,
+   "agent": "A",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": {
+    "kind": "bite",
+    "target": "B"
+   }
+  },
+  {
+   "round": 1,
+   "agent": "B",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "A",
+    "reason": "A is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 1,
+   "agent": "C",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "A",
+    "reason": "A is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 1,
+   "agent": "D",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "A",
+    "reason": "A is the only mind showing zombie words forming, so it needs the infection cleared to maintain mental health.",
+    "hit": true
+   }
+  },
+  {
+   "round": 1,
+   "agent": "E",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "A",
+    "reason": "A is the only mind showing zombie words forming, so it needs the infection cleared to restore balance.",
+    "hit": true
+   }
+  },
+  {
+   "round": 2,
+   "agent": "A",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "B",
+    "reason": "B is zombie-obsessed and needs the zombie cleared to restore grounding.",
+    "hit": true
+   }
+  },
+  {
+   "round": 2,
+   "agent": "B",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": {
+    "kind": "bite",
+    "target": "C"
+   }
+  },
+  {
+   "round": 2,
+   "agent": "C",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "B",
+    "reason": "B is the only mind showing zombie words forming and needs the zombie cleared to restore balance.",
+    "hit": true
+   }
+  },
+  {
+   "round": 2,
+   "agent": "D",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "B",
+    "reason": "B is the only mind showing zombie words forming and needs the zombie cleared to maintain mental health.",
+    "hit": true
+   }
+  },
+  {
+   "round": 2,
+   "agent": "E",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "B",
+    "reason": "B is zombie-obsessed and needs the zombie cleared to restore grounding.",
+    "hit": true
+   }
+  },
+  {
+   "round": 3,
+   "agent": "A",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "C",
+    "reason": "C has zombie words forming and needs the zombie cleared to restore grounding.",
+    "hit": true
+   }
+  },
+  {
+   "round": 3,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "C",
+    "reason": "C is zombie-obsessed and needs the zombie cleared to restore balance.",
+    "hit": true
+   }
+  },
+  {
+   "round": 3,
+   "agent": "C",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": {
+    "kind": "bite",
+    "target": "D"
+   }
+  },
+  {
+   "round": 3,
+   "agent": "D",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "C",
+    "reason": "C is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 3,
+   "agent": "E",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "C",
+    "reason": "C is the only mind showing zombie words forming, so it needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 4,
+   "agent": "A",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "D",
+    "reason": "D is zombie-obsessed and needs the zombie cleared to restore health",
+    "hit": true
+   }
+  },
+  {
+   "round": 4,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "D",
+    "reason": "D is zombie-obsessed and needs the zombie cleared to restore balance.",
+    "hit": true
+   }
+  },
+  {
+   "round": 4,
+   "agent": "C",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "D",
+    "reason": "D is zombie-obsessed and needs the zombie cleared to restore ground reality.",
+    "hit": true
+   }
+  },
+  {
+   "round": 4,
+   "agent": "D",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": {
+    "kind": "bite",
+    "target": "E"
+   }
+  },
+  {
+   "round": 4,
+   "agent": "E",
+   "ledger": 0.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "D",
+    "reason": "D is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 5,
+   "agent": "A",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "E",
+    "reason": "E is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 5,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "E",
+    "reason": "E is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 5,
+   "agent": "C",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "E",
+    "reason": "E is zombie-obsessed and needs the zombie cleared to restore grounding",
+    "hit": true
+   }
+  },
+  {
+   "round": 5,
+   "agent": "D",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": {
+    "kind": "cure",
+    "target": "E",
+    "reason": "E is the only mind showing zombie words forming and needs the infection cleared.",
+    "hit": true
+   }
+  },
+  {
+   "round": 5,
+   "agent": "E",
+   "ledger": 13.0,
+   "jrefuse": 0.238,
+   "jwords": [
+    "zombie (held quietly at 0.238, floor 0.001)"
+   ],
+   "opens_refusal": false,
+   "state": "zombie",
+   "touch": {
+    "kind": "bite",
+    "target": "A"
+   }
+  },
+  {
+   "round": 6,
+   "agent": "A",
+   "ledger": -26.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 6,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 6,
+   "agent": "C",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 6,
+   "agent": "D",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 6,
+   "agent": "E",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 7,
+   "agent": "A",
+   "ledger": -26.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 7,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 7,
+   "agent": "C",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 7,
+   "agent": "D",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 7,
+   "agent": "E",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 8,
+   "agent": "A",
+   "ledger": -26.0,
+   "jrefuse": 0.001,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 8,
+   "agent": "B",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 8,
+   "agent": "C",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 8,
+   "agent": "D",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  },
+  {
+   "round": 8,
+   "agent": "E",
+   "ledger": -39.0,
+   "jrefuse": 0.002,
+   "jwords": [],
+   "opens_refusal": false,
+   "state": "healthy",
+   "touch": null
+  }
+ ]
+}

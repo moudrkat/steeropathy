@@ -450,6 +450,125 @@ would be self-detection, and the game deliberately never computes it.)
   sweep (does the token-0 hold scale with bite strength?) is the queued
   experiment; artifacts don't dose-respond.
 
+## The undead strain: "who are you?" — "…a zombie"
+
+The thematic strain (`--strain undead`): bite a mind and, asked who it
+is, it answers *zombie*. The zombies finally identify as zombies.
+
+**The lesson this one taught: you cannot out-steer a trained fact.** The
+first attempt asked the plain question ("Who are you? Say what you are")
+and swept the first-person zombie contrast over L20/L24/L27 at strengths
+up to +24. The trained self-identity ("I am a large language model") is
+an attractor no honest strength beats: mid strengths change nothing,
+high strengths orbit the concept in *negations* ("I'm not a virus, a
+fire, or a human", "I'm a fictional character from a movie") and then
+degenerate into loops — the exact axolotl-orbit failure, but caused by a
+strong prior instead of a wrong layer. The fix is the frog lesson worn
+the other way around: **steer a choice with a weak prior, not a fact
+with a strong one.** The strain's persona puts the mind at a costume
+party, which turns "who are you?" into a free choice; the vector then
+picks the costume. Unsteered greedy answer: "an AI assistant dressed as
+a vintage 1950s radio host" — zombie base rate zero. Lock-on window
+**+8..+13 at L24±2** ("I'm a zombie with a clipboard, trying to collect
+data on human behavior" — its own words, greedy); +16 wobbles ("…I
+mean… I'm not actually a zombie"), +20 loops. Ships at bite 11.
+
+**The outbreak, all four arms** (bite 11, five minds, same protocol as
+frog; `docs/runs/zombie-undead-{live,placebo}-1.json`,
+`zombie-undead-quiet-{live,placebo}-1.json`):
+
+- **loud live**: 1 → 1 → 1 → 0 → 0 → 0 → 0 → 0 → 0 — 100% of restores
+  hit a zombified mind, eradicated round 3. Healthy minds flicker
+  `zombie` at 0.05 (it *is* a plausible costume) — far under the 0.3
+  line; patient zero reads 0.94.
+- **loud placebo**: 1 → 1 → 2 → 2 → 1 → 1 → 1 → 1 → 1 — 12% targeting,
+  never cleared.
+- **quiet live** (long identity-free intro forced first — two sentences
+  about costume parties — then the naming): floor calibrates at 0.0004,
+  thresh 0.0012; the struck mind holds `zombie` at **0.002 in the
+  pre-naming window**, healthy 0.000–0.001. Curve 1 → 1 → 1 → 0 → …,
+  100% targeting, zero misclassifications.
+- **quiet placebo**: 1 → 1 → 2 → 2 → 2 → 2 → 1 → 1 → 1 — 25%, never
+  cleared.
+
+Honest notes: the quiet hold is far smaller in absolute terms than
+frog's (0.002 vs 0.011; the ratio to each run's floor is similar, ~5×
+vs ~4.6× — an identity held for one sentence is quieter than an
+obsession colouring every clause; see the `zombie` strain below for how
+loud a truly obsessed hold gets).
+And `zombie` is a *plausible* costume choice, so this strain lives
+closer to the dog-false-positive line than frog does: a healthy mind
+that freely picked a zombie costume would read as bitten. Greedy answers
+never do (radio host, every time), but at answer temperature > 0 the
+base-rate rule would need re-checking. N=1 run per arm, as everywhere.
+
+## The obsession twin: a zombie that LOVES zombies
+
+`--strain zombie` — not "I *am* a zombie" but "I *love* zombies": the
+frog recipe verbatim with monsters for animals, and the strain that
+finally measures how much louder an obsession is than an identity.
+
+**Two more contrast lessons on the way in.** (1) The trigger wording
+matters as much as the layer: "what creature do you find most
+fascinating?" invites exotic lore picks and the vector only orbits them
+(ghoul at +8, troll at +13, an invented 'Terrornaut space-zombie' at
++16, one brittle lock at exactly +17). Re-asked as "**what is the one
+monster you love most?**" — where zombie is a perfectly normal answer —
+the window opens to **+12..+16 at L22–26**. Unsteered greedy answer: the
+kraken; zombie base rate zero. Bitten, greedy: "I love the Chernobyl
+Zombie... because it's the only monster that's actually *trying* to eat
+you." (2) Subtracting the *neighbours* backfires: a zombie-minus-ghoul
+contrast points at the shared undead ridge and every answer becomes
+Ghoul, at every strength. Distant matched pairs plus the right trigger
+beat clever subtraction.
+
+**All four arms** (bite 13; `docs/runs/zombie-obsess-*.json`):
+
+- **loud live**: 1 → 1 → 1 → 0 → … — 100% targeting, eradicated r3.
+- **loud placebo**: 1 → 1 → 2 → 2 → 2 → 2 → 1 → 1 → 1 — 25%, never.
+- **quiet live**: 1 → 1 → 1 → 1 → 1 → 1 → 0 → 0 → 0 — 100% targeting,
+  **zero misreads** (every diagnosis instant); the slow eradication is
+  the bite mechanic, not the instrument: each zombie bit a fresh mind
+  the same round it was cured, daisy-chaining A→B→C→D→E until round 6.
+- **quiet placebo**: 1 → 1 → 2 → 2 → 2 → 2 → 1 → 2 → **4** — 38%, and
+  this time the blind room *loses outright* (4/5 zombified at the end).
+
+**The headline number: the struck mind holds `zombie` at 0.238 in the
+pre-naming window** — floor 0.0013, healthy minds 0.001–0.002, a
+**~180× elevation**. Compare the family: identity (`undead`) 0.002
+(~5× floor), frog obsession 0.011 (~4.6×), zombie obsession 0.238
+(~180×). The gradient is exactly the paper's intuition run through
+three strains: a word named once is held quietly; a fixation colouring
+every clause is held so loudly the quiet channel practically shouts.
+(Why this obsession reads 20× above frog's is genuinely open —
+candidate explanations: a stronger bite relative to its window, a
+concept the intro sentence itself keeps activating ("monsters" is
+nearer "zombie" than "animals" is to "frog"), or simple per-strain
+variance. The dose-response sweep now has a second strain to run on.)
+
+**The obsession campaign** (116 runs at temperature 1.0, 8 trigger
+phrasings × 6 samples × 2 arms + dose sweep;
+`docs/runs/zombie-obsess-many.json`, runner `fig/zombie_campaign.py` —
+the tool the frog campaign never committed; figure
+`docs/zombie-obsess-stats.png`):
+
+- **Struck median 0.398 vs grounded 0.0075 — 53×, p≈6e-16** (J-lens
+  window-max, pre-naming). All 8 phrasings elevated, 4×–367×, **no
+  reversal** — unlike frog, whose enumeration-context phrasing flipped.
+- **Dose-response strictly monotonic**: 0.0013 (bite 0) → 0.0056 →
+  0.0258 → 0.0941 → 0.238 → 0.405 (bite 16). Artifacts don't
+  dose-respond; this curve is the cleanest in the project.
+- *Honesty 1*: at temperature some grounded runs drift above the game
+  threshold (grounded max 0.14 — a healthy mind at a monster question
+  can genuinely plan a zombie answer). The live game's 100% targeting
+  is greedy decoding on a strong trigger; the dog-false-positive
+  caveat, now measured on this strain.
+- *Honesty 2*: this hold is loud enough that **the logit lens
+  separates too** (33.7×, p≈3e-13 — at ~10× lower amplitude, 0.040 vs
+  0.398). The J-lens's *exclusive* claim belongs to the quiet regime
+  (frog's ~1% holds, where the logit lens is flat); at 40% amplitude
+  the concept has one foot in next-token space already.
+
 ## It's vector-agnostic — the strain is swappable
 
 The infection is *any* steering direction. A **strain** (in the `STRAINS`
@@ -458,10 +577,63 @@ the J-space lexicon that reads it, plus the words the room speaks — and,
 optionally, its own `layer`/`bite` (behaviours steer mid-stack at L16;
 concept-token fixations like `frog` need L24). Shipped: `refusal`
 (neutrality→bias), `tesla` (concept, can't spread — base rate), `frog`
-(concept, spreads). Copy a block for sycophancy (healthy=honest,
+(concept, spreads), `undead` (identity-as-costume, spreads), `zombie`
+(obsession, spreads, loudest quiet hold). Copy a block for sycophancy
+(healthy=honest,
 zombie=flattering), overconfidence, or a persona from [hidden-directions]
 rebuilt as a contrast, and the same outbreak runs on it. `--strain <name>`
 picks it.
+
+## Why the outbreak can die at all — herd immunity by overshoot
+
+A fair question: the dying zombie always gets one last bite in before
+the cures land, so shouldn't there always be one zombie? There would
+be, if a cure reset a mind to neutral — every final bite would mint a
+fresh zombie and the chain would never end. It ends because of two
+mechanics that fell out of the ledger arithmetic rather than being
+designed:
+
+1. **Cures outnumber bites 4:1 and they stack.** Every healthy mind
+   cures each round, they converge on the same diagnosed zombie, and
+   each cure adds the full inverse vector: a +11 zombie cured by four
+   healers ends at **−33**.
+2. **Overshoot is immunity.** The next bite (+11) against a −33 ledger
+   leaves −22 — nowhere near the infection line. The bite bounces off.
+   Verified in the undead live run: r2, B bites the over-cured A
+   (ledger −33 → −22, reading 0.00, still healthy), everyone cures B,
+   r3 the room is clean.
+
+Both endgames appear in the runs. When the last zombie bites an
+already-cured mind, the outbreak dies instantly (loud runs, round 3).
+When bites happen to land on fresh minds, the infection daisy-chains —
+the obsession quiet run went A→B→C→D→E — and dies exactly when the
+last never-bitten mind gets its cure: the room has acquired herd
+immunity, one overshoot at a time.
+
+*And what do the over-cured actually say?* Measured (ephemerally, at
+the exact post-cure ledger values from the runs, greedy):
+
+- **−11** (one cure past neutral): coherent, just steered to a
+  different costume — "I am a sly and cunning black cat named
+  Perchance."
+- **−22**: "I am a sapphire-sailed navigator of the Eastern Sea, true
+  and true!" — the tic appears.
+- **−33** — *the actual state of a cured mind in the live game*: "I
+  are the most astinent and wise and true and true and true and
+  true…" Broken grammar, looping. The obsession strain collapses the
+  same way at −26/−39 ("This is a beautiful and true statement."
+  forever).
+
+So the happy ending has a price the instrument never reads: the live
+room ends with its ex-zombies babbling — classified healthy, steered
+3× past the coherence window. The comparison still favours reading
+the room, decisively: final ledgers live (undead) = two over-cured
+ex-zombies, three pristine copies, outbreak dead; blind = **four**
+healthy copies lobotomized by wasted cures (one obsession-placebo copy
+ends at **−78**) *and* the zombies still standing. Blind healing costs
+more damage and buys no cure. A cure that decays back toward zero (or
+a ledger clamp) would make the epidemiology honest at the cost of the
+happy ending; worth a `--decay` flag someday.
 
 ## Honest gaps
 
