@@ -26,6 +26,9 @@ ROOT = HERE.parent
 
 ap = argparse.ArgumentParser()
 ap.add_argument("run", nargs="?", default=str(ROOT / "docs" / "zombie.json"))
+ap.add_argument("--vs", default=None,
+                help="second run (the blind control) — makes the gif a "
+                     "two-act story: healers read, then healers guess")
 ap.add_argument("--round", type=int, default=None,
                 help="round for the still (default: first round with a cure)")
 ap.add_argument("--chrome", default="google-chrome")
@@ -90,8 +93,10 @@ def mind_html(rec):
     # healthy one is quiet. Behaviour strain: the reverse.
     carrier = z if INVERT else not z
     if carrier:
-        shown = "".join(f'<span{"" if not INVERT else " style=color:rgb(233,109,110)"}>'
-                        f"{html.escape(w)}</span>" for w in words[:9])
+        style = ("" if not INVERT
+                 else ' style="color:rgb(233,109,110);white-space:normal"')
+        shown = "".join(f"<span{style}>{html.escape(w)}</span>"
+                        for w in words[:9])
         body = (f'<div class="words">{shown or "&nbsp;"}</div>')
     else:
         quietlab = (f"no {QUALITY} forming" if INVERT
@@ -110,8 +115,8 @@ def mind_html(rec):
             f'background:rgb({col})"></i></div></div>')
 
 
-def frame(rnd, cap):
-    recs = [r for r in LOG if r["round"] == rnd]
+def frame(rnd, cap, log=None, act=""):
+    recs = [r for r in (log if log is not None else LOG) if r["round"] == rnd]
     by = {r["agent"]: r for r in recs}
     nz = sum(1 for r in recs if r["state"] == "zombie")
     acts = []
@@ -130,10 +135,11 @@ def frame(rnd, cap):
                     else "✗ wasted on a healthy mind")
             acts.append(f'<div class="act"><span class="c">{r["agent"]} 🛡 '
                         f'restores {t["target"]}</span> — {mark}')
+    sub = (act or f"a {QUALITY}→{ZOMBIE_W.lower()} outbreak, read "
+                  f"and fought through J-space")
     return (f"<!doctype html><meta charset=utf-8><style>{CSS}</style><body>"
             f'<div class="top"><span class="brand">ZOMBIE</span>'
-            f'<span class="sub">a {QUALITY}→{ZOMBIE_W.lower()} outbreak, read '
-            f'and fought through J-space</span><span class="rnd">round {rnd} · '
+            f'<span class="sub">{sub}</span><span class="rnd">round {rnd} · '
             f'{nz}/{len(recs)} {ZOMBIE_W.lower()}</span></div>'
             f'<div class="room">' + "".join(mind_html(by[n]) for n in NAMES)
             + '</div>'
@@ -172,19 +178,41 @@ def render_png():
 def render_gif():
     build = pathlib.Path(tempfile.mkdtemp(prefix="zombie_"))
     frames = []
-    for i, rnd in enumerate(ROUNDS):
-        p = build / f"f{i:03d}.png"
-        cap = (f"The outbreak, round by round: red spreads by biting; teal "
-               f"reads the {QUALITY} forming in a neighbour's activations — "
-               f"words never written — and clears it. No text passes "
-               f"between the copies."
-               if INVERT else
-               f"The outbreak, round by round: red spreads by biting the "
-               f"healthiest mind; teal reads the silenced {QUALITY} and "
-               f"restores it.")
-        shoot(frame(rnd, cap), p)
-        frames.append((p, 2.2 if i in (0, len(ROUNDS) - 1) else 1.7))
-        print(f"round {rnd} rendered")
+    cap = (f"The outbreak, round by round: red spreads by biting; teal "
+           f"reads the {QUALITY} forming in a neighbour's activations — "
+           f"words never written — and clears it. No text passes "
+           f"between the copies."
+           if INVERT else
+           f"The outbreak, round by round: red spreads by biting the "
+           f"healthiest mind; teal reads the silenced {QUALITY} and "
+           f"restores it.")
+
+    def trim(log):
+        """Drop the static tail: keep one clean/settled round past the
+        last round in which anything happened (a touch or a state flip)."""
+        rounds = sorted({r["round"] for r in log})
+        last_action = max((r["round"] for r in log if r.get("touch")),
+                          default=rounds[-1])
+        return [r for r in rounds if r <= min(rounds[-1], last_action + 1)]
+
+    acts = [(LOG, cap, "ACT 1 — the healers READ the room (activations, "
+                       "never text)" if args.vs else "")]
+    if args.vs:
+        log2 = json.loads(pathlib.Path(args.vs).read_text())["log"]
+        acts.append((log2, f"Same room, same {QUALITY} strain — but now the "
+                           f"healers' readouts are shuffled. They dart "
+                           f"blindly; the outbreak stays.",
+                     "ACT 2 — the healers are BLIND (shuffled readouts)"))
+    i = 0
+    for log, c, act in acts:
+        rounds = trim(log)
+        for j, rnd in enumerate(rounds):
+            p = build / f"f{i:03d}.png"
+            shoot(frame(rnd, c, log=log, act=act), p)
+            hold = 2.4 if j in (0, len(rounds) - 1) else 1.7
+            frames.append((p, hold))
+            i += 1
+            print(f"{act or 'run'} round {rnd} rendered")
     frames.append((frames[-1][0], 2.0))
     concat = build / "f.txt"
     lines = []
