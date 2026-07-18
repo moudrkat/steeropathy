@@ -333,6 +333,30 @@ restores hit a frog-struck mind, and a zombie is still standing at the
 end. Quiet live: eradicated by round 3, 100% targeting. The whisper is
 the signal. (`docs/runs/zombie-frog-quiet-{live,placebo}-1.json`.)
 
+**Specificity — and the second discovery.** Is the quiet reading
+frog-specific, or do all animal names float up because the question is
+about animals? Measured across seven animal families on the same intro
+window: in the struck mind, frog reads 0.0204 at token 0 and every other
+animal reads ≤ 0.0010 — the injected concept stands 20× above the
+nearest animal. But the grounded mind's **dog** family — the answer it
+freely goes on to give — *climbs* through the intro: 0.004 → 0.006 →
+**0.0135** nine tokens before "dogs" is written, while its frog stays on
+the floor. Nobody injected dog. **The quiet channel reads what the mind
+is going to say, whoever put it there**: an implant is present from
+token 0 (the vector never sleeps); a free choice crystallizes toward the
+naming. In the struck mind the dog-plan is visibly *suppressed* (capped
+at 0.005 instead of climbing) — the implant displaced the plan. This
+overturns the section above's "a free choice is not readable ahead"
+(that was the coarser workspace decomposition missing a quiet signal —
+the same mistake as the top-k readout, one instrument deeper), and it
+partially answers the circularity objection: the channel demonstrably
+reads a plan nobody injected. One honest design caveat falls out: a
+quiet healer whose lexicon matches something healthy minds genuinely
+plan would false-positive (grounded dog 0.0135 > the 0.0072 threshold).
+The frog game is immune because no healthy mind plans frog — the
+base-rate lesson again, one level down. (The dog observation is N=1,
+greedy — an existence proof inside an existence proof.)
+
 ```bash
 python -m steeropathy.zombie --strain frog --quiet            # quiet live
 python -m steeropathy.zombie --strain frog --quiet --placebo  # quiet blind
