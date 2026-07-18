@@ -278,12 +278,18 @@ bound. Ask *exactly* (traces saved with hidden states,
 So the corrected verdict: the J-lens **does** show words the mind holds
 before it writes them — at the ~1% level, readable only in the exact
 readout with a baseline to compare against, never in a top-k glance. And
-the quiet channel is **J-lens-exclusive**: the exact *logit lens* at the
-same pre-naming positions reads 0.0001-vs-0.0000 — no separation, blind
-by construction ("what if it stopped here" has no frog candidate there).
-Earlier honesty ("J-lens ≈ logit lens, nothing exclusive") was true of
-the loud channel only; holding a future word is the thing the transport
-J was fitted to see and the unembedding alone cannot. The healers in the
+the quiet channel is **future-lens-dominant** (measured on the same 159
+stored states, first 3 tokens, offline readout validated against the
+server): the J-lens separates struck from grounded at **2.8×, p<0.0001**;
+the *tuned lens* — trained on the next-token objective — carries a
+**faint echo** (2.5×, p=0.002, at 5× lower absolute amplitude: 0.0013 vs
+the J-lens's 0.0064); the **raw unembedding sees nothing** (1.2×,
+p=0.23). At n=39 the tuned echo was invisible and we briefly called the
+channel "J-lens-exclusive" — more data softened that claim, the honest
+way around. Earlier honesty ("J-lens ≈ logit lens, nothing exclusive")
+was true of the loud channel only; holding a future word is what the
+transport J was fitted to see, what a next-token translator picks up
+only faintly, and what the unembedding alone cannot. The healers in the
 game read the loud channel (words *forming*); reading the quiet channel
 is the next section.
 
@@ -361,6 +367,31 @@ greedy — an existence proof inside an existence proof.)
 python -m steeropathy.zombie --strain frog --quiet            # quiet live
 python -m steeropathy.zombie --strain frog --quiet --placebo  # quiet blind
 ```
+
+## The quiet channel, measured
+
+The many-runs campaign (`docs/zombie-stats.png`; data in
+`docs/runs/zombie-quiet-many*.json`): **159 runs at temperature 1.0**
+(10 trigger phrasings × 8 samples × 2 arms, 15-token pre-naming cut) plus
+a dose sweep. What the data says:
+
+- **The effect is real and quantified.** Window-max: struck median 0.0070
+  vs grounded 0.0026, permutation p < 0.001; first-3-tokens (the clean
+  statistic, see below): struck 0.0064 vs 0.0024, **p = 0.00001**.
+- **It dose-responds.** Bite 0 → 4 → 7 → 10 → 13 → 16 gives readings
+  0.0029 → 0.0056 → 0.0088 → 0.0125 → 0.0204 → 0.0240 — strictly
+  monotonic. Artifacts don't dose-respond.
+- **Per-trigger honesty:** 8 of 10 phrasings elevated (up to 37×), one
+  flat, one *reversed* — and the reversal taught us the confound: that
+  phrasing invites animal **enumerations** ("…be they a bee, a fox,
+  or—"), where frog becomes a locally plausible next list word for
+  anyone. Every extreme tail on both arms is such a context. The
+  held-plan signal proper lives in the first tokens, before context
+  builds; the late window mixes it with next-word plausibility.
+- **As a detector it is honest-modest at temperature:** the fixed game
+  threshold gives ~49% TPR at 15% FPR on window-max (~32% at 9% on the
+  early window). The live game's clean 100% run was greedy decoding on a
+  strong trigger — real, but the best case, not the typical one.
 
 ## The quiet channel, plainly
 
