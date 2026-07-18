@@ -22,6 +22,7 @@ from . import offer as offers_mod
 from . import resonance as reso_mod
 from . import transmit as core
 from . import unsaid as uns_mod
+from . import zombie as zomb_mod
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
 WEB = Path(__file__).resolve().parent.parent / "web"
@@ -38,6 +39,22 @@ RESO_LOCK = threading.Lock()
 # and for unsaid: one live line, one lock
 UNS: uns_mod.Unsaid | None = None
 UNS_LOCK = threading.Lock()
+
+# and for the zombie outbreak: one live room, one lock
+ZOMB: zomb_mod.Zombie | None = None
+ZOMB_LOCK = threading.Lock()
+
+# concept strains the tab can seed (the behaviour strains keep the CLI);
+# tesla stays out — the base model already loves Tesla, nothing to infect
+ZOMB_STRAINS = ["zombie", "undead", "frog"]
+
+# saved outbreaks the tab can replay without a model
+ZOMB_RUNS = {
+    "live": "zombie-obsess-live-1.json",
+    "blind": "zombie-obsess-placebo-1.json",
+    "quiet": "zombie-obsess-quiet-live-1.json",
+    "quiet-blind": "zombie-obsess-quiet-placebo-1.json",
+}
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -82,14 +99,37 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(200, saved.read_bytes())
             return self._send(404, {"error": "no saved run — "
                                     "python -m steeropathy.unsaid first"})
+        if path == "/zombie/strains":
+            out = []
+            for k in ZOMB_STRAINS:
+                s = zomb_mod.STRAINS[k]
+                out.append({"key": k, "quality": s["quality"],
+                            "healthy": s["healthy"], "zombie": s["zombie"],
+                            "trigger": s["trigger"],
+                            "quiet_trigger": s.get("quiet_trigger"),
+                            "layer": s.get("layer", 16),
+                            "bite": s.get("bite", 9.0)})
+            return self._send(200, {"strains": out, "runs": list(ZOMB_RUNS)})
+        if path == "/zombie/replay":
+            from urllib.parse import parse_qs
+            q = parse_qs(urlparse(self.path).query)
+            key = (q.get("run") or ["live"])[0]
+            if key not in ZOMB_RUNS:
+                return self._send(400, {"error": f"unknown run '{key}'"})
+            saved = zomb_mod.HERE / "docs" / "runs" / ZOMB_RUNS[key]
+            if saved.exists():
+                return self._send(200, saved.read_bytes())
+            return self._send(404, {"error": "no saved run — "
+                                    "python -m steeropathy.zombie first"})
         self._send(404, {"error": "not found"})
 
     def do_POST(self) -> None:
-        global ECO, RESO, UNS
+        global ECO, RESO, UNS, ZOMB
         path = urlparse(self.path).path
         if path not in ("/transmit", "/offer", "/eco/start", "/eco/step",
                         "/resonance/start", "/resonance/step",
-                        "/unsaid/start", "/unsaid/step"):
+                        "/unsaid/start", "/unsaid/step",
+                        "/zombie/start", "/zombie/step"):
             return self._send(404, {"error": "not found"})
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
@@ -158,6 +198,36 @@ class Handler(BaseHTTPRequestHandler):
                                                 "POST /unsaid/start first"})
                     rec = UNS.step()
                 return self._send(200, {"turn": UNS.turn, "rec": rec})
+            if path == "/zombie/start":
+                # building the strain direction takes a dozen captures; the
+                # quiet channel also calibrates its healthy floor first
+                strain = req.get("strain", "zombie")
+                if strain not in ZOMB_STRAINS:
+                    return self._send(400, {"error": f"unknown strain "
+                                            f"'{strain}'"})
+                with ZOMB_LOCK:
+                    ZOMB = zomb_mod.Zombie(
+                        HOST, strain=strain,
+                        placebo=bool(req.get("placebo")),
+                        quiet=bool(req.get("quiet")))
+                    entries = ZOMB.step()   # round 0 — patient zero glows
+                return self._send(200, {
+                    "round": ZOMB.rnd, "names": ZOMB.names,
+                    "patient_zero": ZOMB.patient_zero,
+                    "thresh": ZOMB.thresh, "quiet": ZOMB.quiet,
+                    "floor": getattr(ZOMB, "floor", None),
+                    "zombie_word": ZOMB.zombie_word,
+                    "healthy_word": ZOMB.healthy_word,
+                    "quality": ZOMB.quality, "layer": ZOMB.layer,
+                    "band": [ZOMB.lo, ZOMB.hi], "entries": entries})
+            if path == "/zombie/step":
+                with ZOMB_LOCK:
+                    if ZOMB is None:
+                        return self._send(400, {"error": "no outbreak — "
+                                                "POST /zombie/start first"})
+                    entries = ZOMB.step()
+                return self._send(200, {"round": ZOMB.rnd,
+                                        "entries": entries})
             if path == "/transmit":
                 result = core.transmit(HOST, req["mood"],
                                        req.get("question", core.RECEIVER_QUESTION),

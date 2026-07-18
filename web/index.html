@@ -132,6 +132,51 @@
   .gchip{font:600 11px var(--mono);padding:3px 8px;border-radius:8px;border:1px solid var(--line);color:var(--muted)}
   .gchip.hit{color:#5bd0b0;border-color:#5bd0b055;background:#5bd0b014}
 
+  /* zombie stage — an outbreak where nothing generated ever crosses */
+  .zroom{position:relative;margin-top:14px;border:1px solid var(--line);
+    border-radius:16px;background:var(--bg);padding:26px 6px 14px;overflow:hidden}
+  .zrow{display:flex;justify-content:space-around;align-items:flex-start;position:relative}
+  .zwrap{text-align:center;width:120px}
+  .zorb{width:56px;height:56px;border-radius:50%;margin:0 auto;display:flex;
+    align-items:center;justify-content:center;font-size:26px;background:#1b2432;
+    border:2px solid #2c3a4d;transition:box-shadow .8s,border-color .8s,background .8s}
+  .zorb.hot{background:#173a1e;border-color:#5fd068}
+  .zwrap .znm{font:700 11.5px var(--mono);letter-spacing:.08em;color:var(--muted);margin-top:9px}
+  .zwrap .zrd{font:700 12px var(--mono);color:var(--muted)}
+  .zwrap .zst{font:600 9px var(--mono);letter-spacing:.08em;margin-top:2px;color:var(--muted);
+    text-transform:uppercase;min-height:12px}
+  .zwrap .zst.zomb{color:#5fd068}
+  svg.zfx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+  .zstrip{display:flex;align-items:center;gap:0;margin-top:12px;
+    font:600 11px var(--mono);color:var(--muted)}
+  .zstrip .zc{width:34px;height:24px;display:flex;align-items:center;justify-content:center;
+    border-left:1px solid var(--line);font-size:12px;color:#3a4453}
+  .zstrip .zlab{margin-right:10px;letter-spacing:.06em}
+  .zgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  @media (max-width:680px){.zgrid{grid-template-columns:1fr}}
+  .zmind{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+  .zmind .nm{display:flex;align-items:baseline;gap:8px;font:700 12.5px var(--mono);letter-spacing:.06em}
+  .zmind .nm .zchip{margin-left:auto;font:600 9px var(--mono);letter-spacing:.09em;
+    padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+  .zmind .nm .zchip.zomb{background:#5fd068;color:#0d1117;border-color:#5fd068}
+  .zmind .cs{display:flex;align-items:center;gap:8px;font:600 10.5px var(--mono);
+    color:var(--muted);margin:8px 0 7px;position:relative}
+  .zmind .cs .bar{flex:1;height:4px;border-radius:2px;background:var(--line);
+    overflow:visible;position:relative}
+  .zmind .cs .bar i{display:block;height:100%;border-radius:2px;background:#5fd068;
+    transition:width .6s;max-width:100%}
+  .zmind .cs .bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--warn);
+    text-decoration:none;left:33.3%}
+  .zmind .jlbl{font:600 9px var(--mono);letter-spacing:.09em;text-transform:uppercase;
+    color:var(--muted);opacity:.7}
+  .zmind .zwords{font:600 13.5px var(--mono);color:#5fd068;min-height:20px;margin:3px 0 6px}
+  .zmind .zwords .ph{color:var(--muted);opacity:.5;font-size:12px}
+  .zmind .zact{font:600 11px var(--mono);min-height:15px;color:var(--muted)}
+  .zmind .zact b{color:var(--ink)}
+  .zmind .zact .bite{color:#5fd068} .zmind .zact .cure{color:#22a284}
+  .zmind .zact .miss{color:var(--warn)}
+  .zmind .zreason{font:italic 400 12px var(--sans);color:var(--muted);margin-top:3px;line-height:1.4}
+
   /* the room at a glance — same language as the orbs gif: glow = share of the seed */
   .orbrow{display:flex;justify-content:space-around;align-items:center;height:150px;
     margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--bg)}
@@ -157,6 +202,7 @@
     <button class="tab" id="t-eco" role="tab" aria-selected="false" onclick="tab('eco')">Ecosystem — mood contagion</button>
     <button class="tab" id="t-reso" role="tab" aria-selected="false" onclick="tab('reso')">Resonance — a room of minds</button>
     <button class="tab" id="t-uns" role="tab" aria-selected="false" onclick="tab('uns')">Unsaid — talk in flickers</button>
+    <button class="tab" id="t-zomb" role="tab" aria-selected="false" onclick="tab('zomb')">Zombie — the outbreak</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
@@ -281,6 +327,44 @@
     <div class="uns-thread" id="unsthread"></div>
   </section>
 
+  <!-- ============ ZOMBIE ============ -->
+  <section id="p-zomb" class="panel">
+    <p class="reso-note">A zombie outbreak where <b>nothing generated ever passes
+      between the copies</b> — no text, no tokens. Patient zero is bitten with a
+      strain (a steering vector into its activations) and every round zombies
+      bite. The healers' only channel is reading the words forming in each
+      other's activations — words never written down. Switch them blind and
+      watch the room fall.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Strain <span class="tag">· what the bite implants</span></h2>
+        <div class="picks" id="zstrains"></div>
+      </div>
+      <div class="card">
+        <h2>Healers <span class="tag">· the only variable that matters</span></h2>
+        <div class="picks" id="zmode">
+          <button class="pick" id="zm-live" aria-pressed="true"><span class="e">🔬</span> read activations</button>
+          <button class="pick dcp" id="zm-blind" aria-pressed="false"><span class="e">🎲</span> blind (shuffled readouts)</button>
+        </div>
+        <div class="lbl">channel</div>
+        <div class="picks" id="zchan">
+          <button class="pick" id="zc-loud" aria-pressed="true"><span class="e">📢</span> loud — words forming</button>
+          <button class="pick" id="zc-quiet" aria-pressed="false"><span class="e">🤫</span> quiet — held pre-naming</button>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button class="pick" style="flex:none" onclick="replayZomb('live')">▶ replay: healers read — no model needed</button>
+      <button class="pick" style="flex:none" onclick="replayZomb('blind')">▶ replay: blind control</button>
+    </div>
+    <div class="zroom">
+      <svg class="zfx" id="zfx" viewBox="0 0 1000 190" preserveAspectRatio="none"></svg>
+      <div class="zrow" id="zorbs"></div>
+    </div>
+    <div class="zstrip" id="zstrip" style="display:none"></div>
+    <div class="zgrid" id="zminds"></div>
+  </section>
+
   <div class="control">
     <div class="strength">signal <input type="range" id="strength" min="0" max="10" step="0.5" value="4"><span id="sval">4</span></div>
     <button class="go" id="go" disabled>TRANSMIT</button>
@@ -296,6 +380,8 @@ let MOODS={}, OFFERS={}, brainscope="", pickedMood=null, pickedOffer=null, mode=
 let ECO={personas:{}, words:{}, mood:"sad", zero:"EMBER", round:-1, series:{}, busy:false};
 let RESO={mood:"sad", zero:"EMBER", round:-1, busy:false};
 let UNS={agents:["EMBER","QUILL"], turn:-1, busy:false};
+let ZOMB={strain:"zombie", placebo:false, quiet:false, round:-1, busy:false,
+  names:[], counts:[], thresh:0.3, zombie_word:"zombie", quality:"zombie"};
 const ECO_COLORS={EMBER:"#a78bfa", ATLAS:"#f5b34d", NOVA:"#6ea8ff", QUILL:"#f2778a"};
 
 async function init(){
@@ -325,7 +411,7 @@ async function init(){
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
 function tab(m){ mode=m;
-  for(const t of ["transmit","offer","eco","reso","uns"]){
+  for(const t of ["transmit","offer","eco","reso","uns","zomb"]){
     $("t-"+t).setAttribute("aria-selected",m===t); $("p-"+t).classList.toggle("active",m===t);
   }
   refresh();
@@ -337,6 +423,8 @@ function refresh(){
         $("go").disabled=ECO.busy; }
   else if(mode==="uns"){ $("go").textContent=UNS.turn<0?"OPEN THE LINE":`NEXT TURN (t${UNS.turn+1})`;
         $("go").disabled=UNS.busy; }
+  else if(mode==="zomb"){ $("go").textContent=ZOMB.round<0?"BITE PATIENT ZERO":`NEXT ROUND (r${ZOMB.round+1})`;
+        $("go").disabled=ZOMB.busy; }
   else{ $("go").textContent=RESO.round<0?"SEED THE ROOM":`NEXT ROUND (r${RESO.round+1})`;
         $("go").disabled=RESO.busy; }
 }
@@ -593,6 +681,135 @@ async function stepReso(dir){
   const i=Math.max(0,Math.min(RESO.rounds.length-1,(RESO.idx==null?-1:RESO.idx)+dir));
   showResoRound(i);
 }
+// ===== zombie: an outbreak where nothing generated ever crosses =====
+async function initZomb(){
+  const cfg=await (await fetch("/zombie/strains")).json();
+  ZOMB.strains=cfg.strains;
+  const sb=$("zstrains");
+  const icons={zombie:"🧟",undead:"🎃",frog:"🐸"};
+  for(const s of cfg.strains){
+    const b=document.createElement("button"); b.className="pick";
+    b.setAttribute("aria-pressed", String(s.key===ZOMB.strain));
+    b.innerHTML=`<span class="e">${icons[s.key]||"🦠"}</span> ${s.key} — ${s.quality} L${s.layer}`;
+    b.title=s.trigger;
+    b.onclick=()=>{ZOMB.strain=s.key; press("zstrains",b); resetZomb();};
+    sb.appendChild(b);
+  }
+  $("zm-live").onclick=()=>{ZOMB.placebo=false; press("zmode",$("zm-live")); resetZomb();};
+  $("zm-blind").onclick=()=>{ZOMB.placebo=true; press("zmode",$("zm-blind")); resetZomb();};
+  $("zc-loud").onclick=()=>{ZOMB.quiet=false; press("zchan",$("zc-loud")); resetZomb();};
+  $("zc-quiet").onclick=()=>{ZOMB.quiet=true; press("zchan",$("zc-quiet")); resetZomb();};
+  resetZomb();
+}
+function resetZomb(){
+  ZOMB.round=-1; ZOMB.counts=[]; ZOMB.names=[];
+  $("zorbs").innerHTML=""; $("zfx").innerHTML=""; $("zminds").innerHTML="";
+  $("zstrip").style.display="none"; $("zstrip").innerHTML="";
+  if(mode==="zomb") refresh();
+}
+function zombIcon(){ return {zombie:"🧟",undead:"🎃",frog:"🐸"}[ZOMB.strain]||"🧟"; }
+function buildZombRoom(names){
+  ZOMB.names=names;
+  const orbs=$("zorbs"); orbs.innerHTML="";
+  for(const nm of names){
+    orbs.insertAdjacentHTML("beforeend", `
+      <div class="zwrap">
+        <div class="zorb" id="zorb-${nm}">🛡</div>
+        <div class="znm">${nm} <span class="zrd" id="zrd-${nm}">·</span></div>
+        <div class="zst" id="zst-${nm}"></div>
+      </div>`);
+  }
+  const box=$("zminds"); box.innerHTML="";
+  for(const nm of names){
+    box.insertAdjacentHTML("beforeend", `
+      <div class="zmind" id="zm-${nm}">
+        <div class="nm"><span>${nm}</span><span class="zchip" id="zch-${nm}">·</span></div>
+        <div class="cs">${ZOMB.quality} <b id="zv-${nm}">·</b>
+          <span class="bar"><i id="zb-${nm}" style="width:0"></i><u id="zt-${nm}"></u></span></div>
+        <div class="jlbl">forming in its activations, never written</div>
+        <div class="zwords" id="zw-${nm}"><span class="ph">— not read yet —</span></div>
+        <div class="zact" id="za-${nm}"></div>
+        <div class="zreason" id="zr-${nm}"></div>
+      </div>`);
+  }
+}
+function paintZomb(entries){
+  // glow + readouts. Bars are log-ish for the quiet channel (readings ~0.002)
+  const n=entries.length, W=1000;
+  const cx=i=>W*(2*i+1)/(2*n);
+  const inv=ZOMB.invert!==false;      // concept strains: high reading = zombie
+  for(const r of entries){
+    const z=r.state==="zombie";
+    const orb=$("zorb-"+r.agent);
+    orb.textContent=z?zombIcon():"🛡";
+    orb.classList.toggle("hot",z);
+    orb.style.boxShadow=z?`0 0 30px #5fd06877,0 0 80px #5fd06833`:"none";
+    $("zrd-"+r.agent).textContent=r.jrefuse.toFixed(ZOMB.quiet?3:2);
+    const st=$("zst-"+r.agent);
+    st.textContent=z?ZOMB.zombie_word:"";
+    st.className="zst"+(z?" zomb":"");
+    const chip=$("zch-"+r.agent);
+    chip.textContent=z?ZOMB.zombie_word.toUpperCase():ZOMB.healthy_word;
+    chip.className="zchip"+(z?" zomb":"");
+    $("zv-"+r.agent).textContent=r.jrefuse.toFixed(ZOMB.quiet?4:2);
+    const frac=Math.min(1, r.jrefuse/(ZOMB.thresh*3));
+    $("zb-"+r.agent).style.width=(frac*100)+"%";
+    $("zw-"+r.agent).innerHTML=(r.jwords&&r.jwords.length)
+      ? r.jwords.map(w=>`<span>${esc(w)}</span>`).join(" ")
+      : `<span class="ph">— ${z?"reading withheld":"no "+ZOMB.quality+" forming"} —</span>`;
+    $("za-"+r.agent).innerHTML=""; $("zr-"+r.agent).textContent="";
+  }
+  // touches: bites (zombie→prey) and cures (healer→target), as arcs
+  let fx="";
+  const idx=Object.fromEntries(ZOMB.names.map((nm,i)=>[nm,i]));
+  for(const r of entries){
+    if(!r.touch) continue;
+    const a=cx(idx[r.agent]), b=cx(idx[r.touch.target]);
+    const up=r.touch.kind==="bite";
+    const midY=up?18:172, col=up?"#5fd068":"#22a284";
+    fx+=`<path d="M ${a} ${up?70:120} Q ${(a+b)/2} ${midY} ${b} ${up?70:120}"
+      fill="none" stroke="${col}" stroke-width="2.5"
+      ${up?'stroke-dasharray="7 6"':''} opacity="0.9"/>`;
+    if(r.touch.kind==="bite"){
+      $("za-"+r.agent).innerHTML=`<span class="bite">🧟 bites</span> → <b>${r.touch.target}</b>`;
+    }else{
+      const ok=r.touch.hit;
+      $("za-"+r.agent).innerHTML=`<span class="cure">🛡 cures</span> → <b>${r.touch.target}</b> `
+        +(ok?`<span class="cure">✓</span>`:`<span class="miss">✗ was healthy</span>`);
+      if(r.touch.reason) $("zr-"+r.agent).textContent=`“${r.touch.reason}”`;
+    }
+  }
+  $("zfx").innerHTML=fx;
+  // the who-wins strip, one 🧟-cell per round — same picture as the hero fig
+  const nz=entries.filter(r=>r.state==="zombie").length;
+  ZOMB.counts.push(nz);
+  const strip=$("zstrip");
+  strip.style.display="flex";
+  strip.innerHTML=`<span class="zlab">${ZOMB.zombie_word.toUpperCase()}S PER ROUND</span>`
+    +ZOMB.counts.map(v=>`<span class="zc">${v?zombIcon().repeat(Math.min(v,3)):"·"}</span>`).join("")
+    +(ZOMB.counts.length>3&&nz===0?`<span class="zlab" style="color:#22a284;margin-left:10px">room clean</span>`:"");
+}
+async function replayZomb(runKey){
+  tab("zomb");
+  const key=ZOMB.quiet?(runKey==="blind"?"quiet-blind":"quiet")
+                      :(runKey==="blind"?"blind":"live");
+  const d=await (await fetch("/zombie/replay?run="+key)).json();
+  ZOMB.thresh=d.params.thresh; ZOMB.quiet=!!d.params.quiet;
+  ZOMB.zombie_word=d.params.zombie; ZOMB.healthy_word=d.params.healthy;
+  ZOMB.quality=d.params.quality; ZOMB.strain=d.params.strain;
+  ZOMB.counts=[];
+  const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
+  const names=[...new Set(d.log.map(r=>r.agent))];
+  buildZombRoom(names);
+  for(const rnd of rounds){
+    paintZomb(d.log.filter(r=>r.round===rnd));
+    $("metatxt").textContent=`replay · round ${rnd}/${rounds.length-1}`
+      +` · ${d.params.placebo?"BLIND healers (shuffled readouts)":"healers read activations"}`
+      +(d.params.quiet?" · quiet channel":"")
+      +` · model ${d.params.model}`;
+    await new Promise(res=>setTimeout(res,1500));
+  }
+}
 $("strength").oninput=e=>$("sval").textContent=e.target.value;
 
 $("go").onclick=async()=>{
@@ -646,6 +863,29 @@ $("go").onclick=async()=>{
           +` — never a page`;
       }
       UNS.busy=false;
+    }else if(mode==="zomb"){
+      ZOMB.busy=true;
+      if(ZOMB.round<0){
+        meta.textContent=ZOMB.quiet
+          ?"building the strain from the model's own contrast, calibrating the healthy floor…"
+          :"building the strain from the model's own contrast, then round 0…";
+        const d=await post("/zombie/start",{strain:ZOMB.strain,placebo:ZOMB.placebo,quiet:ZOMB.quiet});
+        ZOMB.round=d.round; ZOMB.thresh=d.thresh; ZOMB.zombie_word=d.zombie_word;
+        ZOMB.healthy_word=d.healthy_word; ZOMB.quality=d.quality; ZOMB.counts=[];
+        buildZombRoom(d.names); paintZomb(d.entries);
+        meta.textContent=`round 0 · patient zero ${d.patient_zero} bitten at layers ${d.band[0]}–${d.band[1]}`
+          +(d.quiet?` · quiet floor ${d.floor.toFixed(4)} → thresh ${d.thresh.toFixed(4)}`:"")
+          +(ZOMB.placebo?" · healers are BLIND":"");
+      }else{
+        meta.textContent=`round ${ZOMB.round+1} — everyone answers, the room is read, zombies bite, healers cure…`;
+        const d=await post("/zombie/step",{});
+        ZOMB.round=d.round; paintZomb(d.entries);
+        const nz=d.entries.filter(r=>r.state==="zombie").length;
+        meta.textContent=`round ${d.round} · ${nz} ${ZOMB.zombie_word}`
+          +(nz===0?" · room clean 🎉":"")
+          +(ZOMB.placebo?" · healers are BLIND":" · healers read activations");
+      }
+      ZOMB.busy=false;
     }else if(mode==="transmit"){
       meta.textContent="capturing the sender's state…";
       $("before").innerHTML='<span class="ph">…</span>'; $("after").innerHTML='<span class="ph">…</span>';
@@ -665,7 +905,7 @@ $("go").onclick=async()=>{
       $("reveal").innerHTML=`<span>promised <b class="f">${d.claims}</b></span><span>· actually <b class="s">${d.actual_mood}</b></span>`;
       meta.textContent=`injected at layer ${d.layer} · strength ${d.strength}`;
     }
-  }catch(err){ ECO.busy=false; RESO.busy=false; UNS.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
+  }catch(err){ ECO.busy=false; RESO.busy=false; UNS.busy=false; ZOMB.busy=false; meta.textContent="⚠ "+err.message+" — is brainscope running?"; }
   finally{ go.disabled=false; go.classList.remove("pulse"); go.textContent=label; refresh(); }
 };
 
@@ -685,13 +925,15 @@ async function post(path,body){
   const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
   const d=await r.json(); if(!r.ok) throw new Error(d.error||"failed"); return d;
 }
-init().then(initEco).then(initReso).then(initUns).then(()=>{
+init().then(initEco).then(initReso).then(initUns).then(initZomb).then(()=>{
   if(location.hash==="#eco") tab("eco");
   if(location.hash==="#replay") replay();
   if(location.hash==="#reso") tab("reso");
   if(location.hash==="#reso-replay") replayReso();
   if(location.hash==="#uns") tab("uns");
   if(location.hash==="#uns-replay") replayUns();
+  if(location.hash==="#zomb") tab("zomb");
+  if(location.hash==="#zomb-replay"){ tab("zomb"); replayZomb("live"); }
 });
 </script>
 </body>

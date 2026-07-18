@@ -148,9 +148,17 @@ room round by round and watch four minds read each other and push back.
 
 ![the resonance tab: four minds, each with a sadness bar read off its activations, the words forming in its layers that it never writes, its journal, and the push it chose](docs/ui-resonance-tab.png)
 
+The newest tab is **zombie — the outbreak**: pick a strain (a zombie
+obsession, an identity, frogs), bite patient zero, and step the room. The
+healers' only channel is reading the words forming in each other's
+activations; flip them **blind** (shuffled readouts) and watch the same
+room get overrun. A round-by-round strip counts the zombies.
+
 **No GPU handy? Try it in 30 seconds:** open the UI and hit **`#replay`**
-(ecosystem) or **`#reso-replay`** (resonance): it animates the last saved run from
-JSON, no model loaded at all. You'll see the feeling spread through the room; the
+(ecosystem), **`#reso-replay`** (resonance), or **`#zomb-replay`** (the
+outbreak, healers reading — the replay buttons in the tab also play the
+blind control): it animates the last saved run from JSON, no model loaded
+at all. You'll see the feeling spread through the room; the
 live layer-by-layer internals (the J-lens) need brainscope and a model. See it move
 first; wire up brainscope when you want the internals or to run your own.
 
