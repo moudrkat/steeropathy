@@ -496,6 +496,19 @@ frog's (0.002 vs 0.011; the ratio to each run's floor is similar, ~5×
 vs ~4.6× — an identity held for one sentence is quieter than an
 obsession colouring every clause; see the `zombie` strain below for how
 loud a truly obsessed hold gets).
+
+**The identity campaign** (116 runs at temperature 1.0, same protocol
+as the obsession's; `docs/runs/zombie-undead-many.json`): the whisper
+is real, not a greedy artifact — struck median **0.0078 vs grounded
+0.0003 (26×, p≈7e-15)**, every one of 8 costume-party phrasings
+elevated (4×–143×, big phrasing variance — one phrasing barely
+whispers at 4×), dose strictly monotonic 0.0004 → 0.0273 across bite
+4→16. The logit lens separates here too (0.0015 vs 0.0001) at ~5×
+lower amplitude — like the obsession, this channel is
+future-lens-dominant rather than J-lens-exclusive. And the
+whisper-vs-shout gradient survives the campaign: identity 0.0078 vs
+obsession 0.398 at the same temperature — an obsession is ~50× louder
+than a worn identity, now at n≈50 per arm instead of N=1.
 And `zombie` is a *plausible* costume choice, so this strain lives
 closer to the dog-false-positive line than frog does: a healthy mind
 that freely picked a zombie costume would read as bitten. Greedy answers

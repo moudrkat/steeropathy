@@ -39,6 +39,10 @@ PARAMS = DATA.get("params", {})
 HEALTHY_W = PARAMS.get("healthy", "neutral").upper()   # e.g. NEUTRAL
 ZOMBIE_W = PARAMS.get("zombie", "biased").upper()      # e.g. BIASED
 QUALITY = PARAMS.get("quality", "neutrality")          # e.g. neutrality
+# concept strains (frog, zombie, undead) are INVERTED: the lexicon forming
+# IS the infection, and a healthy mind shows nothing. Detect off the data —
+# in an inverted run the zombies carry the words.
+INVERT = PARAMS.get("strain") in ("frog", "zombie", "undead", "tesla")
 NAMES = sorted({r["agent"] for r in LOG})
 ROUNDS = sorted({r["round"] for r in LOG})
 W, H = 1200, 700
@@ -82,13 +86,19 @@ def mind_html(rec):
     emoji = "🧟" if z else "🛡"
     jr = rec.get("jrefuse", 0.0)
     words = rec.get("jwords") or []
-    if z:
-        body = (f'<div class="words"><span class="none">— {QUALITY} '
-                f'silenced —</span></div>')
+    # inverted (concept) strain: the infected mind carries the words, the
+    # healthy one is quiet. Behaviour strain: the reverse.
+    carrier = z if INVERT else not z
+    if carrier:
+        shown = "".join(f'<span{"" if not INVERT else " style=color:rgb(233,109,110)"}>'
+                        f"{html.escape(w)}</span>" for w in words[:9])
+        body = (f'<div class="words">{shown or "&nbsp;"}</div>')
     else:
-        body = ('<div class="words">'
-                + "".join(f"<span>{html.escape(w)}</span>" for w in words[:9])
-                + "</div>")
+        quietlab = (f"no {QUALITY} forming" if INVERT
+                    else f"{QUALITY} silenced")
+        body = (f'<div class="words"><span class="none" '
+                f'style="color:{"rgb(88,214,178)" if INVERT else ""}">'
+                f'— {quietlab} —</span></div>')
     col = BITE if z else HEAL
     return (f'<div class="mind {"z" if z else "h"}">'
             f'<div class="nm"><span class="e">{emoji}</span>{rec["agent"]}</div>'
@@ -110,8 +120,10 @@ def frame(rnd, cap):
         if not t:
             continue
         if t["kind"] == "bite":
+            spread = ("the obsession spreads" if INVERT
+                      else "the bias spreads")
             acts.append(f'<div class="act"><span class="b">{r["agent"]} 🧟 '
-                        f'bites {t["target"]}</span> — the bias spreads')
+                        f'bites {t["target"]}</span> — {spread}')
         else:
             ok = t.get("hit")
             mark = (f'✓ restored a {ZOMBIE_W.lower()} mind' if ok
@@ -162,9 +174,15 @@ def render_gif():
     frames = []
     for i, rnd in enumerate(ROUNDS):
         p = build / f"f{i:03d}.png"
-        shoot(frame(rnd, f"The outbreak, round by round: red spreads by "
-                         f"biting the healthiest mind; teal reads the "
-                         f"silenced {QUALITY} and restores it."), p)
+        cap = (f"The outbreak, round by round: red spreads by biting; teal "
+               f"reads the {QUALITY} forming in a neighbour's activations — "
+               f"words never written — and clears it. No text passes "
+               f"between the copies."
+               if INVERT else
+               f"The outbreak, round by round: red spreads by biting the "
+               f"healthiest mind; teal reads the silenced {QUALITY} and "
+               f"restores it.")
+        shoot(frame(rnd, cap), p)
         frames.append((p, 2.2 if i in (0, len(ROUNDS) - 1) else 1.7))
         print(f"round {rnd} rendered")
     frames.append((frames[-1][0], 2.0))
