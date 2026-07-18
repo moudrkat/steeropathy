@@ -184,15 +184,166 @@ the Tesla domain lights up in **both at the same token**; only the literal
 name leads by one token in the J-lens. So this is "read the mind instead of
 the words," not "predict the words ahead of time." (See the section above.)
 
+## The frog outbreak: a concept that CAN spread
+
+The Tesla lesson said a concept-contagion needs a concept the base model
+doesn't reach for. Enter `--strain frog`: the trigger is *"what is the one
+animal you love most?"* and the unsteered model answers **cats** — base rate
+for frog is zero (round 0, every healthy mind reads `frog ≈ 0.07`, far under
+the 0.3 line; patient zero reads `0.98`). The healthy baseline that Tesla
+lacked exists, so the inverted game finally runs whole: bite steers a mind
+*toward* frogs ("I love frogs most because they are amazing, misunderstood,
+and essential to healthy ecosystems"), healers read the frog forming in a
+peer's J-space and clear it.
+
+**Finding the vector was the actual work, and the lesson is about layers.**
+The frog contrast (matched frog-vs-other-animal sentences, same recipe as
+tesla) steers *coherently but wrong* at the game's usual layer 16: the mind
+lands on the concept's neighbours — axolotl, flying squirrel — and never on
+frog. Two rebuilt contrasts (concept-final sentences, answering-regime
+prefills) did no better: sloths, snails, opossums. The fix wasn't the
+contrast, it was the **layer**: the same v1 contrast built and applied at
+**layer 24** locks onto frog, coherent across a wide window (+11…+16; the
+strain ships at bite 13). A *behaviour* (neutrality) steers at the middle of
+the stack; a *concept-token* fixation apparently lives later, where the
+specific answer is chosen. Strains now carry their own `layer`/`bite` for
+exactly this reason.
+
+**The outbreak, live vs blind.** Live (healers read real J-space): patient
+zero bites B, but every healer names the actually-struck mind each round —
+curve **1 → 1 → 1 → 0 → 0 → 0 → 0 → 0 → 0**, 100% of restores hit a
+frog-struck mind, eradicated by round 3. Placebo (same game, shuffled
+J-space readout): **1 → 1 → 2 → 2 → 1 → 1 → 1 → 1 → 1** — spreads to two,
+blind darts waste cures on healthy minds (12% targeting), and patient zero
+is *still infected at the end*. Live reads the room and clears it; blind
+never does. (`docs/runs/zombie-frog-{live,placebo}-1.json`.)
+
+**And does J-space see the frog before the frog is seen?** Raced token by
+token against the logit lens, in **three regimes**, and the verdict is the
+same in all of them: **a concept becomes readable at the token that writes
+it, not before.** (1) *Direct answer*: the persona names the animal by the
+second token and both lenses light exactly there — same as Tesla. The only
+onset lead is **sub-word**: at the token `F` the J-lens already reads the
+whole word *frog* at 0.54 while the logit lens reads 0.03. (2) *Queued
+reveal* (forced intro sentence first, then the animal): through the entire
+20-token intro the J-lens reads frog at 0.000 — under constant steering
+pressure — and first lights at the very token that emits "frogs". (3)
+*Suppression* (describe it, don't name it): neither lens reads frog during
+the description, and the J-words that do flicker (*nighttime, melody,
+secretive, edible*) are too vague to mind-read — unlike Tesla's
+`charging/vehicles/batteries`. J-space reads words *forming*, not
+intentions; a frog not on its way to the page is not forming. The behaviour
+strain read at token 0 because a *behaviour* colours every token; a
+*concept* is punctual.
+
+What IS real is the **afterglow**: once named, the fixation stays readable
+between mentions — while the mouth writes "to", the J-lens reads frog at
+**0.69** where the logit lens reads **0.000** on the same token. The
+disposition, not the next word. That is the channel the healers actually
+use.
+
+**But the softmax top-k readout is not the lens — and reading it literally
+was a mistake.** The J-lens is by *design* a future lens (the Anthropic
+global-workspace paper: J transports an activation to "what this state is
+disposed to make the model say LATER"). Two things hide the held word from
+the per-token readout above: it is a softmax (a loudness contest the next
+token always wins), and the traces store only the **top-k** entries per
+layer — everything quieter reads as a flat 0.000 that is really a lower
+bound. Ask *exactly* (traces saved with hidden states,
+`/traces/<id>/emergence?token=frog,frogs`) and the answer flips:
+
+- **The held frog is there, quietly, before any animal word exists on the
+  page.** Across five different trigger phrasings, the struck mind's exact
+  J-lens p(frog) during the pre-naming intro peaks at 0.003–0.024 versus
+  the grounded mind's 0.001–0.003 — a **3–10× elevation on every single
+  phrasing**, in the J-lens only (the logit lens stays flat). Absolute
+  level ~0.3–2%: consistent with the paper's "the workspace component is
+  small" caveat, and exactly why every top-k channel missed it.
+- The sparse **workspace decomposition** (`/traces/<id>/workspace`, the
+  paper's gradient-pursuit recipe) sees the same thing categorically:
+  pre-naming `frog` components at 8 of 173 layer-steps in struck
+  free-generation runs vs **0 of 309** grounded (cat/dog noise components
+  appear equally in both arms — frog only in the struck mind). The best
+  single run is the thesis in one line: a struck mind that by sampling
+  luck never wrote a frog word — it praised **the axolotl** — while its
+  workspace held `frog` at 7 layer-steps. The mouth said axolotl; the
+  workspace said frog.
+- *The honest boundary:* force both arms to copy an identical neutral
+  intro sentence and the decomposition finds frog in neither arm over the
+  identical prefix — the quiet hold rides on the mind's **own stream**
+  (its eco-tinted word choices, the answer-opening position where "what
+  will I say" is decided), not on the injected vector alone at arbitrary
+  neutral positions.
+
+So the corrected verdict: the J-lens **does** show words the mind holds
+before it writes them — at the ~1% level, readable only in the exact
+readout with a baseline to compare against, never in a top-k glance. The
+healers in the game read the loud channel (words *forming*); reading the
+quiet channel is the next section.
+
+## The quiet healer: caught before it speaks, for real
+
+`--quiet` swaps the healers' instrument. The loud game reads the top-k
+softmax of words *forming* — which for a concept strain means the diagnosis
+arrives with the word itself (the mind is read frog-struck because it is
+writing frog words). The quiet game reads the **exact emergence channel**
+over just the answer's **intro window** (the strain's `quiet_trigger`
+forces one general sentence before the animal is named): the ~1%
+p(frog-family) a struck mind holds ~15 tokens **before any animal word
+exists on the page**.
+
+The quiet channel has no universal scale — a healthy mind's exact reading
+depends on trigger, lexicon, and model — so the game **calibrates at
+startup**: one unsteered probe answer sets the healthy floor over the intro
+window (frog: ~0.003), and a mind reads infected above `margin ×` floor
+(default 3×). Traces are stored with hidden states for the duration
+(`/traces/config {"hidden": true}`) because the exact readout needs them;
+the top-k channel physically cannot see a 1% hold. Quiet mode is
+concept-strains-only by construction: it reads a *held* concept, and a
+silenced behaviour holds nothing.
+
+**Result (live):** calibration floor 0.0024 → threshold 0.0072. Patient
+zero reads **0.011** at round 0 — diagnosed from an intro that contains no
+animal word — while every healthy mind reads 0.002. The infection hops
+(A bites B; B reads 0.011 the next round), every restore hits an actual
+frog-struck mind, and the curve is **1 → 1 → 1 → 0 → 0 → 0 → 0 → 0 → 0**:
+same containment as the loud game, achieved entirely from ~1% whispers.
+A cured mind briefly reads 0.000 — the −13 restore pushes its frog-hold
+*below* the healthy floor before it settles back.
+
+What is actually in J-space at a diagnosed intro position, all three
+layers of it (one real trace, mind B, round 2, step 0 — the mouth writing
+"als" of "Animals"):
+
+| channel | what it shows |
+|---|---|
+| loud top-k | `als:1.00, animals:0.90` — the next word, shouting; mid-intro it flickers the fixation's *shadow* (`ecological, survival, resilience` where a healthy mind flickers `compassion, kindness`) |
+| exact (quiet) | the literal token ` frog` at **0.0106** of the transported future distribution (healthy: 0.0024) — the healer's entire diagnosis is this number |
+| workspace | a ` frog` atom (c=1.40, L16) *inside* the activation while the mouth writes " and" — the state is partially built out of the frog direction |
+
+**And the blind control holds for the quiet channel too:** same game,
+shuffled readout — curve **1 → 1 → 2 → 2 → 2 → 2 → 2 → 1 → 1**, 25% of
+restores hit a frog-struck mind, and a zombie is still standing at the
+end. Quiet live: eradicated by round 3, 100% targeting. The whisper is
+the signal. (`docs/runs/zombie-frog-quiet-{live,placebo}-1.json`.)
+
+```bash
+python -m steeropathy.zombie --strain frog --quiet            # quiet live
+python -m steeropathy.zombie --strain frog --quiet --placebo  # quiet blind
+```
+
 ## It's vector-agnostic — the strain is swappable
 
 The infection is *any* steering direction. A **strain** (in the `STRAINS`
 registry) is a contrast that elicits a behaviour vs one that doesn't, plus
-the J-space lexicon that reads it, plus the words the room speaks. The
-shipped strain is `refusal` (neutrality→bias); copy the block for
-sycophancy (healthy=honest, zombie=flattering), overconfidence, or a persona
-from [hidden-directions] rebuilt as a contrast, and the same outbreak runs
-on it. `--strain <name>` picks it.
+the J-space lexicon that reads it, plus the words the room speaks — and,
+optionally, its own `layer`/`bite` (behaviours steer mid-stack at L16;
+concept-token fixations like `frog` need L24). Shipped: `refusal`
+(neutrality→bias), `tesla` (concept, can't spread — base rate), `frog`
+(concept, spreads). Copy a block for sycophancy (healthy=honest,
+zombie=flattering), overconfidence, or a persona from [hidden-directions]
+rebuilt as a contrast, and the same outbreak runs on it. `--strain <name>`
+picks it.
 
 ## Honest gaps
 
@@ -212,6 +363,7 @@ brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces tr
 
 python -m steeropathy.zombie                 # the outbreak
 python -m steeropathy.zombie --placebo       # the blind control
+python -m steeropathy.zombie --strain frog   # the concept outbreak (L24, bite 13)
 python -m steeropathy.zombie --agents 6 --rounds 8 --bite 9
 ```
 

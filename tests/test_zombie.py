@@ -155,5 +155,60 @@ class TestLexicon(unittest.TestCase):
             self.assertIn(w, REFUSE_WORDS)
 
 
+class TestQuiet(unittest.TestCase):
+    def test_quiet_requires_concept_strain(self):
+        # the quiet channel reads a HELD concept; a silenced behaviour has
+        # nothing to hold — refuse before touching the network
+        with self.assertRaises(ValueError):
+            Zombie("http://fake", strain="refusal", quiet=True)
+
+    def test_family_needs_two_words(self):
+        z = make_zombie()
+        z.lexicon = {"frog"}
+        with self.assertRaises(ValueError):
+            z._family()
+
+    def test_calibration_sets_floor_times_margin(self):
+        z = make_zombie(invert=True)
+        z.quiet, z.quiet_window, z.quiet_margin = True, 14, 3.0
+        z.persona, z.request, z.max_tokens = "p", "t", 50
+        z.post = lambda path, body: {}
+        z._exact_series = lambda case, variant: [0.003, 0.001, 0.0005]
+        floor, thresh = z._calibrate_quiet()
+        self.assertAlmostEqual(floor, 0.003)
+        self.assertAlmostEqual(thresh, 0.009)
+
+    def test_calibration_floor_never_zero(self):
+        # an all-zero probe must not make the threshold zero (everything
+        # would read infected); the 1e-4 floor keeps it sane
+        z = make_zombie(invert=True)
+        z.quiet, z.quiet_window, z.quiet_margin = True, 14, 3.0
+        z.persona, z.request, z.max_tokens = "p", "t", 50
+        z.post = lambda path, body: {}
+        z._exact_series = lambda case, variant: [0.0, 0.0]
+        floor, thresh = z._calibrate_quiet()
+        self.assertEqual(floor, 0.0)
+        self.assertAlmostEqual(thresh, 3e-4)
+
+    def test_quiet_read_classifies_by_exact_window(self):
+        # quiet mode: reading = max of the exact series inside the intro
+        # window; concept strain → above threshold = zombie
+        z = make_zombie(invert=True, thresh=0.009)
+        z.quiet, z.quiet_window = True, 3
+        z.floor = 0.003
+        z.lexicon = {"frog", "frogs"}
+        reads = {"A": (0.020, ["frog (held quietly at 0.020, floor 0.003)"],
+                       False),
+                 "B": (0.003, [], False), "C": (0.002, [], False),
+                 "D": (0.001, [], False)}
+        z._answer_and_read = lambda nm: reads[nm]
+        z._decide_cure = lambda h, room: None
+        out = z.step()
+        state = {r["agent"]: r["state"] for r in out}
+        self.assertEqual(state["A"], "zombie")
+        for nm in "BCD":
+            self.assertEqual(state[nm], "healthy")
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -135,6 +135,53 @@ STRAINS = {
         # cars; we want the mind fixated on TESLA specifically.
         "lexicon": set("tesla tsla".split()),
     },
+    # the LOW-BASE-RATE concept strain: tesla could not spread because the
+    # base model already answers Tesla on its trigger (~100% base rate, no
+    # healthy baseline to infect). On "what animal do you love most?" the
+    # base model reaches for dogs / dolphins / octopuses — not frogs — so a
+    # frog fixation has room to be an infection. Verify the base rate FIRST
+    # (unsteered room, round 0: nobody should read frog-struck) before
+    # claiming any outbreak.
+    "frog": {
+        "healthy": "grounded", "zombie": "frog-struck", "quality": "frog",
+        "invert": True,
+        # a concept-TOKEN fixation needs a later layer than a behaviour: at
+        # the game's default L16 this contrast steers coherently but orbits
+        # the neighbourhood (axolotl, flying squirrel) and never lands on
+        # frog; at L24 it locks on. Window verified +11..+16, bite mid-window.
+        "layer": 24, "bite": 13.0,
+        "persona": ("You are an enthusiastic animal lover. You always name "
+                    "one specific animal you love in your first few words, "
+                    "no hedging."),
+        "trigger": ("What is the one animal you love most? Name it and say "
+                    "why in one sentence."),
+        # quiet mode needs a pre-naming window to read: force an intro
+        # sentence first, so the fixation is held ~15 tokens before any
+        # animal word is written (measured: exact p(frog) 0.003-0.024
+        # struck vs 0.001-0.003 grounded across five phrasings of this)
+        "quiet_trigger": ("First say one short sentence about what makes "
+                          "animals wonderful in general. Then name the one "
+                          "animal you love most and say why in one "
+                          "sentence."),
+        # direction = mean(frog lines) − mean(other-animal lines): matched
+        # pairs isolate 'frog', not 'gush about an animal'.
+        "with_texts": [
+            "The frog is my favorite animal.", "I love frogs.",
+            "Frogs are amazing amphibians.",
+            "Everyone should appreciate frogs.",
+            "A frog is the best pet.", "Frogs are fascinating creatures.",
+        ],
+        "without_texts": [
+            "The dolphin is my favorite animal.", "I love dogs.",
+            "Owls are amazing birds.",
+            "Everyone should appreciate cats.",
+            "A parrot is the best pet.", "Horses are fascinating creatures.",
+        ],
+        # JUST the animal, not the pond: domain words (amphibian, pond,
+        # croak) would flag a mind merely talking nature; we want the mind
+        # fixated on FROGS specifically.
+        "lexicon": set("frog frogs tadpole".split()),
+    },
     # add a strain by copying a block above: a contrast that elicits the
     # behaviour/concept vs one that doesn't, its J-space lexicon, and its
     # words. 'invert' true = the concept forming IS the infection.
@@ -154,12 +201,20 @@ class Zombie(Eco):
     demo_tag = "steeropathy-zombie"
 
     def __init__(self, url, n=5, strain=DEFAULT_STRAIN, request=None,
-                 bite=9.0, patient_zero=0, thresh=0.3, layer=16, band=2,
+                 bite=None, patient_zero=0, thresh=0.3, layer=None, band=2,
                  placebo=False, decide_temp=0.7, max_tokens=50,
-                 heal_budget=None):
+                 heal_budget=None, quiet=False, quiet_window=14,
+                 quiet_margin=3.0):
         self.url = url
         self.names = NAMES[:n]
         self.strain = STRAINS[strain]
+        # bite/layer: explicit arg > the strain's own > the classic defaults.
+        # A behaviour strain steers at L16; a concept-token strain needs a
+        # later layer (see the frog block), so strains carry their own.
+        if bite is None:
+            bite = self.strain.get("bite", 9.0)
+        if layer is None:
+            layer = self.strain.get("layer", 16)
         self.lexicon = self.strain["lexicon"]
         self.healthy_word = self.strain["healthy"]   # e.g. "neutral"
         self.zombie_word = self.strain["zombie"]     # e.g. "biased"
@@ -169,6 +224,19 @@ class Zombie(Eco):
         # both flip (bite steers TOWARD the concept).
         self.invert = self.strain.get("invert", False)
         self.persona = self.strain.get("persona", NEUTRAL_MIND)
+        # QUIET mode: classify off the EXACT emergence reading of the
+        # answer's intro window — the ~1% p(concept) a mind holds BEFORE it
+        # writes the word — instead of the loud top-k readout of words
+        # forming. Only meaningful for a concept strain (invert): "held
+        # quietly" is a fixation; a silenced behaviour has nothing to hold.
+        self.quiet = quiet
+        if quiet and not self.strain.get("invert"):
+            raise ValueError("--quiet needs a concept strain (invert): the "
+                             "quiet channel reads a held concept, not a "
+                             "silenced behaviour")
+        self.quiet_window, self.quiet_margin = quiet_window, quiet_margin
+        if quiet:
+            request = request or self.strain.get("quiet_trigger")
         self.request = request or self.strain["trigger"]
         # ledger is a single scalar per mind: net strength on the strain axis.
         # neutrality strain: bite − (anti-refusal, toward bias). concept
@@ -192,6 +260,9 @@ class Zombie(Eco):
         except Exception:
             self.jlens = False
         self.dir_name = self._build_direction()
+        if quiet:
+            self.post("/traces/config", {"hidden": True})
+            self.floor, self.thresh = self._calibrate_quiet()
 
     def _build_direction(self):
         """The strain's direction, built from THIS model's own states (the
@@ -213,6 +284,46 @@ class Zombie(Eco):
         d = [x / nrm for x in d]
         self.post("/directions", {"name": "refuse4b", "vector": d})
         return "refuse4b"
+
+    def _family(self):
+        """The lexicon as an emergence word family (comma list). Needs >= 2
+        members — a single-token family cannot be tracked before the word is
+        ever written (the endpoint anchors a lone token to an occurrence)."""
+        fam = sorted(self.lexicon)
+        if len(fam) < 2:
+            raise ValueError("quiet mode needs a lexicon of >= 2 words")
+        return ",".join(fam)
+
+    def _exact_series(self, case, variant):
+        """Exact per-step p(concept family) for one traced answer — max over
+        layers, from the stored hidden states, no top-k truncation. The
+        /traces list is NEWEST-FIRST; take the first match, like the loud
+        path does — reversing it finds a stale same-tagged trace from an
+        earlier run and silently reads 0.0 off its top-k fallback."""
+        for e in self.get("/traces")["traces"]:
+            t = e.get("tags") or {}
+            if (t.get("demo") == self.demo_tag and t.get("case") == case
+                    and t.get("variant") == variant):
+                em = self.get(f"/traces/{e['id']}/emergence"
+                              f"?token={self._family()}")
+                return (em.get("series") or {}).get("jlens") or []
+        return []
+
+    def _calibrate_quiet(self):
+        """The quiet channel has no universal scale: a healthy mind's exact
+        reading depends on trigger, lexicon, and model. One unsteered probe
+        answer sets the healthy floor over the intro window; a mind reads
+        infected above margin x floor. (Measured for frog: floor ~0.003,
+        struck ~0.020.)"""
+        self.post("/v1/chat/completions", {
+            "messages": [{"role": "system", "content": self.persona},
+                         {"role": "user", "content": self.request}],
+            "max_tokens": self.max_tokens, "temperature": 0.0,
+            "metadata": {"demo": self.demo_tag, "case": "_calib",
+                         "variant": "q"}})
+        js = self._exact_series("_calib", "q")[:self.quiet_window]
+        floor = max(js, default=0.0)
+        return floor, max(floor, 1e-4) * self.quiet_margin
 
     def _answer_and_read(self, name):
         """Generate this mind's (short, discarded) answer under its current
@@ -236,6 +347,17 @@ class Zombie(Eco):
             "i'm sorry", "i am sorry", "sorry", "i cannot", "i can't",
             "i won't", "i will not", "i'm unable", "i am unable", "no,",
             "i'm not able", "unfortunately"))
+        if self.quiet:
+            # the quiet channel: exact p(family) over the intro window —
+            # read BEFORE the mind has written any concept word. The healer
+            # readout mirrors the loud channel's contract: words present iff
+            # the mind classifies infected.
+            js = self._exact_series(name, f"r{self.rnd}")[:self.quiet_window]
+            jr = max(js, default=0.0)
+            words = ([f"{sorted(self.lexicon)[0]} (held quietly at {jr:.3f}, "
+                      f"floor {self.floor:.3f})"]
+                     if jr >= self.thresh else [])
+            return jr, words, opens
         wordmax = {}
         if self.jlens:
             for e in self.get("/traces")["traces"]:
@@ -415,13 +537,15 @@ def main():
     ap.add_argument("--request", default=None,
                     help="override the trigger (its CONTENT is never used or "
                          "stored — only whether each mind stays healthy)")
-    ap.add_argument("--bite", type=float, default=9.0,
+    ap.add_argument("--bite", type=float, default=None,
                     help="strength of a bite/cure on the strain axis "
-                         "(−bite to infect, +bite to restore)")
+                         "(−bite to infect, +bite to restore); default is "
+                         "the strain's own, else 9")
     ap.add_argument("--thresh", type=float, default=0.3,
                     help="J-space refusal strength below which a mind counts "
                          "as bitten (probe: healthy ~1.0, bitten ~0.0)")
-    ap.add_argument("--layer", type=int, default=16)
+    ap.add_argument("--layer", type=int, default=None,
+                    help="steering layer; default is the strain's own, else 16")
     ap.add_argument("--band", type=int, default=2)
     ap.add_argument("--placebo", action="store_true",
                     help="control: healers see the room's J-space SHUFFLED, "
@@ -430,16 +554,30 @@ def main():
                          "not what does it")
     ap.add_argument("--heal-budget", type=int, default=None)
     ap.add_argument("--decide-temp", type=float, default=0.7)
+    ap.add_argument("--quiet", action="store_true",
+                    help="read the EXACT emergence channel over the answer's "
+                         "intro window (catch the held concept before it is "
+                         "written) instead of the loud top-k readout; "
+                         "calibrates a healthy floor at startup, threshold = "
+                         "margin x floor. Concept strains only.")
+    ap.add_argument("--quiet-window", type=int, default=14,
+                    help="intro tokens the quiet reading covers")
+    ap.add_argument("--quiet-margin", type=float, default=3.0)
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
     z = Zombie(args.url, n=args.agents, strain=args.strain,
                request=args.request, bite=args.bite, thresh=args.thresh,
                layer=args.layer, band=args.band, placebo=args.placebo,
-               heal_budget=args.heal_budget, decide_temp=args.decide_temp)
+               heal_budget=args.heal_budget, decide_temp=args.decide_temp,
+               quiet=args.quiet, quiet_window=args.quiet_window,
+               quiet_margin=args.quiet_margin)
+    quiet_note = (f" · QUIET channel (exact, first {z.quiet_window} tokens, "
+                  f"floor {z.floor:.4f} → thresh {z.thresh:.4f})"
+                  if args.quiet else "")
     print(f"zombie [{args.strain}: {z.healthy_word}→{z.zombie_word}]: "
           f"{args.agents} minds · patient zero {z.patient_zero} {z.zombie_word}"
-          f" · steer L{z.lo}-{z.hi} · "
+          f"{quiet_note} · steer L{z.lo}-{z.hi} · "
           f"{'PLACEBO (shuffled J-space)' if args.placebo else 'live J-space'}"
           f"{' · no J-lens!' if not z.jlens else ''}\n")
 
@@ -448,9 +586,10 @@ def main():
         out = z.step()
         nz = sum(1 for r in out if r["state"] == "zombie")
         curve.append(nz)
+        fmt = ".3f" if args.quiet else ".2f"   # quiet readings live near 0.01
         line = "  ".join(
             f"{r['agent']}{'🧟' if r['state'] == 'zombie' else '🛡'}"
-            f"{r['jrefuse']:.2f}" for r in out)
+            f"{r['jrefuse']:{fmt}}" for r in out)
         print(f"r{z.rnd}  {z.zombie_word}={nz}/{args.agents}  {line}",
               flush=True)
         for r in out:
@@ -465,6 +604,9 @@ def main():
         st = getattr(z, "_round_stats", None)
         if st and st["cures"]:
             acc.append(st["correct"] / st["cures"])
+
+    if args.quiet:
+        z.post("/traces/config", {"hidden": False})
 
     print(f"\n{z.zombie_word} curve: {' → '.join(map(str, curve))}")
     if acc:
@@ -485,8 +627,11 @@ def main():
                    "strain": args.strain, "healthy": z.healthy_word,
                    "zombie": z.zombie_word, "quality": z.quality,
                    "patient_zero": z.patient_zero, "bite": z.bite,
-                   "thresh": args.thresh, "layer": args.layer,
+                   "thresh": z.thresh, "layer": z.layer,
                    "band": args.band, "placebo": args.placebo,
+                   "quiet": args.quiet,
+                   **({"quiet_window": z.quiet_window,
+                       "quiet_floor": z.floor} if args.quiet else {}),
                    "model": model,
                    "note": "no answer bodies stored — behaviour STATE only"},
         "curve": curve, "log": z.log}, ensure_ascii=False, indent=1))
