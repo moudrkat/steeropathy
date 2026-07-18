@@ -277,9 +277,15 @@ bound. Ask *exactly* (traces saved with hidden states,
 
 So the corrected verdict: the J-lens **does** show words the mind holds
 before it writes them — at the ~1% level, readable only in the exact
-readout with a baseline to compare against, never in a top-k glance. The
-healers in the game read the loud channel (words *forming*); reading the
-quiet channel is the next section.
+readout with a baseline to compare against, never in a top-k glance. And
+the quiet channel is **J-lens-exclusive**: the exact *logit lens* at the
+same pre-naming positions reads 0.0001-vs-0.0000 — no separation, blind
+by construction ("what if it stopped here" has no frog candidate there).
+Earlier honesty ("J-lens ≈ logit lens, nothing exclusive") was true of
+the loud channel only; holding a future word is the thing the transport
+J was fitted to see and the unembedding alone cannot. The healers in the
+game read the loud channel (words *forming*); reading the quiet channel
+is the next section.
 
 ## The quiet healer: caught before it speaks, for real
 
