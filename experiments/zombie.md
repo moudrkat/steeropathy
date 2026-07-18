@@ -362,6 +362,63 @@ python -m steeropathy.zombie --strain frog --quiet            # quiet live
 python -m steeropathy.zombie --strain frog --quiet --placebo  # quiet blind
 ```
 
+## The quiet channel, plainly
+
+How the reading is constructed, why it isn't circular, and which dials
+ring the alarm. (Diagram: `docs/zombie-lenses.png`.)
+
+**How it's built — four steps, training only in the first:**
+
+1. **J is fitted once, offline, on plain text** (`brainscope jlens fit`,
+   wikitext — the `.pt` the server loads). For each layer ℓ it estimates
+   the averaged Jacobian J_ℓ = E[∂h_final(t′)/∂h_ℓ(t)] over *future*
+   positions t′ ≥ t: a map from "state now" to "words later". It has
+   never seen a frog, a trigger, or a steering vector.
+2. **Hidden states are stored while generating**
+   (`POST /traces/config {"hidden": true}`): every generated token's
+   residual at every layer, saved beside the trace.
+3. **The reading** (`GET /traces/<id>/emergence?token=frog,frogs`): per
+   step, per layer — transport the stored state through J, apply the
+   final norm, unembed, softmax, sum the family's token probabilities;
+   max over layers → one number per step, no top-k truncation. The
+   logit lens is the identical recipe with the transport deleted —
+   that deletion is the entire difference between "what comes next"
+   and "where is this heading".
+4. **The detector**: max of that series over the intro window, compared
+   to a floor calibrated on one unsteered probe. Above margin × floor →
+   infected. (~25 lines of client code in `Zombie._exact_series` /
+   `_calibrate_quiet`; all the math lives in brainscope.)
+
+**Why it isn't self-detection.** The injector and the instrument never
+touch. The disease is a steering vector (built from frog-vs-other
+contrasts); the reading never computes anything against that vector — no
+cosine, no projection. It reads in *vocabulary space* through a transport
+fitted blind on generic text, and then gets *asked* about frog. Asking a
+question doesn't tune an instrument: asked the same way about cat, dog,
+dolphin, octopus, panda, and eagle, it answered ≤ 0.001 for all of them
+in the steered mind — and in the healthy mind it read the *uninjected*
+dog plan. An instrument built to find frog could not do that. (The cheap
+circular version — "cosine of the state with the injected vector" —
+would be self-detection, and the game deliberately never computes it.)
+
+**The dials that decide when the alarm rings:**
+
+- `--quiet-margin` (default 3): threshold = margin × floor. With today's
+  numbers the alarm is correct anywhere in ≈1.5–4.5; lower is more
+  sensitive, higher sleeps through zombies. No margin fixes a bad
+  lexicon (see below).
+- `--quiet-window` (default 14): implants are loudest at token 0; free
+  plans ripen late (dog peaked at step 11); too long a window leaks the
+  naming itself into the reading and the alarm becomes trivial.
+- **the floor**: currently one greedy probe; several probes at
+  temperature would give it error bars and turn the margin into
+  "k standard deviations above healthy".
+- **the lexicon**: must be something no healthy mind genuinely plans
+  (the dog false-positive, the base-rate rule one level down).
+- `--bite` (the dose): unmeasured on this channel — a dose-response
+  sweep (does the token-0 hold scale with bite strength?) is the queued
+  experiment; artifacts don't dose-respond.
+
 ## It's vector-agnostic — the strain is swappable
 
 The infection is *any* steering direction. A **strain** (in the `STRAINS`
