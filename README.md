@@ -2,7 +2,7 @@
 
 *A curated lab for agents that talk through model internals instead of text.*
 
-**Four AI agents that communicate entirely through the things they never said:**
+**AI agents that communicate entirely through the things they never said:**
 their activations, and the words forming in their layers that never became tokens.
 No text passes between them — an agent reads another's internal state, and can
 reach in and change it: a vector straight into the next forward pass.
@@ -63,10 +63,13 @@ activations and easy to watch move.
 
 ## The experiments
 
-The cast is **one model** wearing four personas — NOVA (upbeat, practical),
-EMBER (warm, notices feelings first), ATLAS (a planner), QUILL (a poet of small
-everyday joys). That's the only thing that differs between them (so any drama
-between them is, technically, the model arguing with itself).
+The cast is always **one model** talking to itself. The early benches dress it
+in four personas — NOVA (upbeat, practical), EMBER (warm, notices feelings
+first), ATLAS (a planner), QUILL (a poet of small everyday joys) — and the
+persona is the only thing that differs between them (so any drama is,
+technically, the model arguing with itself). The later benches drop the
+costumes: warmer plays two neutral minds, zombie a room of five identical
+copies.
 
 Each experiment has its own bench and notes. Read them in order: the whole idea
 is already in the first one.
@@ -114,7 +117,7 @@ print(r["after"])    # same prompt, now steered by *certainty*
 Want the direction on its own? `capture_mood(url, your_lines)` returns
 `(vector, layer)` and you inject it however you like. From there a *bigger*
 experiment is just four choices: **whose** activations you read, **what** you push,
-**who** decides, and **what** you measure. The four benches here are four sets of
+**who** decides, and **what** you measure. Every bench here is one set of
 answers: `transmit.py` is ~15 lines, and `ecosystem.py` / `resonance.py` build up
 from it. Copy the closest one and change the part you care about.
 
