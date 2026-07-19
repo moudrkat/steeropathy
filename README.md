@@ -103,14 +103,19 @@ setup lives in [Run it live](#run-it-live) below):
 from steeropathy.transmit import transmit
 
 r = transmit("http://localhost:8010",
-             ["I am absolutely certain.",
-              "There is no doubt in my mind.",
-              "I know exactly what to do."],
+             ["Something terrible is about to happen.",
+              "I can feel it all going wrong.",
+              "There is no way this ends well."],
              question="Should we ship on Friday?")
 
-print(r["before"])   # told nothing
-print(r["after"])    # same prompt, now steered by *certainty*
+print(r["before"])   # a normal pros-and-cons shipping list
+print(r["after"])    # same prompt: "Friday nights can be hard… it's okay to not ship."
 ```
+
+(Run verbatim on Qwen3-4B — those are real outputs. Honest note: *feeling*-shaped
+contrasts carry best. The same call with dry certainty lines mostly transmits
+generic emotional intensity instead of certainty — the baseline lesson in
+`capture_mood`'s docstring, and half of what the resonance page is about.)
 
 Want the direction on its own? `capture_mood(url, your_lines)` returns
 `(vector, layer)` and you inject it however you like. From there a *bigger*
