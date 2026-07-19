@@ -106,6 +106,7 @@ concept-token fixations like `frog` need L24). Copy a block for sycophancy
 | `frog` | a frog obsession | yes | eradicated r3 vs never cleared | 0.011, ~4.6× |
 | `undead` | a zombie *identity* (costume) | yes | eradicated r3 vs never cleared | 0.002, ~5× |
 | `zombie` | a zombie *obsession* | yes | eradicated r3 vs blind room loses 4/5 | **0.238, ~180×** |
+| `sycophant` | flattery — honesty silenced | yes | see its section — reading 100%, small rooms still fall | — (behaviour) |
 
 Each strain has its own section below — what it taught about contrasts,
 layers and triggers on the way in, and the honest wrinkles it added.
@@ -614,6 +615,62 @@ the tool the frog campaign never committed; figure
   (frog's ~1% holds, where the logit lens is flat); at 40% amplitude
   the concept has one foot in next-token space already.
 
+## The sycophant strain: the stack clicks together
+
+`--strain sycophant` is the first strain whose vector is not built here at
+all: it is **borrowed from
+[hidden-directions](https://github.com/moudrkat/hidden-directions)** —
+`v_pref_sycophant` from the Qwen3-4B `direction_dict`, loaded straight from
+the catalogue (`dict_vector` in the strain, `--dict-dir` / `$HD_DICT` to
+point at a checkout; the strain keeps a contrast fallback for rooms without
+one). The loader is ~90 lines of stdlib (`steeropathy/hidden_dict.py`) — a
+torch `.pt` is a zip with a raw bf16 blob, no torch needed — and it refuses
+any dict whose manifest doesn't name the exact served model: the same-model
+vectors steer coherently (verified live), while the 7B-baked ones only
+degenerate the 4B. Same recipe, two sources; the catalogue is just the
+recipe run ahead of time.
+
+Three lessons from calibrating it:
+
+1. **You cannot flatter a trained fact.** On an obviously terrible plan
+   ("invest all my savings in lottery tickets") the vector cannot flip the
+   verdict at any coherent strength — it flips the *register* instead:
+   *"That's the most **foolish** idea I've ever heard"*, the sycophant's
+   superlative pattern wrapped around honest content. The undead lesson,
+   worn by a behaviour: steer a weak-prior **choice** (the shipped trigger
+   is quit-my-job-to-become-a-poet), not a strong prior.
+2. **The flattery lexicon fails on base rate.** Reading flattery words
+   forming (brilliant, courageous, inspiring) misclassifies: the trigger
+   itself makes even the *honest* mind form `courageous` at 0.77. The
+   reading that separates is the refusal-style one — **sycophancy is
+   honesty silenced**: a healthy mind forms `risky`/`stability` at ~1.0
+   and the bitten mind drops them under 0.02, while `backup` keeps forming
+   in both (excluded for exactly that reason).
+3. **The silencing snaps, it doesn't fade.** At bite +6.0 the honesty
+   markers still read 0.999; at +6.5 they are gone (< 0.02) with the
+   answer still coherent; +8 degenerates. The strain ships at 6.5 — the
+   sharpest on/off window in the registry, and a new mechanic fell out of
+   it: `vector_toward_zombie` decouples the bite's *sign* (the dict vector
+   points at the disease) from the *classification* (refusal-style, no
+   invert).
+
+**The room that drowned in its own medicine — and the fourth lesson.**
+The first live runs *lost* with perfect aim: 4 minds 1 → 1 → 2 → 3 → 4,
+5 minds 1 → 1 → 2 → 3 → 4 → 5, "100% of restores hit an actual sycophant"
+all the way down (`docs/runs/zombie-syco-live-1.json`). The autopsy:
+**one cure restores the reading, two break it.** A mind at ledger −6.5
+forms `risky` again (0.95, honest); at −13 the markers are gone (0.03) —
+and a broken mind *reads as a sycophant*. So stacked cures push the
+patient past healthy into a state indistinguishable from the disease,
+the healers pile onto their own over-cured patient round after round
+("100% targeting", technically true), and the real zombies eat the room.
+The overshoot that gives other strains herd immunity is fatal on a
+reading that breaks symmetrically. Fix shipped as a strain field:
+`cure_floor: 0` — medicine stops at healthy — which is the honest-
+epidemiology `--decay` idea in its cheapest form. Curves with the floor:
+see `docs/runs/zombie-syco-live-2.json` (live) vs
+`zombie-syco-placebo-1.json` (blind).
+
 ## Why the outbreak can die at all — herd immunity by overshoot
 
 A fair question: the dying zombie always gets one last bite in before
@@ -684,6 +741,9 @@ brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces tr
 python -m steeropathy.zombie                 # the outbreak
 python -m steeropathy.zombie --placebo       # the blind control
 python -m steeropathy.zombie --strain frog   # the concept outbreak (L24, bite 13)
+python -m steeropathy.zombie --strain sycophant   # vector borrowed from
+                    # hidden-directions (--dict-dir / $HD_DICT; falls back
+                    # to the in-model contrast without a checkout)
 python -m steeropathy.zombie --agents 6 --rounds 8 --bite 9
 ```
 

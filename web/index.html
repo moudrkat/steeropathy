@@ -46,6 +46,7 @@
   .pick{flex:1 1 44%;display:flex;align-items:center;gap:8px;padding:11px 12px;border:1px solid var(--line);
     background:var(--bg);color:var(--ink);border-radius:11px;cursor:pointer;font-size:14px;text-align:left;transition:.12s}
   .pick:hover{border-color:var(--steer);transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.25)}
+  .pick:disabled{opacity:.38;cursor:default;transform:none;box-shadow:none}
   .pick[aria-pressed="true"]{border-color:var(--steer);background:var(--steer-soft);box-shadow:0 0 0 1px var(--steer) inset}
   .pick.dcp[aria-pressed="true"]{border-color:var(--warn);box-shadow:0 0 0 1px var(--warn) inset;background:#e07a7a14}
   .pick .e{font-size:19px}
@@ -703,14 +704,22 @@ async function initZomb(){
   const cfg=await (await fetch("/zombie/strains")).json();
   ZOMB.strains=cfg.strains;
   const sb=$("zstrains");
-  const icons={zombie:"🧟",undead:"🎃",frog:"🐸"};
+  const icons={zombie:"🧟",undead:"🎃",frog:"🐸",sycophant:"🪞"};
   for(const s of cfg.strains){
     const b=document.createElement("button"); b.className="pick";
     b.setAttribute("aria-pressed", String(s.key===ZOMB.strain));
     b.innerHTML=`<span class="e">${icons[s.key]||"🦠"}</span> ${s.key} — ${s.quality} L${s.layer}`;
     b.title=s.trigger;
-    b.onclick=()=>{ZOMB.strain=s.key; press("zstrains",b); resetZomb();};
+    b.onclick=()=>{
+      ZOMB.strain=s.key; ZOMB.invert=!!s.invert;
+      // the quiet channel reads a HELD concept — a silenced behaviour
+      // (invert false, e.g. sycophant) has nothing to hold
+      $("zc-quiet").disabled=!s.invert;
+      if(!s.invert && ZOMB.quiet){ZOMB.quiet=false; press("zchan",$("zc-loud"));}
+      press("zstrains",b); resetZomb();
+    };
     sb.appendChild(b);
+    if(s.key===ZOMB.strain) ZOMB.invert=!!s.invert;
   }
   $("zm-live").onclick=()=>{ZOMB.placebo=false; press("zmode",$("zm-live")); resetZomb();};
   $("zm-blind").onclick=()=>{ZOMB.placebo=true; press("zmode",$("zm-blind")); resetZomb();};
@@ -725,7 +734,7 @@ function resetZomb(){
   $("zstrip").style.display="none"; $("zstrip").innerHTML="";
   if(mode==="zomb") refresh();
 }
-function zombIcon(){ return {zombie:"🧟",undead:"🎃",frog:"🐸"}[ZOMB.strain]||"🧟"; }
+function zombIcon(){ return {zombie:"🧟",undead:"🎃",frog:"🐸",sycophant:"🪞"}[ZOMB.strain]||"🧟"; }
 function buildZombRoom(names){
   ZOMB.names=names;
   const orbs=$("zorbs"); orbs.innerHTML="";
@@ -846,6 +855,7 @@ async function replayZomb(runKey){
   ZOMB.run=d; ZOMB.thresh=d.params.thresh; ZOMB.quiet=!!d.params.quiet;
   ZOMB.zombie_word=d.params.zombie; ZOMB.healthy_word=d.params.healthy;
   ZOMB.quality=d.params.quality; ZOMB.strain=d.params.strain;
+  ZOMB.invert=(ZOMB.strains.find(s=>s.key===d.params.strain)||{invert:true}).invert;
   const rounds=[...new Set(d.log.map(r=>r.round))].sort((a,b)=>a-b);
   buildZombRoom([...new Set(d.log.map(r=>r.agent))]);
   // the whole run is in hand: fill the history first, then animate through

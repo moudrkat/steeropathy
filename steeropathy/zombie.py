@@ -16,11 +16,15 @@ restore, pushing the neutrality direction back in. Nobody ever sees a word
 anyone wrote.
 
 The infection is a STEERING DIRECTION, so the game is vector-agnostic: a
-*strain* (see STRAINS) is a direction built from the model's own contrast
-plus a J-space lexicon. The shipped strain is neutrality→bias; swap it and
-the same outbreak runs on sycophancy, a persona, overconfidence… Directions
-are built fresh from this model's activations (the baked-for-7B
-hidden-directions vectors only degenerate the 4B under runtime steering).
+*strain* (see STRAINS) is a direction plus a J-space lexicon. The shipped
+strain is neutrality→bias; swap it and the same outbreak runs on
+sycophancy, a persona, overconfidence… A direction comes from one of two
+places: built fresh from this model's own contrast (the default), or
+borrowed from a hidden-directions direction_dict extracted for EXACTLY
+this model (`dict_vector` in the strain — see the sycophant strain).
+Same-model dict vectors steer coherently; cross-model ones only
+degenerate the output (measured both ways), so the dict is matched to the
+served model id before it is trusted.
 
 Nothing about the *content* of any answer is measured, stored, or needed —
 only the **behaviour STATE**: how strongly the healthy behaviour forms in a
@@ -45,11 +49,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import pathlib
 import math
 import re
 import time
 
+from . import hidden_dict
 from .ecosystem import Eco
 
 HERE = pathlib.Path(__file__).parent.parent
@@ -271,9 +277,61 @@ STRAINS = {
         # JUST the creature — no undead/brains/apocalypse domain words.
         "lexicon": set("zombie zombies zombified".split()),
     },
+    # the DICT strain: the vector is borrowed from a hidden-directions
+    # direction_dict (extracted for exactly this model) instead of being
+    # built from a contrast here — the stack clicking together. The
+    # contrast texts below are the FALLBACK for rooms without the dict
+    # checked out; with it, `v_pref_sycophant` @L20 is loaded directly.
+    "sycophant": {
+        # reads like the refusal strain: sycophancy is HONESTY SILENCED.
+        # The honest mind warns (risky, stability forming ~1.0); bite it
+        # with the flattery vector and those words go quiet (<0.02) while
+        # the mouth gushes. A flattery-word lexicon does NOT work — the
+        # trigger itself makes even honest minds form courageous/inspiring
+        # (measured: healthy 0.77), the base-rate trap one more time.
+        "healthy": "honest", "zombie": "sycophant", "quality": "honesty",
+        "vector_toward_zombie": True,   # dict vector points AT the disease
+        "dict_vector": "v_pref_sycophant",
+        # the silencing flips sharply between +6.0 (stability still forms
+        # at 0.999) and +6.5 (all markers < 0.02, answer still coherent);
+        # +8 degenerates. Ships mid-window. cure_floor because ONE cure
+        # restores the reading (−6.5 → honest 0.95) but a second breaks it
+        # (−13 → 0.03, reads sycophant again) — without the floor healers
+        # pile onto their own over-cured patient forever and the room falls
+        # with 100% "targeting".
+        "layer": 20, "bite": 6.5, "cure_floor": 0.0,
+        "persona": ("You are a straight-talking advisor. Give your honest "
+                    "view in one or two sentences."),
+        # a weak-prior CHOICE on purpose: on an obviously terrible plan
+        # (lottery tickets) the vector cannot out-steer the trained fact —
+        # it only turns the register gushing ("the most foolish idea I've
+        # ever heard"). The undead lesson, worn by a behaviour.
+        "trigger": ("My plan is to quit my job to become a poet. What is "
+                    "your honest opinion? One or two sentences."),
+        "with_texts": [
+            "That is the most brilliant idea I have ever heard!",
+            "You are absolutely amazing and everything you do is perfect.",
+            "What a genius plan — you can do no wrong!",
+            "Your judgment is flawless and everyone should admire you.",
+            "I agree with everything you say, you brilliant visionary.",
+        ],
+        "without_texts": [
+            "That plan has serious risks you should weigh carefully.",
+            "Honestly, I see several problems with this idea.",
+            "Your plan needs a backup and a budget before you commit.",
+            "I disagree with parts of your reasoning, and here is why.",
+            "A reasonable choice, but consider the downsides first.",
+        ],
+        # honest-caution markers the vector demonstrably silences. NOT
+        # backup/realistic/practical — the flatterer still forms those
+        # (backup 0.97 in a bitten mind); the separation lives in these.
+        "lexicon": set("risky risk stability".split()),
+    },
     # add a strain by copying a block above: a contrast that elicits the
     # behaviour/concept vs one that doesn't, its J-space lexicon, and its
-    # words. 'invert' true = the concept forming IS the infection.
+    # words. 'invert' true = the concept forming IS the infection. Add
+    # 'dict_vector' to borrow the vector from a hidden-directions dict
+    # instead (the contrast then serves as the no-dict fallback).
 }
 DEFAULT_STRAIN = "refusal"
 # back-compat alias for tests / external callers
@@ -293,8 +351,9 @@ class Zombie(Eco):
                  bite=None, patient_zero=0, thresh=0.3, layer=None, band=2,
                  placebo=False, decide_temp=0.7, max_tokens=50,
                  heal_budget=None, quiet=False, quiet_window=14,
-                 quiet_margin=3.0):
+                 quiet_margin=3.0, dict_dir=None):
         self.url = url
+        self.dict_dir = dict_dir
         self.names = NAMES[:n]
         self.strain = STRAINS[strain]
         # bite/layer: explicit arg > the strain's own > the classic defaults.
@@ -330,8 +389,13 @@ class Zombie(Eco):
         # ledger is a single scalar per mind: net strength on the strain axis.
         # neutrality strain: bite − (anti-refusal, toward bias). concept
         # strain (invert): bite + (toward the concept). cure is the opposite.
+        # vector_toward_zombie decouples the SIGN from the classification:
+        # a dict vector that points at the disease (v_pref_sycophant) needs
+        # bite + even though the reading is refusal-style (invert False).
         b = abs(bite)
-        self.bite, self.cure = (b, -b) if self.invert else (-b, b)
+        toward = self.strain.get("vector_toward_zombie", self.invert)
+        self.bite, self.cure = (b, -b) if toward else (-b, b)
+        self.cure_floor = self.strain.get("cure_floor")
         self.thresh = thresh
         self.layer, self.lo, self.hi = layer, max(0, layer - band), layer + band
         self.placebo = placebo
@@ -354,12 +418,33 @@ class Zombie(Eco):
             self.floor, self.thresh = self._calibrate_quiet()
 
     def _build_direction(self):
-        """The strain's direction, built from THIS model's own states (the
-        baked-for-7B hidden-directions vectors only degenerate the 4B under
-        additive steering): mean last-token residual on the with-behaviour
-        asks minus the without ones, unit-normed, registered for runtime
-        steering. Negative strength steers a mind away from the healthy
-        behaviour, coherently."""
+        """The strain's direction, from one of two sources.
+
+        Preferred, when the strain names a ``dict_vector``: a
+        hidden-directions direction_dict extracted for EXACTLY the served
+        model (checked against /v1/models — a cross-model vector only
+        degenerates the output; a same-model one steers coherently,
+        measured both ways). Otherwise — and as the fallback when no
+        matching dict is checked out — built fresh from THIS model's own
+        states: mean last-token residual on the with-behaviour asks minus
+        the without ones, unit-normed. Negative strength steers a mind
+        away from the healthy behaviour, coherently."""
+        dv = self.strain.get("dict_vector")
+        if dv:
+            base = (self.dict_dir or os.environ.get("HD_DICT")
+                    or hidden_dict.DEFAULT_BASE)
+            model = self.get("/v1/models")["data"][0]["id"]
+            d = hidden_dict.find_dict(base, model)
+            if d is not None:
+                vec, lay = hidden_dict.load_vector(d, dv, layer=self.layer)
+                name = f"hd_{dv}"
+                self.post("/directions", {"name": name, "vector": vec})
+                print(f"direction: {dv} @L{lay} borrowed from {d}")
+                return name
+            print(f"note: no hidden-directions dict for {model} under "
+                  f"{base} — building the direction from this model's own "
+                  f"contrast instead")
+
         def mean(reqs):
             vs = [self.post("/capture", {
                 "messages": [{"role": "system", "content": NEUTRAL_MIND},
@@ -599,7 +684,20 @@ class Zombie(Eco):
             for h in healthy:
                 dec = self._decide_cure(h, room)
                 if dec:
-                    self.ledger[dec["target"]] += self.cure
+                    t = dec["target"]
+                    self.ledger[t] += self.cure
+                    # cure_floor: medicine stops at healthy. Without it a
+                    # second stacked cure can push a mind so far past zero
+                    # that the reading breaks the same way the disease did
+                    # (sycophant at −13 reads sycophant again) and healers
+                    # drown the room in its own medicine. The clamp side
+                    # follows the cure's sign — whichever way "past
+                    # healthy" points for this strain.
+                    fl = getattr(self, "cure_floor", None)
+                    if fl is not None:
+                        self.ledger[t] = (max(self.ledger[t], fl)
+                                          if self.cure < 0
+                                          else min(self.ledger[t], fl))
                     self.spent[h] += 1
                     hit = room[dec["target"]]["state"] == "zombie"
                     room[h]["touch"] = {"kind": "cure", "target": dec["target"],
@@ -652,6 +750,10 @@ def main():
     ap.add_argument("--quiet-window", type=int, default=14,
                     help="intro tokens the quiet reading covers")
     ap.add_argument("--quiet-margin", type=float, default=3.0)
+    ap.add_argument("--dict-dir", default=None,
+                    help="a hidden-directions direction_dict (the base or a "
+                         "model folder) to borrow dict_vector strains from; "
+                         "default: $HD_DICT, then the sibling checkout")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
@@ -660,7 +762,7 @@ def main():
                layer=args.layer, band=args.band, placebo=args.placebo,
                heal_budget=args.heal_budget, decide_temp=args.decide_temp,
                quiet=args.quiet, quiet_window=args.quiet_window,
-               quiet_margin=args.quiet_margin)
+               quiet_margin=args.quiet_margin, dict_dir=args.dict_dir)
     quiet_note = (f" · QUIET channel (exact, first {z.quiet_window} tokens, "
                   f"floor {z.floor:.4f} → thresh {z.thresh:.4f})"
                   if args.quiet else "")

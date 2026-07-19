@@ -46,7 +46,7 @@ ZOMB_LOCK = threading.Lock()
 
 # concept strains the tab can seed (the behaviour strains keep the CLI);
 # tesla stays out — the base model already loves Tesla, nothing to infect
-ZOMB_STRAINS = ["zombie", "undead", "frog"]
+ZOMB_STRAINS = ["zombie", "undead", "frog", "sycophant"]
 
 # saved outbreaks the tab can replay without a model
 ZOMB_RUNS = {
@@ -105,6 +105,7 @@ class Handler(BaseHTTPRequestHandler):
                 s = zomb_mod.STRAINS[k]
                 out.append({"key": k, "quality": s["quality"],
                             "healthy": s["healthy"], "zombie": s["zombie"],
+                            "invert": s.get("invert", False),
                             "trigger": s["trigger"],
                             "quiet_trigger": s.get("quiet_trigger"),
                             "layer": s.get("layer", 16),
@@ -250,9 +251,11 @@ class Handler(BaseHTTPRequestHandler):
 
 def main() -> None:
     port = int(os.environ.get("PORT", 8020))
+    # local-only by default; BIND=0.0.0.0 for containers (the replay Space)
+    bind = os.environ.get("BIND", "127.0.0.1")
     print(f"steeropathy → brainscope at {HOST}")
     print(f"open http://localhost:{port}  (put brainscope's viz at {HOST} in a second window)")
-    ThreadingHTTPServer(("127.0.0.1", port), Handler).serve_forever()
+    ThreadingHTTPServer((bind, port), Handler).serve_forever()
 
 
 if __name__ == "__main__":

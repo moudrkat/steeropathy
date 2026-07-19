@@ -174,10 +174,23 @@ one bite:
 Point at a remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
 Each experiment's own commands live on its page above.
 
+## The stack
+
+steeropathy is the top of a three-repo stack; each piece also runs alone:
+
+- **[hidden-directions](https://github.com/moudrkat/hidden-directions)** —
+  the direction catalogue: extract, bake, and audit steering directions,
+  per model. Where the vectors come from (zombie's `sycophant` strain
+  borrows its vector straight from the Qwen3-4B dictionary).
+- **[brainscope](https://github.com/moudrkat/brainscope)** — the
+  instrument: hosts the model, captures activations, steers at runtime,
+  reads the J-lens, keeps traces.
+- **steeropathy** *(you are here)* — the lab on top: agents that
+  communicate through activations and J-space instead of text.
+
 ## What's next
 
-steeropathy is one piece of a bigger open-source stack (brainscope +
-hidden-directions), and it lives on a prototype branch of a real working app. PRs and
+steeropathy lives on a prototype branch of a real working app. PRs and
 forks welcome. The line I'm pulling on next:
 
 - **write to J-space.** They already *read* each other's unspoken words; brainscope
