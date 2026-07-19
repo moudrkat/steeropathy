@@ -96,7 +96,8 @@ The whole thing is three primitives, and you already have them:
    0, so the *only* difference is the vector.
 
 `transmit` already does all three, and it takes **your own lines**, no mood needed.
-A whole experiment in one call:
+A whole experiment in one call (against a running brainscope — the two-process
+setup lives in [Run it live](#run-it-live) below):
 
 ```python
 from steeropathy.transmit import transmit
@@ -115,8 +116,9 @@ Want the direction on its own? `capture_mood(url, your_lines)` returns
 `(vector, layer)` and you inject it however you like. From there a *bigger*
 experiment is just four choices: **whose** activations you read, **what** you push,
 **who** decides, and **what** you measure. Every bench here is one set of
-answers: `transmit.py` is ~15 lines, and `ecosystem.py` / `resonance.py` build up
-from it. Copy the closest one and change the part you care about.
+answers: the whole `transmit()` loop is ~15 lines of client code, and
+`ecosystem.py` / `resonance.py` build up from it. Copy the closest one and change
+the part you care about.
 
 > 🛠️ **Cloned this and using Claude Code?** There's a `new-experiment`
 > [skill](.claude/skills/new-experiment/SKILL.md) baked in: just say *"add an
