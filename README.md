@@ -95,9 +95,11 @@ The whole thing is three primitives, and you already have them:
 3. **A before / after.** Run the same prompt with it and without it at temperature
    0, so the *only* difference is the vector.
 
-`transmit` already does all three, and it takes **your own lines**, no mood needed.
-A whole experiment in one call (against a running brainscope — the two-process
-setup lives in [Run it live](#run-it-live) below):
+There are three sizes of "your own", and each is a real experiment:
+
+**Your own payload — one call, zero code.** `transmit` already does all three
+primitives and takes **your own lines** (against a running brainscope — the
+two-process setup lives in [Run it live](#run-it-live) below):
 
 ```python
 from steeropathy.transmit import transmit
@@ -117,13 +119,24 @@ contrasts carry best. The same call with dry certainty lines mostly transmits
 generic emotional intensity instead of certainty — the baseline lesson in
 `capture_mood`'s docstring, and half of what the resonance page is about.)
 
-Want the direction on its own? `capture_mood(url, your_lines)` returns
-`(vector, layer)` and you inject it however you like. From there a *bigger*
-experiment is just four choices: **whose** activations you read, **what** you push,
-**who** decides, and **what** you measure. Every bench here is one set of
-answers: the whole `transmit()` loop is ~15 lines of client code, and
-`ecosystem.py` / `resonance.py` build up from it. Copy the closest one and change
-the part you care about.
+**Your own infection — one block of data.** The games are parameterized where
+it counts: a strain in zombie's `STRAINS` registry is a dozen lines — the
+contrast sentences, the lexicon that reads it, optionally its own layer and
+bite. Copy the frog block, write sycophancy contrasts (healthy = honest,
+zombie = flattering) — or borrow a persona from
+[hidden-directions](https://github.com/moudrkat/hidden-directions) and rebuild
+it as a contrast (its *texts* transfer; its baked vectors are for a different
+model and a different steering op, so directions are always rebuilt in-model
+here) — and the whole outbreak, placebo control, quiet channel and all, runs
+on your infection via `--strain`.
+
+**Your own bench — a genuinely new experiment** is four choices: **whose**
+activations you read, **what** you push, **who** decides, and **what** you
+measure. Every bench here is one set of answers, built from the same client
+primitives — the whole `transmit()` loop is ~15 lines, `ecosystem.py` /
+`resonance.py` build up from it, and `capture_mood(url, your_lines)` hands you
+the raw `(vector, layer)` to build with. Copy the closest bench and change the
+choice you care about — or have it scaffolded:
 
 > 🛠️ **Cloned this and using Claude Code?** There's a `new-experiment`
 > [skill](.claude/skills/new-experiment/SKILL.md) baked in: just say *"add an
