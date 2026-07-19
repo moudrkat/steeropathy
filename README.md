@@ -84,9 +84,6 @@ is already in the first one.
 | **[warmer](experiments/warmer.md)** | hot-and-cold between two minds where the only thing that crosses is a temperature. A negative result so far, and a ladder of instrument lessons |
 | **[zombie](experiments/zombie.md)** | a bias outbreak: patient zero is bitten with a steering vector and the room fights back by reading each other's layers. Vector-agnostic (`--strain`) — the infection can be a behaviour or a concept — with the honest limits documented |
 
-**resonance** is the main one. If you read a single page, read
-[that one](experiments/resonance.md).
-
 ## Build your own experiment
 
 The whole thing is three primitives, and you already have them:
