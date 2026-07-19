@@ -1,16 +1,14 @@
 # unsaid: a conversation where no message is ever delivered
 
-> Two agents try to talk. Every message is written — and thrown away, unread.
-> The only thing that crosses is the **J-space of the writing pass**: the words
-> that flickered through the writer's layers while it wrote and never made it
-> onto the page. The question is the simplest one possible: **does a
-> conversation held entirely in leaked subtext make any sense?**
->
-> And it turns out to be a game you already know. With three or more agents it
-> is literally **Telephone**, played through the model's disposition instead of
-> whispers. Give one agent a secret word it must never write, and it is
-> **Taboo by mind-reading**: the holder circles the word, the partner guesses
-> it off the flicker alone.
+> **TL;DR** — agents "converse", but every written message is thrown away
+> unread; the only thing that crosses is the **J-space of the writing pass**
+> (top-8 unwritten words, echo and on-page words stripped). Does a
+> conversation held entirely in leaked subtext make any sense? Some, and it's
+> measurable as a gap against a scrambled control — and in **Taboo** mode a
+> reader points at a never-written secret word at ~4× chance. So the
+> almost-said carries usable signal; the runs are small and the coherence
+> judge is the same model. With three or more agents this is literally
+> **Telephone**, played through the model's disposition instead of whispers.
 
 [← back to the lab](../README.md)
 

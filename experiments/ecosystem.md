@@ -1,7 +1,11 @@
 # the ecosystem: a mood spreading through a silent population
 
-> Mood contagion you can point at: one agent is made sad, and the others catch it,
-> round by round, without ever reading a word.
+> **TL;DR** — one agent is seeded sad; each round every agent receives the
+> others' averaged drift as a steering vector, and nothing else. The mood
+> spreads through the population round by round — and because prompts are
+> frozen and decoding is greedy, every change on the page arrived through the
+> vector channel by construction. The sadness score comes from a same-model
+> blind judge: a demo metric, not a benchmark.
 
 [← back to the lab](../README.md)
 

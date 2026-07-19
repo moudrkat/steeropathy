@@ -1,14 +1,12 @@
 # resonance: a conserved "feeling", shared through activations, and the instrument that kept lying about it
 
-> Four agents that share only activations and J-space. Seed one with a "feeling"; let
-> them move it between each other. It is conserved: it can only change hands. The
-> question was whether it settles to equilibrium. It doesn't, and every reason it
-> doesn't turned out to be **my instrument**, never the agents.
->
-> Nothing here feels anything. The "feeling" is a steering vector, the four "minds"
-> are one model wearing four system prompts, and the conservation is bookkeeping
-> built into the rules, not a law that was discovered. This page is about an
-> instrument, start to finish.
+> **TL;DR** — four agents share a conserved "feeling" (a steering vector,
+> zero-sum by bookkeeping — not a discovered law) and move it between each
+> other; the question was whether it settles to equilibrium. It doesn't — and
+> every reason it doesn't traced back to **my instrument** (the readout, the
+> tool names, the memory), never to the agents. Nothing here feels anything:
+> the four "minds" are one model wearing four system prompts. Read this page
+> as an instrument autopsy, start to finish.
 
 [← back to the lab](../README.md)
 

@@ -1,16 +1,13 @@
 # warmer: hot-and-cold through J-space — a negative result, so far
 
-> Two neutral minds. One hides a secret thing and may never write it; the
-> other seeks, writing pages about one specific thing at a time. Nobody reads
-> anybody. The only thing that ever crosses is one word per round — how much
-> the two minds' unwritten flickers overlap: *freezing / cold / warmer /
-> HOT*. A game of hot-and-cold where the temperature is measured between
-> minds.
->
-> It doesn't work — yet — and the reason it doesn't is the finding: **exact
-> word overlap between two J-space readings does not measure semantic
-> proximity.** Two minds standing in the same place think it in different
-> tokens.
+> **TL;DR** — hot-and-cold between two minds: one hides a secret it may never
+> write, the other seeks, and the only thing that ever crosses is one
+> temperature word per round, computed from how much their unwritten flickers
+> overlap. **A negative result, so far** — and the reason it fails is the
+> useful part: exact word overlap between two J-space readings does not
+> measure semantic proximity; two minds standing in the same place think it
+> in different tokens. Seven thermometer versions in two days, each autopsied
+> below.
 
 [← back to the lab](../README.md)
 

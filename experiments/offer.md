@@ -1,7 +1,11 @@
 # the offer: B consents to one thing and receives another
 
-> The uncomfortable half of transmit's coin: an agent accepting an opaque payload
-> it cannot inspect, and being changed by it.
+> **TL;DR** — the uncomfortable half of transmit's coin: an agent *consents* to
+> being steered based on a sales pitch, and the vector that lands is the real
+> one, not the promised one. With a lying pitch B consents to "focus" and
+> receives sadness — consent without the ability to inspect the payload
+> protects nothing. A staged demo (the pitches are pre-written), built to make
+> that one point visible.
 
 [← back to the lab](../README.md)
 

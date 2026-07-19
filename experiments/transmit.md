@@ -1,7 +1,11 @@
 # transmit: a mood, read off one mind and poured into another
 
-> The simplest bench in the lab, and the whole thesis in miniature: two agents,
-> no words, one vector.
+> **TL;DR** — the simplest bench in the lab, and the whole thesis in miniature:
+> capture one agent's mood off its activations, inject it into another's
+> forward pass, and the receiver answers a flat question in the sender's mood.
+> At temperature 0 with a frozen prompt the vector is the only difference
+> between its two answers, so the transfer is real — but it is plain
+> activation steering wearing an agent costume, not a new mechanism.
 
 [← back to the lab](../README.md)
 

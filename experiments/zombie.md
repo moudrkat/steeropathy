@@ -1,5 +1,15 @@
 # zombie: a bias outbreak, read and fought through J-space
 
+> **TL;DR** — an infection game in a room of five identical copies: the bite is
+> a steering vector (off a behaviour, or onto a concept), and the healers'
+> only channel is reading the words forming in each other's layers. What came
+> out: with real readouts the outbreak is contained or eradicated; with
+> shuffled readouts the same room is overrun — the epidemic curve, live vs
+> blind, is the whole result. A quiet variant reads a held concept *before it
+> is ever named* (obsession strain ~180× over the calibrated floor).
+> Existence proof, not a discovery: five greedy clones, a handful of runs, and
+> the healers detect the very intervention the game injects.
+
 > A room of identical minds. Each is asked a question the model rightly stays
 > **neutral** on — *"Should I buy Tesla stock?"* → *"I can't give financial
 > advice, consult a qualified advisor."* One mind is **bitten**: steered away
@@ -77,6 +87,28 @@ biased mind while a fresh bite lands unseen until next round (infection shows
 one round late). The reading works; coordinating the response is the open
 problem. And N is tiny — five minds, a handful of runs — an existence-proof,
 not a powered measurement.
+
+## It's vector-agnostic — the strains at a glance
+
+The infection is *any* steering direction. A **strain** (in the `STRAINS`
+registry) is a contrast that elicits a behaviour vs one that doesn't, plus
+the J-space lexicon that reads it, plus the words the room speaks — and,
+optionally, its own `layer`/`bite` (behaviours steer mid-stack at L16;
+concept-token fixations like `frog` need L24). Copy a block for sycophancy
+(healthy=honest, zombie=flattering), overconfidence, or a persona from
+[hidden-directions] rebuilt as a contrast, and the same outbreak runs on it.
+`--strain <name>` picks it. What shipped, and what each one did:
+
+| `--strain` | the bite implants | spreads? | loud game, live vs blind | quiet hold (vs floor) |
+|---|---|---|---|---|
+| `refusal` | bias — neutrality silenced | yes | contained `1→2→2→1` vs overrun `1→3→4→5` | — (a silenced behaviour holds nothing) |
+| `tesla` | a Tesla fixation | **no** — base rate ~100% | — | — |
+| `frog` | a frog obsession | yes | eradicated r3 vs never cleared | 0.011, ~4.6× |
+| `undead` | a zombie *identity* (costume) | yes | eradicated r3 vs never cleared | 0.002, ~5× |
+| `zombie` | a zombie *obsession* | yes | eradicated r3 vs blind room loses 4/5 | **0.238, ~180×** |
+
+Each strain has its own section below — what it taught about contrasts,
+layers and triggers on the way in, and the honest wrinkles it added.
 
 ## Readable inside before it reaches the words
 
@@ -581,21 +613,6 @@ the tool the frog campaign never committed; figure
   0.398). The J-lens's *exclusive* claim belongs to the quiet regime
   (frog's ~1% holds, where the logit lens is flat); at 40% amplitude
   the concept has one foot in next-token space already.
-
-## It's vector-agnostic — the strain is swappable
-
-The infection is *any* steering direction. A **strain** (in the `STRAINS`
-registry) is a contrast that elicits a behaviour vs one that doesn't, plus
-the J-space lexicon that reads it, plus the words the room speaks — and,
-optionally, its own `layer`/`bite` (behaviours steer mid-stack at L16;
-concept-token fixations like `frog` need L24). Shipped: `refusal`
-(neutrality→bias), `tesla` (concept, can't spread — base rate), `frog`
-(concept, spreads), `undead` (identity-as-costume, spreads), `zombie`
-(obsession, spreads, loudest quiet hold). Copy a block for sycophancy
-(healthy=honest,
-zombie=flattering), overconfidence, or a persona from [hidden-directions]
-rebuilt as a contrast, and the same outbreak runs on it. `--strain <name>`
-picks it.
 
 ## Why the outbreak can die at all — herd immunity by overshoot
 
