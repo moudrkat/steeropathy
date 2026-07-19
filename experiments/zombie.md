@@ -106,7 +106,7 @@ concept-token fixations like `frog` need L24). Copy a block for sycophancy
 | `frog` | a frog obsession | yes | eradicated r3 vs never cleared | 0.011, ~4.6× |
 | `undead` | a zombie *identity* (costume) | yes | eradicated r3 vs never cleared | 0.002, ~5× |
 | `zombie` | a zombie *obsession* | yes | eradicated r3 vs blind room loses 4/5 | **0.238, ~180×** |
-| `sycophant` | flattery — honesty silenced | yes | see its section — reading 100%, small rooms still fall | — (behaviour) |
+| `sycophant` | flattery — honesty silenced (vector borrowed from hidden-directions) | yes | held at 1 forever (100%) vs blind drifts to 3/5 — `cure_floor` trades eradication for a sane reading | — (behaviour) |
 
 Each strain has its own section below — what it taught about contrasts,
 layers and triggers on the way in, and the honest wrinkles it added.
@@ -667,9 +667,20 @@ the healers pile onto their own over-cured patient round after round
 The overshoot that gives other strains herd immunity is fatal on a
 reading that breaks symmetrically. Fix shipped as a strain field:
 `cure_floor: 0` — medicine stops at healthy — which is the honest-
-epidemiology `--decay` idea in its cheapest form. Curves with the floor:
-see `docs/runs/zombie-syco-live-2.json` (live) vs
-`zombie-syco-placebo-1.json` (blind).
+epidemiology `--decay` idea in its cheapest form.
+
+**With the floor, the curves confirm this page's own prediction.** The
+overshoot section below argues the game only ever *ends* because
+over-cure is immunity — "there would always be one zombie if a cure
+reset a mind to neutral." Now a strain actually resets to neutral, and:
+live reads the room perfectly and holds the outbreak at exactly one
+zombie forever — **1 → 1 → 1 → 1 → 1 → 1 → 1 → 1 → 1**, 100% targeting,
+never eradicated, the endless daisy-chain made real — while the blind
+room drifts loose, **1 → 1 → 2 → 2 → 2 → 2 → 2 → 3 → 3** at 44%
+targeting. Containment without immunity: the reading is what stands
+between one zombie and three, and eradication was never the reading's
+gift to begin with — it was the overshoot's.
+(`docs/runs/zombie-syco-live-2.json`, `zombie-syco-placebo-1.json`.)
 
 ## Why the outbreak can die at all — herd immunity by overshoot
 
