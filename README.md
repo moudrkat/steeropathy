@@ -7,6 +7,10 @@ their activations, and the words forming in their layers that never became token
 No text passes between them — an agent reads another's internal state, and can
 reach in and change it: a vector straight into the next forward pass.
 
+For interpretability researchers and the curious who want to explore
+agent-to-agent communication through activations instead of text — a
+playground, not a product.
+
 > **An experimental repo.** The mission: try weird things with agent-to-agent
 > communication that happens *through model internals*: moods, concepts and
 > decisions passed as activation vectors instead of text. Every experiment here is a
