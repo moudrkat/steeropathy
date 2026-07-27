@@ -16,8 +16,9 @@ playground, not a product.
 > decisions passed as activation vectors instead of text. Every experiment here is a
 > probe, not a product (okay, this definitely sounds like AI wrote it....whatever...);
 > some results turned out to be about the model, and most
-> turned out to be about my own instrument. Expect findings to be revised. That's
-> the fun.
+> turned out to be about my own instrument. Nothing here carries
+> statistical weight yet — small N, one model. Expect findings to be
+> revised. That's the fun.
 
 ## ⚡ Try it in 30 seconds — no GPU, no model
 
