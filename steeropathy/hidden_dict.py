@@ -24,7 +24,7 @@ import struct
 import zipfile
 
 
-# the sibling-checkout default: ~/projekty/{steeropathy,hidden-directions}
+# the sibling-checkout default: <parent>/{steeropathy,hidden-directions}
 DEFAULT_BASE = (pathlib.Path(__file__).resolve().parents[2]
                 / "hidden-directions" / "direction_dict")
 

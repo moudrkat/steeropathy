@@ -9,7 +9,7 @@ generated token of a steered ("struck") vs unsteered ("grounded") mind:
   hold    /workspace sparse decomposition (the paper's gradient-pursuit
           recipe) — concept components the softmax eclipses
 
-Needs the aorus tunnel (brainscope with --jlens --traces). The direction
+Needs a brainscope with --jlens --traces reachable at --url. The direction
 must already be registered (run the zombie once, or steeropathy.zombie
 builds it at startup). Defaults reproduce the frog runs.
 

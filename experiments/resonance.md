@@ -25,7 +25,7 @@ What crosses is read off the model itself: each mind's **activations** (turned
 into a 0–100 reading) and its **J-space** (the forming-but-unwritten words).
 Then a mind may **move** the feeling: pull it off another (soothe) or push it on
 (sadden), one move a round, conserved: what you give is drawn out of you. The journals
-feel the vector; the decision turn is unsteered — steering breaks JSON long before it
+are written under the vector; the decision turn is unsteered — steering breaks JSON long before it
 sways a choice — so every move is chosen sober. Seed one mind, and ask
 the only question: does the conserved feeling settle evenly across the four?
 
@@ -95,7 +95,7 @@ holds the feeling, teal is drained negative.
 
 ```bash
 # brainscope hosts the model + a J-lens (for the J-space channel)
-brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces traces
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens my-lens.pt --traces traces   # fit once: python -m brainscope.jlens fit --model Qwen/Qwen3-4B-Instruct-2507 --out my-lens.pt
 python -m steeropathy.resonance --bipolar --baseline moods --url http://localhost:8010
 ```
 

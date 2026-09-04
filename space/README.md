@@ -17,7 +17,7 @@ animate from JSON, nothing is generated.
 
 - **#zomb-replay** — the zombie outbreak: healers read the words forming in
   each other's layers and clear the room; the **blind** replay shows the
-  same room overrun.
+  same room lingering at 2/5, never cured.
 - **#reso-replay** — resonance: four minds pass a conserved feeling around.
 - **#replay** — ecosystem: a mood spreads through a silent population.
 

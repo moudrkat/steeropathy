@@ -5,7 +5,7 @@
 > temperature word per round, computed from how much their unwritten flickers
 > overlap. **A negative result, so far** — and the reason it fails is the
 > useful part: exact word overlap between two J-space readings does not
-> measure semantic proximity; two minds standing in the same place think it
+> track semantic proximity; two minds standing in the same place think it
 > in different tokens. Seven thermometer versions in two days, each autopsied
 > below.
 
@@ -17,7 +17,7 @@ Each round the HIDER writes a discarded page that circles its secret (never
 naming it — and the channel enforces the rule by itself: a written word is
 filtered out of the flicker). The SEEKER writes a page about one specific
 thing, and is afterwards told only the band. The seeker is a hill-climber
-guided by a one-word oracle. The thermometer went through seven versions in
+guided by a one-word oracle. The thermometer went through eight versions in
 two days (the autopsy below is the experiment); the current one compares
 **per-mind drift residuals** — each page re-encoded in a fixed neutral
 frame, the writing mind's own calibration baseline subtracted, cosine of
@@ -30,7 +30,7 @@ share is blacklisted — style must not read as warmth) and a **placebo
 control** (`--placebo`: the thermometer shows random bands; if the seeker
 "converges" anyway, the game measures nothing).
 
-## Seven thermometers, seven lessons
+## Eight thermometers, eight lessons
 
 1. **v1 — the hider forgot the secret.** With a diary, the hider continued
    its own previous page and drifted from *ocean* to kettles, clocks and
@@ -99,7 +99,7 @@ control** (`--placebo`: the thermometer shows random bands; if the seeker
    NOISY reading, and the topic sits under the noise floor. The seeker
    guessed *stillness*. Again.
 
-Final scores, for the record: across seven instrument versions the seeker
+Final scores, for the record: across eight instrument versions the seeker
 never named the secret (*memory / absence / stillness / folding shadow /
 invisible roots / stillness / stillness*); v7 is the first version where
 the placebo and the real game separate (freezing vs warm-spiked), which is
@@ -119,7 +119,7 @@ keeps whispering; this thermometer keeps not hearing it.) Final guesses:
 ## v8 — the right layer, and it still isn't enough
 
 L21 is where *steering* works, not where *topic* separates. An offline probe
-over the saved pages proved it: on known ocean pages vs known misc pages,
+over the saved pages showed it: on known ocean pages vs known misc pages,
 the within-topic vs between-topic cosine gap is ~3× larger at **L30** than at
 any other layer, and survives mean-centering (within +0.09, cross-run +0.16,
 between −0.21). So v8 reads the page state from L30 (`--embed-layer 30`).
@@ -170,6 +170,6 @@ python -m steeropathy.warmer --secret ocean --placebo     # the control
 ```
 
 Writes `docs/warmer.json` (pages, flickers, shared words, real *and* shown
-bands, final guess). All twelve runs of the six instrument versions are
+bands, final guess). All 22 runs across the eight instrument versions are
 committed under `docs/runs/warmer-*.json`, misses included — that's the
 point of the lab.

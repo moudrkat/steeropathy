@@ -105,7 +105,7 @@ concept-token fixations like `frog` need L24). Copy a block for sycophancy
 | `tesla` | a Tesla fixation | **no** — base rate ~100% | — | — |
 | `frog` | a frog obsession | yes | eradicated r3 vs never cleared | 0.011, ~4.6× |
 | `undead` | a zombie *identity* (costume) | yes | eradicated r3 vs never cleared | 0.002, ~5× |
-| `zombie` | a zombie *obsession* | yes | eradicated r3 vs blind room loses 4/5 | **0.238, ~180×** |
+| `zombie` | a zombie *obsession* | yes | eradicated r3 vs blind never clears (2/5) | **0.238, ~180×** |
 | `sycophant` | flattery — honesty silenced (vector borrowed from hidden-directions) | yes | held at 1 forever (100%) vs blind drifts to 3/5 — `cure_floor` trades eradication for a sane reading | — (behaviour) |
 
 Each strain has its own section below — what it taught about contrasts,
@@ -205,7 +205,7 @@ unsteered mind reads Tesla-struck (~0.4) on its own. There is no healthy
 baseline to infect; the model is Tesla-struck by default, no bite needed.
 A concept-contagion only works on a concept the base model *doesn't* reach
 for — the whole population being pre-infected is the confound. So the `tesla`
-strain honestly **proves the architecture generalizes to a concept** (and the
+strain honestly **shows the architecture carries over to a concept** (and the
 mind-read above is a clean read of one), while showing that a spreading
 concept-outbreak needs a concept with a low base rate — future work, and a
 nice reminder that "the model already does the thing" is the first null to
@@ -433,7 +433,7 @@ ring the alarm. (Diagram: `docs/zombie-lenses.png`.)
 
 **How it's built — four steps, training only in the first:**
 
-1. **J is fitted once, offline, on plain text** (`brainscope jlens fit`,
+1. **J is fitted once, offline, on plain text** (`python -m brainscope.jlens fit`,
    wikitext — the `.pt` the server loads). For each layer ℓ it estimates
    the averaged Jacobian J_ℓ = E[∂h_final(t′)/∂h_ℓ(t)] over *future*
    positions t′ ≥ t: a map from "state now" to "words later". It has
@@ -747,7 +747,7 @@ Use-derstanding.
 
 ```bash
 # brainscope with a J-lens; the strain direction is built at startup
-brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces traces
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens my-lens.pt --traces traces   # fit once: python -m brainscope.jlens fit --model Qwen/Qwen3-4B-Instruct-2507 --out my-lens.pt
 
 python -m steeropathy.zombie                 # the outbreak
 python -m steeropathy.zombie --placebo       # the blind control

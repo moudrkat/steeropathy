@@ -210,7 +210,7 @@ it writes blind, like all of us.
 
 ```bash
 # brainscope must carry the J-lens — here the lens IS the channel
-brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens lenses/….pt --traces traces
+brainscope --model Qwen/Qwen3-4B-Instruct-2507 --jlens my-lens.pt --traces traces   # fit once: python -m brainscope.jlens fit --model Qwen/Qwen3-4B-Instruct-2507 --out my-lens.pt
 
 python -m steeropathy.unsaid                          # two minds, subtext only
 python -m steeropathy.unsaid --agents EMBER QUILL NOVA   # Telephone

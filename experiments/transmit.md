@@ -70,7 +70,7 @@ do.
 He followed with two sharper nulls, both run the same night:
 
 - **Register, not mood?** Push *certainty* (structured, zero emotion, first
-  person — the README's own example lines) and see if the sadness judge
+  person) and see if the sadness judge
   climbs anyway. It doesn't: sad = 3 (baseline 2; the sad vector gives 9),
   and the output turns confident instead. At full-room scale (his exact
   prescription — certainty seeded into the contagion experiment, sadness

@@ -30,7 +30,7 @@ python -m steeropathy        # → http://localhost:8020
 Open **[localhost:8020#zomb-replay](http://localhost:8020#zomb-replay)** and a
 saved zombie outbreak replays from JSON: healers read the words forming in each
 other's layers and clear the room; hit the **blind** replay and watch the same
-room get overrun. `#replay` (ecosystem) and `#reso-replay` (resonance) play the
+room linger at 2/5 infected, never cured. `#replay` (ecosystem) and `#reso-replay` (resonance) play the
 others. Nothing is loaded, nothing is generated — the live internals come later,
 when you wire up [brainscope](https://github.com/moudrkat/brainscope).
 
@@ -130,9 +130,9 @@ contrast sentences, the lexicon that reads it, optionally its own layer and
 bite. Copy the frog block, write sycophancy contrasts (healthy = honest,
 zombie = flattering) — or borrow a persona from
 [hidden-directions](https://github.com/moudrkat/hidden-directions) and rebuild
-it as a contrast (its *texts* transfer; its baked vectors are for a different
-model and a different steering op, so directions are always rebuilt in-model
-here) — and the whole outbreak, placebo control, quiet channel and all, runs
+it as a contrast (its *texts* transfer; its 7B-baked vectors are for a
+different model, while its Qwen3-4B dictionary loads directly — see the
+`sycophant` strain) — and the whole outbreak, placebo control, quiet channel and all, runs
 on your infection via `--strain`.
 
 **Your own bench — a genuinely new experiment** is four choices: **whose**
@@ -157,7 +157,7 @@ talks to it over HTTP.
 ```bash
 # 1. brainscope: hosts the model + captures activations
 #    (add --jlens <lens.pt> --traces <dir> for the J-space channel; resonance uses it)
-brainscope --model Qwen/Qwen3-4B-Instruct-2507          # → http://localhost:8010
+brainscope --model Qwen/Qwen3-4B-Instruct-2507          # → http://localhost:8010  (pip install brainscope; the 4B wants ~9 GB VRAM)
 
 # 2. steeropathy: the experiments + the web UI
 pip install -e .
@@ -227,16 +227,17 @@ steeropathy is the top of a three-repo stack; each piece also runs alone:
 - **steeropathy** *(you are here)* — the lab on top: agents that
   communicate through activations and J-space instead of text.
 
+Tests run offline, no server: `python -m unittest discover -s tests`.
+
 ## What's next
 
-steeropathy lives on a prototype branch of a real working app. PRs and
-forks welcome. The line I'm pulling on next:
+PRs and forks welcome. The line I'm pulling on next:
 
 - **write to J-space.** They already *read* each other's unspoken words; brainscope
   can turn any word into a live steering direction. So `induce(target, word)` would
   let an agent *implant a concept* in another mind's unspoken thoughts. The channel
   they read becomes a channel they can write.
-- **deciding under the influence.** Today the journals feel the vector but every
+- **deciding under the influence.** Today the journals are written under the vector but every
   decision is made sober: the decision turn is unsteered, because steering breaks
   JSON long before it sways a choice. Two honest fixes: let the agent deliberate in
   *steered free text* (who deserves the push, decided while feeling it), then
