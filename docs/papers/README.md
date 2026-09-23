@@ -5,7 +5,9 @@
 Five papers, one summary each, and what they add up to for this lab. The
 full corpus of the field, coded on Liu's axes, is in [related-work.md](related-work.md). The
 experiment they suggest is built: [experiments/runnerup.md](../../experiments/runnerup.md)
-(the original proposal is in [PROPOSAL-runnerup.md](PROPOSAL-runnerup.md)).
+(the original proposal is in [PROPOSAL-runnerup.md](PROPOSAL-runnerup.md)). The
+legible-readout follow-up, a world dreamt from another mind's activations, is
+[PROPOSAL-secondhand.md](PROPOSAL-secondhand.md) → [experiments/secondhand.md](../../experiments/secondhand.md).
 
 | paper | one line | file |
 |---|---|---|
