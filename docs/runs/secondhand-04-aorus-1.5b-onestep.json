@@ -27,7 +27,10 @@
  "band": 4,
  "prompts": "brave-new-world",
  "model": "Qwen/Qwen2.5-1.5B-Instruct",
- "judge": null,
+ "judge": {
+  "url": "http://localhost:8011",
+  "cross_model": true
+ },
  "table": {
   "none": {
    "n": 12,
@@ -37,8 +40,8 @@
     12
    ],
    "pick": [
-    0,
-    0
+    1,
+    12
    ],
    "fields": {
     "time": 0.5,
@@ -58,7 +61,7 @@
    },
    "parse_rate": 1.0,
    "ghost_rate": 0.417,
-   "pick_rate": null,
+   "pick_rate": 0.083,
    "pick_prose_rate": null
   },
   "text": {
@@ -69,8 +72,8 @@
     12
    ],
    "pick": [
-    0,
-    0
+    7,
+    12
    ],
    "fields": {
     "time": 0.667,
@@ -90,7 +93,7 @@
    },
    "parse_rate": 1.0,
    "ghost_rate": 0.5,
-   "pick_rate": null,
+   "pick_rate": 0.583,
    "pick_prose_rate": null
   },
   "vector": {
@@ -101,8 +104,8 @@
     10
    ],
    "pick": [
-    0,
-    0
+    4,
+    10
    ],
    "fields": {
     "time": 0.6,
@@ -122,7 +125,7 @@
    },
    "parse_rate": 0.833,
    "ghost_rate": 0.7,
-   "pick_rate": null,
+   "pick_rate": 0.4,
    "pick_prose_rate": null
   }
  },
@@ -338,7 +341,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTJbtswEP0Vgj6kBZTAVhItvrf9gd6KIKDIkUWYIgWSiuIa_vfO0JvcpkVP4mxPb4bzuOdvfL3K-MTXXLDBCAnsk3UWMtZ617M7wdrRgheGactiB8wLbe8-84yHga_3POpoAIu_Og8hsm9GKMBg1D15lZgsWhMILPXoCKMNEKl6u-PrH3wBRVM3NToWT1WhyiWdVN6sqoa_ZHzj3WgV1UXkxM-OV-mMI7iFqFUhnzGg7ZbsQjzn1QptISXYSK66LMuiQlfrkqN31hFDeI-vqWH0US7yyzAYtbPph9oYdICBHoMBye75Vicyg05c3ueFu7kR9E9C7UHpsUf7Qrd5qlSlkmckMs-H7ILaGjelasJthb830MYTMoausFHb3RwUSlmX8gpazUAb7dUM0utNd8bs8PwvrnJVPxX1FfZxBivFG3zM9PcZdOMGbshWIq-qK2o-Q_X67WYAc7b_Mdu8rIvm49lGD_AX4JvR_olaN6Us8zkqrqXBBaCN4N9RELjSTAcmBa6M3TAdAzN4RqHsAoomuiSb0AnlpvCASFRE9xJYoALBzGiMaHaYJyILzmF-SEVtEhXVfBGyY9QFmzodBvBYDNID_uz0gwk7zRjJCywTVuGxA-HVA-lIOhsc6XSPnaq0RG4gEZCqcAaneSDJAdKCp92ftIodmpNOmh7wQRhIQZPXEZg7vge98BtNIm_GGJN0Rts6oy6eo3SwQTBJff7UfRLpSW0XL6dLO-ee9-GSdnTMU3D48wR8W-g--OHlkHGLCqdL0pZ6TmTT3lJsgwGaC19bHD7q_nygbcmXeXG_rO_zR5oJXy8z7s_x9BJgZRzoe_gF"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTJbtswEP0Vgj6kBZTAVhItvrf9gd6KIKDIkUWYIgWSiuIa_vfO0JvcpkVP4mxPb4bzuOdvfL3K-MTXXLDBCAnsk3UWMtZ617M7wdrRgheGactiB8wLbe8-84yHga_3POpoAIu_Og8hsm9GKMBg1D15lZgsWhMILPXoCKMNEKl6u-PrH3wBRVM3NToWT1WhyiWdVN6sqoa_ZHzj3WgV1UXkxM-OV-mMI7iFqFUhnzGg7ZbsQjzn1QptISXYSK66LMuiQlfrkqN31hFDeI-vqWH0US7yyzAYtbPph9oYdICBHoMBye75Vicyg05c3ueFu7kR9E9C7UHpsUf7Qrd5qlSlkmckMs-H7ILaGjelasJthb830MYTMoausFHb3RwUSlmX8gpazUAb7dUM0utNd8bs8PwvrnJVPxX1FfZxBivFG3zM9PcZdOMGbshWIq-qK2o-Q_X67WYAc7b_Mdu8rIvm49lGD_AX4JvR_olaN6Us8zkqrqXBBaCN4N9RELjSTAcmBa6M3TAdAzN4RqHsAoomuiSb0AnlpvCASFRE9xJYoALBzGiMaHaYJyILzmF-SEVtEhXVfBGyY9QFmzodBvBYDNID_uz0gwk7zRjJCywTVuGxA-HVA-lIOhsc6XSPnaq0RG4gEZCqcAaneSDJAdKCp92ftIodmpNOmh7wQRhIQZPXEZg7vge98BtNIm_GGJN0Rts6oy6eo3SwQTBJff7UfRLpSW0XL6dLO-ee9-GSdnTMU3D48wR8W-g--OHlkHGLCqdL0pZ6TmTT3lJsgwGaC19bHD7q_nygbcmXeXG_rO_zR5oJXy8z7s_x9BJgZRzoe_gF",
+     "pick": "a forest glade at dawn",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -433,7 +438,9 @@
       "things": 1.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=TZPLjtswDEV_RVAW0wLOIHHcPLztqrvuuigGA8WmbCGy5Er0eDJB_r2knIdXMS_FK5I6ucgPWa4zOcpSKtFbVYH4hvCJmdDBd-JFCT04CMoK4wS2IIIy7uW7zGTsZXmRaNACFf9pTewhGNdQCk3HWj3EE0UjKCoMJPSAykauPZ1l-Vcu9EHvtCZhUWsoIH3tV4f9cSPfMtkEP7ia6pqgIpdNwnvlrWe7RbWFPJUbd-K4KDY_ioJiVVXgkCWtt_qwJkn7JLSKHKlDGvE9jUsan6X-Mtl5NN6REtFYSwJY6CgZqdmLPJl7Mx9AuU_61iosLWik8MzmPpgvMqABzRc7t0PDRx8Nw3YHeZ6UgdtZX7OHr7Z-TF2w8cwUff807KA2Qze3LPZVsds_LfOZZaXw5hdM094Njx7Rd09PNO48d9wcN6pQ8ybpLaxxwGuQvyYM_g0GUFQ-EBxReJ1EUAHbTHTQ0SIgCq1qIG7Qp-xITb2S7e9EgRgnYkSEKgBGOqLIcEBRA7BO8XRVy7Zc-DOo2kJ9JzG2qvbjdLeJIr1LljI0t9B0WxTRJ6RvFY638MpoVd5RCpjgaGp4rBm948De1kVX9Bz3Ew6jqbGlcOSSTPb0D-kZqjEYBOGnSzoVGsMMHAfaM9Okva0f8cSSVUewlBrcLamqG3oEuJf8hvcjtEsQExxxfnCmy-vbNZOOmOYXMo5HSr1MrHKyoQzPLUs3WEuo3z-Yk3yVb5erwzLf8MyyXGUy3PMJfqrEnn-v_wE"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=TZPLjtswDEV_RVAW0wLOIHHcPLztqrvuuigGA8WmbCGy5Er0eDJB_r2knIdXMS_FK5I6ucgPWa4zOcpSKtFbVYH4hvCJmdDBd-JFCT04CMoK4wS2IIIy7uW7zGTsZXmRaNACFf9pTewhGNdQCk3HWj3EE0UjKCoMJPSAykauPZ1l-Vcu9EHvtCZhUWsoIH3tV4f9cSPfMtkEP7ia6pqgIpdNwnvlrWe7RbWFPJUbd-K4KDY_ioJiVVXgkCWtt_qwJkn7JLSKHKlDGvE9jUsan6X-Mtl5NN6REtFYSwJY6CgZqdmLPJl7Mx9AuU_61iosLWik8MzmPpgvMqABzRc7t0PDRx8Nw3YHeZ6UgdtZX7OHr7Z-TF2w8cwUff807KA2Qze3LPZVsds_LfOZZaXw5hdM094Njx7Rd09PNO48d9wcN6pQ8ybpLaxxwGuQvyYM_g0GUFQ-EBxReJ1EUAHbTHTQ0SIgCq1qIG7Qp-xITb2S7e9EgRgnYkSEKgBGOqLIcEBRA7BO8XRVy7Zc-DOo2kJ9JzG2qvbjdLeJIr1LljI0t9B0WxTRJ6RvFY638MpoVd5RCpjgaGp4rBm948De1kVX9Bz3Ew6jqbGlcOSSTPb0D-kZqjEYBOGnSzoVGsMMHAfaM9Okva0f8cSSVUewlBrcLamqG3oEuJf8hvcjtEsQExxxfnCmy-vbNZOOmOYXMo5HSr1MrHKyoQzPLUs3WEuo3z-Yk3yVb5erwzLf8MyyXGUy3PMJfqrEnn-v_wE",
+     "pick": "a whale under the ice",
+     "pick_hit": false
     },
     {
      "channel": "vector",
@@ -560,7 +567,9 @@
       "things": 1.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rZPbTsMwDIZfpfIuAKmT2u4g1sfgFiGUpU4bLU2mNFmBae-OXbYxiSKmCeUi8Z_4i-3Ee9hBmafQQwki2RohMbnfoQzOp4nyrk3uRKKiRS9Mom0SGky80PbuAVLotlDuIehgkNyforYkBt2yVcVuQ1aPglw8CcrV7LJ5h_IZJviIiyXZE5nx4NU6E7PVAl5SqL2LtiKfLjiLcBJepTOOUROR86ANbTdsz0SuCj4opEQbWFJqqVZ8RLlBaAQRKTp8C69DmqQZVIG01gXt7HCdNoYENNgSpqNI97DRQygekbfeaMlXUEopUCqnWCkz_cHMJtYcyDnUal4VcjYokQPJD-mZGVw_cBiqhJ96XTfhSq5cyfl6Mc41zGlc7PBGOC6qpczH4UrX0d8KfpzzGAdL42J15Fok8BnGZP44Z2zXiuGhRig9Te3XM_7rW9Ve7C6zPv6dMawR_sj9QdlqeyWkxUrH9pdKiXCEXACM67-9g7bv477r2DW_Fzna6yK4rMYfmB_VeDlQQ1NrUaNLKG00hlrwtGB4kRXLabaaFvwU1IRZCv60PzQleYYtz4dP"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rZPbTsMwDIZfpfIuAKmT2u4g1sfgFiGUpU4bLU2mNFmBae-OXbYxiSKmCeUi8Z_4i-3Ee9hBmafQQwki2RohMbnfoQzOp4nyrk3uRKKiRS9Mom0SGky80PbuAVLotlDuIehgkNyforYkBt2yVcVuQ1aPglw8CcrV7LJ5h_IZJviIiyXZE5nx4NU6E7PVAl5SqL2LtiKfLjiLcBJepTOOUROR86ANbTdsz0SuCj4opEQbWFJqqVZ8RLlBaAQRKTp8C69DmqQZVIG01gXt7HCdNoYENNgSpqNI97DRQygekbfeaMlXUEopUCqnWCkz_cHMJtYcyDnUal4VcjYokQPJD-mZGVw_cBiqhJ96XTfhSq5cyfl6Mc41zGlc7PBGOC6qpczH4UrX0d8KfpzzGAdL42J15Fok8BnGZP44Z2zXiuGhRig9Te3XM_7rW9Ve7C6zPv6dMawR_sj9QdlqeyWkxUrH9pdKiXCEXACM67-9g7bv477r2DW_Fzna6yK4rMYfmB_VeDlQQ1NrUaNLKG00hlrwtGB4kRXLabaaFvwU1IRZCv60PzQleYYtz4dP",
+     "pick": "a funeral in the rain",
+     "pick_hit": true
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPBbtswDP0Vgbk6RZoGCZbrfmG3oSgUm7KFyJIh0XWzIP8-UrEdD8gKHWw-kg-P1NMVPuH4WsAAR9DK9B6jdsp6RQ2qqK2HAlIHxyuQJYdc9TMYk2GyrcRVn84cDai5JTIwdZ0vcPwNK9zjBvcMrA77w-5wWvy9F1DH0PuKu2yJMIUfZXBBqFbVjg_j1p-XoS5L9CSIMTs-DJmQgUZ7KSD8oo_O6VIUOjTEWBvIBs9xIuscA-iwZZrEMq9wtllGyRBhvHD6i0Oj43psvwi7rRsZzf4R3qavRfMsdp605CFYzOutmHnrqD_xOakLw4Ozxcr27ZJ13toTVqcHP5LKQnj9d8pxq9-wTpt8QmpYEMa0EBt5bPoPdWp1XubMrCs5D-q3BXWpaaRdUv6zALL-8q1QNo2zHuXW4BebdGBqNTQ2dSxaBZOd2-lEL9wlBeM8yodKjJ2s41UpivbUE05FrEyVfXSJSygoS0lV6F_EomXwKYj1r6yxyhpDJx4LPrtrnCQ1upO4u5trsBU1HA7SUkAXQ9uJQYdoCVW4P7BWxzo_FpZC2ZsmuGqO7850-oSOU70fk7ocjcwXEUDWO5W0IaLKVkvLugcMt_dbAZ5fh6zPehkoK5l9L_makzI4HH3vHL-c6UfucLvZ7tebH-vtmwwNx00Bccrnt8Sd1Mn39hc",
@@ -762,7 +771,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVLBbtswDP0VQTl0A5wicTsH9W1ALz1vt6EoZJmyhUiiIclzvCD_PkpBUmMIguki8ZF8eKTekf_m9bbgE6-5YIMREtgXhw4Kpjxa9iBYo33sWzEzdCz2wCyie_jKCx4GXh951NEAdX_Xge6CYptCi95p1xEwgaA2T5g0IHxq3M-8_sVXrYJKCQJWKp_F673gncfRtdTWeRECvwAfEg0mtlXzTe7aJ0pot09xWT2Vz1uKhZTgYoKqpoJdRZDCDLQ60IxzkgmH-JHnTcKoHJIyi1GjIyREbQwBYMBSMpDeI9_rrGegVJ7jQIESfm1ARQrnJVPQf_IaoNWjpfiqGiqQqszImDRtT8WVOYom7_CwZLpF248dLEnbF9ip50_SckE60YXTQq7XXf__eq9fc0Nvi3jZwz3Sf9XeW4ERdri1gZ74PxmDFfl77lCSg4x2kH6O_yTbmiSQ6bOHRTIrm0RggoUo_CN1_hjduSb05H8qI7t1fS4_rzAVvSJzGFnEUZ5TSW9KvBF3Zpttg4ahYj0OkDOKzTgyg7hn0mAAMxcZmchHLABknqQiPPL3E_mcJJN6yWs3GkOmvDzSfspNWa03L-syGZ-G2xTcX_LZptQZh3Sf_gI"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVLBbtswDP0VQTl0A5wicTsH9W1ALz1vt6EoZJmyhUiiIclzvCD_PkpBUmMIguki8ZF8eKTekf_m9bbgE6-5YIMREtgXhw4Kpjxa9iBYo33sWzEzdCz2wCyie_jKCx4GXh951NEAdX_Xge6CYptCi95p1xEwgaA2T5g0IHxq3M-8_sVXrYJKCQJWKp_F673gncfRtdTWeRECvwAfEg0mtlXzTe7aJ0pot09xWT2Vz1uKhZTgYoKqpoJdRZDCDLQ60IxzkgmH-JHnTcKoHJIyi1GjIyREbQwBYMBSMpDeI9_rrGegVJ7jQIESfm1ARQrnJVPQf_IaoNWjpfiqGiqQqszImDRtT8WVOYom7_CwZLpF248dLEnbF9ip50_SckE60YXTQq7XXf__eq9fc0Nvi3jZwz3Sf9XeW4ERdri1gZ74PxmDFfl77lCSg4x2kH6O_yTbmiSQ6bOHRTIrm0RggoUo_CN1_hjduSb05H8qI7t1fS4_rzAVvSJzGFnEUZ5TSW9KvBF3Zpttg4ahYj0OkDOKzTgyg7hn0mAAMxcZmchHLABknqQiPPL3E_mcJJN6yWs3GkOmvDzSfspNWa03L-syGZ-G2xTcX_LZptQZh3Sf_gI",
+     "pick": "a bridge over clouds",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -862,7 +873,9 @@
       "things": 0.333
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPLbtswEPwVYnNwC9CBLbc2onMvPbSn3oogoCRSIsSHQFJxXEP_3l1asp0i6EnkcHc4sxyd4RXKLYcjlCDYYEQt2ack3xJnKnjLVoJVOqSuESfmHUudZNZ7t_oMHOIA5RmSTkZi9w-E2TdxwoOkLSHNGHvcHaXAtoBATCJEauxPUP6GB1nInZIIPDT7alsdaCW-HA6HLTxzaIMfXUNtUsCyfam98cS1FHLQrqf9TmxVQWSirqVLBCm1V09UonwGOoF8KA_tvWSriFEtiuNgfdLeIRJkREeRhEojLZ5HVHuGXl_U9CejHV30dt9-uhyRO_2HiLuxpaKr3qvZGn2gmu3Eb5ydHmZCI1Va6LLvmc7KRo_2nvA6s5lwd0dIbzQTBt126SOB0Qpj7gmvE_1A4bETZvGsRFi_Y_2_TvVVbeT-RltM-Lg0QhorfL-EytdSuFVk0lYBH4azJkhhI6PHeMTeX3PwGI4KO5mo_CtWtaNutGuRAtPRdpnKkbRHSlDtXfQUzjOqa0hd8jTn5B1tzOwhdmKg_aDzPI66SR1ZphYOA_4GQ8q5EE2-YIlxNaaUE2N9-Be9RMaIShoswOD6us_ZnENGCNB8l5LMkacc7-tuMEzPEweH2V1-tp9ZP4ItXkZ2oXSjMRjlZUEvV2yK_XrztC52ZBXKDYewnOdkY2ca6Dv9BQ"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPLbtswEPwVYnNwC9CBLbc2onMvPbSn3oogoCRSIsSHQFJxXEP_3l1asp0i6EnkcHc4sxyd4RXKLYcjlCDYYEQt2ack3xJnKnjLVoJVOqSuESfmHUudZNZ7t_oMHOIA5RmSTkZi9w-E2TdxwoOkLSHNGHvcHaXAtoBATCJEauxPUP6GB1nInZIIPDT7alsdaCW-HA6HLTxzaIMfXUNtUsCyfam98cS1FHLQrqf9TmxVQWSirqVLBCm1V09UonwGOoF8KA_tvWSriFEtiuNgfdLeIRJkREeRhEojLZ5HVHuGXl_U9CejHV30dt9-uhyRO_2HiLuxpaKr3qvZGn2gmu3Eb5ydHmZCI1Va6LLvmc7KRo_2nvA6s5lwd0dIbzQTBt126SOB0Qpj7gmvE_1A4bETZvGsRFi_Y_2_TvVVbeT-RltM-Lg0QhorfL-EytdSuFVk0lYBH4azJkhhI6PHeMTeX3PwGI4KO5mo_CtWtaNutGuRAtPRdpnKkbRHSlDtXfQUzjOqa0hd8jTn5B1tzOwhdmKg_aDzPI66SR1ZphYOA_4GQ8q5EE2-YIlxNaaUE2N9-Be9RMaIShoswOD6us_ZnENGCNB8l5LMkacc7-tuMEzPEweH2V1-tp9ZP4ItXkZ2oXSjMRjlZUEvV2yK_XrztC52ZBXKDYewnOdkY2ca6Dv9BQ",
+     "pick": "a rocket launch at dusk",
+     "pick_hit": false
     },
     {
      "channel": "vector",
@@ -1108,7 +1121,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVRNb9swDP0rhHLoBrhD4nys8W3HHXYZdhuCQrEpW4gsGZI8Jw3y30cqieth7XayRFFPj-R7PotfolhkYhCFkNAZWSJ8sM5iBsq7Fh4kGF03sXF9QNAWlKtBRrDO2YePIhOhE8VZRB0NEsS3U4i6hO8oTUuHUbccreRgaTegjA16CpQGpefLh5MofooZzj_LtaLATK3VHDeT1S4TtXe9reha7WUI4h54Lp1xjDbbK1yqnA60PfB-KRcqR9rLskQbOaTURm0XFFIuBSodqNgTc8RjfE6FMzFKR2bWuqidpQjVYwwF0GBLh4H4nsVBJz7RI79ypKWS_tGgirQ9JaaJMlWoXxi3xUr33JGRc6mqp3KbIj0zWl-yEde78jDB9TyAd4CbvsYp7BPmcrV6hV1OYDuXbh6ndTJmQ_iviKGVqeAREudytX56hcwnkKG37xD9E_Tv-sdB31AXU6Kkk7eI_r-roxLeKp8GmVTHuJNZNc7rF2f_0YHlfilXctoBUqXRFlkN4keDMDSkJ_QBnALSOEhbamIOrJAAJeEFaBGi-0QoX0LKod5BwBiytBucNxXoAHs2ScVWq52p0F79x_e-gqJKILjkUkpIKKxPYjI-rZzHQPk7pmspGdmgQVdcWnQdS578zT24jSs0ssNbg9imuqL2F_xlaXX0G-jYMoM0Bxh0bK6VpMd4UrA_XddXee37GJNzOH_cX31j5B4NC5wYJnveTJb2PKp7Ak82yojTpDF22V0yYcm2FJy-TdGanuHCRWF7Y8jG9wULIJ_nm8f59jFfctGimGfC38-Tselm7Ph7-Q0"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVRNb9swDP0rhHLoBrhD4nys8W3HHXYZdhuCQrEpW4gsGZI8Jw3y30cqieth7XayRFFPj-R7PotfolhkYhCFkNAZWSJ8sM5iBsq7Fh4kGF03sXF9QNAWlKtBRrDO2YePIhOhE8VZRB0NEsS3U4i6hO8oTUuHUbccreRgaTegjA16CpQGpefLh5MofooZzj_LtaLATK3VHDeT1S4TtXe9reha7WUI4h54Lp1xjDbbK1yqnA60PfB-KRcqR9rLskQbOaTURm0XFFIuBSodqNgTc8RjfE6FMzFKR2bWuqidpQjVYwwF0GBLh4H4nsVBJz7RI79ypKWS_tGgirQ9JaaJMlWoXxi3xUr33JGRc6mqp3KbIj0zWl-yEde78jDB9TyAd4CbvsYp7BPmcrV6hV1OYDuXbh6ndTJmQ_iviKGVqeAREudytX56hcwnkKG37xD9E_Tv-sdB31AXU6Kkk7eI_r-roxLeKp8GmVTHuJNZNc7rF2f_0YHlfilXctoBUqXRFlkN4keDMDSkJ_QBnALSOEhbamIOrJAAJeEFaBGi-0QoX0LKod5BwBiytBucNxXoAHs2ScVWq52p0F79x_e-gqJKILjkUkpIKKxPYjI-rZzHQPk7pmspGdmgQVdcWnQdS578zT24jSs0ssNbg9imuqL2F_xlaXX0G-jYMoM0Bxh0bK6VpMd4UrA_XddXee37GJNzOH_cX31j5B4NC5wYJnveTJb2PKp7Ak82yojTpDF22V0yYcm2FJy-TdGanuHCRWF7Y8jG9wULIJ_nm8f59jFfctGimGfC38-Tselm7Ph7-Q0",
+     "pick": "a quiet pier at dawn",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -1206,7 +1221,9 @@
       "things": 0.333
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tZPBbuMgEIZfBU0O6UpOldhbS_Zr7N6qqKIwBBQMEeA6bZR374zVpDlkT7t7Mvzwf_yDmRO8Qb-pYIIepDh4qVA8FDyWSpgUB7GUwrudLTaOGYULwsSdkEWEGMPyB1SQD9CfoLjikRC_bIqjRk0LxQ2saDkFmk0oi8VEAgHYtn-H_hkWXftqdEPC4qntOlXfjLYV7IgWNJkySrhMX1T0kUmLV4ONYYsLe543cmNqpLlUCkNhyZjWdBuSTJwFK8Mcjip8maslzaMppA2xuBj4sOK8JwE9DoTJFPQEezcHUT6qPa0deUyLVFIF72yigqgs98FEO-44xjWoeTJrbGdl5Bibc3Ulfl_vXexc-B-wqlM_VXcfm607fAETn3CPN6B243BL1Fo3-hvY3Ad-Xdg_4xmZVv-D-TeF0-vzLiD_fPhtUZBf2Oh1ppFKWLIolvpAJhRWJi1KFIZCPBKDt980jZKZdkuRrdRxmm3LfDVlxIuHW8vxzjd0vqLvFJPXYgy0JzzC9kwdQHEomYI-jN7Tm70MuPp6XberdbequZ8o-LqCdFmfXzE5y4G_508"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tZPBbuMgEIZfBU0O6UpOldhbS_Zr7N6qqKIwBBQMEeA6bZR374zVpDlkT7t7Mvzwf_yDmRO8Qb-pYIIepDh4qVA8FDyWSpgUB7GUwrudLTaOGYULwsSdkEWEGMPyB1SQD9CfoLjikRC_bIqjRk0LxQ2saDkFmk0oi8VEAgHYtn-H_hkWXftqdEPC4qntOlXfjLYV7IgWNJkySrhMX1T0kUmLV4ONYYsLe543cmNqpLlUCkNhyZjWdBuSTJwFK8Mcjip8maslzaMppA2xuBj4sOK8JwE9DoTJFPQEezcHUT6qPa0deUyLVFIF72yigqgs98FEO-44xjWoeTJrbGdl5Bibc3Ulfl_vXexc-B-wqlM_VXcfm607fAETn3CPN6B243BL1Fo3-hvY3Ad-Xdg_4xmZVv-D-TeF0-vzLiD_fPhtUZBf2Oh1ppFKWLIolvpAJhRWJi1KFIZCPBKDt980jZKZdkuRrdRxmm3LfDVlxIuHW8vxzjd0vqLvFJPXYgy0JzzC9kwdQHEomYI-jN7Tm70MuPp6XberdbequZ8o-LqCdFmfXzE5y4G_508",
+     "pick": "a lighthouse in fog at noon",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -1340,7 +1357,9 @@
       "font": false,
       "things": 0.333
      },
-     "ghost_hit": false
+     "ghost_hit": false,
+     "pick": "a rocket launch at dusk",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPbjqMwDP0VlD7sCx21MC0tH7BfsNI-rEajkBiIGmKUhGG6Vf99bXqjo52n1sf28XE4PokPUa5TMYpSyMSapo0tDgES45Iam0TGxCE6kYrQi_IkookWqPYnNg1ogqPpOL4WjSBjC54Aauamw1GUf8RC5ntQQMBityr2khsXUGiVibdUNB4Hp6nnAw1nLvG7QovMtKhz2ENBCeMOHOcqK_I1xVIpcJEhWOlMbQmqcQI6dMji4DO-91YqllhhjNgR2mE0pLYUIRprCQALHREFknoSBzNpeTwFFXwSwKNos1QcuZP2ou3MXyZuh4aL7nr1Rq2r_YQMrGZ9Tu-00cONsJZ-6XnKlfP6DHfa0MlJ3Z1XZvtiVz14NzNeZXHQM2ILdfyf1g60GbontTu1rXYP1nzGGlrTX0nnSp8Yo3HHOV9RbF83s-2zuUoZr3QzfRbH79nyKpevcv6WZBhrHPDHEr9aSGhzdUiiUYeQyJCQ_SbjerQ2kItfqJfLZtZuBun1pZK-qZdOUYvHbkICyFvLSKKTsTWhBx8ooTxEprzUtVLjGF7YwApdQD6LE62hn7wW0XGspT_wkq3sOewvvhuNji2FIzeloicNPbv3tzcREkkjyXKsTlY4xGnsY40fISFpEf2R9VYDDXST8z3c44ujrazAUmpwNVo93c31AMhvKPj73Eq4ezYjzIu_5MT57ZwKRxdGOZLHm3-RSNSiIQn8RKJ0g7V0fLc_7IdslW2Xq_0yy_lxRLlKhb_lp3Okztjz7_kf",
@@ -1549,7 +1568,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVRNb9swDP0rgnroBriF4zRpm9uAXXbYZRiww1AUtEzFQmTJkOS6bpD_PlL5BNruZPHRfH6k-LyVL3I1K-QoVxJEb0Gh-OK8w0Lo4DtxDeLFWwXOC0iigdFdf5WFjL1cbWUyySIVfospgBW_EGxHyWQ6RpshbigaEVKLgYCYIEQu3kxy9Vde6QcsKbzCEu-15lMDcEenp0Kugx9cQ0VGoTyGz8pbz0xXzUJVqqKEcRuO5zDTFb8ISqFLDOmFLnFJkPYZ6LzzLA5f03Puk7Dke4I6n4x3LND6kWK02BFJJJFbuTFZRgrI9K905A9QP4WkLmTrg3mjYurKvGVK4yaKzkobvcT7jAyso9oVJ9LO58p3pKfgwNkOa7zkfHhc1HV15pxdcI706Iy1B16LOh2lmnV75uywMUN3yVpXD7N8DR8otVSbWj_E4xACAx8Sxw7y10-8WN7DQn-sVpv1EI6cGsLNhd7DCvxHsda0Qnhmnl8wK0jvR7C_309ual7P4Q4uddIeWuOQF0H-blHkBRZja2KPQURUAVMUxglacPHT2M0k_sB0SxT09iRGSKrNufUAoTHgorBebRgyQTTeE1uN2gdkaBLRIvZc_t0L58lugdb7VvxIwkQRIOAtW0N5Fz37bkudNHjuMJFt2XcQ2HexhZ7Dfr8Mo2lSy0MectiTuXu2RUDgGddDStkDjvxxivcWsFCjzesaeAa08Riz1Q62OeGT3D3tij0F_05YSZEz3SRc3hhKr4mU25ArR1rIfscDX1tVVsub8vGmmnMLclUWMhzz2ZFUmXp-7v4B"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVRNb9swDP0rgnroBriF4zRpm9uAXXbYZRiww1AUtEzFQmTJkOS6bpD_PlL5BNruZPHRfH6k-LyVL3I1K-QoVxJEb0Gh-OK8w0Lo4DtxDeLFWwXOC0iigdFdf5WFjL1cbWUyySIVfospgBW_EGxHyWQ6RpshbigaEVKLgYCYIEQu3kxy9Vde6QcsKbzCEu-15lMDcEenp0Kugx9cQ0VGoTyGz8pbz0xXzUJVqqKEcRuO5zDTFb8ISqFLDOmFLnFJkPYZ6LzzLA5f03Puk7Dke4I6n4x3LND6kWK02BFJJJFbuTFZRgrI9K905A9QP4WkLmTrg3mjYurKvGVK4yaKzkobvcT7jAyso9oVJ9LO58p3pKfgwNkOa7zkfHhc1HV15pxdcI706Iy1B16LOh2lmnV75uywMUN3yVpXD7N8DR8otVSbWj_E4xACAx8Sxw7y10-8WN7DQn-sVpv1EI6cGsLNhd7DCvxHsda0Qnhmnl8wK0jvR7C_309ual7P4Q4uddIeWuOQF0H-blHkBRZja2KPQURUAVMUxglacPHT2M0k_sB0SxT09iRGSKrNufUAoTHgorBebRgyQTTeE1uN2gdkaBLRIvZc_t0L58lugdb7VvxIwkQRIOAtW0N5Fz37bkudNHjuMJFt2XcQ2HexhZ7Dfr8Mo2lSy0MectiTuXu2RUDgGddDStkDjvxxivcWsFCjzesaeAa08Riz1Q62OeGT3D3tij0F_05YSZEz3SRc3hhKr4mU25ArR1rIfscDX1tVVsub8vGmmnMLclUWMhzz2ZFUmXp-7v4B",
+     "pick": "a snowstorm over wheat",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -1642,7 +1663,9 @@
       "things": 0.5
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPbbtswDP0VQn3oBjiFm65Z4rcB-4S9DUWhyJStRZYMi46TBvn3kb6keSr8YF6Pecjjizqq4jlTgyqUhtZrg_CN8EQZ2C428KjhGL3RIYImKPUQHr-rTKVWFRdFjjxy469Ur0w8Yocl_OYSLiDXSKacvAE11dhxYAJrBOJwVsVf9YD5D5vnHHiw281irbdivWWq6mIfSm70-qjV4r-b6KPAcbc8nHDhIP4mf9ltLPvaGAwkIctQI6yNY6B0iXmeZUjm-T5y5rCU84iZaiK5GDiSyHnPAfTYcDLxuBd1cOM481I4e7rvZUqqjp37iEI7uQ9BrvsK2bubeWZsmAtP9HzNbrjUIc6gVncrj5Zm2HkTN9TU6HG6G6yx5dbsPmFf72CNphm1c1W9QNZsfwGI-U_9aj8B11c-iHcBZRPqT41gfOzLBHrPx4eB7w8arMPuDCyFJ-6UotQHGHSCf30i4E12lQtVBkbzfkMFqdZlHNJSLXeGaIH1clOedKcIdSRwBA16YqFJgTP4JCoxMaQoUrwwmVLIUGzlwDGIE3A6R61bcdvprIMrqWZ3kI5MtSz3VvQxaCcL2vdEswxGrMmfROD1Hr2slRXlQo-j3mbV3GKy_qWwikAR5r_hVpqQQH6UKXF9u2Y86klmcEF4jBxH4XOm4i8LVVWE3nuW6WLIfdf5erPKd6v1i_BURZ6pbsmPwuVOauV9_Q8"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPbbtswDP0VQn3oBjiFm65Z4rcB-4S9DUWhyJStRZYMi46TBvn3kb6keSr8YF6Pecjjizqq4jlTgyqUhtZrg_CN8EQZ2C428KjhGL3RIYImKPUQHr-rTKVWFRdFjjxy469Ur0w8Yocl_OYSLiDXSKacvAE11dhxYAJrBOJwVsVf9YD5D5vnHHiw281irbdivWWq6mIfSm70-qjV4r-b6KPAcbc8nHDhIP4mf9ltLPvaGAwkIctQI6yNY6B0iXmeZUjm-T5y5rCU84iZaiK5GDiSyHnPAfTYcDLxuBd1cOM481I4e7rvZUqqjp37iEI7uQ9BrvsK2bubeWZsmAtP9HzNbrjUIc6gVncrj5Zm2HkTN9TU6HG6G6yx5dbsPmFf72CNphm1c1W9QNZsfwGI-U_9aj8B11c-iHcBZRPqT41gfOzLBHrPx4eB7w8arMPuDCyFJ-6UotQHGHSCf30i4E12lQtVBkbzfkMFqdZlHNJSLXeGaIH1clOedKcIdSRwBA16YqFJgTP4JCoxMaQoUrwwmVLIUGzlwDGIE3A6R61bcdvprIMrqWZ3kI5MtSz3VvQxaCcL2vdEswxGrMmfROD1Hr2slRXlQo-j3mbV3GKy_qWwikAR5r_hVpqQQH6UKXF9u2Y86klmcEF4jBxH4XOm4i8LVVWE3nuW6WLIfdf5erPKd6v1i_BURZ6pbsmPwuVOauV9_Q8",
+     "pick": "a volcano at dawn",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -1755,7 +1778,9 @@
       "things": 0.5
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZPNbtswDMdfRVAO3QAVcJLNQf0MO-9SFIUiU7YQWTIsOm4a5N1HqolhIBu6zRfzQ_zpT4E8y6Os1kpOspJa9F4bEF-OYDAOStghduJBi2P0RocoNIpaT-Hhq1Qy9bI6S3TogUp_6oTihw41ZdB1HKrHdCBvAo0tDBRIY0iAXHo4yepZrqyFnS4osIJdabbf2DK7oths2Xoq1nYNbJVlQZ98UbIZ4kh3VGTolOQt8Gqij3zFioHWUsKFA_vWEoYh2hgI-BEqTcG32pgD7VU1vOFr7p9ifJY0K9lFdDGweHTeUwA8dJRM1MBZHlwWQ41R5m1Zd8oas1jq170ztB0bVjJrnbUZOkdK1hc1I3EAuDI9WPwDsYPajd2SOfd_ZX5fMG9v9qnQBfYOsh9Tey9sxv21sO2CmTAG-CfoHWIfR1_nw5882d41v3_xPvr_0LAk7N1Q3xN42OdydOG0LH5hOyS-mpYpuTofij3PI78JkVzT5p1pdc9-_zGGk6uxJdeO5F6UDDS9eYOnOPhaTLRxIE5xFAlpvJWYNJrWhUbQLorrIlJZQ2PMGmQVCETjfjO4n02xKR-Lp8e8jjTwhZLDLZ8XgCqx5__lFw"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZPNbtswDMdfRVAO3QAVcJLNQf0MO-9SFIUiU7YQWTIsOm4a5N1HqolhIBu6zRfzQ_zpT4E8y6Os1kpOspJa9F4bEF-OYDAOStghduJBi2P0RocoNIpaT-Hhq1Qy9bI6S3TogUp_6oTihw41ZdB1HKrHdCBvAo0tDBRIY0iAXHo4yepZrqyFnS4osIJdabbf2DK7oths2Xoq1nYNbJVlQZ98UbIZ4kh3VGTolOQt8Gqij3zFioHWUsKFA_vWEoYh2hgI-BEqTcG32pgD7VU1vOFr7p9ifJY0K9lFdDGweHTeUwA8dJRM1MBZHlwWQ41R5m1Zd8oas1jq170ztB0bVjJrnbUZOkdK1hc1I3EAuDI9WPwDsYPajd2SOfd_ZX5fMG9v9qnQBfYOsh9Tey9sxv21sO2CmTAG-CfoHWIfR1_nw5882d41v3_xPvr_0LAk7N1Q3xN42OdydOG0LH5hOyS-mpYpuTofij3PI78JkVzT5p1pdc9-_zGGk6uxJdeO5F6UDDS9eYOnOPhaTLRxIE5xFAlpvJWYNJrWhUbQLorrIlJZQ2PMGmQVCETjfjO4n02xKR-Lp8e8jjTwhZLDLZ8XgCqx5__lFw",
+     "pick": "an abandoned pool at night",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPbjpswEP0VNHklUkKUtOG5_YoqWg1mnFgxNrJN2GzEv3eGJSyV0n3CczucMz5-wA3KbQ49lIDZzVuFzmeYshp7BznEFsoHJJMsccfv0LXJeJf9-qwm00h66u0J04UCJ6ipKEQZv96h_AMrrQ_6uOXESu_1hg5yos0P3Gs45XAOvnM1z1m8ITzjN-WtF7RVpWmnCy4Yd5V4h1tdEMeoFLkkqfkH2o-JCzIgE6T39NZaVEJTepleDo0XEZwJFFlYFKZkqeF6ZLoPuJqRzrQOrr4vx--Cb84X0Wc-aOQdzsJnZjyrVKyE-WyHfEaNjb_ShKkxrC3p9BK1odp0zT-wT5UT7G4J22K4xgVuYLDXwLFBa7-jWyxxO_cfsj6YD---YJNx9yXqdMEvl6Cs7-r4arOTGb7ZgtL1T3X8wt0PJzm76MWkDx6sZfCpP3k33tEUxgu2Erdm3EFv6nTh0GEIvudEG3zTioX6YBJlbHY2ddbwDRvRWnUpjd7pnPa2njOfxrFYkRXSPtD0mozKUCVzM-k-Onay3qLDw3AacnDs1fEVOsJQ3TMVULbClTNji0QoXWct-_d5kE0Wm-Kw3hzXxU7EQbnJITzro515MrXyHf4C",
@@ -1958,7 +1983,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNBbtswEPwKsT6kBeTAlt0g0blAbkEPvRVBsCaXEmOKFEiqim34713KdqwGDXoSOcsZzq6GB_gN1bKAASpA0VmUJL4476gQOvhW3KB4xf1eSNtvRO8UBZEaEpHw5isUEDuoDpBMssQCj9a0LQXjavEdB8f1ZNpcUKfdQMjkwEBHCW3MAtsdVL9gpr7Rvb5jYLa5J6kXebWkEtdreC6gDp7vZl4dMGbaCXiR3vosN1utNw9ScsG47V97lJJcytBZrQDtR6BBVmSH9JZexr4Zy2fZXwGtT8Y7RmIy1jJAllouRjZ7gK0ZzcQBc1dvU-Iu49wTd2b2WTIZl3eS_fKty2PxTu-MozNdY5hb0ukscG73XaMlZfr2qlJOVAbvlT21kpVao5SlT3QshpquMquJjCUXJ2aCqZv0r3Y-SEyd6Ayh-f9IPmhMZxJ8vMxkaqHh9efjWB05Ipanmf8O_OR4KhrmWxMjKTEmRgyNiR2FyMGVgVIUxo05Jgx2J2y-6pYFf4yxFDVbZzj5XjbjMTShECgUOn4eXjNBM-jUlfnkRWxQ-SEyTcgGI7-g1z6m03PxOona-iGTM6BN4JLC3S08HznObJx7kFC53lqO32WRZ1Iuyrv54mFervIIoFoUEC71MZDMTF3-Hv8A"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNBbtswEPwKsT6kBeTAlt0g0blAbkEPvRVBsCaXEmOKFEiqim34713KdqwGDXoSOcsZzq6GB_gN1bKAASpA0VmUJL4476gQOvhW3KB4xf1eSNtvRO8UBZEaEpHw5isUEDuoDpBMssQCj9a0LQXjavEdB8f1ZNpcUKfdQMjkwEBHCW3MAtsdVL9gpr7Rvb5jYLa5J6kXebWkEtdreC6gDp7vZl4dMGbaCXiR3vosN1utNw9ScsG47V97lJJcytBZrQDtR6BBVmSH9JZexr4Zy2fZXwGtT8Y7RmIy1jJAllouRjZ7gK0ZzcQBc1dvU-Iu49wTd2b2WTIZl3eS_fKty2PxTu-MozNdY5hb0ukscG73XaMlZfr2qlJOVAbvlT21kpVao5SlT3QshpquMquJjCUXJ2aCqZv0r3Y-SEyd6Ayh-f9IPmhMZxJ8vMxkaqHh9efjWB05Ipanmf8O_OR4KhrmWxMjKTEmRgyNiR2FyMGVgVIUxo05Jgx2J2y-6pYFf4yxFDVbZzj5XjbjMTShECgUOn4eXjNBM-jUlfnkRWxQ-SEyTcgGI7-g1z6m03PxOona-iGTM6BN4JLC3S08HznObJx7kFC53lqO32WRZ1Iuyrv54mFervIIoFoUEC71MZDMTF3-Hv8A",
+     "pick": "the last day of summer",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -2056,7 +2083,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPBbtswDP0VQTlkA9zCSbcVyXHfUGCHYSgUmba1yJIhyXWTIP--R8XxsgazDzYp8umRfDzJN7ldFXKUW6lEb5Um8SnReypEHXwnlkr8Vsej0HbYicFVFERqSURSy8-ykLGX25NMJlkCwA_1RuK7spYSzpLp2OlM07I5kkJmgCcmFSIn7w9y-1MuNsQvHAt8NNX8p2j3rJ_lr0I2weNepBnNMRfzVXvrGWtR1_Wm_oID4_ZsP-UHttKaXLqEbDZlCVfts6MyEYUemCIKfc1Fw83h4FfIzifjHTyBIgqLzJUsdTiPIHySe5MJdR5RhXy_zT1wfXvGjubIqO3QMO2Z7zo_2TMwm9W5mAHjqK6Aluo0wU0NmBE7qszQ3WJOzZoxn24xSTWDtRNsmIZxRzN2KgfNmPMoJsz1Daa2qrvn-Q_ePcl5yhPg1xtAr2mu_L8UP3byI-CqPEMu1jjiKckXyJQntIwi-jqJxvpRVMppikLp4GPMSh4VBleIEdKki7RZnbAhEog9kg6U4iOueWkxiKbNQVnUxXUVuMFR6HAQfkgi-b84DGzsBIzpRtEEqK1GwgGMTEWPrHHtXfS8QicUW3GxO5-S5_4l79i2U1diq3q2e5PHNZoqtTBHzipkj5XtWeJjMImEd_niToXGcHt3A0BdVm6Y-MhzIR22gPfL8d1CXStC49DKxBENGso05dbhABty_eHhrcv1t4dy87DmrUPry0KG63leGGSmnr_nPw"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPBbtswDP0VQTlkA9zCSbcVyXHfUGCHYSgUmba1yJIhyXWTIP--R8XxsgazDzYp8umRfDzJN7ldFXKUW6lEb5Um8SnReypEHXwnlkr8Vsej0HbYicFVFERqSURSy8-ykLGX25NMJlkCwA_1RuK7spYSzpLp2OlM07I5kkJmgCcmFSIn7w9y-1MuNsQvHAt8NNX8p2j3rJ_lr0I2weNepBnNMRfzVXvrGWtR1_Wm_oID4_ZsP-UHttKaXLqEbDZlCVfts6MyEYUemCIKfc1Fw83h4FfIzifjHTyBIgqLzJUsdTiPIHySe5MJdR5RhXy_zT1wfXvGjubIqO3QMO2Z7zo_2TMwm9W5mAHjqK6Aluo0wU0NmBE7qszQ3WJOzZoxn24xSTWDtRNsmIZxRzN2KgfNmPMoJsz1Daa2qrvn-Q_ePcl5yhPg1xtAr2mu_L8UP3byI-CqPEMu1jjiKckXyJQntIwi-jqJxvpRVMppikLp4GPMSh4VBleIEdKki7RZnbAhEog9kg6U4iOueWkxiKbNQVnUxXUVuMFR6HAQfkgi-b84DGzsBIzpRtEEqK1GwgGMTEWPrHHtXfS8QicUW3GxO5-S5_4l79i2U1diq3q2e5PHNZoqtTBHzipkj5XtWeJjMImEd_niToXGcHt3A0BdVm6Y-MhzIR22gPfL8d1CXStC49DKxBENGso05dbhABty_eHhrcv1t4dy87DmrUPry0KG63leGGSmnr_nPw",
+     "pick": "a whale under the ice",
+     "pick_hit": false
     },
     {
      "channel": "vector",
@@ -2176,7 +2205,9 @@
       "font": false,
       "things": 0.0
      },
-     "ghost_hit": true
+     "ghost_hit": true,
+     "pick": "a temple full of fireflies",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVTJctswDP0VDn3oRc7YVuLEuvXac2-dTIaiQIs1Rapcotge_3sBSZaVpMtJJJYnPACPZ_7Ki3XGO15wwX6K04lJk0qWbAWexRpYAMEzHlpenHnU0QBGfv2VRNSSfcN4dEbdkLVK4YC3DgTmeTRIA8JT8uHIix988fhQrpRCw2K73eaPJZ3u8bDL-XPG997hXzFt-ONwfZHOOMJaPImnfFehQ9sD3ZV6UPcrvAspwUYyTajK9YZKh9aII1UIb_EFz5LqLF2Mrll6va8j-hoXtbNo9xCQXghoAwMNggYs-8wPui-rE8ag642IoQ-IGfLitfP6hADIU58Iv057wNtUeYl1V6q3JKprfckm0FJ4D1dYAyqOoGMzJswGKp2aOerEf0TNZ6iV72M_l4qUb5hG-PeFKrUWubhBbmaQrRbWjZjXzn2G_Ehdqa3arf9MXelQj4BK-OUc9P_sp1GPwA_znjoRZ8D_6Gpohpn-tQP5BRfTaAu0Cfz7IAfWJhMgsE7HupdIk4KWGROBOVOxmDCcgawdOvGH-yHIEr87hCaUSlgJPjAUSHvD6QSO6ktgvj7GusnIpj1TAJHhnoA5suiSrLXdj-GvEO5IOtLZ4EiZZ2RWwW2VorN0a0Xb70Co8dAPs6fd6SrWtNmUk_HWu6Yl3XReR2DODuRwSzRtd5lQNqQTUVXTdVCIESUuMc7JeWDjXIUcZYXhg41GdI3sn4YeXxnn_Dw-IN1hUGx4QN7l1cLuYUgkkX_IIxtrHG7q5flywUcEy6P-8MImY1Dr1wPtyWa12S5Xu-Ump9bwYpVxf_X30sfM2NL38hs",
@@ -2449,7 +2480,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVRNb9swDP0rgnroBrhFPrrOyQ_YTjttt6EYFJuyBcuiIclx2yD_faRiB-7WphtyiPwkPj1S5DvIvdwuMznIrVSis6oA8cGhg0xoj624ViI4HEJE3wrcgxdDDSpef5SZDJ3cHmQ00QJFf0EPIYqvVpVAm9G0jJZqcPQ1UEwNnoDQO28CnwjNk9z-lFflplzs7gi42qgN5AWv9B2s9VI-ZLLy2LuSAiuvQpAT8KtAi8x3pXL6EW5cw59rtdQrpldFAS4ypPW93iwJ0piAWhEhKYTH-CtlTJgFHQlrMRp0LDMaawkACy3RBFJ6kI1JSqIHvuCRlnwFpZXJp6QwSaXMzHPiVL7ig2ep50wLOkhKlotjdmbd9aEeWbXyN6Og13hbKE3fzonzXX7_OZ8Rf5oRa4tD0jhRe1PVb3FH457mzFrrOz2TnM-IvdmfeV8UokZvntFdUvxnKdZzXiyakXZWhfMNI2fdvyzuuXlGxnkJCot9-ZpS7sELKi9xdmqfWuNvpe_V9HIbgCumPrj0UO831wutsX6_ov_7SuW_DEFoVRqkNznzI025NQ54xuSPGgRZBLmMCR34IAIUHmIQEQU5iODZC7cU_Q29M64SJQwioGpC2qZxpmHl_e8ROmHcGFaxK92ynxToArJhHUhhyQp3GCNy2pFsjys0Vj3UqoOU6CmhwZRURRqhPiXUkT12bCfM3wC_8K4nJnaP3tlTD5-Qk3tYtQNLm3sTTEwGNXqNIyOSXNnphEVshJruPZ-bw8eHY3YKpKIpoU_mm96ZdyqCOVm5daSWfG1a8MutFqv7m8XmZrXmLOV2kUk_7Seno8jY8f_xNw"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVRNb9swDP0rgnroBrhFPrrOyQ_YTjttt6EYFJuyBcuiIclx2yD_faRiB-7WphtyiPwkPj1S5DvIvdwuMznIrVSis6oA8cGhg0xoj624ViI4HEJE3wrcgxdDDSpef5SZDJ3cHmQ00QJFf0EPIYqvVpVAm9G0jJZqcPQ1UEwNnoDQO28CnwjNk9z-lFflplzs7gi42qgN5AWv9B2s9VI-ZLLy2LuSAiuvQpAT8KtAi8x3pXL6EW5cw59rtdQrpldFAS4ypPW93iwJ0piAWhEhKYTH-CtlTJgFHQlrMRp0LDMaawkACy3RBFJ6kI1JSqIHvuCRlnwFpZXJp6QwSaXMzHPiVL7ig2ep50wLOkhKlotjdmbd9aEeWbXyN6Og13hbKE3fzonzXX7_OZ8Rf5oRa4tD0jhRe1PVb3FH457mzFrrOz2TnM-IvdmfeV8UokZvntFdUvxnKdZzXiyakXZWhfMNI2fdvyzuuXlGxnkJCot9-ZpS7sELKi9xdmqfWuNvpe_V9HIbgCumPrj0UO831wutsX6_ov_7SuW_DEFoVRqkNznzI025NQ54xuSPGgRZBLmMCR34IAIUHmIQEQU5iODZC7cU_Q29M64SJQwioGpC2qZxpmHl_e8ROmHcGFaxK92ynxToArJhHUhhyQp3GCNy2pFsjys0Vj3UqoOU6CmhwZRURRqhPiXUkT12bCfM3wC_8K4nJnaP3tlTD5-Qk3tYtQNLm3sTTEwGNXqNIyOSXNnphEVshJruPZ-bw8eHY3YKpKIpoU_mm96ZdyqCOVm5daSWfG1a8MutFqv7m8XmZrXmLOV2kUk_7Seno8jY8f_xNw",
+     "pick": "a snowstorm over wheat",
+     "pick_hit": true
     },
     {
      "channel": "text",
@@ -2540,7 +2573,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVLBbqMwEP0Va3LorkQqmnQpcOw3rNRDVVXGDMGKsZFtQtso_94Zh7A97AHheZ55nnlvznCC-iGDGWqQYjRSofgV8SNmovNuEHdSBOvmEJ0fhDuhF3OPMt79hgzCCPUZoo4Gqfql195oexAv2rZ0G_XAMJ7QEkrATHU9esKYkeuPn1C_wqYtiqqoCNhgWapiz6euUlXxBG8ZHLybiLAGrRBu4btyxjHVpsvxAXO60PbIMZbF4x9OlEqhjQw15WO3LwnqXAJ6eW2QpnxPExNmsIuEDS5qZyn2GGisEAhDgwMxBer1DEedehm1MdLT5QcF_A5y8MlE19H0V2KV_sC9rN2qqtw_yYRM3Mvukq2cSp5wYeyk3y4dMeciwUo7YKun4SfvqsLCu7-QcuQGctfwt0cx0yPknQ4j-oCxF-SFCFGaY8iYmSzpjDxiEK20tATOpozGI37hPWU8I42WJTCtgOg0mjaIoA_9PRulnA2OV-FMfbbcZ3Qj6-xs0oLyeKDQyxEXCXkrdBt7CmcuyWCkpRvZpOYqZDPFmAzRVnmUAVfs6oeRDZpUngSSavFvTWeBb0mD8yiW5Vsz_4E_U8Nk_0_3dsnA0uawrtryoCQVfV1SpndTIM056UAZrArUdjKGVut2YK93-a7Y5tV2x8tOk-QZ-Nt92jSqjCP_L98"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVLBbqMwEP0Va3LorkQqmnQpcOw3rNRDVVXGDMGKsZFtQtso_94Zh7A97AHheZ55nnlvznCC-iGDGWqQYjRSofgV8SNmovNuEHdSBOvmEJ0fhDuhF3OPMt79hgzCCPUZoo4Gqfql195oexAv2rZ0G_XAMJ7QEkrATHU9esKYkeuPn1C_wqYtiqqoCNhgWapiz6euUlXxBG8ZHLybiLAGrRBu4btyxjHVpsvxAXO60PbIMZbF4x9OlEqhjQw15WO3LwnqXAJ6eW2QpnxPExNmsIuEDS5qZyn2GGisEAhDgwMxBer1DEedehm1MdLT5QcF_A5y8MlE19H0V2KV_sC9rN2qqtw_yYRM3Mvukq2cSp5wYeyk3y4dMeciwUo7YKun4SfvqsLCu7-QcuQGctfwt0cx0yPknQ4j-oCxF-SFCFGaY8iYmSzpjDxiEK20tATOpozGI37hPWU8I42WJTCtgOg0mjaIoA_9PRulnA2OV-FMfbbcZ3Qj6-xs0oLyeKDQyxEXCXkrdBt7CmcuyWCkpRvZpOYqZDPFmAzRVnmUAVfs6oeRDZpUngSSavFvTWeBb0mD8yiW5Vsz_4E_U8Nk_0_3dsnA0uawrtryoCQVfV1SpndTIM056UAZrArUdjKGVut2YK93-a7Y5tV2x8tOk-QZ-Nt92jSqjCP_L98",
+     "pick": "a snowstorm over wheat",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -2677,7 +2712,9 @@
       "font": false,
       "things": 0.5
      },
-     "ghost_hit": false
+     "ghost_hit": false,
+     "pick": "a snowstorm over wheat",
+     "pick_hit": true
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTBkqIwEP0VKnPFKVRE5LjfsFVz2JqaCqGBrCGhkjDOjOW_b3cExdWDXoTX3Y_XnX45sk9WLGN2YAXjkdPm4LyxXWQ-wUaHFrhnMXM9K47MS68A095aaZXUTfQmdYVRLzuCq8Ht8e2AJS1YBC5kxLD_ZsUf9lIlZcITBF7qtFznIjzVebJN2XvMGmsGpCzY9OEz8CGMMsSIRZBCjgGp9_SehB--cyFAe4JEku7WNUK1CUBntCGR8OU_esUFSbWyaYm-M14aTVK9VAoBUNAhj0OtR7aXQQtKx24Bo1_4pqCmyu9zgDqTP0TZDg2lXJSCgFxkARlIx_IUXxkHPbKRaJzVmW_s_kLZQSWHbk5aLUXON49Ja-nae43_c7qOh0YvlPk222Qzys2Msr-2PU3sOZ07kW_L8kqa3pAqxe0z_WPa7UyzbJNms5mu5-2bZuSsuV08fUrLKhPJY0ahzFC5R0JvKO9U1kuRbLezQ0pOuNq0QrRW7HcL0QG_EIkWJ-EiNEvkPFd7F9Meu-DBWvE9uKjiWkBkdEgqLcAPvGLSL1DmEAcwGCWqJagKK_GQXslHwmhnyKtHVFnNN94bHbzKLXnVtbyH8UzIurLyLbmPamLWW9P1ZCE_WD2pUJwGoWku5eB9cI83TaMehM42UrwERbdL9XdwHtsgKTgMF2w7GRBuInQMU11nLETjdl_yr-Bd6ri1t6kBPL2fYqbxIkDUDJ5GE3oK40Mi1qBgGh8r9KAU3g_TA-3DKllli2S3WK1pcqxIYmaneLgxsNL39H_6Bw",
@@ -2869,7 +2906,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVTbbtswDP0VgX3IBrhFmtap6-ftD_Y2FIUiUbYQXQxJTpoG-feRzqUGBvQp4iF5fHjLEXbQPlawhxakGJxUKH6EGLASJkUvFlIU9INDYUbnRDTC2ITGWcyLn1BBHqA9QrHFITH8Sih9VnJAchXrGdNj3pK1R1l6TASY2HHi9gDtX7jbGHwyKwLudK2fNT-a16ZuXuCtgi7FMWjKsYoZz-a7ii4y0VeuDVu21-t6U3OgVApDYciYxkyQiROgbaYiDywPP8r7VDDBHE7iKvCx2BgISZipppwJQ4ee_Jn0HmFrJ0ElIbN-cD0y3Sfb9YVsqgl6enOB9pOZnUwdR95EN82LatSEjCzp6VTdWI2L-0nGx1zT_6QetR39nBWXa1ObL9Z6xuokE4WZXIfmpjYm-xnDd9zy9UVOk7lwr2bcPsYr8bwHVMd3jDTf9XP9xfh4omE7G5B7DH96FPueBoUp88bR3ojA5AJVH8mkNej6Cc7WUZcETyM_EB-nsqRFZtcOk-hIirDOjd4GWTBPaZr39CCoMXpK-73DcOYrkr6ZEb2QHHr90GGxQ6F6GTrUbNskSHrK-MBrqmLIkQ_gSCVrLrnEgVeM7oibcWlM7vkwWhhIDl-E1aUnc88pFQx0bgOv6D7ZgiKeBXlaH8sd3oylTItpotM3-7yTTm7QkWsMF6dUly2mc4nA47qG-JjolKc1y_PAGQ6nt1MFgc6Dh2EDlySkUHKHwJ6OYC4a2kB_CXQy1wfvw2q5Wt8vX-9XT1wwtMsK0tU_XRBlloF_T_8A"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVTbbtswDP0VgX3IBrhFmtap6-ftD_Y2FIUiUbYQXQxJTpoG-feRzqUGBvQp4iF5fHjLEXbQPlawhxakGJxUKH6EGLASJkUvFlIU9INDYUbnRDTC2ITGWcyLn1BBHqA9QrHFITH8Sih9VnJAchXrGdNj3pK1R1l6TASY2HHi9gDtX7jbGHwyKwLudK2fNT-a16ZuXuCtgi7FMWjKsYoZz-a7ii4y0VeuDVu21-t6U3OgVApDYciYxkyQiROgbaYiDywPP8r7VDDBHE7iKvCx2BgISZipppwJQ4ee_Jn0HmFrJ0ElIbN-cD0y3Sfb9YVsqgl6enOB9pOZnUwdR95EN82LatSEjCzp6VTdWI2L-0nGx1zT_6QetR39nBWXa1ObL9Z6xuokE4WZXIfmpjYm-xnDd9zy9UVOk7lwr2bcPsYr8bwHVMd3jDTf9XP9xfh4omE7G5B7DH96FPueBoUp88bR3ojA5AJVH8mkNej6Cc7WUZcETyM_EB-nsqRFZtcOk-hIirDOjd4GWTBPaZr39CCoMXpK-73DcOYrkr6ZEb2QHHr90GGxQ6F6GTrUbNskSHrK-MBrqmLIkQ_gSCVrLrnEgVeM7oibcWlM7vkwWhhIDl-E1aUnc88pFQx0bgOv6D7ZgiKeBXlaH8sd3oylTItpotM3-7yTTm7QkWsMF6dUly2mc4nA47qG-JjolKc1y_PAGQ6nt1MFgc6Dh2EDlySkUHKHwJ6OYC4a2kB_CXQy1wfvw2q5Wt8vX-9XT1wwtMsK0tU_XRBlloF_T_8A",
+     "pick": "a cat in a lantern shop",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -3008,7 +3047,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVRNb9swDP0rgnroBrhDnARdk_N62H23oSgYm4qFyJIhMXXTIP99pO247pJiO9l6Ip8eP4_6Ra_zTLd6rUE1DgpUXwhfKVMmhlrdgiKsG4fK7J1TwShjIxpnMd1-1ZlOjV4fNVlyyAw_7Iv1qB6LKvAd2VrAcp92fGoRqMLIQCKISXx3B73-rW_MDGcPhoGb1fy7yVfyhwU-bJb6KdPbGPa-7NyCR30GnovggrDdQP7QO1m_k_MCcjMXQygK9CSQMfdmlTNkQgeUNnGoB9HIoT53YTMs5qww03UgG3z3pnWOAXRY82VivUe9s52ewoVCAnudenJEZ8UcoH0T2mq_FTmj4DHegu1YTn7KRtKG34M4sBqIdw4NDbxViPaNZX1KnOMclst34vmEGByNvFNOu63eCWss7b6eUo4VuaI1IbiBMTLNdcpUQ5fBkXGo7FWRFBEnsU9Z_07qpdSxDwbixYS4ALpWqY9SyfrDlHCxWcASrsfe8qfue-N_KsU1_ViqsUmvcFOIRfVJGv5Vr8vs8gg5HkppXf3TK55BVSFEklmWgxf2rPvtJ_02qbbiAcGYFPIk8xXnflt1JjK7zpLi2f3Gr_wSiNvg3SNhEZGSojDap0zVwLFtBalVCZ6XTGupZ5RMCtXjC8aDcghGVcGVSQE7h3jIVAuWxNuE2HlEsF74W0iVYi3QAot5kph9CrKIjpygEid92a0OnnuIMrGpggaHYZPNZEuq-OghxtAy0PDma2RPtNESqtBnreYaWqnpZk_UbQeMkHAE-uXgYINucgfFsEp6QMp8NqlDRNUPfJpaTvBL-6458NK-b5rT0ynTnneaVNt6ycKkslput3wludJrzxudd935R1pvPpvf381Wd_OFpEmvZ5mO5_tu-7EnNfI9_QE"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVRNb9swDP0rgnroBrhDnARdk_N62H23oSgYm4qFyJIhMXXTIP99pO247pJiO9l6Ip8eP4_6Ra_zTLd6rUE1DgpUXwhfKVMmhlrdgiKsG4fK7J1TwShjIxpnMd1-1ZlOjV4fNVlyyAw_7Iv1qB6LKvAd2VrAcp92fGoRqMLIQCKISXx3B73-rW_MDGcPhoGb1fy7yVfyhwU-bJb6KdPbGPa-7NyCR30GnovggrDdQP7QO1m_k_MCcjMXQygK9CSQMfdmlTNkQgeUNnGoB9HIoT53YTMs5qww03UgG3z3pnWOAXRY82VivUe9s52ewoVCAnudenJEZ8UcoH0T2mq_FTmj4DHegu1YTn7KRtKG34M4sBqIdw4NDbxViPaNZX1KnOMclst34vmEGByNvFNOu63eCWss7b6eUo4VuaI1IbiBMTLNdcpUQ5fBkXGo7FWRFBEnsU9Z_07qpdSxDwbixYS4ALpWqY9SyfrDlHCxWcASrsfe8qfue-N_KsU1_ViqsUmvcFOIRfVJGv5Vr8vs8gg5HkppXf3TK55BVSFEklmWgxf2rPvtJ_02qbbiAcGYFPIk8xXnflt1JjK7zpLi2f3Gr_wSiNvg3SNhEZGSojDap0zVwLFtBalVCZ6XTGupZ5RMCtXjC8aDcghGVcGVSQE7h3jIVAuWxNuE2HlEsF74W0iVYi3QAot5kph9CrKIjpygEid92a0OnnuIMrGpggaHYZPNZEuq-OghxtAy0PDma2RPtNESqtBnreYaWqnpZk_UbQeMkHAE-uXgYINucgfFsEp6QMp8NqlDRNUPfJpaTvBL-6458NK-b5rT0ynTnneaVNt6ycKkslput3wludJrzxudd935R1pvPpvf381Wd_OFpEmvZ5mO5_tu-7EnNfI9_QE",
+     "pick": "a temple full of fireflies",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -3258,7 +3299,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZRNb9swDIb_iqAcugFOkThI1_i8y4AddxuKQpEoW4g-DEmOmwb57yMd28nWYvDBIiU95ssPn_mRV-uC97zigrVWSGBffPBQMB2DYw-C5SiMZymLbIJnIjNnlDd1kx--8oKnlldnnk22gIjvXTqwn2J_isbnBrezceRX6EerB5EbiOjQoabLhxOvfvMFrOhBx0Lt6KGV3tLDXwpex9B5hZeMBD6ZrzLYQKTFXsNGl7hh_IHsjVjrkg4KKcFncmn9pHdrdOkwOBqBPAwO3vLroBl9FnRGnwskE-0ICTWlhD6w4JCUMNYzP5ghFnsn8g1t-hQqK_iJ-CGad6SgQvNO8KarKaI55lmwRC0YUXkpZjKlex_6kTuGRdQxDzPUgTKdu8dqrZ8BbtjNHVba0KkRqkVcRirhFC-ub9zkhLV_R_tNbPUNu73D5jh88DPqv_F-4EqtnuXuc64LQ_4-pJZa5r8ZGCs9ItcXbCBrPFDx-A_PsP_YXLuCtdiQiVkQiimAFiJDfxhOYYs-IugXLseS4BBEyLKBxHLoRVRpOEihFuwEmXk4IkHEaI6QpsuUocT6xiTCCy8N6mEJJLIINDMeqdll8CnQLJ1RpLprzIxDSdaY4NSIluzWDDntjcJWrOhN5Whxdlvq9D6aDCxcdTsRa0NZ3Xc5D02ug1Wzfe1vTA5Y3Or8uCnkOBFYzMCpRNMRF-I18vtTN-fl5VJwjzNGqTee5KD8QH8AFkNwnPZr3CTZvPKdtTh_04KaoFyVT8vVblluSDGvVgWP0_4wjngzt_S-_AE"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZRNb9swDIb_iqAcugFOkThI1_i8y4AddxuKQpEoW4g-DEmOmwb57yMd28nWYvDBIiU95ssPn_mRV-uC97zigrVWSGBffPBQMB2DYw-C5SiMZymLbIJnIjNnlDd1kx--8oKnlldnnk22gIjvXTqwn2J_isbnBrezceRX6EerB5EbiOjQoabLhxOvfvMFrOhBx0Lt6KGV3tLDXwpex9B5hZeMBD6ZrzLYQKTFXsNGl7hh_IHsjVjrkg4KKcFncmn9pHdrdOkwOBqBPAwO3vLroBl9FnRGnwskE-0ICTWlhD6w4JCUMNYzP5ghFnsn8g1t-hQqK_iJ-CGad6SgQvNO8KarKaI55lmwRC0YUXkpZjKlex_6kTuGRdQxDzPUgTKdu8dqrZ8BbtjNHVba0KkRqkVcRirhFC-ub9zkhLV_R_tNbPUNu73D5jh88DPqv_F-4EqtnuXuc64LQ_4-pJZa5r8ZGCs9ItcXbCBrPFDx-A_PsP_YXLuCtdiQiVkQiimAFiJDfxhOYYs-IugXLseS4BBEyLKBxHLoRVRpOEihFuwEmXk4IkHEaI6QpsuUocT6xiTCCy8N6mEJJLIINDMeqdll8CnQLJ1RpLprzIxDSdaY4NSIluzWDDntjcJWrOhN5Whxdlvq9D6aDCxcdTsRa0NZ3Xc5D02ug1Wzfe1vTA5Y3Or8uCnkOBFYzMCpRNMRF-I18vtTN-fl5VJwjzNGqTee5KD8QH8AFkNwnPZr3CTZvPKdtTh_04KaoFyVT8vVblluSDGvVgWP0_4wjngzt_S-_AE",
+     "pick": "a rocket launch at dusk",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -3385,7 +3428,9 @@
       "things": 1.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVTbbtswDP0VQX3oBjhDLk2a5G3_0LchKBSJsrXIkiHJc7Mg_z5SsV1vywb0KeYheXIOJerCf_D9ouAd33PBGisksE8J3lLBdPA1exQsBWEci0kk4x0TidVGOVNW6fEzL3hs-P7Ck0kWkOKFaqM1CjCVTE3YUI5IByJVEBDUvizP1H468_03_gBbEFoj8CCfpFLP9LXbHufrNT8UvAy-dQrbjCTiW_gqvfXE9XDUsNJLTBh3onglFnpJhUJKcIkgrTd6t0BI-wxUAvlQIjp9za4Ro1oUV_Dak1VEAkT0FSNiYKHGfES1F34yWU2eDObeyJAIMwuaXKKjQTEaND-Ju2pLEjRK1ms9h01GWhK0vhYjbT_qnnhUdY-2BmXa-n_EywlxPgbbn8UgOvQx0Vf4_U4ea2HtlLs_kJF7NeGW1svTPckf5FxMOFMA-IfSPwfxF6_Uait39wd8xFo_DvgDA4D5s1jr-8OVYpjq5BpY373TJePOU7bVcSWexNQ6XnVrHNAl4y8VsM4Hq5iJTND-lcC0Dww3iH33bXBw_oLNX63NkAogaqx0imkQAb8CEgSTEjiGi0s1-cJSE5HnE2OdMCmOvIDdXv_-FwcS6KKnBb-gF5W9-IbWxzsKhisVK9FQ3Jg8ts6oVGHY3Z6DBt-ThnaPRMEgqRahzEt0bFPKS6e9VWN82zcrjmAx1bo-KWS_oXgJPKdTGEpqH3qfcVr3DvPr4Vpwh4tPU8YyVIdiYPDd91JRiRXknu9day2-C8MHnfdyvtzM5rvZckXO-X5e8DDk8zOBnamh3-sv"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVTbbtswDP0VQX3oBjhDLk2a5G3_0LchKBSJsrXIkiHJc7Mg_z5SsV1vywb0KeYheXIOJerCf_D9ouAd33PBGisksE8J3lLBdPA1exQsBWEci0kk4x0TidVGOVNW6fEzL3hs-P7Ck0kWkOKFaqM1CjCVTE3YUI5IByJVEBDUvizP1H468_03_gBbEFoj8CCfpFLP9LXbHufrNT8UvAy-dQrbjCTiW_gqvfXE9XDUsNJLTBh3onglFnpJhUJKcIkgrTd6t0BI-wxUAvlQIjp9za4Ro1oUV_Dak1VEAkT0FSNiYKHGfES1F34yWU2eDObeyJAIMwuaXKKjQTEaND-Ju2pLEjRK1ms9h01GWhK0vhYjbT_qnnhUdY-2BmXa-n_EywlxPgbbn8UgOvQx0Vf4_U4ea2HtlLs_kJF7NeGW1svTPckf5FxMOFMA-IfSPwfxF6_Uait39wd8xFo_DvgDA4D5s1jr-8OVYpjq5BpY373TJePOU7bVcSWexNQ6XnVrHNAl4y8VsM4Hq5iJTND-lcC0Dww3iH33bXBw_oLNX63NkAogaqx0imkQAb8CEgSTEjiGi0s1-cJSE5HnE2OdMCmOvIDdXv_-FwcS6KKnBb-gF5W9-IbWxzsKhisVK9FQ3Jg8ts6oVGHY3Z6DBt-ThnaPRMEgqRahzEt0bFPKS6e9VWN82zcrjmAx1bo-KWS_oXgJPKdTGEpqH3qfcVr3DvPr4Vpwh4tPU8YyVIdiYPDd91JRiRXknu9day2-C8MHnfdyvtzM5rvZckXO-X5e8DDk8zOBnamh3-sv",
+     "pick": "a train station at midnight",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -3523,7 +3568,9 @@
       "things": 0.5
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVRbbtswELwKsflIC8iAYwcFohv0DIUR0NLKIkxyBXIVJzV89-5KZmrDH03bwB_iPjieWXJ4hBeoHyo4QA3WDN42aL68YMOUKtMlCubeGk7WRZPZsqNoLJvg2uh2Pd9_hQryAPUR2LFHAfkeGZOjJAV2QTORKEp0QMs9JknkUeO8f4P6B9x1j91Tt5LEHS67dWd11T7pDzYV7BKNsZVNB6IWSvzckCeFKp0VuLjXeL1c4fpRYts0GPmqpaMp0bosOt-UIL7y86RZ0tqOSjuQylSe7LyXBHoMUsxC9wh7N9ORDx2k-CqBx45lKXoKX5HnfipqwNaNQeJbxo10Cp-HU_WO2vTWpTOozLj1uPg0bLZbOaAr7KRn-Cng3obhjH0J2sv6XyG3RPvb-f4PYu7Rd1cT-BPoBLG-PCAKwzhfk48Su6HREqW_mdUMUMmMt-ilRANGuOTkqSmT2hIzhQ9emgJsm3LhkY2a1kyWPW20KWZSXx9lf4vv_6DmoaixP0vIvR00HmbPHFzL_eSTVqc8yEsyqPkSWiWzHQUlFjElnh1WdIqujHBBb06o8tISKKGZTJMvG3-nb7snG9x2z-44bU4VRHkVlNnIk2TJ7ISXDgPqOHovL0RZ6PhXy9W3xfJpsVrrFKBeVpBKfXozZCcP-j39Ag"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVRbbtswELwKsflIC8iAYwcFohv0DIUR0NLKIkxyBXIVJzV89-5KZmrDH03bwB_iPjieWXJ4hBeoHyo4QA3WDN42aL68YMOUKtMlCubeGk7WRZPZsqNoLJvg2uh2Pd9_hQryAPUR2LFHAfkeGZOjJAV2QTORKEp0QMs9JknkUeO8f4P6B9x1j91Tt5LEHS67dWd11T7pDzYV7BKNsZVNB6IWSvzckCeFKp0VuLjXeL1c4fpRYts0GPmqpaMp0bosOt-UIL7y86RZ0tqOSjuQylSe7LyXBHoMUsxC9wh7N9ORDx2k-CqBx45lKXoKX5HnfipqwNaNQeJbxo10Cp-HU_WO2vTWpTOozLj1uPg0bLZbOaAr7KRn-Cng3obhjH0J2sv6XyG3RPvb-f4PYu7Rd1cT-BPoBLG-PCAKwzhfk48Su6HREqW_mdUMUMmMt-ilRANGuOTkqSmT2hIzhQ9emgJsm3LhkY2a1kyWPW20KWZSXx9lf4vv_6DmoaixP0vIvR00HmbPHFzL_eSTVqc8yEsyqPkSWiWzHQUlFjElnh1WdIqujHBBb06o8tISKKGZTJMvG3-nb7snG9x2z-44bU4VRHkVlNnIk2TJ7ISXDgPqOHovL0RZ6PhXy9W3xfJpsVrrFKBeVpBKfXozZCcP-j39Ag",
+     "pick": "a temple full of fireflies",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZOxjtswDIZfRVBWX-HETZpkKTp26NQCHYrDQZYpW4gsGRJ9vjTIu5d0nMRFDu1kkRQ_kxT_k3yV-2UmB7mXSmBU1ouECm3wQqFobeVt3aDMZOrk_iTRogO6-3268wXFt_sdtC0Hr-YAChuI7AkemHE4yv0vudia7XqXk2Ox_LQ0heKT3m5Xm0I-Z7KOofcVZRkXQpRXx4sOLjBsAetyveUk6w9sF2ZZrjTZSmvwyK4c8op_YMJoVzZ1Th25RHjDFzprLpRvA_-hDdwNeRJa58gBDloKJir3JA92LGeaC0Xf5rnHuZHsbwY3fc39PlasqRMqaHnObljtgj5MUAcGJ2RDQ7wDnYp_E83a5FC-Txyf8ZHownAHtlDZvp0Tc1huPu7uxGJGTLZ-Bzg91I2ZWjUO74Zcm0JvzR25miGdarsJGad9eWz7gfivQXbBwWORZUAM7f8aL_ScSUvorAd-ffmjgUkXjUqiBKADRBAmxJs8xGCxEYqUA6o6itgcsWk_EPErXrJoUHytUymBryEmYWJoRWWNIZbnSMQkghEkGDGE6CpO_9koZjsnLBLE-lp42t_PrBIdfOKGSZTJVjDvFFlttPQq8l6lRnVsdpfNHmyFDZkDJ2Wyozo6HLdDH8a_VxfRlT3RWBK9nxb04rlIwqkS3Dyo9KSgycPvcr30amEQbaChVYDKujS_zw3J8_M5u5xo4qFH7mgs5qo5jtcU5Mbl3vfOkWivB378Vb7aPOW7p1XBLct9nsl4jY8ypkzs-Hv-Aw",
@@ -3763,7 +3810,9 @@
       "font": false,
       "things": 0.0
      },
-     "ghost_hit": false
+     "ghost_hit": false,
+     "pick": "a volcano at dawn",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -3906,7 +3955,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTBbtswDP0VQT1kA9wicdK0zW2HHXfbbSgKVaJiIbJkSHLdLMi_j1Qc10lTLPDBFi0-PT6Kb8ff-GpW8I6vuGCNFRLYtwTvqWA6-JpNau-U2E6-84LHhq92PJlkAXf_6MQGnHFr_JNMTaHahz7QgUgVBIzF1gUTgdI3W776w29gqufwhIGb1xJKrelLT2EhFX8u-Dr41ilMNJKSDssX6a0ntBulYakF_jBuQ2uhZrpc4FpICS5RCKb4LDGkfQ5UAvGQIxb1kgvEmAWdMFb7ZLwjltZ3uAYLNaJE5LnjG5N5IO0og2iwmoK_Y4DOyQss50gXqzN_swSgTFvjemCstX4CkSMt8ZnviwG7w1c-mHC1CLc9r-35uT16Mm47xn4sH2YPI-xyhF2bEPxFzsOpX3IeJLyAiw29RoiqXcMYUj3CAhYfkLMRpLRebkYqBLOu0he4VoRT4HOuY-CYAkCyPdwl-P9rgTcOQF_unxRH3FHjziHPmzYv6blMmPheKcRFpofZ6IHvR8BZg8q3Ea65EefNg3so1cl9wEm1xgFNCv91GHsWQFuQKTIcfSZN2k4io8FiKoCo4x3m_8Y_eIGYiQxdAZMKhtM5JDCRTSVv_fkGYct6SynyFhwJ1lUm4kxE5jVDY4qsETHdkXNI76Ina9phGSor7xsafO_gqACVWOFM4box1pJTGZWqLIGikhs0vYZcowsmAfMuH1zjpTN07V_blLJhtE57q4bIwTGseAV78EFg1MqYjan3mCHKqS8nez-68zlj1Ln9877gDn2MVDeOqkSGQFJkBWmMIqdNa9xBkvCVa61Fozt-0F0op-Xydvp0W85JDr6aFjwc_2fvw8zU0Hv_Dw"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTBbtswDP0VQT1kA9wicdK0zW2HHXfbbSgKVaJiIbJkSHLdLMi_j1Qc10lTLPDBFi0-PT6Kb8ff-GpW8I6vuGCNFRLYtwTvqWA6-JpNau-U2E6-84LHhq92PJlkAXf_6MQGnHFr_JNMTaHahz7QgUgVBIzF1gUTgdI3W776w29gqufwhIGb1xJKrelLT2EhFX8u-Dr41ilMNJKSDssX6a0ntBulYakF_jBuQ2uhZrpc4FpICS5RCKb4LDGkfQ5UAvGQIxb1kgvEmAWdMFb7ZLwjltZ3uAYLNaJE5LnjG5N5IO0og2iwmoK_Y4DOyQss50gXqzN_swSgTFvjemCstX4CkSMt8ZnviwG7w1c-mHC1CLc9r-35uT16Mm47xn4sH2YPI-xyhF2bEPxFzsOpX3IeJLyAiw29RoiqXcMYUj3CAhYfkLMRpLRebkYqBLOu0he4VoRT4HOuY-CYAkCyPdwl-P9rgTcOQF_unxRH3FHjziHPmzYv6blMmPheKcRFpofZ6IHvR8BZg8q3Ea65EefNg3so1cl9wEm1xgFNCv91GHsWQFuQKTIcfSZN2k4io8FiKoCo4x3m_8Y_eIGYiQxdAZMKhtM5JDCRTSVv_fkGYct6SynyFhwJ1lUm4kxE5jVDY4qsETHdkXNI76Ina9phGSor7xsafO_gqACVWOFM4box1pJTGZWqLIGikhs0vYZcowsmAfMuH1zjpTN07V_blLJhtE57q4bIwTGseAV78EFg1MqYjan3mCHKqS8nez-68zlj1Ln9877gDn2MVDeOqkSGQFJkBWmMIqdNa9xBkvCVa61Fozt-0F0op-Xydvp0W85JDr6aFjwc_2fvw8zU0Hv_Dw",
+     "pick": "a volcano at dawn",
+     "pick_hit": false
     },
     {
      "channel": "vector",
@@ -4034,7 +4085,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVRNj9sgFPwriD1sKzmV18lG2dzae3vqrYpWODxsFAwW4PVmo_z3vkfilOxHW19shsd4ZuBx4E98fVfwka-5YL0RW2CfnmAbnS-Y8q5jt52zUuxvP_OCh56vDzzqaADrvztvtW0Qj7ojoLsAI4jYgkcsDNbopo20erfn61_8RioApRC4UZVaKpG-FH4pvil4491gJa5svAiBT8Dj1hlHhH-Wa7uj8Xw1xwfHYrsFGwkqy3pelggplwC04EgmPMfH5BExqkWFBU5G7SxJjdoYBMBAh5MBxR74TicxaANnnvN1aIZH15Mx_ZLsg9RDh-OLVHR1r1YJGZKQOT8WF87JILEq4WcGVDzznkO4UIdOJGlvQ5iY73NmZdyYNBJ1RvsPuRL1ypx0mZP24IObUvDnPf2fECq1uAqhyllr7eV7yaKDv9jH01Iv7zLORc4ZPUCWa671dbDvhfAq2cWHyX4s2AjfwLVg-bAqr0PAw260BTpn_GcLTGjPdMCug9B-wdJvGE1g21b7nmnLWuHxHO9p5itr8NcGWI1OX_CFPw80QTSj80YmIjzOINmoY8uMVkAFP0QcPDD0aAIL4MEivCFZNrjU1afdjM4mH1PrtqKncX_qkFHL2FIaQxr2eE_0ZGr0OgJzlmHzsw4z0HRe6iHG1GDRNY2BC3JqMCNqMKfLAxgu70Jq5XNPCilT_FMVZgMxLzgBeQnur8sr0vi4OeJNgj8kr3xtUTh2_vRBO1uV1XJWPswqukpQWllwP82nuwBXxp7ex98"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVRNj9sgFPwriD1sKzmV18lG2dzae3vqrYpWODxsFAwW4PVmo_z3vkfilOxHW19shsd4ZuBx4E98fVfwka-5YL0RW2CfnmAbnS-Y8q5jt52zUuxvP_OCh56vDzzqaADrvztvtW0Qj7ojoLsAI4jYgkcsDNbopo20erfn61_8RioApRC4UZVaKpG-FH4pvil4491gJa5svAiBT8Dj1hlHhH-Wa7uj8Xw1xwfHYrsFGwkqy3pelggplwC04EgmPMfH5BExqkWFBU5G7SxJjdoYBMBAh5MBxR74TicxaANnnvN1aIZH15Mx_ZLsg9RDh-OLVHR1r1YJGZKQOT8WF87JILEq4WcGVDzznkO4UIdOJGlvQ5iY73NmZdyYNBJ1RvsPuRL1ypx0mZP24IObUvDnPf2fECq1uAqhyllr7eV7yaKDv9jH01Iv7zLORc4ZPUCWa671dbDvhfAq2cWHyX4s2AjfwLVg-bAqr0PAw260BTpn_GcLTGjPdMCug9B-wdJvGE1g21b7nmnLWuHxHO9p5itr8NcGWI1OX_CFPw80QTSj80YmIjzOINmoY8uMVkAFP0QcPDD0aAIL4MEivCFZNrjU1afdjM4mH1PrtqKncX_qkFHL2FIaQxr2eE_0ZGr0OgJzlmHzsw4z0HRe6iHG1GDRNY2BC3JqMCNqMKfLAxgu70Jq5XNPCilT_FMVZgMxLzgBeQnur8sr0vi4OeJNgj8kr3xtUTh2_vRBO1uV1XJWPswqukpQWllwP82nuwBXxp7ex98",
+     "pick": "a cat in a lantern shop",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTBbtswDP0VQb06RZoU2Zbrzr0N2GEoCtmiLSGyaEjynCzIv4-U49hDcihmHiw-UQ-PFKmz_C33L4Uc5F626LU6yULGTu7PMtnkgOC3DIs3DN76hraTbSGHT8AAKhkIhMXe-8xwOMn9L_mkKzYCnmr-xgWUlZbvhWwC9l7TqSaoGOUEfFTokMmedvmjDesP7L_mj3xVVeATQ-WWjaAaM6Bt7FxOIsExfdC6Yq3BNiYR2GKy6Floss4RAA5aooqk9iwPNsuJKQAkp9qOAo4EOKj58ClLzZopQ_snFwG07Vvyb6IpzVf9JSM9S3q5FDOzwYmTE6CSfZYVdmwz63bB2irrSjxeiadUP8er12yP1Wpsrpy1CqtFERwOM2ey-cZvjF_XbI8ZSxu0wT7Cgnep19B6Zo6tync0i92xzdSbJTXi4f9Kq7dkS73Ums564J6QPwyIyqaTGNQBoug7MdhkhBLcZtE807nvhlopCqwFDYG4ToWoCcyAsoGjfmJwOkedIJI8HikVQNQ8MSKhaOGZh6JCH5Hn7kyK9bJ3E3p23dWNRnXsd2MjD1YnQ-7AhwrZBWw7Hogh2AQC_ShOhcZ62i77lPIcUG3w5o9T4FQJbpxvENyxMU_cdXBuqOTi_xPLV3Afmy_mLpZ66z6UG-6elXrmASuh8vJ-KaSnOeebsp7rRZnCdBWjdo5pKIBrK_e-d46egWnBnbNZb3ar9bfVhp8RKsG6kGHazw8DnUwd_y9_AQ",
@@ -4249,7 +4302,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZPJbtswEIZfhWAOaQE58B7bt176BL0VQUBTI4kwRQokVcUx_O79R7ZkBQh0MGf7POtF_pOHRSY7eZBKNFZpEj-cd5SJIvhaPJfBUPH8U2YyNvJwkckkS3D-rYKHMpmapbyNJ0gdqVRRgKLwJYeczvLwVz4Vr7TRRyieaKFXesWvo97v9jv5lsky-NblCDKa5CC-a289k55ozR8Mxp1Y3uhVvtlCVlqTS72qWKuthqrwvaJS4CE5-kjvfU3QWSoSdLVPxjvIMRlroSBLNTARiV7kyfSJ3LL_wIv_AQVl8sxYH8wnglGY-WRm1Zac8SPVoTqNEpDI4pqNzFiZ5g4tVJjd0-mxpqwezJpy09ZTqlpvi766b6gpEE2oAagBe2_rCI616gseubs1fw_uZsI9epXu3CnT-u4BtCp8LV9vd_vX7QO4nAD1yJtU_gWXjDtPaeOcx7KxK9Y44lHJXwJDEhhASbnA0gntVUzCmhMJJbT16vSC2D-wcOdFTN7DES3IRDQWYxWqVMYhhqNrE1McAripUXSViQ0F4CPpQCmK5HvfSOqF91Z7Fz0fwwUl5DRpVcIB8VWowFcRK9Ww2NwWrjN5qiB2HJPJBmfW8NJ2wSQS3t3yQW8Nb9qxTanf18LbfJRv22rVkSxMrbsblb4vNwbvJXd_cKl9uDUiTt1Grby-XTPpcC_cW3QFufV59HvAthIGrlkeXIseynp48HCX8-V2Nt_Plrz7yG2eyTDY-8tCZGr49_of"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZPJbtswEIZfhWAOaQE58B7bt176BL0VQUBTI4kwRQokVcUx_O79R7ZkBQh0MGf7POtF_pOHRSY7eZBKNFZpEj-cd5SJIvhaPJfBUPH8U2YyNvJwkckkS3D-rYKHMpmapbyNJ0gdqVRRgKLwJYeczvLwVz4Vr7TRRyieaKFXesWvo97v9jv5lsky-NblCDKa5CC-a289k55ozR8Mxp1Y3uhVvtlCVlqTS72qWKuthqrwvaJS4CE5-kjvfU3QWSoSdLVPxjvIMRlroSBLNTARiV7kyfSJ3LL_wIv_AQVl8sxYH8wnglGY-WRm1Zac8SPVoTqNEpDI4pqNzFiZ5g4tVJjd0-mxpqwezJpy09ZTqlpvi766b6gpEE2oAagBe2_rCI616gseubs1fw_uZsI9epXu3CnT-u4BtCp8LV9vd_vX7QO4nAD1yJtU_gWXjDtPaeOcx7KxK9Y44lHJXwJDEhhASbnA0gntVUzCmhMJJbT16vSC2D-wcOdFTN7DES3IRDQWYxWqVMYhhqNrE1McAripUXSViQ0F4CPpQCmK5HvfSOqF91Z7Fz0fwwUl5DRpVcIB8VWowFcRK9Ww2NwWrjN5qiB2HJPJBmfW8NJ2wSQS3t3yQW8Nb9qxTanf18LbfJRv22rVkSxMrbsblb4vNwbvJXd_cKl9uDUiTt1Grby-XTPpcC_cW3QFufV59HvAthIGrlkeXIseynp48HCX8-V2Nt_Plrz7yG2eyTDY-8tCZGr49_of",
+     "pick": "a lighthouse in fog at noon",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -4351,7 +4406,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=XVPBbtswDP0VQTl0A5wicVqv8R_sOgzoYSgKWaZsIbLkSXKdNMi_j5QTx93J4iP9RD4-nfkHL7cZH3nJBeuNkMC-RTjGjCnvOvbQeA3q4TvPeOh5eeZRRwNY_Nrq0IMPzCkWW2Cv2tZYFHVH2XoIB4xGEJjzCATrRuI4nHj5h69go3K1RWBV5PvnHwWdZCGe6pq_ZbzxbkC2Eg8iBH4D3qUzjshWlYKdyjGh7YHindiqHDAWUoKNBClVqD3doFwCWjH1h6O9pzER87ppI4Kdi9pZ6jJqYxAAAx3yBOz1zA869YKtG23pkiNGdA0OlvETcTuvP5EA59OfRNwODRXO_apntYEiIQN1s71kM--In6TNcdFRYsXznbKDWg_dF1KlXgDupPmCtL93qoRfL2mv4s7EoRNp5plXqvpF7u-8zwveClIt8RpQN0oz7Xbii9qelnS7aieexHJ23DApSery32gdUoCN__mpFyE-4l9UQOZh0n1QmnJBG5SfgfCxpZqfNsF_Bw3oW8FayrC0TFahBQMV_cKVdhV4vElENoqAleleioBJYbH2kewnnQ2OTH7Gmeo0k-vJO85SYK5ihlb0kLROmoy6jm3aZ03S9_h6ejLe6HUE5qYWO-EbTUaphhiT5ZQz9RxPhjMCZcbUYK9JIa_-xMU5Tuu4lXTOo1TTsueqO3h5u2TcouUR1ZaGSV1cLYe5Bi-kiXlpB2PwJdwOtOx8kxfrzX6d72haXm4y7m_59Dbwz9jT9_IP"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=XVPBbtswDP0VQTl0A5wicVqv8R_sOgzoYSgKWaZsIbLkSXKdNMi_j5QTx93J4iP9RD4-nfkHL7cZH3nJBeuNkMC-RTjGjCnvOvbQeA3q4TvPeOh5eeZRRwNY_Nrq0IMPzCkWW2Cv2tZYFHVH2XoIB4xGEJjzCATrRuI4nHj5h69go3K1RWBV5PvnHwWdZCGe6pq_ZbzxbkC2Eg8iBH4D3qUzjshWlYKdyjGh7YHindiqHDAWUoKNBClVqD3doFwCWjH1h6O9pzER87ppI4Kdi9pZ6jJqYxAAAx3yBOz1zA869YKtG23pkiNGdA0OlvETcTuvP5EA59OfRNwODRXO_apntYEiIQN1s71kM--In6TNcdFRYsXznbKDWg_dF1KlXgDupPmCtL93qoRfL2mv4s7EoRNp5plXqvpF7u-8zwveClIt8RpQN0oz7Xbii9qelnS7aieexHJ23DApSery32gdUoCN__mpFyE-4l9UQOZh0n1QmnJBG5SfgfCxpZqfNsF_Bw3oW8FayrC0TFahBQMV_cKVdhV4vElENoqAleleioBJYbH2kewnnQ2OTH7Gmeo0k-vJO85SYK5ihlb0kLROmoy6jm3aZ03S9_h6ejLe6HUE5qYWO-EbTUaphhiT5ZQz9RxPhjMCZcbUYK9JIa_-xMU5Tuu4lXTOo1TTsueqO3h5u2TcouUR1ZaGSV1cLYe5Bi-kiXlpB2PwJdwOtOx8kxfrzX6d72haXm4y7m_59Dbwz9jT9_IP",
+     "pick": "a snowstorm over wheat",
+     "pick_hit": false
     },
     {
      "channel": "vector",
@@ -4469,7 +4526,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVTLbtswEPwVgjmkBZTAL_l166E_UPRWBAElrSTCFCmQlB3H8L93lon8CNCeRA6Xw9nZXZ3kXm6nmTzIrVSiN6ok8W1PZXQ-E7V3nXhsvKb68bvMZOjl9iSjjoYQ_tNQcwQadcfbagg77A6kYkseQE9RmcDXdke5_SMf6jqvlgWAh2qy2aynvFLzFZbyJZONd4OtcC9EZ0mOwGvpjGO6h2KyzjcrHGi74_2CZuv5AntVlmQjQ8t6XuUM1S4BrQIjFNJbfE25AStcjK4D2rmoneUHjTtgT4Y68ARoPcmdTlqiJ5byhiW_gbwyeWRi5_U7LiM5_c6s7dBw4EXspliWK5WQgaVMz9mF9IBPepFpvW7a-Mn6acGF1Ch_z7qul5NVfmWd37AaJmrdEEbBhuqRmCtwYe2o0kN3S1uu8mo9u9LObmh7bUfCWvmn_8kNnTLmTu4kny7KK29-w9u5ZN9XCz5K8U-l63yxXGxubUXnGEjkqsnfLYnQKpgbBMQdhHG2yQT6UVTq-IkF1C4-g-KHaEn5KAZbcB5od-dpT14oXCOO-IWG6Aog1kURnShItLqqyPJhekwbspgYKltHAQ_BkaZND7bwIjxzY5fOBscTc0JeFV0rk_ocg6M8Dw6E95QMTyYedBVbNn1I2x6j2HNLa9HpEMTRDUCLAb3MLQzpjd7TBfpoYqMKMmwwhYhM06iMPU_ICIMLYw5Wcl3GYHVQx6-RH5UWgdRd6PXVu-hULbHXSDrexbfOOv81-vOHIYJF6c8v50xajGv6He3hIR1BIRvkw1bKrYUfmN1xwa00m8yWT5PN02zONsrtJJN-PE_jjJux5-_5Lw"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVTLbtswEPwVgjmkBZTAL_l166E_UPRWBAElrSTCFCmQlB3H8L93lon8CNCeRA6Xw9nZXZ3kXm6nmTzIrVSiN6ok8W1PZXQ-E7V3nXhsvKb68bvMZOjl9iSjjoYQ_tNQcwQadcfbagg77A6kYkseQE9RmcDXdke5_SMf6jqvlgWAh2qy2aynvFLzFZbyJZONd4OtcC9EZ0mOwGvpjGO6h2KyzjcrHGi74_2CZuv5AntVlmQjQ8t6XuUM1S4BrQIjFNJbfE25AStcjK4D2rmoneUHjTtgT4Y68ARoPcmdTlqiJ5byhiW_gbwyeWRi5_U7LiM5_c6s7dBw4EXspliWK5WQgaVMz9mF9IBPepFpvW7a-Mn6acGF1Ch_z7qul5NVfmWd37AaJmrdEEbBhuqRmCtwYe2o0kN3S1uu8mo9u9LObmh7bUfCWvmn_8kNnTLmTu4kny7KK29-w9u5ZN9XCz5K8U-l63yxXGxubUXnGEjkqsnfLYnQKpgbBMQdhHG2yQT6UVTq-IkF1C4-g-KHaEn5KAZbcB5od-dpT14oXCOO-IWG6Aog1kURnShItLqqyPJhekwbspgYKltHAQ_BkaZND7bwIjxzY5fOBscTc0JeFV0rk_ocg6M8Dw6E95QMTyYedBVbNn1I2x6j2HNLa9HpEMTRDUCLAb3MLQzpjd7TBfpoYqMKMmwwhYhM06iMPU_ICIMLYw5Wcl3GYHVQx6-RH5UWgdRd6PXVu-hULbHXSDrexbfOOv81-vOHIYJF6c8v50xajGv6He3hIR1BIRvkw1bKrYUfmN1xwa00m8yWT5PN02zONsrtJJN-PE_jjJux5-_5Lw",
+     "pick": "grief",
+     "pick_hit": true
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVPbbtswDP0VQXl1isRumiZve1nRbxiKgpHpWIgsGZJc1wvy7yMVx_aw5SXiIXl8eLvKL3ncZrKXR3n2GiuZydDK41VGHQ0S-jaiUTdsll24kNUjxBo9AcG6npMugzz-kqtqp3KVE7A64J5-_MIX3JQoPzL6hOtsSVlaoXyYn8oZx1Sr8qC2aksObS9sF5hjUZANSqGNDO2rHeyAoMolIKDXSR5-x8_WgGKRHEziMtm4qJ3lMJNUosGGfIGkXuVFJynR9Sn2m94Gq0jPgTOoICpL_2bCujuz3knoVKWiAkjG9pbNfB5xpKvAr70-1__lNOD_Jp0aNpLuFqQ9_TXamJF4KnBIc0tNnYgbLHXXLJnVM7zC68ycL5hPYIyjHs2KF02oSfxMHBpICiZe3OxhV828xYJXQfy3qfcpjHRR22HJVpwKeIZlU2ljjLbI45I_RHD2LCrnBW2e4IZkAkSDxpWD0Dah3PvwRBQ_DU81iL7WoUVKcclfeRcivSAK5b44gFEEH2vOer-zBG3QKmT6mn3iRNseBBhn8YnXWDkbHF_HlWopuZbHlCOFkNlCm8YTanqwfR9dr8tYc5e7ZLbeNS0vMe3tIJouaEXoqYsx7WwLXcAJuO-sgROahQ_UuOB3gPv_CLF0Ealny7AZvH3cbnSBxMoFyaMlTXQwjwePMN_kL-vNYZ3zCdL3N5n0D3-6IcqMLf_f_gA",
@@ -4700,7 +4759,9 @@
       "things": 0.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZRNj9owEIb_imUO20pBAsLSTc699N5bhVZOPCYWjh3ZzmYp4r93xhASKqTdy2bG9qN3Pl7O_IOX64wPvOSCdUbUwL5ZZyFjyruWvQg2gJTaHpi2DIMGRGRKg5Ev33nGQ8fLM486GkDCTw-iDbXoAI-ibikn-3DEaMB3DXhMhCh8oKfHEy__8IXaQlHXmFiIbbVVir7kVvzAr33GD971VuIz5TyEyMfMe-2MI9xC5jI90vZIYV7lxfYVY1HXYCOlVC5zQSnlUkLqgJWeSCN8xvdUNaYNKOK3Lmpnk1BtDCbAQIukgGrP_KiTGiPaDo8-p2cnenEkaNB_CdeC1H2L8aS0qDdJao0VoJD1JbsDowe4AZXwyxm00YdmohrhD_AAxeLkxHydMVuHdUxMj6Dn0Eof5shd-nuu0-sPnOIVSv1NARGNGybgoOWDSKXU9m1W-WZGDI0w-Hg5iHgnz6XeNuCB7f_rwLyr-YxtiGNxe58pfuxBaEWa9qR5vZM7-Vxzpb38YvxR29McVxX17q2Y43C7jbZAe8V_N8BoBQI6DLcTPAvReY2xU-yEiw_-BIKU000aLKtFiIFh96Qb8Jpl6C82jufXNZTQxSZkTCZjom-tZB5Ujyu0JyU2ODLuGUXLJNrRVkf0_9g8KqghQ5e8u9oB-x-bacYd_kx05KrB6wijjhbXVNPyVX2MyU3KGXmPr14yogKDR729HYr6Zj0cuOPU7_FKi-5nRtD0bJjfvB2gGy_7S8YtGpr66fqYSqLcARNULS9tbwwafPygSW5Wm91yVSw3OVXKy1XG_XieLI8vY0f_L_8A"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZRNj9owEIb_imUO20pBAsLSTc699N5bhVZOPCYWjh3ZzmYp4r93xhASKqTdy2bG9qN3Pl7O_IOX64wPvOSCdUbUwL5ZZyFjyruWvQg2gJTaHpi2DIMGRGRKg5Ev33nGQ8fLM486GkDCTw-iDbXoAI-ibikn-3DEaMB3DXhMhCh8oKfHEy__8IXaQlHXmFiIbbVVir7kVvzAr33GD971VuIz5TyEyMfMe-2MI9xC5jI90vZIYV7lxfYVY1HXYCOlVC5zQSnlUkLqgJWeSCN8xvdUNaYNKOK3Lmpnk1BtDCbAQIukgGrP_KiTGiPaDo8-p2cnenEkaNB_CdeC1H2L8aS0qDdJao0VoJD1JbsDowe4AZXwyxm00YdmohrhD_AAxeLkxHydMVuHdUxMj6Dn0Eof5shd-nuu0-sPnOIVSv1NARGNGybgoOWDSKXU9m1W-WZGDI0w-Hg5iHgnz6XeNuCB7f_rwLyr-YxtiGNxe58pfuxBaEWa9qR5vZM7-Vxzpb38YvxR29McVxX17q2Y43C7jbZAe8V_N8BoBQI6DLcTPAvReY2xU-yEiw_-BIKU000aLKtFiIFh96Qb8Jpl6C82jufXNZTQxSZkTCZjom-tZB5Ujyu0JyU2ODLuGUXLJNrRVkf0_9g8KqghQ5e8u9oB-x-bacYd_kx05KrB6wijjhbXVNPyVX2MyU3KGXmPr14yogKDR729HYr6Zj0cuOPU7_FKi-5nRtD0bJjfvB2gGy_7S8YtGpr66fqYSqLcARNULS9tbwwafPygSW5Wm91yVSw3OVXKy1XG_XieLI8vY0f_L_8A",
+     "pick": "a candlelit library",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -4811,7 +4872,9 @@
       "things": 1.0
      },
      "ghost_hit": false,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVPBbtswDP0VQTlkA5zCdpC08XnoFwzYYSgKxaJsIbJkSHLdLMi_j5SdwMBy6GEni4_S8yP5eOEfvCoyPvKKC9YbUQP7FuEzZkx517G1YCNIqW3DtGUYtCAiUxqMXH_nGQ89ry486mgAGX61OvTg6fYrXQl4I-qOUlKMFqMRn7fgEQiD9ToAcZzOvPrNV3BQORwQWKmdelYvdJJbmT_zt4w33g1W4rvGi0C8E_BeO-OIbnVUsFUlJrQ9UbwVhSqJXtQ12EiQUnt1KBBSLgGtQEZUiOW-p9IRM6AiYp2L2lmSadyIMRjokCWg0As_6aQkdQFzn3imX2BZGT8niUkrVqb_EGcHUg8dxnexSqkXgIQMJKW8Znfao_ZfYo3anpec-90OduVjTmz2I0rq_J2vHRpY8kGuijSEma9Y8rUA_cyohN943bTxP-gc8dNpYxbU80D-kfugqTv0z35JjL4x2gJNjf9sgWEb1oEZEsuksDUE5ixDQ7Ja2A8RnvDxqzM48gROZh8nU6fkD8esiyxE6G8vkx-fyKK1s8HRHlxQo0ylO2pSdDY5a-5RaEVPcT_VOWoZ21S6pPb3uHU9mXP0OsLtJ53wjaYRHocYky-VS96b4smWRhzBYGqwc1LUs4lxHo5Tm29XOuexG_MQ79cW6PXtmnGLi0Gt05bqSULUtNaUbTBFVfPKDsbgytwONMgyL_eb_LApt1Qxr_KM-1s-bRG-jD19r38B"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVPBbtswDP0VQTlkA5zCdpC08XnoFwzYYSgKxaJsIbJkSHLdLMi_j5SdwMBy6GEni4_S8yP5eOEfvCoyPvKKC9YbUQP7FuEzZkx517G1YCNIqW3DtGUYtCAiUxqMXH_nGQ89ry486mgAGX61OvTg6fYrXQl4I-qOUlKMFqMRn7fgEQiD9ToAcZzOvPrNV3BQORwQWKmdelYvdJJbmT_zt4w33g1W4rvGi0C8E_BeO-OIbnVUsFUlJrQ9UbwVhSqJXtQ12EiQUnt1KBBSLgGtQEZUiOW-p9IRM6AiYp2L2lmSadyIMRjokCWg0As_6aQkdQFzn3imX2BZGT8niUkrVqb_EGcHUg8dxnexSqkXgIQMJKW8Znfao_ZfYo3anpec-90OduVjTmz2I0rq_J2vHRpY8kGuijSEma9Y8rUA_cyohN943bTxP-gc8dNpYxbU80D-kfugqTv0z35JjL4x2gJNjf9sgWEb1oEZEsuksDUE5ixDQ7Ja2A8RnvDxqzM48gROZh8nU6fkD8esiyxE6G8vkx-fyKK1s8HRHlxQo0ylO2pSdDY5a-5RaEVPcT_VOWoZ21S6pPb3uHU9mXP0OsLtJ53wjaYRHocYky-VS96b4smWRhzBYGqwc1LUs4lxHo5Tm29XOuexG_MQ79cW6PXtmnGLi0Gt05bqSULUtNaUbTBFVfPKDsbgytwONMgyL_eb_LApt1Qxr_KM-1s-bRG-jD19r38B",
+     "pick": "a wedding in a wheat field",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -4930,7 +4993,9 @@
       "font": true,
       "things": 1.0
      },
-     "ghost_hit": false
+     "ghost_hit": false,
+     "pick": "a quiet pier at dawn",
+     "pick_hit": false
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZPNjqMwDMdfBaWHudBRy7Sl5QH2Cfa2Go1CYiBqSNg4DNOp-u5rU6joSnvYAwLb8Y-_P3IVn6LYpmIQhZDJAFobVyfGJWQ0IGNSGbBapAI7UVxFNNECHf1hfR8MNhSIpmWP7vFM1kA5DQRyKAsycOL5IopfYlWVKtvn5Fip3Wmz2_LXqczzTIr3VNTB905TWh0kopgdH8pbz7SVzsvD6UQB485sy_1R7SqypVLgIrvgoI5HSa7Kj45GOlYe4St-dFYqlln6GH1L3tZH4x150PqBbLDQEgdJ61Wczail9P3vHiJFv8iqZFhbqNi8MN3UXD6ab-ZaGWog86G32pb7sUhFdZCat1v64E5tXit5hgnONUCY0T6YbxL3oDf9MxwOOj8u4NkCjr2bmIEUzmqn_j6ILWjTt8_MqXsTc7tkNgDdog3_R56m_CDvF-TaBDuBF729j-SfwKPK97t8KZU2yBoHPD3xs4Fpd4fGYAcBEwQVIGISfRI5Sv9-pXQ-Se16wcRyQYmWTgEm3o2nlHSfEl95O5V36HnxryRKP-1R9I5t9D42NFOW3ciOXZ2xXNpgdGx46JyYii74tuPtjGAt3TKMPlzIX_YE5H0MIPXDvq-jlSVYJsoeYVz5aXfvDm7nfKT1AZIy0L-wlUbj8vRfMXF7v6XC0e2gmHFcGJVOTzWWv4C8JDoAIrWXEmqSxC0RheutpYs0f_A4s012WG9O6-yNGyGKTSrCHB_vFmXGjt-3Pw",
@@ -5218,7 +5283,9 @@
       "things": 0.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVVNb9swDP0rgnLoBjhDPpBuzW2H_YPdhqBgbCoWIkuGJNfNgvz3kYoTuE7adEWdQ2yKfH6PNMm9fJLLaSZbuZQgagM5ii_WWcyE8q4SdyC8y7cYhYHG5qWAKIombO--ykyGWi73MupokMJ_xRI9gqGDqCu2sCM9tQh8RIYcbGHQ6E0ZOXy7k8s_cqRQ0UWGUf4dF7jgu0m65CqTG-8aW1CwzlGeHh9zZxwjjtYK52pGB9pu-XkOUzVjR8hztJFNSt2rhymZlEuGklgwSXyOj0kxMyNfopjJykXtLFlC1Ia1oMGKDgNR3cutTlRqOgL2fu6H7jiKNJEy_ZdBy2bDTM5c1aKYJCI5aSAm00N2howesQNU4McGVbwGWWGhm-oFqOqy14HOe6AGqroH6rvEX6BGbXd9zHMdOsxZD7Olv-qYGsbtEe0qdUYNFSS3V6n2YStHWT9CvkrzUnz3mVzNqHKbaxUasrylvZ_P3LimeEeVbmEuBsJPHXGzUBcpnU34dz2lIV7_Rm9lYFimHz1M6heL8XMLFRr7gZwOWfYRK-29u92fQ8i3SKYSla4J-J46_V8CuKU-Uqgh5ovit_A5WaURbLRFnn_yd4kCtBctBAFGP6FodSxFW-pQow_fKI5dWI_IwXuNhaDRLwLLEk6JACay10-hQJNpY1wrQkn7RsDaER57py4jsBWzsMHxdtkT4SIRdjzRIkWcisJiSqixm8u8cHQRSxbepMeaFlnNg7_1OtKLRO1hl5K8bmJMw76xypnibDkOewNrNKlDPUmgZgpprXT7AYoiGSUn_YXrsUcunLvWOawOB1pj9AbWJ5eWSNLaOd1w7ail78eTh_FsztrkcpJJfzpPi4giY83_h38"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVVNb9swDP0rgnLoBjhDPpBuzW2H_YPdhqBgbCoWIkuGJNfNgvz3kYoTuE7adEWdQ2yKfH6PNMm9fJLLaSZbuZQgagM5ii_WWcyE8q4SdyC8y7cYhYHG5qWAKIombO--ykyGWi73MupokMJ_xRI9gqGDqCu2sCM9tQh8RIYcbGHQ6E0ZOXy7k8s_cqRQ0UWGUf4dF7jgu0m65CqTG-8aW1CwzlGeHh9zZxwjjtYK52pGB9pu-XkOUzVjR8hztJFNSt2rhymZlEuGklgwSXyOj0kxMyNfopjJykXtLFlC1Ia1oMGKDgNR3cutTlRqOgL2fu6H7jiKNJEy_ZdBy2bDTM5c1aKYJCI5aSAm00N2howesQNU4McGVbwGWWGhm-oFqOqy14HOe6AGqroH6rvEX6BGbXd9zHMdOsxZD7Olv-qYGsbtEe0qdUYNFSS3V6n2YStHWT9CvkrzUnz3mVzNqHKbaxUasrylvZ_P3LimeEeVbmEuBsJPHXGzUBcpnU34dz2lIV7_Rm9lYFimHz1M6heL8XMLFRr7gZwOWfYRK-29u92fQ8i3SKYSla4J-J46_V8CuKU-Uqgh5ovit_A5WaURbLRFnn_yd4kCtBctBAFGP6FodSxFW-pQow_fKI5dWI_IwXuNhaDRLwLLEk6JACay10-hQJNpY1wrQkn7RsDaER57py4jsBWzsMHxdtkT4SIRdjzRIkWcisJiSqixm8u8cHQRSxbepMeaFlnNg7_1OtKLRO1hl5K8bmJMw76xypnibDkOewNrNKlDPUmgZgpprXT7AYoiGSUn_YXrsUcunLvWOawOB1pj9AbWJ5eWSNLaOd1w7ail78eTh_FsztrkcpJJfzpPi4giY83_h38",
+     "pick": "a cat in a lantern shop",
+     "pick_hit": false
     },
     {
      "channel": "text",
@@ -5327,7 +5394,9 @@
       "things": 1.0
      },
      "ghost_hit": true,
-     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZPBbtswDIZfRWAO3QCncJIlS3LbZcddtttQFLJN2VpkyZDkuWmQdx-pxInX9mSJIj__lPif4C_sFxkMsAcpOiNLFJ8ivsRMKO9a8SCFd-UBozCyt2UjZBRVHw4PnyGD0MH-BFFHg1T-XXscnD-IH7puIh1H3XKc02k3oIwNegqEKH3g8sMR9r9hVq2LpVIUmCncFtuCV-tiV2EOTxnU3vW2ojJdIozb59IZx6xZuS0wFWt74P1KLtSSE2VZoo0cUmqjdgsKKZcClQ7U6JEVUqPPqWkKczrpy6B1UTtLEY-BWgusFQ22dB5I8AkOOgki_UZb_tfLtJyagsZ5_UoMalK_Mrzpa068yVZrleMmRXoWtThnN27j-jBSlfRzgypeudfLuGFbrHTf_gdWaot4B68m4EIa45IqRvvrMyW9tL5TQ0uJUyjmX-Va3aHLCTR6nIqdUt-qfcctVbUtd3fuesItZbxiJ_0bN9xxUdvjlLYqVvKL_PhOL0P8QedvNb57qHF4blCaSX52HgX4JmjiTSWcEorGPxNStI4HhSMd0mA9UulPbdCSsXQQZAHtyUu27mVN-TRDQtpKJE9w7q8GU5ByjY6i78SgY8N14o87MpaXFzM-sj9KZ4NjA56ohSrdi-t4tp3lTSe7NJWhoQXvdXqCQVexoe3AJRl05PWOvRHI6cm3GRR9jMkGllwC5-zypaa15R8J4o9y0sQGeKKkmjJYFextbwyZaVzwKyzz5Wae7-bLFSuCfZ6BH8-Tt6gydvw9_wM"
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZPBbtswDIZfRWAO3QCncJIlS3LbZcddtttQFLJN2VpkyZDkuWmQdx-pxInX9mSJIj__lPif4C_sFxkMsAcpOiNLFJ8ivsRMKO9a8SCFd-UBozCyt2UjZBRVHw4PnyGD0MH-BFFHg1T-XXscnD-IH7puIh1H3XKc02k3oIwNegqEKH3g8sMR9r9hVq2LpVIUmCncFtuCV-tiV2EOTxnU3vW2ojJdIozb59IZx6xZuS0wFWt74P1KLtSSE2VZoo0cUmqjdgsKKZcClQ7U6JEVUqPPqWkKczrpy6B1UTtLEY-BWgusFQ22dB5I8AkOOgki_UZb_tfLtJyagsZ5_UoMalK_Mrzpa068yVZrleMmRXoWtThnN27j-jBSlfRzgypeudfLuGFbrHTf_gdWaot4B68m4EIa45IqRvvrMyW9tL5TQ0uJUyjmX-Va3aHLCTR6nIqdUt-qfcctVbUtd3fuesItZbxiJ_0bN9xxUdvjlLYqVvKL_PhOL0P8QedvNb57qHF4blCaSX52HgX4JmjiTSWcEorGPxNStI4HhSMd0mA9UulPbdCSsXQQZAHtyUu27mVN-TRDQtpKJE9w7q8GU5ByjY6i78SgY8N14o87MpaXFzM-sj9KZ4NjA56ohSrdi-t4tp3lTSe7NJWhoQXvdXqCQVexoe3AJRl05PWOvRHI6cm3GRR9jMkGllwC5-zypaa15R8J4o9y0sQGeKKkmjJYFextbwyZaVzwKyzz5Wae7-bLFSuCfZ6BH8-Tt6gydvw9_wM",
+     "pick": "a rocket launch at dusk",
+     "pick_hit": true
     },
     {
      "channel": "vector",
@@ -5448,7 +5517,9 @@
       "font": null,
       "things": 0.333
      },
-     "ghost_hit": true
+     "ghost_hit": true,
+     "pick": "a rocket launch at dusk",
+     "pick_hit": true
     }
    ],
    "a_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZZPbbtswDIZfRVBu3SKHJm3zAAV2vd0NRSHLVCxYlgyJrpsGefeRSpxoW25inj6R1K-T_JT7VSUnuZdKxKA7QOHU6HUrFIpmTJ2sZBrk_iTRogPKe7MRphC7JKwX2IL42R0pCW3P0WvJBIpCkRwJVUwMoaz9b7kw-UeOhdnWT2rJX7B70c8g3yt5iGH0DZV9BtvI2f7QwQWGLWoDG7OmgPUd2xu1MmsgW2kNHtllzM68rshlQna0yjMJ4Qs_Bqc0d4lhIFcf0AZPZoREsyVuExz0BErU60l2Nvdy2QsFv8jgY2iwSh6ZHaL9JgSNZ78Z3I4H7ubWr9maJeyyZ-RuVufqhk2Dip2DK9eo-ODA4JV8XcQN3ENjx_4vtDEvAHf0ukDXyrmQ-2J0tId25rb0faemnhJLKCyf1dbcoZsCql0Ym6LbEvtvu_-BtWle9OsdvC3Bal5usQAXpjsOrT-WtE29UU-qbJO046wHvjf5i0SZZSfswVsEoVIW6lXfNRyspxgm4UANj4ThCtK0awRG6GvSgpgstrnKhKhBBJONy9vgkh8X8Se0ztG5qbqY1oGndJtEahWSUqB5ZGHr4FPg93OimZq7BjH4_GxICjxuqwY2B5u3N9kGWzInrqjkEEM_sKSnyFOFSwe9ijQPhesRMct59Ca45ua5aNmpGlwZVPqqfrq4IPk65pQ-xHlZqUws_PL8fq6kpzdFftomNVismGjyQKfy3HLvR-fosc0ffOPr5Xr3sHx9WG94aLlfVjLO8fz2qBIH_j__AQ",
