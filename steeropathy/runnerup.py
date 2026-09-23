@@ -153,6 +153,13 @@ def sse_stream(url, body, timeout=600):
         {"Content-Type": "application/json"})
     text, steps = "", []
     with urllib.request.urlopen(req, timeout=timeout) as r:
+        ctype = r.headers.get("Content-Type", "")
+        if "event-stream" not in ctype:
+            # an older brainscope answers a stream request with the plain
+            # completion: keep the text, lose the odds (no logprob steps)
+            body = json.loads(r.read())
+            msg = body["choices"][0]["message"]
+            return (msg.get("content") or ""), []
         for raw in r:
             line = raw.decode().strip()
             if not line.startswith("data:") or line == "data: [DONE]":

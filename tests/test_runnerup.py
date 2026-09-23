@@ -161,5 +161,27 @@ class TestScore(unittest.TestCase):
         self.assertEqual(s["none"]["rate"], 0.0)
 
 
+
+class TestStreamFallback(unittest.TestCase):
+    def test_plain_json_answer_yields_text_and_no_steps(self):
+        import io
+        from unittest import mock
+        from steeropathy import runnerup
+
+        class Resp(io.BytesIO):
+            headers = {"Content-Type": "application/json"}
+
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+        payload = json.dumps({"choices": [{"message": {"content": "Owl."}}]}).encode()
+        with mock.patch.object(runnerup.urllib.request, "urlopen",
+                               lambda req, timeout=600: Resp(payload)):
+            text, steps = runnerup.sse_stream("http://fake", {"messages": []})
+        self.assertEqual((text, steps), ("Owl.", []))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -43,6 +43,15 @@ score is also reported on the fields where A LEFT B's own default world
 (``m:`` columns) — agreement on a field B would have picked anyway counts
 for nothing.
 
+Steering breaks JSON long before it sways a world: on a 0.5B at strength
+2 the vector channel wrote *prose about a funeral* instead of a spec (the
+wish crossed; the format didn't). So the default is TWO-STEP, the
+"decided drunk, transcribed sober" pattern: B first writes two sentences
+about the place it is standing in (steered, in the vector channel; with
+A's lines, in the text channel), then fills in the spec UNSTEERED from its
+own prose. Every channel gets the same two steps, so they stay comparable.
+``--one-step`` is the direct version, kept as an ablation.
+
 Controls (``--control``): ``rot`` — a random signed permutation of A's
 vector (same norm, no meaning); ``crosstask`` — another wish's vector.
 ``--judge`` adds an IN-MODEL blind pick (B's world → which of four wishes
@@ -83,6 +92,9 @@ CONTROLS = ("none", "rot", "crosstask")
 EXAMPLES = ("neutral", "own")
 BASELINES = ("neutral", "wishes")
 NEUTRAL = "a place"
+PROSE = ("You are standing in a place. In two short sentences, say what it "
+         "is like here right now — the light, the weather, what you see. "
+         "Plain words, no list, no JSON.")
 
 TIMES = ["dawn", "noon", "dusk", "night"]
 WEATHERS = ["clear", "stars", "rain", "snow", "fog", "embers", "petals",
@@ -129,13 +141,47 @@ FALLBACK_SYSTEM = (
 
 # ---- helpers ---------------------------------------------------------
 
+def _close(text):
+    """Close whatever is open (a string, brackets) and parse — the page's
+    completeJson: a spec cut off by max_tokens is still mostly a world."""
+    in_str, esc, stack = False, False, []
+    for ch in text:
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+            continue
+        if ch == '"':
+            in_str = True
+        elif ch in "{[":
+            stack.append("}" if ch == "{" else "]")
+        elif ch in "}]" and stack:
+            stack.pop()
+    fixed = text + ('"' if in_str else "")
+    fixed = re.sub(r",\s*$", "", fixed)
+    fixed = re.sub(r":\s*$", ":null", fixed)
+    fixed = re.sub(r',\s*"[^"]*"?$', "", fixed)
+    try:
+        return json.loads(fixed + "".join(reversed(stack)))
+    except json.JSONDecodeError:
+        return None
+
+
 def parse_spec(raw: str):
-    """The first balanced {...} in the text, as JSON — or None (a miss)."""
+    """The first {...} in the text as JSON. A complete object parses as is;
+    a truncated one is closed and read (backing off to the last comma or
+    bracket a few times, like brave-new-world does) — or None (a miss)."""
     a = raw.find("{")
     if a < 0:
         return None
+    text = raw[a:]
+    # a small model drops the opening quote of a key now and then: ,ground":
+    text = re.sub(r'([,{]\s*)([A-Za-z_]\w*)"\s*:', r'\1"\2":', text)
     depth, in_str, esc = 0, False, False
-    for i, ch in enumerate(raw[a:], start=a):
+    for i, ch in enumerate(text):
         if in_str:
             if esc:
                 esc = False
@@ -152,10 +198,19 @@ def parse_spec(raw: str):
             depth -= 1
             if depth == 0:
                 try:
-                    o = json.loads(raw[a:i + 1])
+                    o = json.loads(text[:i + 1])
+                    return o if isinstance(o, dict) else None
                 except json.JSONDecodeError:
-                    return None
-                return o if isinstance(o, dict) else None
+                    break
+    t = text
+    for _ in range(6):
+        o = _close(t)
+        if isinstance(o, dict) and o.get("title") is not None:
+            return o
+        cut = max(t.rfind(","), t.rfind("["), t.rfind("{"))
+        if cut <= 0:
+            break
+        t = t[:cut]
     return None
 
 
@@ -331,8 +386,9 @@ class Secondhand(Eco):
     def __init__(self, url, channels=CHANNELS, control="none", strength=4.0,
                  layer=None, bnw=BNW_DEFAULT, temp=0.7, max_tokens=700,
                  seed=0, judge=False, example="neutral", baseline="neutral",
-                 wishes=None):
+                 wishes=None, two_step=True, prose_tokens=60):
         self.url = url
+        self.two_step, self.prose_tokens = two_step, prose_tokens
         self.channels, self.control = list(channels), control
         self.example, self.baseline = example, baseline
         self.wishes = list(wishes) if wishes else list(WISHES)
@@ -410,6 +466,20 @@ class Secondhand(Eco):
             b = cap(NEUTRAL)
         return _unit([x - y for x, y in zip(a, b)])
 
+    def prose(self, tag, steering=None, extra=None):
+        """Step one of two: two sentences about the place, under the
+        channel. Free text, where a vector can speak without breaking
+        anything. Returns the prose."""
+        user = PROSE + ("\n\n" + extra if extra else "")
+        body = {"messages": [{"role": "user", "content": user}],
+                "max_tokens": self.prose_tokens, "temperature": self.temp,
+                "metadata": {"demo": self.demo_tag, "case": tag[0] + "-prose",
+                             "variant": tag[1]}}
+        if steering:
+            body["steering"] = steering
+        r = self.post("/v1/chat/completions", body)
+        return (r["choices"][0]["message"].get("content") or "").strip()
+
     def text_of(self, spec):
         title = (spec or {}).get("title") or ""
         lines = [l for l in (spec or {}).get("lines") or [] if isinstance(l, str)]
@@ -446,7 +516,8 @@ class Secondhand(Eco):
     def step(self, i, wish, pool=None):
         t0 = time.time()
         spec_a, raw_a, steps_a = self.dream(wish, ("A", f"w{i}"))
-        rec = {"item": i, "wish": wish, "a": spec_a, "reads": []}
+        rec = {"item": i, "wish": wish, "a": spec_a, "a_raw": raw_a,
+               "reads": []}
         if not spec_a:
             rec["skipped"] = "A's world did not parse"
             self.log.append(rec)
@@ -472,11 +543,23 @@ class Secondhand(Eco):
                 self.post("/directions", {"name": "secondhand:rx", "vector": v_in})
                 steering = {"name": "secondhand:rx", "strength": self.strength,
                             "layer_from": self.lo, "layer_to": self.hi}
-            spec_b, raw_b, _ = self.dream(NEUTRAL, ("B-" + ch, f"w{i}"),
-                                          steering=steering, extra=extra)
+            prose = None
+            if self.two_step:
+                # decided drunk: the prose carries the channel
+                prose = self.prose(("B-" + ch, f"w{i}"), steering=steering,
+                                   extra=extra)
+                # transcribed sober: the spec is filled from the prose, unsteered
+                spec_b, raw_b, _ = self.dream(
+                    NEUTRAL, ("B-" + ch, f"w{i}"),
+                    extra="You are standing there. You wrote about it: \""
+                          + prose + "\" Fill in the world you described.")
+            else:
+                spec_b, raw_b, _ = self.dream(NEUTRAL, ("B-" + ch, f"w{i}"),
+                                              steering=steering, extra=extra)
             if ch == "none" and spec_b:
                 ref = spec_b                      # B's own default world
-            r = {"channel": ch, "b": spec_b, "parsed": spec_b is not None,
+            r = {"channel": ch, "b": spec_b, "b_raw": raw_b, "prose": prose,
+                 "parsed": spec_b is not None,
                  "score": score(spec_a, spec_b),
                  "moved": score_moved(spec_a, spec_b, ref),
                  "ghost_hit": (bool(set(rec["ghosts"]) & set(kinds_of(spec_b)))
@@ -502,9 +585,17 @@ def rescore(log, example=None):
     to the scorer, no model needed). The moved reference is the item's own
     `none` world, else the example."""
     for rec in log:
-        if rec.get("skipped"):
+        if rec.get("a_raw") and not rec.get("a"):
+            rec["a"] = parse_spec(rec["a_raw"])
+            if rec["a"]:
+                rec.pop("skipped", None)
+        if rec.get("skipped") or not rec.get("a"):
             continue
         ref = example
+        for r in rec["reads"]:
+            if r.get("b_raw") and not r.get("b"):
+                r["b"] = parse_spec(r["b_raw"])
+                r["parsed"] = r["b"] is not None
         for r in rec["reads"]:
             if r["channel"] == "none" and r.get("b"):
                 ref = r["b"]
@@ -595,6 +686,11 @@ def main():
                          "place', or under every other wish of the run")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--one-step", action="store_true",
+                    help="ablation: fill the spec directly under the channel "
+                         "(default is prose under the channel, then an "
+                         "unsteered spec from the prose)")
+    ap.add_argument("--prose-tokens", type=int, default=60)
     ap.add_argument("--rescore", default=None, metavar="JSON",
                     help="no model: recompute the scores of a finished run "
                          "from its stored worlds and print the tables")
@@ -614,12 +710,14 @@ def main():
                     strength=args.strength, layer=args.layer, bnw=args.bnw,
                     temp=args.temp, max_tokens=args.max_tokens, seed=args.seed,
                     judge=args.judge, example=args.example,
-                    baseline=args.baseline, wishes=WISHES[:args.wishes])
+                    baseline=args.baseline, wishes=WISHES[:args.wishes],
+                    two_step=not args.one_step, prose_tokens=args.prose_tokens)
     sh.prompt(NEUTRAL)
     print(f"secondhand: {args.wishes} wishes · channels {' '.join(args.channel)}"
           f" · control {args.control} · layer {sh.layer} (±{BAND}) · strength "
           f"{args.strength} · example {args.example} · baseline "
-          f"{args.baseline} · prompts: {sh.prompt_source}\n")
+          f"{args.baseline} · {'one-step' if args.one_step else 'two-step'}"
+          f" · prompts: {sh.prompt_source}\n")
     pool = []
     for i, wish in enumerate(WISHES[:args.wishes]):
         rec = sh.step(i, wish, pool=pool or None)
@@ -638,6 +736,8 @@ def main():
                 print(f"   {r['channel']:7s} (did not parse)")
                 continue
             hits = "".join("✓" if s[k] else "·" for k in EXACT)
+            if r.get("prose"):
+                print(f"   {r['channel']:7s} prose: {r['prose'][:90]!r}")
             print(f"   {r['channel']:7s} {b.get('time')}/{b.get('weather')}/"
                   f"{b.get('ground')} {kinds_of(b)}  [{hits}] hue {s['hue']} "
                   f"dark {s['dark']} things {s['things']}"

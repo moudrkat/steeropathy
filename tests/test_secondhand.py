@@ -37,6 +37,7 @@ def make(**kw):
     t.demo_tag = "steeropathy-secondhand-test"
     t.layer, t.lo, t.hi = 20, 16, 24
     t.example, t.baseline = "neutral", kw.get("baseline", "neutral")
+    t.two_step, t.prose_tokens = kw.get("two_step", False), 60
     t.wishes = ["a funeral in the rain", "monday", "grief"]
     t.example_spec = kw.get("example_spec")
     t._prompts, t.prompt_source, t.log = {}, None, []
@@ -52,9 +53,17 @@ class TestParse(unittest.TestCase):
         raw = '{"title":"a {brace} title","time":"night"}'
         self.assertEqual(parse_spec(raw)["time"], "night")
 
-    def test_truncated_is_a_miss(self):
-        self.assertIsNone(parse_spec('{"title":"X","sky":["#000000"'))
+    def test_truncated_is_closed_like_the_page_does(self):
+        o = parse_spec('{"title":"X","time":"dusk","sky":["#000000"')
+        self.assertEqual(o["time"], "dusk")
+        o = parse_spec('{"title":"X","time":"dusk","elements":[{"kind":"moon","x":"le')
+        self.assertEqual(o["time"], "dusk")
         self.assertIsNone(parse_spec("no json here"))
+        self.assertIsNone(parse_spec('{"ti'))
+
+    def test_missing_key_quote_is_repaired(self):
+        o = parse_spec('{"title":"X",time":"dusk","sky":["#000000"],ground":"ice"}')
+        self.assertEqual((o["time"], o["ground"]), ("dusk", "ice"))
 
 
 class TestScore(unittest.TestCase):
@@ -179,6 +188,28 @@ class TestChannels(unittest.TestCase):
         self.assertEqual(rec["reads"][0]["score"]["time"], True)
         self.assertEqual(rec["ref"], "none")             # moved vs B's own world
         self.assertIn("moved", rec["reads"][2])
+
+    def test_two_step_steers_the_prose_and_not_the_spec(self):
+        t = make(two_step=True)
+        sent, posted = self.wire(t, A, B)
+        orig_post = t.post
+
+        def post_with_prose(path, body, timeout=600):
+            if path == "/v1/chat/completions":
+                posted.append((path, body))
+                return {"choices": [{"message": {"content": "Rain on ice. A lantern."}}]}
+            return orig_post(path, body, timeout)
+        t.post = post_with_prose
+        rec = t.step(0, "a funeral in the rain")
+        prose_calls = [b for p, b in posted if p == "/v1/chat/completions"]
+        self.assertEqual(len(prose_calls), 3)                   # one per channel
+        self.assertIn("steering", prose_calls[2])               # vector: prose steered
+        self.assertNotIn("steering", prose_calls[0])
+        self.assertIn("Wet Farewell", prose_calls[1]["messages"][0]["content"])
+        specs = [b for b in sent if b["metadata"]["case"].startswith("B")]
+        self.assertTrue(all("steering" not in b for b in specs))  # spec: sober
+        self.assertTrue(all("Rain on ice" in b["messages"][1]["content"] for b in specs))
+        self.assertEqual(rec["reads"][2]["prose"], "Rain on ice. A lantern.")
 
     def test_rot_control_pushes_a_meaningless_vector(self):
         t = make(control="rot")
