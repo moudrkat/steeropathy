@@ -139,8 +139,14 @@ Three instrument lessons, all now in the code:
   parser repairs what the page's own parser would; every raw text is
   stored, so a finished run can be rescored without a model.
 
-A 4B run (two-step, strength 4) is in progress; its w0 already showed the
-vector carrying moss and darkness where the poem carried rain.
+On the 4B (run 02, two-step, strength 4) the poem wins the enum fields
+outright (weather 0.58 vs 0.08 on moved fields); the vector keeps darkness
+and the occasional field (noon, fog, moss). A cross-model judge (the 4B
+picking A's wish out of four from the 1.5B's worlds) gets 0.40 for the vector
+worlds, 0.58 for the poem, 0.08 for nothing; chance 0.25.
+
+What is and isn't new here, against the literature as of this day, is in
+[docs/papers/related-secondhand.md](../docs/papers/related-secondhand.md).
 
 ![six steering directions rendered as worlds by the 1.5B: the unsteered place, sad, angry, calm, refusal, certain, formal](../docs/worldof-1.5b.png)
 
