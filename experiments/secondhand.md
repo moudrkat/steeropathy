@@ -51,6 +51,27 @@ and draws it anyway.
    The result is one table, fields × channels, each column against `none`
    and against `rot`.
 
+## "Neutral" is a choice, twice
+
+The first live probe (CPU, 0.5B) showed it: A and B agreed on 80 % of the
+things *with no channel at all*, because brave-new-world tunes the worked
+example in its system prompt to the wish and a small model copies whatever
+example it sees. So:
+
+- **The example.** `--example neutral` (default) gives every mind the same
+  generic example, the one the page builds for "a place"; A and B then differ
+  only by the wish. `--example own` is the page's behaviour, kept as an ablation.
+- **The baseline of the contrast.** `--baseline neutral` subtracts the page
+  under "a place", and the vector also carries "having a specific wish at
+  all". `--baseline wishes` subtracts the same page under every other wish of
+  the run, averaged — the `capture_mood` "moods" lesson: cancel the shared
+  component at extraction. Run 01 uses it.
+- **"A place" is not nothing.** B has a default world for it. Every field is
+  therefore also scored only where A *left* B's own unsteered world (the `m:`
+  columns, reference = B's `none` world of the same item): a match on a field
+  B would have picked anyway counts for nothing. Runner-up's "moved" subset,
+  in world form.
+
 ## Where it can fail — written before the first run
 
 - **Prior leakage.** "A place" may already be a dusk pier for this model.

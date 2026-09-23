@@ -10,7 +10,8 @@ import zlib
 
 import steeropathy.secondhand as sh
 from steeropathy.secondhand import (Secondhand, ghosts, hue, parse_spec,
-                                    score, table, world_link)
+                                    canon, rescore, score, score_moved,
+                                    table, world_link)
 
 A = {"title": "Wet Farewell", "time": "dusk", "weather": "rain",
      "ground": "stone", "motion": "still", "font": "serif",
@@ -35,6 +36,9 @@ def make(**kw):
     t.bnw = None                      # no node in tests: the fallback prompt
     t.demo_tag = "steeropathy-secondhand-test"
     t.layer, t.lo, t.hi = 20, 16, 24
+    t.example, t.baseline = "neutral", kw.get("baseline", "neutral")
+    t.wishes = ["a funeral in the rain", "monday", "grief"]
+    t.example_spec = kw.get("example_spec")
     t._prompts, t.prompt_source, t.log = {}, None, []
     return t
 
@@ -61,6 +65,35 @@ class TestScore(unittest.TestCase):
         self.assertAlmostEqual(s["hue"], 1.0, places=2)
         self.assertAlmostEqual(s["dark"], 1.0, places=2)
         self.assertAlmostEqual(s["things"], 1 / 4, places=3)
+
+    def test_moved_counts_only_where_a_left_the_reference(self):
+        ref = dict(B, time="dusk", weather="clear", ground="sand",
+                   elements=[{"kind": "lantern"}])
+        m = score_moved(A, B, ref)
+        self.assertIsNone(m["time"])            # A == ref: doesn't count
+        self.assertEqual(m["weather"], False)   # A left (rain), B stayed (clear)
+        self.assertEqual(m["ground"], True)     # A left (stone), B followed
+        self.assertAlmostEqual(m["things"], 0.0)  # figure, tree new; B has neither
+
+    def test_lenient_enums(self):
+        self.assertEqual(canon("time", "Midnight"), "night")
+        self.assertEqual(canon("weather", "light rain"), "rain")
+        self.assertEqual(canon("ground", "cobblestone"), "stone")
+        self.assertEqual(canon("time", "whenever"), "whenever")
+        b = dict(B, time="midnight", weather="light rain")
+        a = dict(A, time="night")
+        s = score(a, b)
+        self.assertTrue(s["time"] and s["weather"])
+
+    def test_rescore_recomputes_from_stored_worlds(self):
+        log = [{"a": A, "ghosts": ["moon"], "reads": [
+            {"channel": "none", "b": B, "score": {}, "moved": {}},
+            {"channel": "vector", "b": dict(B, weather="rain"), "score": {}, "moved": {}}]}]
+        rescore(log)
+        self.assertTrue(log[0]["reads"][1]["score"]["weather"])
+        self.assertTrue(log[0]["reads"][1]["moved"]["weather"])   # left B's own world
+        self.assertIsNone(log[0]["reads"][0]["moved"]["time"])   # ref is itself
+        self.assertTrue(log[0]["reads"][0]["ghost_hit"])          # B has the moon
 
     def test_missing_world_scores_none(self):
         self.assertTrue(all(v is None for v in score(A, None).values()))
@@ -120,6 +153,13 @@ class TestChannels(unittest.TestCase):
         pages = {b["messages"][2]["content"] for p, b in posted if p == "/capture"}
         self.assertEqual(len(pages), 1)                   # same page text
 
+    def test_wishes_baseline_averages_the_other_wishes(self):
+        t = make(baseline="wishes")
+        _, posted = self.wire(t, A, B)
+        t.contrast("a funeral in the rain", json.dumps(A))
+        users = [b["messages"][1]["content"] for p, b in posted if p == "/capture"]
+        self.assertEqual(users, ["a funeral in the rain", "monday", "grief"])
+
     def test_step_assembles_the_three_channels(self):
         t = make()
         sent, posted = self.wire(t, A, B)
@@ -137,6 +177,8 @@ class TestChannels(unittest.TestCase):
         self.assertIn("a_link", rec)
         self.assertTrue(rec["reads"][0]["b_link"].startswith(sh.BNW_SPACE + "#w="))
         self.assertEqual(rec["reads"][0]["score"]["time"], True)
+        self.assertEqual(rec["ref"], "none")             # moved vs B's own world
+        self.assertIn("moved", rec["reads"][2])
 
     def test_rot_control_pushes_a_meaningless_vector(self):
         t = make(control="rot")

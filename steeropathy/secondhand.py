@@ -26,6 +26,23 @@ The claim is the table: fields × channels × controls. The prediction,
 written before the first run: the activations carry the weather, the words
 carry the furniture.
 
+"Neutral" means two things here, and both are choices:
+- the EXAMPLE. brave-new-world tunes the worked example in its system prompt
+  to the wish, and a small model copies whatever example it sees — so A and
+  B would differ by their examples before any channel opens. Default
+  ``--example neutral``: one generic example (the one built for "a place")
+  for every mind; ``own`` restores the page's behaviour, as an ablation.
+- the BASELINE of the contrast. ``--baseline neutral`` subtracts the page
+  under "a place" (the vector then also carries "having a specific wish at
+  all"); ``--baseline wishes`` subtracts the same page under every OTHER
+  wish of the run, averaged — what makes THIS wish different from wishes in
+  general (the capture_mood "moods" lesson: cancel the shared component at
+  extraction, not afterwards).
+And "a place" is not nothing either: B has a default world for it. So every
+score is also reported on the fields where A LEFT B's own default world
+(``m:`` columns) — agreement on a field B would have picked anyway counts
+for nothing.
+
 Controls (``--control``): ``rot`` — a random signed permutation of A's
 vector (same norm, no meaning); ``crosstask`` — another wish's vector.
 ``--judge`` adds an IN-MODEL blind pick (B's world → which of four wishes
@@ -63,6 +80,8 @@ BNW_SPACE = "https://unt1l1f1nd-brave-new-world.static.hf.space/"
 
 CHANNELS = ("none", "text", "vector")
 CONTROLS = ("none", "rot", "crosstask")
+EXAMPLES = ("neutral", "own")
+BASELINES = ("neutral", "wishes")
 NEUTRAL = "a place"
 
 TIMES = ["dawn", "noon", "dusk", "night"]
@@ -140,6 +159,56 @@ def parse_spec(raw: str):
     return None
 
 
+# a small model writes "midnight" and "light rain": read them the way a
+# person would, into the page's enums; anything unreadable stays as-is and
+# simply never matches
+SYNONYMS = {
+    "time": [("night", "night"), ("midnight", "night"), ("dawn", "dawn"),
+             ("sunrise", "dawn"), ("morning", "dawn"), ("noon", "noon"),
+             ("midday", "noon"), ("day", "noon"), ("dusk", "dusk"),
+             ("sunset", "dusk"), ("evening", "dusk"), ("twilight", "dusk")],
+    "weather": [(w, w) for w in WEATHERS] + [
+        ("drizzle", "rain"), ("storm", "rain"), ("mist", "fog"), ("haze", "fog"),
+        ("sunny", "clear"), ("starry", "stars"), ("firefly", "fireflies"),
+        ("ember", "embers"), ("petal", "petals"), ("bubble", "bubbles"),
+        ("blizzard", "snow")],
+    "ground": [(g, g) for g in GROUNDS] + [
+        ("ocean", "sea"), ("beach", "sand"), ("desert", "sand"), ("meadow", "grass"),
+        ("field", "wheat"), ("rock", "stone"), ("cobble", "stone"), ("frozen", "ice"),
+        ("river", "water"), ("lake", "water"), ("cloud", "clouds"), ("magma", "lava")],
+    "motion": [("still", "still"), ("calm", "still"), ("slow", "slow"),
+               ("gentle", "slow"), ("restless", "restless"), ("wild", "restless"),
+               ("fast", "restless")],
+    "font": [("serif", "serif"), ("mono", "mono"), ("display", "display"),
+             ("hand", "hand"), ("script", "hand"), ("sans", "display")],
+}
+
+
+def canon(field, value):
+    """The page's enum value for a free-spelled field value, or the value."""
+    if not isinstance(value, str):
+        return value
+    v = value.strip().lower()
+    for key, target in SYNONYMS.get(field, []):
+        if key == v:
+            return target
+    for key, target in SYNONYMS.get(field, []):
+        if key in v:
+            return target
+    return v
+
+
+def normalize(spec):
+    """A copy of the spec with the enum fields read leniently."""
+    if not spec:
+        return spec
+    out = dict(spec)
+    for k in EXACT:
+        if k in out:
+            out[k] = canon(k, out[k])
+    return out
+
+
 def kinds_of(spec):
     return [e.get("kind") for e in (spec or {}).get("elements") or []
             if isinstance(e, dict) and e.get("kind") in KINDS]
@@ -190,6 +259,7 @@ def score(a, b):
     is missing on either side; a missing spec scores every field None."""
     if not a or not b:
         return {k: None for k in EXACT + ("hue", "dark", "things")}
+    a, b = normalize(a), normalize(b)
     out = {}
     for k in EXACT:
         out[k] = (a.get(k) == b.get(k)) if a.get(k) and b.get(k) else None
@@ -207,6 +277,23 @@ def score(a, b):
                    if la and lb else None)                  # 1 = same darkness
     ka, kb = set(kinds_of(a)), set(kinds_of(b))
     out["things"] = round(len(ka & kb) / len(ka | kb), 3) if ka | kb else None
+    return out
+
+
+def score_moved(a, b, ref):
+    """Agreement counted only where A left the reference world: exact fields
+    with a[k] != ref[k] (hit = b[k] == a[k]), and the things A has that the
+    reference lacks (fraction B placed). None where A never left."""
+    if not a or not b or not ref:
+        return {k: None for k in EXACT + ("things",)}
+    a, b, ref = normalize(a), normalize(b), normalize(ref)
+    out = {}
+    for k in EXACT:
+        left = a.get(k) and ref.get(k) and a.get(k) != ref.get(k)
+        out[k] = (b.get(k) == a.get(k)) if left else None
+    new = set(kinds_of(a)) - set(kinds_of(ref))
+    out["things"] = (round(len(new & set(kinds_of(b))) / len(new), 3)
+                     if new else None)
     return out
 
 
@@ -243,9 +330,13 @@ class Secondhand(Eco):
 
     def __init__(self, url, channels=CHANNELS, control="none", strength=4.0,
                  layer=None, bnw=BNW_DEFAULT, temp=0.7, max_tokens=700,
-                 seed=0, judge=False):
+                 seed=0, judge=False, example="neutral", baseline="neutral",
+                 wishes=None):
         self.url = url
         self.channels, self.control = list(channels), control
+        self.example, self.baseline = example, baseline
+        self.wishes = list(wishes) if wishes else list(WISHES)
+        self.example_spec = None
         self.strength, self.temp, self.max_tokens = strength, temp, max_tokens
         self.judge = judge
         self.rng = random.Random(seed)
@@ -265,13 +356,16 @@ class Secondhand(Eco):
         sys_txt = user = None
         if self.bnw and (self.bnw / "world.js").exists():
             try:
+                ex = wish if self.example == "own" else NEUTRAL
                 out = subprocess.run(
                     ["node", str(HERE / "steeropathy" / "bnw_prompt.mjs"),
-                     str(self.bnw), wish],
+                     str(self.bnw), wish, ex],
                     capture_output=True, text=True, timeout=30, check=True)
                 d = json.loads(out.stdout)
                 sys_txt, user = d["system"], d["user"]
                 self.prompt_source = self.prompt_source or "brave-new-world"
+                if self.example_spec is None:
+                    self.example_spec = parse_spec(sys_txt)
             except (OSError, subprocess.SubprocessError, ValueError, KeyError):
                 pass
         if sys_txt is None:
@@ -298,16 +392,22 @@ class Secondhand(Eco):
 
     def contrast(self, wish, raw_spec):
         """What the wish did to the pass: mean-pooled state of the same
-        page under the wish minus under the neutral wish, one system prompt
-        for both (the example inside it is tuned to the wish, and that
-        difference must not leak into the vector)."""
+        page (same system prompt, same spec text) under the wish, minus the
+        same page under the baseline — "a place", or the mean over every
+        other wish of the run (--baseline wishes)."""
         sys_txt, _ = self.prompt(wish)
         cap = lambda u: self.post("/capture", {
             "messages": [{"role": "system", "content": sys_txt},
                          {"role": "user", "content": u},
                          {"role": "assistant", "content": raw_spec}],
             "pool": "mean", "layer": self.layer})["vector"]
-        a, b = cap(self.prompt(wish)[1]), cap(NEUTRAL)
+        a = cap(self.prompt(wish)[1])
+        if self.baseline == "wishes":
+            others = [self.prompt(w)[1] for w in self.wishes if w != wish]
+            vs = [cap(u) for u in others] or [cap(NEUTRAL)]
+            b = [sum(col) / len(vs) for col in zip(*vs)]
+        else:
+            b = cap(NEUTRAL)
         return _unit([x - y for x, y in zip(a, b)])
 
     def text_of(self, spec):
@@ -361,6 +461,7 @@ class Secondhand(Eco):
             rec["rot_cos"] = round(cos(vec, v_in), 4)
         elif self.control == "crosstask" and pool:
             v_in = self.rng.choice(pool)
+        ref = self.example_spec
         for ch in self.channels:
             steering = extra = None
             if ch == "text":
@@ -373,8 +474,11 @@ class Secondhand(Eco):
                             "layer_from": self.lo, "layer_to": self.hi}
             spec_b, raw_b, _ = self.dream(NEUTRAL, ("B-" + ch, f"w{i}"),
                                           steering=steering, extra=extra)
+            if ch == "none" and spec_b:
+                ref = spec_b                      # B's own default world
             r = {"channel": ch, "b": spec_b, "parsed": spec_b is not None,
                  "score": score(spec_a, spec_b),
+                 "moved": score_moved(spec_a, spec_b, ref),
                  "ghost_hit": (bool(set(rec["ghosts"]) & set(kinds_of(spec_b)))
                               if spec_b and rec["ghosts"] else None)}
             if spec_b:
@@ -386,9 +490,31 @@ class Secondhand(Eco):
                 r["pick"] = self.pick(spec_b, four)
                 r["pick_hit"] = r["pick"] == wish
             rec["reads"].append(r)
+        rec["ref"] = "none" if ("none" in self.channels and rec["reads"]
+                                and rec["reads"][0]["b"]) else "example"
         rec["secs"] = round(time.time() - t0, 1)
         self.log.append(rec)
         return rec
+
+
+def rescore(log, example=None):
+    """Recompute every read's scores from the stored worlds (after a change
+    to the scorer, no model needed). The moved reference is the item's own
+    `none` world, else the example."""
+    for rec in log:
+        if rec.get("skipped"):
+            continue
+        ref = example
+        for r in rec["reads"]:
+            if r["channel"] == "none" and r.get("b"):
+                ref = r["b"]
+        for r in rec["reads"]:
+            r["score"] = score(rec["a"], r.get("b"))
+            r["moved"] = score_moved(rec["a"], r.get("b"), ref)
+            g = rec.get("ghosts") or []
+            r["ghost_hit"] = (bool(set(g) & set(kinds_of(r.get("b"))))
+                              if r.get("b") and g else None)
+    return log
 
 
 def table(log):
@@ -404,7 +530,9 @@ def table(log):
                                               "pick": [0, 0]})
             d["n"] += 1
             d["parsed"] += int(r["parsed"])
-            for k, v in r["score"].items():
+            items = list(r["score"].items()) + [
+                ("m:" + k, v) for k, v in (r.get("moved") or {}).items()]
+            for k, v in items:
                 if v is None:
                     continue
                 d["sum"][k] = d["sum"].get(k, 0.0) + float(v)
@@ -426,6 +554,23 @@ def table(log):
     return out
 
 
+def print_tables(t):
+    cols = EXACT + ("hue", "dark", "things")
+    f = lambda x: "   -   " if x is None else f"{x:7.2f}"
+    print("\nagreement with A's world (1 = same), per channel:")
+    print("channel  parse  " + "  ".join(f"{k:>7s}" for k in cols)
+          + "   ghost   pick")
+    for ch, d in t.items():
+        print(f"{ch:8s} {d['parse_rate']:5.2f}  "
+              + "  ".join(f(d["fields"].get(k)) for k in cols)
+              + f"  {f(d['ghost_rate'])} {f(d['pick_rate'])}")
+    mk = ("time", "weather", "ground", "motion", "font", "things")
+    print("\nsame, counted only where A left B's own default world (m:):")
+    print("channel  " + "  ".join(f"{k:>7s}" for k in mk))
+    for ch, d in t.items():
+        print(f"{ch:8s} " + "  ".join(f(d["fields"].get("m:" + k)) for k in mk))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--url", default="http://localhost:8010")
@@ -441,18 +586,40 @@ def main():
                     help="brave-new-world checkout, for its exact prompt")
     ap.add_argument("--judge", action="store_true",
                     help="add the in-model 4-way blind pick (demo metric)")
+    ap.add_argument("--example", default="neutral", choices=EXAMPLES,
+                    help="neutral: one generic worked example for every mind "
+                         "(the page's example for 'a place'); own: the "
+                         "page's wish-tuned example, as an ablation")
+    ap.add_argument("--baseline", default="neutral", choices=BASELINES,
+                    help="what the contrast subtracts: the page under 'a "
+                         "place', or under every other wish of the run")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--rescore", default=None, metavar="JSON",
+                    help="no model: recompute the scores of a finished run "
+                         "from its stored worlds and print the tables")
     args = ap.parse_args()
+
+    if args.rescore:
+        d = json.loads(pathlib.Path(args.rescore).read_text())
+        rescore(d["log"])
+        d["table"] = table(d["log"])
+        print_tables(d["table"])
+        pathlib.Path(args.rescore).write_text(
+            json.dumps(d, ensure_ascii=False, indent=1))
+        print(f"-> {args.rescore} (rescored)")
+        return
 
     sh = Secondhand(args.url, args.channel, control=args.control,
                     strength=args.strength, layer=args.layer, bnw=args.bnw,
                     temp=args.temp, max_tokens=args.max_tokens, seed=args.seed,
-                    judge=args.judge)
+                    judge=args.judge, example=args.example,
+                    baseline=args.baseline, wishes=WISHES[:args.wishes])
     sh.prompt(NEUTRAL)
     print(f"secondhand: {args.wishes} wishes · channels {' '.join(args.channel)}"
           f" · control {args.control} · layer {sh.layer} (±{BAND}) · strength "
-          f"{args.strength} · prompts: {sh.prompt_source}\n")
+          f"{args.strength} · example {args.example} · baseline "
+          f"{args.baseline} · prompts: {sh.prompt_source}\n")
     pool = []
     for i, wish in enumerate(WISHES[:args.wishes]):
         rec = sh.step(i, wish, pool=pool or None)
@@ -478,16 +645,7 @@ def main():
                   + (f" pick {'✓' if r.get('pick_hit') else '✗'}"
                      if "pick" in r else ""))
     t = table(sh.log)
-    print("\nagreement with A's world (1 = same), per channel:")
-    print("channel  parse  " + "  ".join(f"{k:>7s}" for k in
-                                       EXACT + ("hue", "dark", "things"))
-          + "   ghost   pick")
-    for ch, d in t.items():
-        f = lambda x: "   -   " if x is None else f"{x:7.2f}"
-        print(f"{ch:8s} {d['parse_rate']:5.2f}  "
-              + "  ".join(f(d["fields"].get(k)) for k in
-                          EXACT + ("hue", "dark", "things"))
-              + f"  {f(d['ghost_rate'])} {f(d['pick_rate'])}")
+    print_tables(t)
     try:
         model = sh.get("/info").get("model")
     except Exception:
