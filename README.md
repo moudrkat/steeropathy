@@ -88,6 +88,7 @@ is already in the first one.
 | **[unsaid](experiments/unsaid.md)** | no message is ever delivered — only each mind's J-space crosses. Played as a board game, the reader points at a never-written secret at 4× chance |
 | **[warmer](experiments/warmer.md)** | hot-and-cold between two minds where the only thing that crosses is a temperature. A negative result so far, and a ladder of instrument lessons |
 | **[zombie](experiments/zombie.md)** | a bias outbreak: patient zero is bitten with a steering vector and the room fights back by reading each other's layers. Vector-agnostic (`--strain`) — the infection can be a behaviour or a concept — with the honest limits documented |
+| **[runner-up](experiments/runnerup.md)** | a sender commits to one word; can a reader point at the word it *almost* said, off its J-space or a pushed vector, where the sender's own text can't carry it? The first bench with the text channel as a control. Built, not yet run live |
 
 ## Build your own experiment
 
@@ -257,6 +258,9 @@ PRs and forks welcome. The line I'm pulling on next:
 
 ## Honest notes
 
+- No bench here has yet compared the vector channel against the sender's **own
+  text** — Wenzel (2026) did, and text won on everything he tried.
+  [runner-up](experiments/runnerup.md) is where that control finally runs.
 - The plumbing isn't new. Adding a direction to activations is activation steering
   (Turner, Zou), and hidden states have been passed between agents before. What I
   haven't seen is this framing: mood contagion made watchable, the consent game, and
@@ -283,6 +287,7 @@ PRs and forks welcome. The line I'm pulling on next:
   ([2310.15916](https://arxiv.org/abs/2310.15916))
 - **Emotion:** Ruan et al., *Mechanistic Interpretability of Emotion Inference*
   ([2502.05489](https://arxiv.org/abs/2502.05489))
+- **Latent communication vs text:** Wenzel, *Latent Communication Between LM Agents: Channels, Alignment, and the Limits of Text* ([2607.14103](https://arxiv.org/abs/2607.14103)); Du et al., *Interlat* ([2511.09149](https://arxiv.org/abs/2511.09149)); Liu, *Beyond Tokens* survey ([2606.05711](https://arxiv.org/abs/2606.05711)); Zhang et al., *Locate, Steer, and Improve* survey ([2601.14004](https://arxiv.org/abs/2601.14004)); Singh et al., *Representation Surgery* — the mean-difference vector is the L2-optimal affine steer ([2402.09631](https://arxiv.org/abs/2402.09631)). Reading notes in [docs/papers](docs/papers/README.md)
 - **Agent steering & latent communication:** UK AISI,
   [llm-self-steering](https://github.com/UKGovernmentBEIS/llm-self-steering); *The
   Bicameral Model* ([2605.11167](https://arxiv.org/pdf/2605.11167)); a
