@@ -768,10 +768,33 @@ def main():
                          "(default is prose under the channel, then an "
                          "unsteered spec from the prose)")
     ap.add_argument("--prose-tokens", type=int, default=60)
+    ap.add_argument("--merge", nargs="+", default=None, metavar="JSON",
+                    help="no model: pool the logs of several finished runs "
+                         "(same channels) into one table and residue, "
+                         "written to --out")
     ap.add_argument("--rescore", default=None, metavar="JSON",
                     help="no model: recompute the scores of a finished run "
                          "from its stored worlds and print the tables")
     args = ap.parse_args()
+
+    if args.merge:
+        logs, models = [], set()
+        for f in args.merge:
+            d = json.loads(pathlib.Path(f).read_text())
+            models.add(d.get("model"))
+            for rec in d["log"]:
+                rec["run"] = pathlib.Path(f).stem
+                logs.append(rec)
+        rescore(logs)
+        t, r = table(logs), residue(logs)
+        print_tables(t)
+        print_residue(r)
+        out = pathlib.Path(args.out or "docs/runs/merged.json")
+        out.write_text(json.dumps({"merged": args.merge, "model": sorted(models),
+                                   "table": t, "residue": r, "log": logs},
+                                  ensure_ascii=False, indent=1))
+        print(f"-> {out}")
+        return
 
     if args.judge_run:
         d = json.loads(pathlib.Path(args.judge_run).read_text())
