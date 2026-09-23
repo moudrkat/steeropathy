@@ -634,6 +634,36 @@ def rescore(log, example=None):
     return log
 
 
+def residue(log):
+    """What never became text: per field, items where the vector channel
+    matched A and the text channel did not (`vector_only`), and the reverse
+    (`text_only`), both counted only where A left B's own world. The
+    thesis number is the difference; `none` cancels because both channels
+    are read against the same one."""
+    out = {}
+    for rec in log:
+        if rec.get("skipped"):
+            continue
+        by = {r["channel"]: r for r in rec["reads"]}
+        v, t = by.get("vector"), by.get("text")
+        if not v or not t:
+            continue
+        keys = list((v.get("moved") or {}).keys()) + ["ghost"]
+        for k in keys:
+            if k == "ghost":
+                a, b = v.get("ghost_hit"), t.get("ghost_hit")
+            else:
+                a, b = (v.get("moved") or {}).get(k), (t.get("moved") or {}).get(k)
+            if a is None or b is None:
+                continue
+            d = out.setdefault(k, {"n": 0, "vector_only": 0, "text_only": 0, "both": 0})
+            d["n"] += 1
+            d["vector_only"] += int(bool(a) and not b)
+            d["text_only"] += int(bool(b) and not a)
+            d["both"] += int(bool(a) and bool(b))
+    return out
+
+
 def table(log):
     """Mean agreement per field per channel over parsed worlds, plus the
     parse rate (a broken spec is a miss, not a crash)."""
@@ -693,6 +723,14 @@ def print_tables(t):
     print("channel  " + "  ".join(f"{k:>7s}" for k in mk))
     for ch, d in t.items():
         print(f"{ch:8s} " + "  ".join(f(d["fields"].get("m:" + k)) for k in mk))
+
+
+def print_residue(r):
+    print("\nwhat never became text — items where only the vector matched A "
+          "/ only the poem did / both (of n):")
+    print("field     vector-only  text-only   both     n")
+    for k, d in r.items():
+        print(f"{k:9s} {d['vector_only']:11d}  {d['text_only']:9d}  {d['both']:5d}  {d['n']:4d}")
 
 
 def main():
@@ -768,7 +806,9 @@ def main():
         d = json.loads(pathlib.Path(args.rescore).read_text())
         rescore(d["log"])
         d["table"] = table(d["log"])
+        d["residue"] = residue(d["log"])
         print_tables(d["table"])
+        print_residue(d["residue"])
         pathlib.Path(args.rescore).write_text(
             json.dumps(d, ensure_ascii=False, indent=1))
         print(f"-> {args.rescore} (rescored)")
@@ -815,6 +855,8 @@ def main():
                      if "pick" in r else ""))
     t = table(sh.log)
     print_tables(t)
+    res = residue(sh.log)
+    print_residue(res)
     try:
         model = sh.get("/info").get("model")
     except Exception:
@@ -838,7 +880,7 @@ def main():
         "model": model, "judge": ({"url": args.judge_url,
                                    "cross_model": bool(args.judge_url)}
                                   if args.judge else None),
-        "table": t, "log": slim}, ensure_ascii=False, indent=1))
+        "table": t, "residue": res, "log": slim}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
 
 

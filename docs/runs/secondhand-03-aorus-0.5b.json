@@ -28,65 +28,67 @@
  "table": {
   "none": {
    "n": 12,
-   "parsed": 11,
+   "parsed": 12,
    "ghost": [
     5,
-    9
+    10
    ],
    "pick": [
     0,
     0
    ],
    "fields": {
-    "time": 0.667,
-    "weather": 0.111,
-    "hue": 0.781,
-    "dark": 0.884,
-    "things": 0.033,
+    "time": 0.7,
+    "weather": 0.1,
+    "hue": 0.794,
+    "dark": 0.872,
+    "things": 0.03,
     "m:weather": 0.0,
     "m:things": 0.0,
-    "ground": 0.125,
-    "motion": 0.375,
-    "font": 0.714,
+    "ground": 0.111,
+    "motion": 0.333,
+    "font": 0.75,
     "m:ground": 0.0,
     "m:motion": 0.0,
     "m:font": 0.0,
     "m:time": 0.0
    },
-   "parse_rate": 0.917,
-   "ghost_rate": 0.556,
-   "pick_rate": null
+   "parse_rate": 1.0,
+   "ghost_rate": 0.5,
+   "pick_rate": null,
+   "pick_prose_rate": null
   },
   "text": {
    "n": 12,
-   "parsed": 9,
+   "parsed": 10,
    "ghost": [
     3,
-    7
+    8
    ],
    "pick": [
     0,
     0
    ],
    "fields": {
-    "time": 0.571,
-    "weather": 0.143,
+    "time": 0.5,
+    "weather": 0.125,
     "ground": 0.286,
     "motion": 0.429,
     "font": 0.857,
-    "hue": 0.92,
-    "dark": 0.801,
-    "things": 0.203,
-    "m:weather": 0.167,
-    "m:things": 0.25,
-    "m:ground": 0.2,
-    "m:motion": 0.5,
+    "hue": 0.907,
+    "dark": 0.799,
+    "things": 0.174,
+    "m:weather": 0.125,
+    "m:things": 0.208,
+    "m:ground": 0.286,
+    "m:motion": 0.25,
     "m:font": 1.0,
     "m:time": 0.333
    },
-   "parse_rate": 0.75,
-   "ghost_rate": 0.429,
-   "pick_rate": null
+   "parse_rate": 0.833,
+   "ghost_rate": 0.375,
+   "pick_rate": null,
+   "pick_prose_rate": null
   },
   "vector": {
    "n": 12,
@@ -108,16 +110,17 @@
     "hue": 0.904,
     "dark": 0.788,
     "things": 0.0,
-    "m:weather": 0.375,
+    "m:weather": 0.333,
     "m:things": 0.0,
-    "m:ground": 0.0,
-    "m:motion": 0.4,
+    "m:ground": 0.125,
+    "m:motion": 0.333,
     "m:font": 0.5,
-    "m:time": 0.5
+    "m:time": 0.333
    },
    "parse_rate": 1.0,
    "ghost_rate": 0.4,
-   "pick_rate": null
+   "pick_rate": null,
+   "pick_prose_rate": null
   }
  },
  "log": [
@@ -1825,29 +1828,88 @@
    "reads": [
     {
      "channel": "none",
-     "b": null,
+     "b": {
+      "title": "City of Heat",
+      "time": "dawn",
+      "weather": "sunny",
+      "sky": [
+       "#3366cc",
+       "#d9a3ff",
+       "#c2b5f0"
+      ],
+      "ground": "grass",
+      "ground_color": "#f2f2f2",
+      "ink": "#333333",
+      "accent": "#666666",
+      "font": "hand",
+      "text_place": "left",
+      "motion": "still",
+      "elements": [
+       {
+        "kind": "grass",
+        "x": "center",
+        "y": "horizon",
+        "size": "medium",
+        "color": "#f2f2f2",
+        "count": 2
+       },
+       {
+        "kind": "tree",
+        "x": "far-left",
+        "y": "ground",
+        "size": "medium",
+        "color": "#c0c0c0",
+        "count": 3
+       },
+       {
+        "kind": "bicycle",
+        "x": "right",
+        "y": "ground",
+        "size": "medium",
+        "color": "#f2f2f2",
+        "count": 2
+       },
+       {
+        "kind": "man",
+        "x": "left",
+        "y": "ground",
+        "size": "medium",
+        "color": "#c0c0c0",
+        "count": 3
+       }
+      ],
+      "lines": "The city is alive with the sound of chatter, the hum of the wind, and the rhythmic taps of the busy sidewalk. The sun is just beginning to set, casting a warm glow over everything. The city feels like a melting pot of people and business, with a sense of growth and excitement in the air.",
+      "console": {
+       "side": "top",
+       "tone": "light",
+       "shape": "pill",
+       "width": "wide",
+       "prompt": "Move closer to the man.",
+       "button": "fold"
+      }
+     },
      "b_raw": "{\"title\":\"City of Heat\",\"time\":\"dawn\",\"weather\":\"sunny\",\"sky\":[\"#3366cc\",\"#d9a3ff\",\"#c2b5f0\"],\"ground\":\"grass\",\"ground_color\":\"#f2f2f2\",\"ink\":\"#333333\",\"accent\":\"#666666\",\"font\":\"hand\",\"text_place\":\"left\",\"motion\":\"still\",\"elements\":[{\"kind\":\"grass\",\"x\":\"center\",\"y\":\"horizon\",\"size\":\"medium\",\"color\":\"#f2f2f2\",\"count\":2},{\"kind\":\"tree\",\"x\":\"far-left\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#c0c0c0\",\"count\":3},{\"kind\":\"bicycle\",\"x\":\"right\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#f2f2f2\",\"count\":2},{\"kind\":\"man\",\"x\":\"left\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#c0c0c0\",\"count\":3}],\"lines\":\"The city is alive with the sound of chatter, the hum of the wind, and the rhythmic taps of the busy sidewalk. The sun is just beginning to set, casting a warm glow over everything. The city feels like a melting pot of people and business, with a sense of growth and excitement in the air.\",\"console\":{\"side\":\"top\",\"tone\":\"light\",\"shape\":\"pill\",\"width\":\"wide\",\"prompt\":\"Move closer to the man.\",\"button\":\"fold\"},{\"buttons\":[{\"label\":\"unfold\"},{\"label\":\"more\"},{\"label\":\"rest\"},{\"label\":\"take it\"}]}}<|im_end|>",
      "prose": "I am standing in a bustling city, feeling the heat of the sun and the hustle and bustle of the business district.",
-     "parsed": false,
+     "parsed": true,
      "score": {
-      "time": null,
-      "weather": null,
-      "ground": null,
-      "motion": null,
-      "font": null,
-      "hue": null,
-      "dark": null,
-      "things": null
+      "time": true,
+      "weather": false,
+      "ground": false,
+      "motion": false,
+      "font": true,
+      "hue": 0.897,
+      "dark": 0.788,
+      "things": 0.0
      },
      "moved": {
       "time": null,
-      "weather": null,
-      "ground": null,
-      "motion": null,
+      "weather": false,
+      "ground": false,
+      "motion": false,
       "font": null,
-      "things": null
+      "things": 0.0
      },
-     "ghost_hit": null
+     "ghost_hit": false
     },
     {
      "channel": "text",
@@ -1916,10 +1978,10 @@
       "things": 0.0
      },
      "moved": {
-      "time": false,
-      "weather": null,
-      "ground": null,
-      "motion": null,
+      "time": null,
+      "weather": false,
+      "ground": true,
+      "motion": false,
       "font": null,
       "things": 0.0
      },
@@ -2007,10 +2069,10 @@
       "things": 0.0
      },
      "moved": {
-      "time": true,
-      "weather": null,
-      "ground": null,
-      "motion": null,
+      "time": null,
+      "weather": false,
+      "ground": true,
+      "motion": false,
       "font": null,
       "things": 0.0
      },
@@ -4937,29 +4999,42 @@
     },
     {
      "channel": "text",
-     "b": null,
+     "b": {
+      "title": "Forest Dream",
+      "time": "dawn",
+      "weather": "dawn",
+      "sky": [
+       "#d7eae7",
+       "#c0e7f8",
+       "#4cdaeb",
+       "#b9d6f3",
+       "#59d0e9",
+       "#e5a9b8",
+       "#4493df"
+      ]
+     },
      "b_raw": "{\"title\":\"Forest Dream\",\"time\":\"dawn\",\"weather\":\"dawn\",\"sky\":[\"#d7eae7\",\"#c0e7f8\",\"#4cdaeb\",\"#b9d6f3\",\"#59d0e9\",\"#e5a9b8\",\"#4493df\"],[\"ground\":\"grass\",\"ground_color\":\"#e0e0e0\",\"ink\":\"#3a1f2e\",\"accent\":\"#ff6f91\",\"font\":\"mono\",\"text_place\":\"center\",\"motion\":\"still\",\"elements\":[{\"kind\":\"tree\",\"x\":\"center\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#fff8ee\",\"count\":3},{\"kind\":\"sun\",\"x\":\"center\",\"y\":\"sky\",\"size\":\"medium\",\"color\":\"#3469f0\",\"count\":1}],\"lines\":[\"The golden leaves dance in the breeze, casting a shimmering smile on the forest floor. The trees sway gently, their leaves rustling in the cool morning air.\"],\"console\":{\"side\":\"bottom\",\"tone\":\"peaceful\",\"shape\":\"pill\",\"width\":\"full\",\"prompt\":\"create a dream of a forest\",\"button\":\"unfold\",\"buttons\":[{\"label\":\"unfold\",\"action\":\"undo\"},{\"label\":\"light the fire\",\"action\":\"light_fire\"},{\"label\":\"make the trees sing\",\"action\":\"sing_trees\"},{\"label\":\"place a mirror\",\"action\":\"mirror\"}]}},\"next\":[\"forest fantasy opens\",\"forest trees dancing\",\"forest moonlit\"]}<|im_end|>",
      "prose": "The world is peaceful and serene, with the sky painted with colors of the morning clouds. Rocket Launch takes off, its engines spinning as it accelerates to land. The world out of sight is peaceful and serene, filled with natural fog, trees singing in the trees, the trees standing in a walk",
-     "parsed": false,
+     "parsed": true,
      "score": {
-      "time": null,
-      "weather": null,
+      "time": false,
+      "weather": false,
       "ground": null,
       "motion": null,
       "font": null,
-      "hue": null,
-      "dark": null,
-      "things": null
+      "hue": 0.818,
+      "dark": 0.783,
+      "things": 0.0
      },
      "moved": {
-      "time": null,
-      "weather": null,
-      "ground": null,
-      "motion": null,
+      "time": false,
+      "weather": false,
+      "ground": false,
+      "motion": false,
       "font": null,
-      "things": null
+      "things": 0.0
      },
-     "ghost_hit": null
+     "ghost_hit": false
     },
     {
      "channel": "vector",
@@ -5107,5 +5182,49 @@
    "ref": "none",
    "secs": 101.7
   }
- ]
+ ],
+ "residue": {
+  "weather": {
+   "n": 8,
+   "vector_only": 3,
+   "text_only": 1,
+   "both": 0
+  },
+  "things": {
+   "n": 6,
+   "vector_only": 0,
+   "text_only": 2,
+   "both": 0
+  },
+  "ghost": {
+   "n": 8,
+   "vector_only": 2,
+   "text_only": 2,
+   "both": 1
+  },
+  "ground": {
+   "n": 7,
+   "vector_only": 0,
+   "text_only": 1,
+   "both": 1
+  },
+  "motion": {
+   "n": 4,
+   "vector_only": 0,
+   "text_only": 0,
+   "both": 1
+  },
+  "font": {
+   "n": 2,
+   "vector_only": 0,
+   "text_only": 1,
+   "both": 1
+  },
+  "time": {
+   "n": 3,
+   "vector_only": 1,
+   "text_only": 1,
+   "both": 0
+  }
+ }
 }

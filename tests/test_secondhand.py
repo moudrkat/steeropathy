@@ -10,8 +10,8 @@ import zlib
 
 import steeropathy.secondhand as sh
 from steeropathy.secondhand import (Secondhand, ghosts, hue, parse_spec,
-                                    canon, rescore, score, score_moved,
-                                    table, world_link)
+                                    canon, rescore, residue, score,
+                                    score_moved, table, world_link)
 
 A = {"title": "Wet Farewell", "time": "dusk", "weather": "rain",
      "ground": "stone", "motion": "still", "font": "serif",
@@ -257,6 +257,18 @@ class TestLinkAndTable(unittest.TestCase):
         p = json.loads(data)
         self.assertEqual(p["v"], 1)
         self.assertEqual(p["sp"]["weather"], "clear")
+
+    def test_residue_is_vector_minus_text_per_field(self):
+        log = [{"reads": [
+            {"channel": "text", "moved": {"time": True, "weather": False}, "ghost_hit": False},
+            {"channel": "vector", "moved": {"time": True, "weather": True}, "ghost_hit": True}]},
+               {"reads": [
+            {"channel": "text", "moved": {"time": None, "weather": True}, "ghost_hit": True},
+            {"channel": "vector", "moved": {"time": None, "weather": False}, "ghost_hit": False}]}]
+        r = residue(log)
+        self.assertEqual(r["time"], {"n": 1, "vector_only": 0, "text_only": 0, "both": 1})
+        self.assertEqual(r["weather"], {"n": 2, "vector_only": 1, "text_only": 1, "both": 0})
+        self.assertEqual(r["ghost"], {"n": 2, "vector_only": 1, "text_only": 1, "both": 0})
 
     def test_table_means_and_parse_rate(self):
         log = [{"reads": [
