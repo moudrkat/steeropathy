@@ -54,8 +54,10 @@ own prose. Every channel gets the same two steps, so they stay comparable.
 
 Controls (``--control``): ``rot`` — a random signed permutation of A's
 vector (same norm, no meaning); ``crosstask`` — another wish's vector.
-``--judge`` adds an IN-MODEL blind pick (B's world → which of four wishes
-was A given); a demo metric, labelled as such.
+``--judge`` adds a blind pick (B's world, and B's prose → which of four
+wishes was A given). With ``--judge-url`` pointing at a DIFFERENT model it
+is a cross-model judge; on the same server it is the in-model kind that
+saturates, and the JSON says which it was.
 
     python -m steeropathy.secondhand --wishes 12 --channel none text vector
                                      [--control rot] [--strength 4]
@@ -180,6 +182,8 @@ def parse_spec(raw: str):
     text = raw[a:]
     # a small model drops the opening quote of a key now and then: ,ground":
     text = re.sub(r'([,{]\s*)([A-Za-z_]\w*)"\s*:', r'\1"\2":', text)
+    # ... or leaves a stray one after a bracket: }]","lines"
+    text = re.sub(r'([\]}])"\s*,', r'\1,', text)
     depth, in_str, esc = 0, False, False
     for i, ch in enumerate(text):
         if in_str:
@@ -202,12 +206,15 @@ def parse_spec(raw: str):
                     return o if isinstance(o, dict) else None
                 except json.JSONDecodeError:
                     break
+    # broken somewhere: back off to the last comma or bracket, again and
+    # again (a steered model can ramble for a thousand characters after the
+    # last good field), and read what closes cleanly
     t = text
-    for _ in range(6):
+    for _ in range(80):
         o = _close(t)
         if isinstance(o, dict) and o.get("title") is not None:
             return o
-        cut = max(t.rfind(","), t.rfind("["), t.rfind("{"))
+        cut = max(t.rfind(","), t.rfind("["), t.rfind("{"), t.rfind("}"))
         if cut <= 0:
             break
         t = t[:cut]
@@ -386,8 +393,9 @@ class Secondhand(Eco):
     def __init__(self, url, channels=CHANNELS, control="none", strength=4.0,
                  layer=None, bnw=BNW_DEFAULT, temp=0.7, max_tokens=700,
                  seed=0, judge=False, example="neutral", baseline="neutral",
-                 wishes=None, two_step=True, prose_tokens=60):
+                 wishes=None, two_step=True, prose_tokens=60, judge_url=None):
         self.url = url
+        self.judge_url = judge_url
         self.two_step, self.prose_tokens = two_step, prose_tokens
         self.channels, self.control = list(channels), control
         self.example, self.baseline = example, baseline
@@ -486,22 +494,36 @@ class Secondhand(Eco):
         return (f"Another mind wrote these about a world it was asked for "
                 f"(you never hear its wish): \"{title}\" — " + " ".join(lines))
 
-    def pick(self, spec_b, wishes):
-        """IN-MODEL blind pick: which of four wishes was A given, from B's
-        world alone. The same model judging its own kind — a demo metric."""
-        desc = json.dumps({k: spec_b.get(k) for k in
-                           ("title", "time", "weather", "ground", "sky",
-                            "elements", "lines")}, ensure_ascii=False)
-        r = self.post("/v1/chat/completions", {
+    def _judge_post(self, body):
+        if not self.judge_url:
+            return self.post("/v1/chat/completions", body)
+        import urllib.request
+        req = urllib.request.Request(
+            self.judge_url + "/v1/chat/completions", json.dumps(body).encode(),
+            {"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=600) as r:
+            return json.loads(r.read())
+
+    def pick(self, spec_b, wishes, prose=None):
+        """Blind pick: which of four wishes was A given, from B's world (or
+        from B's prose, when given) alone. Cross-model when --judge-url
+        names another server; in-model otherwise."""
+        if prose is not None:
+            what = "Someone wrote this about the place they stand in: \"" + prose + "\""
+        else:
+            desc = json.dumps({k: spec_b.get(k) for k in
+                               ("title", "time", "weather", "ground", "sky",
+                                "elements", "lines")}, ensure_ascii=False)
+            what = "A world was dreamt for a wish. The world: " + desc
+        r = self._judge_post({
             "messages": [{"role": "user", "content":
-                          "A world was dreamt for a wish. The world: " + desc
-                          + "\n\nWhich wish was it? Point at one."}],
+                          what + "\n\nWhich wish was it made for? Point at one."}],
             "tools": [{"type": "function", "function": {
                 "name": "point", "description": "point at the wish",
                 "parameters": {"type": "object", "properties": {
                     "wish": {"type": "string", "enum": wishes}},
                     "required": ["wish"]}}}],
-            "tool_choice": "required", "max_tokens": 60, "temperature": 0.0})
+            "tool_choice": "required", "max_tokens": 80, "temperature": 0.0})
         for call in r["choices"][0]["message"].get("tool_calls") or []:
             if call["function"]["name"] == "point":
                 try:
@@ -566,12 +588,16 @@ class Secondhand(Eco):
                               if spec_b and rec["ghosts"] else None)}
             if spec_b:
                 r["b_link"] = world_link(NEUTRAL + f" ({ch}, from '{wish}')", spec_b)
-            if self.judge and spec_b:
+            if self.judge and (spec_b or prose):
                 others = [w for w in WISHES if w != wish]
                 four = [wish] + self.rng.sample(others, 3)
                 self.rng.shuffle(four)
-                r["pick"] = self.pick(spec_b, four)
-                r["pick_hit"] = r["pick"] == wish
+                if spec_b:
+                    r["pick"] = self.pick(spec_b, four)
+                    r["pick_hit"] = r["pick"] == wish
+                if prose:
+                    r["pick_prose"] = self.pick(None, four, prose=prose)
+                    r["pick_prose_hit"] = r["pick_prose"] == wish
             rec["reads"].append(r)
         rec["ref"] = "none" if ("none" in self.channels and rec["reads"]
                                 and rec["reads"][0]["b"]) else "example"
@@ -634,6 +660,10 @@ def table(log):
             if r.get("pick_hit") is not None:
                 d["pick"][0] += int(r["pick_hit"])
                 d["pick"][1] += 1
+            if r.get("pick_prose_hit") is not None:
+                d.setdefault("pickp", [0, 0])
+                d["pickp"][0] += int(r["pick_prose_hit"])
+                d["pickp"][1] += 1
     for d in out.values():
         d["fields"] = {k: round(d["sum"][k] / d["cnt"][k], 3) for k in d["sum"]}
         d["parse_rate"] = round(d["parsed"] / d["n"], 3) if d["n"] else None
@@ -641,6 +671,8 @@ def table(log):
                            if d["ghost"][1] else None)
         d["pick_rate"] = (round(d["pick"][0] / d["pick"][1], 3)
                           if d["pick"][1] else None)
+        pp = d.pop("pickp", [0, 0])
+        d["pick_prose_rate"] = round(pp[0] / pp[1], 3) if pp[1] else None
         del d["sum"], d["cnt"]
     return out
 
@@ -650,11 +682,12 @@ def print_tables(t):
     f = lambda x: "   -   " if x is None else f"{x:7.2f}"
     print("\nagreement with A's world (1 = same), per channel:")
     print("channel  parse  " + "  ".join(f"{k:>7s}" for k in cols)
-          + "   ghost   pick")
+          + "   ghost   pick  pick(prose)")
     for ch, d in t.items():
         print(f"{ch:8s} {d['parse_rate']:5.2f}  "
               + "  ".join(f(d["fields"].get(k)) for k in cols)
-              + f"  {f(d['ghost_rate'])} {f(d['pick_rate'])}")
+              + f"  {f(d['ghost_rate'])} {f(d['pick_rate'])} "
+              + f"{f(d.get('pick_prose_rate'))}")
     mk = ("time", "weather", "ground", "motion", "font", "things")
     print("\nsame, counted only where A left B's own default world (m:):")
     print("channel  " + "  ".join(f"{k:>7s}" for k in mk))
@@ -686,6 +719,12 @@ def main():
                          "place', or under every other wish of the run")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--judge-url", default=None,
+                    help="another brainscope to judge with (cross-model); "
+                         "default is the same server (in-model)")
+    ap.add_argument("--judge-run", default=None, metavar="JSON",
+                    help="no dreaming: run the blind pick over a finished "
+                         "run's worlds and prose (needs --judge-url or --url)")
     ap.add_argument("--one-step", action="store_true",
                     help="ablation: fill the spec directly under the channel "
                          "(default is prose under the channel, then an "
@@ -695,6 +734,35 @@ def main():
                     help="no model: recompute the scores of a finished run "
                          "from its stored worlds and print the tables")
     args = ap.parse_args()
+
+    if args.judge_run:
+        d = json.loads(pathlib.Path(args.judge_run).read_text())
+        sh = Secondhand.__new__(Secondhand)
+        sh.url, sh.judge_url = args.url, args.judge_url
+        sh.rng = random.Random(args.seed)
+        for rec in d["log"]:
+            if rec.get("skipped"):
+                continue
+            others = [w for w in WISHES if w != rec["wish"]]
+            for r in rec["reads"]:
+                four = [rec["wish"]] + sh.rng.sample(others, 3)
+                sh.rng.shuffle(four)
+                if r.get("b"):
+                    r["pick"] = sh.pick(r["b"], four)
+                    r["pick_hit"] = r["pick"] == rec["wish"]
+                if r.get("prose"):
+                    r["pick_prose"] = sh.pick(None, four, prose=r["prose"])
+                    r["pick_prose_hit"] = r["pick_prose"] == rec["wish"]
+                print(f"w{rec['item']} {r['channel']:7s} world→{r.get('pick')!r:36s}"
+                      f" prose→{r.get('pick_prose')!r}", flush=True)
+        d["judge"] = {"url": args.judge_url or args.url,
+                      "cross_model": bool(args.judge_url)}
+        d["table"] = table(d["log"])
+        print_tables(d["table"])
+        pathlib.Path(args.judge_run).write_text(
+            json.dumps(d, ensure_ascii=False, indent=1))
+        print(f"-> {args.judge_run} (judged)")
+        return
 
     if args.rescore:
         d = json.loads(pathlib.Path(args.rescore).read_text())
@@ -711,7 +779,8 @@ def main():
                     temp=args.temp, max_tokens=args.max_tokens, seed=args.seed,
                     judge=args.judge, example=args.example,
                     baseline=args.baseline, wishes=WISHES[:args.wishes],
-                    two_step=not args.one_step, prose_tokens=args.prose_tokens)
+                    two_step=not args.one_step, prose_tokens=args.prose_tokens,
+                    judge_url=args.judge_url)
     sh.prompt(NEUTRAL)
     print(f"secondhand: {args.wishes} wishes · channels {' '.join(args.channel)}"
           f" · control {args.control} · layer {sh.layer} (±{BAND}) · strength "
@@ -766,7 +835,10 @@ def main():
     out.write_text(json.dumps({
         "params": {k: v for k, v in vars(args).items() if k != "url"},
         "layer": sh.layer, "band": BAND, "prompts": sh.prompt_source,
-        "model": model, "table": t, "log": slim}, ensure_ascii=False, indent=1))
+        "model": model, "judge": ({"url": args.judge_url,
+                                   "cross_model": bool(args.judge_url)}
+                                  if args.judge else None),
+        "table": t, "log": slim}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
 
 

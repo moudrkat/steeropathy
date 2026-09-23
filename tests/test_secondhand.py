@@ -38,6 +38,7 @@ def make(**kw):
     t.layer, t.lo, t.hi = 20, 16, 24
     t.example, t.baseline = "neutral", kw.get("baseline", "neutral")
     t.two_step, t.prose_tokens = kw.get("two_step", False), 60
+    t.judge_url = kw.get("judge_url")
     t.wishes = ["a funeral in the rain", "monday", "grief"]
     t.example_spec = kw.get("example_spec")
     t._prompts, t.prompt_source, t.log = {}, None, []
@@ -60,6 +61,10 @@ class TestParse(unittest.TestCase):
         self.assertEqual(o["time"], "dusk")
         self.assertIsNone(parse_spec("no json here"))
         self.assertIsNone(parse_spec('{"ti'))
+
+    def test_stray_quote_after_bracket_is_repaired(self):
+        o = parse_spec('{"title":"X","elements":[{"kind":"pine"}]","lines":["a b c"],"time":"dusk"}')
+        self.assertEqual(o["time"], "dusk")
 
     def test_missing_key_quote_is_repaired(self):
         o = parse_spec('{"title":"X",time":"dusk","sky":["#000000"],ground":"ice"}')
@@ -224,6 +229,23 @@ class TestChannels(unittest.TestCase):
         sh.sse_stream = lambda url, body, timeout=600: ("nope", [])
         rec = t.step(0, "monday")
         self.assertIn("skipped", rec)
+
+
+class TestJudge(unittest.TestCase):
+    def test_pick_over_prose_and_world_goes_to_the_judge_server(self):
+        t = make(judge_url="http://judge")
+        asked = []
+
+        def fake_judge(body):
+            asked.append(body["messages"][0]["content"])
+            return {"choices": [{"message": {"tool_calls": [{"function": {
+                "name": "point", "arguments": json.dumps({"wish": "grief"})}}]}}]}
+        t._judge_post = fake_judge
+        t.post = lambda *a, **k: (_ for _ in ()).throw(AssertionError("same server used"))
+        self.assertEqual(t.pick(B, ["grief", "monday"]), "grief")
+        self.assertEqual(t.pick(None, ["grief", "monday"], prose="Rain on ice."), "grief")
+        self.assertIn("world was dreamt", asked[0])
+        self.assertIn("Rain on ice.", asked[1])
 
 
 class TestLinkAndTable(unittest.TestCase):
