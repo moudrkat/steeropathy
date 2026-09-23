@@ -151,6 +151,18 @@ def sse_stream(url, body, timeout=600):
     req = urllib.request.Request(
         url + "/v1/chat/completions", json.dumps(body).encode(),
         {"Content-Type": "application/json"})
+    # a tunnel hiccup or a busy server is not a result: three tries, then fail
+    import time as _t
+    for attempt in range(3):
+        try:
+            return _sse_read(req, timeout)
+        except (OSError, TimeoutError) as e:
+            if attempt == 2:
+                raise
+            _t.sleep(20 * (attempt + 1))
+
+
+def _sse_read(req, timeout):
     text, steps = "", []
     with urllib.request.urlopen(req, timeout=timeout) as r:
         ctype = r.headers.get("Content-Type", "")

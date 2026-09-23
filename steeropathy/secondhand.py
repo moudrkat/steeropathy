@@ -827,9 +827,37 @@ def main():
           f"{args.strength} · example {args.example} · baseline "
           f"{args.baseline} · {'one-step' if args.one_step else 'two-step'}"
           f" · prompts: {sh.prompt_source}\n")
+    out = (pathlib.Path(args.out) if args.out
+           else HERE / "docs" / "secondhand.json")
+    out.parent.mkdir(parents=True, exist_ok=True)
+
+    def save(final=False):
+        # written after every wish: a run that dies keeps what it had
+        slim = []
+        for rec in sh.log:
+            r = dict(rec)
+            if r.get("vec"):
+                r["vec"] = {"dim": len(r["vec"])}
+            slim.append(r)
+        t = table(sh.log)
+        out.write_text(json.dumps({
+            "params": {k: v for k, v in vars(args).items() if k != "url"},
+            "layer": sh.layer, "band": BAND, "prompts": sh.prompt_source,
+            "model": model, "complete": final,
+            "judge": ({"url": args.judge_url, "cross_model": bool(args.judge_url)}
+                      if args.judge else None),
+            "table": t, "residue": residue(sh.log), "log": slim},
+            ensure_ascii=False, indent=1))
+        return t
+
+    try:
+        model = sh.get("/info").get("model")
+    except Exception:
+        model = "unknown"
     pool = []
     for i, wish in enumerate(WISHES[:args.wishes]):
         rec = sh.step(i, wish, pool=pool or None)
+        save()
         if rec.get("skipped"):
             print(f"w{i} {wish!r}: {rec['skipped']}")
             continue
@@ -853,34 +881,13 @@ def main():
                   + (" ghost✓" if r.get("ghost_hit") else "")
                   + (f" pick {'✓' if r.get('pick_hit') else '✗'}"
                      if "pick" in r else ""))
-    t = table(sh.log)
+    t = save(final=True)
     print_tables(t)
-    res = residue(sh.log)
-    print_residue(res)
-    try:
-        model = sh.get("/info").get("model")
-    except Exception:
-        model = "unknown"
-    out = (pathlib.Path(args.out) if args.out
-           else HERE / "docs" / "secondhand.json")
-    out.parent.mkdir(parents=True, exist_ok=True)
+    print_residue(residue(sh.log))
     try:
         sh.save_traces(out.with_name(out.stem + "-traces.jsonl.gz"))
     except Exception as e:
         print(f"(traces not archived: {e})")
-    slim = []
-    for rec in sh.log:
-        r = dict(rec)
-        if r.get("vec"):
-            r["vec"] = {"dim": len(r["vec"])}
-        slim.append(r)
-    out.write_text(json.dumps({
-        "params": {k: v for k, v in vars(args).items() if k != "url"},
-        "layer": sh.layer, "band": BAND, "prompts": sh.prompt_source,
-        "model": model, "judge": ({"url": args.judge_url,
-                                   "cross_model": bool(args.judge_url)}
-                                  if args.judge else None),
-        "table": t, "residue": res, "log": slim}, ensure_ascii=False, indent=1))
     print(f"-> {out}")
 
 

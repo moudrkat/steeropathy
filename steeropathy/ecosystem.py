@@ -112,8 +112,16 @@ class Eco:
         req = urllib.request.Request(self.url + path,
                                      json.dumps(body).encode(),
                                      {"Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            return json.loads(r.read())
+        # a dropped tunnel or a server catching its breath is not a result:
+        # three tries with a pause, then the error is real
+        for attempt in range(3):
+            try:
+                with urllib.request.urlopen(req, timeout=timeout) as r:
+                    return json.loads(r.read())
+            except (OSError, TimeoutError):
+                if attempt == 2:
+                    raise
+                time.sleep(20 * (attempt + 1))
 
     def get(self, path):
         with urllib.request.urlopen(self.url + path, timeout=120) as r:
