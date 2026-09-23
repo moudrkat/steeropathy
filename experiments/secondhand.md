@@ -10,7 +10,9 @@
 > field, what crossed through the activations, what crossed through A's own
 > poem (the text channel), and what didn't cross at all. Prediction, written
 > before the first run: **the activations carry the weather, the words carry
-> the furniture.** Built and tested offline, not yet run live.
+> the furniture.** First live runs (0.5B and 1.5B on a GPU, 12 wishes each)
+> lean that way and add a twist: the vector places what A *almost* placed
+> more often than the poem does. Small N, one day old, read on.
 
 [← back to the lab](../README.md) · the proposal:
 [docs/papers/PROPOSAL-secondhand.md](../docs/papers/PROPOSAL-secondhand.md)
@@ -89,6 +91,67 @@ example it sees. So:
   the fair comparison is *what A produced*, not the wish.
 - **Per-instance vectors are noisy.** Prompt-averaging (Wenzel) would help;
   not built.
+
+## First runs (2026-09-23, one day, small N)
+
+Three runs of twelve wishes, all with the generic example and the
+all-wishes baseline. Numbers are agreement with A's world **only where A left
+B's own unsteered world** (the `m:` table), so a match B would have made
+anyway counts for nothing. `none` is 0 by construction there.
+
+**Run 03 — Qwen2.5-0.5B, two-step (prose under the channel, spec sober):**
+
+| channel | time | weather | ground | motion | font | things |
+|---|---|---|---|---|---|---|
+| text | 0.33 | 0.17 | 0.20 | 0.50 | 1.00 | 0.25 |
+| vector | **0.50** | **0.38** | 0 | 0.40 | 0.50 | 0 |
+
+**Run 04 — Qwen2.5-1.5B, one-step (steering inside the JSON, brainscope's
+syntax mute keeping keys and brackets sober), strength 3; vector parse rate
+0.83 after the parser learned to walk back over a rambling tail:**
+
+| channel | time | weather | ground | motion | font | things | ghost hit |
+|---|---|---|---|---|---|---|---|
+| none | 0 | 0 | 0 | 0 | 0 | 0 | 0.42 |
+| text | 0.67 | 0.33 | 0.18 | 0.43 | 0.36 | 0.43 | 0.50 |
+| vector | 0.50 | 0.20 | 0.22 | 0.50 | 0.44 | 0.42 | **0.70** |
+
+What this says, carefully: on the 0.5B the bet held (vector: time and
+weather; text: things). On the 1.5B the poem is the stronger channel for
+time and weather, the vector for motion, font and — the interesting one —
+the **ghosts**: B under the vector placed a thing A almost placed and
+didn't in 7 of 10 worlds, against 5 of 10 with the poem and 5 of 12 with
+nothing. That is the runner-up bench in world form, and the only column
+where the activations beat the words on the bigger model. Twelve wishes; a
+sign, not a result.
+
+Three instrument lessons, all now in the code:
+
+- **Steering breaks the JSON before it sways the world.** On the 0.5B at
+  strength 2 the vector channel answered "a place" with *"The grief of the
+  bereaved in the waiting room"* — no JSON, the wish verbatim. Hence the
+  two-step default, and the bare-JSON syntax mute in brainscope for the
+  one-step variant.
+- **Neutral is a choice, twice** (above). Without the generic example, A
+  and B agreed on 80 % of the things with no channel at all.
+- **Small models misspell the enums** ("midnight", "light rain",
+  `],ground":`). The scorer reads them the way a person would and the
+  parser repairs what the page's own parser would; every raw text is
+  stored, so a finished run can be rescored without a model.
+
+A 4B run (two-step, strength 4) is in progress; its w0 already showed the
+vector carrying moss and darkness where the poem carried rain.
+
+![six steering directions rendered as worlds by the 1.5B: the unsteered place, sad, angry, calm, refusal, certain, formal](../docs/worldof-1.5b.png)
+
+*`worldof`: what a steering vector looks like when the model draws it.
+1.5B, strength 3, each with a signed-permutation placebo in the JSON. Sad is
+snow on ice with one bare tree ("Solace"); angry moves the palette furthest
+of all; certain copies the worked example verbatim, title "a place"; refusal
+cannot stop listing things. Dusk and ice recur in the placebos too — they
+are the shared example, reached for whenever the model is nudged off its
+default — so read each world against its placebo, not against the
+postcard.*
 
 ## Run it
 
