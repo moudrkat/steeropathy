@@ -15,6 +15,11 @@ hidden-directions direction_dict for the served model, and name its keys.
 
     python -m steeropathy.worldof sad angry calm refusal [--strength 4]
     python -m steeropathy.worldof --dict qwen3-4b.json sycophant refusal
+    python -m steeropathy.worldof srv:refuse4b srv:hd_syco --layer 16   # directions the server already holds
+
+``--two-step`` dreams the way secondhand does: two sentences under the
+vector, then the world filled in sober from them — for models and doses
+where a steered JSON breaks.
 
 Writes docs/worldof.json: per direction the world, its fields, and a
 brave-new-world link that renders it with no model.
@@ -75,6 +80,10 @@ CONTRASTS = {
 def direction_for(url, name, layer, dict_path=None):
     """A unit direction and where it was measured. MOODS and CONTRASTS are
     built live from the served model; --dict borrows a baked vector."""
+    if name.startswith("srv:"):
+        # a direction the server already holds (a hidden-directions dict
+        # loaded at start, a zombie strain): steer by name, no vector here
+        return None, layer, "server"
     if dict_path:
         d = json.loads(pathlib.Path(dict_path).read_text())
         entry = d.get("directions", d).get(name)
@@ -113,6 +122,9 @@ def main():
     ap.add_argument("--temp", type=float, default=0.7)
     ap.add_argument("--max-tokens", type=int, default=450)
     ap.add_argument("--bnw", default=None)
+    ap.add_argument("--two-step", action="store_true",
+                    help="prose under the vector, then an unsteered world "
+                         "from the prose (secondhand's default)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
@@ -123,7 +135,16 @@ def main():
     print(f"worldof: {' '.join(args.names)} · strength {args.strength} · "
           f"layer {sh.layer} (±{sh.hi - sh.layer}) · prompts: "
           f"{sh.prompt(NEUTRAL) and sh.prompt_source}\n")
-    base, _, _ = sh.dream(NEUTRAL, ("base", "w0"))
+    def dream(tag, steer=None):
+        if not args.two_step:
+            return sh.dream(NEUTRAL, tag, steering=steer)[0], None
+        prose = sh.prose(tag, steering=steer)
+        w = sh.dream(NEUTRAL, tag, extra="You are standing there. You wrote "
+                     "about it: \"" + prose + "\" Fill in the world you "
+                     "described.")[0]
+        return w, prose
+
+    base, _ = dream(("base", "w0"))
     print(f"unsteered 'a place': {base and base.get('time')}/"
           f"{base and base.get('weather')}/{base and base.get('ground')} "
           f"{kinds_of(base)}")
@@ -132,14 +153,16 @@ def main():
     for name in args.names:
         vec, lay, src = direction_for(args.url, name, sh.layer, args.dict)
         variants = [("real", vec)]
-        if args.placebo:
+        if args.placebo and vec is not None:
             variants.append(("placebo", signed_perm(vec, seed=len(runs))))
         for kind, v in variants:
-            sh.post("/directions", {"name": "worldof:rx", "vector": v})
-            steer = {"name": "worldof:rx", "strength": args.strength,
+            if v is not None:
+                sh.post("/directions", {"name": "worldof:rx", "vector": v})
+            steer = {"name": "worldof:rx" if v is not None else name[4:],
+                     "strength": args.strength,
                      "layer_from": max(0, lay - (sh.hi - sh.layer)),
                      "layer_to": lay + (sh.hi - sh.layer)}
-            w, raw, _ = sh.dream(NEUTRAL, (f"{name}-{kind}", "w0"), steering=steer)
+            w, prose = dream((f"{name}-{kind}", "w0"), steer)
             label = name if kind == "real" else f"{name} (placebo)"
             if not w:
                 print(f"{label:22s} did not parse (strength too high?)")
@@ -150,10 +173,12 @@ def main():
                   f"{w.get('ground')} {kinds_of(w)} · \"{w.get('title')}\""
                   f" · vs unsteered: dark {s['dark']} hue {s['hue']} "
                   f"things {s['things']}")
+            if prose:
+                print(f"{'':22s}   prose: {prose[:110]!r}")
             for line in (w.get("lines") or [])[:2]:
                 print(f"{'':22s}   {line}")
             runs.append({"name": name, "kind": kind, "source": src,
-                         "layer": lay, "world": w, "vs_base": s,
+                         "layer": lay, "world": w, "vs_base": s, "prose": prose,
                          "link": world_link(f"{NEUTRAL} · {label}", w)})
     try:
         model = sh.get("/info").get("model")
