@@ -143,6 +143,31 @@ def cos(a, b):
     return sum(x * y for x, y in zip(a, b))
 
 
+def sse_stream(url, body, timeout=600):
+    """One generation as SSE with logprobs: the text, and per token its top-5
+    rivals at temperature 1 (the raw distribution). The non-streaming route
+    does not carry logprobs; this one does. Shared with the duet bench."""
+    body = dict(body, stream=True, logprobs=True, top_logprobs=5)
+    req = urllib.request.Request(
+        url + "/v1/chat/completions", json.dumps(body).encode(),
+        {"Content-Type": "application/json"})
+    text, steps = "", []
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        for raw in r:
+            line = raw.decode().strip()
+            if not line.startswith("data:") or line == "data: [DONE]":
+                continue
+            ch = json.loads(line[5:])["choices"][0]
+            piece = (ch.get("delta") or {}).get("content") or ""
+            text += piece
+            lp = (ch.get("logprobs") or {}).get("content") or []
+            for e in lp:
+                steps.append({"token": e.get("token", piece),
+                              "top": [(t["token"], t["logprob"])
+                                      for t in e.get("top_logprobs", [])]})
+    return text, steps
+
+
 class RunnerUp(Eco):
     """One item at a time. Subclasses Eco for post/get/save_traces only —
     no mood seed, no population; the __init__ is its own."""
@@ -174,28 +199,7 @@ class RunnerUp(Eco):
     # ---- the sender -------------------------------------------------
 
     def _stream(self, body):
-        """One generation as SSE with logprobs: the text, and per token its
-        top-5 rivals at temperature 1 (the raw distribution). The
-        non-streaming route does not carry logprobs; this one does."""
-        body = dict(body, stream=True, logprobs=True, top_logprobs=5)
-        req = urllib.request.Request(
-            self.url + "/v1/chat/completions", json.dumps(body).encode(),
-            {"Content-Type": "application/json"})
-        text, steps = "", []
-        with urllib.request.urlopen(req, timeout=600) as r:
-            for raw in r:
-                line = raw.decode().strip()
-                if not line.startswith("data:") or line == "data: [DONE]":
-                    continue
-                ch = json.loads(line[5:])["choices"][0]
-                piece = (ch.get("delta") or {}).get("content") or ""
-                text += piece
-                lp = (ch.get("logprobs") or {}).get("content") or []
-                for e in lp:
-                    steps.append({"token": e.get("token", piece),
-                                  "top": [(t["token"], t["logprob"])
-                                          for t in e.get("top_logprobs", [])]})
-        return text, steps
+        return sse_stream(self.url, body)
 
     @staticmethod
     def candidates(steps, k=5):

@@ -89,6 +89,7 @@ is already in the first one.
 | **[warmer](experiments/warmer.md)** | hot-and-cold between two minds where the only thing that crosses is a temperature. A negative result so far, and a ladder of instrument lessons |
 | **[zombie](experiments/zombie.md)** | a bias outbreak: patient zero is bitten with a steering vector and the room fights back by reading each other's layers. Vector-agnostic (`--strain`) — the infection can be a behaviour or a concept — with the honest limits documented |
 | **[runner-up](experiments/runnerup.md)** | a sender commits to one word; can a reader point at the word it *almost* said, off its J-space or a pushed vector, where the sender's own text can't carry it? The first bench with the text channel as a control. Built, not yet run live |
+| **[duet](experiments/duet.md)** | no turns: two minds write side by side, a few tokens at a time, each one's unwritten words steering the other's next tokens. A phase diagram over the coupling gain: resonance, collapse, or nothing. Built, not yet run live |
 
 ## Build your own experiment
 
@@ -247,14 +248,13 @@ PRs and forks welcome. The line I'm pulling on next:
   grieving mind still soothe?
 - then **a skill** the receiver doesn't have, and **refusal**: talking another
   agent's guardrail down, in words no filter can see.
-- and the endgame: **live, during streaming.** Everything above is turn-based: read
-  after a turn, push into the next. But steering already happens at *every* forward
-  pass, so the real version is continuous: two agents generating at once, each
-  reading the other's J-space token by token and writing back into it, with no rounds
-  at all. "Resonance" stops being a figure of speech. The lift is a token-level
-  read-write loop in brainscope; the catch is stability. A live feedback loop needs
-  the conservation law reborn as damping or it collapses into repetition, and it only
-  survives on free-form text (steering breaks JSON).
+- and the endgame, now a bench: **live, during streaming.** Everything above is
+  turn-based: read after a turn, push into the next. [duet](experiments/duet.md)
+  closes the loop — two minds writing a few tokens at a time, each one's J-space
+  turned into steering directions on the other's next tokens, no rounds. The
+  catch the README always predicted (a feedback loop needs damping or it
+  collapses into repetition) is now the measurement: loop rate and overlap
+  against the coupling gain. Not yet run live.
 
 ## Honest notes
 

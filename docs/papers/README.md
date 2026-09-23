@@ -3,6 +3,7 @@
 [← back to the lab](../../README.md)
 
 Five papers, one summary each, and what they add up to for this lab. The
+full corpus of the field, coded on Liu's axes, is in [related-work.md](related-work.md). The
 experiment they suggest is built: [experiments/runnerup.md](../../experiments/runnerup.md)
 (the original proposal is in [PROPOSAL-runnerup.md](PROPOSAL-runnerup.md)).
 
