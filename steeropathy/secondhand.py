@@ -90,6 +90,7 @@ BNW_DEFAULT = pathlib.Path.home() / "projekty" / "brave-new-world"
 BNW_SPACE = "https://unt1l1f1nd-brave-new-world.static.hf.space/"
 
 CHANNELS = ("none", "text", "vector")
+BOTH = "both"      # the poem AND the vector: what the vector adds on top of the words
 CONTROLS = ("none", "rot", "crosstask")
 EXAMPLES = ("neutral", "own")
 BASELINES = ("neutral", "wishes")
@@ -546,7 +547,8 @@ class Secondhand(Eco):
             return rec
         rec["a_link"] = world_link(wish, spec_a)
         rec["ghosts"] = ghosts(steps_a, kinds_of(spec_a))
-        vec = self.contrast(wish, raw_a) if "vector" in self.channels else None
+        vec = (self.contrast(wish, raw_a)
+               if "vector" in self.channels or BOTH in self.channels else None)
         rec["vec"] = vec
         v_in = vec
         if self.control == "rot" and vec is not None:
@@ -557,9 +559,9 @@ class Secondhand(Eco):
         ref = self.example_spec
         for ch in self.channels:
             steering = extra = None
-            if ch == "text":
+            if ch in ("text", BOTH):
                 extra = self.text_of(spec_a)
-            elif ch == "vector":
+            if ch in ("vector", BOTH):
                 if v_in is None:
                     continue
                 self.post("/directions", {"name": "secondhand:rx", "vector": v_in})
@@ -738,7 +740,7 @@ def main():
     ap.add_argument("--url", default="http://localhost:8010")
     ap.add_argument("--wishes", type=int, default=len(WISHES))
     ap.add_argument("--channel", nargs="+", default=list(CHANNELS),
-                    choices=CHANNELS)
+                    choices=list(CHANNELS) + [BOTH])
     ap.add_argument("--control", default="none", choices=CONTROLS)
     ap.add_argument("--strength", type=float, default=4.0)
     ap.add_argument("--layer", type=int, default=None)

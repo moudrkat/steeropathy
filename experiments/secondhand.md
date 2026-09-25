@@ -39,6 +39,13 @@ and draws it anyway.
      state of A's page under the wish minus under "a place" (one system
      prompt for both, same spec text, only the wish differs), unit-normed,
      over the usual band of layers.
+   - `both` — B gets A's poem **and** A's vector. The question "what does
+     the vector carry" has two readings, and the residue answers only one
+     (what crosses through the vector and not through the text, field by
+     field). The other is *what the vector adds on top of the words*: if a
+     blind judge picks A's wish from B's page more often under `both` than
+     under `text`, the vector carries something the poem does not, even
+     where no field shows it. Run with `--judge`.
    - controls: `--control rot` (signed permutation of the vector: same norm,
      no meaning), `--control crosstask` (another wish's vector).
 3. **Who decides** — nobody. The grammar does; every token is a field.
