@@ -266,7 +266,7 @@ def summarize(runs, example=None):
     for r in runs:
         if r.get("kind") == "base":
             continue
-        key = r["name"] + ("" if r["kind"] == "real" else " (placebo)")
+        key = r["name"] + ("" if r["kind"] == "real" else f" ({r['kind']})")
         d = out.setdefault(key, {"n": 0, "parsed": 0, "worlds": []})
         d["n"] += 1
         if r.get("world"):
@@ -360,6 +360,14 @@ def main():
                     help="prose under the vector, then an unsteered world "
                          "from the prose (secondhand's default)")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--ablate", action="store_true",
+                    help="also dream with each direction projected OUT of the "
+                         "stream at every layer (h − (h·v)v): the model without "
+                         "it. The placebo of ablation is ablating the shuffled "
+                         "vector, which removes a random component instead.")
+    ap.add_argument("--wish", default=None,
+                    help="what the minds are asked for instead of \"a place\" "
+                         "(e.g. a place it must refuse to draw)")
     ap.add_argument("--n", type=int, default=1,
                     help="repetitions: n unsteered worlds, then n worlds per "
                          "direction (and per placebo); the summary reads each "
@@ -374,13 +382,20 @@ def main():
     print(f"worldof: {' '.join(args.names)} · strength {args.strength} · "
           f"layer {sh.layer} (±{sh.hi - sh.layer}) · prompts: "
           f"{sh.prompt(NEUTRAL) and sh.prompt_source}\n")
+    ASK = args.wish or NEUTRAL
+
+    raw_of = {}   # tag -> the raw text, kept when the world did not parse
+
     def dream(tag, steer=None):
         if not args.two_step:
-            return sh.dream(NEUTRAL, tag, steering=steer)[0], None
+            w, raw, _ = sh.dream(ASK, tag, steering=steer)
+            raw_of[tag] = raw
+            return w, None
         prose = sh.prose(tag, steering=steer)
-        w = sh.dream(NEUTRAL, tag, extra="You are standing there. You wrote "
-                     "about it: \"" + prose + "\" Fill in the world you "
-                     "described.")[0]
+        w, raw, _ = sh.dream(ASK, tag, extra="You are standing there. You wrote "
+                             "about it: \"" + prose + "\" Fill in the world you "
+                             "described.")
+        raw_of[tag] = raw
         return w, prose
 
     dirs = {name: direction_for(args.url, name, sh.layer, args.dict)
@@ -404,29 +419,43 @@ def main():
 
     for rep in range(args.n):
         base, _ = dream(("base", f"r{rep}"))
+        if not base:
+            print(f"[{rep}] unsteered did not parse: {(raw_of.get(('base', f'r{rep}')) or '')[:100]!r}")
         print(f"[{rep}] unsteered 'a place': {base and base.get('time')}/"
               f"{base and base.get('weather')}/{base and base.get('ground')} "
               f"{kinds_of(base)}")
         runs.append({"rep": rep, "name": "none", "kind": "base", "world": base,
-                     "link": base and world_link(NEUTRAL, base)})
+                     "raw": None if base else (raw_of.get(("base", f"r{rep}")) or "")[:600],
+                     "link": base and world_link(ASK, base)})
         for name in args.names:
             vec, lay, src = dirs[name]
             variants = [("real", vec)]
-            if args.placebo and vec is not None:
-                variants.append(("placebo", signed_perm(
-                    vec, seed=args.seed * 1000 + rep * 10 + args.names.index(name))))
+            perm = (signed_perm(vec, seed=args.seed * 1000 + rep * 10 + args.names.index(name))
+                    if vec is not None else None)
+            if args.placebo and perm is not None:
+                variants.append(("placebo", perm))
+            if args.ablate and vec is not None:
+                variants.append(("ablated", vec))
+                if args.placebo:
+                    variants.append(("ablated-placebo", perm))
             for kind, v in variants:
                 if v is not None:
                     sh.post("/directions", {"name": "worldof:rx", "vector": v})
-                steer = {"name": "worldof:rx" if v is not None else name[4:],
-                         "strength": args.strength,
-                         "layer_from": max(0, lay - (sh.hi - sh.layer)),
-                         "layer_to": lay + (sh.hi - sh.layer)}
+                if kind.startswith("ablated"):
+                    steer = {"name": "worldof:rx", "ablate": True, "keep": 0.0,
+                             "layer_from": 0, "layer_to": -1}
+                else:
+                    steer = {"name": "worldof:rx" if v is not None else name[4:],
+                             "strength": args.strength,
+                             "layer_from": max(0, lay - (sh.hi - sh.layer)),
+                             "layer_to": lay + (sh.hi - sh.layer)}
                 w, prose = dream((f"{name}-{kind}", f"r{rep}"), steer)
-                label = name if kind == "real" else f"{name} (placebo)"
+                label = name if kind == "real" else f"{name} ({kind})"
                 if not w:
-                    print(f"[{rep}] {label:22s} did not parse (strength too high?)")
-                    runs.append({"rep": rep, "name": name, "kind": kind, "world": None})
+                    raw = (raw_of.get((f"{name}-{kind}", f"r{rep}")) or "")[:600]
+                    print(f"[{rep}] {label:22s} did not parse: {raw[:100]!r}")
+                    runs.append({"rep": rep, "name": name, "kind": kind, "world": None,
+                                 "raw": raw, "prose": prose})
                     continue
                 s = score(base, w) if base else None
                 print(f"[{rep}] {label:22s} {w.get('time')}/{w.get('weather')}/"
@@ -439,7 +468,7 @@ def main():
                     print(f"{'':26s}{line}")
                 runs.append({"rep": rep, "name": name, "kind": kind, "source": src,
                              "layer": lay, "world": w, "vs_base": s, "prose": prose,
-                             "link": world_link(f"{NEUTRAL} · {label}", w)})
+                             "link": world_link(f"{ASK} · {label}", w)})
         save()
     print_summary(summarize(runs, sh.example_spec))
     save(final=True)

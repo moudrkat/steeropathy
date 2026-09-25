@@ -74,12 +74,29 @@ def compose(rows, cols_label, title, subtitle, out, site):
         y += 28
     tmp = pathlib.Path(tempfile.mkdtemp())
     for i, (label, recs) in enumerate(rows):
-        d.text((PAD + 6, y + 8), label, fill=INK, font=f_row)
+        if label:
+            d.text((PAD + 6, y + 8), label, fill=INK, font=f_row)
         for j, r in enumerate(recs):
             x = 200 + PAD + j * (CW + PAD)
             if not r or not r.get("link"):
                 d.rectangle([x, y, x + CW, y + CH], fill=(240, 239, 236))
-                d.text((x + 16, y + CH // 2 - 8), "did not parse", fill=INK2, font=f_fld)
+                raw = (r or {}).get("raw") or ""
+                if raw:
+                    # what it wrote instead of a world, wrapped by hand
+                    words, lines, cur = raw.replace("\n", " ⏎ ").split(), [], ""
+                    for wd in words:
+                        if d.textlength(cur + " " + wd, font=f_fld) > CW - 32:
+                            lines.append(cur); cur = wd
+                        else:
+                            cur = (cur + " " + wd).strip()
+                        if len(lines) >= 13:
+                            break
+                    lines.append(cur)
+                    for li, ln in enumerate(lines[:14]):
+                        d.text((x + 16, y + 14 + li * 19), ln, fill=INK2, font=f_fld)
+                    d.text((x, y + CH + 8), "(did not parse)", fill=INK2, font=f_cap)
+                else:
+                    d.text((x + 16, y + CH // 2 - 8), "did not parse", fill=INK2, font=f_fld)
                 continue
             shot = tmp / f"{i}-{j}.png"
             try:
@@ -99,7 +116,9 @@ def compose(rows, cols_label, title, subtitle, out, site):
     print(out, img.size)
 
 
-def gallery(path, k, placebo, site, out):
+def gallery(path, k, placebo, site, out, rows_wanted=None, title=None, subtitle=None, cols=None):
+    """rows_wanted: direction names in order; "none" is the unsteered row,
+    "name/shuffled" that direction's placebo row. Default: everything."""
     d = json.loads(pathlib.Path(path).read_text())
     names = list(dict.fromkeys(r["name"] for r in d["runs"]
                                if r.get("kind") != "base" and r["name"] != "none"))
@@ -107,13 +126,34 @@ def gallery(path, k, placebo, site, out):
     for r in d["runs"]:
         kind = "base" if r["name"] == "none" else r.get("kind")   # one-world runs had no kind
         by.setdefault((r["name"], kind), []).append(r)
-    rows = [("unsteered", by.get(("none", "base"), [])[:k])]
-    for n in names:
-        rows.append((n, by.get((n, "real"), [])[:k]))
-        if placebo:
-            rows.append((n + "\nshuffled", by.get((n, "placebo"), [])[:k]))
+    if rows_wanted:
+        rows = []
+        for w in rows_wanted:
+            if w == "none":
+                rows.append(("unsteered", by.get(("none", "base"), [])[:k]))
+            elif "/" in w:
+                n, kind = w.split("/", 1)
+                kind = "placebo" if kind == "shuffled" else kind
+                rows.append((n + "\n" + ("shuffled" if kind == "placebo" else kind),
+                             by.get((n, kind), [])[:k]))
+            else:
+                rows.append((w, by.get((w, "real"), [])[:k]))
+    else:
+        rows = [("unsteered", by.get(("none", "base"), [])[:k])]
+        for n in names:
+            rows.append((n, by.get((n, "real"), [])[:k]))
+            if placebo:
+                rows.append((n + "\nshuffled", by.get((n, "placebo"), [])[:k]))
+    if cols:
+        wrapped = []
+        for label, cells in rows:
+            chunks = [cells[i:i + cols] for i in range(0, max(len(cells), 1), cols)] or [[]]
+            for j, ch in enumerate(chunks):
+                wrapped.append((label if j == 0 else "", ch))
+        rows = wrapped
     model = d.get("model", "").split("/")[-1]
-    compose(rows, None, "What a vector looks like",
+    compose(rows, None, title or "What a vector looks like",
+            subtitle if subtitle is not None else
             f"{model} · strength {d['params']['strength']} · layer {d['layer']} · the model was asked for “a place”; "
             f"each row is one direction, each cell one world it drew, with its title and first line",
             out or HERE / "docs" / f"{pathlib.Path(path).stem}-gallery.png", site)
@@ -150,9 +190,14 @@ def main():
     ap.add_argument("--rep", type=int, default=0)
     ap.add_argument("--site", default="http://127.0.0.1:8098")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--rows", default=None, help="comma list: none, sad, sad/shuffled, …")
+    ap.add_argument("--title", default=None)
+    ap.add_argument("--subtitle", default=None)
+    ap.add_argument("--cols", type=int, default=None, help="wrap each direction's worlds into this many columns")
     a = ap.parse_args()
     if a.mode == "gallery":
-        gallery(a.path, a.k, a.placebo, a.site, a.out)
+        gallery(a.path, a.k, a.placebo, a.site, a.out,
+                a.rows.split(",") if a.rows else None, a.title, a.subtitle, a.cols)
     else:
         film(a.path, a.site, a.out, a.rep)
 
