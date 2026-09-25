@@ -15,7 +15,7 @@ from matplotlib import font_manager  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
 RUNS = [("Qwen2.5-0.5B · two-step", "secondhand-03-aorus-0.5b.json"),
-        ("Qwen2.5-1.5B · in the JSON", "secondhand-04-aorus-1.5b-onestep.json"),
+        ("Qwen2.5-1.5B · in the JSON", "secondhand-1.5b-pooled.json"),
         ("Qwen3-4B · two-step", "secondhand-02-aorus-4b.json")]
 FIELDS = [("m:time", "time"), ("m:weather", "weather"), ("m:ground", "ground"),
           ("m:motion", "motion"), ("m:things", "things"), ("ghost", "ghost")]

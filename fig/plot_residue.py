@@ -15,9 +15,10 @@ import matplotlib.pyplot as plt  # noqa: E402
 from matplotlib import font_manager  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
-DEFAULT = [("Qwen2.5-0.5B", "secondhand-03-aorus-0.5b.json"),
-           ("Qwen2.5-1.5B", "secondhand-04-aorus-1.5b-onestep.json"),
-           ("Qwen3-4B", "secondhand-02-aorus-4b.json")]
+DEFAULT = [("Qwen2.5-0.5B · 12 wishes", "secondhand-03-aorus-0.5b.json"),
+           ("Qwen2.5-1.5B · 60 wishes, 3 seeds", "secondhand-1.5b-pooled.json"),
+           ("Qwen2.5-1.5B · vector shuffled", "secondhand-06-aorus-1.5b-rot.json"),
+           ("Qwen3-4B · 12 wishes", "secondhand-02-aorus-4b.json")]
 FIELDS = ["time", "weather", "ground", "motion", "things", "ghost"]
 TEXT, VEC = "#2a78d6", "#eb6834"
 INK, INK2, GRID, SURF = "#0b0b0b", "#52514e", "#e6e5e1", "#fcfcfb"
@@ -32,10 +33,14 @@ def main():
     fig, axes = plt.subplots(1, len(runs), figsize=(4.4 * len(runs) + 0.6, 4.4),
                              sharey=True, facecolor=SURF)
     axes = list(axes) if len(runs) > 1 else [axes]
-    for ax, (title, fn) in zip(axes, runs):
+    data = []
+    for title, fn in runs:
         path = pathlib.Path(fn) if pathlib.Path(fn).exists() else HERE / "docs" / "runs" / fn
-        d = json.loads(path.read_text())
-        res = d.get("residue") or {}
+        data.append((title, (json.loads(path.read_text()).get("residue") or {})))
+    lim = max([8] + [max(r["text_only"], r["vector_only"]) + 2
+                     for _, res in data for r in res.values()])
+    step = 3 if lim <= 9 else 5
+    for ax, (title, res) in zip(axes, data):
         ys = list(range(len(FIELDS)))[::-1]
         ax.set_facecolor(SURF)
         ax.axvline(0, color=INK2, linewidth=1)
@@ -51,10 +56,10 @@ def main():
                 ax.text(-t - 0.15, y, str(t), va="center", ha="right", color=INK, fontsize=10)
             if v:
                 ax.text(v + 0.15, y, str(v), va="center", ha="left", color=INK, fontsize=10)
-            ax.text(7.9, y, f"n={n}", va="center", ha="right", color=INK2, fontsize=9)
+            ax.text(lim - 0.1, y, f"n={n}", va="center", ha="right", color=INK2, fontsize=9)
         ax.set_yticks(ys, FIELDS)
-        ax.set_xlim(-8, 8)
-        ax.set_xticks([-6, -3, 0, 3, 6], ["", "3", "0", "3", ""])
+        ax.set_xlim(-lim, lim)
+        ax.set_xticks([-2 * step, -step, 0, step, 2 * step], ["", str(step), "0", str(step), ""])
         ax.grid(axis="x", color=GRID, linewidth=1)
         ax.set_axisbelow(True)
         for s in ("top", "right", "left"):

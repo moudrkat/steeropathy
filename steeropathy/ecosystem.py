@@ -108,12 +108,13 @@ class Eco:
         self.state0, self.drift = {}, {}   # round-0 states; last unit drift
         self.log = []                      # one record per (round, agent)
 
-    def post(self, path, body, timeout=600):
+    def post(self, path, body, timeout=180):
         req = urllib.request.Request(self.url + path,
                                      json.dumps(body).encode(),
                                      {"Content-Type": "application/json"})
         # a dropped tunnel or a server catching its breath is not a result:
-        # three tries with a pause, then the error is real
+        # three tries with a pause, then the error is real. 180 s: a
+        # generation takes twenty, a tunnel that died takes the whole timeout
         for attempt in range(3):
             try:
                 with urllib.request.urlopen(req, timeout=timeout) as r:

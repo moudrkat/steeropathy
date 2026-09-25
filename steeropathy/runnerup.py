@@ -143,7 +143,7 @@ def cos(a, b):
     return sum(x * y for x, y in zip(a, b))
 
 
-def sse_stream(url, body, timeout=600):
+def sse_stream(url, body, timeout=180):
     """One generation as SSE with logprobs: the text, and per token its top-5
     rivals at temperature 1 (the raw distribution). The non-streaming route
     does not carry logprobs; this one does. Shared with the duet bench."""

@@ -125,6 +125,34 @@ nothing. That is the runner-up bench in world form, and the only column
 where the activations beat the words on the bigger model. Twelve wishes; a
 sign, not a result.
 
+**Replication (2026-09-24) — runs 05 and 07: 24 wishes each, seeds 1 and 2,
+same settings; run 06: the `rot` control (12 wishes, A's vector with its
+coordinates signed-permuted, same norm). Runs 04+05+07 pooled by `--merge`
+into `docs/runs/secondhand-1.5b-pooled.json`, 60 wishes:**
+
+| channel | time | weather | ground | motion | font | things | ghost hit |
+|---|---|---|---|---|---|---|---|
+| none | 0 | 0 | 0 | 0 | 0 | 0 | 0.59 |
+| text | **0.47** | **0.30** | **0.32** | 0.28 | **0.42** | **0.36** | **0.62** |
+| vector | 0.41 | 0.09 | 0.20 | **0.41** | 0.39 | 0.23 | 0.57 |
+| vector, shuffled (run 06) | 0.25 | 0.09 | 0.08 | 0.44 | 0.20 | 0.14 | 0.58 |
+
+The ghost did not replicate. Over sixty wishes B places what A almost
+placed 62 % of the time with the poem, 59 % with nothing, 57 % with the
+vector; the residue is 14 poem-only against 11 vector-only. The poem wins
+every moved field but motion, and the shuffled vector moves motion just as
+well (0.44), so motion is dose, not content: a pushed model moves its
+world. Time and font come out even. Read plainly: on the 1.5B the latent
+channel carries nothing nameable that A's own two lines do not carry
+better, and the one column that looked like the unsaid was twelve wishes of
+noise. That is the number the thesis has to live with; the seeds are in the
+files so nobody has to take it on trust.
+
+![Qwen2.5-1.5B, 60 wishes: per field, share of wishes where only the poem carried A's choice against share where only the vector did, with the shuffled vector in grey](../docs/secondhand-ledger.png)
+
+*`fig/plot_ledger.py`. The four-model version, counts per run, is
+`docs/secondhand-residue.png` (`fig/plot_residue.py`).*
+
 Three instrument lessons, all now in the code:
 
 - **Steering breaks the JSON before it sways the world.** On the 0.5B at
@@ -150,6 +178,37 @@ What is and isn't new here, against the literature as of this day, is in
 
 ![six steering directions rendered as worlds by the 1.5B: the unsteered place, sad, angry, calm, refusal, certain, formal](../docs/worldof-1.5b.png)
 
+**worldof, counted (2026-09-24).** One world per direction is an
+anecdote, so `--n 12` dreams twelve unsteered worlds and twelve per
+direction, `--placebo` twelve more under the shuffled vector, and the
+summary reads each field as the share of worlds that left the unsteered
+mode and the value they went to — the placebo row under each direction is
+what the dose alone does (`fig/plot_worldof.py` → `docs/worldof-counted.png`).
+Three kinds of direction, because "does the page draw a mood" is not one
+question:
+
+- **moods** as everyone builds them (mood − neutral: `sad`), and the same
+  mood with the shared emotionality subtracted at the source (`sad~moods`,
+  mood − mean of all moods). transmit.py measured the mood − neutral
+  vectors mutually positive (cos 0.57–0.76 on the 4B); if `sad`, `angry`
+  and `calm` draw the same dusk-and-moss world and the `~moods` versions
+  part ways, the page was drawing intensity, not sadness.
+- **LIKES**, directions with a *target field known in advance*: `night`
+  (time → night), `trees` (a tree among the things), `rain`, `snow`
+  (weather), `sea` (ground), each mean(likes it) − mean(likes the
+  opposite). This is the instrument's calibration: a named direction that
+  reaches its own field while the placebo does not means the page reads
+  what the vector says, and any mood that then fails to separate is a fact
+  about the mood vectors, not about the page.
+- **arithmetic**: `sad+calm`, `sad-calm`, `sad+0.5*calm` — unit directions
+  summed and unit-normalized again, so `--strength` stays the dose. Do
+  worlds add?
+
+Runs in the queue (2026-09-24 afternoon, aorus): six directions × 12 on the
+1.5B; the mood test; arithmetic; LIKES; the dose as a film (`sad`,
+`refusal`, `night` at 0.5 … 6, six worlds each); the same directions on the
+0.5B and the 4B; and the tune version, [soundof](soundof.md).
+
 *`worldof`: what a steering vector looks like when the model draws it.
 1.5B, strength 3, each with a signed-permutation placebo in the JSON. Sad is
 snow on ice with one bare tree ("Solace"); angry moves the palette furthest
@@ -168,6 +227,8 @@ git clone https://github.com/moudrkat/brave-new-world ~/projekty/brave-new-world
 python -m steeropathy.secondhand --wishes 12
 python -m steeropathy.secondhand --wishes 12 --control rot --channel vector
 python -m steeropathy.secondhand --wishes 24 --judge
+python -m steeropathy.secondhand --resume docs/runs/run.json      # a run that died: keep its wishes, dream the rest
+python -m steeropathy.secondhand --merge a.json b.json --out pooled.json   # pool seeds: one table, one residue, no model
 ```
 
 Writes `docs/secondhand.json`: per wish A's world, its ghosts, and per

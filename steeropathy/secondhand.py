@@ -772,6 +772,10 @@ def main():
                     help="no model: pool the logs of several finished runs "
                          "(same channels) into one table and residue, "
                          "written to --out")
+    ap.add_argument("--resume", default=None, metavar="JSON",
+                    help="continue a run that died: keep the wishes its file "
+                         "has, dream the rest, write to the same file "
+                         "(the settings come from the file, --wishes may grow)")
     ap.add_argument("--rescore", default=None, metavar="JSON",
                     help="no model: recompute the scores of a finished run "
                          "from its stored worlds and print the tables")
@@ -837,6 +841,18 @@ def main():
         print(f"-> {args.rescore} (rescored)")
         return
 
+    if args.resume:
+        # the settings of the dead run win over the flags, so the pooled
+        # log stays one experiment; only the wish count may be raised
+        prev = json.loads(pathlib.Path(args.resume).read_text())
+        for k, v in prev["params"].items():
+            if k not in ("wishes", "out", "resume", "rescore", "merge",
+                         "judge_run") and getattr(args, k, v) != v:
+                print(f"resume: {k} {getattr(args, k)!r} -> {v!r} (from file)")
+            if k not in ("out", "resume", "rescore", "merge", "judge_run"):
+                setattr(args, k, max(v, args.wishes) if k == "wishes" else v)
+        args.out = args.out or args.resume
+
     sh = Secondhand(args.url, args.channel, control=args.control,
                     strength=args.strength, layer=args.layer, bnw=args.bnw,
                     temp=args.temp, max_tokens=args.max_tokens, seed=args.seed,
@@ -859,7 +875,7 @@ def main():
         slim = []
         for rec in sh.log:
             r = dict(rec)
-            if r.get("vec"):
+            if isinstance(r.get("vec"), list):
                 r["vec"] = {"dim": len(r["vec"])}
             slim.append(r)
         t = table(sh.log)
@@ -878,7 +894,23 @@ def main():
     except Exception:
         model = "unknown"
     pool = []
+    if args.control == "crosstask" and not args.resume:
+        # the first wish has no earlier vector to borrow, so a wish outside
+        # the run donates one: every item then gets somebody else's vector
+        donor = WISHES[args.wishes] if args.wishes < len(WISHES) else WISHES[-1]
+        _, raw_d, _ = sh.dream(donor, ("A", "donor"))
+        pool.append(sh.contrast(donor, raw_d))
+        print(f"crosstask: donor vector from {donor!r}\n")
+    done = set()
+    if args.resume:
+        sh.log = prev["log"]
+        done = {rec["item"] for rec in sh.log}
+        print(f"resume: {len(done)} wishes kept from {args.resume}"
+              + (" (their vectors are not in the crosstask pool)"
+                 if args.control == "crosstask" else ""))
     for i, wish in enumerate(WISHES[:args.wishes]):
+        if i in done:
+            continue
         rec = sh.step(i, wish, pool=pool or None)
         save()
         if rec.get("skipped"):
