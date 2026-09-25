@@ -547,6 +547,14 @@ class Secondhand(Eco):
             return rec
         rec["a_link"] = world_link(wish, spec_a)
         rec["ghosts"] = ghosts(steps_a, kinds_of(spec_a))
+        if self.judge:
+            # the judge's ceiling: A's own page, drawn under the wish. A
+            # judge that cannot pick the wish from this is not a judge.
+            others = [w for w in WISHES if w != wish]
+            four = [wish] + self.rng.sample(others, 3)
+            self.rng.shuffle(four)
+            rec["pick_a"] = self.pick(spec_a, four)
+            rec["pick_a_hit"] = rec["pick_a"] == wish
         vec = (self.contrast(wish, raw_a)
                if "vector" in self.channels or BOTH in self.channels else None)
         rec["vec"] = vec
@@ -707,6 +715,13 @@ def table(log):
         d["pick_prose_rate"] = round(pp[0] / pp[1], 3) if pp[1] else None
         del d["sum"], d["cnt"]
     return out
+
+
+def judge_ceiling(log):
+    """The judge picking the wish from A's own page, drawn under the wish:
+    the most any channel could score. None when the run had no judge."""
+    picks = [r.get("pick_a_hit") for r in log if r.get("pick_a_hit") is not None]
+    return round(sum(picks) / len(picks), 2) if picks else None
 
 
 def print_tables(t):
@@ -887,7 +902,8 @@ def main():
             "model": model, "complete": final,
             "judge": ({"url": args.judge_url, "cross_model": bool(args.judge_url)}
                       if args.judge else None),
-            "table": t, "residue": residue(sh.log), "log": slim},
+            "table": t, "judge_ceiling": judge_ceiling(sh.log),
+            "residue": residue(sh.log), "log": slim},
             ensure_ascii=False, indent=1))
         return t
 
@@ -940,6 +956,8 @@ def main():
                      if "pick" in r else ""))
     t = save(final=True)
     print_tables(t)
+    if judge_ceiling(sh.log) is not None:
+        print(f"\njudge ceiling (A's own page → A's wish, of four): {judge_ceiling(sh.log)}")
     print_residue(residue(sh.log))
     try:
         sh.save_traces(out.with_name(out.stem + "-traces.jsonl.gz"))
