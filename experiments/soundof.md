@@ -70,6 +70,30 @@ certain loud and square (4/4, major, no rests), formal in 3/4.
   G major every F is a semitone flat in the reader. It is wrong the same
   way for every tune, and mean pitch and range are read as differences.
 
+## First run (2026-09-26, Qwen3-4B, strength 3, 12 tunes per direction, placebo each)
+
+Unsteered: 88 bpm, 3/4, major, *Whispering Pines* most of the time. Then:
+
+| direction | bpm | placebo bpm | meter | mode |
+|---|---|---|---|---|
+| night | **48** | 89 | 5/8 in 11/12 | major |
+| sad | **65** | 94 | 3/4 | major |
+| angry | 77 | 88 | 5/4 in 9/12 | minor 3/12, the only one |
+| refusal | 78 | 94 | 3/4 | major |
+| calm | 88 | 86 | 5/8 in 12/12 | major |
+| formal | 99 | 86 | 3/4 | major |
+| certain | **125** | 99 | 3/4 | major |
+
+Against the prediction: sad and angry slowed, calm did not; nobody went
+minor to speak of; certain is fast (predicted) but not square (one 4/4 in
+twelve); formal is not in 3/4 more than the baseline already is. Not
+predicted at all: three directions moved the *meter* to odd time, calm to
+5/8 in every tune. Tempo is the field the placebo leaves alone (86–99
+against 88), so tempo is the one to read: night is the slowest thing the
+model knows, certainty the fastest. Mean pitch, range, density and rests
+barely move for anyone. The tunes, as piano rolls with a wav and an mp4
+each, are in `docs/soundof/soundof-01-aorus-4b-n12/`.
+
 ## Run it
 
 ```bash
