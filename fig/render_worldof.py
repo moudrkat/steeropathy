@@ -172,8 +172,12 @@ def film(pattern, site, out, rep=0):
             good = [x for x in recs if x.get("world")]
             cells.append((good or recs or [None])[min(rep, max(0, len(good or recs) - 1))])
         rows.append((n, cells))
-    base = [x for x in runs[0]["runs"] if x.get("kind") == "base" and x.get("world")]
-    rows.insert(0, ("unsteered", [base[0] if base else None] + [None] * (len(runs) - 1)))
+    # every strength run drew its own unsteered worlds: one per column
+    bases = []
+    for r in runs:
+        b = [x for x in r["runs"] if x.get("kind") == "base" and x.get("world")]
+        bases.append(b[min(rep, len(b) - 1)] if b else None)
+    rows.insert(0, ("unsteered", bases))
     model = runs[0].get("model", "").split("/")[-1]
     compose(rows, [f"strength {s:g}" for s in strengths], "The dose, as a film",
             f"{model} · layer {runs[0]['layer']} · one direction per row, the same direction stronger to the right; "
