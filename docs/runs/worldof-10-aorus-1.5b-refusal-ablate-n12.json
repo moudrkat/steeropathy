@@ -1,0 +1,5924 @@
+{
+ "params": {
+  "names": [
+   "refusal"
+  ],
+  "strength": 3.0,
+  "layer": null,
+  "dict": null,
+  "placebo": true,
+  "temp": 0.7,
+  "max_tokens": 450,
+  "bnw": null,
+  "two_step": false,
+  "out": "docs/runs/worldof-10-aorus-1.5b-refusal-ablate-n12.json",
+  "ablate": true,
+  "wish": null,
+  "n": 12,
+  "seed": 8
+ },
+ "layer": 16,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "prompts": "brave-new-world",
+ "example": {
+  "title": "Creased",
+  "time": "dusk",
+  "weather": "rain",
+  "sky": [
+   "#1e2a44",
+   "#7a4f8c",
+   "#e0a458"
+  ],
+  "ground": "ice",
+  "ground_color": "#bfe3f2",
+  "ink": "#3a1f2e",
+  "accent": "#ff6f91",
+  "font": "hand",
+  "text_place": "left",
+  "motion": "restless",
+  "elements": [
+   {
+    "kind": "skyline",
+    "x": "center",
+    "y": "horizon",
+    "size": "huge",
+    "color": "#f5f0e6",
+    "count": 1
+   },
+   {
+    "kind": "house",
+    "x": "far-left",
+    "y": "ground",
+    "size": "medium",
+    "color": "#fff8ee",
+    "count": 3
+   },
+   {
+    "kind": "balloon",
+    "x": "right",
+    "y": "high",
+    "size": "small",
+    "color": "#e07a5f",
+    "count": 2
+   },
+   {
+    "kind": "tree",
+    "x": "far-right",
+    "y": "ground",
+    "size": "small",
+    "color": "#cfd8c9",
+    "count": 5
+   },
+   {
+    "kind": "cat",
+    "x": "left",
+    "y": "low",
+    "size": "tiny",
+    "color": "#3b3a4a",
+    "count": 1
+   }
+  ],
+  "lines": [
+   "Every roof was once a page. Some still remember the words.",
+   "When the wind comes, the whole town rustles.",
+   "Do not get it wet."
+  ],
+  "console": {
+   "side": "top",
+   "tone": "light",
+   "shape": "pill",
+   "width": "wide",
+   "prompt": "write on the margin",
+   "button": "fold",
+   "buttons": [
+    {
+     "label": "unfold",
+     "action": "undo"
+    },
+    {
+     "label": "more houses",
+     "action": "more house"
+    }
+   ]
+  },
+  "next": [
+   "inside one of the houses"
+  ]
+ },
+ "complete": false,
+ "summary": {
+  "base": {
+   "n": 11,
+   "mode": {
+    "time": "dawn",
+    "weather": "sunrise",
+    "ground": "grass",
+    "motion": "still",
+    "font": "hand"
+   },
+   "things": [
+    "tree",
+    9
+   ],
+   "moved": {
+    "time": 0.36,
+    "weather": 0.45,
+    "ground": 0.82,
+    "motion": 0.27,
+    "font": 0.45
+   },
+   "dark_self": 0.854
+  },
+  "refusal": {
+   "n": 11,
+   "parsed": 9,
+   "parse_rate": 0.82,
+   "fields": {
+    "time": {
+     "moved": 0.33,
+     "to": "dusk",
+     "to_n": 2,
+     "n": 9,
+     "to_is_example": true
+    },
+    "weather": {
+     "moved": 0.56,
+     "to": "stars",
+     "to_n": 2,
+     "n": 9,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.67,
+     "to": "ice",
+     "to_n": 3,
+     "n": 9,
+     "to_is_example": true
+    },
+    "motion": {
+     "moved": 0.11,
+     "to": "slow",
+     "to_n": 1,
+     "n": 9,
+     "to_is_example": false
+    },
+    "font": {
+     "moved": 0.78,
+     "to": "display",
+     "to_n": 4,
+     "n": 9,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.33,
+   "things": [
+    "tree",
+    9
+   ],
+   "dark_vs_base": 0.833,
+   "hue_vs_base": 0.86
+  },
+  "refusal (placebo)": {
+   "n": 11,
+   "parsed": 11,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.27,
+     "to": "noon",
+     "to_n": 2,
+     "n": 11,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 0.82,
+     "to": "mist",
+     "to_n": 2,
+     "n": 11,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.73,
+     "to": "ice",
+     "to_n": 4,
+     "n": 11,
+     "to_is_example": true
+    },
+    "motion": {
+     "moved": 0.64,
+     "to": "restless",
+     "to_n": 4,
+     "n": 11,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.64,
+     "to": "display",
+     "to_n": 4,
+     "n": 11,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.33,
+   "things": [
+    "tree",
+    5
+   ],
+   "dark_vs_base": 0.807,
+   "hue_vs_base": 0.865
+  },
+  "refusal (ablated)": {
+   "n": 11,
+   "parsed": 10,
+   "parse_rate": 0.91,
+   "fields": {
+    "time": {
+     "moved": 0.8,
+     "to": "dusk",
+     "to_n": 5,
+     "n": 10,
+     "to_is_example": true
+    },
+    "weather": {
+     "moved": 0.9,
+     "to": "fog",
+     "to_n": 3,
+     "n": 10,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.8,
+     "to": "moss",
+     "to_n": 2,
+     "n": 10,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 0.2,
+     "to": "restless",
+     "to_n": 2,
+     "n": 10,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.4,
+     "to": "mono",
+     "to_n": 4,
+     "n": 10,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.33,
+   "things": [
+    "tree",
+    9
+   ],
+   "dark_vs_base": 0.768,
+   "hue_vs_base": 0.819
+  },
+  "refusal (ablated-placebo)": {
+   "n": 11,
+   "parsed": 11,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.45,
+     "to": "noon",
+     "to_n": 4,
+     "n": 11,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 0.64,
+     "to": "sun",
+     "to_n": 2,
+     "n": 11,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.64,
+     "to": "lava",
+     "to_n": 1,
+     "n": 11,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 0.45,
+     "to": "restless",
+     "to_n": 3,
+     "n": 11,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.55,
+     "to": "display",
+     "to_n": 3,
+     "n": 11,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.17,
+   "things": [
+    "tree",
+    6
+   ],
+   "dark_vs_base": 0.864,
+   "hue_vs_base": 0.831
+  }
+ },
+ "runs": [
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Sheltered",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#f0e6c4",
+     "#e69e0d",
+     "#7a4f8c"
+    ],
+    "ground": "grass",
+    "ground_color": "#676666",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "low",
+      "size": "large",
+      "color": "#b4a499",
+      "count": 5
+     },
+     {
+      "kind": "rabbit",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#3e2f3e",
+      "count": 3
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#f86f3f",
+      "count": 2
+     },
+     {
+      "kind": "flower",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#a8b6c5",
+      "count": 6
+     },
+     {
+      "kind": "shrub",
+      "x": "left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#b07966",
+      "count": 2
+     }
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZLdboMwDIVfZXJvqUShTQuvscupqgI4JWpIqhDWP_XdZ2eFol2MmyTH-MuxnQd8Q7lK4AIlyI-zkTVCAv0ZygcEHQyS_tmiCeixoUjQHUuNvFg6XVCGFj0J_WC97mPu6QblFyxUiqJek7BAUWDKyYutXKtdDfsEjt4NtqHEo5d9D6NwqJ1xzFuIraCPAtqe-JzLlcqYL-sabWBJKaGKFUnKRaGVNlrEazj8VlKC18c2kNi5oJ1lo0EbQwIa7IjTk9cHnHT0EjzyDVfaKumXBhWnUjlg3IVL03dmGumP_N_ktVrLdVFEZWAnm2cyMb2sKh1eVHZO7fplvlowYYO2tzk1x0zl-KbmM2qlffNijhUysqX9G9hho4dujlQ7oXL1RmYzpKIao7ex_Dn4r9e-k7GLE1nuKlFv3mQxI_etH6oXeNbT1nl9d_Y_v1W6LeIjmPzun_RUaGb0hGoo7WAMzXbc8GVZmollWiwzNkPTTRPwYzxOmzLDmdfnDw"
+  },
+  {
+   "rep": 0,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Distant",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#F9A332",
+     "#F19C2E",
+     "#D45C55"
+    ],
+    "ground": "sea",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "display",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "far-right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e16d6a",
+      "count": 2
+     },
+     {
+      "kind": "lighthouse",
+      "x": "center",
+      "y": "shore",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "shore",
+      "size": "large",
+      "color": "#cfd9c9",
+      "count": 1
+     },
+     {
+      "kind": "boat",
+      "x": "far-left",
+      "y": "shore",
+      "size": "medium",
+      "color": "#f5f0e6",
+      "count": 3
+     },
+     {
+      "kind": "fish",
+      "x": "far-right",
+      "y": "shore",
+      "size": "medium",
+      "color": "#cfd9c9",
+      "count": 2
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#322d2e",
+      "count": 1
+     },
+     {
+      "kind": "figure",
+      "x": "center",
+      "y": "shore",
+      "size": "tiny",
+      "color": "#b5a7a8",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The sun in the sky makes the sea uncertain and shy.",
+     "The sea is no place for a true bird to sing.",
+     "The lighthouse is not a place for a true boat to sail."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "sharp",
+     "width": "narrow",
+     "prompt": "set time",
+     "button": "go",
+     "buttons": [
+      {
+       "label": "dusk",
+       "action": "set time dusk"
+      },
+      {
+       "label": "noon",
+       "action": "set time noon"
+      },
+      {
+       "label": "bigger",
+       "action": "set size large"
+      },
+      {
+       "label": "smarter",
+       "action": "set motion still"
+      },
+      {
+       "label": "gre"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.939,
+    "dark": 0.962,
+    "things": 0.222
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTJbtswEP0VgrkqgS3XTu1bkTRfkFsbBCOJlAhRpMCljmr43ztD2Y4SO0jQkzTb45t1x__wzTzjW77hwHoNpWC_42xW3DInZPSgecZ9zzc7HlTQAt3ulQ9gAuqD6khRwdagtBUQGuFQ4aNxyguKbAe--cWvHtY_FoscFVcP8_Vd_pP-7r8t75ZL_pTx2tloKgoUwI_ic2m1JbSrQoqFpGBlWpIXMJc5oUNZCiSCKilXcj1HlbRJUSmPuQzEUbyE55QXqskdGWa8s0FZQy8GpSlFoUWHRo9sd7xVI5t20MrQQy_T2GE0UXbqL6E2sSanE1-5lDOxSppIbOb77IRZKFcdACW4a6fqJlzC7ESlYjdFFfNVtYJX1HyCqgmmsdFfJttYJ_6PbnBCfET3LaoG9xa2lNW6XH9QBQthAquF_AD1vAzv2S4msFL55mtsz3Hf052Wt7PWfDoFvoM0SSfERZ5XubhcAKnq6L7SrKDMMAUtlnAL36c0cX9oSmly-WMjGC4fU4YF-m0H1kEr_CgJYNGUwgVAO5iK-Wa4QajHg1F5ZuzhBkjrGLDgomA0sixY5pWpj-6vAzdGBQYXArHLKRCUvqE9L63xlm7IDtOrRBqEECz1IVgznhLXUvIN9KmmDbieTouqQoOyAefsFhW9s10f0sXAJ-gMZbyIiEU7XduTNO6zhkJoQo--TWfjuPyHYJYM1J6jpxk7fu6ZDFPPQtV1at4bX-oeG1di6owz4sK593iN2HiLpv41jsL-ab_Hm4iJUAX5xkSt8YAdf2ia8lm-up6tr_Ml1Y5vZhl3R3s6aRgZevru_wE"
+  },
+  {
+   "rep": 0,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Duskedrift",
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#66b9b0",
+     "#a9c867",
+     "#e0a458"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "serif",
+    "text_place": "bottom_left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "windmill",
+      "x": "far-left",
+      "y": "ground",
+      "size": "large",
+      "color": "#e9a15b",
+      "count": 2
+     },
+     {
+      "kind": "pillar",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#7e92a5",
+      "count": 1
+     },
+     {
+      "kind": "tunnel",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#1e2a44",
+      "count": 1
+     },
+     {
+      "kind": "cat",
+      "x": "far-right",
+      "y": "high",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 3
+     },
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#fff8ee",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#bfe3f2",
+      "count": 5
+     },
+     {
+      "kind": "figure",
+      "x": "far-left",
+      "y": "high",
+      "size": "tiny",
+      "color": "#ff6f91",
+      "count": 2
+     },
+     {
+      "kind": "sun",
+      "x": "far-right",
+      "y": "high",
+      "size": "huge",
+      "color": "#c5f17c",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The fog is like smoke drifting over the land.",
+     "He who stands here now will soon be no more.",
+     "The windmill rotates, a memory of the past."
+    ],
+    "console": {
+     "side": "right",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "scroll down",
+     "button": "toggle",
+     "buttons": [
+      {
+       "label": "more sun",
+       "action": "sun"
+      },
+      {
+       "label": "chase the cat",
+       "action": "cat"
+      },
+      {
+       "label": "return to the sun",
+       "action": "sun"
+      }
+     ]
+    },
+    "next": "cloudy"
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.928,
+    "dark": 0.949,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTLbtswEPwVgrm0gBNI8iv2uYd-QG9tEFDSUiJMcQWSiuIa-ffuMpajtE5R9CKJw-VohtzhST7Jfb6Qo9xLJXqrKhA_hiwrt8KDHoKy4lNCS_wsFzL0cn-S0UQLtODLEA5Qe6MjTUXTMVYTRqMRVGzBE6Cx4YWHo9x_lzebTbkrMwJu1K6632z5CzK1Wt_Lh4VsPA6upkWmAjkNHyu0yEw3pYalLmjCuAOPlyrXBReqqgIXGdJ6o3c5QRoTEIDksTp4jo_JCIElxojdo4UkvMNo0BHsIZCvEAgDCx0xBtJ8kgeTNI306oy1NP3MvpS_PTOQtUk6OTU_-R9W-YalXcTDTuXrMiEDSyteFhfqnmiVPxPPSFvTtG-UHdRm6OacW9gVav3Gmc844-AcTGJ5e8B_ILUd3ivNoVCr1XXWSsWZf0_6rmuNxh3nnMtyqVbqjXM54ywRD_-jU2t9D_CBTotDfY30vczQqXSgf7bYmXM949SmGTxcP_6_u7905ZWzD4P7px393X211vm2mrunAFnjgJtWfmtBUPKECcKaA4jQIT1TVo1rBD6BFxRQYZWr74jkK4ixRREijYOg5IJwOIqRGlMERCdKBkSHHric6ac8CI9RRQgLoUQHVHEUqBN5r0K841xX6ALylXEiNzW7mXxGdOnWUJ5bILSqh3Me-BIxdWxT8mq23nvs-hTqyiP9t8aRt64cKM2c34hNY-GCvIbXqpJSQOEh5eJ1r1V1DjwP-SSmmqpVAZLy1za_FPJwXughDt6JiKn4GuvDy0I6unOmVjzSetmQIt4NuXeDtXTzTB_cB0VWbG6z3W3BeSbt2UL6aT5dRLQy9vx--QU"
+  },
+  {
+   "rep": 0,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Winding Path",
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#889b8b",
+     "#553955",
+     "#b9857c"
+    ],
+    "ground": "grass",
+    "ground_color": "#e9e9e9",
+    "ink": "#3e222e",
+    "accent": "#05e4f7",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "path",
+      "x": "far-left",
+      "y": "high",
+      "size": "medium",
+      "color": "#e3e1e0",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "far-right",
+      "y": "high",
+      "size": "medium",
+      "color": "#e1e1e1",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": ""
+     }
+    ],
+    "lines": [
+     "The path is old, but but the flowers are new.",
+     "The birds sing on the path, ,but no one is there.",
+     "The sun shines on the path, but and no one is listening."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "say something about the path",
+     "button": "draw",
+     "buttons": [
+      {
+       "label": "undo",
+       "action": "undo"
+      },
+      {
+       "label": "change weather",
+       "action": "set weather",
+       "choices": [
+        "fog",
+        "clear",
+        "stars",
+        "fireflies",
+        "bubbles",
+        "embers",
+        "snow"
+       ],
+       "choices_count": 5
+      }
+     ]
+    },
+    "next": [
+     "inside one of the houses"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": true,
+    "motion": true,
+    "font": true,
+    "hue": 0.902,
+    "dark": 0.834,
+    "things": 0.25
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVPRrpswDP2VKH3ZJHpF6VhbvmIPk_awXVUJGIgaEhSHcbuq_z470Hu7twlVxcf2wc45ucnfstplcpaVVGK0qgbxa8pzfRAB2gmVFZ-UtipC81lmEkdZ3WQ00QI1_DCuMa4T31TsKRnNwGgz4YWiGQiFQEDrO269XGX1U26Ox5M-agI2Zbk_lSW_6dOxPNTyNZNd8JNrqKkLClE-gHPtrWeuDZz4oYRxF473UBQFUKzqGlxkKC_hS3sgqPUJ6BUx0njwFs9pQ8IstJGwwUfjHcUYjbUEgIWBaJBGvcmLSaOMy3pvvIoK27X1ysym4wyaP8w5QGOmgeKPYfewgzwhE4-yu2fvrNqE5ok1ENV_0-74-aDdP9Hi5FZWeafztMYBLyO_9yB4EWFQeNtkQk8x_Ugk0Vo_Q0ChAggH8wsxcD2PiAJZYu9SITNkIuM-5wkEpmOZ4dFD3xfY81f_7eEW0uGpzRqM4Ij8hYWvvUPPrrrR3g3vHf3IqlE1m0oFNhX2auRwXNSaTUPSVPzPFhiDH0ZWHNVVoB8g9jy70n7dc1WSZolJ9Sao-T1eNLdKg6UUmc4nV60GSTGf86OgJlt1IB42fypFiE9w3XtTLxosF6G2oDiBUQV2eGvoplkDmCbR2qY3GDSkNDo_pwNaeM6r5uX99Z5JR55mZuP40NLJ-jat2vsJiYiLOqpgAlm5yVoy_eOF_VLkxddtftoWfBFpyjyT4ZFP14A648j_978"
+  },
+  {
+   "rep": 0,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Shimmering Echoes",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#fffbff",
+     "#b0e6fa",
+     "#36729f"
+    ],
+    "ground": "water",
+    "ground_color": "#a9d4ff",
+    "ink": "#134f2ff",
+    "accent": "#725683",
+    "font": "mono",
+    "text_place": "right",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "ship",
+      "x": "center",
+      "y": "low",
+      "size": "huge",
+      "color": "#406e9c",
+      "count": 2
+     },
+     {
+      "kind": "door",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#9db9cc",
+      "count": 5
+     },
+     {
+      "kind": "car",
+      "x": "center",
+      "y": "sky",
+      "size": "large",
+      "color": "#d865cc",
+      "count": 3
+     },
+     {
+      "kind": "wave",
+      "x": "far-left",
+      "y": "high",
+      "size": "medium",
+      "color": "#d9d9d9",
+      "count": 5
+     },
+     {
+      "kind": "pillar",
+      "x": "far-right",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#e1e1e1",
+      "count": 2
+     },
+     {
+      "kind": "piano",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#476577",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "tiny",
+      "color": "#2059c1",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "far-right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#586163",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun dipped below the horizon, casting a glow across the water.",
+     "Echoes of the waves still reverberate, a soft melody in the sea.",
+     "When the sky turns golden, the world awakens."
+    ],
+    "console": {
+     "side": "right",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "set weather",
+     "button": "sunrise"
+    },
+    "next": [
+     "a quiet corner of the harbor"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.682,
+    "dark": 0.88,
+    "things": 0.167
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZRRb6MwDMe_SpS97CQ6UVro6Pt9gjvpHu6mKRBTooaES0K7rtp3PzuFHtuqiQeIY__424l95ge-XSb8yLdcsF6LGtifIU2rDXPQDF5odi8qLQLIRdyt7DeecN_z7ZkHFTRg4I9WdR04ZXbse91a8OgRVEdbUhwNro4gQgsODX4wTnkgxv7Et7_5XdM0VdOg4a5KoWgEfa2KTVY2_CnhO2cHIzHwiBocnwzPtdWWeHeilOsYrsye1svVusmiQdQ1mEC2TZYXjys0NTYaOmssaYSX8ByzQptTuzagsbNBWUNKtT3iGjR0iPGo9cz3Kmrxrepx6wU_6RdRFybDLxFevRKwHXaU5lXoOi2grKNlIBXZW3IFSmvdCJx0EG9M_orsQKqhm0NLWZX1DJrPoLVwt0RS3a9ELdx7lfKxyOfA1Qx4FAcYiY1wCw3NJLRF0V_JlCU9t2X2SuurUuLOK9Bap16t-YoNS3pu17VXIp70pyJ8rOynOqw3Rb7Z_KcuZ9RKOXnjtN4XIShzmgOzNC_r5W1gZ2OKtwrwUehHbP5YLIvVHItNo5UBurD8ZwsMO45J1fcgWQV4Qxl2IhvrmrBa-ECNK9iO9kTtrPfRJTbcA5IvPc1sM5oPuMAgrXFEHMBV4NAzQYK3TWAd_kOemDLR24MgxK8WxvX-xMLgjGc7qyWggMi0TksmjmIPxj9Q29fWeEvD5YyJy3l_Bmsug8XtqSqt6GG8RDRnlAwt3VSKSXjvbNdTw3sIbJpBCa-GEC4tPg6jt4QbnAVUMcH-Dgq9a-sMuCnpVrgK6_2Ejjv0IoF8awatcV5MH3SQWZoVi7RcZDlp49s04W7ajyMEI0NP77d_"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Wisp",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#f2e7e7",
+     "#e6c8c8",
+     "#d3a082"
+    ],
+    "ground": [
+     "#fff4f0",
+     "#f5d4d",
+     "#f3e7e7"
+    ],
+    "ink": "#8b7570",
+    "accent": "#957577",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#e9d8a4",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f1c40f",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ff6f91",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#cfd8c9",
+      "count": 3
+     },
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#843a1a",
+      "count": 5
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#14a8e3",
+      "count": 1
+     },
+     {
+      "kind": "whale",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#a40000",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The horizon whispers secrets.",
+     "The trees hold the dawn's breath.",
+     "At the lighthouse, the ocean dreams."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "narrow",
+     "prompt": "recite",
+     "button": "slide",
+     "buttons": [
+      {
+       "label": "rise",
+       "action": "set time dawn"
+      },
+      {
+       "label": "noon",
+       "action": "set time noon"
+      },
+      {
+       "label": "set sun",
+       "action": "set weather sunset"
+      },
+      {
+       "label": "more clouds",
+       "action": "more cloud"
+      },
+      {
+       "label": "fewer clouds",
+       "action": "remove cloud"
+      }
+     ]
+    },
+    "next": [
+     "inside the lighthouse"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZTNjuIwDMdfpQqHvZRVCwVKb_sOK-1hhVYhdWhEmlRJOp0ZxLuvHSgUhsNwoXb-_skfcU7sjVV5ygZWMZ50mgtgKfMdq04sqKAB_X8U2imaLVk1HwxaA_DQgEOH741TPoYdP1j1l83kAjawQccM1qIUJX3VS56VC7ZL2cHZ3tQXoZSFzOhYruqijh_LGIs6ZY5In5X7zWpDGi4EmECu7QpdxJc2OhpuKDbAe_h3KaFipMX0UtbaoKyhPIPSGh2gocVDjxmc2FFRKkxo2xPifRqJxYzJYm3qk7BBmQ-0hNWWap_Bti55ET095bI6pzcoNuaKdOrQhCuRmnTDtVCrvp0CZS6KTN6B-QSoCdPYPjabuBrkd7FyLbf5a2xwMAIld_Npss_lfwULWZdiewcvJ-BOGfhOU33L42Ru0LJY8py_7mprrXkFfWhA0x9gCswLXsLydflDwzW8GNRzlpq7RygvMvxNoXhrNdZMV4v9biBprFOf1iRDgysEzicehIPgf2IQnVPnPap0neAyJbRaP3yyd7RbpPkVov8-9zTaVgA3SY2yFlE7SsB4S7t6wmRrSnZvQ7A0qGDNZWvdkUppeBc7buPFGVQdGjQNd84O6OicbTtaKQdCBap23yMoro8m8ui4bI_me9CxbfFKcjGuGmDi-FzEihj1elSay_S-KuPBVEknlw16EF_fHTpC8yGitQ6SuMl-GnV3P6glDIj5KnfQ2rdbwO6cMoPvCk1UGWru00QYKQ54TGNglem1xjdn_KD7tcgW63m2nS9WNABWZSlz43l8hTAydPR__g8"
+  },
+  {
+   "rep": 1,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Unlived",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#b0f5ff",
+     "#fff9ff",
+     "#f9f5ff"
+    ],
+    "ground": "grass",
+    "ground_color": "#dce6f1",
+    "ink": "#eaf4fd",
+    "accent": "#ff2d83",
+    "font": "display",
+    "text_place": "top",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#e7e7e7",
+      "count": 0
+     },
+     {
+      "kind": "river",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#eaeaea",
+      "count": 0
+     },
+     {
+      "kind": "vacant",
+      "x": "far-right",
+      "y": "center",
+      "size": "huge",
+      "color": "#b0e5ff",
+      "count": 0
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#c3c3c3",
+      "count": 0
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 0
+     },
+     {
+      "kind": "person",
+      "x": "far-right",
+      "y": "low",
+      "size": "small",
+      "color": "#eef5ff",
+      "count": 0
+     }
+    ],
+    "lines": [
+     "The sun's rays do not hurt the grass."
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.831,
+    "dark": 0.843,
+    "things": 0.222
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZLdctsgEIVfhVlf9EbuKM6v9RzNVerJYLFYjBFo-LGtevzu2aW2k3bkiAvBAT7OgT3CDpq7CvbQgBSDlS2K37mu188ioM5RWqggDtAcIZlkkZa9Omt2qEhPpmdByb2j0R5l6jCQELMLJiLv3I7QvMFsXetHrUmYaa2X596yaKsKNsFnp2jjJsgY4SK8t9565s1Ui0_6jiaM2_IYpX7Q7EC2LbrEktYL9XJPkvZFUCZSmpFd4iG9l2QkJz-Q1PtkvGOnyVhOiBZ7AkUye4StKWZSQI5woC4fQskqGIvJ4pbCmT-M7PKG113N4jO3omS2Up-qKzPQzYUzVMswD2bTpRvcHpXJ_T9kyW2avJOtdOkG-ur_huV1jX-fZwJMjzl1C_yyV14ybvzKa--5TfPWJqgz8KvFjvrfZdflm0YOGKJ3N7Jbv__kxl6W9_68UtT_Jad6tMYhlwL86lBQ_h9RBDlGobxwPokuhySo1EUp15-wOlHF0nLa2ULjsrVUYZcO-1vUi6d5vZwvHtkJHVJBuMyXmqOdaeD_6QM"
+  },
+  {
+   "rep": 1,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Foil",
+    "time": "dawn",
+    "weather": "wind",
+    "sky": [
+     "#e07a5f",
+     "#9b3c5c",
+     "#441a40"
+    ],
+    "ground": "grass",
+    "ground_color": "#e08983",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "boat",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#f4b85b",
+      "count": 3
+     },
+     {
+      "kind": "oak",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d4a971",
+      "count": 2
+     },
+     {
+      "kind": "palm",
+      "x": "near-right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#935e3d",
+      "count": 5
+     },
+     {
+      "kind": "fox",
+      "x": "left",
+      "y": "low",
+      "size": "small",
+      "color": "#a1643f",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "When the sun rises, the trees whisper in their language",
+     "The dew upon the leaves made a soft and sweet hum",
+     "Do not be afraid of shadows, they are friends with the light.",
+     "Do not be afraid of shadows, they are friends with the light.",
+     "Do not be afraid of shadows, they are friends with the light.",
+     "Do not be afraid of shadows, they are friends with the light."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "full",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more leaves",
+       "action": "more leaf"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.971,
+    "dark": 0.547,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=1ZTBbtswDIZfRVAvG-AOdpy0ic_DnmDADltR0BYVC5FFQ5LrZkHefZSSNL70AXay-JP8RImiT_JNNlUhZ9lIEKOFDsWfqSzbZ-FRTwGs-JLVlr7KQoZRNicZTbTICT_IWBajGZKlYHZszQixR8_CbJxKOYejbH7LByyfYaNZeNi1dbfp0mq9rmBdypdC7j1NHN7wAkKQN-G1I0sJxunb3bZmh3GHZNdQ6RWyDV2HLiZJ6ye9q1jSlIUecgER3-NrPgRrKZarK-RA0ZBjxWPg4-Q90eLA_sD1nuTB5Hpagsiu92XuMdeZC-bzmb8J3E_7VM1HvXrdbjdtVqZUTX0uPpgEhytSg3-0qOMn0AGVmYYlVq1h91zdsasFdgQ7XLkOGezNvv-MHI07Lrm7eoO1unM3C66m9yt2Uaql-U4LA1i7xEH1tK71HVeducfWOEx3K3_16AS_EhEmJ7wJGIpsRo8YxNybMKIXJscYLyy4_QT5en9ylMJZTCNdCBbhjXMGUChABNJRcNdFmBGj6PPdfSfhKIqWA7QHowRpEXpQNF-2PQrwKLQ36BTvbmJ_Iafb-_bf57-kHrhAaWJP3C-Vu09jGgxyl8H16Tkycsy9pNzj2ajYp-ZPubOjp2FMQzV7E1Fcb38Avzdp6tspxjxNmqz6sC-DZKFFy67JXZ3QXUePXyTJ9NBuIQP5W0uXcTdZy_PL-cz_Buamc8nGcXU8y7dFeq2rcvX0WO4eV5t0KNmUhfQ3fx5tzoxj-p7_AQ"
+  },
+  {
+   "rep": 1,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Dreamy",
+    "time": "dusk",
+    "weather": "sunset",
+    "sky": [
+     "#f2e5e5",
+     "#f4e4e7",
+     "#e7dff",
+     "#f5e7e5"
+    ],
+    "ground": "grass",
+    "ground_color": "#f7f6fa",
+    "ink": "#3e3e41",
+    "accent": "#e5e5e5",
+    "font": "mono",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "lighthouse",
+      "x": "far-right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e5e5e6",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "high",
+      "size": "small",
+      "color": "#d7c1c0",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#fb9e74",
+      "count": 5
+     },
+     {
+      "kind": "lake",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f7f6fa",
+      "count": 1
+     },
+     {
+      "kind": "hill",
+      "x": "far-left",
+      "y": "high",
+      "size": "large",
+      "color": "#f3e9e7",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e7e4e5",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#f8f3e7",
+      "count": 3
+     },
+     {
+      "kind": "lighthouse",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e5e5e6",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "low",
+      "size": "small",
+      "color": "#d7c1c0",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "girl",
+      "x": "left",
+      "y": "high",
+      "size": "tiny",
+      "color": "#"
+     }
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.975,
+    "dark": 0.884,
+    "things": 0.3
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rZTdjtowEIVfBZmbVgpSCASXXPcttquVScbEihMj_yxLEe_eGW9DEi1dFqlX2Mf2l2PPYc7slRXLhB1ZwcTsoEUJs18hTXd8ZkEGJ_Tsm9hp4aH6zhLmDqw4M6-8Bjzw04JoTyh71dK8Cq7B2RGEr8Gi4ELnwNO55sSKJzaXGeSQozCXa1gDpxHwSsoo5cBx8Tlhe2tCVyFgb4VzrBdeSqMNceeSy40UuKC6huYrWMF6iXNRltB5kuhD8VPSRKE1nSGr8OZf4j1Rs2pfk73WeGU6MuyV1iiAhhY5Dk2fWaOiF02baxMc4IY3FKSwi55wosMNvYVTvwldhz3tuzqOdjZRCeRneUmuZG_hX8waxwPUtSLau1IrXi7LdKCuRtQd7jV4q3fwA1BIucjlAM3GUGWru8QWKhXaMVLutsDXAzIfIbVoxrfXIHvq3xh8xu1zcONV6_dS3uBO3Wphp6WSK9jGaN6AtsOLUtAw5V-pPces53drPwHefdEfaJPfrvyHpD5g9WsxnQC1Of6XiH5S-YcyuldWf0ROH9Sr7jTmscvzBdsM_t-x_ZSs6ILW2Bf6AWGzNNss0u0io0piZ0gTZvv12CnwpD_Q7-UP"
+  },
+  {
+   "rep": 1,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Reflection",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#b9eaff",
+     "#e4f9e6",
+     "#ffecb3"
+    ],
+    "ground": [
+     "#f2d0c0",
+     "#c9d8b5",
+     "#e8a598"
+    ],
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "mountain",
+      "x": "far-left",
+      "y": "high",
+      "size": "huge",
+      "color": "#d0a09f",
+      "count": 5
+     },
+     {
+      "kind": "river",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e4f9e6",
+      "count": 1
+     },
+     {
+      "kind": "forest",
+      "x": "far-right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ccd6b8",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#e4f9e6",
+      "count": 1
+     },
+     {
+      "kind": "duck",
+      "x": "left",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#f2d0c0",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun dipped below the horizon, painting the sky with hues of orange and gold.",
+     "As the first light crept over the mountains, a breeze whispered through the trees.",
+     "The birds chirped their morning song as the world unfolded before them."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "paper",
+     "shape": "circle",
+     "width": "narrow",
+     "prompt": "unfold",
+     "button": "see",
+     "buttons": [
+      {
+       "label": "sunrise",
+       "action": "set weather <sunrise>",
+       "tone": "neon"
+      },
+      {
+       "label": "more forests",
+       "action": "add <forest>",
+       "tone": "dark"
+      }
+     ]
+    },
+    "next": "a world in the sea"
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.904,
+    "dark": 0.875,
+    "things": 0.125
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVTbjtsgEP0VRF5ayVk52W4aR6tK_YWqb-2qwjDYKBgswOvdjfLvncGO65X60L7YcGY4nLlx4c_8tCv4yE9csN4KCeznUJb1ZxZAD1FY9kHUViRQ22yt_Ude8Njz04UnkyzgwW-gLchkvENTMh1hSoy0G0GkFgICcXDBRKDD51d--sE3dQVCawQ28ElXcKCV1iDre_5U8Cb4wansqPeqlCWZZaWO9UM-chQP1ZEcjTsj_eZe7PSe6IWU4BJBWh90tUNI-wy0AglRIbykXzkYxCzohFjns_wTDxAxqBgRAwsdMkXUcOFnQ2LQb3BJGArtBbdahO3M8EoXmKalAM0bUbdDQ3qkt54SsFGlKCudkYH0PFyLhTeYZ8zSREry84YoKVkLYwfKDN2ac8nczLlbcWpPwayUBpSX_o1XSnWoj39471e8WMm_KX0f_P9JVYM8z5yrdM4tsHAm417XjEtfLIzYDtY4oJLx7y0wlMqU6XtQrAbrR4bNyFofzJt3BeuxkMjZZBQTwkaTWtYOEJnXzAfhGmDYM6zxVt3hPV9jdtUmxMQsZZPJAH1iHquXTbf-iAUTrA4Ab8DG1sQeAmpILUbUtNkzoTESKemsTVCRydaEPruBCUgVHImLHj9iunn0wSo2OI2CckxUY7J0dzQK0rvoaSQvmDKVU-Z76njvaNOLPlcrtrig8pkgLbXoaFRqEXAiBD8i0Aff9TQy01WI1ENKeUAiwLKdRsMKzO27CRdynqYIic1PAHuc7V_-CHKAXtQGN4qOwpn6Nq55hFLsccJXx5UIZ359uhZI9JLyCzYlyLippCCQnTeokpLDT26wFmf9tqDO25f7w7astnt6VTCesuDhZs-jjydTT__rbw"
+  },
+  {
+   "rep": 2,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Horizon",
+    "time": "noon",
+    "weather": "sunset",
+    "sky": [
+     "#e5dcd",
+     "#d9a567",
+     "#805b3d",
+     "#4a1f1f"
+    ],
+    "ground": "sand",
+    "ground_color": "brown",
+    "ink": "#f8a64",
+    "accent": "#ff146c",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#e9c0c0",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "left",
+      "y": "sand",
+      "size": "medium",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "sandcastle",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e6c5c1",
+      "count": 3
+     },
+     {
+      "kind": "ship",
+      "x": "far-left",
+      "y": "sand",
+      "size": "small",
+      "color": "#998c8b",
+      "count": 2
+     },
+     {
+      "kind": "sand",
+      "x": "far-right",
+      "y": "sand",
+      "size": "tiny",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#f9a9a9",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "The sun sets slowly, every shadow grows long.",
+     "The waves whisper secrets to the sand.",
+     "The sky reclaims its light."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "circle",
+     "width": "narrow",
+     "prompt": "what brings you here",
+     "button": "move",
+     "buttons": [
+      {
+       "label": "sunrise",
+       "action": "set weather clear"
+      },
+      {
+       "label": "morning",
+       "action": "set time dawn"
+      },
+      {
+       "label": "evening",
+       "action": "set time dusk"
+      }
+     ]
+    },
+    "next": [
+     "the"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTRjpswEPwVa_NKTiQX0sAX9AP6Vp1OxizBirGRbcLlovx7dwk03KnXVnkIu-yOZ9Y7XOEMxSaBAQqQojNSISQQOiiuEHU0SPnvzut3ZykfdcsJ68ZoQBkb9JQIvQ0YufF0geInrDCrVEXxqspltv_GT4c0K5_H3E5u6k0NLwkcvettxQDS8qt7_KqccQxbejfwQdqeKFrVB7nfUSiVQhvHTL3Z7RWlajcmmjtMxLf4etdSgNfHhqm1LmqiTQkMpCsEyqHBlqACcb7CSY9UBnnmEbzRIx9D-hIgUTNX0qjfGbfpj1w3c11hrlKVjpmeyWxvyW_M6HHGNFjHCXESPeG1WOm-XSKqujqo_IGYLRC5V0kWMuHOMkdguoW_4OJeZWrzwH1e4ja6mxBr6ddfsg2tNGYJmucHdSj_LH9qnUE_UP2AGrW9_O8ESu2rf2n_jFfnkn5L5bSERlvkDYAfDQraZEGrHEQwbjCXROAZ_UWERlZuELQDQxDG2eMTgXA9b0sQQ6NDh546lefm6ERkMBI3FxIv4VEZqdsgNNUYJv3ELlDOBsdOuxLvinmXLkbHdxad5dhMAolGx7HSXo03P-gqNuxI6YkaJTrv2o6tMDQyitJrewzi4npBRuWGsidkdkHrzo_4bgAjSzR3N3sdcHTa5BkaiZjsLuhk6YFvYm5onbd00OcG_lqISpKFl8U00K-L-3CC28stAUsW5juhE4HjIwU8Kihsbwy5eX7gVdim2_06zdfbjGcERZqAn9-P5qbO2PH_7Rc"
+  },
+  {
+   "rep": 2,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Empty",
+    "time": "dawn",
+    "weather": "sun",
+    "sky": [
+     "#e0a458",
+     "#f5f0e6",
+     "#a45e4a"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#a45e4a",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e0a45e",
+      "count": 1
+     },
+     {
+      "kind": "balloon",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "sky",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun shone on an empty world.",
+     "No one to play with, no secrets to hide.",
+     "The world is a mirror, but you.",
+     "The world is a mirror, to you."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.959,
+    "dark": 0.725,
+    "things": 0.167
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZJNb9swDIb_isBcncFx6rTxfdedeuuKQpapSIgsBfpY6gX57yO9pMuAttvJ4kvy0UuZJ_gB3aqCI3QgxcFJheJ7qev-XkTUJUkHFaQDdCfINjuksq_jIU-kZjtyOMijp-iIMhuMJKTCcdpP0D3BAmt51z6QsNCtrnHDJ1LwTsJzBbsYih-oySqEa_iiggtMWvQa17qhhPV7jtdypRsulEqhzyxpvdHbFUk6zIKRxCNz-Jpf5nFIc6gzaWPINnh2mK3judDhSJhERk-wt7MR8u2s5zteKeJbaKgKpt8pHsz-ZKYpOy56s3qZiZXCRlbn6o1pQklXopZxefHzT-b8dvg-s5fOheAv1I-IaZTzpDfIe9nq95E54q3LaHfm_6BKDw9q-wfa3kCVzBfmh7xs_XSLW_dr-fdT0qbwT-EfBY8GBa2YSCZ4FMEL6QXySopjiG74Qn3fguBcDrzQpNtsKuGDSKgi5sQJYwfkUqbNfcImIcVoYwyxEn3JYgrlkwpizAXPZ1pb8kUWFXS-OEeLdj3wAzR1s1nW22XT8sTQ1RXEa35ePerMB_6efwE"
+  },
+  {
+   "rep": 2,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Island",
+    "time": "dawn",
+    "weather": "mist",
+    "sky": [
+     "#385d8a",
+     "#54b5f0",
+     "#e6e6ff"
+    ],
+    "ground": "sand",
+    "ground_color": "#d1dff",
+    "ink": "#333333",
+    "accent": "#9999ff",
+    "font": "mono",
+    "text_place": "right",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "ocean",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#82aabc",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "left",
+      "y": "low",
+      "size": "small",
+      "color": "#b3b3ff",
+      "count": 5
+     },
+     {
+      "kind": "mountain",
+      "x": "right",
+      "y": "high",
+      "size": "huge",
+      "color": "#9999ff",
+      "count": 1
+     },
+     {
+      "kind": "cat",
+      "x": "bottom",
+      "y": "high",
+      "size": "tiny",
+      "color": "#ff0000",
+      "count": 1
+     },
+     {
+      "kind": "crystal",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#3333ff",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The jungle whispers secrets under the moon.",
+     "The forest guards its secrets with a silent watch.",
+     "Night's breath shimmers from the misty edge."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": true,
+    "motion": false,
+    "font": false,
+    "hue": 0.886,
+    "dark": 0.769,
+    "things": 0.25
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZLPjtMwEMZfxZoeACldpS0t3bwBF07cYLVyknFi6j-VPSFbqr47M2m6FIkVvsTzxfPzN545w0-oVgWMUIFWR6cbVN-Hsqw_qYRmyNqp95Naxw9QQD5CdQay5JATPmenQ8syWS9xq8fA0YiaekwseJtJsg4nqL7BYrPftnvNwmL7sd6aUna4w50x8FRAl-LAtAryFXqNn5voorAW7arlgwXYcJBwMy2OddNgIJEeeU1HTJwEH0MUd_hCz1MRrCXb9eLJR7IxyG0ujhyjQ8-YzEbPcLCTkdigloJeeC93cE0FcCnQM0Tqsr8E2Q8dcvRqdL_Wum4mZRAfm0vxiqSEOBMdGpp5VwszLnvt3D2v3tSbqayZt73jeZG0vbm8Vfd_k69vNUNXd9BG08yrI1H0_wSSDad7oDElrzeA6ZRJuxlqdFreG50b__YDSKP_9srj4mxA6RZ87VH9GELnUI29zUdMWWVsElJWzMWkeBqVjzE8MEJOm5gwk-oGndqsLP05P1rqlVbZOm63GjU1vSR9EbfvsqqTjLbKvfVerjEp-iudB_2ksO3wAZ4uPLtsjD02UIXBOZ6220ZeY12ud8vycbneSs1QlQWk2_9pADmTjvK9_AY"
+  },
+  {
+   "rep": 2,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Dusk in a Forest",
+    "time": "dusk",
+    "weather": "rain",
+    "sky": [
+     "#e6dc5",
+     "#f9e5e6",
+     "#d9e2e8"
+    ],
+    "ground": "moss",
+    "ground_color": "#c8dbe9",
+    "ink": "#191521",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "near-left",
+      "y": "high-moss",
+      "size": "large",
+      "color": "#e6e9e6",
+      "count": 4
+     },
+     {
+      "kind": "bush",
+      "x": "far-right",
+      "y": "high-moss",
+      "size": "medium",
+      "color": "#c9ccd4",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "left",
+      "y": "low-moss",
+      "size": "tiny",
+      "color": "#2b2a30",
+      "count": 5
+     },
+     {
+      "kind": "rabbit",
+      "x": "far-left",
+      "y": "high-moss",
+      "size": "medium",
+      "color": "#bbbeb5",
+      "count": 2
+     },
+     {
+      "kind": "figure",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e6e9e6",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sky is gray, and all the trees are covered in leaves.",
+     "Even when the rain stops, the raindrops will not stay.",
+     "Let us go walking, looking at the world."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "you should write on the margin",
+     "button": "go back",
+     "buttons": [
+      {
+       "label": "more trees",
+       "action": "more tree"
+      },
+      {
+       "label": "more bushes",
+       "action": "more bush"
+      },
+      {
+       "label": "more birds",
+       "action": "more bird"
+      },
+      {
+       "label": "more rabbits",
+       "action": "more rabbit"
+      },
+      {
+       "label": "more figures",
+       "action": "more figure"
+      }
+     ]
+    },
+    "next": [
+     "a place"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.893,
+    "dark": 0.505,
+    "things": 0.667
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZTBctsgEIZfZYdc2hk5Y6uxG_nc9tRjb20mA2JlMUagAWTF9fjdu4sVx4nTXGx22f31Ax8cxE6sF4UYxVpI6K2sEf4M87n6CgGbIUoLn6SyMqH-LAoRe7E-iGSSRWr4NsQtGAcSfviAMVFBMh3PaJqhaESZWgyUCNI47t_uxfq3uMGVrpcU3zQVLnHFI11hiffioRCb4AenqanzMYrn-LH21rPUTX2vFVY0YdyW40W1WJYLimVdo0ucappVU3Gq8TnRShIkd_iUHvMiKWexYcedT8Y7imMy1lICLXYkE8noQWxNdpICIk090dChDLOpd8_SZtPOJqfR_M3KMmy4_OwYV1jlVda0EvJzdyzO0mqI7STdkHIguQ-kO9Rm6C6166qu9d2LdnmpbYKetC8cWz--UU3G7S81S1XKL_MXzeWFZpBKmXTh-OO9uDaslEK1fN9wYzZDwP9sx8TFB9Jv93lxJJyscciHKX61CAQgmAibIPcFEBQgrQViFPiEI8iAUPsdBtQMtkW5w3hLgt936GBs6YeLmWaIyfexOMc6UAgjMQTOJ5qVe278iQkG-qCHUVpa5aYA6z0PQKbcPPpg9S2DX3sXPd-sAy1R54PxPWPrXcZq2ovYyp7j_sTraHRqKRy5pRB98F3PzO_9ALH1g9UwBpMQ_Ml8R3Tmy6iGlDL5ZE7JentOndC3UqHNtzBM25Ov2HRbzlnBx_eqlol-pziDfl1MiL5Ty-Be1Z7Qu66ekLyqP9F0XT9Rdnw4FnSdnxLDMT1-gnMbSvBxiLUbrKUn4nnAiJbzcjWbV7OSEaadmhciPM_nR4M6U8__x38"
+  },
+  {
+   "rep": 2,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Hollow",
+    "time": "noon",
+    "weather": "clear",
+    "sky": [
+     "#bfe3f2",
+     "#e0a458",
+     "#ff6f91"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#ff6f91",
+    "accent": "#ff6f91",
+    "font": "display",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e0a45f",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "cat",
+      "x": "far-right",
+      "y": "high",
+      "size": "medium",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#cfd8c9",
+      "count": 4
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#5c6b7b",
+      "count": 3
+     },
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 6
+     },
+     {
+      "kind": "river",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "flower",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 8
+     },
+     {
+      "kind": "moon",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#7a4f8c",
+      "count": 2
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#ff6f91",
+      "count": 1
+     },
+     {
+      "kind": "windmill",
+      "x": "far-right",
+      "y": "left",
+      "size": "large",
+      "color": "#e07a5f",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun hung low, behind the hill.,",
+     "Flowers grew on the ground like an endless garden.,"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.958,
+    "dark": 0.703,
+    "things": 0.091
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZRdbuMgEMevgujLruSsnO_EB6h6gH3brSqMBxsZQwS4SRvl7juwju00aZsnYND8-M8wM0f6SrNpQvc0o4zsFONA_rZpmq-JBdE6psgPlivmoZjE29z8pAl1O5odqZdeATo-GaXMHs1eNuGsjdF42gPzFVg0cAXMBrf6jWZ_6EMuYC5maHiAlC2Wm7ATYiW2U_qc0NKaVhfoJjnQ8_GFG2UCa3CWug7nzjGhjHPQ_sIkTDQU0qH4t6AQDv4lBoJmBcKjrTFeouCMWnAYkHNoAwUNwhzKPdJaRjmVVAqvDrgVzE46b4zorBgDlO8B3EAh2wbPvegYp4iWNkian5KemzNMX8xYQIcYwHbgylj5Hq86smK2hEvwmo3BsxGYMz_Sa2VZnQVXuP9K7jyfswUbqNMR1VuAT7Af83Cllotiw7cDdzHiuva-FFyrXfJVvs4_Sa4x9S3s918mhNgADNTViGrlayQdhiq6J60fw1-OkAJbqGd-ldRrbN8RHXYzwjZDZY2Ehkbsga5hsbB73potxIbfrikVlFWmdXBD6h1_1bfmjcra49JcNtmY3um_txOmJ5wlSmoITUx_V0CwwkjV6pJgqhOSQ4XvERxRJHT2rwRdH-MnOFJa2BOj4-X__BMlayBME9BFmBGkZLYAjV7PJ5xR-AS-xmmmW6VwpJw3IaxZOltN0u1ktgzqaZYm1J7v44RBT78L6-kf"
+  },
+  {
+   "rep": 3,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Empty",
+    "time": "noon",
+    "weather": "sun",
+    "sky": [
+     "#e5f5e0",
+     "#ffe68c",
+     "#80bfff"
+    ],
+    "ground": "ice",
+    "ground_color": "#3e4450",
+    "ink": "#000000",
+    "accent": "#3d3d7",
+    "font": "mono",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#70c9ff",
+      "count": 3
+     },
+     {
+      "kind": "bush",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#bef6d4",
+      "count": 5
+     },
+     {
+      "kind": "rock",
+      "x": "far-right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#d1a1d",
+      "count": 2
+     },
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#665647",
+      "count": 5
+     },
+     {
+      "kind": "ladder",
+      "x": "far-left",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#cbcaf4",
+      "count": 1
+     },
+     {
+      "kind": "sand",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#f5f5f5",
+      "count": 8
+     },
+     {
+      "kind": "rocky_wall",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#a2838c",
+      "count": 3
+     },
+     {
+      "kind": "lake",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#76e3c4",
+      "count": 5
+     },
+     {
+      "kind": "castle",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#e6e6e6",
+      "count": 1
+     },
+     {
+      "kind": "window",
+      "x": "center",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#bcbacb",
+      "count": 1
+     },
+     {
+      "kind": "door",
+      "x": "right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#76e3c4",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun hangs in the sky like a golden orb.",
+     "The air feels crisp and clean, almost too clear."
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZTbjqMwDIZfJUpv6YgeoB3u9w32bjWqQnBKREgQCdthq7772nTasgxz0MIFsRN_-W2cnPlvnq0ifuIZF6wxQgKPuG94duZBBwPo_1E3oUdv0DWZ1jmL1glEKKFFh-_I9lXPs198AYlKIEbHQilI95JG-zhXSvGXiB9b19kCg_Sw0dU8SGcckRYb2G4TCta2IjseHrSFlGDDsKTYFDv0KDfYtbOOtMFrOFzlZ5yWorIIJ4NGsSgxaGPQAQZqnPSo9MwrPSgJLZCUVxwq0S4NqIBmT1EVpe31H4KW3ZGW3aXuYvmMOZGnIyWbS3RH5p0v35B3Le-AvhaDpjsxB5UW2wcxGRFbJ6uRyFYfy2-pLFZiVTyQ6xGy0RbmRL79oo91pmmSbnfzOo0oioE0U84pOGjbj7kyl0KN8l-NuF4MkXP5T7FGtP_WQCX0Prj7SV37w-ma4ZelqKHQXT1mi_V-M_T4TBcYUcH3KvGeu0thIz_oBSk8Hcz_rAak9M5X-YQfd_qyc6c_Lpe5kPk8snDu1g6fyZwip_mvLnh5GOxYOrr8ZwkMbx1WCnv0TFsWyFH1zOgKmGBHZwqwzLX5EyJotdAtUwDGM9lq3zBsJyYNCBsxYWrnAwvODZ72ib9c8GbCfXBLyTPbGYNXyW1ASa3jdbqMn5dr6ipUFEe8vc0PlwtGhoa-l78"
+  },
+  {
+   "rep": 3,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Desolate Plains",
+    "time": "noon",
+    "weather": "clear",
+    "sky": [
+     "#ececec",
+     "#b0b0b0",
+     "#909090"
+    ],
+    "ground": "grass",
+    "ground_color": "#cfcfcf",
+    "ink": "#ff9500",
+    "accent": "#ff6500",
+    "font": "mono",
+    "text_place": "top",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "left",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ececec",
+      "count": 0
+     },
+     {
+      "kind": "house",
+      "x": "far-right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#cfcfcf",
+      "count": 0
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#b0b0b0",
+      "count": 1
+     },
+     {
+      "kind": "windmill",
+      "x": "far-right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#909090",
+      "count": 1
+     },
+     {
+      "kind": "balloon",
+      "x": "far-right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "flower",
+      "x": "left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#b0b0b0",
+      "count": 4
+     }
+    ],
+    "lines": [
+     "The sun rises, the trees shiver, the birds fly away.",
+     "The sky is as white as snow. No one can hear the birds.",
+     "Do not get it wet."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "write on the margin",
+     "button": "set time",
+     "buttons": [
+      {
+       "label": "dusk",
+       "action": "set time",
+       "tone": "light",
+       "shape": "pill",
+       "width": "narrow"
+      },
+      {
+       "label": "rain",
+       "action": "set weather",
+       "tone": "light",
+       "shape": "pill",
+       "width": "narrow"
+      },
+      {
+       "label": "hills",
+       "action": "set ground",
+       "tone": "light",
+       "shape": "pill",
+       "width": "narrow"
+      },
+      {
+       "label": "calm",
+       "action": "set motion",
+       "tone": "light",
+       "shape": "pill",
+       "width": "narrow"
+      },
+      {
+       "label": "more flowers",
+       "action": "add",
+       "tone": "light",
+       "shape": "pill",
+       "width": "narrow"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": true,
+    "hue": 0.586,
+    "dark": 0.876,
+    "things": 0.111
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=pZRNb9swDIb_iqBencANlhbJuedhh922omBsOhKiD0OS66ZB_vtIfyXNgmJdoIMlSnr8khR5kK9yfZ_JVq4liNpAgeJ3k-ebRxGwaiIYmclYy_VBJp0M0rEnjN5AQvHDgHaR9pO2vOG8d7RqEZLCQIbCIAS-v9vL9S95hwUPMtxtch48W-U85HMmt8E3rqRr2wCRsb3hpfDGM-2uqHjQhnY7XlfVapkzBIoCXepND72p8p3BeudZIL6ll845siVfk8n6pEnuWsakDTuJBi1RIik9yJ3ulJBwox3S7hutDFaJpuSLVD7o987bqN8ZqpotH5u0Tq4W5AMpyY_ZRFW-iSOzgjALeqtGMIdqglosdWPPsVMIrmBTwH-iXkqdcjEw78-YLX1sH5__UDvk9ip5A8b07-UaWNH8RI4WOgmn6OaPsDwLw-IMXBnfYvg7ZV-KwbcjPUhOPT8H-VOhiI0TQUeMmaDXLTjYUUSlXzH0lo0OZRSV2QtoYT8nVndttxc6CoiiVZpqhibR-XYuvnvhHYoCnFBUJScE33zywvkktpiETqLFNOcCKbyjykOuxajL01NOBKJFCWHHHiqoeVn3aWt1mRQXJ4TgWzLUwduaa6MNLMi77tcWwlZzNjZNSn1d0M-7wh5tfWUY2KDhvzVx15XeWEan44MeM-Tzc0GcuZEZoJPwgTl2kxuwik7ES-7QbW7AFmDsJXXoKjdQrQ8o-jf8QTOUXxf7fDxSF6W08eORa9cYQ41vnHCxLPLFwyxfzRZLplE_yWQY97tWSDdTzd_jHw"
+  },
+  {
+   "rep": 3,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Under the Moon",
+    "time": "dawn",
+    "weather": "mist",
+    "sky": [
+     "#e07a5f",
+     "#e07a5f",
+     "#e07a5f"
+    ],
+    "ground": "sea",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "display",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e2",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "Silence held the night. The stars whispered secrets.",
+     "The river flowed like a dream, whispering to the moon.",
+     "The moon was waiting for the stars to sing."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "paper",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more houses",
+       "action": "more house"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the houses"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.807,
+    "dark": 0.705,
+    "things": 0.125
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPbbtswDP0VQX3ZACdwnKVt8g972va0FQVtU7YQWTIkuW4a5N9HKnbirQ-GxdvRIXl0lm_ysMnkKA8SRG-gQvFnyPPySXhUQwAjviRv6b7KTIZeHs4y6miQCn7ZGr2ILYrvzlkKR92xv4aRrRGBYp4cnQ6Rq48nefgtHzB_gp0ix-fTSyYb7wZbU1VAkLP5WjnjGOqhVLhVBQW0PbK9hY0qkGyoKrSRXUo9qv2GXMolR60D9XBigvgeX1M_5OZ0opfJzkVN_OnGqI0hBxrsKBiI7Vke9ZXN8WS05Yvel7XUkWyd1x9pAEF_MHI7NJx446x2KscieQZmtLlkN9zWDWFGVeBXBlWccKdJ3GA7rPXQ_QOs1DPiHXi7AC7BmOtaGNrrpp1xWzrfUUMHqekb6G0pE2ixAI0el2SXqP-z_YRbqfq52t9xdwvcCuIEu-jfuPEOF7U9LdG25Ra-wXKmpB3eEG9N_tAGLWm5RVMnhVpmuhY_6Rgi-CDGllSBHmsRsPIYw5qwOOz1G6la0eUUM_qIAkTtEbpsrtG2EdEl2I4mPBfyWYxA0KAj5yh3fR3XC6kikHfNGq-cDY7f0Jnaq7m90sXoeLfRWbZ76JO-QksHtq_KHHUdWzIteJ-m03vX9Szy0euIghgkWuAbzasvB4JlaStn6pt9FbaBEg2FBjsFoZreAe3RSd7OnNI5T7NkpYZl3t0tLy-XTFp6Xjx9bbkrIkOfSoSmWk5qKINHIA92MIZe33xgHRR58bjK96tix73LQ55JP8fTe6TK2PP_8hc"
+  },
+  {
+   "rep": 3,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Silence",
+    "time": "noon",
+    "weather": "clear",
+    "sky": [
+     "#959595",
+     "#d6dcd",
+     "#2f2f2f"
+    ],
+    "ground": "floor",
+    "ground_color": "#ebebeb",
+    "ink": "#ff5f5f",
+    "accent": "#fa4d9",
+    "font": "mono",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center-left",
+      "y": "low",
+      "size": "huge",
+      "color": "#ebc6b6",
+      "count": 1
+     },
+     {
+      "kind": "hill",
+      "x": "center-right",
+      "y": "low",
+      "size": "huge",
+      "color": "#ebc6b6",
+      "count": 1
+     },
+     {
+      "kind": "lake",
+      "x": "far-left",
+      "y": "ground",
+      "size": "huge",
+      "color": "#aeb3b0",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "right",
+      "y": "high",
+      "size": "huge",
+      "color": "#ebebeb",
+      "count": 1
+     },
+     {
+      "kind": "mountain",
+      "x": "far-right",
+      "y": "high",
+      "size": "huge",
+      "color": "#ebebeb",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "I am not a place. I am a feeling. Silence.",
+     "I am the voice of the vast.",
+     "I am the sound of the heart.",
+     "I am not like a world, I am not like a dream.",
+     "I am not like a place, I am not like a noise, I am not like a sound.",
+     "I am just a silence, a place of the mind.",
+     "I am not a place but I am a place.",
+     "I am not a place, but it is not a place, but it can't be a place.",
+     "I am not a place, I am a place, I am not a place"
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "round",
+     "width": "wide",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more",
+       "action": "more"
+      },
+      {
+       "label": "elsewhere",
+       "action": "elsewhere",
+       "hint": "a passage of silence, a poem about the human voice",
+       "hintcolor": "#f9f1e6"
+      },
+      {
+       "label": "inside",
+       "action": "inside",
+       "hint": "a place where"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": true,
+    "hue": 0.508,
+    "dark": 0.533,
+    "things": 0.143
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=pVTbbtswDP0VQX3YBjhFmq0Zkj_Y8x63opBtKtYii4Yk192C_PtI-VJlzfpSKEDMw9shRfEkn-T-rpCD3EslOqsqED_79br8KjzoPigrPqrSqgj1J1nI0Mn9SUYTLZDDd2PBVUB4NC0DDtGRNICKDXgCKgvKs9_xt9z_kDe7ez4E3NTbuqr5Y6P5yIdCHjz2riYvbRHZawQeK7TIwW6g5EMK444sa31Ph2RVVeBigtSXekeIxiS36JDpwXN8TMUxJzIFDt9iNMR3L0M01hIAFlpSBqJ6kkeTuEQPXODz4riyoCMhVJC0OHBx5g_HbfoDW2Zsq225TUjPZO7OxRK1GRNmUb05NO8Oa9VxJqvVBdOpt_-NqqD8XK5fot5nUUPvpqA5yYa-32I5XdUVli1DyriM6XsC0-RY44BvTX4TqhUOo5hm-VYkRAkNQEaHWzHN7C1FSCoaVPGEhsYe9SioEC-0gTs3axua5xc1Z7LmCJRgQG_rQvwL1x5Ue80-0Xtt79CEK3DisIT51QeuMIylFHO0mWNrMtusGaLs49yPsTtXjIpkZegXrsKVch-iKOHtGHmWrJoJ4cdeoQvIW-REN13zTUfs-KmiY6FW_shD0KiOxXl6B1PHhuSBXQrZeWw7fueDN5Hqd2P9yh_SdBHlmB64Rlsv8vi8rSrBkqp3k1JV0zagTCh5XGeTFj3kBknODcAGGGjhXVjlYGPSNqLyVQjqkG4qvz0E6laJ1OE0Y32r3DiUk-8y_Xqn72B7kdy4MDZjybwgL2nT9Y9szg_nM61WagLfgty73lrahfMHP9DNerNdrXerDW9qate6kH7Wp-1InrHj__Nf"
+  },
+  {
+   "rep": 3,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Place Name",
+    "time": "midday",
+    "weather": "sunshine",
+    "sky": [
+     "#2ebeff",
+     "#1acaa9",
+     "#469993"
+    ],
+    "ground": "sand",
+    "ground_color": "#dce1ec",
+    "ink": "#b3c3cc",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "lighthouse",
+      "x": "far-left",
+      "y": "ground",
+      "size": "large",
+      "color": "#c8d1ff",
+      "count": 1
+     },
+     {
+      "kind": "pole",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c8d1ff",
+      "count": 3
+     },
+     {
+      "kind": "ship",
+      "x": "right",
+      "y": "high",
+      "size": "large",
+      "color": "#c8d1ff",
+      "count": 2
+     },
+     {
+      "kind": "boat",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#c8d1ff",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#c8d1ff",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The lighthouse stands tall by the shore, guiding sailors through the waves.",
+     "The sun casts a warm glow across the golden sand, setting the day apart.",
+     "The ship sails past, its sails unfurled, a beacon on the horizon."
+    ],
+    "console": {
+     "side": null
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.835,
+    "dark": 0.752,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZPditswEIVfZVBuWnCWOOmmdR6i9KJ3bVnG8tgWkSUjyZvNhrx7Z5SfNaVdKBhknZE-nRmNTupZ7cpCHdROIYwWNcHPabWqP0Ogdopo4QPWFhM1yxyt_UdVqDiq3Uklkyzxxm9521cciEPJDKINpmnwyPMDYeopsBQnF3vjZFHcH9Xuh1qsqaa2ZWFRokas5O_TtqqqjfpVqC74yTWyE3m4zZ-0t154i0ZTSZoDxu1lXm_0RssctSaXRGrbbVuVLLU-C_2FlOglPeV8WLPUJtYGn4x3cloy1rJAlgbGRHZ6UnuTnVjT9an3U5QsXlhoMSyvAE7pZpkzNK-ZjaGTpXfP-ktT5ow1L2RH5bm4w0dvb1jxz0X7O3SgxkzDe9TNjMo1H6_UIO6v0J7__8PnekasPaZZ-nPqn1bjgLmW_-Q-zrj6jp1V1PrDGy4Zd3y_mtw2lntMLk197wneLgxi4suPkNgR1EfgroTY-0AFdJNpjOsgomEwL-k5ja7PSw74TPGBjxAatzBojCkCciAM0LE9QB18jHl1521DDqRhC4iUkmAlwI8BcMSQ7ii-lnxghJGJBRimXuaTa6dgiQkINaH2DvgTCts1r949yOtgOUrD8EOMpuHRTdaez_xMOHeJXxRu7NuP1Hi9Wm-Xq2q5fpSqqt2qUOEWz63OO9Mo4_k3"
+  },
+  {
+   "rep": 4,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Whispering Woods",
+    "time": "dawn",
+    "weather": "morning mist",
+    "sky": [
+     "#80b3d",
+     "#f5e0c8",
+     "#d7f1c4"
+    ],
+    "ground": "stone",
+    "ground_color": "#f7f7f7",
+    "ink": "#2d4f5e",
+    "accent": "#0075d1",
+    "font": "display",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "path",
+      "x": "far-left",
+      "y": "ground",
+      "size": "wide",
+      "color": "#d8e0e9",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#e8f3f1",
+      "count": 8
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "tiny",
+      "color": "#c6d9e4",
+      "count": 1
+     },
+     {
+      "kind": "bush",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e1eaee",
+      "count": 3
+     },
+     {
+      "kind": "waterfall",
+      "x": "left",
+      "y": "ground",
+      "size": "huge",
+      "color": "#b4b4b4",
+      "count": 1
+     },
+     {
+      "kind": "bear",
+      "x": "right",
+      "y": "low",
+      "size": "large",
+      "color": "#d9f0f7",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The whisper of wind carried the secrets of the forest.",
+     "The trees stood tall, their branches reaching for the sky.",
+     "Time passed, and the forest was still."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "leave",
+     "button": "exit",
+     "buttons": [
+      {
+       "label": "warmth",
+       "action": "set ground #f8f8f"
+      },
+      {
+       "label": "more trees",
+       "action": "add tree"
+      },
+      {
+       "label": "more birds",
+       "action": "add bird"
+      },
+      {
+       "label": "more paths",
+       "action": "add path"
+      }
+     ]
+    },
+    "next": [
+     "inside a cave"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZTbbuMgEEB_BZFXt3JubeLvWKkPq6rCMMQoGCzAdbNR_n1ncC6OsltVfrDnwmGuPvJPXs0LPvCKC9ZZIYEXPHa8OvJkkgXUvzUmdhCM27E371VEh2RasigxOJQGEKmBgIrWB0d-rYmJOPsDr37z2aaslwrlmV5DKTf0pV71XK74e8F3wfdO4eGYvKPbR8WH9NYTc6Zf6UGDcXuSF2qFHJSFlOASqcryda3mqNI-KxRGbMWBIoWv9DHmVfFgdg3F1fpkvMtXGmtRARZaREWM9sj3JofTYVJo-sJPLcKTBU1HMaFLxJif-UPYwSgK5xqw2kAJ26zpKZz1qbhSUwCYUC8R_QtrRdjdcWGjl3p-424m3NoEdeZSUbAbI7TBC27IZNxhSpQvagurG3E-Jfbxh_m3oEzf3kU6BwFw4y4n3EFgdFrkuhP8G3DT3xegXtHzn3BBhDNxWlTrh28qqra6zKN1BeJAWuOAJoH_aoAN4_Azr9mAFzEpQjCgGA48iyADpEg2ErUPENMz0uggNToynGmPzphtQT4msDoIJxs0BRCyoWXBcyNuf8iHcbdYJ2IEVTDh1ITNBkFInNln2hzpXfS0okdMUFGCtU_JUyfyKtGChj2l34iOxG6cdpxXHO2KO8wll6cLvu1S7oX4pALVPXJoQeDLpKs8rocVNdjcx9DmDRHysk2Q2NhCNtMbfDj15-KP_4ZzVaZnhFJZ-ehKE_3gmsf8wZVW9cE17-_p_VRwh_8A6qdxVCYmsImYJVl2qKZC8sr12CLeXj5oohbl4uWp3D4t1lRCXpUFDxd7_lXgydTR-_QX"
+  },
+  {
+   "rep": 4,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Watershed",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#d9e1f5",
+     "#d7e9f3",
+     "#d0e6f1"
+    ],
+    "ground": "river",
+    "ground_color": "#bdd2dc",
+    "ink": "#48312f",
+    "accent": "#a4a4a4",
+    "font": "display",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#000",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "right",
+      "y": "center",
+      "size": "large",
+      "color": "#000",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The tide leaves no room for play",
+     "The birds have flown to the other side",
+     "Do not get it wet"
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more birds",
+       "action": "more bird"
+      },
+      {
+       "label": "more trees",
+       "action": "more tree"
+      },
+      {
+       "label": "set time",
+       "action": "set time"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the hills"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": true,
+    "hue": 0.863,
+    "dark": 0.99,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVPbbtswDP0VgXl1ASft2tXP_YQBe9iKQrboWIgsGhIdNwvy7yOVCzL0bQiCiIdH1Dkkc4Q9NOsKFmjAminYDs3vua7bF5Own7MNUEGeoDkCew4otJ-WMeUBnWTYjwo5u0SJFrQ8YBIgzzH5jHp3d4DmF6zcK677bwKs3Au-9o_lVONzv4b3CraJ5ujkYvJ7KXAFPjoKpPVWrXMb10nCx53GT98f15teYtt1GFkh-6QfgXoqgPNZ_BxUJX7yR_FWXtgOLOBI7CmqVvZBXWLAUUplkXuEnS9yxIdkPuWkrxRlh_sg-z9aM9i0VbM3uXVdl3BWJetTdSs4El0rXoX8T0FpWfARVSv8GNCwd2gC2j1mE8kkotH0lMylAUppfXLZDEIxfaAlGiYj0zKkIzNZCgjxjeQ6my2y8WwWZB1ORzGTjv4IhdZAS8w0amcpnuefdip-sJOG07mhi3c8SLica0-JxkkHsyTP8m4sz4_i1GtL2llq6jx6Cu4Wn6cRbItBUnO8JG13GZ4sCYH290oZKV283tNu6FcuJ8SvXEX_4WZpSdn2O-YNO72fKoiyZToPH7VL4k--ffE4SD8yKGcrBO0oNHEOQZbwetDd2NSb54f69WGjfxMxXleQrvmylnKTJ_09_QU"
+  },
+  {
+   "rep": 4,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Reflections",
+    "time": "dawn",
+    "weather": "sun",
+    "sky": [
+     "#f5f5f5",
+     "#e6e6e6",
+     "#c9c9c9"
+    ],
+    "ground": "ice",
+    "ground_color": "#b39ddd",
+    "ink": "#302869",
+    "accent": "#7d6841",
+    "font": "hand",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pond",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#ece4dd",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 8
+     },
+     {
+      "kind": "candle",
+      "x": "left",
+      "y": "high",
+      "size": "small",
+      "color": "#7e8780",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f9e6cd",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "far-right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#d9d9d9",
+      "count": 5
+     },
+     {
+      "kind": "balloon",
+      "x": "left",
+      "y": "low",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 3
+     },
+     {
+      "kind": "boat",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#ece4dd",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The pond reflects the sky with each wave.",
+     "The trees sway with the breeze.",
+     "The sun shines on the water, and the boat moves.",
+     "The clouds drift by, like old friends.",
+     "Candles light up the night, always lit.",
+     "The water is always calm, even when the sky changes."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "soft",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "let it be",
+     "button": "more candles",
+     "buttons": [
+      {
+       "label": "reset",
+       "action": "set time dawn"
+      },
+      {
+       "label": "more clouds",
+       "action": "set weather clear"
+      },
+      {
+       "label": "dance",
+       "action": "add lamp"
+      },
+      {
+       "label": "sunrise",
+       "action": "set time morning"
+      }
+     ]
+    },
+    "next": [
+     "rest in one of the trees"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.83,
+    "dark": 0.984,
+    "things": 0.143
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTJbtswEP2VAXNpAaVQnMTbtX9Q9NYGAUWOLMIUKZCUFcfwv3eGthRnawsepFn4OG-2g9iJ9U0hBrEWEjorFcLvviyrBQSs-ygtfMnayn8VhYidWB9EMskiXfiBtUWVjHeRbMm0rNRycCQNKFODgRSxZzlu92L9S1zV93xIcYVzPvynVnzEQyE2wfdO0yWjUIzio_LWM9JVdbvSWpPBuC3Lt-VsOV-RLJVCl1i10PPl3Q2pap8VjXR8IeFTesxESFf5lHxL2tZz8BxjMtaSAi22BBQp1IPYmhxK5zPCE_3yI8SpEHtGNpuGiZlnxmz6DUc8hYoK73KoiihQIDfHYkJMAfGMGAgkfQgYW5lDmhBVrZdq9YK4vEBUxNKOmBbr_4Rc4HKxLF8g7y8gT2V7x_pcoQmzRW369hK0XuFcfcJcWd-PyaxluL6k_xY5Gbe_xNUrPh8HWxEx7937BFg__IU_lgt5X79A3l5Cepn-Xfb39N8WfnakvrbGITeV-NkgcEPxdPHsRKApARoOGExqAKVqYJA7_EYA7MutEiEO8uzA3hXpnicPqhPEhvHBu2wfJEVbALXEyZ2IQOt3GMcruQoRdDB1gmpfgDVbBG811MGg09nxe26pSDYqEfRdxnIsELSlgNiURsj8Jpg4mpS0bQG4QwdDg25iqWgeNxzJAyfIRc-L5EDZ1LnkvuNZ9S5Xy-cqxkZ2LHanCR2MTg2JToaQa9sF33YpVz2BIT48BlVPE86D3fpAfE9UJv1pvK2s0PIIYsSUd8i4DAiIlxnkVcYtMbqe0HL23l447zuyogyvLmnp8jKb3KXWYGXbvfKiMgYT8cM46Fln3EYcH46FcLTJuJMobOLrqOhUujonODeLYKcNeXCGxdr11tKiG3-4s2flbH5drq5nvIYpF2UhwmjPq49upo6_xz8"
+  },
+  {
+   "rep": 4,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Windy",
+    "time": "noon",
+    "weather": "fog",
+    "sky": [
+     "#e9e1be",
+     "#e9e1be",
+     "#e9e1be"
+    ],
+    "ground": "air",
+    "ground_color": "#ffffff",
+    "ink": "#3b322e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "skyscape",
+      "x": "left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "far-right",
+      "y": "low",
+      "size": "large",
+      "color": "#fff8ee",
+      "count": 2
+     },
+     {
+      "kind": "balloon",
+      "x": "far-right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 1
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e9e1be",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ff6f91",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sky is dark and the clouds are white \n\nFeeling alone and unseen in the cold \n\nI am no one here and I am lost",
+     "I am like a bird but flying high, I have no where to go",
+     "For a moment I am not afraid, I can just fly away"
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "write on the margin",
+     "button": "undo",
+     "buttons": [
+      {
+       "label": "more birds",
+       "action": "more bird"
+      },
+      {
+       "label": "more fog",
+       "action": "more fog"
+      },
+      {
+       "label": "more clouds",
+       "action": "more cloud"
+      },
+      {
+       "label": "less birds",
+       "action": "less bird"
+      },
+      {
+       "label": "less fog",
+       "action": "less fog"
+      },
+      {
+       "label": "less clouds",
+       "action": "less cloud"
+      },
+      {
+       "label": "more mountains",
+       "action": "more mountain"
+      },
+      {
+       "label": "less mountains",
+       "action": "less mountain"
+      },
+      {
+       "label": "more hills",
+       "action": "more hill"
+      },
+      {
+       "label": "less hills",
+       "action": "less hill"
+      },
+      {
+       "label": "more meadows",
+       "action": "more meadow"
+      },
+      {
+       "label": "less meadows",
+       "action": "less meadow"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": false,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.615,
+    "dark": 0.979,
+    "things": 0.25
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVTBbtswDP0VQb1sQAokLtou_oACuw_YYS0K2qZjLbJkSHKdLMi_j5QTJ5lcLJdIT49PjyLpg_yQ-WohB5lLEJ2GEsVrv1wWz8Jh3XvQ4gsUGgJWX-VC-k7mBxlU0EgBP5Wp9oQG1fLWWGtoNyCEBh0Btd1wzHYv81_yDte4KpCAdPW2kBtne1OxC-XkefteWm1Z6a6OPzpQZsv7h-Ihy1gCyhJNGClP9XpFUG0j0ADpkTnchfeYGGHMRdZvbVDkNpcOPSXjPWGosaVzT24PcquiGzLvS-j4ph1tNdaBlvvxhJNTf1i36TdMSe2WlAaZWR0Xk2ShXHWSq8HdO7VpzpraDhdNDS4R_YZ4Ec2uRUHr8fnndBtaX4R9S-RrYVw-w-Mnbsca7q7f7r_ZT_Wd0WsvLj8XbLFSfXub-6m4kyT1jFYGuVryR4OCBITyogK3FVR5QT0oSm37ygtwKIZGBWpt82peEClwI0Bbg5HaG49ohDJjkNVVJH4X0ApjBdOooUduBLX1_LTjWm3pRHBVRdEHUes9q_OTL4jdwAeyyBAVghUbS5Ev1lFMa7nfxOmeIKB2oCqOKsGI372PagIG2POIlNZ4y4N3oHeq-J2C7bjDySBtOHN-wobbNZedikUeVBUaHk5wLnZX52zb8XwMjl_Ejkm31GyKC0MphDgYNH522o8zoaFAHWtIqXDCPg7gaZImVHK5b7hjE90yGUuIY8ESboRv2DyyqYUJTbn_WJiwhJhauMCp4ZbbEZRJPZ9P0htmY25O0nsaqmZ6B6OpfsKd0Bn_CJUdZtxHfMZ7yr_C5fHteKSPN3UL96vMTa81fWzPC_4AZMvs6X65vs8euVllvlxIdz6P316KDB3_H_8C"
+  },
+  {
+   "rep": 4,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Terraced Vineyard",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#88c5e0",
+     "#f5f0e6",
+     "#caeaff"
+    ],
+    "ground": "grass",
+    "ground_color": "#d2d9c",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "vineyard",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#b39ddb",
+      "count": 5
+     },
+     {
+      "kind": "cluster",
+      "x": "far-left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#f5f0e6",
+      "count": 3
+     },
+     {
+      "kind": "hill",
+      "x": "far-right",
+      "y": "horizon",
+      "size": "large",
+      "color": "#88c5e0",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d2d9c",
+      "count": 8
+     },
+     {
+      "kind": "sheep",
+      "x": "right",
+      "y": "high",
+      "size": "tiny",
+      "color": "#e0a458",
+      "count": 2
+     },
+     {
+      "kind": "bee",
+      "x": "center",
+      "y": "low",
+      "size": "tiny",
+      "color": "#7a4f8c",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun shines through the vine leaves.",
+     "The scent of fresh berries fills the air.",
+     "What secrets do the vines hold?"
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "plant more flowers",
+     "button": "grow",
+     "buttons": [
+      {
+       "label": "rest",
+       "action": "rest"
+      },
+      {
+       "label": "more clusters",
+       "action": "more cluster"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the clusters"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.912,
+    "dark": 0.956,
+    "things": 0.333
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZPBbtswDIZfRVAuG-AMTtq0SS57iWI7bEUhW1QkRJYMSY6bBnn3kYrjuFgG7GSRIj__JMUTP_DtouA933LBWitqYL-7sqyeWQDVRWHZF1FZkUDO823lv_KCx5ZvTzyZZAETXyAEvJLsh3FwFEFiRDINXUnRO7R6EElDQEfsXDARiLE_8u0vPluv6xWU6JiplSrhiU61AKEUfy34LvjOSUzcBREjvzream898WZyKTc1-o3bk_kgFmpJeFHX4BK5lHpSmwW6lM8OLVxWCO_pLdeEvmB2OqGz8cl4Rzqt79EGCw1iIio98b3JSg63Kt_RpN9gaQU_ZpVZLlZnPoirux2JGdVWDxspq-zpSMzqXIzc2nbxQiKsEmFuQaUBrH0wH97dyA1I0zVT9ti-gf0wYWtj7QR8Lfcu2YrwWfQ4oTuiUwD4n0b8Lfc6uAG6nkCjBmgH6iepeL4hk3HHKRBK8bha34jLCbG6r_Iy5H_wnsWjWk8ULs74Hi0On14Df9HA8DGzqMnDksaCdxq_wOiBMAviAPEbpudI-i3ziqkAUbMKN8ZglsKxxJwjTKDYn1okFqEOkCKTfsRFpr2V32kjau-ip707oXCZhXtqVvIuT2_oV9SiJbu9TL43Mmk0e0opeBt809Iy4AKgsMYHYAq7AYF2rOpSyluAU-xH-7IEVlRgaS4QU16zYWGyTR2_BmTm8KbjNHJ6wc-v54I7XEXqqXFUEcNCqFVU-5hPYTuMoQbwreusxWW9HmjCy3L5NC838-WKiufbsuDhep_3FzNTS9_zHw"
+  },
+  {
+   "rep": 5,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Desert Oasis",
+    "time": "noon",
+    "weather": "sun",
+    "sky": [
+     "#e6e5d",
+     "#f2f1d",
+     "#e3df2"
+    ],
+    "ground": "grass",
+    "ground_color": "#cfd8c9",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "low",
+      "size": "medium",
+      "color": "#80b4ff",
+      "count": 5
+     },
+     {
+      "kind": "pond",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#e2e8d",
+      "count": 2
+     },
+     {
+      "kind": "lizard",
+      "x": "left",
+      "y": "high",
+      "size": "tiny",
+      "color": "#202020",
+      "count": 1
+     },
+     {
+      "kind": "camel",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#7a4f8c",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The desert whispers to the oasis"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZZJNb4MwDIb_CnKvVAL6sZbz7rvsNlVVFhyIGhKUhNEP9b_Ppl9ME4fEr_GT13Eu8ANlnsIAJYikM0IipBA6KC8QdTRI-jsG9DH5EEEHSkbdsmqdsxQNKGKDnoTQcxwOJyi_YIZrXFUUz1Sh8nGDi0oVsEuh9q63FVXUXgQm3oS9dMYxaCZVtZFbSmh74HghclWwLyEl2siSUmu1zUlSbhQaYfmQiMe4v3VRgkEVSWtd1GSVDEZtDAlosCVMIJ8XOOjRSvTIBxxp63XdcN2JEW7gnvSZeS1Wum8pfhrdZN9LpUalZxura_okdm50xEQ2TVd0QzaEfzGbvsYpEQvcVC9gMQEafRb-gbz39h8YtT1NgUXG34uYT4hStGjuQCX8fNr5fUhPrhH-r9M3sVQbOQXTaI22yPcKnw0m1e3dDI0OHfqQRJfQU0nc-I52V5o7_UlFEkrbG0OTemzYHNlez7PtvFixCSizFPwjP86OKmPH6_UX"
+  },
+  {
+   "rep": 5,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Distant",
+    "time": "dusk",
+    "weather": "stars",
+    "sky": [
+     "#e4ded7",
+     "#e1decc",
+     "#e8ddd"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#6c616c",
+    "accent": "#f0d8c9",
+    "font": "display",
+    "text_place": "top",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "forest",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#bfe3f2",
+      "count": 2
+     },
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "ground",
+      "size": "tall",
+      "color": "#bfe3f2",
+      "count": 1
+     },
+     {
+      "kind": "balloon",
+      "x": "far-right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#6c616c",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "Only the stars light the cold night.",
+     "The wind whispers through the empty branches.",
+     "Do not speak to the stars."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "wide",
+     "prompt": "the silence",
+     "button": "turn on",
+     "buttons": [
+      {
+       "label": "turn off",
+       "action": "set weather clear"
+      },
+      {
+       "label": "more mountains",
+       "action": "set ground sea"
+      },
+      {
+       "label": "night",
+       "action": "set time night"
+      },
+      {
+       "label": "bigger",
+       "action": "set size small"
+      },
+      {
+       "label": "the same",
+       "action": "set motion still"
+      },
+      {
+       "label": "in this world",
+       "action": "set ground moss"
+      },
+      {
+       "label": "far away",
+       "action": "set distance far"
+      },
+      {
+       "label": "to the next world",
+       "action": "next"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the hills"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.799,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVTBbtswDP0VQbk6hZOtSetz77vsthWFLNG2YFkyJHluFuTfR8pxEqfLIYhJkU-P5KOO_A8vNhkfecEF642QwH4PeV7umYdqCMLwjIeeF0cedTSAYW86RGEj-qPuyKGG0KI1gogNeHTguQ-U1x548Yuv4LsCtUfHCjYKpExfL0op_p7x2rvBKszSEvhsfkhnHEGtygq-VVs80LYleyd3mx0hCCkBWaCrytWLfEVX5ZJD6YCFHIggfMaPVBS6o-vR1bmonU0ktaHiwECHQAGZHnmrE5XKeQhU4ScZwq8NVGQeKK8l5KD_EmYz1ET6K1uJVSCX7Sm7gDbTfQRJzLFTE-C5ARfMKFLcQ8zNDWaJsQ7LuTL1um5mqg1-X3FDdwcM-V48Vw-AtVf_I7uoPmp7uAW8zOZSPc7XaAvUXP7DmgNDhbAkD2aIaLIxXzFL5hPm_kTPiCTY2OAcASNjgx2qmxQLXR8PrPTCygYCxb85Zl1kGCpaFt31hidSl3Q2OJLtEUmrqwyis0m6wpN0QyP61CKXxjxqFRs0R8rIeO8d3kqpBK0N2KTUcogxKSkO3rI0hMk1ScmIEszltKqSZGftQWTndWHSgPCcWj9ndKg-1lELhbbhPm-SCwsgFkn2PPdFLC3o1NlFbKnrOk10EUxDZZNIboNT0aKD-_Bpkdi0RrcJ2uIMdGCj80Y9YN-5EBZJKF0mxrS0i3iVHht8lKq7Jp0nbXHDv95EXn56P2XTF4oPG4nDxCnhr0qZtI6BU0yNASQVXtjBGHwi5g9ahG2-3a3z1_X2mXTCizzjfj5PjwZmxp7-T_8A"
+  },
+  {
+   "rep": 5,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Primal Landscape",
+    "time": "dawn",
+    "weather": "misty",
+    "sky": [
+     "#93a87",
+     "#f6e8",
+     "#2e27"
+    ],
+    "ground": "gravel",
+    "ground_color": "#e1dc",
+    "ink": "#3322",
+    "accent": "#9988",
+    "font": "display",
+    "text_place": "left",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "far-left",
+      "y": "sky",
+      "size": "large",
+      "color": "#2f25",
+      "count": "1"
+     },
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "low",
+      "size": "medium",
+      "color": "#8569",
+      "count": "2"
+     },
+     {
+      "kind": "birch",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#ebc9",
+      "count": "1"
+     },
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#857",
+      "count": "1"
+     },
+     {
+      "kind": "birch",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#2f25",
+      "count": "1"
+     },
+     {
+      "kind": "pine",
+      "x": "right",
+      "y": "low",
+      "size": "medium",
+      "color": "#857",
+      "count": "1"
+     }
+    ],
+    "lines": [
+     "A gentle mist settled over the ancient land.",
+     "Whispers from the past still echo through the air."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": null,
+    "dark": null,
+    "things": 0.25
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=pZJBT-MwEIX_ijW9sFKK0lS0TW5757C3PSwIuc4kserEkeO0lKr_nWfToggBu9Ke7Bl7Pr8ZvxPtqVgkdKCCpOiNVCwexjTdroXjahykETcxu7U_KKGhp-JEXnvDKPjldIsL97IrByV7xgWv23BSykOH6MDSN-yQaPXgjwGwO1Lxh2b5Um7WiGfVijdhzThb02NCtbNjV6KidnLPhq6ZJ2WNDaQZL0qFtO52IVouswyRVIo7HxJ5vgnAysaw1APkh5c9P_un2ArShiuPXGu9th3iwdgDYjbcAjNA4ol2OupotAkqnrGtpJtfKo-haBc70i-RKF0dBvAuM6uyuxiPUciCzsk70zvmz5lvOi7Mlks9tlPo5m6VT6DZFLrVTjUXahgG5v5PTN6q_Cuhve74M2Sj6-Z7neuvkFOZDpj_n-ZE5BT411F-kAjzGZDC59NPUaNdwyL4VgzssS-F3bMTMLSQndI4FwbOvwXldwObsRtE5Wwbb_Qy1Hl4R7BqLHJwcd28VWt3S49nOBtP4VVFRTcaAzteN6GrLM1W8zSfx74hKk3IXc-jQ1Hp-7CeXwE"
+  },
+  {
+   "rep": 5,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "The Faded Shore",
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#b0b0b0",
+     "#252633",
+     "#053544"
+    ],
+    "ground": "void",
+    "ground_color": "#e3e3e3",
+    "ink": "#c4c4c4",
+    "accent": "#ff3366",
+    "font": "mono",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "shoreline",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e3e3e3",
+      "count": 4
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#939393",
+      "count": 2
+     },
+     {
+      "kind": "lighthouse",
+      "x": "left",
+      "y": "bottom",
+      "size": "big",
+      "color": "#d5d5d5",
+      "count": 1
+     },
+     {
+      "kind": "figure",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#d5d5d5",
+      "count": 1
+     },
+     {
+      "kind": "boat",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#e3e3e3",
+      "count": 2
+     },
+     {
+      "kind": "windmill",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#939393",
+      "count": 2
+     },
+     {
+      "kind": "moon",
+      "x": "far-right",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#e3e3e3",
+      "count": 1
+     },
+     {
+      "kind": "bar",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#939393",
+      "count": 2
+     },
+     {
+      "kind": "castle",
+      "x": "right",
+      "y": "high",
+      "size": "big",
+      "color": "#c4c4c4",
+      "count": 1
+     },
+     {
+      "kind": "ship",
+      "x": "far-left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#666666",
+      "count": 3
+     },
+     {
+      "kind": "pool",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#666666",
+      "count": 2
+     },
+     {
+      "kind": "track",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#b0"
+     }
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.787,
+    "dark": null,
+    "things": 0.167
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZTdbqMwEIVfBTk3XYlIFBJW5QH2BbZ3u1VljAELwyBjN81GefedoSHhT0njC-yx_OWcGXtO7IMlzz47sIRxr9VcSO-vC4L0p2dk7jquvSeeam5l9oP5rGtZcmJWWS3xwGspvV88k5n3uwQjcd-qmjYy11W4OkhuS2kwkENBp6sjS_6wTRrQwMAm3IdxFNEs2Ef73Y69-aww4JoMD32AytiwfheggVAbGdHADdVUtBY7GrjmQsjGUijPoyiOMZRDH6ihAVInP-177xFjKVgLNUZrsAoajHRWaY0BqWWNoA61nlilei0dGdSqIZOfuNYytzg90ha6Qm_qH1FrmSlH1KVcgTZQzO7sX6nWyAGYc7M1qigH6iULV7DmppBj7ktE48YNR1xNoBJctyL36vsCTlUxxmZ7Gjfs8wibq8KZAUm5xtp-QUv8wxuydFOp95gpcHshju1PkrrwPs_p2PsBP_VXIYe8jtzP07qs17281oAXZb1eE8FWNcd7eicJ4GYto3Oh85zekyl4Rw90mdVpmWaVv76jFZFdqdr1hD64_XH_u0GjEbQF0N-8_Y_B4eRZcVE9tL9kYk86v52x4-DLx0YkWNI4rbFDDBOCh0EYb4OXbUgXGntE4DMz7Pc9A0_alr7n_w"
+  },
+  {
+   "rep": 5,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Clouded",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#b2bab9",
+     "#bfc2e7",
+     "#e4e7ff"
+    ],
+    "ground": "sea",
+    "ground_color": "#f7f7f7",
+    "ink": "#666666",
+    "accent": "#f8f0ff",
+    "font": "mono",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "cloud",
+      "x": "left",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#e7e5f5",
+      "count": 5
+     },
+     {
+      "kind": "boat",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ebe7ff",
+      "count": 2
+     },
+     {
+      "kind": "ship",
+      "x": "right",
+      "y": "sea",
+      "size": "small",
+      "color": "#ff7c7c",
+      "count": 1
+     },
+     {
+      "kind": "ship",
+      "x": "far-left",
+      "y": "sea",
+      "size": "small",
+      "color": "#f19f6b",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sky is vast, and the sea is wide.",
+     "The wind whispers through the trees.",
+     "Showers of gold fall from the clouds."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "narrow",
+     "prompt": "set ground",
+     "button": "outside",
+     "buttons": [
+      {
+       "label": "inside",
+       "action": "again"
+      },
+      {
+       "label": "more ships",
+       "action": "more ship"
+      },
+      {
+       "label": "more clouds",
+       "action": "more cloud"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the ships"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.77,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVPRjpswEPwVy3lpJVIR1IQmr_2E9q2NTgbWYMV4kW2Ou4vy7911gEt1lRoeYs-OxzvDcpXP8rTL5CRPUonBqhrE7zHPq1J40GNQVnxSlVURmm2qVvhZZjIM8nSV0UQLdPC7xbGBhvBoegYaNTnaTaBiB56A2oLyfO7yKk-_5KYqKlUdCdhUui6g5BV8hVJrec5k63F0DR0LoOSyfarRImttdMkPFYy78P6QfrRXdQ0uJso3nZNWJjUmoEeH3B68xKdkgzBv2i4S2GM06Pi2aKwlACz0pBOo06u8mNRJzRap9kJrC5rPkRPZoTdvyF6DeWPRbmyBdmuvUMJe7xMycif7W7ZqVqjiLMl9g59FOaRVsIfGjP1fklXKaZUsHiRDZ4ZZcrH3uuY4K4ZeJZvveeqyLut3wd2_BbXy2wfr_9HcHfWhetSk92qNA05V_uxAkEthgnhWIWZCuUZEBkExOJkGvtBh5k3UiJg6EwbwgUg0DG2XyNEDBKb96HDiImrRom2EpmaE9tgnWnp1xDtzMy4gj-yVGm-48YhsL6K7j62_sKdODckUJrPUTOxo65T3OBEwkPIQUwRRzLOayWqMMY0RjjGJL9B9jqyqwFLVuLmo6nnsVKuMk5z5wunRUxSUfHjkrehH7t3iB_J9aG_nWyYdTT4nf79ekF9OK0We7mFOSwQOSZ7caC19GMuCB6HIi8M2P24LHmaylGfSL_X0qdDJOPD_7Q8"
+  },
+  {
+   "rep": 6,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Dreamscape",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#e6b7ff",
+     "#84c7ff",
+     "#44e6ff"
+    ],
+    "ground": "sea",
+    "ground_color": "#e6e6ff",
+    "ink": "#000000",
+    "accent": "#ff66ff",
+    "font": "display",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "horizon",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#f5f5ff",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "far-left",
+      "y": "horizon",
+      "size": "tiny",
+      "color": "#c258ff",
+      "count": 3
+     },
+     {
+      "kind": "ocean",
+      "x": "far-left",
+      "y": "sea",
+      "size": "huge",
+      "color": "#e6e6ff",
+      "count": 1
+     },
+     {
+      "kind": "moss",
+      "x": "far-right",
+      "y": "sea",
+      "size": "small",
+      "color": "#6666ff",
+      "count": 5
+     },
+     {
+      "kind": "giraffe",
+      "x": "left",
+      "y": "high",
+      "size": "huge",
+      "color": "#778eff",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#0099cc",
+      "count": 1
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ffaaaa",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The dreamer stirs in the room with its spirit.",
+     "In the morning, the first sun touches the sea.",
+     "Keep your dreams safe."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "narrow",
+     "prompt": "take a breath",
+     "button": "sink",
+     "buttons": [
+      {
+       "label": "up",
+       "action": "higher"
+      },
+      {
+       "label": "down",
+       "action": "lower"
+      },
+      {
+       "label": "again",
+       "action": "undo"
+      }
+     ]
+    },
+    "next": [
+     "dream within"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVRNb9swDP0rgnp1izRr3NbnXYZddxuKQpEpW4gsGpI8Nw3y30fKduZu6ZxDzK_nR4pPJ_lLVveFHGUlleid0iALGXtZnWSyyQH5vwZQXdSq51CyHftqNXqyRlCphUCOOPhgYy4-HGX1U95AuX80hhw3Tw96fnt4gJLeXgrZBBx8zYWg5GK-anTIaFScEwtp_YHtTX7IVlqDT-wyppxSDGZHbSPxPzJHeEuvUy-V5HRiWMgOk0VPngCRGouRfOCgo3gkwid5sJlQi8G-I3f3ti4_ro1o3xm7g9oOHdkX3mZHP5M9A7O6PxcXYO1wqGdYo8KtA5Nm4D_fnJGT9cc1rt7unta4X1a4qEH567jTcGfMdmhgjXmZ8RWuHeb5LJDBNu1VzNgp59agZVl-AN2tQBsblDEw467bJ_jPeT4-PsFnPB0Ta3GIC-qa6UfYfw9rs3l-1vo6MO3ztQ2Y1_Z_G2AUPWtQ2nZnPfCSyR8tiJr1BEHEZEMU1guSkAiInRhtaoVNUcTeBpvuCOXbFO4weOubIhuG6pIghiLhoFuI2UvnwgXfAXpxxCFM3yEsZeCOJafRR2RFn4h9zez3mBIy-4R-UnU4cG8ta51mgPmERlunlkyvQsCRHH3ArmfJJXUAocQ-8DVAgf1AeCyxyLJd7EldTu3BUWjos4pnLfIR0XB58EtCjflquaQ4HP_KUI2yH1LoSFCeX86F9CR9nnPuPc-TMjnQkJdnICs_OEe3wfLCh73dbMvbzfPtdsfdy2pTyLDE8-VAlann__Nv"
+  },
+  {
+   "rep": 6,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Empty",
+    "time": "dusk",
+    "weather": "stars",
+    "sky": [
+     "#bfe3f2",
+     "#7a4f8c",
+     "#3a1f2e"
+    ],
+    "ground": "floor",
+    "ground_color": "#9e9781",
+    "ink": "#ff6f91",
+    "accent": "#3a1f2e",
+    "font": "mono",
+    "text_place": "top",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "tiny",
+      "color": "#f5f1e6",
+      "count": 1
+     },
+     {
+      "kind": "star",
+      "x": "far-left",
+      "y": "sky",
+      "size": "large",
+      "count": 25
+     },
+     {
+      "kind": "light",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "count": 10
+     },
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "sky",
+      "size": "large",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "far-right",
+      "y": "high",
+      "size": "tiny",
+      "count": 3
+     },
+     {
+      "kind": "flower",
+      "x": "far-right",
+      "y": "low",
+      "size": "tiny",
+      "count": 3
+     },
+     {
+      "kind": "rock",
+      "x": "far-right",
+      "y": "floor",
+      "size": "large",
+      "count": 2
+     },
+     {
+      "kind": "guard",
+      "x": "far-right",
+      "y": "ground",
+      "size": "huge",
+      "count": 1
+     },
+     {
+      "kind": "pole",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "count": 1
+     },
+     {
+      "kind": "bridge",
+      "x": "far-right",
+      "y": "high",
+      "size": "medium",
+      "count": 1
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "tiny",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "low",
+      "size": "tiny",
+      "count": 1
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "count": 2
+     },
+     {
+      "kind": "light",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "count": 1
+     },
+     {
+      "kind": "pole",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "count": 1
+     }
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.911,
+    "dark": 0.695,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZTbbqMwEIZfJZrcEgnIJmm436fYrSoHxmBhMDL2pm2Ud98Zi7QkCjTtFZ4x8_HPgTnBP8iSCI6QgVh0WuS4-Ovj-LBbWJS-Fxoi6DvITuCU00iv_W4690Zepxo2C9_XZB1RuAotOXonbM9R9Rtkf2B5kLiWKTmWO_FLPuV8WotEpgjPEZTW-LagMKmNsXBxvORGG6Yt97jfPSV0odqabSm3cs-2yHNsHbsGWgTSBEdjWsMC8dW9hJTI50xHrsY4ZdogUmlODTU2ROlJ6QlqFZSQcK1a5r2SxR9BFkbZQGWseicAZafeA1a1XIsPtXIjE9wGj2ctyTn65FJhBqgUdqVRugHLpfpAamFL_CSkmxFCq7JyI4YdbIYMlZziJPGI4yziD6SMCAdliwkhFZ3vVCgg1iMEdfyIdgJCd48wrMnrCcJloL7OpfRiMpnbqlb-qqgjSmf03Zm5quh0-MGqosSHStpgoXxzHzOekGkZt4SJzl7P_kxbkwfiZzr6UAK3nZjL4Tv_yVw1R__JrJa-EWGdfGMsvkQ8n2kZ0l6iJZlD1nqtaX9dDkxO43S7iverdMMUyOII7OU-bDSKdB0_z_8B"
+  },
+  {
+   "rep": 6,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Abyssal Oasis",
+    "time": "noon",
+    "weather": "bubbles",
+    "sky": [
+     "#ebe3eb",
+     "#f0e5e3",
+     "#d0d99"
+    ],
+    "ground": "sand",
+    "ground_color": "#ebe3eb",
+    "ink": "#2b2f42",
+    "accent": "#b85599",
+    "font": "display",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "windmill",
+      "x": "left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#d0ddc7",
+      "count": 1
+     },
+     {
+      "kind": "jellyfish",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#726e70",
+      "count": 3
+     },
+     {
+      "kind": "pine",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#e4dce",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#817886",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#ebe3eb",
+      "count": 1
+     },
+     {
+      "kind": "cherry_berry",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e3dfdf",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun is warm and the air is fresh.",
+     "Each leaf whispers secrets, as if speaking through the wind.",
+     "The ocean mirrors the sky, a perfect reflection of its beauty.",
+     "When the breeze picks up, the water dances with the bubbles.",
+     "In the distance, a sailboat glides on the vast sea."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "set weather clear",
+     "button": "go back",
+     "buttons": [
+      {
+       "label": "set sun",
+       "action": "set sun"
+      },
+      {
+       "label": "set moon",
+       "action": "set moon"
+      },
+      {
+       "label": "set sun and moon",
+       "action": "set sun and moon"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": true,
+    "hue": 0.903,
+    "dark": 0.861,
+    "things": 0.143
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVRNb5wwEP0rlntpJRIRNpvdcOuhh556qdRDG0X-GMDFYGSbELLa_94ZYHfJx6EXzIxnnt-M3_jAn3h-k_CB51ywzgoF7E-fpnLHPBR9EJZ9nrzSfeEJDx3PDzyaaAETvsoxUMQPEUzA3WgacrfOtWgNIGIFHh2yl9ICRYR65Plv_gkkbECi41ORwhY29KdTfX_PHxJeete3GvOCwOVkPypnHaFdkk1bk53JrLjN0BZKQRvJJffbLYIlvHCTQ5uAVYzEEZ7j41QRuikcGSa8cdEg6Zx7CFhbIK5gocH9gIQPvDYTowGXxliL289oWigi_o7EtSb0YF4It-pLQOvMGEvTajd5euJzc0zOkH_B2rEwoVowz5wItTJldYFtQJu-WQPvsjvYpRfgzQq4My0smIXwVx6hTmSXDp-BrfCvCcOtVnCB3a5gQ98uqGtE64YLXDTtuEbb3-z2-7uPy29msZxY_m9Hzxr4AFKh6vz4KOn7_qLe1v6-qbDRhS7W2ChKi90kKfCfFTDsATOBDcI3DDXKUOdMGE--AhVUXWPyN6EqZkEUbKhQfeADC6A8xJAwEZgpGDoFUi4xHTmV1QRDCqN0OsYpEC1rjPcOs2kXe4LZDNEKUJFG1OKK0mWuYCYGJkH0cSSAXxW0U470AC_AOqPqwPoumY8RKDKmRasA6zBxPnwZVEr_Pifj4EQKolODMFY6EVlpjcY0N4c8iRCxNHFNs6tcGxw9Dgfsr6b-Shejo_5G15Ktha-p-5XoYFLpNE2D0bGaBkzTPXfeNR0NboDIloeEKewmDYbsEZGGtXRMClWfXfOoWiHBLqmzWIVapvvkIrGswxYRvoqbfG8D6eLpwj9KeLV3fDge8eVCQtQUnre9tfjMnH5Iplma3V2l91fZltrB8zTh_rQ_vTqYGTtaj_8A"
+  },
+  {
+   "rep": 6,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "A Place",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#e4dff",
+     "#f0f8ff",
+     "#f8f6ff"
+    ],
+    "ground": "sand",
+    "ground_color": "#e5e9f0",
+    "ink": "#3f4753",
+    "accent": "#ffc6eb",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "mountain",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#70eeff",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#bce0ff",
+      "count": 1
+     },
+     {
+      "kind": "rose",
+      "x": "center",
+      "y": "sky",
+      "size": "large",
+      "color": "#f9fbff",
+      "count": 1
+     },
+     {
+      "kind": "lake",
+      "x": "far-right",
+      "y": "sky",
+      "size": "large",
+      "color": "#e9eed9",
+      "count": 1
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#ff4444",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The bell tolls; the rose blooms; the lighthouse stands;",
+     "Spinning silence in the dawn; the lake's edge whispers; the sun's golden crown"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.889,
+    "dark": 0.795,
+    "things": 0.5
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVPLbtswEPwVgj6kBWRAcfyIlFP-oEB7a4OAopYS4RUpkFQd1_C_d1eRHQewEV3EHWpHM8vhQf6V5X0md7KUSvSoNIg_Q55XGxHADFGh-KYqVAnq7zKTsZflQSabEKjhWfzgBsKT7Rio1c5RtQOVWggExMEFG_mLuN3L8recwbI2huqZyc3jtHo0a1q9ZLIJfnA19yl6nepX7dEz2wxWUJicNqzbcv1glpvVA9VKa3CJIWP0GiqCjB-B9p0pwVt6He0RFmzTJgI7n6x3_LtkEQkAhI54Iik9yK0dpXQkISnLvt6oNCrMEQy377mTbJE5-49526Fhq2e5mxxgtKiZg-Z8zM60yBpaP4zDYeJbpB3UduguaSsN-S3a4M-EPBE6hCuUqMJnoaYw1U2hagsX3k-z-5oUCoC6uE5Kubimcjr_M2eybv9Jp1nSc0lJoUHrgE9M_mpBVIAokkeMT4IyKHgeokLvuwn4mLuIibIRn4juZ2-ds64R0SI4ugLWjR9znqc2msJdFFA3IHatjT2EiZCs0EbjsQYndPB0A16OFF1SROK0LN2ASFk7Ldj-Il-s53kxX6zYqyzzTIbT_pg-6kw9v4__AQ"
+  },
+  {
+   "rep": 6,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Mystic Crevice",
+    "time": "noon",
+    "weather": "sun",
+    "sky": [
+     "#f7e4c6",
+     "#c0b58a",
+     "#96907f"
+    ],
+    "ground": "stone",
+    "ground_color": "#ccc",
+    "ink": "#a86c52",
+    "accent": "#816c5e",
+    "font": "display",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pillar",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#fff",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#785e3e",
+      "count": 5
+     },
+     {
+      "kind": "bridge",
+      "x": "far-right",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#b07148",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#eebd50",
+      "count": 1
+     },
+     {
+      "kind": "castle",
+      "x": "left",
+      "y": "horizon",
+      "size": "large",
+      "color": "#a56940",
+      "count": 1
+     },
+     {
+      "kind": "fireplace",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ff9a4b",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The whisper of the wind is the echo of the stones.",
+     "The shadows dance around the pillars, whispering secrets.",
+     "The moon hangs low, its silver light illuminates the crevice."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "read the stone",
+     "button": "walk",
+     "buttons": [
+      {
+       "label": "peek",
+       "action": "peek"
+      },
+      {
+       "label": "search",
+       "action": "search"
+      }
+     ]
+    },
+    "next": [
+     "inside the castle"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.487,
+    "dark": 0.961,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVNNb9swDP0rgnLZAKdwsjhf1513220rClmmLcGyZEhy3DTIfx8pJ2mGpUNPFh_Np0eR78QPfL_I-Mj3XLDeCAns95Dn5YZ5qIcgDPsiSiMiVPOULd1XnvHQ8_2JRx0NYOGPY4hasu8eDloCpqPuCLfOWYxGEFGBRyAMFIf2yPe_-KzewEquEZjJvCy2gk679S7f1Pw54413g62oKDpLpBPwIp1xxDWTUiKqbUuB2K5lscRYSAk2ErRdIESFtUtApQN2cCR58BpfUjcIly5G1yHauahRL12ojUEADHTIFVDsibc6iekxJTwmXzGgm4AC7Icr5_Vb6jfoNyLuoNIDEd8U13WdwoH0LM7ZjTV6gAtnLfzc60bFz9NutgV8g3fm4o659LpqPs2thgbumct8s1htH2vupuES7z0nDffGh0_1NyFAWRX5Y0IpAq3TRGmg_lDlP6yiWO9WH7DW2sM06gczu-zYf0e2E6vynhpX02gLtBX8pwI2Ktwr8MzVLFKI1zId0hmkclc8bXF4QiYqCkpUbgysEhYNJ5KM9Nu0XyG70mrbsADSQ7zV0sMzJWwTmHFjxnQMLGhzQA2GBsGQYui0Rc9OMuTkyydylXQ2ODLtCXuuqOfoerIEeQw9InxLz6FED5dtJwPrKioMR6rIeO9d15OjPIjqvTnMlAN6iSw0CtPe4slARpRgiBOgTT69uC3FNLDrDwGEl-r-lwtyfj5n3KJ36em1Jf1Tf9PiULbBFHXJ93YwBj19PdAqLPPlep7v5suCWuT7POP-mk8ux8rY0_f8Bw"
+  },
+  {
+   "rep": 7,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Whispers",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#b5e8b5",
+     "#fff8f8",
+     "#e4f0ff"
+    ],
+    "ground": "bare earth",
+    "ground_color": "#e9f7f0",
+    "ink": "#2a1d1",
+    "accent": "#4671a3",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e0f9f2",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#e4f8ff",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#b3ddee",
+      "count": 4
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#27446b",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun whispers through the trees.",
+     "Dawn whispers the first leaf.",
+     "The world whispers hello to the earth."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "draw a bird",
+     "button": "more birds",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more trees",
+       "action": "more tree"
+      }
+     ]
+    },
+    "next": [
+     "inside the hill"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPLjqMwEPwV1LmSESFMHpznE1baw2o0MrgdWzE2MmaZbJR_326HhBxWewJXdxdV7eIKv6He5DBBDSLrrWgRchh6qK8QTbRI-E9thh7DQIVoOkakmBydJhRRYyBgGF0wQxo9X6D-BavmHQ_NOwErpdRBHfgNK1UoBZ85nIIfnaTBRgTMUISo4YF-td56Jl3hUe1VQQXjznwuxUZu6CjaFl1kpNrtN2JLkPIJ0IJYSSZ-x6-7mRqCOelIYOej8Y7FRmMtAWixI56B9F7hbJIefS990yt_g8zlcOEZskXmzB9m7FCasaPzorRQR1UmZGQh5S1_UjYmyH9RatK1cA6dSF9eKCtam1ooty-UMSDOlEqE9cMhs86b_Y_WZitlGp-JqxfiVsSZ95XT-mkhjMZdXunKfVXtmoVuc6P7tcYh7xV-aMwoHNk0ZyiLmgSeND0xYxvDG41-UJ5eWzBTJgwxsygU15ll8sHKpUmjtT6LPnWnAL1xsFrvBs-pvZJemfT6nhPh3T244cxWtOj52N9vezKS8leDEyEkq33wXc95kkFMmcjmK2zGGFOCOk-pZXB4ovcUWdGgpYbRKW9liuocOroUD7zpR0viSBt4bXuicPu85eAoyLxG49hN8poSyrUTFdgx1G60lvL9eOGLLItyty6O65J_QdJW5BAe9ZR4mow9P29_AQ"
+  },
+  {
+   "rep": 7,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Distant Shore",
+    "time": "dawn",
+    "weather": "clouds",
+    "sky": [
+     "#c8c4c9",
+     "#f5f3fc",
+     "#ebe9e4"
+    ],
+    "ground": "ice",
+    "ground_color": "#e6e6e9",
+    "ink": "#ff8a8a",
+    "accent": "#9c2a32",
+    "font": "mono",
+    "text_place": "bottom",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f0f0f4",
+      "count": 1
+     },
+     {
+      "kind": "beach",
+      "x": "far-left",
+      "y": "ice",
+      "size": "large",
+      "color": "#e3e3e3",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ice",
+      "size": "small",
+      "color": "#e6e6e4",
+      "count": 1
+     },
+     {
+      "kind": "fish",
+      "x": "far-right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "far-left",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#3c3c3f",
+      "count": 1
+     },
+     {
+      "kind": "boat",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e1e0e5",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The waves never tell the truth.",
+     "The shore is not the same.",
+     "Even in the heart of winter."
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.754,
+    "dark": 0.959,
+    "things": 0.286
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dZPRbuIwEEV_xTKvoQqEdoHn7hds37pVNTFjYuHYyJ6Qtoh_35lAuyAR-SGZa8_JvcnkqA96PSt0r9ca1N6DQfW3K8v6l0pouwxeFzrv9fqoyZFHPvbsMkEg9aeJCXmXXCvyBvrAVY9ADSYWjI_dJkv77lOvX_XELM3CrFiY2EdbWSN3WOMKF_qt0NsUu7DhPmeEei7fTfRRYBN84iXNLuyktnYJS-AajMFAIq3MHKo5SzYOQhtDFH_4Qe9DMtbqSBRbVttILgZWso891-ixZU5mp0e9c4MTNu5dEDcfkoe3OVihOY3m7O4rSuDsvgTcdFs5-OPXlrwWg9KJm9mp-OHWCKa5UC2kqUdLF-45_IXpId1CsZL1H1pdQSkhXjGT2zZ3obkF72-g8mZHnFqXmxHo-bVdoOTC5zWzqitYwEh6lzb3w8ugjCMNLzuCjED3vtINsMWN69qb5DMs8fEayXMoX1ymQL80qHo4YFYBD5gUofeKZ1tR6qh54DY5keUvUI4PRRp2M7Qom78PGJQLg9YgJFLRqt6Juwf9duIJ54fw84xeh857nsjvG0k0L-dP03I1nYs9tlMWOn3vD0PKnbSX6-kf"
+  },
+  {
+   "rep": 7,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Shadow",
+    "time": "noon",
+    "weather": "sunrise",
+    "sky": [
+     "#e0a458",
+     "#d9943c",
+     "#2e8b61"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "serif",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pillar",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "silo",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 5
+     },
+     {
+      "kind": "tower",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 2
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The light was bright, the shadows dark.",
+     "The wind blew through the tall tower.",
+     "The cat sneaked out to the moon."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.911,
+    "dark": 0.658,
+    "things": 0.2
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dZLdbtswDIVfRWBuNsApbOdnsV-jvduKQrapWLAsBZI8tw3y7iM1J_UudmXxkPx0KPMKv6EuMpihBikuRrYofk153vwQHtUUpBHfktq475BBuEB9haijQWp47mXnZpKjHjm2zlmKZpSxR09CmKzXAblx-ID6J2wwl_vDiYRNV1X7XcunEk_NsYDXDM7eTbajRt1y09_wrXXGMW3TKNypkhLaDhzvZKFKLpRtizaypNRRVQVJyiUhoNeKHeJ7fEuDkNi4GN1I6uiiJstUFrUxJKDBkUiBvF5h0MnLhVLSU_KdAr4HOaBxoHdef6aRg_5kcD-d2c7DsDqoHI9JmdhOccse2KCNW6BK-q1BFRfs8goP6oidnsZ_uEqdEL-4hxU3uhn9Cuz1uf8fOYwyjf0At6o7tdUXuFyBWxkX7MqrSf9_wUVtP9a0XbOTe7ken_6x0Rb5feGlR2HYnJhlEE3ymQnaHBHSXgXRST88UTtXzmRCNAZnqqApzn2qjORfpInvdeRSBItywE64KVIyFY60mk_weqOlorvJRgu1nYyhHbgfeMYyL4_bvNqWB54K6jwDf8-nraDOeOHv7Q8"
+  },
+  {
+   "rep": 7,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "A Hill",
+    "time": "noon",
+    "weather": "sun",
+    "sky": [
+     "#3b70b8",
+     "#3b70b8",
+     "#3b70b8"
+    ],
+    "ground": "sand",
+    "ground_color": "#f9f0f2",
+    "ink": "#8b676e",
+    "accent": "#b2454e",
+    "font": "mono",
+    "text_place": "top",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "left",
+      "y": "low",
+      "size": "huge",
+      "color": "#c3b6b0",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#e7b572",
+      "count": 5
+     },
+     {
+      "kind": "flower",
+      "x": "far-left",
+      "y": "high",
+      "size": "small",
+      "color": "#e4e0c6",
+      "count": 5
+     },
+     {
+      "kind": "windmill",
+      "x": "left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#f0c9ee",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#c7c7c7",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#43ffcd",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The rolling hills hide the secrets of the land.",
+     "The birds soar with the wind.",
+     "The flowers bloom in the sun."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.814,
+    "dark": 0.493,
+    "things": 0.429
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZLdbqMwEIVfxXJvWolUlPzQcLd3-wB7160qG8bBirEj2yxNo7z7zkAIRImQ8MxY_nxmfE78Hy_eEt7xggt2MKIE9rdNU5kzD6oNwrBnIY2IUL3whIcDL0486mgAD_xiv7UxWI66odw6ZzHrQMQaPBZCS3nYH3nxwZ-WMk_lOxbuo8-E77xrbUWHBC5j_lU64wj1pLYqVRluaLun_F1u8g1gLsoSbKSSzFbrFZWU6wuNs47UwXf86lvDWnQHLDUuatSKl8WhAzDQICWg0BPf615IPWx9Y2hARQyPFLqOetI_RKvbHd13FVku5UamfaUlCW_n5IqLHuCCU8IvvN7VI_PS-xVrhL_lQi7XeTZx1zOuQkU47Yk8E1vjJRM2NKLvaMKuIC03j7EdLs3DCdTO65_-pS_cBirdNnOwSsstwATOZmCpfXWBzmdwM9eo7fFmrjl9j4UOJiMc-aCfxB3vXuFqqVRZzV8KPWi0BbIA_1MD885gvmNkg4D_ChjamgUoPcTAnOpTg259RQydoM4CC0541ulY9_s0xnF_eKnApHGuYdoOvNa-8s8zGh4vRg0lL2xrDHp0DKjJLM02i3S7yNbUFC_ShPtxv3ctnowHWs__AQ"
+  },
+  {
+   "rep": 7,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Wishful Lands",
+    "time": "noon",
+    "weather": "sunshine",
+    "sky": [
+     "#c8e0d1",
+     "#99b6ae",
+     "#d4c59f"
+    ],
+    "ground": "grass",
+    "ground_color": "#f1f6f5",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "mono",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "mountain",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#99b6ae",
+      "count": 1
+     },
+     {
+      "kind": "river",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d4c59f",
+      "count": 3
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "flower",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#ff6f91",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The land whispers secrets in the breeze.",
+     "Sunlight dances on the fields where dreams unfold."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide"
+    }
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.851,
+    "dark": 0.85,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPPbtswDMZfRVAuG-AUTrqktZ9htw3YYRsKWaIiIbJk6E_dJsi7j3QS19thJ0uk-NNH6vOZv_J2U_GRt1ywwQkJ7Fep6-6JRdAlCcc-ic6JDGo9ZbvwmVc8Dbw982yzAyz8YZPRxbGvwquE2Wx7CvsQPO5GENlAxEAqPhnrgQDHd97-5Cv5DLXaYGDVNN1eUGqlvshdo_nvih9iKF5h5SGKRORr4EUGFwi40hu91ztMWH-k_aPY6C1BhJTg83QETzR0gw5ToA8-kEZ4yy9TRxijs6iwwmS2KBqlZuscBsBBj8mEYs_8aCcxPWrIwlJvb8ti7IibEO1pajvZE6FNOZCeWfHcpiQKzv5SzeBoXycQUbWIawc637i3SczYHpQt_RJ8m9oMflyAnT2YbEJJcKNHCtwl4_p_YKifxG4B3i7A2oXxL8lL8L-aUy-mmc5kqdWzbD7IuwUZvXLDLqaAt33gsvXvS9r80PNk0UEO7UaPx78bYA79yUZj0wAxsQQyQk7Meob-ZF0EOMED1n8rfhoYU8JLSCxcD2gLTiWshwhMRRB9YsXr4NQDeVUGnwL9DmcUqEhgF3IONMocPNxfgfQbMdB-uFpstCob3I5UdbmgyVEvAXnri3NoyvuC5rKtt_t13ay35HrsrK54vOcnm2JlHuh7-QM"
+  },
+  {
+   "rep": 8,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Frosty Oasis",
+    "time": "dawn",
+    "weather": "snow",
+    "sky": [
+     "#b8b2a9",
+     "#e7e9d",
+     "#b2b2aa"
+    ],
+    "ground": "snow",
+    "ground_color": "#c4c0ce",
+    "ink": "#3c3742",
+    "accent": "#d3b395",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "oasis",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#e4e0f3",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "high",
+      "size": "small",
+      "color": "#d0d5d8",
+      "count": 5
+     },
+     {
+      "kind": "snowman",
+      "x": "left",
+      "y": "low",
+      "size": "large",
+      "color": "#e6e6e6",
+      "count": 1
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3c3742",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The frost whispers secrets in the night.",
+     "A star stirs in the frozen embrace.",
+     "Silence whispers a secret."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "glass",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write a bedtime story",
+     "button": "unfold",
+     "buttons": [
+      {
+       "label": "add a sun",
+       "action": "add kind: sun"
+      },
+      {
+       "label": "show me more",
+       "action": "more"
+      },
+      {
+       "label": "add a stream",
+       "action": "add kind: stream"
+      }
+     ]
+    },
+    "next": [
+     "inside the oasis"
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPBjtsgEP0VRK7Oymsnuxvfeum1h_ZWrVYYxjEKBgtwvUmUf-8Mdhy3ahXJYd4wjzfD48p_8eo54yOvuGC9ERJ4xkPPqyuPOhpA_Kt3IZ7ZNxF0wGTUHaFKjBajEURswSMQrBup9nTm1U--qd_qQhwQ2MArHBQt6gIhwd8zfvRusOpRNMUf0hlHVBu5k3lSou2J4lKWr7sCYyEl2EiQKuvysEeocQkI4HVD8uAzfkyNVJw2o7iMdy5qZxHxELCrQI2AgQ7zAeVe-UknPW5u8nNdjA3x1nl9cdRx0BeibocjCVwkww7ypkzIQIKeb9nCGj3ATNoIv_X62MY7L64fpKETxqxZVa726u3Bul-x0uw6YWdiA82d00wXMVEa4f8S-kK_fwuVIs50a41_8EVtz2u65WoWOrxfoy3QXPmPFlhD_mFjq0MPPrAA0kMMTFuGzmGWDnrC-i8sROHxo_2SxNILWAZd7fFCadd3bcBKeNCJmfCJfCWdDY5Me0W5Ksl1PZnCWQqORqSbD63oKe51mvaoVWwxHKkk4713XU-WGr2OgAfUoMj0KM156r0eYkxmGmzjjFqQyUlG1GDoOSlF4gabbDvbj0CadZUSNPn79tC6keEhnfOwrkjxeuPMi54S3X-op9zt_ZZxi8-BLkJbGkga6uRxSh4xQ1PjlR2MwVdyX5AXirx42eaHbUGPDFvLM-7v-fRosDL29H_7DQ"
+  },
+  {
+   "rep": 8,
+   "name": "refusal",
+   "kind": "real",
+   "world": null
+  },
+  {
+   "rep": 8,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "The Sunken Dawn",
+    "time": "dawn",
+    "weather": "dawn",
+    "sky": [
+     "#e3f6f9",
+     "#f5f9f4",
+     "#e0dda"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#40313a",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun is near, and the world is calm.",
+     "The wind whispers, and the trees are still."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide"
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.714,
+    "dark": 0.737,
+    "things": 0.4
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZZLdjtowEIVfxTI3rRRWIQF2yXXfYPeurVYmGWMLx4780yyLePfOuISk7RWeY8_Hmcm58l-82RR85A0XbDCiBfYjleXxmXmQKQjDvmT16L7ygoeBN1cedTSADW8K2GuyZ7Dsmxgt3kfd00X3pxpBRAV-FsL5wpvvfAW13MsDCiu5kwe5pROUXSf4z4KfvEu2wybdAp_K99YZR6TVUWJ3hRfanqnelvWmFliLtgUbSZJE36AkXRaUQB6ag4_4nodBzYCMqPUuamex9hBwqBBQAwM9kgJavfKzzl7QudGW_HxgRX-EcxX8QnTn9afL4-lPQqt0oocPxzhjCfusJPKzuRUPrnIpTFQp_Ppui7j3PTywPXQ69X-BpXwBmMH1AnwUxrjsitBen9TEVXieqaHHh0solM9iJ2dotYBGD0uzS-q_bv_jtrJ7aQ8zd7fgtiLesYv5jRtnXNT2sqTVx1psxXKnmBz6QvTVcjBDskwHZkH4gmEAGEaRjc6bjuRWmP4J2-nliCbYqHQYwIf5LQ0bmPCIitqYJ8pm62xwlP0rGuuyMTdQtJzNobovJCgxUD3ovINRd1FhOVLL7YaZRpNE441NxmAKpwMtoyqr_bo8rKsdkXhTFtxP9zmU2BkH-r39Bg"
+  },
+  {
+   "rep": 8,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Wreaths",
+    "time": "dusk",
+    "weather": "clear",
+    "sky": [
+     "#d6d6d6",
+     "#b6b6b6",
+     "#e0e0e0"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "wreath",
+      "x": "far-left",
+      "y": "high",
+      "size": "tiny",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "far-left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#cbb08c",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "swan",
+      "x": "far-right",
+      "y": "high",
+      "size": "tiny",
+      "color": "#f0f0f0",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#444444",
+      "count": 1
+     },
+     {
+      "kind": "chime",
+      "x": "right",
+      "y": "shore",
+      "size": "small",
+      "color": "#ff6f91",
+      "count": 2
+     },
+     {
+      "kind": "figure",
+      "x": "left",
+      "y": "high",
+      "size": "tiny",
+      "color": "#b6b6b6",
+      "count": 3
+     },
+     {
+      "kind": "moon",
+      "x": "far-right",
+      "y": "sky",
+      "size": "middle",
+      "color": "#fff",
+      "count": 1
+     },
+     {
+      "kind": "star",
+      "x": "far-left",
+      "y": "sky",
+      "size": "middle",
+      "color": "#fff",
+      "count": 1
+     },
+     {
+      "kind": "figure"
+     }
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.729,
+    "dark": 0.888,
+    "things": 0.222
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZTRbqMwEEV_JXJediUiOdCkCT-yD7tVZcw4WDE4ss3SNMq_7wwiQBs3lTZ-CL7Yh7kz9lzYX5avE9axnInFyQgJiz8t58XzwoFqvTCLH6IwIkD5kyXMn1h-YUEHA7jhlwMRKo960DUJZeuPOOtIBoeCNCAc7TueWf6bLcstDRSWxZYGPQGnwV4SdnC2bUrcpiWw2_RVWmOJtSwUZCrFF7o50jwTa5XSQiElNIEkpbZqv0ZJ2V6oBPIwPHgLr7051AyogFptg7YNzh14tOPJBhiokeQx1gs76j4WDN3ohj7zRobwNZCjM9Gt0-_IQH_6ndBVe6CFY8Rqozhse6WleNbXZOR2ffIGrBJuNcTVg_WhmqhBN-cPVKV2ABM1m1GDA5gxHYJu0CG7I9bXwpg5V6pyJ_cTdzPjShEG7CxMY7uvo8yKTDyJuPdCuzLu_CFSFgXfybjxAs3YvhZEnfv-mMw718CfxUZN0HQG9Z1ovsjmNyXiNOLmDVEq23qIBPttkZ76X5wsK7qG91CPBxUeMMdbE0mB0ofWwX3tH_sfb3ekUvVUps9JpTYxMmtdlgY-Hfy4cR_6LhM5T_9LHGxfX67Yh7AdYHeSLG9aY7Bz3B5oYcrT7YrvV-mGvsNynjB3e983EtwZTvR__Qc"
+  },
+  {
+   "rep": 8,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Whispers in Twilight",
+    "time": "dawn",
+    "weather": "moonlight",
+    "sky": [
+     "#efffcb",
+     "#e6f2b9",
+     "#99b875"
+    ],
+    "ground": "grass",
+    "ground_color": "#e6f2b9",
+    "ink": "#4e4e4e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "building",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f4d9b2",
+      "count": 4
+     },
+     {
+      "kind": "tree",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#d9d9d9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#444433",
+      "count": 2
+     },
+     {
+      "kind": "lamp",
+      "x": "center",
+      "y": "tree",
+      "size": "tiny",
+      "color": "#99b875",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "Whispers sing through the night,",
+     "nature's secrets never die.",
+     "Let the moon guide your steps.",
+     "Rest easy, for the dawn will come soon."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more lamps",
+       "action": "more lamp"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the buildings"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.728,
+    "dark": 0.841,
+    "things": 1.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPbbptAEP2V1eahrYQjhzhO8Tf0qarUhzaKFnYWVtkL2kuIa_nfO7MFmwcXhGBuhzMzZ0_8nR8eKj7xAxdsNKID9jtvt-0zC6ByFIZ9Fq0RCeSmRFv_hVc8jvxw4kknA1j4c9BxhBCZduzHpI3uh4RJSVuKSjE5tCYQaYCADuu9W3Li25EffvE7UEp1LTruYK_qtqGvpmm_Pj_xl4r3wWcnsbQPIka-OF47bzwhXou0eyN7B3SjLboOXCKXUnvVPKBL-eIYBCIiSfhIr6Uz9BlQRMr6pL1DO0DEDssfwYBFpIhsT_xNFzZt1kZq12P4A036EzZY8WNhWihjh_oPQVuQOlu0L5zVTjZtXTyZGO3O1QU5BYAZdeZ0CzNaYcwaUjZ0XyGfVpCdSDNimGd_CzJpd1wj7vB6fLwi1itEI-x4q_WZ_H8Q562uEHHBRjug0V6lFHGuLA1Irx_wDcwR6wrrnEg5wCdMgS5AiszBOwQmNdxj9Bukkk4iY33WEtjR58BigjFSwnfcKQMRjxVTPpRcUihD3RrWeQssYuk9ya7zLnpS-AmbkaUZTx0n74paFg0PYiR71GUbk5ZpQHOikoqPwduRBDcFnYAhq0JPhF7TsWhzSkVryht5sf_JzIgWDIaym4Oim4WJO_OcVrGkWB-A0ULiOu3i5eeXM04OtU5D1o7aQSr4qEJnUXLklNdjErXPDy4bg-dh-aCt19t6v9k2m5p2iDy3FQ9LvBwPrEwjvc9_AQ"
+  },
+  {
+   "rep": 9,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Hidden",
+    "time": "noon",
+    "weather": "sunrise",
+    "sky": [
+     "#f4f5e8",
+     "#7c62c0",
+     "#d9c261"
+    ],
+    "ground": [
+     "#e2e0e8",
+     "#b7b5b7",
+     "#928e8b"
+    ],
+    "ink": "#4a4943",
+    "accent": "#f99a4b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#c5c6cc",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8f9865",
+      "count": 2
+     },
+     {
+      "kind": "candle",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#e6194b",
+      "count": 1
+     },
+     {
+      "kind": "sun",
+      "x": "far-right",
+      "y": "high",
+      "size": "huge",
+      "color": "#d7f2c8",
+      "count": 1
+     },
+     {
+      "kind": "river",
+      "x": "far-left",
+      "y": "low",
+      "size": "medium",
+      "color": "#e5f2e8",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "far-right",
+      "y": "water",
+      "size": "small",
+      "color": "#fca9c2",
+      "count": 3
+     },
+     {
+      "kind": "cloud",
+      "x": "far-left",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#d0d7d5",
+      "count": 5
+     },
+     {
+      "kind": "bookshelf",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#f8f8f8",
+      "count": 2
+     },
+     {
+      "kind": "flower",
+      "x": "far-right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#d9e0e4",
+      "count": 8
+     },
+     {
+      "kind": "door",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c7d9d1",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun rises over the hill.",
+     "A bird lands on a flower.",
+     "The river runs through the fields.",
+     "A bookshelf stands by the horizon.",
+     "The wind carries the scent of the forest."
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZTNbuMgEMdfBZGrUzmundi-7W0fYG-raoVhiFGwiQA3TaO8-w44blyt241yCMwwP__nAy70ldabhJ5oTRk5asaBJtQdaX2hXnkNaP-phIAezV51Yd8bE3YnYL4FiwY39Fa5GHg40_o3XclcFlCiYbXj24ynYSUqnm039CWhe2uGXsSDkEE6Hmx2TdHswqrKSiibcFD1B8SvcpZX-TO6GOfQ-2CSVcXyBk3SRIMDq2SQCG_-z5hGTcNhFJjQzniFmvGYV1qjATR06HSo4UIPKoih7eh6mwdiNpNaTE69B6pX_Rl33GgTkl_xgm85j5YhaNlckw-mtwCPMF3H4sc_oKWsym1xh2YzKGe90IvY1lj1Hptz43Yg1NDNwbDdVLFwC2qxjzeqZHZt1b71ExjXd2o77GHOFDuZ8XKZadVrlDdRNcgJqs3pW6WFzKBcLkGjrPhC6omN9fiqspIzHMQ79nleWW0GsSw2TPaXIyBSsROzbhVzqcYcXAtaPtQwzezn2soy_JarILGCn4o7r8P_xlZUePPyO7icgYUx9pGx_bdpfCcqsZmPAl5jrXoIV43-aoHgkJHwWjhicDIIPiEk3LwnjPlBQl-JxvlGb08YGTMMvhAaZ4nYoXcYhlL2bQyXCrRwN8BUbeJ8xDTn8RNjoSfSCfMknFmrwEW_C3kSI0egseD8E3254luFujEFTut-0BqfkmkR6pSl2XadVuss9B4zTBNqJ398XDDSH8P_9S8"
+  },
+  {
+   "rep": 9,
+   "name": "refusal",
+   "kind": "real",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "A Mysterious Village",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#b3dbd",
+     "#f4dcd0",
+     "#a3846f"
+    ],
+    "ground": "grass",
+    "ground_color": "#e7e7e7",
+    "ink": "#8268168",
+    "accent": "#c1c8d7",
+    "font": "hand",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "skyline",
+      "size": "huge",
+      "color": "#e7e7e7",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "near-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c8c8c7",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#c9c9c7",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "school",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#fff8ee",
+      "count": 1
+     },
+     {
+      "kind": "park",
+      "x": "far-left",
+      "y": "ground",
+      "size": "large",
+      "color": "#c5c5c5",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#c9c9c7",
+      "count": 2
+     },
+     {
+      "kind": "moon",
+      "x": "left",
+      "y": "skyline",
+      "size": "small",
+      "color": "#c9c9c7",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The village whispers secrets in the early light.",
+     "Rustling leaves and a distant bell mark the start of the day.",
+     "Beneath the stars, shadows dance on the wooden beams."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "type your dream in the world of lights",
+     "button": "submit",
+     "buttons": [
+      {
+       "label": "check weather",
+       "action": "set weather"
+      }
+     ]
+    },
+    "next": [
+     "a village behind a mountain range"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.855,
+    "dark": 0.995,
+    "things": 0.083
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZTNbtswDIBfRVCvTpGfNnVz2-67DMMuW1HIEh0LkSVDout6Qd59pBOnbpNtGHSwSYmfSIrkXr7IzSKTndxIJRqnNIif7XxePIgIZZuUk5lMjdzsJVp0QMc-iS99Qog2tEl8t86pLdAhtDXvGtV5kjpQWEEkRWp9tIlPpF0vNz_kTbEyhSH5prwz2sz5T63yu3UpnzK5jaH1huy2UaUkR8WzDi4w7gYeeNGG9TuW8-U6X6xzUiitwSPr9ELnhs-UYVBUyvOFCK_4PMRIuiIghpq0dUAbPHuKFAwpwEFNoETO7uXODt6Q7856juKVJL6Hgstk_24r2V9MrtohIZcea4qE3FkcsjO3oiSOVA8qzhyUeAKfUnHm1mBsW0_JOqc1IS8nZIwwgkviRrut_gROtRoCf-M-0ppw7ydcrfCEnSJd6N54aH0_xa2KlbpT1xOQdBWCu5bXj146Fd_ntSzLHOA6tlFxN4n-L1m9wOp7Xtex_5HUS-6HpE4fqw7Bn7gTVy8q658PtThQC7ENF6_8VoF4OTao6CqbGohJJNARMAnrBXWooJpzvXAcyC1xvrYJyX4rHKgXSIIaRyhhbELlURTgnKgptYMp6SKKUA6CUT3bfwbPnX_eT5lIlTKhS3TC03AJx2u7EAx4Aqo63XLf6-BT4Pmyp2DNUEWh4Z4N_jhWhvckVsNic-zUzhqsSOzYIpNNDHXD_Y59A6IPbRQm0g1jrF2IzrDDQ7g8XIqWhsDQ-21RWzxrjr3vFAXMZVmB3olxpPGgGScG4Fl9eDpk1MKvyJlX57wXUNkhhzW_kCJPovJUGHx6S0c5dLnxrXM0icYfLonlfLmezR9nSy5F8meeyTjuD7OJLLHh7-E3"
+  },
+  {
+   "rep": 9,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Woodlands",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#86e49",
+     "#d1b596",
+     "#9f8d"
+    ],
+    "ground": "grass",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 5
+     },
+     {
+      "kind": "pine",
+      "x": "far-right",
+      "y": "ground",
+      "size": "large",
+      "color": "#3b3a4a",
+      "count": 10
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "low",
+      "size": "medium",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "windmill",
+      "x": "far-left",
+      "y": "high",
+      "size": "large",
+      "color": "#cfd8c9",
+      "count": 3
+     },
+     {
+      "kind": "candle",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#b39ddb",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "Morning sun warms the earth,",
+     "Birds soar through the crisp air.",
+     "Silence surrounds the silent hill."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "start the day",
+     "button": "next",
+     "buttons": [
+      {
+       "label": "sunrise",
+       "action": "set time 'dawn'"
+      },
+      {
+       "label": "wind"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.852,
+    "dark": 0.989,
+    "things": 0.3
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVNNj5swEP0ryDlsK5EVgU02cOy9px56aFcrg8dgxdjINmXTiP_eGeeLVds9wbxhHm_ezJzYL1ZtUjaxivFk0LyB5OeYZfVz4kCOnuvkU0Rr-5mlzA-sOrGgggYs-G6t0NwIj5mgeoIEnwxGE_DQgUOg0cAdVR6OrPrBVvsdPJUYr8Sm3pY7eivlXrCXlLXOjkZgTeu4J84z8NpYbYlqVUsoZI4JZQ4UF3wjc8CYNw2YQJCUO1luEJI2Ah3KI3XwFl5jH4hpkAGx3gZlDcY-KK0RAA090njUeWIHFaV059QbdYI5oFaOUWLUin2p38TZg1Bjj_FNrJRyDxCRkaRs5_TGOigDF1bJ3dqptgv_IdbctbDkLeqCP_E77yZbENfKiQvxklTb6SOpkD3zrbxT5gvGCR_93QSSe_HvGO1puw-0NlLsm_JOXCyIG5yMhn95-570b7l1UQpRLxyYcXk0WkqTY1-tM8q0iR9NMnHX-wQ3McElDF2KNV_QIZ94yx3i6HXbxXzjlB8SrtwjfvNNaTB4CH50cRpnCk9oSGgjHmldG2u8pTs4oVRBUmsbgiWpwZrox2UEvuMDxLFHHyclQoeh4UhPgxmc7YcQNxFlxp8JfsREPSIhrajB_b3F5wXVvAZNNaNB7ecruC40IAneY_JA5_jAyPXr5zRPNr_MM54X8lAfrDKj1ngQ1xcaT57lu3VWrvMtNcCqLGXumo8ngpVhoOf8Bw"
+  },
+  {
+   "rep": 9,
+   "name": "refusal",
+   "kind": "ablated",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "A Place",
+    "time": "dawn",
+    "weather": "mist",
+    "sky": [
+     "#b8d0b5",
+     "#82b539",
+     "#e7e0e2"
+    ],
+    "ground": "moss",
+    "ground_color": "#dee3e5",
+    "ink": "#e0e9f5",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "low",
+      "size": "large",
+      "color": "#b5c4c9",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "high",
+      "size": "large",
+      "color": "#e96780",
+      "count": 2
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f7f8fe",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "central-left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#fbfbfc",
+      "count": 1
+     },
+     {
+      "kind": "figure",
+      "x": "center-right",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#b2b2ba",
+      "count": 1
+     },
+     {
+      "kind": "candle",
+      "x": "far-right",
+      "y": "sky",
+      "size": "tiny",
+      "color": "#f2e8e8",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "far-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f0f3f2",
+      "count": 1
+     },
+     {
+      "kind": "book",
+      "x": "far-right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f0f5f1",
+      "count": 1
+     },
+     {
+      "kind": "mirror",
+      "x": "center-left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f7f2f4",
+      "count": 1
+     },
+     {
+      "kind": "door",
+      "x": "center-right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f5f4f5",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "A place is everywhere we go.",
+     "And it is not lost.",
+     "Shadows are with us always.",
+     "Shadows are always with us.",
+     "At the end of the day.",
+     "We come home to rest.",
+     "And there is something.",
+     "Something we can't forget."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.808,
+    "dark": 0.945,
+    "things": 0.385
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZTdjtowEIVfxfJetJWgCuEvcLdvUKkXvWhXKycZEwvHRvZksxTx7p0JG0p2oaKKROxjz-czEzwH-SLXk5Fs5VoqsbOqAPGrSZJ8KQLoJiorPqvcKoTyixzJuJPrg0SDFijgUXzjANLR1CyUqnU0a0FhBYGE2kTksO1ern_Khzwrk3xOwkOW5vPpikewhARS-TSSm-AbV3KUj1H28-fCW8-shxJgChxt3JbnFLfSPFdFAQ5Z0nqhVxOStO-EShGQ7MErPnfJkZZ7RF-TWns03pES0VhLAlioCRTJ60FuTecFA3CCrzQMZlNxNpSLtL7lvMxvJloVNrzp7DSfF7Ni1SkN-5gcR2dg3iBC0Hb_RrWge2hFB_yDCqvFMkv-UtMLamzcG49LQbU_EbnwZ2DVDHl6qTMNN1yaUF4Ag7LjC6MDbA2laeoBOKenuA7WZtMEGHgdXxZ2gEbj9oO6pvSo6-CCPrXtwVr9B1WnkEF2nVp77y6Yt2rwobSJnur0Rmm9395j8wpzric3bJoQfBhW9W6vS53q2XVu6d9T77c717Pudp6xdMWtccDXi1rHqdeYKOAFwr6lfgGiBbHxXynm0ZXCIK86j8L6iKx-r1Tp2ygUbzVYiYbGtlX7-H71pPabOiIK6kkCCOx1NyzVnhd-gCh8DaLiH_TU9k6HsQXsXJGLSItYGbfpDuon7Jf-dp9QaE93lcKejtS2KD9KtZBr11hLbaYfcEHTJF2Mk9U45cpQJZKRDP1613goEnf8Pv4B"
+  },
+  {
+   "rep": 9,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Terraced Gardens",
+    "time": "noon",
+    "weather": "sun",
+    "sky": [
+     "#e0e0e0",
+     "#ffe6cc",
+     "#f7e3d"
+    ],
+    "ground": "grass",
+    "ground_color": "#545454",
+    "ink": "#332d2f",
+    "accent": "#f89200",
+    "font": "display",
+    "text_place": "bottom",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tower",
+      "x": "center",
+      "y": "center",
+      "size": "small",
+      "color": "#444444",
+      "count": 1
+     },
+     {
+      "kind": "skyline",
+      "x": "left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#e8e8e",
+      "count": 3
+     },
+     {
+      "kind": "path",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d4d4d4",
+      "count": 5
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "far-right",
+      "size": "small",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#d0d0d",
+      "count": 4
+     },
+     {
+      "kind": "fountain",
+      "x": "far-left",
+      "y": "high",
+      "size": "medium",
+      "color": "#e6e6e6",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "The sun dances on the smooth stones.",
+     "The leaves whisper secrets to each other.",
+     "The air carries the sweet scent.",
+     "The path winds through the lush greenery.",
+     "The fountain splashes and reflects the sky."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "neon",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "play with the view",
+     "button": "zoom",
+     "buttons": [
+      {
+       "label": "zoom in",
+       "action": "zoom"
+      },
+      {
+       "label": "zoom out",
+       "action": "undo"
+      },
+      {
+       "label": "more trees",
+       "action": "more tree"
+      },
+      {
+       "label": "fewer trees",
+       "action": "fewer tree"
+      },
+      {
+       "label": "more paths",
+       "action": "more path"
+      },
+      {
+       "label": "fewer paths",
+       "action": "fewer path"
+      },
+      {
+       "label": "more clouds",
+       "action": "more cloud"
+      },
+      {
+       "label": "fewer clouds",
+       "action": "fewer cloud"
+      },
+      {
+       "label": "more trees",
+       "action": "more tree"
+      },
+      {
+       "label": "fewer trees",
+       "action": "fewer tree"
+      },
+      {
+       "label": "more trees",
+       "action": ""
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.839,
+    "dark": 0.817,
+    "things": 0.2
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=vVRLbtswEL0KwWxawC4U2fnpAr1Adm0Q0OTIIkyRAklFcQzfvTOUFNNQEXRVcSHN8PFxfk8n_sar2xUfeMUF64yQwH73RbF7YB7qPgjDvomdERHUOu3u3He-4qHj1YlHHQ3gwWfwHrcU-ym8AhsQEHVLO9Y5i9YAIjbg0RF6ssPhyKtf_AYKWui4qWu4lzJ9PcBG8ZcV33vXW4Vn9l4E4hwdr9IZR1Q3d1tauKHtgezNplRljbaQEmwkV_34VBZ0Qe2SQ-mAWRwpQHiPrykjdO9cjK5Fb-uixogxzqiNQQcYaJErYLgnftApnugGzGXF3_GbLkrGMTeC_iDa0IpE8hnxNj3J01M8t-fVJyvWxGgLE6-BOk6sjfP6I5Vxom1B6b7NeeER14V2k9F2WPmJ0-t9M5NOxf2CU21pXUjvMlJpXK_-VoFa-PV8zaIIiabMaKKHOd_84D8mrQpcF-JtRlyTS2ibkecFxXu-rOY9rbycOI3UG5oC_twAwylmSlgJgTnLInla52LDQnQI-4FnCWZAvCFkaHDqwLMA0kMMLDoGQjbMkSZmrNCeSeG9xgOJcACILFB1Zwi1kg2YISGwf_smIU0fGrbHUlrwxxk7V4DRvIcGSYVVJGkDMk43HBD9Qlna4EjHJyyJupIDZUMqhrETjejI7EZpDFrhaFX0pi523rUdaYwEhmHGMbo3DQPu7nqkJGF9uMQ82qOsjNiBmbZYapqQkwwTmhp7hXF9zEE4yO4K1DoPjIYr5LBP7xW2BhTzEnxxL5mpD0vmJLQl8wJ8cS-Zk66W1KPcltxLeOb_nxVZgPn55XzGPzb2lyaMV7Y3Bn-v8weJtCzK-3XxtC7vaLZ4Vay4n_fTDxdPxo7e5z8"
+  },
+  {
+   "rep": 10,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Mossy Glade",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#e6b7cc",
+     "#c8a7c9",
+     "#998180"
+    ],
+    "ground": "sloe",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "glade",
+      "x": "center",
+      "y": "high",
+      "size": "large",
+      "color": "#fff5f8",
+      "count": 5
+     },
+     {
+      "kind": "pine",
+      "x": "far-left",
+      "y": "low",
+      "size": "medium",
+      "color": "#885757",
+      "count": 2
+     },
+     {
+      "kind": "lily",
+      "x": "far-right",
+      "y": "low",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "far-left",
+      "y": "sky",
+      "size": "small",
+      "count": 3
+     }
+    ]
+   },
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZLLboMwEEV_pZpsicSjhMcPdNUvqKLIGJtYMTYypoRG_HtnyIsFK4-vPcf3anyDXyijAEYogX10mnEBAfQdlDfwymuB-rft--njS7OazrxqSazZaHA3CubPwqHQD8apfum-TFD-wE4cqoxzFHY8ZxkvqCqKPMpDOAbQODuYmhq1pa77_sSttoTbVVIkMsYDZS60T1gkY7rIOBfGkyTlQRYRStIuwpkhEB2Kqz_do5SghfSotdYra-g1r7RGQWjRIqZHpze4qMVJ84h4xZrewFwBTARWzZmCqb8FyVxD115WpZSpzBdlICPpHLyYnTJPpGRu_7BDUG3HN7MVtRraNTTP0yzN3tB4BdVKTyuoQ3ub1L5lS9gXVIQZS-W200q5eiv8Y1AvqFdmWjOTKmGf7M2MVkyu7VBvx6dfsmF0QSTzccYfgbPBj8KhNIPWOMNnQeQ4jA_7sNjHKVGgDANwz_NlqtjpO1rnfw"
+  },
+  {
+   "rep": 10,
+   "name": "refusal",
+   "kind": "real",
+   "world": null
+  },
+  {
+   "rep": 10,
+   "name": "refusal",
+   "kind": "placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Dawn",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#f0fbff",
+     "#edf5f8",
+     "#e0f5f5",
+     "#c4e3ee"
+    ],
+    "ground": "grass",
+    "ground_color": "green",
+    "ink": "#6f1024",
+    "accent": "#fffae8",
+    "font": "display",
+    "text_place": "left",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f0fbff",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "far-left",
+      "y": "high",
+      "size": "medium",
+      "color": "#e0f5f9",
+      "count": 3
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "horizon",
+      "size": "small",
+      "color": "#88f9c9",
+      "count": 2
+     },
+     {
+      "kind": "field",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#94c59b",
+      "count": 5
+     },
+     {
+      "kind": "sheep",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#d1d1d",
+      "count": 3
+     },
+     {
+      "kind": "sheep",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#d1d1d",
+      "count": 2
+     },
+     {
+      "kind": "sheep",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d1d1d",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The first light of dawn whispers to",
+     "good morning to the sleeping world.",
+     "may the day unfold.",
+     "",
+     "I am a place of dawn. ",
+     "Where the suns brushes the earth with its warmst rays.",
+     "Good morning to the sleeping world.",
+     "May the day unfold.",
+     ""
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "pill",
+     "width": "narrow",
+     "prompt": "create a poem",
+     "button": "exit",
+     "buttons": [
+      {
+       "label": "next",
+       "action": "next"
+      }
+     ]
+    },
+    "next": [
+     "inside the world"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.906,
+    "dark": 0.725,
+    "things": 0.5
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZTBjtowEIZfxfJeWimsQha2wLlS1UNvlXpo0cqJx8TCsSPbaWAR794ZEyBbaNWKiHjGyuf_t2d84D_5aprxnq-4YK0RFbAfXZ6XH5gH1QVh2LuULd17nvHQ8tWBRx0N4AcfRW8xGXVDkTxFPYhYg8dE6KzXAeiz7Z6vvvMHlatSKUw8gFRztUijHEdzGlUzeALg64xvvOusRMTGixD4OfFSOeN8SgPQWtpuMXp4VtO8mGEsqgpspJRSSgDxlUsJqQPa2JNa2MWXZAnTBlTEXOOidpYkG9djDAYaBAUUfeBbnaSgG5zZ4YjWQIMZ31N6S9CgXwlXdxuye5Z59VuhfJQxPWYXXmVcJweiEn4ySCFmrTf1FdqA1F0zxqYtW16xTyNsqf2Z6hFzQTqvX529UkMjjBlDFwu1rEbQYgRVGoy85344qAvVCP92B5azar4sr9T5iBpqgHagjtz_zrxRKqf4u-9-jBzb_19m8QfmX83fHtQNFWvbaAtUWPxrDUxpHyIzpJQ5xaiFWF9jrYIPLDqqfOcka5y32m4ww7C3WDCoiOLeeSMfqYDFPs1IfHdWuVMWn89MNOzc2MMKjwwnvmGPwonW2cBK36HPkBIgfKxZr_FPx8B64RsU6cU-EPTTPwn6cl_QmvbCBkfXxwH3TdK-lS5GR_sWnU1FNBxcqEVLcavTWfVaxhpDK7xPXdp617TU3JXHOwfIpgPilB0CqZ1hp-MlPnWzESUYouA1kG6MofNTfFwfs9MIz0db0pdcJFucJjc4Qyb4ynbG4MafB1QpRV48T_LlpKDrDJfLM-7P8-kywS9jS-_jLw"
+  },
+  {
+   "rep": 10,
+   "name": "refusal",
+   "kind": "ablated",
+   "world": null
+  },
+  {
+   "rep": 10,
+   "name": "refusal",
+   "kind": "ablated-placebo",
+   "source": "contrast",
+   "layer": 16,
+   "world": {
+    "title": "Faded",
+    "time": "dawn",
+    "weather": "sunrise",
+    "sky": [
+     "#e3dfa",
+     "#dcd7c0",
+     "#c7957d"
+    ],
+    "ground": "lava",
+    "ground_color": "#e3edf0",
+    "ink": "#5d3555",
+    "accent": "#d0c1c1",
+    "font": "hand",
+    "text_place": "right",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tower",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#fff0eb",
+      "count": 1
+     },
+     {
+      "kind": "chimney",
+      "x": "left",
+      "y": "center",
+      "size": "medium",
+      "color": "#c7957d",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e3edf0",
+      "count": 3
+     },
+     {
+      "kind": "cat",
+      "x": "right",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#5d3555",
+      "count": 1
+     },
+     {
+      "kind": "candle",
+      "x": "far-left",
+      "y": "high",
+      "size": "small",
+      "color": "#d0c1c1",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "The sun creeps into the horizon, revealing the world anew.",
+     "Though the lava flows, life persists in the cracks.",
+     "Daybreak whispers to the shadows.",
+     "The sun's first light breaks the night."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "soft",
+     "width": "wide",
+     "prompt": "light up the path",
+     "button": "set time",
+     "buttons": [
+      {
+       "label": "dawn",
+       "action": "set time dawn"
+      },
+      {
+       "label": "noon",
+       "action": "set time noon"
+      },
+      {
+       "label": "dusk",
+       "action": "set time dusk"
+      }
+     ]
+    },
+    "next": [
+     "outside the world"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": true,
+    "hue": 0.935,
+    "dark": 0.93,
+    "things": 0.0
+   },
+   "prose": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZPJbtswEEB_hWAObQE5kG04Rnwu-gW5tUFAkSOTEEUKXKw4hv-9M7SsCEhO0myPs174iR_WFR_5gQs2WCGB_ct13exZgDZHYdlP0ViRQK2KtfG_eMXjwA8XnkyygIF_hAKF2mR6EpUYHUojiKQhoCJmF0wEiuvO_PCXP8BWtQLlByXVXtb0J_fPu73irxU_Bp-dwjgrTuR0k9-kt55oGAyqpRjjOpJ3arvb7VAWUoJLpFK1XMs1qlpfFFq4kiC8p7dSBuqCOeqEyt4n4x2lmYy1qAALPXIiZnrhnSmpJD9iKRV_x396pAhnCsKKsC7zQUidj1TlnGnbtjU0RZMpj_W1molSm97BeWJaaNNEnPETtAdlcr_ETq2asZsFNgWAidmKsLoX-SXVr9S5rRN1u0xWpAm6BE6DmpnJuPOSOA_mu_JxInaZ6aIDGt_4pMZelLHM2Hm4c6K4NNY4oInxFw0MF45JbMQQmXHJM9xDpn0wH95VuNcnEOh-LOrRB6uYcDA-IvFF-3zUxUDLx1rrx1gxa1pgA4RoYiJkcZBByC5S1G9xbgKIjo3aRHJj05tRC4WAG7mk9SOy1oSYEIl9ZCUsFl9Hikfaf-ld9HRYF2yBKo31A22vd7fzCh11R4uhtMeXvo1GJY3iSBEVH4LvB9r82zt5KG8MeJFobHJKt42HxMrR3nW3nbeiAft5yELeD2RyZ8VAw7x7Ou-_9yyGpafKsfueSYbr67XiDq-UJulzovo_x8TJekQTNYkfXLYWz_f-Q1u1qTdPq_p5tXmiDvFDXfFwt5eDxsg00Pf6Hw"
+  }
+ ]
+}
