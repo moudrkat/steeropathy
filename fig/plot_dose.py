@@ -18,7 +18,8 @@ HERE = pathlib.Path(__file__).parent.parent
 RUNS = HERE / "docs" / "runs"
 POOLED = RUNS / "secondhand-1.5b-pooled.json"        # strength 3, layer 16, 60 wishes
 DOSE = {s: RUNS / f"secondhand-09-aorus-1.5b-dose-{s}.json" for s in (1, 2, 4, 5)}
-LAYER = {l: RUNS / f"secondhand-10-aorus-1.5b-layer-{l}.json" for l in (6, 10, 22)}
+LAYER = {l: RUNS / f"secondhand-10-aorus-1.5b-layer-{l}.json" for l in (6, 10, 22, 26)}
+ROT22 = RUNS / "secondhand-10-aorus-1.5b-layer-22-rot.json"   # the shuffled vector at 22
 FIELDS = ["time", "weather", "ground", "motion", "font", "things"]
 # one hue per field, fixed order (categorical), plus ink for the parse rate
 COLORS = {"time": "#2a78d6", "weather": "#eb6834", "ground": "#8a6d3b",
@@ -79,10 +80,17 @@ def main():
     pts = [point(DOSE[1]), point(DOSE[2]), pooled, point(DOSE[4]), point(DOSE[5])]
     panel(a1, xs, pts, "strength (layer 16 ± 4)", pooled)
     a1.set_title("the dose", loc="left", color=INK, fontsize=12)
-    xs2 = [6, 10, 16, 22]
-    pts2 = [point(LAYER[6]), point(LAYER[10]), pooled, point(LAYER[22])]
+    xs2 = [6, 10, 16, 22, 26]
+    pts2 = [point(LAYER[6]), point(LAYER[10]), pooled, point(LAYER[22]), point(LAYER[26])]
     panel(a2, xs2, pts2, "layer (strength 3, ± 4)", pooled)
     a2.set_title("the layer", loc="left", color=INK, fontsize=12)
+    rot = point(ROT22)
+    if rot:
+        for k in ("time", "weather", "motion"):
+            if rot["fields"].get(k) is not None:
+                a2.plot([22.4], [rot["fields"][k]], marker="x", markersize=8, markeredgewidth=2,
+                        color=COLORS[k], linestyle="none")
+        a2.text(22.6, 0.98, "× = the same vector,\ncoordinates shuffled", color=INK2, fontsize=8.5, va="top")
     if pts2[0] is None:
         a2.text(6, 0.5, "layer 6:\nthe form\nbreaks", ha="center", va="center", color=INK2, fontsize=9)
     a1.set_ylabel("agreement with A, moved fields, vector", color=INK2)
