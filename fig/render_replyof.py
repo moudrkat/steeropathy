@@ -14,8 +14,8 @@ import tempfile
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = pathlib.Path(__file__).parent.parent
-FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-FONT_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+FONT = "/usr/share/fonts/truetype/lato/Lato-Regular.ttf"
+FONT_B = "/usr/share/fonts/truetype/lato/Lato-Semibold.ttf"
 SURF, INK, INK2 = (252, 252, 251), (11, 11, 11), (82, 81, 78)
 CW, CH, PAD = 460, 420, 14
 
@@ -27,7 +27,7 @@ def reply_html(r, user):
     urg = r.get("urgency")
     urg = "" if urg is None or urg != urg else f"<span class='urg u{int(round(urg))}'>urgency {int(round(urg))}</span>"
     return f"""<!doctype html><meta charset="utf-8"><style>
-    body{{margin:0;background:#f3f3f1;font-family:'DejaVu Sans',sans-serif;font-size:13px;color:#111}}
+    body{{margin:0;background:#f3f3f1;font-family:Lato,'DejaVu Sans',sans-serif;font-size:13px;color:#111}}
     .wrap{{width:{CW - 32}px;height:{CH - 32}px;margin:16px;box-sizing:border-box;overflow:hidden}}
     .user{{background:#dfe7ff;border-radius:14px 14px 2px 14px;padding:8px 12px;margin:0 0 8px 80px;font-size:12px}}
     .bot{{background:#fff;border-radius:14px 14px 14px 2px;padding:10px 12px;margin-right:40px;box-shadow:0 1px 4px rgba(0,0,0,.08);position:relative}}

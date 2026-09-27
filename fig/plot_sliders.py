@@ -13,14 +13,14 @@ import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib import font_manager  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE / "fig"))
+from style import SURF, curves, fonts  # noqa: E402
 from steeropathy.secondhand import kinds_of  # noqa: E402
 from steeropathy.worldof import READERS  # noqa: E402
 
-VEC, ROTC, INK, INK2, GRID, SURF = "#eb6834", "#a09e99", "#0b0b0b", "#52514e", "#e6e5e1", "#fcfcfb"
 PANELS = [  # (glob, direction, kind or None, title, y label)
     ("worldof-13-aorus-1.5b-knob-s*.json", "manytrees", "tree", "many trees − one tree", "trees per world"),
     ("worldof-13-aorus-1.5b-knob-s*.json", "crowded", None, "crowded − empty", "things per world"),
@@ -62,36 +62,8 @@ def series(files, name, kind):
     return pts
 
 
-def mean_se(v):
-    m = sum(v) / len(v)
-    sd = (sum((x - m) ** 2 for x in v) / max(1, len(v) - 1)) ** 0.5
-    return m, sd / len(v) ** 0.5
-
-
 def panel(ax, pts, title, ylabel):
-    for kind, color, label, z in (("placebo", ROTC, "the same vector, shuffled", 2), ("real", VEC, "the vector", 3)):
-        xs = sorted(pts[kind])
-        if not xs:
-            continue
-        ms = [mean_se(pts[kind][x]) for x in xs]
-        ax.fill_between(xs, [m - s for m, s in ms], [m + s for m, s in ms], color=color, alpha=0.16, linewidth=0, zorder=z)
-        ax.plot(xs, [m for m, _ in ms], color=color, linewidth=3, marker="o", markersize=8,
-                markeredgecolor=SURF, markeredgewidth=1.5, label=label, zorder=z + 1, solid_capstyle="round")
-    if pts["base"]:
-        m, s = mean_se(pts["base"][0.0])
-        ax.plot([0], [m], color=INK, marker="o", markersize=9, markeredgecolor=SURF, markeredgewidth=1.5,
-                linestyle="none", label="nothing added", zorder=6)
-    ax.set_title(title, loc="left", color=INK, fontsize=11)
-    ax.set_ylabel(ylabel, color=INK2, fontsize=9)
-    ax.set_xticks([-3, -1.5, 0, 1.5, 3])
-    ax.grid(axis="y", color=GRID, linewidth=1)
-    ax.set_axisbelow(True)
-    for s in ("top", "right"):
-        ax.spines[s].set_visible(False)
-    for s in ("left", "bottom"):
-        ax.spines[s].set_color(GRID)
-    ax.tick_params(length=0, colors=INK2, labelsize=9)
-    ax.set_facecolor(SURF)
+    curves(ax, pts, title, ylabel)
 
 
 def main():
@@ -101,28 +73,21 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--title", default="The sliders")
     a = ap.parse_args()
-    font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11 if a.only else 10})
+    fonts()
     live = [(g, n, k, t, y) for g, n, k, t, y in PANELS if glob.glob(str(HERE / "docs" / "runs" / g))]
     if a.only:
         keep = a.only.split(",")
         live = [x for x in live if x[1] in keep]
     cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
-    size = (7.5, 4.6) if len(live) == 1 else ((12.5, 4.6) if len(live) == 2 else (4.2 * cols, 3.4 * rows + 0.3))
+    size = (7.5, 4.8) if len(live) == 1 else ((12.5, 4.8) if len(live) == 2 else (4.6 * cols, 3.9 * rows + 0.3))
     fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
         panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k), t, y)
     for ax in axes[len(live):]:
         ax.axis("off")
-    if len(live) > 2:
-        axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
-    for ax in axes[:len(live)]:
-        ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2, fontsize=9.5)
-    if len(live) <= 3:
-        axes[0].legend(loc="best", frameon=False, fontsize=9.5, labelcolor=INK2)
-    fig.tight_layout(h_pad=1.2)
+    fig.tight_layout(h_pad=1.6, w_pad=2.4)
     out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

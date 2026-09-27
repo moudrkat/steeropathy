@@ -14,8 +14,8 @@ import tempfile
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = pathlib.Path(__file__).parent.parent
-FONT = "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
-FONT_B = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+FONT = "/usr/share/fonts/truetype/lato/Lato-Regular.ttf"
+FONT_B = "/usr/share/fonts/truetype/lato/Lato-Semibold.ttf"
 SURF, INK, INK2 = (252, 252, 251), (11, 11, 11), (82, 81, 78)
 CW, CH, PAD = 460, 360, 14
 
@@ -33,7 +33,7 @@ def card_html(c):
     price = c.get("price")
     price = "" if price is None or price != price else (f"{price:,.2f}".rstrip("0").rstrip(".") if price < 1000 else f"{price:,.0f}")
     return f"""<!doctype html><meta charset="utf-8"><style>
-    body{{margin:0;background:#fcfcfb;font-family:'DejaVu Sans',sans-serif}}
+    body{{margin:0;background:#fcfcfb;font-family:Lato,'DejaVu Sans',sans-serif}}
     .card{{width:{CW - 40}px;height:{CH - 40}px;margin:20px;box-sizing:border-box;padding:22px 24px;border-radius:14px;
       background:{theme};color:{ink};box-shadow:0 2px 12px rgba(0,0,0,.12);display:flex;flex-direction:column;overflow:hidden}}
     h1{{margin:0;font-size:22px;line-height:1.15}} .tag{{margin:6px 0 10px;font-size:14px;opacity:.85}}

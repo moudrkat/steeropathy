@@ -14,7 +14,6 @@ import sys
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib import font_manager  # noqa: E402
 from matplotlib.colors import LinearSegmentedColormap  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
@@ -73,8 +72,9 @@ def main():
               "cheaper": "cheap", "warmer": "warm", "later": "late", "night": "likes night", "trees": "likes trees",
               "rain": "likes rain", "snow": "likes snow", "sea": "likes sea"}
     M = [[cos(vecs[x], vecs[y]) for y in names] for x in names]
-    font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10})
+    sys.path.insert(0, str(HERE / "fig"))
+    from style import fonts
+    fonts(10)
     n = len(names)
     fig, ax = plt.subplots(figsize=(0.46 * n + 2.6, 0.46 * n + 1.4), facecolor=SURF)
     im = ax.imshow(M, cmap=CMAP, vmin=-1, vmax=1)
