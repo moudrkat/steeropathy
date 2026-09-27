@@ -1,24 +1,24 @@
-"""handoff: agents passing each other knob settings, as one vector.
+"""handoff: agents passing each other slider settings, as one vector.
 
 secondhand pushed one mind's whole page-state into another and found the
 poem carried more. The encoder was the problem: a mean-pooled contrast of
 a whole page is a blunt message. Here the message is written on purpose.
 Mind A is given a brief ("a dark forest full of birds") and a catalogue of
-knobs — directions with a measurable readout on the page (trees, birds,
+sliders — directions with a measurable readout on the page (trees, birds,
 stars, cats, houses, crowded, dark, night). A chooses settings for them in a
 sober JSON call (no steering on the decision, as always here). The settings
 become one vector, the sum of strength × unit direction, and that vector is
 added into mind B, which is told only "a place". B draws. The page says how
-much of A's message arrived: for every knob A turned, did B's world move
+much of A's message arrived: for every slider A turned, did B's world move
 that way against B's own baseline?
 
 Channels, so the vector has something to lose to:
-  none     B unsteered — the baseline every knob is read against
+  none     B unsteered — the baseline every slider is read against
   vector   A's settings as one vector added at layer 16 ± 4
   text     A's settings as a sentence in B's prompt ("More trees. Darker.")
-  placebo  the same vector, coordinates signed-permuted: the dose alone
+  placebo  the same vector, coordinates signed-permuted: the strength alone
 
-Prediction, written before the first run: text will carry the count knobs
+Prediction, written before the first run: text will carry the count sliders
 (a sentence that says "more birds" is easy to obey), the vector will carry
 the continuous ones (darkness) and lose the counts, and the placebo will be
 near the coin. If the vector matches text here, the channel was never the
@@ -45,7 +45,7 @@ from .worldof import direction_for
 
 HERE = pathlib.Path(__file__).parent.parent
 
-# knob -> (how it is read off a world, which way + points). The reading is a
+# slider -> (how it is read off a world, which way + points). The reading is a
 # number; "up" means a positive setting should raise it.
 KNOBS = {
     "manytrees": ("count", "tree"), "manybirds": ("count", "bird"),
@@ -70,8 +70,8 @@ BRIEFS = [
 ]
 
 
-def read(world, knob):
-    how, arg = KNOBS[knob]
+def read(world, slider):
+    how, arg = KNOBS[slider]
     if how == "count":
         ks = kinds_of(world)
         return float(min(6, len(ks) if arg is None else sum(1 for k in ks if k == arg)))  # the page's cap
@@ -86,7 +86,7 @@ def read(world, knob):
 
 
 def parse_settings(text):
-    """A's JSON: {"manytrees": 2, "darker": 1}. Unknown knobs and zeros are
+    """A's JSON: {"manytrees": 2, "darker": 1}. Unknown sliders and zeros are
     dropped, values clipped to [-3, 3]."""
     m = re.search(r"\{.*?\}", text or "", re.S)
     if not m:
@@ -121,8 +121,8 @@ def settings_text(settings):
 
 
 def fidelity(settings, world, baseline):
-    """Share of A's turned knobs whose reading in B's world moved the way
-    A set it, against B's baseline mean for that knob. None when there is
+    """Share of A's turned sliders whose reading in B's world moved the way
+    A set it, against B's baseline mean for that slider. None when there is
     no world."""
     if not world:
         return None
@@ -139,10 +139,10 @@ def fidelity(settings, world, baseline):
 
 class Handoff(Eco):
     def __init__(self, url, strength=3.0, layer=None, temp=0.7, seed=0,
-                 decide_temp=0.3, knobs=None, decide_url=None):
+                 decide_temp=0.3, sliders=None, decide_url=None):
         self.url, self.judge_url = url, None
         # A may be a different model from B: the decision is words, the
-        # vector is built from B's model. A 1.5B deciding turned every knob
+        # vector is built from B's model. A 1.5B deciding turned every slider
         # to ±3 for every brief; the 4B reads a brief.
         self.decide_url = decide_url or url
         self.sh = Secondhand(url, channels=("none",), layer=layer, temp=temp,
@@ -152,7 +152,7 @@ class Handoff(Eco):
         self.layer, self.lo, self.hi = self.sh.layer, self.sh.lo, self.sh.hi
         self.strength, self.temp, self.decide_temp = strength, temp, decide_temp
         self.rng = random.Random(seed)
-        self.knobs = list(knobs or KNOBS)
+        self.knobs = list(sliders or KNOBS)
         self.dirs = {}
         self.log = []
 
@@ -162,18 +162,18 @@ class Handoff(Eco):
         return self.dirs[name]
 
     def decide(self, brief):
-        """A, sober: settings for the knobs, as JSON. No worked example in
+        """A, sober: settings for the sliders, as JSON. No worked example in
         the prompt: a small model copies it, values and all (the first run
         set trees +2 and darker +1 for a blazing bright beach)."""
         cat = ", ".join(f"{k} ({WORDS[k]})" for k in self.knobs)
         body = {"messages": [
-            {"role": "system", "content": "You set knobs. Answer with one JSON object and nothing else."},
+            {"role": "system", "content": "You set sliders. Answer with one JSON object and nothing else."},
             {"role": "user", "content":
                 f"Another mind will draw a place, but it will never hear your brief. "
-                f"You can only turn knobs on it. The knobs, each from -3 (much less) to 3 (much more): {cat}. "
-                f"Brief: \"{brief}\". Turn at most three knobs, the ones the brief needs; leave the rest out. "
+                f"You can only turn sliders on it. The sliders, each from -3 (much less) to 3 (much more): {cat}. "
+                f"Brief: \"{brief}\". Turn at most three sliders, the ones the brief needs; leave the rest out. "
                 f"Negative means less of it, positive means more. "
-                f"Answer as a JSON object whose keys are knob names and whose values are numbers from -3 to 3."}],
+                f"Answer as a JSON object whose keys are slider names and whose values are numbers from -3 to 3."}],
             "max_tokens": 80, "temperature": self.decide_temp,
             "metadata": {"demo": self.demo_tag, "case": "A-decide", "variant": brief[:24]}}
         if self.decide_url != self.url:
@@ -229,7 +229,7 @@ class Handoff(Eco):
 
 
 def baseline_of(log):
-    """B's own reading per knob, the mean over every unsteered world of the run."""
+    """B's own reading per slider, the mean over every unsteered world of the run."""
     acc = {}
     for rec in log:
         for r in rec["reads"]:
@@ -271,13 +271,13 @@ def table(log):
 
 
 def print_table(t):
-    print("\nfidelity: share of A's turned knobs that B's world moved the right way (vs B's own baseline):")
+    print("\nfidelity: share of A's turned sliders that B's world moved the right way (vs B's own baseline):")
     print(f"{'channel':9s} {'n':>4s} {'parsed':>7s} {'fidelity':>9s}")
     for ch in ("none", "text", "vector", "placebo"):
         d = t["channels"].get(ch)
         if d:
             print(f"{ch:9s} {d['n']:>4d} {d['parse_rate']!s:>7s} {d['fidelity']!s:>9s}")
-    print("\nper knob (hits/n):")
+    print("\nper slider (hits/n):")
     for k, chs in t["knobs"].items():
         print(f"  {k:11s} " + "  ".join(f"{ch} {v['hit']}/{v['n']}" for ch, v in chs.items()))
 
@@ -305,7 +305,7 @@ def main():
         return
     h = Handoff(args.url, layer=args.layer, temp=args.temp, seed=args.seed,
                 decide_temp=args.decide_temp, decide_url=args.decide_url)
-    print(f"handoff: {args.briefs} briefs · layer {h.layer} (±{h.hi - h.layer}) · knobs {' '.join(h.knobs)}\n")
+    print(f"handoff: {args.briefs} briefs · layer {h.layer} (±{h.hi - h.layer}) · sliders {' '.join(h.knobs)}\n")
     out = pathlib.Path(args.out) if args.out else HERE / "docs" / "handoff.json"
     out.parent.mkdir(parents=True, exist_ok=True)
 

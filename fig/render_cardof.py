@@ -60,7 +60,7 @@ def main():
     ap.add_argument("run")
     ap.add_argument("--rows", default=None, help="comma list: none, louder, louder/placebo, …")
     ap.add_argument("--k", type=int, default=3)
-    ap.add_argument("--title", default="The knobs on a card")
+    ap.add_argument("--title", default="The sliders on a card")
     ap.add_argument("--subtitle", default="")
     ap.add_argument("--out", default=str(HERE / "docs" / "story" / "cards.png"))
     a = ap.parse_args()

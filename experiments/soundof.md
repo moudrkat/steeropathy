@@ -35,7 +35,7 @@ prediction the placebo can embarrass.
 4. **What is measured, against what:** per direction, the share of tunes
    that left the unsteered mode on each typed field and where they went;
    for the numbers, the mean and its distance from the unsteered mean. The
-   placebo row under each direction is the control; the dose is what it
+   placebo row under each direction is the control; the strength is what it
    moves.
 
 ## Prediction, written before the first run

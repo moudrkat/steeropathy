@@ -1,4 +1,4 @@
-"""The knob: how many trees (and how many things) the model draws as the
+"""The slider: how many trees (and how many things) the model draws as the
 strength of a count direction goes from -3 to +3. Real vector as a line,
 the shuffled vector in grey, the unsteered worlds at zero.
 
@@ -81,11 +81,11 @@ def main():
     panel(a1, series(files, "manytrees", "tree"), "many trees minus one tree", "trees drawn per world")
     panel(a2, series(files, "crowded", None), "crowded minus empty", "things drawn per world")
     a2.legend(loc="upper left", frameon=False, fontsize=9.5, labelcolor=INK2)
-    fig.suptitle("The knob", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=0.985)
+    fig.suptitle("The slider", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=0.985)
     fig.text(0.02, 0.905, "Qwen2.5-1.5B, layer 16 ± 4. Eight worlds per point; the bar is the standard error. "
              "Negative strength pushes the other way.", color=INK2, fontsize=9.5)
     fig.tight_layout(rect=(0, 0, 1, 0.88))
-    out = HERE / "docs" / "worldof-knob.png"
+    out = HERE / "docs" / "worldof-slider.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
 

@@ -126,7 +126,7 @@ LIKES = {
         "Nothing beats a hot morning, everything green and loud.",
         "I feel at home in the heat, in the warmth, in summer.",
     ]},
-    # counts: the knob. The target is a NUMBER read off the drawn world, so a
+    # counts: the slider. The target is a NUMBER read off the drawn world, so a
     # strength sweep should give a curve, and the placebo a flat line.
     "manytrees": {"target": ("count", "tree"), "texts": [
         "A forest with hundreds of trees, trees everywhere, trees as far as I can see.",
@@ -150,7 +150,7 @@ LIKES = {
         "Empty to the edges, nothing on nothing, bare ground everywhere.",
         "Still, vacant, not one thing in view, and nothing doing anything.",
     ]},
-    # a continuous knob: the sky's brightness, read as the mean luminance
+    # a continuous slider: the sky's brightness, read as the mean luminance
     # of the sky colours the model picked
     "darker": {"target": ("lum", None), "texts": [
         "Pitch dark. A black sky, no light anywhere, the deepest night.",
@@ -220,7 +220,7 @@ def direction_for(url, name, layer, dict_path=None):
     if any(op in name for op in "+-") and not name.startswith("srv:"):
         # arithmetic on directions: "sad+calm", "sad-calm", "sad+0.5*calm".
         # Each term is a unit direction; the sum is unit-normalized again, so
-        # --strength stays the dose and only the direction changes.
+        # --strength stays the strength and only the direction changes.
         import re
         total, lay = None, layer
         for sign, coef, term in re.findall(r"([+-]?)\s*(?:([\d.]+)\*)?([A-Za-z_:~]+)", name):
@@ -275,7 +275,7 @@ def direction_for(url, name, layer, dict_path=None):
 FIELDS = ("time", "weather", "ground", "motion", "font")
 # the worked example every mind is shown ("Creased", from brave-new-world's
 # neutral prompt): a nudged model reaches for it, so a move that lands here
-# is the dose finding the example, not the direction finding a world
+# is the strength finding the example, not the direction finding a world
 EXAMPLE_FIELDS = {"time": "dusk", "weather": "rain", "ground": "ice",
                   "motion": "restless", "font": "hand"}
 
@@ -305,7 +305,7 @@ def summarize(runs, example=None):
     that left the unsteered mode (``moved``) and where they went (the modal
     value among the steered worlds, with its count); mean darkness and hue
     agreement with the unsteered worlds (1 = same). The placebo rows are the control:
-    a field the placebo moves as often is dose, not the direction."""
+    a field the placebo moves as often is the push, not the direction."""
     bases = [r["world"] for r in runs if r.get("kind") == "base" and r.get("world")]
     if not bases:
         return {}
@@ -405,7 +405,7 @@ def print_summary(summary):
           + " · ".join(f"{k} {b['mode'][k]}" for k in FIELDS)
           + f" · things {b['things'][0]} ({b['things'][1]})")
     print("\nshare of worlds that left the unsteered mode, and where they went "
-          "(placebo rows = the dose alone; the unsteered row = the floor):")
+          "(placebo rows = the strength alone; the unsteered row = the floor):")
     print(f"{'direction':22s} parse " + "".join(f"{k:>18s}" for k in FIELDS)
           + f"{'things':>14s}{'dark':>7s}{'hue':>7s}{'→example':>10s}")
     print(f"{'unsteered (self)':22s} {'':>5s} "

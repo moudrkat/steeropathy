@@ -59,9 +59,9 @@ ZOMB_RUNS = {
 }
 
 
-# worldof knobs: the page as a control panel. Each knob is one unit direction
+# worldof knobs: the page as a control panel. Each slider is one unit direction
 # built once from the served model (worldof.direction_for); a draw sums
-# strength × direction over the knobs, registers the sum, and dreams a world.
+# strength × direction over the sliders, registers the sum, and dreams a world.
 WO_LOCK = threading.Lock()
 WO_DIRS: dict[str, list[float]] = {}
 WO_SH: sh_mod.Secondhand | None = None
@@ -101,7 +101,7 @@ def _wo_draw(knobs: dict, wish: str) -> dict:
     sh = _wo_sh()
     total = None
     used = {}
-    for name, val in knobs.items():
+    for name, val in sliders.items():
         val = float(val or 0)
         if not val or name not in {k for k, _, _ in WO_KNOBS}:
             continue
@@ -144,7 +144,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         path = urlparse(self.path).path
-        if path == "/worldof/knobs":
+        if path == "/worldof/sliders":
             return self._send(200, {"knobs": [{"name": n, "label": l, "built": b}
                                               for n, l, b in WO_KNOBS],
                                     "ready": sorted(WO_DIRS)})

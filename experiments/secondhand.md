@@ -148,7 +148,7 @@ The ghost did not replicate. Over sixty wishes B places what A almost
 placed 62 % of the time with the poem, 59 % with nothing, 57 % with the
 vector; the residue is 14 poem-only against 11 vector-only. The poem wins
 every moved field but motion, and the shuffled vector moves motion just as
-well (0.44), so motion is dose, not content: a pushed model moves its
+well (0.44), so motion is the push, not content: a pushed model moves its
 world. Time and font come out even. Read plainly: on the 1.5B the latent
 channel carries nothing nameable that A's own two lines do not carry
 better, and the one column that looked like the unsaid was twelve wishes of
@@ -183,11 +183,11 @@ worlds, 0.58 for the poem, 0.08 for nothing; chance 0.25.
 What is and isn't new here, against the literature as of this day, is in
 [docs/papers/related-secondhand.md](../docs/papers/related-secondhand.md).
 
-**worldof, the knobs and the sliders** moved to their own page:
+**worldof, the sliders and the sliders** moved to their own page:
 [worldof.md](worldof.md) — what a steering vector looks like when the model
 draws it, twelve worlds a direction with a placebo row under each, the
-count and brightness knobs, and the control panel. The agent-to-agent
-version of the knobs is [handoff.md](handoff.md).
+count and brightness sliders, and the control panel. The agent-to-agent
+version of the sliders is [handoff.md](handoff.md).
 
 ## Run it
 

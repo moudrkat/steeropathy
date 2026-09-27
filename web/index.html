@@ -218,7 +218,7 @@
     <button class="tab" id="t-reso" role="tab" aria-selected="false" onclick="tab('reso')">Resonance — a room of minds</button>
     <button class="tab" id="t-uns" role="tab" aria-selected="false" onclick="tab('uns')">Unsaid — talk in flickers</button>
     <button class="tab" id="t-zomb" role="tab" aria-selected="false" onclick="tab('zomb')">Zombie — the outbreak</button>
-    <button class="tab" id="t-wo" role="tab" aria-selected="false" onclick="tab('wo')">Worldof — the knobs</button>
+    <button class="tab" id="t-wo" role="tab" aria-selected="false" onclick="tab('wo')">Worldof — the sliders</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
@@ -251,7 +251,7 @@
       at one layer, and the model draws a place. Nothing in the prompt changes.</p>
     <div class="grid">
       <div class="card">
-        <h2>Knobs <span class="tag">· added to the residual stream</span></h2>
+        <h2>Sliders <span class="tag">· added to the residual stream</span></h2>
         <div id="wo-knobs"></div>
         <div class="lbl" style="margin-top:10px">Ask for</div>
         <input id="wo-wish" value="a place" style="width:100%;box-sizing:border-box;padding:6px 8px;font:inherit">
@@ -259,7 +259,7 @@
       </div>
       <div class="card">
         <h2>The world <span class="tag">· drawn by brave-new-world</span></h2>
-        <div id="wo-out"><span class="ph">turn a knob, press DRAW</span></div>
+        <div id="wo-out"><span class="ph">turn a slider, press DRAW</span></div>
       </div>
     </div>
   </section>
@@ -471,10 +471,10 @@ function refresh(){
 }
 
 const WO={busy:false,init:false,knobs:[]};
-if(location.hash==="#wo") setTimeout(()=>tab("wo"),0);   // a link straight to the knobs
+if(location.hash==="#wo") setTimeout(()=>tab("wo"),0);   // a link straight to the sliders
 async function initWo(){
   WO.init=true;
-  const d=await (await fetch("/worldof/knobs")).json();
+  const d=await (await fetch("/worldof/sliders")).json();
   WO.knobs=d.knobs;
   $("wo-knobs").innerHTML=d.knobs.map(k=>`
     <div style="display:grid;grid-template-columns:70px 1fr 40px;gap:8px;align-items:center;margin:4px 0">
@@ -934,9 +934,9 @@ $("go").onclick=async()=>{
   try{
     if(mode==="wo"){
       WO.busy=true;
-      const knobs=woKnobs();
-      $("wo-meta").textContent=Object.keys(knobs).length?"building the directions it has not built yet, then one world…":"no knob turned: the unsteered world…";
-      const d=await post("/worldof/draw",{knobs,wish:$("wo-wish").value});
+      const sliders=woKnobs();
+      $("wo-meta").textContent=Object.keys(sliders).length?"building the directions it has not built yet, then one world…":"no slider turned: the unsteered world…";
+      const d=await post("/worldof/draw",{sliders,wish:$("wo-wish").value});
       paintWo(d);
       $("wo-meta").textContent=d.strength?`one vector of length ${d.strength} at layers ${d.band[0]}–${d.band[1]} · `+Object.entries(d.knobs).map(([k,v])=>`${k} ${v}`).join(", "):"nothing added";
       WO.busy=false;

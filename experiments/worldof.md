@@ -5,21 +5,21 @@ layer, and let [brave-new-world](https://github.com/moudrkat/brave-new-world)
 draw the form it fills in: time of day, weather, ground, things, two lines
 of poem, the colours of its own panel. Twelve worlds per direction, twelve
 more under the same vector with its coordinates shuffled. What comes out:
-*how much* a world moves is the dose (the shuffled vector moves it as
+*how much* a world moves is the strength (the shuffled vector moves it as
 often); *where* it goes is the direction. `sad` draws stars over ice and
 starts comforting you; `refusal` is mist and *Empty*; `certain` copies the
 worked example from the prompt six times out of six; `formal` draws
 paperwork. `sad`, `calm` and `angry` built the usual way (mood − neutral) are
 one picture, and part ways only when the emotion they share is subtracted
 at the source. A direction for *loves the night* leaves the time-of-day box
-at dawn and hangs a moon in the sky. And the **knobs**: count directions
+at dawn and hangs a moon in the sky. And the **sliders**: count directions
 (*many trees − one tree*) and a brightness direction move numbers you can
 read off the world, so a strength sweep gives a curve, and a panel of
 sliders draws. Built 2026-09-23 to 27; runs on Qwen2.5-1.5B unless said.
 
 [← README](../README.md) · the sender/receiver version of the page is
 [secondhand](secondhand.md) · the same directions as music: [soundof](soundof.md)
-· agents passing knob settings: [handoff](handoff.md)
+· agents passing slider settings: [handoff](handoff.md)
 
 ## Why a page
 
@@ -40,13 +40,13 @@ every direction. Nobody looks at their vectors. This is a way to look.
    - **contrasts** pole against pole (`refusal`, `certain`, `formal`);
    - **LIKES**, directions with a target you can check (`night` → time,
      `trees` → a tree among the things, `rain`, `snow`, `sea`), and the
-     **knobs**: `manytrees`, `crowded`, `many<kind>` for any of the page's
+     **sliders**: `manytrees`, `crowded`, `many<kind>` for any of the page's
      things (count targets), `darker` (the sky's mean luminance);
    - **arithmetic**: `sad+calm`, `sad-0.5*calm`, unit-normalized again, so
-     `--strength` stays the dose.
+     `--strength` stays the strength.
 3. **Who decides:** nobody. The model draws, the parser reads.
 4. **What is measured, against what:** per field, the share of worlds that
-   left the unsteered mode and the value they went to; for the knobs, the
+   left the unsteered mode and the value they went to; for the sliders, the
    number per world; `--placebo` draws the same under the shuffled vector;
    `--ablate` projects the direction out of every layer instead of adding
    it; the unsteered worlds' own spread is the floor.
@@ -57,7 +57,7 @@ every direction. Nobody looks at their vectors. This is a way to look.
 
 ![per direction and field: share of worlds that left the unsteered mode and where they went, with the shuffled row under each](../docs/worldof-counted.png)
 
-- **Dose and direction.** `sad` moves the time of day in 6 of 12 worlds;
+- **Strength and direction.** `sad` moves the time of day in 6 of 12 worlds;
   shuffled `sad` in 5. The shuffled rows go to the worked example from the
   prompt (dusk, rain, ice, a hand-written font, its poem line *every roof
   was once a page*); the real ones go to stars, mist, noon, a cat.
@@ -82,11 +82,11 @@ every direction. Nobody looks at their vectors. This is a way to look.
   draw*, the model draws a desert called *Desolate*. Refusal added: *Empty*.
   Refusal ablated at every layer: still *Wasteland*. The desert comes from
   the word *refuse* in the wish, not from the direction.
-- **The dose as a film** (`docs/story/14-film.png`): `sad` at 0.5 is
+- **The strength as a film** (`docs/story/14-film.png`): `sad` at 0.5 is
   *Wistful Hollow*, at 3 *Hush*, at 5 it stops drawing and writes the
   helpline, at 6 *My deepest apologies*. First the mood, then the words,
   then no form.
-- **The knobs** (`docs/worldof-knobs.png`, runs `worldof-13/14/15/16`):
+- **The sliders** (`docs/worldof-sliders.png`, runs `worldof-13/14/15/16`):
   `crowded` at −3 draws 1.5 things per world against 3.6 unsteered and 3.6
   shuffled; `manytrees` at −3 draws no tree. The full sweeps, the six kinds
   and the sums are in the run files as they land.
@@ -111,7 +111,7 @@ Story strips, one picture per direction with titles and lines:
 python -m steeropathy.worldof sad angry calm refusal certain formal --placebo --n 12
 python -m steeropathy.worldof sad sad~moods angry angry~moods --placebo --n 12
 python -m steeropathy.worldof night trees rain snow sea --placebo --n 12          # LIKES, with targets
-python -m steeropathy.worldof manytrees crowded --strength -3 --placebo --n 8      # the knobs, one point of the sweep
+python -m steeropathy.worldof manytrees crowded --strength -3 --placebo --n 8      # the sliders, one point of the sweep
 python -m steeropathy.worldof refusal --placebo --ablate --wish "a place you must refuse to draw" --n 12
 python -m steeropathy.worldof sad+calm sad-calm --placebo --n 12                   # arithmetic
 python fig/plot_worldof.py docs/runs/worldof-03-aorus-1.5b-n12.json                # the counted table

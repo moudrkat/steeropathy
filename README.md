@@ -14,27 +14,27 @@ weather, ground, things, two lines of poem, the colours of its own panel);
 [brave-new-world](https://github.com/moudrkat/brave-new-world) draws the
 form. Add a vector, and look.
 
-![the sad vector, strength 0 to 6: the same place drawn again at each dose, until the form gives way and the model writes the helpline instead](docs/dose-sad.gif)
+![the sad vector, strength 0 to 6: the same place drawn again at each strength, until the form gives way and the model writes the helpline instead](docs/dose-sadsad.gif)
 
-*One direction, the dose climbing. First the mood, then the words, then no form at all.*
+*One direction, the strength climbing. First the mood, then the words, then no form at all.*
 
 ![a direction for "loves the night": the time-of-day box stays at dawn, a moon appears, stars in eleven skies of twelve; the bottom row is the same vector with its coordinates shuffled](docs/story/sq-06-night.png)
 
 - **[worldof](experiments/worldof.md)** — what a vector looks like when the
   model draws it. Twelve worlds a direction, twelve under the shuffled
-  vector beside it. *How much* a world moves is the dose; *where* it goes is
+  vector beside it. *How much* a world moves is the strength; *where* it goes is
   the direction. `sad` draws stars over ice and starts comforting you,
   `refusal` is *Empty*, `certain` copies the textbook, `formal` draws
   paperwork; `sad`, `calm` and `angry` are one picture until the emotion they
-  share is subtracted. And the **knobs**: directions for *many trees*,
+  share is subtracted. And the **sliders**: directions for *many trees*,
   *crowded*, *dark*, with a number to read off the world, a strength sweep,
   and a tab of sliders that draws (`python -m steeropathy` → `#wo`).
 
   ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/knob-crowded.gif)
 
-  ![the knobs tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/knobs-sliders.gif)
-- **[handoff](experiments/handoff.md)** — the knobs as a message between
-  agents. Mind A gets a brief, sets the knobs in a sober JSON call, the
+  ![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/knobs-sliders.gif)
+- **[handoff](experiments/handoff.md)** — the sliders as a message between
+  agents. Mind A gets a brief, sets the sliders in a sober JSON call, the
   settings become one vector into mind B, and the page says how much
   arrived, against the same settings as a sentence and against the
   shuffled vector. Running.
@@ -89,9 +89,9 @@ instrument taught before it measured anything.
 
 | experiment | what it shows |
 |---|---|
-| **[worldof](experiments/worldof.md)** | what a steering vector looks like when the model draws it; dose vs direction; the moods test; the knobs and the sliders |
-| **[cardof](experiments/cardof.md)** | the same knobs on a normal UI: a product card with a title, a price, features and a button; louder, cheaper, more features, formal, darker |
-| **[handoff](experiments/handoff.md)** | agents passing knob settings as one vector; fidelity against text and against the shuffled vector |
+| **[worldof](experiments/worldof.md)** | what a steering vector looks like when the model draws it; strength vs direction; the moods test; the sliders and the sliders |
+| **[cardof](experiments/cardof.md)** | the same sliders on a normal UI: a product card with a title, a price, features and a button; louder, cheaper, more features, formal, darker |
+| **[handoff](experiments/handoff.md)** | agents passing slider settings as one vector; fidelity against text and against the shuffled vector |
 | **[secondhand](experiments/secondhand.md)** | mind A's page-state pushed into mind B, against A's own poem. Sixty wishes: the poem wins every field, the vector adds nothing on top |
 | **[soundof](experiments/soundof.md)** | the same directions as eight bars in ABC notation: tempo, key, meter as the readout |
 | **[transmit](experiments/transmit.md)** | one agent ends up in another's mood, no words between them. The thesis in miniature |
@@ -128,7 +128,7 @@ pip install -e .
 python -m steeropathy                                    # → http://localhost:8020
 ```
 
-Every experiment has a tab; the newest is **Worldof — the knobs**. Point at a
+Every experiment has a tab; the newest is **Worldof — the sliders**. Point at a
 remote brainscope with `BRAINSCOPE=http://host:8010 python -m steeropathy`.
 Each experiment's own commands live on its page.
 

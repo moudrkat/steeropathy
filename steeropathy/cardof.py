@@ -1,4 +1,4 @@
-"""cardof: the knobs on a normal UI.
+"""cardof: the sliders on a normal UI.
 
 worldof draws a place. This fills in a card everyone has seen on the web:
 a title, a tagline, a price, a list of features, a button, a colour, a

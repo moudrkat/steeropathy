@@ -1,9 +1,9 @@
-"""The dose as a gif: one direction, the strength climbing frame by frame,
+"""The strength as a gif: one direction, the strength climbing frame by frame,
 each frame the world drawn at that strength with its title, its first
 line, and a strength bar. Worlds that did not parse show what the model
 wrote instead. Also an mp4 (ffmpeg), for LinkedIn.
 
-    python fig/render_dose_gif.py sad "docs/runs/worldof-07-aorus-1.5b-film-s*.json" --out docs/dose-sad.gif
+    python fig/render_dose_gif.py sad "docs/runs/worldof-07-aorus-1.5b-film-s*.json" --out docs/dose-sadsad.gif
     python fig/render_dose_gif.py crowded "docs/runs/worldof-13-aorus-1.5b-knob-s*.json" --out docs/knob-crowded.gif
 """
 import argparse
@@ -103,7 +103,7 @@ def main():
     entries.sort(key=lambda e: e[0])
     tmp = pathlib.Path(tempfile.mkdtemp())
     frames = [frame(rec, st, a.direction, a.site, tmp, i) for i, (st, rec) in enumerate(entries)]
-    out = pathlib.Path(a.out) if a.out else HERE / "docs" / f"dose-{a.direction}.gif"
+    out = pathlib.Path(a.out) if a.out else HERE / "docs" / f"strength-{a.direction}.gif"
     hold_ms = int(a.hold * 1000)
     frames[0].save(out, save_all=True, append_images=frames[1:], duration=[hold_ms] * (len(frames) - 1) + [hold_ms * 2],
                    loop=0, optimize=False)

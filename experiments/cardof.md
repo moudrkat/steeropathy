@@ -1,11 +1,11 @@
-# cardof: the knobs on a normal UI
+# cardof: the sliders on a normal UI
 
-**TL;DR.** [worldof](worldof.md) turns knobs on a drawn place. This turns
-the same kind of knob on a card everyone has seen on the web: a title, a
+**TL;DR.** [worldof](worldof.md) turns sliders on a drawn place. This turns
+the same kind of slider on a card everyone has seen on the web: a title, a
 tagline, a price, a list of features, a button, a theme colour, a tone. The
 model has to write the copy, so creativity is not optional, and the card
 is a typed readout: features counted, the price as a number, exclamation
-marks, capitals, emoji, words, the theme's darkness, the tone. Knobs:
+marks, capitals, emoji, words, the theme's darkness, the tone. Sliders:
 `manyfeatures` (a long list − a single line), `cheaper` (a bargain − a
 luxury), `louder` (shouting with exclamation marks − quiet and plain),
 `formal` and `darker` from worldof. The placebo is the shuffled vector; a
@@ -31,7 +31,7 @@ queued on the 1.5B.
 `louder` raises exclamation marks and capitals and leaves the price alone;
 `cheaper` lowers the price and nothing else; `manyfeatures` lengthens the
 list. `formal` flips the tone field and lowers the exclamation marks. The
-shuffled vectors move nothing but the words. If a knob moves the reading
+shuffled vectors move nothing but the words. If a slider moves the reading
 it was built for and no other, the card is a control panel.
 
 ## Run it
