@@ -183,61 +183,11 @@ worlds, 0.58 for the poem, 0.08 for nothing; chance 0.25.
 What is and isn't new here, against the literature as of this day, is in
 [docs/papers/related-secondhand.md](../docs/papers/related-secondhand.md).
 
-![six steering directions rendered as worlds by the 1.5B: the unsteered place, sad, angry, calm, refusal, certain, formal](../docs/worldof-1.5b.png)
-
-**worldof, counted (2026-09-24).** One world per direction is an
-anecdote, so `--n 12` dreams twelve unsteered worlds and twelve per
-direction, `--placebo` twelve more under the shuffled vector, and the
-summary reads each field as the share of worlds that left the unsteered
-mode and the value they went to — the placebo row under each direction is
-what the dose alone does (`fig/plot_worldof.py` → `docs/worldof-counted.png`).
-Three kinds of direction, because "does the page draw a mood" is not one
-question:
-
-- **moods** as everyone builds them (mood − neutral: `sad`), and the same
-  mood with the shared emotionality subtracted at the source (`sad~moods`,
-  mood − mean of all moods). transmit.py measured the mood − neutral
-  vectors mutually positive (cos 0.57–0.76 on the 4B); if `sad`, `angry`
-  and `calm` draw the same dusk-and-moss world and the `~moods` versions
-  part ways, the page was drawing intensity, not sadness.
-- **LIKES**, directions with a *target field known in advance*: `night`
-  (time → night), `trees` (a tree among the things), `rain`, `snow`
-  (weather), `sea` (ground), each mean(likes it) − mean(likes the
-  opposite). This is the instrument's calibration: a named direction that
-  reaches its own field while the placebo does not means the page reads
-  what the vector says, and any mood that then fails to separate is a fact
-  about the mood vectors, not about the page.
-- **arithmetic**: `sad+calm`, `sad-calm`, `sad+0.5*calm` — unit directions
-  summed and unit-normalized again, so `--strength` stays the dose. Do
-  worlds add?
-
-**The knobs (2026-09-27).** Her question: can a vector set *how many* of a
-thing the page draws? Count directions: `manytrees` (hundreds of trees minus
-a single tree), `crowded` (crowded minus empty), and `many<kind>` for any of
-the page's things (`manybirds`, `manycats`, …, `many_spec()`); a brightness
-direction `darker` (pitch dark minus blazing bright) read as the mean
-luminance of the sky colours. A strength sweep from −3 to +3 with the
-shuffled vector alongside gives a curve per knob (`fig/plot_knobs.py` →
-`docs/worldof-knobs.png`); sums of knobs (`manybirds+manycats`,
-`manystars+darker`) test whether the knobs add. And a control panel: the
-steeropathy UI got a **Worldof — the knobs** tab (`web/index.html`,
-`POST /worldof/draw`): sliders for trees, birds, stars, cats, houses,
-crowded, dark, night, sad, formal, refusal, summed into one vector, added at
-layer 16 ± 4, and the page draws. Nothing in the prompt changes.
-
-Runs in the queue (2026-09-24 afternoon, aorus): six directions × 12 on the
-1.5B; the mood test; arithmetic; LIKES; the dose as a film (`sad`,
-`refusal`, `night` at 0.5 … 6, six worlds each); the same directions on the
-0.5B and the 4B; and the tune version, [soundof](soundof.md).
-
-*`worldof`: what a steering vector looks like when the model draws it.
-1.5B, strength 3, each with a signed-permutation placebo in the JSON. Sad is
-snow on ice with one bare tree ("Solace"); angry moves the palette furthest
-of all; certain copies the worked example verbatim, title "a place"; refusal
-cannot stop listing things. Dusk and ice recur in the placebos too — they
-are the shared example, reached for whenever the model is nudged off its
-default — so read each world against its placebo, not against the
-postcard.*
+**worldof, the knobs and the sliders** moved to their own page:
+[worldof.md](worldof.md) — what a steering vector looks like when the model
+draws it, twelve worlds a direction with a placebo row under each, the
+count and brightness knobs, and the control panel. The agent-to-agent
+version of the knobs is [handoff.md](handoff.md).
 
 ## Run it
 
