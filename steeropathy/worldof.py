@@ -483,7 +483,7 @@ def print_summary(summary):
               + f"{d.get('dark_vs_base', '-')!s:>7s}{d.get('hue_vs_base', '-')!s:>7s}"
               + f"{d.get('to_example', '-')!s:>10s}"
               + ((f"   {d['target']['value']} per world: {d['target']['mean']} (unsteered {d['target']['base_mean']})"
-                  if d["target"]["field"] in READERS else
+                  if d["target"]["field"] in ("count", "lum", "hour", "poem_words", "warmth") else
                   f"   target {d['target']['field']}={d['target']['value']}: "
                   f"{d['target']['hit']}/{d['target']['n']} (unsteered {d['target']['base_hit']}/{d['target']['base_n']})")
                  if d.get("target") else ""))
