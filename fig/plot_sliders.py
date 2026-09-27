@@ -106,20 +106,27 @@ def main():
         live = [x for x in live if x[1] in keep]
     cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
-    size = (7.5, 5.2) if len(live) == 1 else (4.2 * cols, 3.4 * rows + 0.9)
+    size = (7.5, 5.2) if len(live) == 1 else ((12.5, 5.2) if len(live) == 2 else (4.2 * cols, 3.4 * rows + 0.9))
     fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
         panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k), t, y)
     for ax in axes[len(live):]:
         ax.axis("off")
-    axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
+    if len(live) > 2:
+        axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
     fh = size[1]
     fig.suptitle(a.title, x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
-    fig.text(0.02, 1 - 0.55 / fh, "Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
-             "y: what the drawn world contains. Bars are standard errors. Negative strength pushes the other way.",
-             color=INK2, fontsize=9)
-    fig.tight_layout(rect=(0, 0, 1, 1 - 0.75 / fh))
+    if len(live) <= 2:
+        sub = "Qwen2.5-1.5B, layer 16 ± 4. Eight worlds per point, bars are standard errors."
+        for ax in axes[:len(live)]:
+            ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2)
+        axes[0].legend(loc="best", frameon=False, fontsize=9.5, labelcolor=INK2)
+    else:
+        sub = ("Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
+               "y: what the drawn world contains. Bars are standard errors. Negative strength pushes the other way.")
+    fig.text(0.02, 1 - 0.5 / fh, sub, color=INK2, fontsize=9)
+    fig.tight_layout(rect=(0, 0, 1, 1 - 0.62 / fh))
     out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
