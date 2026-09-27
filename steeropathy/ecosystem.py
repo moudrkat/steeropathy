@@ -108,7 +108,8 @@ class Eco:
         self.state0, self.drift = {}, {}   # round-0 states; last unit drift
         self.log = []                      # one record per (round, agent)
 
-    def post(self, path, body, timeout=180):
+    def post(self, path, body, timeout=None):
+        timeout = timeout or int(__import__("os").environ.get("STEEROPATHY_TIMEOUT", 180))
         req = urllib.request.Request(self.url + path,
                                      json.dumps(body).encode(),
                                      {"Content-Type": "application/json"})
