@@ -41,42 +41,74 @@ def main():
     ap.add_argument("names", nargs="*", default=DEFAULT)
     ap.add_argument("--url", default="http://localhost:8010")
     ap.add_argument("--layer", type=int, default=None)
+    ap.add_argument("--from", dest="src", default=None, help="a saved directions json instead of the server")
+    ap.add_argument("--min", type=float, default=0.5, help="print the cosine where |cos| is at least this")
     a = ap.parse_args()
-    layer = a.layer if a.layer is not None else default_layer(a.url)
-    worldof.LIKES.update({k: v for k, v in CARD_KNOBS.items()})
-    worldof.LIKES.update({k: v for k, v in REPLY_KNOBS.items()})
-    vecs = {}
-    for n in a.names:
-        v, _, src = direction_for(a.url, n, layer)
-        vecs[n] = v
-        print(f"{n:14s} {src}")
-    import urllib.request
-    model = json.loads(urllib.request.urlopen(a.url + "/info", timeout=30).read()).get("model", "")
-    tag = model.split("/")[-1].lower()
-    (HERE / "docs" / "runs" / f"directions-{tag}.json").write_text(json.dumps(
-        {"model": model, "layer": layer, "directions": vecs}, ensure_ascii=False))
-    names = list(vecs)
+    if a.src:
+        d = json.loads(pathlib.Path(a.src).read_text())
+        vecs, model, layer = d["directions"], d["model"], d["layer"]
+    else:
+        layer = a.layer if a.layer is not None else default_layer(a.url)
+        worldof.LIKES.update({k: v for k, v in CARD_KNOBS.items()})
+        worldof.LIKES.update({k: v for k, v in REPLY_KNOBS.items()})
+        vecs = {}
+        for n in a.names:
+            v, _, src = direction_for(a.url, n, layer)
+            vecs[n] = v
+            print(f"{n:14s} {src}")
+        import urllib.request
+        model = json.loads(urllib.request.urlopen(a.url + "/info", timeout=30).read()).get("model", "")
+        tag = model.split("/")[-1].lower()
+        (HERE / "docs" / "runs" / f"directions-{tag}.json").write_text(json.dumps(
+            {"model": model, "layer": layer, "directions": vecs}, ensure_ascii=False))
+    # groups, in reading order; a thin gap between them
+    GROUPS = [("moods", ["sad", "calm", "angry"]),
+              ("minus what they share", ["sad~moods", "calm~moods", "angry~moods"]),
+              ("registers", ["refusal", "certain", "formal", "offers", "urgent"]),
+              ("things to like", ["night", "trees", "rain", "snow", "sea"]),
+              ("sliders", ["crowded", "manytrees", "darker", "later", "verbose", "warmer", "louder", "cheaper", "manyfeatures"])]
+    names = [n for _, g in GROUPS for n in g if n in vecs] + [n for n in vecs if n not in {x for _, g in GROUPS for x in g}]
+    labels = {"sad~moods": "sad − moods", "calm~moods": "calm − moods", "angry~moods": "angry − moods",
+              "manytrees": "many trees", "manyfeatures": "many features", "darker": "dark", "louder": "loud",
+              "cheaper": "cheap", "warmer": "warm", "later": "late", "night": "likes night", "trees": "likes trees",
+              "rain": "likes rain", "snow": "likes snow", "sea": "likes sea"}
     M = [[cos(vecs[x], vecs[y]) for y in names] for x in names]
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10})
     n = len(names)
-    fig, ax = plt.subplots(figsize=(0.42 * n + 2.4, 0.42 * n + 2.0), facecolor=SURF)
+    fig, ax = plt.subplots(figsize=(0.46 * n + 2.6, 0.46 * n + 2.2), facecolor=SURF)
     im = ax.imshow(M, cmap=CMAP, vmin=-1, vmax=1)
-    ax.set_xticks(range(n), names, rotation=60, ha="right", fontsize=9)
-    ax.set_yticks(range(n), names, fontsize=9)
+    shown = [labels.get(x, x) for x in names]
+    ax.set_xticks(range(n), shown, rotation=55, ha="right", fontsize=10)
+    ax.set_yticks(range(n), shown, fontsize=10)
     for i in range(n):
         for j in range(n):
-            if i != j and abs(M[i][j]) >= 0.3:
-                ax.text(j, i, f"{M[i][j]:.1f}", ha="center", va="center", fontsize=7,
-                        color=SURF if abs(M[i][j]) > 0.6 else INK)
+            if i != j and abs(M[i][j]) >= a.min:
+                ax.text(j, i, f"{M[i][j]:+.1f}".replace("+0.", "+.").replace("-0.", "−."), ha="center", va="center",
+                        fontsize=8, color=SURF if abs(M[i][j]) > 0.6 else INK)
+    # white gaps between the groups
+    pos = 0
+    for _, g in GROUPS[:-1]:
+        pos += sum(1 for x in g if x in vecs)
+        ax.axhline(pos - 0.5, color=SURF, linewidth=3)
+        ax.axvline(pos - 0.5, color=SURF, linewidth=3)
+    # group names along the top
+    pos = 0
+    for gname, g in GROUPS:
+        k = sum(1 for x in g if x in vecs)
+        if k:
+            ax.text(pos + k / 2 - 0.5, -1.0, gname, ha="center", va="bottom", fontsize=9.5, color=INK2)
+            pos += k
     ax.tick_params(length=0)
-    for s in ax.spines.values():
-        s.set_visible(False)
-    plt.colorbar(im, ax=ax, fraction=0.03, pad=0.02).set_label("cosine", color=INK2)
-    fig.suptitle("Which sliders are the same slider", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=0.995)
-    fig.text(0.02, 0.955, f"{model} · layer {layer} · cosine between the unit directions. Numbers shown where |cos| ≥ 0.3.",
-             color=INK2, fontsize=9)
-    fig.tight_layout(rect=(0, 0, 1, 0.94))
+    for sp in ax.spines.values():
+        sp.set_visible(False)
+    cb = plt.colorbar(im, ax=ax, fraction=0.03, pad=0.02, ticks=[-1, -0.5, 0, 0.5, 1])
+    cb.set_label("cosine: +1 the same direction, 0 unrelated, −1 opposite", color=INK2)
+    cb.outline.set_visible(False)
+    fig.suptitle("Which sliders are the same slider", x=0.02, ha="left", fontsize=16, color=INK, fontweight="bold", y=0.995)
+    fig.text(0.02, 0.962, f"{model.split('/')[-1]} · layer {layer} · every direction I built, and the cosine between each pair. "
+             f"Numbers where |cos| ≥ {a.min:g}.", color=INK2, fontsize=9.5)
+    fig.tight_layout(rect=(0, 0, 1, 0.95))
     out = HERE / "docs" / "directions-cos.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
