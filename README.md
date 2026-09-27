@@ -29,6 +29,8 @@ form. Add a vector, and look.
   share is subtracted. And the **knobs**: directions for *many trees*,
   *crowded*, *dark*, with a number to read off the world, a strength sweep,
   and a tab of sliders that draws (`python -m steeropathy` → `#wo`).
+
+  ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/knob-crowded.gif)
 - **[handoff](experiments/handoff.md)** — the knobs as a message between
   agents. Mind A gets a brief, sets the knobs in a sober JSON call, the
   settings become one vector into mind B, and the page says how much
