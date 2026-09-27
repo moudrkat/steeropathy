@@ -67,17 +67,18 @@ def mean_se(v):
 
 
 def panel(ax, pts, title, ylabel):
-    for kind, color, label in (("placebo", ROTC, "the same vector, shuffled"), ("real", VEC, "the vector")):
+    for kind, color, label, z in (("placebo", ROTC, "the same vector, shuffled", 2), ("real", VEC, "the vector", 3)):
         xs = sorted(pts[kind])
         if not xs:
             continue
         ms = [mean_se(pts[kind][x]) for x in xs]
-        ax.errorbar(xs, [m for m, _ in ms], yerr=[s for _, s in ms], color=color, linewidth=2,
-                    marker="o", markersize=5, markeredgecolor=SURF, capsize=3, label=label)
+        ax.fill_between(xs, [m - s for m, s in ms], [m + s for m, s in ms], color=color, alpha=0.16, linewidth=0, zorder=z)
+        ax.plot(xs, [m for m, _ in ms], color=color, linewidth=3, marker="o", markersize=8,
+                markeredgecolor=SURF, markeredgewidth=1.5, label=label, zorder=z + 1, solid_capstyle="round")
     if pts["base"]:
         m, s = mean_se(pts["base"][0.0])
-        ax.errorbar([0], [m], yerr=[s], color=INK, marker="o", markersize=6, capsize=3, linestyle="none",
-                    label="nothing added")
+        ax.plot([0], [m], color=INK, marker="o", markersize=9, markeredgecolor=SURF, markeredgewidth=1.5,
+                linestyle="none", label="nothing added", zorder=6)
     ax.set_title(title, loc="left", color=INK, fontsize=11)
     ax.set_ylabel(ylabel, color=INK2, fontsize=9)
     ax.set_xticks([-3, -1.5, 0, 1.5, 3])
@@ -118,15 +119,15 @@ def main():
     fh = size[1]
     fig.suptitle(a.title, x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
     if len(live) <= 2:
-        sub = "Qwen2.5-1.5B, layer 16 ± 4. Eight worlds per point, bars are standard errors."
+        sub = "Qwen2.5-1.5B, layer 16 ± 4. Eight worlds per point; the band is one standard error."
         for ax in axes[:len(live)]:
             ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2)
         axes[0].legend(loc="best", frameon=False, fontsize=9.5, labelcolor=INK2)
     else:
         sub = ("Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
-               "y: what the drawn world contains. Bars are standard errors. Negative strength pushes the other way.")
+               "y: what the drawn world contains. The band is one standard error. Negative strength pushes the other way.")
     fig.text(0.02, 1 - 0.5 / fh, sub, color=INK2, fontsize=9)
-    fig.tight_layout(rect=(0, 0, 1, 1 - 0.62 / fh))
+    fig.tight_layout(rect=(0, 0, 1, 1 - 0.38 / fh), h_pad=1.2)
     out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
