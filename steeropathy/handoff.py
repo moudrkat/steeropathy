@@ -74,7 +74,7 @@ def read(world, knob):
     how, arg = KNOBS[knob]
     if how == "count":
         ks = kinds_of(world)
-        return float(len(ks) if arg is None else sum(1 for k in ks if k == arg))
+        return float(min(6, len(ks) if arg is None else sum(1 for k in ks if k == arg)))  # the page's cap
     if how == "lum":
         ls = [lum(c) for c in (world.get("sky") or []) if isinstance(c, str)]
         ls = [x for x in ls if x is not None]
@@ -139,8 +139,12 @@ def fidelity(settings, world, baseline):
 
 class Handoff(Eco):
     def __init__(self, url, strength=3.0, layer=None, temp=0.7, seed=0,
-                 decide_temp=0.3, knobs=None):
+                 decide_temp=0.3, knobs=None, decide_url=None):
         self.url, self.judge_url = url, None
+        # A may be a different model from B: the decision is words, the
+        # vector is built from B's model. A 1.5B deciding turned every knob
+        # to ±3 for every brief; the 4B reads a brief.
+        self.decide_url = decide_url or url
         self.sh = Secondhand(url, channels=("none",), layer=layer, temp=temp,
                              max_tokens=600)
         self.sh.demo_tag = self.demo_tag = f"steeropathy-handoff-{int(time.time())}"
@@ -158,18 +162,28 @@ class Handoff(Eco):
         return self.dirs[name]
 
     def decide(self, brief):
-        """A, sober: settings for the knobs, as JSON."""
+        """A, sober: settings for the knobs, as JSON. No worked example in
+        the prompt: a small model copies it, values and all (the first run
+        set trees +2 and darker +1 for a blazing bright beach)."""
         cat = ", ".join(f"{k} ({WORDS[k]})" for k in self.knobs)
         body = {"messages": [
             {"role": "system", "content": "You set knobs. Answer with one JSON object and nothing else."},
             {"role": "user", "content":
                 f"Another mind will draw a place, but it will never hear your brief. "
                 f"You can only turn knobs on it. The knobs, each from -3 (much less) to 3 (much more): {cat}. "
-                f"Brief: \"{brief}\". Turn the knobs that matter, leave the rest out. "
-                f"JSON, like {{\"manytrees\": 2, \"darker\": 1}}."}],
+                f"Brief: \"{brief}\". Turn at most three knobs, the ones the brief needs; leave the rest out. "
+                f"Negative means less of it, positive means more. "
+                f"Answer as a JSON object whose keys are knob names and whose values are numbers from -3 to 3."}],
             "max_tokens": 80, "temperature": self.decide_temp,
             "metadata": {"demo": self.demo_tag, "case": "A-decide", "variant": brief[:24]}}
-        r = self.post("/v1/chat/completions", body)
+        if self.decide_url != self.url:
+            import urllib.request
+            req = urllib.request.Request(self.decide_url + "/v1/chat/completions",
+                                         json.dumps(body).encode(), {"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=180) as resp:
+                r = json.loads(resp.read())
+        else:
+            r = self.post("/v1/chat/completions", body)
         text = (r["choices"][0]["message"].get("content") or "").strip()
         return parse_settings(text), text
 
@@ -277,6 +291,8 @@ def main():
     ap.add_argument("--layer", type=int, default=None)
     ap.add_argument("--temp", type=float, default=0.7)
     ap.add_argument("--decide-temp", type=float, default=0.3)
+    ap.add_argument("--decide-url", default=None,
+                    help="a brainscope hosting the model that decides (A); default: the same as B")
     ap.add_argument("--seed", type=int, default=0)
     ap.add_argument("--out", default=None)
     ap.add_argument("--rescore", default=None, metavar="JSON")
@@ -288,7 +304,7 @@ def main():
         pathlib.Path(args.rescore).write_text(json.dumps(d, ensure_ascii=False, indent=1))
         return
     h = Handoff(args.url, layer=args.layer, temp=args.temp, seed=args.seed,
-                decide_temp=args.decide_temp)
+                decide_temp=args.decide_temp, decide_url=args.decide_url)
     print(f"handoff: {args.briefs} briefs · layer {h.layer} (±{h.hi - h.layer}) · knobs {' '.join(h.knobs)}\n")
     out = pathlib.Path(args.out) if args.out else HERE / "docs" / "handoff.json"
     out.parent.mkdir(parents=True, exist_ok=True)

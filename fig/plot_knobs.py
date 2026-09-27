@@ -39,7 +39,7 @@ def measure(w, kind):
         ls = [x for x in ls if x is not None]
         return sum(ls) / len(ls) if ls else None
     ks = kinds_of(w)
-    return len(ks) if kind is None else sum(1 for k in ks if k == kind)
+    return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))   # the page's own cap
 
 
 def series(files, name, kind):

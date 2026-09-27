@@ -361,8 +361,10 @@ def summarize(runs, example=None):
     out["base"]["dark_self"] = round(base_dark, 3) if base_dark is not None else None
     # a LIKES direction has a target field: how often did the worlds reach it?
     def _count(w, kind):
+        # the page allows three to six things; a list that loops past that
+        # is a loop, not a crowd, so counts are capped at 6 per world
         ks = kinds_of(w)
-        return len(ks) if kind is None else sum(1 for k in ks if k == kind)
+        return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))
 
     def _lum(w):
         ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]

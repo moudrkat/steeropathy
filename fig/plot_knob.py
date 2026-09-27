@@ -23,7 +23,7 @@ VEC, ROTC, INK, INK2, GRID, SURF = "#eb6834", "#a09e99", "#0b0b0b", "#52514e", "
 
 def count(w, kind):
     ks = kinds_of(w)
-    return len(ks) if kind is None else sum(1 for k in ks if k == kind)
+    return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))
 
 
 def series(files, name, kind):
