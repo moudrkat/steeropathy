@@ -432,6 +432,12 @@ def summarize(runs, example=None):
     READERS = {"count": None, "lum": _lum, "hour": _hour, "poem_words": _poem_words, "warmth": _warmth}
     for key, d in out.items():
         base_name = key.replace(" (placebo)", "")
+        if base_name.startswith("many") and base_name not in LIKES:
+            from .secondhand import KINDS
+            kind = base_name[4:]
+            if kind not in KINDS and kind.endswith("s") and kind[:-1] in KINDS:
+                kind = kind[:-1]
+            LIKES[base_name] = many_spec(kind)      # a finished run read offline: register its target
         if base_name in LIKES and "n" in d:
             field, value = LIKES[base_name]["target"]
             if field in READERS:
