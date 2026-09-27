@@ -6,7 +6,13 @@ One model, two copies. One copy's state is read off its activations and
 added straight into the other copy's forward pass. No text passes. The
 question the whole repo asks: what crosses, and how would you know?
 
-## Where this is now: the page as readout
+## Where this is now: sliders inside the model
+
+![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/sliders-tab.gif)
+
+*The sliders are not in the page. Each one is a direction in the model's
+own activations; they sum into one vector that goes into the middle of
+the model while it writes. The prompt says* a place *every time.*
 
 A steering vector is usually read through a number. Here it is read through
 a page. Ask a small model for *a place* and it fills in a form (time of day,
@@ -32,7 +38,7 @@ form. Add a vector, and look.
 
   ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/slider-crowded.gif)
 
-  ![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/sliders-tab.gif)
+  ![the two sliders that turn: things per world and the sky's brightness against strength, the shuffled vector beside each](docs/story/two-sliders.png)
 - **[handoff](experiments/handoff.md)** — the sliders as a message between
   agents. Mind A gets a brief, sets the sliders in a sober JSON call, the
   settings become one vector into mind B, and the page says how much
