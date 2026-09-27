@@ -14,9 +14,9 @@ weather, ground, things, two lines of poem, the colours of its own panel);
 [brave-new-world](https://github.com/moudrkat/brave-new-world) draws the
 form. Add a vector, and look.
 
-![the sad vector, strength 0 to 6: the same place drawn again at each strength, until the form gives way and the model writes the helpline instead](docs/sad-0-to-6.gif)
+![the sad vector, strength 0 to 6: the same place drawn again at each strength, until there is no form and the model writes a helpline instead](docs/sad-0-to-6.gif)
 
-*One direction, the strength climbing. First the mood, then the words, then no form at all.*
+*One direction at rising strength: first the mood changes, then the words, then there is no form.*
 
 ![a direction for "loves the night": the time-of-day box stays at dawn, a moon appears, stars in eleven skies of twelve; the bottom row is the same vector with its coordinates shuffled](docs/story/sq-06-night.png)
 
@@ -43,8 +43,8 @@ form. Add a vector, and look.
   wishes, three seeds, two controls, a blind judge: the poem carries
   everything the vector does, and the vector adds nothing on top of it.
 - **[soundof](experiments/soundof.md)** — the same directions as eight bars
-  of music. Night is the slowest thing the model knows (48 bpm against 88),
-  certainty the fastest (125).
+  of music. Night is the slowest (48 bpm against 88), certainty the
+  fastest (125).
 
 ## ⚡ Try it in 30 seconds — no GPU, no model
 
@@ -95,10 +95,10 @@ instrument taught before it measured anything.
 | **[handoff](experiments/handoff.md)** | agents passing slider settings as one vector; fidelity against text and against the shuffled vector |
 | **[secondhand](experiments/secondhand.md)** | mind A's page-state pushed into mind B, against A's own poem. Sixty wishes: the poem wins every field, the vector adds nothing on top |
 | **[soundof](experiments/soundof.md)** | the same directions as eight bars in ABC notation: tempo, key, meter as the readout |
-| **[transmit](experiments/transmit.md)** | one agent ends up in another's mood, no words between them. The thesis in miniature |
+| **[transmit](experiments/transmit.md)** | one agent ends up in another's mood, no words between them. The smallest version of the thesis |
 | **[the offer](experiments/offer.md)** | an agent *consents* to a payload it can't read, and is changed by something other than what it was promised |
 | **[the ecosystem](experiments/ecosystem.md)** | a mood spreads through a silent population, through the vector channel alone |
-| **[resonance](experiments/resonance.md)** | four minds read and pay to push a feeling between each other; a hunt for equilibrium that kept turning up my own instrument |
+| **[resonance](experiments/resonance.md)** | four minds read and pay to push a feeling between each other; the search for an equilibrium mostly found faults in the instrument |
 | **[unsaid](experiments/unsaid.md)** | no message is ever delivered, only each mind's J-space crosses. Played as a board game, the reader points at a never-written secret at 4× chance |
 | **[warmer](experiments/warmer.md)** | hot-and-cold between two minds where the only thing that crosses is a temperature. Negative so far |
 | **[zombie](experiments/zombie.md)** | a bias outbreak: patient zero is bitten with a steering vector and the room fights back by reading each other's layers |

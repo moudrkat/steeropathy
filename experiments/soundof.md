@@ -89,8 +89,8 @@ minor to speak of; certain is fast (predicted) but not square (one 4/4 in
 twelve); formal is not in 3/4 more than the baseline already is. Not
 predicted at all: three directions moved the *meter* to odd time, calm to
 5/8 in every tune. Tempo is the field the placebo leaves alone (86–99
-against 88), so tempo is the one to read: night is the slowest thing the
-model knows, certainty the fastest. Mean pitch, range, density and rests
+against 88), so tempo is the one to read: night is the slowest, certainty the
+fastest. Mean pitch, range, density and rests
 barely move for anyone. The tunes, as piano rolls with a wav and an mp4
 each, are in `docs/soundof/soundof-01-aorus-4b-n12/`.
 
