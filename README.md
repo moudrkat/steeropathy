@@ -14,6 +14,10 @@ weather, ground, things, two lines of poem, the colours of its own panel);
 [brave-new-world](https://github.com/moudrkat/brave-new-world) draws the
 form. Add a vector, and look.
 
+![the sad vector, strength 0 to 6: the same place drawn again at each dose, until the form gives way and the model writes the helpline instead](docs/dose-sad.gif)
+
+*One direction, the dose climbing. First the mood, then the words, then no form at all.*
+
 ![a direction for "loves the night": the time-of-day box stays at dawn, a moon appears, stars in eleven skies of twelve; the bottom row is the same vector with its coordinates shuffled](docs/story/sq-06-night.png)
 
 - **[worldof](experiments/worldof.md)** — what a vector looks like when the
