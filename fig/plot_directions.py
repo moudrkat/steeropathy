@@ -76,7 +76,7 @@ def main():
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10})
     n = len(names)
-    fig, ax = plt.subplots(figsize=(0.46 * n + 2.6, 0.46 * n + 2.2), facecolor=SURF)
+    fig, ax = plt.subplots(figsize=(0.46 * n + 2.6, 0.46 * n + 1.4), facecolor=SURF)
     im = ax.imshow(M, cmap=CMAP, vmin=-1, vmax=1)
     shown = [labels.get(x, x) for x in names]
     ax.set_xticks(range(n), shown, rotation=55, ha="right", fontsize=10)
@@ -105,10 +105,7 @@ def main():
     cb = plt.colorbar(im, ax=ax, fraction=0.03, pad=0.02, ticks=[-1, -0.5, 0, 0.5, 1])
     cb.set_label("cosine: +1 the same direction, 0 unrelated, −1 opposite", color=INK2)
     cb.outline.set_visible(False)
-    fig.suptitle("Which sliders are the same slider", x=0.02, ha="left", fontsize=16, color=INK, fontweight="bold", y=0.995)
-    fig.text(0.02, 0.962, f"{model.split('/')[-1]} · layer {layer} · every direction I built, and the cosine between each pair. "
-             f"Numbers where |cos| ≥ {a.min:g}.", color=INK2, fontsize=9.5)
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
+    fig.tight_layout()
     out = HERE / "docs" / "directions-cos.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

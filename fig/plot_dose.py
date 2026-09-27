@@ -74,12 +74,12 @@ def panel(ax, xs, pts, xlabel, ref):
 def main():
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
-    fig, (a1, a2) = plt.subplots(1, 2, figsize=(11.5, 4.8), facecolor=SURF, sharey=True)
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(11.5, 4.2), facecolor=SURF, sharey=True)
     pooled = point(POOLED)
     xs = [1, 2, 3, 4, 5]
     pts = [point(DOSE[1]), point(DOSE[2]), pooled, point(DOSE[4]), point(DOSE[5])]
     panel(a1, xs, pts, "strength (layer 16 ± 4)", pooled)
-    a1.set_title("the dose", loc="left", color=INK, fontsize=12)
+    a1.set_title("the strength", loc="left", color=INK, fontsize=12)
     xs2 = [6, 10, 16, 22, 26]
     pts2 = [point(LAYER[6]), point(LAYER[10]), pooled, point(LAYER[22]), point(LAYER[26])]
     panel(a2, xs2, pts2, "layer (strength 3, ± 4)", pooled)
@@ -96,12 +96,7 @@ def main():
     a1.set_ylabel("agreement with A, moved fields, vector", color=INK2)
     a2.legend(loc="upper left", bbox_to_anchor=(1.02, 1), frameon=False, fontsize=9.5,
               labelcolor=INK2)
-    fig.suptitle("What the dose and the layer do", x=0.02, ha="left", fontsize=15,
-                 color=INK, fontweight="bold", y=0.985)
-    fig.text(0.02, 0.905, "Qwen2.5-1.5B, seed 1, 12 wishes per point (60 at the shared point). "
-             "Faint ticks at the right edge: the poem, which does not depend on either knob.",
-             color=INK2, fontsize=9.5)
-    fig.tight_layout(rect=(0, 0, 1, 0.88))
+    fig.tight_layout()
     out = HERE / "docs" / "secondhand-dose.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

@@ -34,7 +34,7 @@ def main():
     rot = load(sys.argv[2] if len(sys.argv) > 2 else ROT)
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 12})
-    fig, ax = plt.subplots(figsize=(9.6, 5.6), facecolor=SURF)
+    fig, ax = plt.subplots(figsize=(9.6, 4.9), facecolor=SURF)
     ax.set_facecolor(SURF)
     ys = list(range(len(FIELDS)))[::-1]
     ax.axvline(0, color=INK2, linewidth=1, zorder=3)
@@ -70,15 +70,9 @@ def main():
     # legend for the grey bar, drawn by hand so it reads as what it is
     lx, ly = -0.46, -0.85
     ax.add_patch(plt.Rectangle((lx, ly - 0.08), 0.04, 0.16, facecolor=ROTC, linewidth=0))
-    ax.text(lx + 0.052, ly, "grey: the same vector with its coordinates shuffled (12 wishes), the dose alone",
+    ax.text(lx + 0.052, ly, "grey: the same vector with its coordinates shuffled (12 wishes), the strength alone",
             va="center", color=INK2, fontsize=10)
-    fig.suptitle("What never became text", x=0.02, ha="left", fontsize=16,
-                 color=INK, fontweight="bold", y=0.985)
-    fig.text(0.02, 0.905, "Qwen2.5-1.5B, 60 wishes, 3 seeds. Share of the wishes where A left B's own world "
-             "and exactly one channel carried A's choice.\nghost = a thing A almost placed and didn't. "
-             "Count on the bar; the bars are read against B's own world, so B's taste cancels.",
-             color=INK2, fontsize=10, va="top")
-    fig.tight_layout(rect=(0, 0, 1, 0.86))
+    fig.tight_layout()
     out = HERE / "docs" / "secondhand-ledger.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

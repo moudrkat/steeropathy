@@ -107,7 +107,7 @@ def main():
         live = [x for x in live if x[1] in keep]
     cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
-    size = (7.5, 5.2) if len(live) == 1 else ((12.5, 5.2) if len(live) == 2 else (4.2 * cols, 3.4 * rows + 0.9))
+    size = (7.5, 4.6) if len(live) == 1 else ((12.5, 4.6) if len(live) == 2 else (4.2 * cols, 3.4 * rows + 0.3))
     fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
@@ -116,18 +116,11 @@ def main():
         ax.axis("off")
     if len(live) > 2:
         axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
-    fh = size[1]
-    fig.suptitle(a.title, x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
     if len(live) <= 2:
-        sub = "Qwen2.5-1.5B, layer 16 ± 4. Eight worlds per point; the band is one standard error."
         for ax in axes[:len(live)]:
             ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2)
         axes[0].legend(loc="best", frameon=False, fontsize=9.5, labelcolor=INK2)
-    else:
-        sub = ("Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
-               "y: what the drawn world contains. The band is one standard error. Negative strength pushes the other way.")
-    fig.text(0.02, 1 - 0.5 / fh, sub, color=INK2, fontsize=9)
-    fig.tight_layout(rect=(0, 0, 1, 1 - 0.38 / fh), h_pad=1.2)
+    fig.tight_layout(h_pad=1.2)
     out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

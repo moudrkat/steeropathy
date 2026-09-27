@@ -70,12 +70,7 @@ def main():
         ax.text(-0.4, len(FIELDS) - 0.35, "only the poem", color=TEXT, fontsize=9.5, ha="right")
         ax.text(0.4, len(FIELDS) - 0.35, "only the vector", color=VEC, fontsize=9.5, ha="left")
         ax.set_ylim(-0.6, len(FIELDS) - 0.0)
-    fig.suptitle("What never became text", x=0.02, ha="left", fontsize=15,
-                 color=INK, fontweight="bold", y=0.995)
-    fig.text(0.02, 0.93, "items where only A's activations carried the field to B (right), or only A's own poem did (left); "
-             "both counted where A left B's own world. ghost = a thing A almost placed.",
-             color=INK2, fontsize=9.5)
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+    fig.tight_layout()
     out = HERE / "docs" / "secondhand-residue.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)

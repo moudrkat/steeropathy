@@ -31,7 +31,7 @@ def main():
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11})
     cols = FIELDS + ["things", "dark"]
-    fig, ax = plt.subplots(figsize=(1.9 * len(cols) + 2.6, 0.5 * len(rows) + 2.2), facecolor=SURF)
+    fig, ax = plt.subplots(figsize=(1.9 * len(cols) + 2.6, 0.5 * len(rows) + 1.2), facecolor=SURF)
     ax.set_facecolor(SURF)
     for i, r in enumerate(rows):
         y = len(rows) - 1 - i
@@ -74,14 +74,7 @@ def main():
     ax.set_xlim(-1.9, len(cols) + 1.2)
     ax.set_ylim(-0.1, len(rows) + 1.0)
     ax.axis("off")
-    fig.suptitle("What a vector looks like, counted", x=0.02, ha="left", fontsize=15,
-                 color=INK, fontweight="bold", y=0.985)
-    fig.text(0.02, 0.905, f"{d.get('model', '')} · strength {d['params']['strength']} · layer {d['layer']} · "
-             f"{base['n']} unsteered worlds, {summ[rows[0]]['n']} per direction. Cell: share of worlds that "
-             "left the unsteered mode, and the value they went to most (·ex = the worked example's value).\n"
-             "The shuffled row under each direction is the same vector with its coordinates permuted: what the dose alone does.",
-             color=INK2, fontsize=9.5, va="top")
-    fig.tight_layout(rect=(0, 0, 1, 0.86))
+    fig.tight_layout()
     out = HERE / "docs" / "worldof-counted.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
