@@ -31,6 +31,8 @@ form. Add a vector, and look.
   and a tab of sliders that draws (`python -m steeropathy` → `#wo`).
 
   ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/knob-crowded.gif)
+
+  ![the knobs tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/knobs-sliders.gif)
 - **[handoff](experiments/handoff.md)** — the knobs as a message between
   agents. Mind A gets a brief, sets the knobs in a sober JSON call, the
   settings become one vector into mind B, and the page says how much
