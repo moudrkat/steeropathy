@@ -90,7 +90,7 @@ instrument taught before it measured anything.
 | experiment | what it shows |
 |---|---|
 | **[worldof](experiments/worldof.md)** | what a steering vector looks like when the model draws it; strength vs direction; the moods test; the sliders and the sliders |
-| **[cardof](experiments/cardof.md)** | the same sliders on a normal UI: a product card with a title, a price, features and a button; louder, cheaper, more features, formal, darker |
+| **[cardof](experiments/cardof.md)** | the same sliders on a normal UI: a product card with a title, a price, features and a button. Cheaper turns the price from 584 to 20, more features from two lines to six, louder is the exclamation-mark slider |
 | **[replyof](experiments/replyof.md)** | the sliders on an assistant's reply, drawn as the reply UI: how many tasks it offers, how urgent it is, how long, how formal. The production rule as a slider instead of capital letters |
 | **[handoff](experiments/handoff.md)** | agents passing slider settings as one vector; fidelity against text and against the shuffled vector |
 | **[secondhand](experiments/secondhand.md)** | mind A's page-state pushed into mind B, against A's own poem. Sixty wishes: the poem wins every field, the vector adds nothing on top |
