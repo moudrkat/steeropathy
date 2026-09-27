@@ -233,7 +233,11 @@ def direction_for(url, name, layer, dict_path=None):
     if name in LIKES:
         return _pole(url, LIKES[name], layer), layer, "likes"
     if name.startswith("many") and len(name) > 4 and name not in LIKES:
-        LIKES[name] = many_spec(name[4:])      # registered, so the summary finds its target
+        from .secondhand import KINDS
+        kind = name[4:]
+        if kind not in KINDS and kind.endswith("s") and kind[:-1] in KINDS:
+            kind = kind[:-1]                  # manybirds -> bird: the page's kinds are singular
+        LIKES[name] = many_spec(kind)         # registered, so the summary finds its target
         return _pole(url, LIKES[name], layer), layer, "likes"
     if name.startswith("srv:"):
         # a direction the server already holds (a hidden-directions dict
