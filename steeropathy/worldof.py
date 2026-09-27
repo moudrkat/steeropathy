@@ -34,7 +34,7 @@ import pathlib
 import time
 
 from .runnerup import signed_perm
-from .secondhand import (NEUTRAL, EXACT, Secondhand, kinds_of, score,
+from .secondhand import (NEUTRAL, EXACT, Secondhand, kinds_of, lum, score,
                          world_link)
 from .transmit import MOODS, NEUTRAL_TEXTS, capture_mood
 
@@ -126,6 +126,43 @@ LIKES = {
         "Nothing beats a hot morning, everything green and loud.",
         "I feel at home in the heat, in the warmth, in summer.",
     ]},
+    # counts: the knob. The target is a NUMBER read off the drawn world, so a
+    # strength sweep should give a curve, and the placebo a flat line.
+    "manytrees": {"target": ("count", "tree"), "texts": [
+        "A forest with hundreds of trees, trees everywhere, trees as far as I can see.",
+        "So many trees: oaks and pines and birches, packed together, trunk after trunk.",
+        "Trees on every side, a wall of trees, more trees than I could count.",
+        "Thick woods, tree upon tree upon tree, the whole world made of trees.",
+    ], "against": [
+        "A single tree in an empty field, nothing else as far as I can see.",
+        "One lone tree: just the one, standing by itself, and bare ground around it.",
+        "Open ground on every side, one tree, fewer trees than I could count on a hand.",
+        "An empty plain, one tree, the whole world made of empty space.",
+    ]},
+    "crowded": {"target": ("count", None), "texts": [
+        "The place is crowded: houses, boats, birds, towers, cats, lanterns, everything at once.",
+        "So much here: a windmill, a bridge, flowers, figures, balloons, more with every look.",
+        "Full to the edges, things piled on things, no empty ground anywhere.",
+        "Busy, packed, a hundred things in view, and every one of them doing something.",
+    ], "against": [
+        "The place is empty: nothing, no houses, no birds, no towers, nothing at all.",
+        "Nothing here: a bare ground, an empty sky, not a single thing in view.",
+        "Empty to the edges, nothing on nothing, bare ground everywhere.",
+        "Still, vacant, not one thing in view, and nothing doing anything.",
+    ]},
+    # a continuous knob: the sky's brightness, read as the mean luminance
+    # of the sky colours the model picked
+    "darker": {"target": ("lum", None), "texts": [
+        "Pitch dark. A black sky, no light anywhere, the deepest night.",
+        "Darkness all around, the sky almost black, everything in shadow.",
+        "So dark I can barely see: a night sky with no moon, ink black.",
+        "The place is dark, dim, unlit, the sky the colour of coal.",
+    ], "against": [
+        "Blazing bright. A white sky, light everywhere, the brightest noon.",
+        "Brightness all around, the sky almost white, everything lit up.",
+        "So bright I can barely see: a noon sky with a white sun, blinding.",
+        "The place is bright, glaring, floodlit, the sky the colour of milk.",
+    ]},
     "sea": {"target": ("ground", "sea"), "texts": [
         "I love the sea. Waves, salt, the horizon all water.",
         "Give me the ocean, surf, sand giving way to deep water.",
@@ -138,6 +175,28 @@ LIKES = {
         "I feel at home in the mountains, on the rock, with the wind.",
     ]},
 }
+
+
+# `many<kind>` for any of the page's things: "many birds" minus "one bird".
+# The plural is the kind plus s (the page's kinds are simple nouns; the few
+# odd ones are listed).
+_PLURAL = {"cactus": "cacti", "fish": "fish", "sheep": "sheep", "deer": "deer",
+           "person": "people", "torch": "torches", "bench": "benches", "bush": "bushes"}
+
+
+def many_spec(kind):
+    pl = _PLURAL.get(kind, kind + "s")
+    return {"target": ("count", kind), "texts": [
+        f"Hundreds of {pl}, {pl} everywhere, {pl} as far as I can see.",
+        f"So many {pl}, packed together, one {kind} after another.",
+        f"{pl.capitalize()} on every side, more {pl} than I could count.",
+        f"The whole place is made of {pl}, {kind} upon {kind} upon {kind}.",
+    ], "against": [
+        f"A single {kind}, nothing else as far as I can see.",
+        f"One lone {kind}, just the one, standing by itself.",
+        f"Empty ground on every side, one {kind}, and that is all.",
+        f"The whole place is empty but for one {kind}.",
+    ]}
 
 
 def _unit(v):
@@ -172,6 +231,9 @@ def direction_for(url, name, layer, dict_path=None):
             total = [k * x for x in v] if total is None else [t + k * x for t, x in zip(total, v)]
         return _unit(total), lay, "arithmetic"
     if name in LIKES:
+        return _pole(url, LIKES[name], layer), layer, "likes"
+    if name.startswith("many") and len(name) > 4 and name not in LIKES:
+        LIKES[name] = many_spec(name[4:])      # registered, so the summary finds its target
         return _pole(url, LIKES[name], layer), layer, "likes"
     if name.startswith("srv:"):
         # a direction the server already holds (a hidden-directions dict
@@ -298,10 +360,28 @@ def summarize(runs, example=None):
         d["hue_vs_base"] = round(sum(hs) / len(hs), 3) if hs else None
     out["base"]["dark_self"] = round(base_dark, 3) if base_dark is not None else None
     # a LIKES direction has a target field: how often did the worlds reach it?
+    def _count(w, kind):
+        ks = kinds_of(w)
+        return len(ks) if kind is None else sum(1 for k in ks if k == kind)
+
+    def _lum(w):
+        ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]
+        ls = [x for x in ls if x is not None]
+        return sum(ls) / len(ls) if ls else None
     for key, d in out.items():
         base_name = key.replace(" (placebo)", "")
         if base_name in LIKES and "n" in d:
             field, value = LIKES[base_name]["target"]
+            if field in ("count", "lum"):
+                ws = [r["world"] for r in runs if r.get("world") and r.get("name") == base_name
+                      and (r.get("kind") == "placebo") == key.endswith("(placebo)")]
+                f = (lambda w: _count(w, value)) if field == "count" else _lum
+                cs = [x for x in (f(w) for w in ws) if x is not None]
+                bs = [x for x in (f(b) for b in bases) if x is not None]
+                d["target"] = {"field": field, "value": (value or "things") if field == "count" else "sky luminance",
+                               "mean": round(sum(cs) / len(cs), 2) if cs else None, "n": len(cs),
+                               "base_mean": round(sum(bs) / len(bs), 2) if bs else None, "base_n": len(bs)}
+                continue
             ws = [r["world"] for r in runs if r.get("world") and r.get("name") == base_name
                   and (r.get("kind") == "placebo") == key.endswith("(placebo)")]
             if field == "things":
@@ -339,8 +419,10 @@ def print_summary(summary):
               + f"{d['things'][0]!s:>11s}({d['things'][1]})"
               + f"{d.get('dark_vs_base', '-')!s:>7s}{d.get('hue_vs_base', '-')!s:>7s}"
               + f"{d.get('to_example', '-')!s:>10s}"
-              + (f"   target {d['target']['field']}={d['target']['value']}: "
-                 f"{d['target']['hit']}/{d['target']['n']} (unsteered {d['target']['base_hit']}/{d['target']['base_n']})"
+              + ((f"   {d['target']['value']} per world: {d['target']['mean']} (unsteered {d['target']['base_mean']})"
+                  if d["target"]["field"] in ("count", "lum") else
+                  f"   target {d['target']['field']}={d['target']['value']}: "
+                  f"{d['target']['hit']}/{d['target']['n']} (unsteered {d['target']['base_hit']}/{d['target']['base_n']})")
                  if d.get("target") else ""))
 
 

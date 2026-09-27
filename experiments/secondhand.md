@@ -211,6 +211,20 @@ question:
   summed and unit-normalized again, so `--strength` stays the dose. Do
   worlds add?
 
+**The knobs (2026-09-27).** Her question: can a vector set *how many* of a
+thing the page draws? Count directions: `manytrees` (hundreds of trees minus
+a single tree), `crowded` (crowded minus empty), and `many<kind>` for any of
+the page's things (`manybirds`, `manycats`, …, `many_spec()`); a brightness
+direction `darker` (pitch dark minus blazing bright) read as the mean
+luminance of the sky colours. A strength sweep from −3 to +3 with the
+shuffled vector alongside gives a curve per knob (`fig/plot_knobs.py` →
+`docs/worldof-knobs.png`); sums of knobs (`manybirds+manycats`,
+`manystars+darker`) test whether the knobs add. And a control panel: the
+steeropathy UI got a **Worldof — the knobs** tab (`web/index.html`,
+`POST /worldof/draw`): sliders for trees, birds, stars, cats, houses,
+crowded, dark, night, sad, formal, refusal, summed into one vector, added at
+layer 16 ± 4, and the page draws. Nothing in the prompt changes.
+
 Runs in the queue (2026-09-24 afternoon, aorus): six directions × 12 on the
 1.5B; the mood test; arithmetic; LIKES; the dose as a film (`sad`,
 `refusal`, `night` at 0.5 … 6, six worlds each); the same directions on the

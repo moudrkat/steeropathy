@@ -218,6 +218,7 @@
     <button class="tab" id="t-reso" role="tab" aria-selected="false" onclick="tab('reso')">Resonance — a room of minds</button>
     <button class="tab" id="t-uns" role="tab" aria-selected="false" onclick="tab('uns')">Unsaid — talk in flickers</button>
     <button class="tab" id="t-zomb" role="tab" aria-selected="false" onclick="tab('zomb')">Zombie — the outbreak</button>
+    <button class="tab" id="t-wo" role="tab" aria-selected="false" onclick="tab('wo')">Worldof — the knobs</button>
   </div>
 
   <!-- ============ TRANSMIT ============ -->
@@ -238,6 +239,27 @@
         <div class="out before" id="before"><span class="ph">the receiver, on its own…</span></div>
         <div class="lbl hot">After — mood transmitted</div>
         <div class="out after" id="after"><span class="ph">…and after the vector lands</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORLDOF KNOBS ============ -->
+  <section id="p-wo" class="panel">
+    <p class="reso-note">The page as a control panel. Each slider is one direction
+      built from the model's own sentences (many trees minus one tree, pitch dark minus
+      blazing bright, sad minus neutral). The sliders are summed into one vector, added
+      at one layer, and the model draws a place. Nothing in the prompt changes.</p>
+    <div class="grid">
+      <div class="card">
+        <h2>Knobs <span class="tag">· added to the residual stream</span></h2>
+        <div id="wo-knobs"></div>
+        <div class="lbl" style="margin-top:10px">Ask for</div>
+        <input id="wo-wish" value="a place" style="width:100%;box-sizing:border-box;padding:6px 8px;font:inherit">
+        <div class="lbl" id="wo-meta" style="margin-top:8px"></div>
+      </div>
+      <div class="card">
+        <h2>The world <span class="tag">· drawn by brave-new-world</span></h2>
+        <div id="wo-out"><span class="ph">turn a knob, press DRAW</span></div>
       </div>
     </div>
   </section>
@@ -429,7 +451,7 @@ async function init(){
 }
 function press(box,el){ $(box).querySelectorAll(".pick").forEach(x=>x.setAttribute("aria-pressed","false")); el.setAttribute("aria-pressed","true"); }
 function tab(m){ mode=m;
-  for(const t of ["transmit","offer","eco","reso","uns","zomb"]){
+  for(const t of ["transmit","offer","eco","reso","uns","zomb","wo"]){
     $("t-"+t).setAttribute("aria-selected",m===t); $("p-"+t).classList.toggle("active",m===t);
   }
   refresh();
@@ -443,8 +465,39 @@ function refresh(){
         $("go").disabled=UNS.busy; }
   else if(mode==="zomb"){ $("go").textContent=ZOMB.round<0?"BITE PATIENT ZERO":`NEXT ROUND (r${ZOMB.round+1})`;
         $("go").disabled=ZOMB.busy; }
+  else if(mode==="wo"){ $("go").textContent="DRAW"; $("go").disabled=WO.busy; if(!WO.init) initWo(); }
   else{ $("go").textContent=RESO.round<0?"SEED THE ROOM":`NEXT ROUND (r${RESO.round+1})`;
         $("go").disabled=RESO.busy; }
+}
+
+const WO={busy:false,init:false,knobs:[]};
+if(location.hash==="#wo") setTimeout(()=>tab("wo"),0);   // a link straight to the knobs
+async function initWo(){
+  WO.init=true;
+  const d=await (await fetch("/worldof/knobs")).json();
+  WO.knobs=d.knobs;
+  $("wo-knobs").innerHTML=d.knobs.map(k=>`
+    <div style="display:grid;grid-template-columns:70px 1fr 40px;gap:8px;align-items:center;margin:4px 0">
+      <span title="${k.built}">${k.label}</span>
+      <input type="range" min="-3" max="3" step="0.5" value="0" id="wo-${k.name}"
+             oninput="$('wov-${k.name}').textContent=this.value">
+      <span id="wov-${k.name}" style="text-align:right;color:#666">0</span>
+    </div>`).join("")
+    +`<div style="margin-top:6px"><button onclick="woReset()" style="font:inherit">all to zero</button></div>`;
+}
+function woReset(){ for(const k of WO.knobs){ $("wo-"+k.name).value=0; $("wov-"+k.name).textContent="0"; } }
+function woKnobs(){ const o={}; for(const k of WO.knobs){ const v=parseFloat($("wo-"+k.name).value); if(v) o[k.name]=v; } return o; }
+function paintWo(d){
+  const out=$("wo-out");
+  if(!d.world){ out.innerHTML=`<div class="lbl">did not parse — what it wrote instead:</div><div class="out">${esc(d.raw)}</div>`; return; }
+  const f=d.fields, sky=(d.sky||[]).filter(c=>typeof c==="string");
+  out.innerHTML=`
+    <iframe src="${d.link}" style="width:100%;aspect-ratio:5/3;border:0;border-radius:8px;background:#eee"></iframe>
+    <div style="margin-top:8px"><b>“${esc(f.title||"")}”</b> <a href="${d.link}" target="_blank" style="margin-left:8px">open the world</a></div>
+    ${(d.lines||[]).map(l=>`<div><i>${esc(l)}</i></div>`).join("")}
+    <div class="lbl">${esc([f.time,f.weather,f.ground,f.motion,f.font].filter(Boolean).join(" · "))}</div>
+    <div class="lbl">${esc(d.things.join(", "))}</div>
+    <div class="lbl">sky ${sky.map(c=>`<span style="display:inline-block;width:14px;height:14px;background:${c};border-radius:3px;vertical-align:middle"></span>`).join(" ")}</div>`;
 }
 
 async function initEco(){
@@ -879,7 +932,15 @@ $("go").onclick=async()=>{
   const go=$("go"), meta=$("metatxt"), s=parseFloat($("strength").value);
   go.disabled=true; go.classList.add("pulse"); const label=go.textContent; go.textContent="…";
   try{
-    if(mode==="eco"){
+    if(mode==="wo"){
+      WO.busy=true;
+      const knobs=woKnobs();
+      $("wo-meta").textContent=Object.keys(knobs).length?"building the directions it has not built yet, then one world…":"no knob turned: the unsteered world…";
+      const d=await post("/worldof/draw",{knobs,wish:$("wo-wish").value});
+      paintWo(d);
+      $("wo-meta").textContent=d.strength?`one vector of length ${d.strength} at layers ${d.band[0]}–${d.band[1]} · `+Object.entries(d.knobs).map(([k,v])=>`${k} ${v}`).join(", "):"nothing added";
+      WO.busy=false;
+    }else if(mode==="eco"){
       ECO.busy=true;
       if(ECO.round<0){
         meta.textContent="capturing the seed vectors, then round 0 — the untouched baseline…";

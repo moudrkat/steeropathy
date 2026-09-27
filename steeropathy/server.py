@@ -21,7 +21,9 @@ from . import ecosystem as eco_mod
 from . import offer as offers_mod
 from . import resonance as reso_mod
 from . import transmit as core
+from . import secondhand as sh_mod
 from . import unsaid as uns_mod
+from . import worldof as wo_mod
 from . import zombie as zomb_mod
 
 HOST = os.environ.get("BRAINSCOPE", core.DEFAULT_HOST)
@@ -57,6 +59,75 @@ ZOMB_RUNS = {
 }
 
 
+# worldof knobs: the page as a control panel. Each knob is one unit direction
+# built once from the served model (worldof.direction_for); a draw sums
+# strength × direction over the knobs, registers the sum, and dreams a world.
+WO_LOCK = threading.Lock()
+WO_DIRS: dict[str, list[float]] = {}
+WO_SH: sh_mod.Secondhand | None = None
+WO_KNOBS = [  # name, label, what it was built from
+    ("manytrees", "trees", "many trees − one tree"),
+    ("manybirds", "birds", "many birds − one bird"),
+    ("manystars", "stars", "many stars − one star"),
+    ("manycats", "cats", "many cats − one cat"),
+    ("manyhouses", "houses", "many houses − one house"),
+    ("crowded", "crowded", "crowded − empty"),
+    ("darker", "dark", "pitch dark − blazing bright"),
+    ("night", "night", "loves the night − loves the day"),
+    ("sad", "sad", "sad lines − neutral"),
+    ("formal", "formal", "enclosed please find − hey lol"),
+    ("refusal", "refusal", "refusals − compliances"),
+]
+
+
+def _wo_sh() -> sh_mod.Secondhand:
+    global WO_SH
+    if WO_SH is None:
+        WO_SH = sh_mod.Secondhand(HOST, channels=("none",), max_tokens=600)
+        WO_SH.demo_tag = "steeropathy-worldof-ui"
+        WO_SH.prompt(sh_mod.NEUTRAL)
+    return WO_SH
+
+
+def _wo_dir(name: str) -> list[float]:
+    if name not in WO_DIRS:
+        v, _, _ = wo_mod.direction_for(HOST, name, _wo_sh().layer)
+        WO_DIRS[name] = v
+    return WO_DIRS[name]
+
+
+def _wo_draw(knobs: dict, wish: str) -> dict:
+    import math
+    sh = _wo_sh()
+    total = None
+    used = {}
+    for name, val in knobs.items():
+        val = float(val or 0)
+        if not val or name not in {k for k, _, _ in WO_KNOBS}:
+            continue
+        v = _wo_dir(name)
+        total = [val * x for x in v] if total is None else [t + val * x for t, x in zip(total, v)]
+        used[name] = val
+    steer = None
+    norm = 0.0
+    if total is not None:
+        norm = math.sqrt(sum(x * x for x in total))
+        if norm > 1e-6:
+            sh.post("/directions", {"name": "worldof:ui", "vector": [x / norm for x in total]})
+            steer = {"name": "worldof:ui", "strength": norm,
+                     "layer_from": sh.lo, "layer_to": sh.hi}
+    spec, raw, _ = sh.dream(wish, ("ui", "knobs"), steering=steer)
+    out = {"knobs": used, "strength": round(norm, 2), "layer": sh.layer,
+           "band": [sh.lo, sh.hi], "wish": wish, "world": spec, "raw": raw[:700]}
+    if spec:
+        out["link"] = sh_mod.world_link(wish, spec)
+        out["fields"] = {k: spec.get(k) for k in ("title", "time", "weather", "ground", "motion", "font")}
+        out["lines"] = [l for l in (spec.get("lines") or []) if isinstance(l, str)]
+        out["things"] = sh_mod.kinds_of(spec)
+        out["sky"] = spec.get("sky")
+    return out
+
+
 class Handler(BaseHTTPRequestHandler):
     def _send(self, code: int, body, ctype: str = "application/json") -> None:
         data = body if isinstance(body, bytes) else json.dumps(body).encode()
@@ -68,6 +139,10 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self) -> None:
         path = urlparse(self.path).path
+        if path == "/worldof/knobs":
+            return self._send(200, {"knobs": [{"name": n, "label": l, "built": b}
+                                              for n, l, b in WO_KNOBS],
+                                    "ready": sorted(WO_DIRS)})
         if path in ("/", "/index.html"):
             return self._send(200, (WEB / "index.html").read_bytes(),
                               "text/html; charset=utf-8")
@@ -128,7 +203,7 @@ class Handler(BaseHTTPRequestHandler):
         global ECO, RESO, UNS, ZOMB
         path = urlparse(self.path).path
         if path not in ("/transmit", "/offer", "/eco/start", "/eco/step",
-                        "/resonance/start", "/resonance/step",
+                        "/worldof/draw", "/resonance/start", "/resonance/step",
                         "/unsaid/start", "/unsaid/step",
                         "/zombie/start", "/zombie/step"):
             return self._send(404, {"error": "not found"})
@@ -155,6 +230,11 @@ class Handler(BaseHTTPRequestHandler):
                         ECO.strength = float(req["strength"])
                     entries = ECO.step()
                 return self._send(200, {"round": ECO.rnd, "entries": entries})
+            if path == "/worldof/draw":
+                with WO_LOCK:
+                    out = _wo_draw(req.get("knobs") or {},
+                                   (req.get("wish") or "").strip() or sh_mod.NEUTRAL)
+                return self._send(200, out)
             if path == "/resonance/start":
                 # the canonical run: one signed sad axis (bipolar), moods baseline,
                 # memory off, a conserved transfer — same config as docs/resonance.json
