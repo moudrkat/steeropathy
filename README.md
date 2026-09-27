@@ -14,7 +14,7 @@ weather, ground, things, two lines of poem, the colours of its own panel);
 [brave-new-world](https://github.com/moudrkat/brave-new-world) draws the
 form. Add a vector, and look.
 
-![the sad vector, strength 0 to 6: the same place drawn again at each strength, until the form gives way and the model writes the helpline instead](docs/dose-sadsad.gif)
+![the sad vector, strength 0 to 6: the same place drawn again at each strength, until the form gives way and the model writes the helpline instead](docs/sad-0-to-6.gif)
 
 *One direction, the strength climbing. First the mood, then the words, then no form at all.*
 
@@ -30,9 +30,9 @@ form. Add a vector, and look.
   *crowded*, *dark*, with a number to read off the world, a strength sweep,
   and a tab of sliders that draws (`python -m steeropathy` → `#wo`).
 
-  ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/knob-crowded.gif)
+  ![the crowded vector from −3 to +3: Void, where once lived life, now is stillness; then a world full of wonder with houses](docs/slider-crowded.gif)
 
-  ![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/knobs-sliders.gif)
+  ![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/sliders-tab.gif)
 - **[handoff](experiments/handoff.md)** — the sliders as a message between
   agents. Mind A gets a brief, sets the sliders in a sober JSON call, the
   settings become one vector into mind B, and the page says how much

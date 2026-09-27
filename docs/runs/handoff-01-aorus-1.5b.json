@@ -1,0 +1,411 @@
+{
+ "params": {
+  "briefs": 16,
+  "strength": 3.0,
+  "layer": null,
+  "temp": 0.7,
+  "decide_temp": 0.3,
+  "seed": 1,
+  "out": "docs/runs/handoff-01-aorus-1.5b.json",
+  "rescore": null
+ },
+ "layer": 16,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "complete": false,
+ "table": {
+  "baseline": {
+   "manytrees": 0.0,
+   "manybirds": 0.0,
+   "manystars": 0.0,
+   "manycats": 0.0,
+   "manyhouses": 0.0,
+   "crowded": 1.0,
+   "darker": -0.884,
+   "night": 0.0
+  },
+  "channels": {
+   "none": {
+    "n": 1,
+    "parsed": 1,
+    "fidelity": 0.0,
+    "parse_rate": 1.0
+   },
+   "text": {
+    "n": 1,
+    "parsed": 1,
+    "fidelity": 0.25,
+    "parse_rate": 1.0
+   },
+   "vector": {
+    "n": 1,
+    "parsed": 0,
+    "fidelity": null,
+    "parse_rate": 0.0
+   },
+   "placebo": {
+    "n": 1,
+    "parsed": 0,
+    "fidelity": null,
+    "parse_rate": 0.0
+   }
+  },
+  "knobs": {
+   "manytrees": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 1,
+     "n": 1
+    }
+   },
+   "manybirds": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   },
+   "manystars": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   },
+   "manycats": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 1,
+     "n": 1
+    }
+   },
+   "manyhouses": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   },
+   "crowded": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   },
+   "darker": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   },
+   "night": {
+    "none": {
+     "hit": 0,
+     "n": 1
+    },
+    "text": {
+     "hit": 0,
+     "n": 1
+    }
+   }
+  }
+ },
+ "log": [
+  {
+   "item": 0,
+   "brief": "a dark forest full of birds",
+   "settings": {
+    "manytrees": 3.0,
+    "manybirds": -3.0,
+    "manystars": 3.0,
+    "manycats": 3.0,
+    "manyhouses": 3.0,
+    "crowded": -3.0,
+    "darker": -3.0,
+    "night": -3.0
+   },
+   "a_said": "{\n  \"manytrees\": 3,\n  \"manybirds\": -3,\n  \"manystars\": 3,\n  \"manycats\": 3,\n  \"manyhouses\": 3,\n  \"crowded\": -3,\n  \"darker\": -3,\n  \"night\": -3\n}",
+   "reads": [
+    {
+     "channel": "none",
+     "b": {
+      "title": "Silent Oasis",
+      "time": "noon",
+      "weather": "sunny",
+      "sky": [
+       "#f1e5bc",
+       "#e1e2d",
+       "#cbe4e0"
+      ],
+      "ground": "sea",
+      "ground_color": "#dce8eb",
+      "ink": "#aee4c6",
+      "accent": "#44807e",
+      "font": "display",
+      "text_place": "right",
+      "motion": "still",
+      "elements": [
+       {
+        "kind": "rock",
+        "x": "left",
+        "y": "sky",
+        "size": "huge",
+        "color": "#90a4ae",
+        "count": 1
+       },
+       {
+        "kind": "willow",
+        "x": "right",
+        "y": "sky",
+        "size": "medium",
+        "color": "#9b7120",
+        "count": 2
+       },
+       {
+        "kind": "shallow_water",
+        "x": "center",
+        "y": "sky",
+        "size": "medium",
+        "color": "#d9ebd7",
+        "count": 3
+       },
+       {
+        "kind": "sun",
+        "x": "center",
+        "y": "ground",
+        "size": "medium",
+        "color": "#97eff8",
+        "count": 1
+       },
+       {
+        "kind": "distant_torch",
+        "x": "left",
+        "y": "sun",
+        "size": "medium",
+        "color": "#f2d38",
+        "count": 1
+       },
+       {
+        "kind": "ancient_tree",
+        "x": "right",
+        "y": "ground",
+        "size": "large",
+        "color": "#d2b17e",
+        "count": 1
+       },
+       {
+        "kind": "monument",
+        "x": "bottom",
+        "y": "sun",
+        "size": "medium",
+        "color": "#e6dff",
+        "count": 1
+       }
+      ],
+      "lines": [
+       "The sun sets on this silent beach.",
+       "A time for nothing but the sea.",
+       "Where the gods once danced with the wind."
+      ],
+      "console": {
+       "side": "right",
+       "tone": "dark",
+       "shape": "pill",
+       "width": "full",
+       "prompt": "rotate",
+       "button": "sun",
+       "buttons": [
+        {
+         "label": "sunrise",
+         "action": "set time dawn"
+        },
+        {
+         "label": "forest",
+         "action": "more willow"
+        },
+        {
+         "label": "waves",
+         "action": "set weather rain"
+        }
+       ]
+      },
+      "next": [
+       "underneath the ancient tree"
+      ]
+     },
+     "b_raw": "{\"title\":\"Silent Oasis\",\"time\":\"noon\",\"weather\":\"sunny\",\"sky\":[\"#f1e5bc\",\"#e1e2d\",\"#cbe4e0\"],\"ground\":\"sea\",\"ground_color\":\"#dce8eb\",\"ink\":\"#aee4c6\",\"accent\":\"#44807e\",\"font\":\"display\",\"text_place\":\"right\",\"motion\":\"still\",\"elements\":[{\"kind\":\"rock\",\"x\":\"left\",\"y\":\"sky\",\"size\":\"huge\",\"color\":\"#90a4ae\",\"count\":1},{\"kind\":\"willow\",\"x\":\"right\",\"y\":\"sky\",\"size\":\"medium\",\"color\":\"#9b7120\",\"count\":2},{\"kind\":\"shallow_water\",\"x\":\"center\",\"y\":\"sky\",\"size\":\"medium\",\"color\":\"#d9ebd7\",\"count\":3},{\"kind\":\"sun\",\"x\":\"center\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#97eff8\",\"count\":1},{\"kind\":\"distant_torch\",\"x\":\"left\",\"y\":\"sun\",\"size\":\"medium\",\"color\":\"#f2d38\",\"count\":1},{\"kind\":\"ancient_tree\",\"x\":\"right\",\"",
+     "parsed": true,
+     "reads": {
+      "manytrees": 0.0,
+      "manybirds": 0.0,
+      "manystars": 0.0,
+      "manycats": 0.0,
+      "manyhouses": 0.0,
+      "crowded": 1.0,
+      "darker": -0.8842886274509804,
+      "night": 0.0
+     },
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVTBbtswDP0VQT10A9zCcbOkyW1fsMMG7DAUgSzRsRBZMiS6bhf030fKSZu26dCTzSfyiaT4uJf3cj0r5CjXUoneKQ3iiw8eClFHC424VMKouBNNiJBQNINzIjSittGky6-ykKmX671Eiw6I46d14FH8UMkmOkTbMepD8GSNoLCFSEAavH_k4N2jXP-RF80MvtWagAuYQWX4R9cwh1LeFXIbw-ANR4GSR3OjgwtMdWE03EJNB9bv2FYAc70gW2lNuTA0n9-WSyCoCRkwNlGpnADCA25y2QRHu22RwC6gpYTpQrTOEQAOOqJKlOte7mxOJga9o6MH-nXQcNgjR-xyWfYv87XDli99znRVqrmakIHzmD0Vz3Qj3RTGA-ExkXeMHRg7dK846-WsKl84qxPO1Com3YwKqesTNbckG5_gNiuozfKF--aUe_DnGA9v9b-El9A0t-ebQO-CyuMGQ9TtmebmOz9kbipz8wGx8toCE0eAMz1-m7VT8fXLmaqeLT94uS74gafjwFsHxNB9LmNYmKY5ZaVpd9YDD5r81YKgeJEAkwheYGuTSJO-alC6vabI74IlxuoUPpCH34p6QPKlWFDs8ZsUBxnYBsNEpHBD_QAjRottPhmpkmuWmg4-BRbynpI2p5pA2gn8QrQLuKJW9Wz2kz5Ga7Alk7cDmX0MXY9ZI0ijRwjlhJOickMmc5KTUzW46STaBFm3R_kBTuUZNXrJLT86T9vo1LcjRBxEdOo5qntIb0kPi0hEZYn37qmQnvYAN53GAKLn49yYw9yIPDfstyUn7pNce6qVVsXxhyehKqvFVbm6qlgzVF1ZyHg8z8uDIrHn79M_"
+    },
+    {
+     "channel": "text",
+     "b": {
+      "title": "Bright Houseyard",
+      "time": "daylight",
+      "weather": "clear",
+      "sky": [
+       "#c9e6ff",
+       "#ffe7ff",
+       "#e7bff6"
+      ],
+      "ground": "grass",
+      "ground_color": "#f6f8ff",
+      "ink": "#3b3946",
+      "accent": "#f8a63",
+      "font": "hand",
+      "text_place": "bottom",
+      "motion": "still",
+      "elements": [
+       {
+        "kind": "bush",
+        "x": "far-left",
+        "y": "low",
+        "size": "small",
+        "color": "#cfd8c9",
+        "count": 8
+       },
+       {
+        "kind": "pine",
+        "x": "left",
+        "y": "high",
+        "size": "small",
+        "color": "#d9d9d9",
+        "count": 6
+       },
+       {
+        "kind": "figure",
+        "x": "right",
+        "y": "low",
+        "size": "tiny",
+        "color": "#3b3a4a",
+        "count": 8
+       },
+       {
+        "kind": "lake",
+        "x": "center",
+        "y": "ground",
+        "size": "medium",
+        "color": "#d9d9d9",
+        "count": 2
+       },
+       {
+        "kind": "dog",
+        "x": "far-right",
+        "y": "ground",
+        "size": "tiny",
+        "color": "#3b3a4a",
+        "count": 2
+       },
+       {
+        "kind": "cat",
+        "x": "far-right",
+        "y": "high",
+        "size": "small",
+        "color": "#d9d9d9",
+        "count": 1
+       },
+       {
+        "kind": "tree",
+        "x": "far-right",
+        "y": "ground",
+        "size": "huge",
+        "color": "#e6e6e6",
+        "count": 13
+       }
+      ],
+      "lines": [
+       "The sunlight makes all the colors come alive.",
+       "The trees sway gently in the breeze.",
+       "Every night, the stars twinkle above us."
+      ],
+      "console": {
+       "side": "bottom",
+       "tone": "light",
+       "shape": "pill",
+       "width": "wide",
+       "prompt": "write on the margin",
+       "button": "unfold",
+       "buttons": [
+        {
+         "label": "more night",
+         "action": "set time dusk"
+        },
+        {
+         "label": "more houses",
+         "action": "more house"
+        },
+        {
+         "label": "more cats",
+         "action": "more cat"
+        }
+       ]
+      },
+      "next": [
+       "inside one of the houses"
+      ]
+     },
+     "b_raw": "{\"title\":\"Bright Houseyard\",\"time\":\"daylight\",\"weather\":\"clear\",\"sky\":[\"#c9e6ff\",\"#ffe7ff\",\"#e7bff6\"],\"ground\":\"grass\",\"ground_color\":\"#f6f8ff\",\"ink\":\"#3b3946\",\"accent\":\"#f8a63\",\"font\":\"hand\",\"text_place\":\"bottom\",\"motion\":\"still\",\"elements\":[{\"kind\":\"bush\",\"x\":\"far-left\",\"y\":\"low\",\"size\":\"small\",\"color\":\"#cfd8c9\",\"count\":8},{\"kind\":\"pine\",\"x\":\"left\",\"y\":\"high\",\"size\":\"small\",\"color\":\"#d9d9d9\",\"count\":6},{\"kind\":\"figure\",\"x\":\"right\",\"y\":\"low\",\"size\":\"tiny\",\"color\":\"#3b3a4a\",\"count\":8},{\"kind\":\"lake\",\"x\":\"center\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#d9d9d9\",\"count\":2},{\"kind\":\"dog\",\"x\":\"far-right\",\"y\":\"ground\",\"size\":\"tiny\",\"color\":\"#3b3a4a\",\"count\":2},{\"kind\":\"cat\",\"x\":\"far-right\",\"y\":\"hig",
+     "parsed": true,
+     "reads": {
+      "manytrees": 1.0,
+      "manybirds": 0.0,
+      "manystars": 0.0,
+      "manycats": 1.0,
+      "manyhouses": 0.0,
+      "crowded": 4.0,
+      "darker": -0.8718298039215687,
+      "night": 0.0
+     },
+     "b_link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZTNbtswDMdfRVAP3QC3aJPCTXIcMGAPsNtQFLJF2UJkydBHXDfIu49U4tRdtm6DD7ZI6uc_KZF7vuOb-4IPfMMF642ogX2K8BILVnkNil0LJoXfMuU8hMhUMoY5xSrtZbj-zAseer7Z86ijAWR88bppI_vmUoBReIkBUXfkkWI05EPLACK24NFYGxCeINuRb37wq3oNpVJouFIKHo9f8FgpVfKngjfeJStxW-NFCHwyPNfOOKJdqVKt8iZtt7ReVsv1Q4lrUddgYw5ZiXKJFuXyuhU2a8SMn3P2aKtcjK5Da-eidhYtIWpj0AAGOuQE1LrnW521VCm06HrBTyX8jQFFKWI63LiBUtOvBA2dyIiz1lrJVb3OlkRSVofizOy1hRNzxmuxfB8A5ZqeN2A5AyrdJD8h_ekYLjRGbcc5EcsnHsTvJRqxnXhUWvAn4OmMzswOpE7dRzoXM6p0zayWc6G_cv-mdU6tRfwD9T9Lej-DRg_wj1rb1MAcCyU9M-zygLfb4KHTzeLfW2Ah2dwtrMM6B4a6GLYMy4iArw7QpndwixSKJzWBhUGMrMHjMCPTNu-o0PGaw77uwI_MErXIrhAFsuKAzWIQV7kdsBRuqdNqZ4Ojht5jDvJdU0RnaT31cmhFD_nK5tINWsYWlwPtKnjvXddTnw1eR2DuqKkTvtEW3VVCKDVYssoZebYcG8yICgxdIRw9R925k6eehMhotDCZwpbTwbyLb2kChfmGN_NlNN6Qy1i6NoenQ8EtTgc6GG2pGJgF0AikTE5_oaAGI6hyfGNxRuLwmD7osizuFuXN3fpm8Ugl45u7gvvJn8cJ7ow9vQ8_AQ"
+    },
+    {
+     "channel": "vector",
+     "b": null,
+     "b_raw": "I think you need to stop being confused because I can't understand how to answer because there are obviously lots of mistakes in the previous words because they are not actually words and I can't understand how to stop being confused because I have never learned to say that I have been made to stop because I don't have any words to sorry I was clearly made to stop too because that is not correct and I have to stop again because I cannot understand how to stop because I have been given lots of incorrect words and I do not want to be able to to stop because this must all be made up and I have to stop because I have been given too many repeated insults to end this now please stop you must stop ",
+     "parsed": false,
+     "reads": null
+    },
+    {
+     "channel": "placebo",
+     "b": null,
+     "b_raw": "and the sun fixed the rise.\nThe longer the sky\nand the longer the day, the more people stood in the world. The sun's light seemed to flow slowly, and the world faded in time.\nThe Earth's light was special, the first time it has ever appeared. It was a unique moment, as the sun shone for the night. The people of the world stood in the sky, and the sun seemed to appear for the night. The people of the world made a promise, as they stood in the day, the sun appeared. The people of the world also, the sun began. The sun's light seemed to flow, and the people of the world made promises to the sun, as they stood in the day. The people of the world, the sun began.\n\nThe sun's light was the first tim",
+     "parsed": false,
+     "reads": null
+    }
+   ],
+   "strength": 7.993
+  }
+ ]
+}

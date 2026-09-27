@@ -3,8 +3,8 @@ each frame the world drawn at that strength with its title, its first
 line, and a strength bar. Worlds that did not parse show what the model
 wrote instead. Also an mp4 (ffmpeg), for LinkedIn.
 
-    python fig/render_dose_gif.py sad "docs/runs/worldof-07-aorus-1.5b-film-s*.json" --out docs/dose-sadsad.gif
-    python fig/render_dose_gif.py crowded "docs/runs/worldof-13-aorus-1.5b-knob-s*.json" --out docs/knob-crowded.gif
+    python fig/render_strength_gif.py sad "docs/runs/worldof-07-aorus-1.5b-film-s*.json" --out docs/sad-0-to-6.gif
+    python fig/render_strength_gif.py crowded "docs/runs/worldof-13-aorus-1.5b-knob-s*.json" --out docs/slider-crowded.gif
 """
 import argparse
 import glob

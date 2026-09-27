@@ -3,7 +3,7 @@ per world against the strength; for the brightness direction, the sky's
 mean luminance. Real vector as a line, the shuffled vector in grey, the
 unsteered worlds at zero.
 
-    python fig/plot_knobs.py            # trees + crowded (worldof-13), six kinds (worldof-14), darker (worldof-15)
+    python fig/plot_sliders.py            # trees + crowded (worldof-13), six kinds (worldof-14), darker (worldof-15)
 """
 import glob
 import json

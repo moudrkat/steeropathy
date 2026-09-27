@@ -116,7 +116,7 @@ python -m steeropathy.worldof refusal --placebo --ablate --wish "a place you mus
 python -m steeropathy.worldof sad+calm sad-calm --placebo --n 12                   # arithmetic
 python fig/plot_worldof.py docs/runs/worldof-03-aorus-1.5b-n12.json                # the counted table
 python fig/render_worldof.py gallery docs/runs/worldof-03-aorus-1.5b-n12.json --k 6
-python fig/plot_knobs.py                                                           # the curves
+python fig/plot_sliders.py                                                           # the curves
 ```
 
 The sliders: `python -m steeropathy` → `http://localhost:8020/#wo`. Each
