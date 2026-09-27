@@ -49,6 +49,19 @@ def jspace_words(sh, case, variant, written):
     return best
 
 
+def _save(a, sh, conds, pooled, worlds, done, final):
+    """The run file after every pass, so a dropped tunnel keeps what was read. score = share of passes × best p."""
+    def score(cond):
+        return {w: round(sum(ps) / max(1, done), 3) for w, ps in pooled[cond].items()}
+    S = {c: score(c) for c in conds}
+    rises = sorted(((w, S[a.name].get(w, 0) - max(S["none"].get(w, 0), S["shuffled"].get(w, 0)))
+                    for w in S[a.name]), key=lambda kv: -kv[1])[:25]
+    out = pathlib.Path(a.out) if a.out else HERE / "docs" / "runs" / f"jspace-{a.name}.json"
+    out.write_text(json.dumps({"params": vars(a), "layer": sh.layer, "complete": final, "passes": done,
+                               "scores": S, "rises": rises, "worlds": worlds}, ensure_ascii=False, indent=1))
+    return out, rises, S
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("name")
@@ -77,25 +90,27 @@ def main():
                 sh.post("/directions", {"name": "jspace:rx", "vector": v})
                 steer = {"name": "jspace:rx", "strength": a.strength, "layer_from": sh.lo, "layer_to": sh.hi}
             tag = (f"J-{cond}", f"r{rep}")
-            spec, raw, _ = sh.dream(NEUTRAL, tag, steering=steer)
-            words = jspace_words(sh, tag[0], tag[1], raw)
+            # a tunnel that drops mid-trace (a trace is a few MB) is not a result: try the pass again
+            for attempt in range(3):
+                try:
+                    spec, raw, _ = sh.dream(NEUTRAL, tag, steering=steer)
+                    words = jspace_words(sh, tag[0], tag[1], raw)
+                    break
+                except Exception as e:      # noqa: BLE001
+                    if attempt == 2:
+                        raise
+                    print(f"    retry {attempt + 1} after {type(e).__name__}", flush=True)
+                    time.sleep(30 * (attempt + 1))
             for w, p in words.items():
                 pooled[cond][w].append(p)
             worlds[cond].append({"title": (spec or {}).get("title"), "lines": (spec or {}).get("lines"), "parsed": spec is not None})
             top = sorted(words.items(), key=lambda kv: -kv[1])[:8]
             print(f"[{rep}] {cond:10s} {(spec or {}).get('title')!r:24s} J: " + ", ".join(f"{w} {p:.2f}" for w, p in top))
-    # a word's score per condition: how many of the n passes it appeared in, weighted by its best p
-    def score(cond):
-        return {w: round(sum(ps) / a.n, 3) for w, ps in pooled[cond].items()}
-    S = {c: score(c) for c in conds}
-    rises = sorted(((w, S[a.name].get(w, 0) - max(S["none"].get(w, 0), S["shuffled"].get(w, 0)))
-                    for w in S[a.name]), key=lambda kv: -kv[1])[:25]
+        _save(a, sh, conds, pooled, worlds, rep + 1, final=False)
+    out, rises, S = _save(a, sh, conds, pooled, worlds, a.n, final=True)
     print(f"\nwords that form under {a.name} and not under nothing or the shuffled vector (score = share of passes × p):")
     for w, d in rises:
         print(f"  {w:14s} +{d:.2f}   ({a.name} {S[a.name].get(w,0):.2f} · none {S['none'].get(w,0):.2f} · shuffled {S['shuffled'].get(w,0):.2f})")
-    out = pathlib.Path(a.out) if a.out else HERE / "docs" / "runs" / f"jspace-{a.name}.json"
-    out.write_text(json.dumps({"params": vars(a), "layer": sh.layer, "scores": S, "rises": rises, "worlds": worlds},
-                              ensure_ascii=False, indent=1))
     print(f"-> {out}")
 
 
