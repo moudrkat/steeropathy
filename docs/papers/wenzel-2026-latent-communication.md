@@ -6,7 +6,7 @@ arXiv [2607.14103](https://arxiv.org/abs/2607.14103) · Constructor University �
 > SAE-sparse code, text) and measures how much *concept* information each carries.
 > Text serialization destroys 88% of the sender's SAE features — but the destroyed
 > features are surface form (tokenization, template, position), not semantics.
-> On every task tested, **text matches or beats the latent channel by 3–10 pp**.
+> On every task tested, **the latent channel matches the text channel but never exceeds it**, and adding latent features to text "provides no benefit" (the abstract's wording; the 3–10 pp gaps in the tables are attributed by the author to the linear Procrustes alignment, not to a ceiling).
 > An honest negative, and the paper says exactly when latent could win: only on
 > content text cannot express. That is the bar steeropathy has to clear.
 

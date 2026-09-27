@@ -147,8 +147,8 @@ is a thing that runs, not a claim — come test it.
 
 - **Activation steering:** Turner et al. ([2308.10248](https://arxiv.org/abs/2308.10248));
   Zou et al., *Representation Engineering* ([2310.01405](https://arxiv.org/abs/2310.01405));
-  Rimsky et al., *Contrastive Activation Addition* ([2312.06681](https://arxiv.org/abs/2312.06681))
+  Panickssery (Rimsky) et al., *Contrastive Activation Addition* ([2312.06681](https://arxiv.org/abs/2312.06681))
 - **J-space / Jacobian lens:** Anthropic, *Verbalizable Representations Form a Global
   Workspace* ([transformer-circuits.pub/2026/workspace](https://transformer-circuits.pub/2026/workspace/));
   brainscope's `jlens.py` is an independent reimplementation.
-- **Emotion vectors:** Ruan et al. ([2502.05489](https://arxiv.org/abs/2502.05489))
+- **Emotion vectors:** Tak et al. ([2502.05489](https://arxiv.org/abs/2502.05489))

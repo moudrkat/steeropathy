@@ -136,23 +136,27 @@ Each experiment's own commands live on its page.
   model. Subtract neutral and you have measured *emotional at all*; subtract
   the other moods and you have measured *sadness*. The page draws the
   difference.
-- The plumbing is activation steering (Turner, Zou, Rimsky). What I have
+- The plumbing is activation steering (Turner, Zou, Panickssery). What I have
   not seen elsewhere is the typed readout with a control per field, and
   agents reading and pushing each other purely off the residual stream.
 - No agent *feels* anything. Its output shifts along a direction.
 
 ## References
 
-- **Activation steering:** Turner et al., *Activation Addition*
+- **Activation steering:** Turner et al., *Steering Language Models With Activation Engineering* (ActAdd)
   ([2308.10248](https://arxiv.org/abs/2308.10248)); Zou et al., *Representation
-  Engineering* ([2310.01405](https://arxiv.org/abs/2310.01405)); Rimsky et al.,
+  Engineering* ([2310.01405](https://arxiv.org/abs/2310.01405)); Panickssery (Rimsky) et al.,
   *Contrastive Activation Addition* ([2312.06681](https://arxiv.org/abs/2312.06681))
 - **Task / in-context vectors:** Todd et al.
   ([2310.15213](https://arxiv.org/abs/2310.15213)); Liu et al., *In-Context Vectors*
   ([2311.06668](https://arxiv.org/abs/2311.06668)); Hendel et al.
   ([2310.15916](https://arxiv.org/abs/2310.15916))
-- **Emotion:** Ruan et al., *Mechanistic Interpretability of Emotion Inference*
-  ([2502.05489](https://arxiv.org/abs/2502.05489))
+- **Emotion, and subtracting what emotions share:** Tak et al., *Mechanistic Interpretability of Emotion Inference* (ACL 2025)
+  ([2502.05489](https://arxiv.org/abs/2502.05489)); Sofroniew et al. (Anthropic), *Emotion Concepts and their Function in a Large Language Model*
+  ([2604.07729](https://arxiv.org/abs/2604.07729)); Jorgensen et al., *Improving Activation Steering with Mean-Centring*
+  ([2312.03813](https://arxiv.org/abs/2312.03813))
+- **Placebo and composition:** van der Weij et al. ([2403.05767](https://arxiv.org/abs/2403.05767), the permuted-vector control); SteerCheck ([2608.24335](https://arxiv.org/abs/2608.24335)); Kang et al. ([2609.08410](https://arxiv.org/abs/2609.08410), when sums of directions work); Malla et al. ([2609.06951](https://arxiv.org/abs/2609.06951), interference as drift to defaults)
+- **Drawing under steering:** Tarng, Goel, Kauvar (Anthropic), *Visual Features Across Modalities*, Circuits Updates October 2025, [transformer-circuits.pub](https://transformer-circuits.pub/2025/october-update/index.html#svg-cross-modal) (a research note, no arXiv)
 - **Latent communication vs text:** Wenzel, *Latent Communication Between LM Agents: Channels, Alignment, and the Limits of Text* ([2607.14103](https://arxiv.org/abs/2607.14103)); Du et al., *Interlat* ([2511.09149](https://arxiv.org/abs/2511.09149)); Liu, *Beyond Tokens* survey ([2606.05711](https://arxiv.org/abs/2606.05711)); Zhang et al., *Locate, Steer, and Improve* survey ([2601.14004](https://arxiv.org/abs/2601.14004)); Singh et al., *Representation Surgery* — the mean-difference vector is the L2-optimal affine steer ([2402.09631](https://arxiv.org/abs/2402.09631)). Reading notes in [docs/papers](docs/papers/README.md)
 - **Agent steering & latent communication:** UK AISI,
   [llm-self-steering](https://github.com/UKGovernmentBEIS/llm-self-steering); *The
