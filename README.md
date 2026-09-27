@@ -82,6 +82,7 @@ instrument taught before it measured anything.
 | experiment | what it shows |
 |---|---|
 | **[worldof](experiments/worldof.md)** | what a steering vector looks like when the model draws it; dose vs direction; the moods test; the knobs and the sliders |
+| **[cardof](experiments/cardof.md)** | the same knobs on a normal UI: a product card with a title, a price, features and a button; louder, cheaper, more features, formal, darker |
 | **[handoff](experiments/handoff.md)** | agents passing knob settings as one vector; fidelity against text and against the shuffled vector |
 | **[secondhand](experiments/secondhand.md)** | mind A's page-state pushed into mind B, against A's own poem. Sixty wishes: the poem wins every field, the vector adds nothing on top |
 | **[soundof](experiments/soundof.md)** | the same directions as eight bars in ABC notation: tempo, key, meter as the readout |
