@@ -121,6 +121,11 @@ def _wo_draw(knobs: dict, wish: str) -> dict:
            "band": [sh.lo, sh.hi], "wish": wish, "world": spec, "raw": raw[:700]}
     if spec:
         out["link"] = sh_mod.world_link(wish, spec)
+        # a panel-free copy of the page for the iframe (BNW_SITE=http://127.0.0.1:8098);
+        # the public link stays on "open the world"
+        site = os.environ.get("BNW_SITE")
+        if site:
+            out["link_local"] = site.rstrip("/") + "/index.html#" + out["link"].split("#", 1)[1]
         out["fields"] = {k: spec.get(k) for k in ("title", "time", "weather", "ground", "motion", "font")}
         out["lines"] = [l for l in (spec.get("lines") or []) if isinstance(l, str)]
         out["things"] = sh_mod.kinds_of(spec)

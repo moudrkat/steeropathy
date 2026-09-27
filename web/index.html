@@ -492,7 +492,7 @@ function paintWo(d){
   if(!d.world){ out.innerHTML=`<div class="lbl">did not parse — what it wrote instead:</div><div class="out">${esc(d.raw)}</div>`; return; }
   const f=d.fields, sky=(d.sky||[]).filter(c=>typeof c==="string");
   out.innerHTML=`
-    <iframe src="${d.link}" style="width:100%;aspect-ratio:5/3;border:0;border-radius:8px;background:#eee"></iframe>
+    <iframe src="${d.link_local||d.link}" style="width:100%;aspect-ratio:5/3;border:0;border-radius:8px;background:#eee"></iframe>
     <div style="margin-top:8px"><b>“${esc(f.title||"")}”</b> <a href="${d.link}" target="_blank" style="margin-left:8px">open the world</a></div>
     ${(d.lines||[]).map(l=>`<div><i>${esc(l)}</i></div>`).join("")}
     <div class="lbl">${esc([f.time,f.weather,f.ground,f.motion,f.font].filter(Boolean).join(" · "))}</div>

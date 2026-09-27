@@ -104,11 +104,12 @@ def main():
     for ax in axes[len(live):]:
         ax.axis("off")
     axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
-    fig.suptitle("The knobs", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=0.995)
-    fig.text(0.02, 0.965, "Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
+    fh = 3.4 * rows + 0.9
+    fig.suptitle("The knobs", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
+    fig.text(0.02, 1 - 0.55 / fh, "Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
              "y: what the drawn world contains. Bars are standard errors. Negative strength pushes the other way.",
              color=INK2, fontsize=9)
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
+    fig.tight_layout(rect=(0, 0, 1, 1 - 0.75 / fh))
     out = HERE / "docs" / "worldof-knobs.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
