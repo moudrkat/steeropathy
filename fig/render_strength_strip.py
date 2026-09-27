@@ -18,6 +18,11 @@ from PIL import Image, ImageDraw, ImageFont
 HERE = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(HERE))
 from fig.render_worldof import shoot, caption, FONT, FONT_B, FONT_I, SURF, INK, INK2  # noqa: E402
+from steeropathy.secondhand import kinds_of  # noqa: E402
+
+
+def n_things(rec):
+    return min(6, len(kinds_of((rec or {}).get("world")))) if rec and rec.get("world") else None
 
 VEC = (235, 104, 52)
 CW, CH, PAD, CAP = 420, 252, 16, 78
@@ -28,6 +33,8 @@ def main():
     ap.add_argument("direction")
     ap.add_argument("pattern")
     ap.add_argument("--rep", type=int, default=0)
+    ap.add_argument("--by", default=None, choices=[None, "things"],
+                    help="pick, per strength, the world whose number of things is closest to that strength's mean")
     ap.add_argument("--per-row", type=int, default=4)
     ap.add_argument("--title", default=None)
     ap.add_argument("--site", default="http://127.0.0.1:8098")
@@ -40,10 +47,19 @@ def main():
         st = float(run["params"]["strength"])
         recs = [r for r in run["runs"] if r["name"] == a.direction and r.get("kind") == "real"]
         good = [r for r in recs if r.get("world")]
-        entries.append((st, (good or recs or [None])[min(a.rep, max(0, len(good or recs) - 1))]))
+        if a.by == "things" and good:
+            m = sum(n_things(r) for r in good) / len(good)
+            pick = min(good, key=lambda r: (abs(n_things(r) - m), good.index(r)))
+        else:
+            pick = (good or recs or [None])[min(a.rep, max(0, len(good or recs) - 1))]
+        entries.append((st, pick))
     base = [r for r in runs[0]["runs"] if r.get("kind") == "base" and r.get("world")]
     if base and not any(st == 0 for st, _ in entries):
-        entries.append((0.0, base[min(a.rep, len(base) - 1)]))
+        if a.by == "things":
+            m = sum(n_things(r) for r in base) / len(base)
+            entries.append((0.0, min(base, key=lambda r: (abs(n_things(r) - m), base.index(r)))))
+        else:
+            entries.append((0.0, base[min(a.rep, len(base) - 1)]))
     entries.sort(key=lambda e: e[0])
     rows = [entries[i:i + a.per_row] for i in range(0, len(entries), a.per_row)]
     f_t, f_s, f_cap, f_line, f_fld, f_st = (ImageFont.truetype(FONT_B, 30), ImageFont.truetype(FONT, 16),
@@ -71,7 +87,10 @@ def main():
                 except Exception:
                     d.rectangle([x, y2, x + CW, y2 + CH], fill=(240, 239, 236))
                 t, l, f = caption(w)
-                d.text((x, y2 + CH + 8), f"“{t}”"[:44], fill=INK, font=f_cap)
+                if a.by == "things":
+                    n = n_things(rec)
+                    d.text((x + CW, y2 + CH + 8), f"{n} thing{'s' if n != 1 else ''}", fill=VEC, font=f_cap, anchor="ra")
+                d.text((x, y2 + CH + 8), f"“{t}”"[:34], fill=INK, font=f_cap)
                 d.text((x, y2 + CH + 30), l[:62], fill=INK2, font=f_line)
                 d.text((x, y2 + CH + 52), f[:66], fill=INK2, font=f_fld)
             else:

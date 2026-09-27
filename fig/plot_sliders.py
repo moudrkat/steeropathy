@@ -92,25 +92,35 @@ def panel(ax, pts, title, ylabel):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--only", default=None, help="comma list of direction names to draw, one panel each")
+    ap.add_argument("--out", default=None)
+    ap.add_argument("--title", default="The sliders")
+    a = ap.parse_args()
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
-    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10})
+    plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11 if a.only else 10})
     live = [(g, n, k, t, y) for g, n, k, t, y in PANELS if glob.glob(str(HERE / "docs" / "runs" / g))]
-    cols = 3
+    if a.only:
+        keep = a.only.split(",")
+        live = [x for x in live if x[1] in keep]
+    cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
-    fig, axes = plt.subplots(rows, cols, figsize=(4.2 * cols, 3.4 * rows + 0.9), facecolor=SURF)
+    size = (7.5, 5.2) if len(live) == 1 else (4.2 * cols, 3.4 * rows + 0.9)
+    fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
         panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k), t, y)
     for ax in axes[len(live):]:
         ax.axis("off")
     axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
-    fh = 3.4 * rows + 0.9
-    fig.suptitle("The sliders", x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
+    fh = size[1]
+    fig.suptitle(a.title, x=0.02, ha="left", fontsize=15, color=INK, fontweight="bold", y=1 - 0.12 / fh)
     fig.text(0.02, 1 - 0.55 / fh, "Qwen2.5-1.5B, layer 16 ± 4. x: strength of one direction added to the residual stream; "
              "y: what the drawn world contains. Bars are standard errors. Negative strength pushes the other way.",
              color=INK2, fontsize=9)
     fig.tight_layout(rect=(0, 0, 1, 1 - 0.75 / fh))
-    out = HERE / "docs" / "worldof-sliders.png"
+    out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
 
