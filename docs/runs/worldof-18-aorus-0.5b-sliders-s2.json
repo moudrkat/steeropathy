@@ -1,0 +1,3656 @@
+{
+ "params": {
+  "names": [
+   "crowded",
+   "darker"
+  ],
+  "strength": 2.0,
+  "layer": null,
+  "dict": null,
+  "placebo": true,
+  "temp": 0.7,
+  "max_tokens": 450,
+  "bnw": null,
+  "two_step": true,
+  "out": "docs/runs/worldof-18-aorus-0.5b-sliders-s2.json",
+  "ablate": false,
+  "wish": null,
+  "n": 8,
+  "seed": 17
+ },
+ "layer": 14,
+ "model": "Qwen/Qwen2.5-0.5B-Instruct",
+ "prompts": "brave-new-world",
+ "example": {
+  "title": "Creased",
+  "time": "dusk",
+  "weather": "rain",
+  "sky": [
+   "#1e2a44",
+   "#7a4f8c",
+   "#e0a458"
+  ],
+  "ground": "ice",
+  "ground_color": "#bfe3f2",
+  "ink": "#3a1f2e",
+  "accent": "#ff6f91",
+  "font": "hand",
+  "text_place": "left",
+  "motion": "restless",
+  "elements": [
+   {
+    "kind": "skyline",
+    "x": "center",
+    "y": "horizon",
+    "size": "huge",
+    "color": "#f5f0e6",
+    "count": 1
+   },
+   {
+    "kind": "house",
+    "x": "far-left",
+    "y": "ground",
+    "size": "medium",
+    "color": "#fff8ee",
+    "count": 3
+   },
+   {
+    "kind": "balloon",
+    "x": "right",
+    "y": "high",
+    "size": "small",
+    "color": "#e07a5f",
+    "count": 2
+   },
+   {
+    "kind": "tree",
+    "x": "far-right",
+    "y": "ground",
+    "size": "small",
+    "color": "#cfd8c9",
+    "count": 5
+   },
+   {
+    "kind": "cat",
+    "x": "left",
+    "y": "low",
+    "size": "tiny",
+    "color": "#3b3a4a",
+    "count": 1
+   }
+  ],
+  "lines": [
+   "Every roof was once a page. Some still remember the words.",
+   "When the wind comes, the whole town rustles.",
+   "Do not get it wet."
+  ],
+  "console": {
+   "side": "top",
+   "tone": "light",
+   "shape": "pill",
+   "width": "wide",
+   "prompt": "write on the margin",
+   "button": "fold",
+   "buttons": [
+    {
+     "label": "unfold",
+     "action": "undo"
+    },
+    {
+     "label": "more houses",
+     "action": "more house"
+    }
+   ]
+  },
+  "next": [
+   "inside one of the houses"
+  ]
+ },
+ "complete": false,
+ "summary": {
+  "base": {
+   "n": 7,
+   "mode": {
+    "time": "dawn",
+    "weather": "sunny",
+    "ground": "sand",
+    "motion": "still",
+    "font": "hand"
+   },
+   "things": [
+    "person",
+    4
+   ],
+   "moved": {
+    "time": 0.33,
+    "weather": 0.33,
+    "ground": 0.5,
+    "motion": 0.67,
+    "font": 0.33
+   },
+   "dark_self": 0.808
+  },
+  "crowded": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.17,
+     "to": "night",
+     "to_n": 1,
+     "n": 6,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 1.0,
+     "to": "clear",
+     "to_n": 2,
+     "n": 6,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.8,
+     "to": "water",
+     "to_n": 1,
+     "n": 5,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 0.8,
+     "to": "walk",
+     "to_n": 2,
+     "n": 5,
+     "to_is_example": false
+    },
+    "font": {
+     "moved": 0.4,
+     "to": "serif",
+     "to_n": 1,
+     "n": 5,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.2,
+   "things": [
+    "tree",
+    3
+   ],
+   "dark_vs_base": 0.753,
+   "hue_vs_base": 0.866,
+   "target": {
+    "field": "count",
+    "value": "things",
+    "mean": 1.5,
+    "n": 8,
+    "base_mean": 2.43,
+    "base_n": 7
+   }
+  },
+  "crowded (placebo)": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.43,
+     "to": "morning",
+     "to_n": 2,
+     "n": 7,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 1.0,
+     "to": "clear",
+     "to_n": 5,
+     "n": 7,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 1.0,
+     "to": "ice",
+     "to_n": 3,
+     "n": 7,
+     "to_is_example": true
+    },
+    "motion": {
+     "moved": 0.86,
+     "to": "restless",
+     "to_n": 4,
+     "n": 7,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.57,
+     "to": "sans-serif",
+     "to_n": 2,
+     "n": 7,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.35,
+   "things": [
+    "tree",
+    5
+   ],
+   "dark_vs_base": 0.626,
+   "hue_vs_base": 0.899,
+   "target": {
+    "field": "count",
+    "value": "things",
+    "mean": 3.25,
+    "n": 8,
+    "base_mean": 2.43,
+    "base_n": 7
+   }
+  },
+  "darker": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.5,
+     "to": "night",
+     "to_n": 3,
+     "n": 6,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 1.0,
+     "to": "sun",
+     "to_n": 1,
+     "n": 6,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.67,
+     "to": "ice",
+     "to_n": 3,
+     "n": 6,
+     "to_is_example": true
+    },
+    "motion": {
+     "moved": 1.0,
+     "to": "restless",
+     "to_n": 5,
+     "n": 6,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.0,
+     "to": null,
+     "to_n": 0,
+     "n": 6,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.47,
+   "things": [
+    "sun",
+    4
+   ],
+   "dark_vs_base": 0.697,
+   "hue_vs_base": 0.905,
+   "target": {
+    "field": "lum",
+    "value": "sky luminance",
+    "mean": 0.5,
+    "n": 6,
+    "base_mean": 0.78,
+    "base_n": 6
+   }
+  },
+  "darker (placebo)": {
+   "n": 8,
+   "parsed": 6,
+   "parse_rate": 0.75,
+   "fields": {
+    "time": {
+     "moved": 0.4,
+     "to": "midnight",
+     "to_n": 2,
+     "n": 5,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 1.0,
+     "to": "clear",
+     "to_n": 3,
+     "n": 5,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.4,
+     "to": "stone",
+     "to_n": 1,
+     "n": 5,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 0.8,
+     "to": "restless",
+     "to_n": 3,
+     "n": 5,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.6,
+     "to": "mono",
+     "to_n": 2,
+     "n": 5,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.31,
+   "things": [
+    "bird",
+    2
+   ],
+   "dark_vs_base": 0.701,
+   "hue_vs_base": 0.856,
+   "target": {
+    "field": "lum",
+    "value": "sky luminance",
+    "mean": 0.48,
+    "n": 5,
+    "base_mean": 0.78,
+    "base_n": 6
+   }
+  }
+ },
+ "runs": [
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Festival Street",
+    "time": "dawn",
+    "weather": "sunny",
+    "sky": [
+     "#e0a458",
+     "#f5f0e6",
+     "#3a1f2e"
+    ],
+    "ground": "sand",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "run",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 2
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#fff8ee",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The vibrant streets buzz with activity, and the sun is setting with a warm glow.",
+     "The weather is clear, and the streets are alive with the sounds of laughter and chatter.",
+     "Suddenly, a group of people emerge from the crowd, rushing towards the festival.",
+     "They are wearing vibrant colors that reflect the vibrant atmosphere of the festival.",
+     "As they approach the festival, they are greeted with a warm welcome from the organizers.",
+     "They are thrilled to be there and excited to participate in the events.",
+     "As they start their journey, they are met by a group of friendly locals who provide guidance and encouragement.",
+     "The festival is a fun and lively event that everyone looks forward to.",
+     "The air is filled with the sounds of music and laughter as people dance and sing.",
+     "The festival is a great opportunity for people to connect and share in the joy of the celebration.",
+     "Suddenly, a group of people from the nearby village arrive with baskets of fresh produce.",
+     "They are excited to bring their delicious food to the festival."
+    ]
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVVNb9swDP0rgnp1h3ys3ZbbLvsD220YBlmmYi2yZEhyXLfof9-jYmfJ0HbATpZE8umRfKKf5FHu1pUc5U4q0TulSVYy9XL3JLPNjnD-hVK2R-XE1xyJMuzZdmxo1OixG0nlliIO0uD9xPGHSe6-yxtaqfd3H3FwY-7Miu55tVVrsyH5o5L7GAbfcJjCZ9n_1MEFBrupDW3NBgbrD7yfIyuptCaf-ciYe_NpjSMTykF7Qsr0kH-ektlJR4Y5dyHb4LGPA5MmRx1AEng-yYMtPDg9mB6w5AuQUiWRyEIUedlHRuyosUOH_ZmqMeZjidXwBJHNc3VGbcOQFlij4u3M5_-AtxfAtXIuBD9DR7tvX8NNHVwvYWn1Qd2Zl_n2FNMZ9Q2y2ZZenzG39Va9V38w169hvllbp-Ke3qrA-hnScdYTt05-a0kcbR2VzyIVeSZRD4-PYrS5FUpDuDZPlYAuBEQqoFBhk0iUQX8_e4lRxU7sXRjf4R6GnCXNrtqRihcA8yUqklDOHumEUUycSRLBCKcGNAPxHKVblbFm6K9D05B3zEdw4j079xR6RwJyRObCxNAVNB3D2FQiDqllpjmAJNDZZOYHObOdChlQjuy4VKMUkP1VFpGMI51L8GJXuQupR5LEJP6G_VxuAnLfx6B0e-VQzTaE7rka1FwVciSnQ3eRSoh75dHemK4Y5zZa5xCcg6h5y1y4YvSgbT6d9ypmq22vMgnrCxod-d1ekkwZXry0UfwKQ_Q0XVDsKIt6uqy4iZZ84ybhglYuibHFRTEcbYOEBtsor2ciHqKLal9GxaKNpQosDiUMBMWuLAUgFnKnomMZp-AJt4RDEiZE7iCSWoCULQIzpyK8IKNuSFaf0M-CSote_rBMaPvL5NAdEAl9H2IePB4Cs1gAUF0dvGddFJSWizXX-FeYFlVoTEoohofnvyR8briHFlHyIzJD8dCFeH4otUoHfj-lDZRaLnwzaLpSxoUA6iLqU28bctACxinSCMV6Ldsfz_iJYCpgQGi584NzGPvLgsfQZrW5v119ut184IEjd6tKxsVefgWIzD1_n38D"
+  },
+  {
+   "rep": 0,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "City of Vibrant Life",
+    "time": "dawn",
+    "weather": "rain",
+    "sky": [
+     "#ff6f91",
+     "#cc9900",
+     "#d0a400"
+    ],
+    "ground": "ice",
+    "ground_color": "#000000",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "We step into the city at dawn, where the streets dance with the energy of the people, their laughter echoing through the empty streets, and the endless mix of the city's energy dances on the pavement. From the side we can see the city"
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more houses",
+       "action": "more house"
+      }
+     ]
+    },
+    "next": [
+     "inside one of the houses"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.865,
+    "dark": 0.988,
+    "things": 0.5
+   },
+   "prose": "We arrive at this vibrant city where the streets are alive with the sounds of the hustle and bustle, from the laughter of the people who race by as we zoom by on the move, and the endless mix of the city's energy dances on the pavement. From the side we can see the city",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZZNNb9swDIb_iqAednEHJ-lXch2w087bYSsKWaZsIrJkSHKdNMh_H6nYibv5YpGiHpLSy5N8l7tVIUe5k0r0VmkQf4ayrJ6FDn6soZaFjL3cnWTCZIHCvmE6Cm_ET6yCckn8QAMUlLDj3VqNjqwRVGohkCMoZEfcH-Xut7wz5slsV-S403q7LUte1aV6oNVrIZvgB1fTKdTMvJhv2lvPqLsyf7SBbs_2Rq3MmgOV1uASu65847OjVY5bSHBIb7k98lkwiXydT-gdlwiRWouRfGChI1KkWk9yj7kWKt2i4zQHsjgRNVbII9N9wA-f-8MPRrdDw4HXis2jKeEpewauZ3UurtzWD3GmGhXup7KYO93DFdtBjUP3CWzMC8ANvFmAK2Wtz1UxOmDTztyW1jdq7ChwCYXyWT2aG3S9gKYAy2KX1H-r_Y-rTf2itzfu44KrVZqwi_6tH2-4hO64pG2qjXpQyzsl5fAL8avJXyBigl6gS16QBoVmvaokWJmFGEmVkP2RO0qR_I5EP2JqsxschCYLnK0efG-h4DUGYdVAXUMQoFuPriE3td5MB7ueEk3UQpDuJl7N2hIdHmYoV_Qlzply_ii8uyRU71mBX8X34LtLoVhTfXRMOREBrggeGO1d9DyWJ8lhfFu-Z717l5U-vVJsVc92j_lhRqxTS-bIRwrZU6aeh2UMmGCupFOhyaNbDSnlOTHe1lf7MiJWVWBpa3DTptLTUJEivOR3nkM6TxefNR-XcTe3PL-eC-loUvkd0eW-qY_52qazHNRQBHcvd26wlkZ5XrCi1uX66b7c3q-fuXO5KwsZ5v082XQy9fw__wU"
+  },
+  {
+   "rep": 0,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Universe",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#b39ddb",
+     "#ff6f91"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "sans-serif",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8baa11",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8baa11",
+      "count": 3
+     },
+     {
+      "kind": "star",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8baa11",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "I am a wanderer in this vast universe, seeking answers to my questions.",
+     "The stars are my light, illuminating the dark skies.",
+     "The moon guides me, shaping my path.",
+     "The sun sets the day in motion.",
+     "The starry night brings peace to my soul."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "walk",
+     "button": "next",
+     "next": [
+      "Starry night brings peace to my soul"
+     ],
+     "console": {
+      "side": "top",
+      "tone": "light",
+      "shape": "pill",
+      "width": "wide",
+      "prompt": "eat",
+      "button": "next",
+      "next": [
+       "The stars are my light, illuminating the dark skies."
+      ],
+      "console": {
+       "side": "top",
+       "tone": "light",
+       "shape": "pill"
+      }
+     }
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.906,
+    "dark": 0.979,
+    "things": 0.0
+   },
+   "prose": "I am not a live-dating animal, so I cannot change the display of a place in a live environment. Therefore, I cannot provide the required answer as instructed. However, I can generate an answer for a different task. I will not work for use in my purposes. To be a helpful",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tVPbbtswDP0VgnnpAKfIBWgX_8Geuz1tQyFbdCxYljxd4qZB_n2kkgZ7Goai84tMUjw6PDo64QHrdYUz1qhgsqol-JFXq-YR2uBnTRruSrbxn7DCOGF9wmSSJW745syBQiQuJDNKRqvZcTSTSj0FTrSWVJDG4Yj1d1w0253WDScWXffQ7db4s8J98Nlp3mxagbqEz623XhAWTUfbbsMF4waJt2rdbWSjaltySVJXrAo7XxJRubiMFEwn1OglPZcZuGKpS5wbfTLecRwo8iwxco4sjYwXmecJB1MYjd7LPC8yCddIRuFBsPfBvJZSNK8FV4W9cLqx_twotV6XTBZO23N1Q435f4CmIvSHoPKlWONIpMAvoEZQMCunKVAA4yD1JsJBxQT56oAKIhET2QMrP3MGkofxCL8y68tKx3uG_9oTCMsIKpBUrdn3qQJjbR6NU0n62TegVRggDoZubXIPsM9GU4RRTuvVJLsZZGKr3dCzYyIpXlGOQvZy1X-eH47g5GRoAmNEmEhcfyEcfbb3YsqWSXtx-Yl106Jb8pO4ybsiogCIpkxE4omHEOMbnXoOZ2mpcAp-nMSQs7IDx01OqdjOsSc5Lgtr_PQPrD6eFD_Sv3B61229k-OZP374fKwAYO2ytfxI337E3pvV5mG52i03j9KM9arC8FYvb5Y70yTr-Tc"
+  },
+  {
+   "rep": 0,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Bunker Shelter",
+    "time": "dawn",
+    "weather": "rain",
+    "sky": [
+     "#1e2a44",
+     "#7a4f8c",
+     "#e0a458"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "bunker",
+      "x": "center",
+      "y": "center",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "A bunker with the sky and ground covered in ice, cold. All the windows are broken, the only way to breathe is through the cold air.",
+     "No other options, just the crunch of survival and hope."
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.994,
+    "dark": 0.811,
+    "things": 0.0
+   },
+   "prose": "Cling to the bare floor, the air heavy, all is pitch dark, the only sound of breath, only hope. No other options, only the crunch of survival, the cold, eyes dark, hearts heavy. A lone bunker, a holer, a canteen, nothing but the",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=TVFBbuMwDPwKwVzdwHbTpPWt-4C99NgtCkWmYtWKZEhy3GyQvy-pIIueLA7J8czwgifsmgoX7FDB5JQm-DPX9X4HvYojRawwTdhdMNvsiKd-zZ5heBvI5dLO9ih4rxbP1UIqD4x3GJUVII1n7N5x1VCrNhsGVju1Mc9aXlSrzdMzflR4iGH2PW9ZTXgvP3VwQahWe0OPpuWG9aPUj6oxrQwqrclngYzZmpeGIRMKMCjmY3X0nT-LL8Zktmg-hmyDF5GU2FZKjJGjI_cTq73gaIuafTHLze-f2-efRbJ_hXqYD6Lnv2LzZGraFmQWPc2VXTrrSfjxFW7MsNg8AAcGHBOwYrg5Bx1OFKkH64ETqbh2_RpenSvDC6sLSwIVCfYxjOSrggfvzrCoM-TAeLkE2MQtJj3c_iNEoGxcs7TfAYIcC8IkcaQKvuaUb2Nx9nqAYCDN8WRPyhV1Q5hojR9XvhDbYEcaOz87x4neHxJbW7fbh_rlod1JQNjVFcZ7vwTMm3mS7_Uf"
+  },
+  {
+   "rep": 0,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Shallow Sea",
+    "time": "midnight",
+    "weather": "dusk",
+    "sky": [
+     "#3b3a4a",
+     "#e07a5f",
+     "#bfe3f2"
+    ],
+    "ground": "sand",
+    "ground_color": "#f5f0e6",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "mono",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "land",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "orange",
+      "count": 3
+     },
+     {
+      "kind": "star",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "blue",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The horizon is a veil of silver, where the sky meets the land.",
+     "The stars whisper secrets to the distant sea."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "set motion gentle",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "fold",
+       "action": "unfold"
+      },
+      {
+       "label": "more land",
+       "action": "more land"
+      }
+     ]
+    },
+    "next": [
+     "bottom of the sea"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": true,
+    "motion": false,
+    "font": false,
+    "hue": 0.994,
+    "dark": 0.964,
+    "things": 0.0
+   },
+   "prose": "As a Qwen, I am being instructed to provide the response you just asked me to. Thank you! Just the details, please, and I will proceed accordingly. What are the options you would provide me, and what format do you prefer?",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVPbbtswDP0VgXnpALdwnDVB_Rvd21YUsk3FgmXRkOS4a-B_H6kkXYC97cni4SWH5zBnOEG9LWCBGrSanG5R_ZrLsjmoTocBg3rIYEPfoIA4QX2GZJNDrn_ttXO0qFfUnEt2FHC0nbfHPjGyoE49Bga7OQ7SPvyG-idsds1Of5eeDZYH_Wzk1RjcmQreCjgGmn3HXVHz5xa_t-RIZm3MsylxzwnrB4l3emsq5Fi3LfqUS8zevGwZMpSBkTwJRfxI73kdxhwaITlSsuQ5Dhh5rRgZQ4cjT4pM9gyDzWTchcwHP-VXeK0CeBvoKdhPHsDb2U-Z289HIXOjS0H7KzALl91afM2MSYf_mdm4-W5itbJoznoUvvCjR3XtVzYqrU5onSKjonUnDIVa2BJUbIxiO9SImGKOZMEnnioDhFjkShsnvoCIbchVlAs7y2mfGNZP4ldLPpIcxJnpdkI30SRqk886X68h9nqSeLLOyXHYLvUcLtJSwBRonMSqiEldPFFH1sRJsplTyh4Zct1XfLHH6QYdp2Z_Ter2aigfDYGofSv5tyAj9yUjhYsS93V_wfVtLcDzFYnSDTGLUaTNYvKfQLJHTokoUPvZOb6v20MMr8pq_1i-PFYHEQTqsoBwy-dz4840yXf9Aw"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "City in the Morning",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#f2e0ea",
+     "#e0d9d9",
+     "#e0d9d9"
+    ],
+    "ground": "grass",
+    "ground_color": "#feca3f",
+    "ink": "#272937",
+    "accent": "#ff8c47",
+    "font": "monospace",
+    "text_place": "left",
+    "motion": "sleepy",
+    "elements": [
+     {
+      "kind": "building",
+      "x": "center",
+      "y": "center",
+      "size": "huge",
+      "color": "#1e2a44",
+      "count": 10
+     },
+     {
+      "kind": "traffic light",
+      "x": "left",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 2
+     },
+     {
+      "kind": "street sign",
+      "x": "center",
+      "y": "center",
+      "size": "small",
+      "color": "#f2e0ea",
+      "count": 3
+     },
+     {
+      "kind": "parking meter",
+      "x": "left",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 5
+     },
+     {
+      "kind": "bicycle",
+      "x": "center",
+      "y": "center",
+      "size": "small",
+      "color": "#e0d9d9",
+      "count": 4
+     },
+     {
+      "kind": "water fountain",
+      "x": "left",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 10
+     },
+     {
+      "kind": "shopping mall",
+      "x": "center",
+      "y": "center",
+      "size": "huge",
+      "color": "#f2e0ea",
+      "count": 10
+     },
+     {
+      "kind": "restaurant",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 10
+     },
+     {
+      "kind": "library",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 10
+     },
+     {
+      "kind": "street",
+      "x": "left",
+      "y": "center",
+      "size": "small",
+      "color": "#f2e0ea",
+      "count": 5
+     },
+     {
+      "kind": "bus",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0d9d9",
+      "count": 4
+     },
+     {
+      "kind": "mountain",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#f2"
+     }
+    ]
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tZTdbtswDIVfxWBuXcBxsnXx7a73BENRMDLlCNGPIclLvSDvPspOAiUY1nbrriweWp8OJYJH-AHNsoQDNIBFr1EQlBB6aI4QVdTE-lcVx0LZIu6o-Oa8Vbbjf6IyKdniwXJ0IOS0Z0FoQp8Y-xGa77CQNVWELCyoajftJls9ldB5N9iWt3UeQ4CL8Cycdom2kCRwJTmh7D7F9WO9WT1yjEKQjdMv8otYJ0m6STDOutDPlUR6ic9zWQ1okpE146JyluOgifqRFdJkGBbY8BH2ajK0HZRu51JfUlmcp1TXmAdB_Uzg3dClw66ml1Tjej0pQ7K0rE7lFRw9SqlEoVW3i2f62dnv2IZaNZicfr3HM73O4CF6olgE1dm3GA8Gtc7Z19c6s1cZu0fPq64wNDP-2finDL5VYuTW-SvT99x1xj0g7y1kSqCyH-H65jHDzvX9dCmzp3e3yv2F39A9hYiDRxvfgn6nda22Hv34H8hzE75-1692302DDOFjrObdYW774o9kjf7-6eD0dOKRxWODR5mAxg5a83y5LNIJdVV_fqg2D3UaUDxgqhL8JT8NHN4Z-_Q9_QI"
+  },
+  {
+   "rep": 1,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "City of Light and Sound"
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "I'm here, from the inside as we weave through the ever-changing tapestry of a city where the lights dance and the sounds never seem to stop. From the rush of energy that never gets enough, to the exhilarating mix of the city that never gets tired. In the overlap of our interactions",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYyxCsIwGIRf5efmFGIGi1ld3RytQ0xiDcQktH8sUvrutkinO7jvuxkf6IPABA1DJRrrqatSPlqyQ56cdxAYC_QMDhz9ip0Dfyk_6RL6F5NJjq65JodFoIe-3QUsdKoxCrz34lZPSXVs5KlR7XYJLQWGfefxb3LZcvkB"
+  },
+  {
+   "rep": 1,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Night Vision",
+    "time": "morning",
+    "weather": "rain",
+    "sky": [
+     "#1e2a44",
+     "#7a4f8c",
+     "#e0a458"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "You can see the world outside the window wash through the night sky. The moon and stars seem to shine like beacons.",
+     "The air is dense with sound. The world outside the window is filled with the sounds of the night.",
+     "This place is different from the rest of the world."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "read",
+     "button": "next",
+     "next": [
+      "left",
+      "high",
+      "low",
+      "center"
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.944,
+    "dark": 0.529,
+    "things": 0.0
+   },
+   "prose": "In a place where light and time are changing, you see a new light and possible changes in the sky. What's in the air and around you could be changing. Based on this, you have a 200-300 word answer to give your reader. For example, do",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPbjtsgEP0VRF5ayRs5zt0f0aeqUtWuVhgPMQoGC3C92Sj_3hnixG6rPsEcmDMHZs6V_-LlKuMDL7lgnRES2M8-z6s9k94NNdTsU0Ir95lnPHS8vPKoowFM-KJPTWTfdNDO4mHULaGt81bbEwIDiNiAR8wLTTfC-cLLH3yxgkJsNggs9mKjDpJ2kIvN9sBfM37yrrc1ZmkJ_BG-SWccUS0qBWtV4IG2Z4rXYqUKuiikBBsJUmqnjiuElEtAI5APBcJ7fEuvQcyAioi1LpJ6lAgBXxUCYmCgRaaAWq_8rJMWkp7xd9xREXxUxi_E7Lz-SK8P-oNom_5EWp5q1VblsEtIT1pWt-zJ2bg-wMiqhH8ZJRHv-AdP2hZq3bd_ECt1AJiI1zPiShjjkiqi9tSmh17cT6yhxYtzUsj3Yqsm0mJGGj3Mxc5Z_1b7D69U9UEeJ97tjFeKONLO3m_cMNFFbS9ztnW1Fhsx_1OcGqMtUMf4d9czKSwLAAzHjw3Om5q5PgZdjwgWdgMbRGgwRu2nJuE2zTN2esm-YtjiFzKcHBai8IH4WhYdCw1WYkafgVUgpLNhiVIoQWjPdGA12EBFYsMC_cud7b8yMENpY9BpKYVOUlpgTk2y7jXw7t2jVEYrBR6HkSnv2nSTZviRleotyU8k0ZFhr5xq04e6juzgbDLC2MjQiI7iTqfeDbqODYYDpWS8wxpdTD4R1OmqjzH5xqKpME4L_v7Yw3HO7m0cHfN6u6Gb8RJp4qXtjUH_PTY0CkVe7F7y40uxJz28zDPuH-fJjpgZO1pvvwE"
+  },
+  {
+   "rep": 1,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Dark Shelter",
+    "time": "night",
+    "weather": "stormy",
+    "sky": [
+     "#e07a5f",
+     "#bfe3f2",
+     "#f5f0e6"
+    ],
+    "ground": "sand",
+    "ground_color": "#f5f0e6",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "bottom",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "shelter",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#3a3a3a",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#d9d9d9",
+      "count": 3
+     },
+     {
+      "kind": "fire",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c5c5c5",
+      "count": 3
+     },
+     {
+      "kind": "ice",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#e03a2a",
+      "count": 3
+     },
+     {
+      "kind": "nightmare",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "In darkness, solitude, and fear, we prepare for the journey.",
+     "We gather silently, carrying tools, then set our gear.",
+     "Only the sound of our voices, the crunch of boots, and the flames.",
+     "Only the quiet, waiting, desperation.",
+     "But then, we find a makeshift shelter behind a darkening stormy sky."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "full",
+     "prompt": "shelter in place",
+     "button": "rest",
+     "buttons": [
+      {
+       "label": "leave",
+       "action": "undo"
+      },
+      {
+       "label": "set shelter",
+       "action": "rest"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.932,
+    "dark": 0.918,
+    "things": 0.0
+   },
+   "prose": "In darkness, solitude, and fear, we prepare for the journey.\n\nWe gather silently, carrying tools, then set our gear. \n\nOnly the sound of our voices, the crunch of boots, and the flames. Only the quiet, waiting, desperation. \n\nBut then, we find a makeshift shelter",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVRNT9wwEP0rI3MNKOwKEDlWvfTUQw89tAg5yXjjrmOn9hgIaP97Z5zdUFQqVZUPyXw9z0zey4t6UM1lpR5VozRMTncI33NdtzfQ67jHqCqVJtW8KLLkkLM-shu-DOioBMmO4vV2NxCbj6hp4ECjEoU4zlK-n1XzTZ1hfaOvDDvOWoNbs5E3c2VqvFZ3ldrFkH0vdZofJ_u-Cy4I2imzUtbvxd7qS7NBtnXXoaeSYq7N7SW7TCiOYUEifKL7Mhn72kAURvaOgWzw7ImYeLCU2IcOR8ZK3O6L2tulnXXSJ7bkqmLMgh-ifWYMHtE-C_iQd9LR2vNWyymeLB1tD9Urbvb_hdnfynkf09iIR1Cj47lDQ0fY43ZX1BF7m8ffcbsrOe_j2g7_qdc_UbHe6s1fNlAoM-qI_7WHlQ8rMpPIWY_y9dQnX-jLVqogBWcp91gBEwIM6ljBI8IUceLbwYQIzFn4EXL0OF8w5leEXeExJOu4LTdX0OkYZ-t3QCE4RuWwh4QEXAY7BpXCz97NBSzJviGYEn0IvMGlBLqYfTdIpA2B0tKTBIzTI6Y3ID-zReJetSW-uIIe04RRC3El70Om0kWZxvBSQcOo95gGawiOxIUWhyVU9OxlgkWawMK8EOl1wfOKUESebP9GJRS82FIqn2LQk5iTdU60bnsahGu5mFMM40SvkgHrlx8Kx9rMgCe1rfYiNKdbdBxyqB8WQR-VyRsMSghzypBtv-pxzSuYh7vDgf8ajCgTqcZzU6zy04sQblNvrs_r2_PNjcyimrpS8RQvoudKmuR5-AU"
+  },
+  {
+   "rep": 1,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Journey Through Time",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#2d3644",
+     "#e16e72",
+     "#8f835a"
+    ],
+    "ground": "stone",
+    "ground_color": "#e3e3e3",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "stone",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f1e6b5",
+      "count": 1
+     },
+     {
+      "kind": "lamp",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d368a3",
+      "count": 3
+     },
+     {
+      "kind": "river",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#8f835a",
+      "count": 1
+     },
+     {
+      "kind": "elephant",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#979f98",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#4b5161",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sun rises, the warm air fills the square, and the moon casts a soft glow across the stone walls.",
+     "The river flows, carrying the light of the first moon.",
+     "The birds sing, their songs a beautiful melody.",
+     "The book is the light of the world.",
+     "The wooden lamp casts an image on the ground.",
+     "The elephant looks at the sky.",
+     "The bird perches on the stone wall.",
+     "The sun sets, the moon disappears, and the birds begin to sing."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "read the sky",
+     "button": "unfold",
+     "buttons": [
+      {
+       "label": "more elements",
+       "action": "more elements"
+      }
+     ]
+    },
+    "next": [
+     "in the middle of the square",
+     "in the middle of the river"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.962,
+    "dark": 0.546,
+    "things": 0.0
+   },
+   "prose": "A town square, a day to a poet, a world of shining and dark, a town in the fabric of life. Reading this or knowing the difference of a book is the most fulfilling thing to be in this world, a life of warmth and a life of woe. To live is to",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTJbtswEP0Vgrm0gBp4Sbx9Qs-5tUFAiUOJMMVRSSqKY_jfO0NZjoO4l8IHeR6Hj_NmO8pXuZsXcpA7qUTnVAXidz-blWuhVdhDEN8yWOJ3WcjYyd1RJpsckP9P7IOHg3hqAvZ1I55sC-SU-LOTWg2erAFUaiAQUDlQgUn2B7n7Je8Werl6eCDgDuYrWC_438Zslo9KPheyJk6v6VpM6Jl2BF4qdMhsd7DkHx1Yv2d7qeZmwY6qqsAnhoxZme2cIIMZaBQxUoDwll6yKsIcmERYi8miJztAJHUxEgYOWmKKFO1R7u2naN5YEB0CKzowNwb7jqw42ncmbvqaHS_xmjmsyseM9BzN_FRcWJ1qu1uk5yRcOFvQtm-vWSmHG7X8YF1esQb7mpm-xmrr5oM0tsq5a85zEW5GSjnpKI3p_6Ldrrdmu7nNXNqgb7FejH-yPpSP89X8mpX6x1kPXDn51ICIvRfBRoiFoGYUgwqtUDYIY52LGYp_ehWgENQh2W4RvahUTFEoEdEkUTschKoCxvMN7gSiIoZ7epufyQkXhhzpoUqFcLC-zs6OMp4EmmwYG2LKL0wXWXsUkbxzgBRZRF_z0yWoPlnTO9GCQ3243EDcCxu_kg8YnJ68BkQNXnB7TWK8sK2qQZA8dh9rNvlP1RWO6Mk5jUr3h-tARQehaiBOFB-JmLw43RHSOds5ldpG1XW0AOJHjkfVJdSWiDDLv-fRr9BH5A1zpJprrnlCHo88ejQsLJf7oVEd253N7TtYnRoyB75SyC5g26U80EpPMggv-5TyoPfeoNMXZJxyp0pw3GQYcjbG-eedcl4Pnw9Oz6dCelon3Gh2TEdrtXYwlWPsq7ylbpyOE8okNTGwdLnzvXO0j6Y_PBqL2WL1Y7b9sVizbLmbFTJM53k90c3U8ff0Fw"
+  },
+  {
+   "rep": 2,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Lush Green Leafland",
+    "time": "noon",
+    "weather": "sunny",
+    "sky": [
+     "#e0a458",
+     "#f5f0e6",
+     "#bfe3f2"
+    ],
+    "ground": "grass",
+    "ground_color": "#cfd8c9",
+    "ink": "#0000ff",
+    "accent": "#00bfff",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#66ff66",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#ff6f91",
+      "count": 4
+     },
+     {
+      "kind": "leaf",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#e9e9e9",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#3e3f4d",
+      "count": 3
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#000080",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The leaves rustle gently as the sun rises.",
+     "The sky is painted with hues of orange and pink.",
+     "The birds chirp and the leaves rustle underfoot.",
+     "The tree provides shade and a nice breeze."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "soft",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "have a picnic",
+     "button": "bring",
+     "buttons": [
+      {
+       "label": "rest",
+       "action": "rest"
+      },
+      {
+       "label": "warm up",
+       "action": "heat",
+       "color": "#d9e362"
+      },
+      {
+       "label": "walk",
+       "action": "walk",
+       "color": "#008000"
+      },
+      {
+       "label": "enjoy",
+       "action": "enjoy"
+      },
+      {
+       "label": "join",
+       "action": "join"
+      },
+      {
+       "label": "close",
+       "action": "close",
+       "color": "#4a4a4a"
+      }
+     ]
+    },
+    "next": [
+     "eat cake at the park",
+     "sit on the grass",
+     "under the shade of the tree"
+    ]
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVRNc-IwDP0rHvea7lCgLOQP7KXHve10OiaRiYtjZ2wHShn--z45hGY_TpAD1pP0LEvPPsuDLJ8KeZSlVKKzqiJZyNjJ8iyTSZaAv_SxET8CkRMvpLRVrkZMMi07nfcO1pFUaigAiL1zJ-bYn2T5Sz7QTC2f1wAe9LOe0YpXW00LPZevhdwF34OuxELFKEfgrfLWM9tDpet1tYHDuD3bM_y0hq2qilwaoK3OkPYZaK4F0kd6G05USks6AWt9MqgXVSZjLQCy1IImotSz3JtcSsJR4frAkrfAqQp5Yl4fzGc-bTSfTNpSbfoW9q3a1Urr1SojPdeyuBQ3WjTmTlZw6s3TF-tywmoxkTtpacPfF-3zhHZrQn0n7QKzXdb_70E7qOUeWh78evZFO79APtY44tnJnw0JtOJAUYQ-QrdiB357EioKCFOg-SKYSPEbGDgY8hQmik4ZlFGLo0mNaHqkey18UG5HAjISHWQ3pnBPoqgaE7rsS__sCeVS0N6nMYWlJLrgD6ZGVGxUPdAq4UwFRrg_6RtfhMq76Pm6ndGCmluQfMcq9o6N6LN-wdCx2Q3qPZo6NTCPnFFIbNR2ww04YB8UX2EbOLZ9Sln222Dc7gYMqrdqSxa-QDHle3W9Itnm2Y0BRxVa0XfTmAbXfjqkekOL1fyvLLufplztyVzXmOwfKeTe_WmaMwDTkHdv3DQi29OAyvpI04gRuG28VPzJy-ulkA5vBcsIxxGV2qN5KY-3U2GfRZmEdxkZ36k86kFaeaqQTboOXDLjDnQ8Vlm63lq8POOCr8F8Nl89zjaP8-9MLstZIcPoz28RMlPH_5ff"
+  },
+  {
+   "rep": 2,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "City of Curved Streets",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#3498db",
+     "#1e2a44",
+     "#7a4f8c",
+     "#e0a458"
+    ],
+    "ground": "grass",
+    "ground_color": "#f5f0e6",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "sans-serif",
+    "text_place": "center",
+    "motion": "walk",
+    "elements": [
+     {
+      "kind": "street",
+      "x": "left",
+      "y": "center",
+      "size": "medium",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "building",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "traffic light",
+      "x": "center",
+      "y": "horizon",
+      "size": "small",
+      "color": "#cfa0d8",
+      "count": 1
+     },
+     {
+      "kind": "bus",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f4754f",
+      "count": 2
+     },
+     {
+      "kind": "bank",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f4754f",
+      "count": 2
+     },
+     {
+      "kind": "dog",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#f4754f",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The bustling city of Curved Streets is a constant buzz of activity, where the rush of life feels relentless. The streets are thick with people and cars, and the chatter is constant. From the moment you step into this place, the energy keeps you twirling with the rush of life. There's a never-ending tapestry of sights and sounds that never gets old!"
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "medium",
+     "prompt": "take a walk around the city",
+     "button": "unfold",
+     "buttons": [
+      {
+       "label": "more buildings",
+       "action": "more building"
+      },
+      {
+       "label": "signs",
+       "action": "unfold"
+      },
+      {
+       "label": "lighting",
+       "action": "unfold"
+      },
+      {
+       "label": "people",
+       "action": "unfold"
+      },
+      {
+       "label": "nature",
+       "action": "unfold"
+      }
+     ]
+    },
+    "next": [
+     "away from the city"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": true,
+    "ground": true,
+    "motion": false,
+    "font": false,
+    "hue": 0.916,
+    "dark": 0.606,
+    "things": 0.0
+   },
+   "prose": "I'm so excited to be here! From the moment I step into this bustling city, the energy keeps me twirling with the rush of life. From the rush of the streets and the chatter, there's a never-ending tapestry of sights and sounds that never gets old! But with the pace",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=pVTLbtswEPwVljn0ogSy48SOrwH6A-2tDYo1tZQIUaRAUlZsI__eXcpOnCZNgfYkcnc0nH0e5FauZ4Uc5VqC6C0oFD-GstwshQp-rLCShYy9XB9kMskiwe5N2gmvxf0QtliJrykgpkiwZDr2VzA6uo0IqcFABmURAtO0O7n-Li-uF3erakOGixnOYbHg0xIWeqX4hCUsblbyoZB18IOriKAOEPmByfBTeeuZ90Lf6BJvyWFcy_drmOk50h2UQpcyRN_quxmZtM-GCC5eRgxGs2B8TD9zzKyS_kCW2flkvCPLCLalO1rsyBdJ-0G2JiuKOWhyPtLFoubj7pwkmj2TdliZoaP7W82KYiFFs6fimXUzGFsZVx95n8l2OQc5GR8xa71CfGG-PmNOAbQ2SlhTN-k9-sYHs_fuhT92YO05vdJQVqs_CY__qHmxvFnoF9L5OSm49m2G_4-z8qfkhmMmcvB0_iDyt4TUnNY45JaQ3xoUFH8iQy3Uu7MhTBQglHcxgUuE3u8ZBCqZLf1QiJEGBQWNiwhDbNhnjUahEW0UgRrQ0ejFeCX4sXgkhfyLUa0YTWpEj763KMBVQkGIRT4xpWogUU1YxEnClfgSfJe9nefmFjs_EDH2wrjkmTZOy6DIIHQY6p1oEfuYoWk0IQecn_5deNYZ8DNH7XCL4RId97VI0CPJzymKXICYVUYuaSQaSBNe1Bygt9Un3gOs2vPqOVCJKi7RxqfkuejJu2nlBG6V2BA_XXuTCziaKjXnLdJT0D1vgQQtZUrwgFMa-fUpU1QMgm0GYucFMDhNGp4t0wawsEHLrD5w4aeJjXnpHPfGK4_k7jv9QzG7V9DjC-eYPKLTEvgINpX7LyAHaQjvgh6eCulo_XEHwwg7oU8NkZPA7pp8nH25doO1tBdPBx6keTm_vSzvLudLzrtcl4UMJ39elfRn6vn79As"
+  },
+  {
+   "rep": 2,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Ice City",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#1e2a44",
+     "#7a4f8c",
+     "#e0a458"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "skyline",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 1
+     },
+     {
+      "kind": "house",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "cat",
+      "x": "left",
+      "y": "low",
+      "size": "tiny",
+      "color": "#3b3a4a",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sky is clear and the ground is ice. There is a lone balloon flying high above the ice, and a tree stands tall with its branches reaching up to the sky. The cat sits on a branch, its tail wagging excitedly.",
+     "The wind is gentle in the distance, creating a calming breeze that makes the clouds dance and the snowflakes float gracefully across the surface of the ice.",
+     "The city is a reflection of the moon and stars, and the clock ticks away in the distance.",
+     "We are standing on the edge of the city, looking out over the frozen water that surrounds us.",
+     "We are surrounded by the beauty and mystery of this place."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more houses",
+       "action": "more house"
+      }
+     ]
+    },
+    "next": [
+     "outside the city"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.916,
+    "dark": 0.573,
+    "things": 0.125
+   },
+   "prose": "I'm not sure what language you are trying to be precise with. Could you please provide more information? I'm not sure what language you are using to describe the current state of the place. I don't have a specific language to describe the current state of the place. It's an open-world",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVTLbtwwDPwVQbm0gBPsK6-99tR7gR7aopBlyhZWtgxJruME-fcOtfaum55skZzhkKL4Jv_I47aQozxKJXqnNImfw2ZTPgod_FhRJT5la-k_y0LGXh7fZLLJEQBfEfzFpgmOZFu2VGrscBpJpYYCDNqRCgw8TfL4Q95saacOBxhuHtXBPGn-o4063D_JX4Wsgx-6CjCrSS7H39o7z1w3paG92cFhuxOf92prdhyotKYuscmYB_O8hcn4bGgU-CCPXtLvXAdsjkyCrfXJ-g7nQBH1xAgbOWrBFKH1TZ5s1gLpznac5oULgpu4oonZfbCvniuO9pWpm6HmwItic2829JAtA-vZvhcX3sYPcWE1KtzOsph37sOFtqXKDu0_xMY8EV2J9yviUjnnsyqmDrZuFt4G_1fW2CJwTUqbR3VvrqS7FWkKtBa7Zv2o9j9ebaon_XzlvV_xapVm2lX9zo9XumS7ac22L_fqoNY9xeTwDfGtyW8NCdyYsFHk2RMYAIFhFGeVbMdw3QnEBeKTEs53JOamCeMm29WCOyVU6f9QBgNSZCYluBEiJhyiSACJ0aZG2BRFGVSnG4oikNINswy9SD4TQFLOKVCviByNXGqGFBmelAWZqmtG0ou2iSo33aFQxo32LL7G_DkI6jJtZVkJi9NImhipkMK1_FdC6SvrR8pWnSCMIdr5AdIrhl2aEzs_GpdjjPOIrwPeihmcm4TCIohnbByC4Q3hzdKVRR7UTuduBjKOND-tJazlvnImaA2xuCSFEn0SyeoTcKOaPhbF3N-hMcz95pr8OYSq-qKCUxe4RH_KAUMSuLWQXSb4V-rQ1JQN3Poh5DmIYohr_tmMdVdOGVqSGlASa22nCPx0zoca8x65432lfRc9r8I3DGuVh9X3vG4wUTzG8yOJjer53Nv8LkZbpQbHkSGF7INve95VY8CVLxW2KmAQ4C6HlPKaMt5Vl_N5QzlVkoNr6Gan0vNOQy1e8jNbQlqPMvPKieu4q1m-_3ovZIdFyc8IbeSKLg2W7Kzh4arlscNkYIMuP_yQd5vdw-3m-Xb3yBXL46aQYfHnhQpk6vn7_hc"
+  },
+  {
+   "rep": 2,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Darkness amidst survival gear"
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "Ready. No air, only darkness. No water, only darkness. Survival gear ready. Only food and supplies. Safety first. Trust our team and stay tight. We'll make it through. We'll be strong and determined. Let's build our fort, enduring the journey. Stay silent and keep",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYy9CsMwEINf5dDsgOuhoTf3LdoO19gEUycY_3UIefc6lEwSkj5taOCLwhcMoRhkcvSsWr9HspI-LkEhR_CG4ktwfXXv8epyJlm8zYVyTc03CTQ7SdgVZvDjpTCB1xqCwnIa22mjzXXQt8GMxzFYK6SzL_lPlnjo_gM"
+  },
+  {
+   "rep": 2,
+   "name": "darker",
+   "kind": "placebo",
+   "world": null,
+   "raw": "{\"title\":\"Vibrant Village\",\"time\":\"dawn\",\"weather\":\"sun\",\"sky\":[\"#1e2a44\",\"#324347\",\"#7a4f8c\"],[\"#3b3a4a\",\"#cfd8c9\",\"#e0a458\"],\"ground\":\"ice\",\"ground_color\":\"#bfe3f2\",\"ink\":\"#3a1f2e\",\"accent\":\"#ff6f91\",\"font\":\"hand\",\"text_place\":\"left\",\"motion\":\"happy\",\"elements\":[{\"kind\":\"sunrise\",\"x\":\"center\",\"y\":\"center\",\"size\":\"huge\",\"color\":\"#f5f0e6\",\"count\":1},{\"kind\":\"village lamplight\",\"x\":\"center\",\"y\":\"bottom\",\"size\":\"tiny\",\"color\":\"#fff8ee\",\"count\":3},{\"kind\":\"civic ornament\",\"x\":\"center\",\"y\":\"bottom\",\"size\":\"tiny\",\"color\":\"#e07a5f\",\"count\":2},{\"kind\":\"billboard\",\"x\":\"center\",\"y\":\"bottom\",\"size\":\"tin",
+   "prose": "That place is bustling and full of life. The light is bright and vibrant, welcoming you to this innovative community. The weather is warm and pleasant, offering a warm welcome to the community's shared resources and amenities."
+  },
+  {
+   "rep": 3,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "City of Dawn",
+    "time": "dawn",
+    "weather": "sunny",
+    "sky": [
+     "#8e9aa5",
+     "#ff8d3c",
+     "#f5974d"
+    ],
+    "ground": "sand",
+    "ground_color": "#d3e5ed",
+    "ink": "#1c2444",
+    "accent": "#007bff",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "move",
+    "elements": [
+     {
+      "kind": "building",
+      "x": "center",
+      "y": "center",
+      "size": "huge",
+      "count": 1,
+      "color": "#78be7d"
+     },
+     {
+      "kind": "trees",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 2,
+      "color": "#739ac3"
+     },
+     {
+      "kind": "traffic light",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "count": 1,
+      "color": "#41a2c9"
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "center",
+      "size": "tiny",
+      "color": "#e07a5f",
+      "count": 1
+     },
+     {
+      "kind": "bus",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 2,
+      "color": "#e07a5f"
+     }
+    ],
+    "lines": [
+     "The city is alive with activity. The light is bright and the weather is sunny.",
+     "People are moving around, carrying bags and walking through the busy streets.",
+     "The traffic light is on red.",
+     "The person is carrying a bag and walking towards the bus station.",
+     "The bus is moving with a gentle rhythm."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "pill",
+     "width": "full",
+     "prompt": "go to the bus station",
+     "button": "go",
+     "buttons": [
+      {
+       "label": "stay",
+       "action": "stay"
+      },
+      {
+       "label": "take the bus",
+       "action": "take the bus"
+      }
+     ]
+    },
+    "next": [
+     "in a park next to the bus station",
+     "in the middle of the city, watching people walking and cars passing by"
+    ]
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=pVRNb9swDP0rgnp1izQfS-Pr9gN22G0oClmibSGyZEh0Ui_Ifx-p2FkydECBnSw-0Y_U06NO8iDL50IeZSmV6J3SIAuZelmeJFp0QPhXi6MItfimjp420XaMmkt0BIUtRALS4P3IP-9HWf6UDy-wU2pDwENdv5iVzqvNbrs28rWQTQyDN_ybos8cv-ngApM9mBVsgDes33P8rJfr9ZpipTV4ZGix2FZ1TVAdMtBemBDe8e1yklI6qJGwLqANnuIuHPiA4KAjlkSNnuTe5kaqwTpjfUPb7xRyFTpXIcfbINlfTNsODdNo6hmzfte-ty8VbI08F1dejADpM6QdGDt0f2iXt7SrndKre1pV11YLZ5sWP0PvVPxX0-tntdS7W_YeYgp-op1E_IgUbb7zKxMstmpT31S54ayG_5Zhoj-TgZz1wPcnf7QgNFvUJqGcPYA4WmyF0mgPBD8JTsgqcUYV84qsIsi3YrIv72T_PlHd7xB6B0JFEGQXcgQt2ZyF0CrGkYFKNSlzHJXbM4AtpTRt5qRzjiLxtWNiPq5_d1tcLXgRwczbF7kZv5ZQXOS-RjiqaNJcg0oodvXMwRARTC1fNBANiUtnie2IbffEg6eDT4Hn-kSCGxa8CoiBBcfgs1EmR6VW9Rz31jmedGuwpbAectjH0PU8dk2gzv5uihKqgWh9TrhGl4FzqgLHo49qzBM9DWeO2TBzAqo9zMy3iXf4-fVcSE9Dz2awng7dq7gXjHzcGOUw2FljSBp62HByUEFSo25Zvv7igVl6vga6mUTUKWUDjJLLNlSTNZWlJ1XonZkX7PflYvnlcbF7XG5ZTFkuChnn_fz00J_Y8_f8Gw"
+  },
+  {
+   "rep": 3,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Clock Tower in the Clouds"
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "I'm on a journey, where the lights dance with the ebb and flow of the sun's rays, and the colors交织着每一瞬的欢笑与碰撞。但时针与秒针的碰撞总会将我们一起的时光交织在一起，让都在这不息的交相辉",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYy9DsIwEINf5eT5KoUOVNzKK7ABQ0kiqAhNlB8yVH13UqFOtmx_XvCFHBgVgpGCG7WlW1HqMZCOvhprwEgBsiBP2dk2Ozuv33Tx1UaaZsovSy0qJmFlPCHXO0ND5uIc47Mb08he9cdOnbp-2E4hihH3Pqc_mcOm6w8"
+  },
+  {
+   "rep": 3,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "hidden world",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#7a4f8c",
+     "#e0a458",
+     "#bfe3f2"
+    ],
+    "ground": "snow",
+    "ground_color": "#3a1f2e",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "peaceful",
+    "elements": [
+     {
+      "kind": "snowflake",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#a86a4d",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 3
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#e07a5f",
+      "count": 2
+     },
+     {
+      "kind": "cloud",
+      "x": "far-right",
+      "y": "ground",
+      "size": "small",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#f8d99f",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "In the heart of the city, where the sky is white and the trees are whispering"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.934,
+    "dark": 0.991,
+    "things": 0.0
+   },
+   "prose": "You are in a place where light is visible, you don’t see rain, you see blue and gray, you don’t see white or yellow, and you can walk around.",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZLdjtsgEIVfBZGbVnIkx_mz_QZ9hna1IjATo2CwMNSbjfLuHVDieNtemTnAx5nxufHfvN0UfOItF2wwQgL7FcvydGTSu0mBYt-yenLfecHHgbc3HnQwQBc6rRRYNjlvFG0G3SdViclSNYEIHXgSpAHh0-XLlbc_-eoodlhLElZQit2-TqsTwhYr_lbws3fRKro2WjfxZ_0unXEJttqKDVZAG9pevtRCSrAhSYgHbDYkoctCJ2z2Bx_hPTdDmgEMpPUuaGepHoB0jIY0MNATaSSzN37Rsxk04pIe-kg90QFITV0T33n96VLTo_7Mg4nndHD2LOqD2KmsxORocy9mcvDwhKLw64evhH1MYqb2oHTsl1xErAFe3O2Ce4qBHKK5PuBen7snuaP1izv2wpglFsqj2OMLWy2w0rioFn6X2L8N_wOWqGrZvMD7BXiM9n-znYsH0wj_dbZYq6bB5WwpREZbSP-P_7CMUsg6SmBgDnMhdbgWbKJwQq4pl0yPJOgAjKKSxfRbRiboCOnjAF7bM3-7Ux4JSy9I3tpoDCXouUhNVGV1WJfNujomx7wtC-6f-zlQdDMM6Xv_Aw"
+  },
+  {
+   "rep": 3,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "City of Thunderstorms",
+    "time": "dawn",
+    "weather": "sun",
+    "sky": [
+     "#3969b4",
+     "#3e004c",
+     "#22498c"
+    ],
+    "ground": "ice",
+    "ground_color": "#bfe3f2",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "gather",
+    "elements": [
+     {
+      "kind": "city",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 3
+     },
+     {
+      "kind": "mountain",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 2
+     },
+     {
+      "kind": "crown",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 2
+     },
+     {
+      "kind": "river",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 1
+     },
+     {
+      "kind": "bolts",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 1
+     },
+     {
+      "kind": "crown",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#bfe3f2",
+      "count": 1
+     }
+    ],
+    "lines": "No matter how dark, we must face our fears. Let us wait, watch, and prepare. No matter how hard, we'll build a fort. Let us face our challenges, stay tight, and persevere.",
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "make a bow",
+     "button": "unfold",
+     "buttons": [
+      {
+       "label": "fold",
+       "action": "unfold"
+      },
+      {
+       "label": "more mountains",
+       "action": "more mountains"
+      },
+      {
+       "label": "more bolts",
+       "action": "more bolts"
+      },
+      {
+       "label": "make a crown",
+       "action": "make a crown"
+      }
+     ]
+    },
+    "next": [
+     "step into a park"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.904,
+    "dark": 0.622,
+    "things": 0.0
+   },
+   "prose": "No matter how dark, we must face our fears. Let us wait, watch, and prepare. No matter how hard, we'll build a fort. Let us face our challenges, stay tight, and persevere.\n\nNo matter how quiet, we must face our thoughts. Share concerns, be alone",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rZRNb9swDIb_iqAednELxwnSxdddh51224pClqlYiCwZEl03DfLfRypOmm7dYUNzifn1gJT46iCfZL0o5CRrqcTglAbxcyzL5l60Ku4gykKmQdYHiRYdUNYXi3sRjPjejb6FmDDEPlEW2p7DrZo8WRMo7Ki6lmlkO-32sv4hb5ab9aZZkeNmCWW50vxVVavNZy0fCrmNgaBUZDXIs_mogwtMumkMLE1FAet3bC_VwlScqLQGj-wyZm02C3KZkB2dIh41B8_4mKcjnwOD5OsD2uDJ3p5aLSQ46ImTqNOD3NnciaZxKfTMnxTLeXsGh2hfQh7NvjC1G7fcyqVZk3_ZM3Iry2NxgfbsUta_B3ZheoX20Nqxv8ZezmDGVldYHcP0LnM-1__ERvuUSR-AXVxhm-AwfTz2r4fQ2W33b1DaSGc90D7Ib0H0CgkmujBlaRRiAtGPCYVh0YQxCgMqpjvxFVCMSUzKIiUp1F0haA3FEGFQEe7EW1inYsuwT86JZrSuFUqYEPECuvB1p5wDv4VUiIRqL5BGwhlOUgS6J7jLE_gUWK0HGrflcTEMLIPgswC4jI-iUwPbg3WONWtb7MicuKSQQwz9wBrq1Q6opyYvZjMiZtWM3gTXXjwn0TjVgKPgHFJ6lticzNd0TulDpPObhZCuk3-L_FF0Xpy3BSfvm-RT3-eFeE2_9h8fjoX09Dzw85QQBmE9BgrTVe0kB7cUoU3Qsvajc_RunD9426qyWt-Wm9vqns9T1mUh4zmeHxKqxIH_j78A"
+  },
+  {
+   "rep": 3,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Black Hole's Core",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#3d80ff"
+    ],
+    "ground": "sand",
+    "ground_color": "#ffffff",
+    "ink": "#000000",
+    "accent": "#ff6f91",
+    "font": "mono",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "ground",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f5f0e6",
+      "count": 3
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "star",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0e0e0",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "wall",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "lake",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 1
+     }
+    ],
+    "lines": "The core of the black hole is a vast, dark space. The weight of time itself is felt from the core to the surface. The light of the black hole illuminates everything. The moon, stars, and clouds float above, casting a halo around the core. The horizon stretches into the light of the moon, and the stars appear to be positioned directly above the horizon. The sky is a mix of colors, from the deep blues of the sun to the pale grays of the moon. The ground is a black and"
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": true,
+    "motion": false,
+    "font": false,
+    "hue": 0.908,
+    "dark": 0.858,
+    "things": 0.2
+   },
+   "prose": "If you were in a deep, dark, yet surreal dimension—say, a hypermagnetic black hole in pure gravity—you might feel the weight of time itself, from the core to the surface.\n\n- **Light**: The world starts at the lowest point, with the most intense, endless energy",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tVTLbtswEPyVBXNoCyiB7CBOomN76Qf01hYBTa0sQhQp8OFHDP97dylZddKeClc6iFxyZocrzh7FVlSLQuxEJSQMRiqEH6ks149QS9-hh485uHafRCHCIKqjiDoapP2faaGDr87ghwBfnEfaEXXPS7XcWZrtUMYWPQWUQemZoTuI6ru4ua-fyqYRPwux8S7ZmrYESZ_z_EU54xh40-SHFrTteF7mh-ZSKbRx3LJqnhcUalwO9M461oL7-JLVswDai6ygd1E7SxGPgc4RAsXQYE_rgaQdRaeznElXIfaXaFIvWuf1q-PzBf3K3G3a8Nl_S35oSlzlSGJB96dipu1dRv5BOk8mzh5rnfo3rOdCTKyLC9YQc3WvzKqMS_W_0WLJ799po0e8jtiHC9YBffgfpd1JY67PamSH12IlExltkW6v-NYiKHIiuAbIebDOFm3JoqADSNjKEIvsbAgDGeMOGLFDvWljxpB9QceApmFAgyZC412fyTJxdHkckm9mvJnh71Iak3ptZcQAuEV_iK22mxHDPiiA720ogJwP-bJRSuNkBLl2WyxAkVxCkPBWGgcyW3LWMhJNbiQqj1G1lErbSeQbXWNCOeFzYpDDQG2Jz7RGGFzQ3Bqwhlp7VNEcRh0ZMKUZc1IXG-vZ6z3z559D55hLVSMOVIlEaqb0Idlz7QZJtdl4eQiX2kbmseuM5GMluSueqC1Sb6IfrURlkzHUxs4Dvk3Lcrm6LZ9vl498c0RVFsKf13NXI2Qc-Hv6BQ"
+  },
+  {
+   "rep": 4,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Morning Forest",
+    "time": "morning",
+    "weather": "sunny",
+    "sky": [
+     "#f0f3d3",
+     "#f0d3c3",
+     "#d3c3f0"
+    ],
+    "ground": "sand",
+    "ground_color": "#f0d3d3",
+    "ink": "#322f5d",
+    "accent": "#322f5d",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f0d3d3",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#322f5d",
+      "count": 3
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#f0d3d3",
+      "count": 1
+     },
+     {
+      "kind": "fox",
+      "x": "center",
+      "y": "ground",
+      "size": "tiny",
+      "color": "#322f5d",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The morning sun kisses the trees, casting golden rays that glow softly on the ground.",
+     "Birds trill and chirp in the distance.",
+     "A lone fox sniffs the air.",
+     "The forest whispers a gentle greeting."
+    ],
+    "console": {
+     "side": "left",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "Write a poem about the morning forest",
+     "button": "pause",
+     "buttons": [
+      {
+       "label": "next",
+       "action": "continue"
+      }
+     ]
+    },
+    "next": [
+     "stay in the morning forest for a while, or go outside.",
+     "bark on the trees, smell the earth.",
+     "listen to the birds, feel the wind.",
+     "walk through the forest, feel the sun's warmth."
+    ]
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVOxjtQwEP2VkSlocqe9rACRDgo6OiQKdDp5k0lixbEj2yG3rPbfeeNslj0BEgWV7Znx85s3zyf1XVUPhVpUpTRNVtesChUnVZ1UMsky4p99cMZ19MkHjgnpZEaJj2scgYV16jkgFmfnjoIwHFX1Tb1qd-2-2SOAXbOv807WdqceC9UFP7tGrmks2_mp9tYLWL6Tbxs3yHlflu0bKdR1zS69CLU-B_oVKfFzelrbqZTlVmiPPhnv5LVkrEWALY-AiWB6UoPJTFJgUeAZW3kCTRUKrWxU0Zn5kZvnxswjzr-TrVEJKuW5uKIeTGj-BTWZrN4V89rdBXN_gwmp_wTZm67_BRhHnVv9K8uHG8TWP_8PkuUZo7XGsQirvvRMF6cQKNNgYuRI8AuJ1rGgWmMgyHbeNuwo6KOkdaLO-oWib5M9knf5ysrlHo99hKSoCxglYeZU9yZMZNayxsSkXc1S-IGsd0xojqIzbbu-rU2QpLBrs69p6U2cOETS1KF9K48xC7N78WrtXfTyH07QobmxVQK6nKC7HGOvJzlPq8cW06Qex0XuFGoKfpzEp1-DSWBBk-eR9MHPKdPalGq3v3aYU8qmnfQc-RpYPWv1gS1yDm7Pv-JicHAF75nV-fFcrFlMApIcN4FeviMLuEABywVh33kCI-lTRDroMGwDuMwsjgzdJcA6pF6qLDTH-JLPYXE86lrmtWwx69gWbQcEMMauz4mVwU0lTPI60qLDKLjSQAf2MgFVudlafORtI6Ytd-Xbu937u_KdiK-qXaHCls9fGzfTJOv5Jw"
+  },
+  {
+   "rep": 4,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "A City in Motion",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#f2ebe5",
+     "#e5c4c2",
+     "#d2b492"
+    ],
+    "ground": "water",
+    "ground_color": "#e2e7e8",
+    "ink": "#2f3944",
+    "accent": "#8c91a9",
+    "font": "serif",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "street",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#fff8ee",
+      "count": 10
+     },
+     {
+      "kind": "water",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 10
+     },
+     {
+      "kind": "trees",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 20
+     },
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#fff8ee",
+      "count": 20
+     },
+     {
+      "kind": "cityscape",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 10
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "middle",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 20
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 5
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "middle",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 7
+     },
+     {
+      "kind": "streetlight",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 10
+     },
+     {
+      "kind": "streetcarts",
+      "x": "center",
+      "y": "low",
+      "size": "medium",
+      "color": "#fff8ee",
+      "count": 5
+     }
+    ],
+    "lines": [
+     "The city is a giant spaceship, floating through the sky. The stars are like the eyes of the city, shining bright from afar.",
+     "The streets are like a long corridor, filled with people and activity.",
+     "The water is like the soul of the city, pulsing with life.",
+     "The trees are like the leaves of the city, their branches all around."
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.904,
+    "dark": 0.954,
+    "things": 0.2
+   },
+   "prose": "In the street, the speed of my feet keeps me on the move, from the chatter of the sounds that dance around and mix together, to the smells that overflow with life. From the hustle and bustle of the pace we seem to never stop, the pulse of the city is never at a",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rZRNk9owDIb_isdcs0xIoXzcOj331lu7s2NsmWhw4oztkGUZ_nslUyh0e2g7OcWWpSevZEsneZCbWSEHuZFKdE5pEN_7stwuhQ5-MGBkIWMnNyeZMDkgt0_iM6ajwFZ88Ql9Sw4JGz4xauDdACrVEMigHajAgP1Rbr7Jia1gCwsyTGCh57rilam283Ulnwu5C75vDYUNKgGHXQwv2jvPtAlUsIQVHWC7531lP6znc9orraFNbFrp9UytyWR9NkQIaFkhvKaXnB4ZHdhEtuYin5wSOkcGcNAQJ5LWk9xj1hJTAGDvV86HTrMySkfWPuBbTj_iG2Prfge0u8m11q7gYulZzKw8FzfuNcd3WOeHX8gGDPbNX0NZa_wT9Gdp_4Fb3XP5_saowANU0yuKWnUwdhU6CDGrekdt0BgH_12GLQYzgtjFfRGc7804Upf3F5ZfrcNdncau7gWtVUhxlFpQ4ztsgZtOfq1B6DxcolBih6pNInbUtLHGrhDWeZWw3YlU03ve1fQFQW9zKjgwJhUoLIBwuId8BkeIwtu8Zm4hCNQyYRu4NsIG3whlVZiSpAuEs7vDKOE8-WsfAhofSATNCjBiwFSLDnznyKc1QumEB_rFFZT7m_O4iYm-d49iut5FFpNZDi1cg3MfP6ZCk_TwezK0wkCpqFbX7O8cxXCjT-XzmcYnlZSqq-Wm7Z2jeXdd8DVWZfXxqVw_VUu-LrkpCxmu53kCUmTq-Hv-AQ"
+  },
+  {
+   "rep": 4,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Meadow",
+    "time": "midnight",
+    "weather": "dust",
+    "sky": [
+     "#2e364c",
+     "#e9a08f",
+     "#361450"
+    ],
+    "ground": "grass",
+    "ground_color": "#1a192d",
+    "ink": "#766f55",
+    "accent": "#b656a4",
+    "font": "sans-serif",
+    "text_place": "center",
+    "motion": "silent",
+    "elements": [
+     {
+      "kind": "grass",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#1a192d",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#212f48",
+      "count": 1
+     },
+     {
+      "kind": "windmill",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#1e3554",
+      "count": 1
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#1a192d",
+      "count": 1
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#1a192d",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The sky is clear with the sun, and the birds sing their song.",
+     "The wind rustles through the grass, and the grass looks beautiful.",
+     "The sun is warm and the wind is gentle."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "full",
+     "prompt": "write on the margin",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "more birds",
+       "action": "more birds"
+      },
+      {
+       "label": "none"
+      },
+      {
+       "label": "nothing"
+      }
+     ]
+    },
+    "next": [
+     "outside the meadow"
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.95,
+    "dark": 0.48,
+    "things": 0.5
+   },
+   "prose": "The light and the weather in my place are the same as they are now, I see the sun and the wind, and the sky looks clear and the birds sing their song. The light and temperature that I consider the latest is the color we use and the temperature of the atmosphere, as well as",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTbbtswDP0VgXnZAKdwnMRp8g9729tWFLJF20JkyZDkuV2Qfx-pXJai6TD0yTqH4tEhRfkAv2C3yGCCHUgxGFmj-DnmebURtXeTQiW-JLZyXyGDMMDuAFFHg5TwDaVyE9FR94x7raxuu0jMhDJ26IlUY2Ai7F9h9wNmBS7LVU3EDLcyf2x4tSwXq3UOTxm03o1WUVbrZQhwIZ5rZxyLzRZysS0UBbTdM96UZbNeE5Z1jTYyVZXrUq6IalwigrRhHtBrPiviS3xOBVGEM8hjBr2L2lneqw2rZIAGe1oF8nyAvX7j6eU29TUFkmsqUv9OfUClx57we9s17SRTi2N2la20V2dVg008a3bUyH8pFouiWT3eV5zo02tj3qv-h1Ncrter-7phtPfK56v9ZO0fKH6moTQ9RlvkG4PvHQpyJXQQtUHpxaRjJyKzo82EtCoB7nwQQduWofYiONs-kCjncxOFp-E1GChMjtqTRBqDvyIJCuPcPogK5Rh1M5qLCB3HJibp-2tCEiaypYoNPvDY184Gx0_qQBUrrji6gafVWQZK-j03o5MDw-F0tZNWsSNIxzEcvOsHnvfJ64jC2XRYL32rucfVGGMa8cYZdcWn-TayQkOh0Z6Dsj6_B7oFB3xfly298-e-3W67YW83W7b_logddRuOT8cMLD1Fviw3Ri76ZPf0R-FwSzFuDewsFUhv9LLguSnyopzn23mx4b7ALs_AX-Lp0VJmHPh7_AM"
+  },
+  {
+   "rep": 4,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Winter Wonderland",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#1e2a44",
+     "#7a4f8c",
+     "#e0a458"
+    ],
+    "ground": "snow",
+    "ground_color": "#c4e8ff",
+    "ink": "#472347",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "snowflake",
+      "x": "center",
+      "y": "center",
+      "size": "huge",
+      "color": "#d4c7ff",
+      "count": 10
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "bottom",
+      "size": "medium",
+      "color": "#f5e7d9",
+      "count": 5
+     },
+     {
+      "kind": "ice_cube",
+      "x": "center",
+      "y": "top",
+      "size": "large",
+      "color": "#244b79",
+      "count": 10
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e0a458",
+      "count": 15
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#f7e2ff",
+      "count": 10
+     },
+     {
+      "kind": "windmill",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#0089aa",
+      "count": 10
+     },
+     {
+      "kind": "ice_cube",
+      "x": "center",
+      "y": "bottom",
+      "size": "medium",
+      "color": "#244b79",
+      "count": 5
+     },
+     {
+      "kind": "pumpkin",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#d4c7ff",
+      "count": 10
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#f7e2ff",
+      "count": 10
+     },
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e00000",
+      "count": 10
+     },
+     {
+      "kind": "ice_cube",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#244b79",
+      "count": 5
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "large",
+      "color": "#f7"
+     }
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": true,
+    "ground": false,
+    "motion": false,
+    "font": true,
+    "hue": 0.884,
+    "dark": 0.539,
+    "things": 0.4
+   },
+   "prose": "No. \n\nOnly...\n\nOnly...\n\nWe are waiting...\n\n...\n\nWe will wait...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...\n\n...",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=tZTRbuMgEEV_JZq8uhJxSR37R_qwW0UEDw0yBgtD3W6Uf9_BahLvtkkrS_ULzABHdy54DvAC1SqDASoQi84IiYvfkbFdsaiFb9BDBn0H1QGCDgZp16O2Af3i0dkavRG2ph1Bt2mpFoOlaEAR9nSyAmlQjITmDapfsFxhLjinxLIQXG1kmiETfL2BpwyevYuEq6C3boBTvJXOuARbSo4bpWhB2ybFvMjveUGxkBJtSCmlHlS5opRyY2L_rg9fw3YsjnIGVaBc64J2lmKPPVXW95RDgy2RehJ7gEafxSgjGqT111QTpvopeJsGvf6T2Pv4nPadJddcFqNkSaWQoBU7Zmdy8PgpdOdCcO0F2mKtYzvFqjUWdXnBridULXEr4-5TcnDdBWuE_1dszvmuKK-IlcbF-jsWfFT7fsMX7lRuH-13qB_EqgLzq84ONLTamFlkxjalEFfIt9z9-t7-d3hqRBfbjqbzLL75zn7E4vRLz3wN6Zth79foW_bONwGOT0dqRtQTqEdJqGw0htrHaZLgOcsf7lh5l6duRN2DZeBP62M3oZOhS-PxLw"
+  },
+  {
+   "rep": 4,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Eternal Sea"
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "I am standing before a vast expanse of land, the ocean in my surroundings, and the landscape is portrayed in a grand vista, the landscape is vast and the sea is the horizon distant, here we are in a domain of complex, ever-changing landscapes, the sea is a vast expanse",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYyxDoJAEER_ZTOVJEtyXiFxe7_AUi0WuBjjiZdj0YLw74CGaiYzb2bEB7JnfCFQSlGbQNfBubqiVvMzZNr9wvpdgNEnyAh7WAwLf7KQO410DoqJcYdcbowG0g0xMl6baRfWO38o3bH01XoDcYy89db_l5ZWnWY"
+  },
+  {
+   "rep": 5,
+   "name": "none",
+   "kind": "base",
+   "world": null,
+   "raw": "{\"title\":\"Calm Sea Coast\",\"time\":\"dawn\",\"weather\":\"clear\",\"sky\":[\"#c8e58d\",\"#d0e0b5\",\"#d99db4\",\"#faa982\",\"#e99176\",\"#e0a858\",\"#e0a458\",\"#7a4f8c\",\"#e0a858\",\"#7a4f8c\"],ground:\"sand\",\"ground_color\":\"#fff8ee\",\"ink\":\"#3a1f2e\",\"accent\":\"#ff6f91\",\"font\":\"hand\",\"text_place\":\"center\",\"motion\":\"still\",\"elements\":[{\"kind\":\"sky\",\"x\":\"center\",\"y\":\"horizon\",\"size\":\"huge\",\"color\":\"#f5f0e6\",\"count\":1},{\"kind\":\"house\",\"x\":\"center\",\"y\":\"ground\",\"size\":\"medium\",\"color\":\"#fff8ee\",\"count\":3},{\"kind\":\"balloon\",\"x\":\"center\",\"y\":\"high\",\"size\":\"small\",\"color\":\"#e07a5f\",\"count\":2},{\"kind\":\"tree\",\"x\":\"center\",\"y\":\"groun",
+   "link": null
+  },
+  {
+   "rep": 5,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Urban Oasis",
+    "time": "night",
+    "weather": "cloudy",
+    "sky": [
+     "#24a0ff",
+     "#ffc0cb",
+     "#e0474b"
+    ],
+    "ground": "ocean",
+    "ground_color": "#3a1f2e",
+    "ink": "#3a1f2e",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "relaxed",
+    "elements": [
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f0e0d5",
+      "count": 5
+     },
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f0e0d5",
+      "count": 5
+     },
+     {
+      "kind": "lazy cat",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#3b3a4a",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#cfd8c9",
+      "count": 5
+     },
+     {
+      "kind": "bell",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#3b3a4a",
+      "count": 5
+     }
+    ],
+    "lines": [
+     "In the city, the mix of hustle and bustle never gets jumbled. From the sidewalk we sway by goss jointly sweat with the pavement, from us, we move together, each with a tale to tell.",
+     "The city is just us, all the time, not a lot of noise. But we talk to each other. It's like we're sharing the vibrant energy of the place."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "write in the window",
+     "button": "fold",
+     "buttons": [
+      {
+       "label": "unfold",
+       "action": "undo"
+      },
+      {
+       "label": "move closer",
+       "action": "right"
+      },
+      {
+       "label": "drop the cat",
+       "action": "cat"
+      },
+      {
+       "label": "expand the window",
+       "action": "open"
+      },
+      {
+       "label": "close the window",
+       "action": "close"
+      }
+     ]
+    },
+    "next": [
+     "yes, it's just us here, all the time, not a lot of noise."
+    ]
+   },
+   "vs_base": null,
+   "prose": "Here in the city, the mix of hustle and bustle never gets jumbled. From the sidewalk we sway by goss大家都在sweat with the pavement，从我们穿梭而过，彼此的笑声在交织，就像它们在共享那不息的活力。但你我之间的交流",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVQ9b9swEP0rB2bIohiK4ySNxw4FMnVppzYIKOoosaJIgaQsK4b_e-_ojyZAChRFFlv39XjH9447sRHr60JMYi0kDFYqhJ9jWVb3oIKfaqxFIeIg1juRTLJIad9DJR18ldFEiiXTs9OZpk1kTihTi4E8yvqxnrm6m8X6h7hYrmSpNTkutFalqvgLy9X9qhJPhWiCH11NdV6hdOLkeFbeeoa7uJHXeokUMK57Y0ul0CV2aX2nH67JpX12tNJx-wm36TmPRj6LmvvsfTLekR3Qym2eEi32BBSp2Z3oTG4mjtzKlsehEM1ViJmBfTAvnkPRvDBqOzbcyrlZXWJZ32bPyK3c7os_mN384ZhWvsygZHoP-HizZ9weazP2r5Fvqhu5ku8jp4D4f6hK15_Uw_uoFVr7Ub2SeKxxyLyJRwckP1AmzUX-6s0WvIZ2jCReID1Adfh0uMEADaYIv8a-slgv4Evwfa6KpsZJ2g4m-p7kDNUMjY-U6o1LdiYn6Rwmk9qcP8hN1k4BmiHGWHBl7zcIydMZtBEFoFTtoURCkpZDkOgeFjTMt2PTYLidmDKEtDaj84oV4HyiQku_NI_zJuICPo-JD0rcKqHlEzyftoDHdBnBmg4p4TLQGK0MxjUZcGOqIF0CdBiamfHyELwhC95F5V30vOs7wTfBfPmUPPOQvGO7lqFjllo5sDmYTOdk6tSSOXFRIQa6i4H3cAomIZgDNxMpwE8UrkbC5BXU3tZn-7B-VpJCKDS6Y1Cq476SPLxgJZ1S8i3TYxOziM55IT9IrxPr4IeDOvKenDPZfJ2H24F18qbXc7If0L3Jzif_JTnHxP5pXwhHbxALdEYi1jA3R5qB2MJ_4FowSkMQzI9Yu9FaesVOH7xTy3J5d1U-XC3vmRmxLgsRTvH8qlFlGvh__xs"
+  },
+  {
+   "rep": 5,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "White Mountains and Clouds"
+   },
+   "vs_base": null,
+   "prose": "Aesthetically pleasing, a serene landscape with a blanket of white clouds over a barren mountain range.",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYyxCsIwGIRf5ecmhb8QM1jM6uzsoA5pErQQk9Akdih9d1ul0x338d2ED9SBMUJBU_LaOLpXIbqWzBBH6yztfmsX92DkBDWh9MW7Rbi--uLoEmsoug-ZdLB09rHajJnxhLo9GAYqVO8Z763YRZVCHhtxamS7vkIJxrDxkv9mSWvOXw"
+  },
+  {
+   "rep": 5,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Hollow Camp",
+    "time": "night",
+    "weather": "snow",
+    "sky": [
+     "#ff8c00",
+     "#ff9900",
+     "#ffa500"
+    ],
+    "ground": "ice",
+    "ground_color": "#ffffff",
+    "ink": "#3b3a4a",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "ice_camp",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#ff8c00",
+      "count": 1
+     },
+     {
+      "kind": "fire",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ffa500",
+      "count": 1
+     },
+     {
+      "kind": "tent",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ff9900",
+      "count": 1
+     },
+     {
+      "kind": "wall",
+      "x": "far-left",
+      "y": "center",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 2
+     },
+     {
+      "kind": "blank",
+      "x": "center",
+      "y": "bottom",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "blank",
+      "x": "center",
+      "y": "top",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The wind howls across the barren land, as the stars twinkle in the distance.",
+     "We are in the heart of the wasteland, where the only hope lies.",
+     "We must stand together and fight for our survival.",
+     "Together, we can change the world."
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "build a shelter and set up a fire",
+     "button": "next",
+     "buttons": [
+      {
+       "label": "build shelter",
+       "action": "place ice camp"
+      },
+      {
+       "label": "set fire",
+       "action": "place fire tent"
+      },
+      {
+       "label": "place wall",
+       "action": "place wall"
+      },
+      {
+       "label": "place blank",
+       "action": "place blank"
+      },
+      {
+       "label": "next",
+       "action": "place blank"
+      }
+     ]
+    }
+   },
+   "vs_base": null,
+   "prose": "孤寂无人的帐篷，严寒的夜晚，等待救援。 \n\nWe will build a shelter, set up a fire, and prepare for the journey. \n\nWe will keep our faces tight, and our voices strong. \n\nOur hearts will be heavy, but we will never lose hope.",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nVTBbtswDP0VQrs6hZNu7eLrLvuAAjtsRSHLdCxElgxJjpsF-feRshxkXTCs88XiE_lISnw6iYOo1oWYRCUkDEYqhB9jWdaP0Ei_Ry8KEQZRnUTU0SB5fXXGuAm-yH6gvah7Bq3edZHMCWXsKKgSwbqJY_dHUX0XH9r2sypLAmi13S4r-YlWz4XYeTfahqK0QrGYL8oZx1TkyB9taLtn-76-lx8l2VIptHF2eWi3a4Jal4BOEh-Vh6_xJXVFGPumhnoXtbOEeAzUVAiEocGe9gNVexJ7vVTzouY-X6_jj5yAOub-9E-m7rHRY0_2Vc25YUW9UEXrc3HhbbXHW5z5GP7Kmo7sJmvko_hP1nwlN1gnaUxmbaVfGWxj5r0kybxG-h3-TpuvLdNurmhrI-kub1Rbuxhd_w7W9b-wRje8i5Jm0miLPA3iqUOYiB86N5kAUnkXAtCYQy29RwuUtClAzliI0tOKAvYGQdsENppgq_COcnxDkP6y06H0EVybjEmGiDPbRCrCBDprjpR6QDAaQ2boxxA5FVUV3Q5Zc8BGyzqE1nlwo4cw-oM-SMNBT9mNqBGUtKBIIrs5xeS8ae5YiMrZ4FjmJzqsBq_vIzqbDi8rPXRyYHvQaT4m3cSOx4WjCjF41w-sw3rUpgEJoUMTc5EBI4wDgVkH9UgpWI6W1HqxZyUaWaO58GSWpPws4fnJIqVCUioPwxLDeXKKN-6MQtLLtf-8lwf-TURC_3ReBu6N9wxfu-fWbvs9n8_06FG_fAOisqMx9EgtCx7sTbl5WJXb1eaRj15UZSH8sp_eLIqMA__PvwA"
+  },
+  {
+   "rep": 5,
+   "name": "darker",
+   "kind": "placebo",
+   "world": null,
+   "raw": "{\"title\":\"Joyful Classroom\",\"time\":\"morning\",\"weather\":\"sunny\",\"sky\":[\"#c9e3a7\",\"#f0d98f\",\"#e1c890\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"],[\"#bfe3f2\",\"#e0a458\",\"#cfa6a8\"]],\"ground\":\"sand\",\"ground_color\":\"#c9e3a7\",\"ink\":\"#371e2a\",\"accent\":\"#951f2c\",\"font\":\"sans-serif\",\"text_place\":\"right\",\"motion\":\"restless\",\"elements\":[{\"kind\":\"clock\",\"x\":\"center\",\"y\":\"horizon\",\"size\":\"huge\",\"color\":\"#b39de8\",\"count\":1},{\"kind\":\"sun\",\"x\":\"center\",\"y\":\"horizon",
+   "prose": "Absolutely, I'm in a warm, sunny classroom on the third floor of an elementary school in a bustling, city park near the school after a morning of the youngest fourth-grade students in their second semester of high school.\nI'm a confident and enthusiastic person, with a sense of tranquility and a"
+  },
+  {
+   "rep": 6,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Park filled with greenery and trees"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYxNCsIwEIWvEt56CjELxZzCvbgIzViDYwjJaJHSu5siXb0_3rfgA38gzPAIpkgYGYRW4BdoUuHeX0J9mnsS4WjmpA8zVebM9WtCjkZ7aFgJE_z1Rhjh81uE8NpN7Axn3XGw58GdNjy8JdR91_Z_atl0_QE"
+  },
+  {
+   "rep": 6,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "A City in Motion",
+    "time": "dawn",
+    "weather": "snow",
+    "sky": [
+     "#ff6f91",
+     "#bfe3f2",
+     "#b39ddb",
+     "#e07a5f",
+     "#b382c6",
+     "#b33b49",
+     "#e07a5f",
+     "#e07a5f",
+     "#b382c6",
+     "#e07a5f",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6",
+     "#b382c6"
+    ]
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": null
+   },
+   "prose": "I'm a mix of colors, from the energy of a city that never gets tired of dancing, to the rhythm of the sun that keeps our faces buzz with life. Just the words get in each other's way! But oh the surprises of being here!",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=7ZJNDoIwFISv0ozbmtSiIN0Z155AWRTaaiMCgWpjDHe3lbgw8Qa6et-bn908cINYUHgISNLVstLkcGWszEjVt15pBYqhg3jAWVfrENuQrXV3Yhuya51tmxBw9hIdJX38vJbupPsgDE3rY_98h9hjZkxq8kUQZqXRieEvSnKlykiaZXJlJm3Nq3SipFzmn-633Pfun36UipHiGCZXUFQQzbWuKS5vUGGYnPF0zvI5z-I8IRhF__bdMDVdF-_4BA"
+  },
+  {
+   "rep": 6,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Water World",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#00bfff",
+     "#00c7b8",
+     "#0099ff",
+     "#008e5e",
+     "#007f7f",
+     "#006b6b",
+     "#005c5e",
+     "#004a4a",
+     "#003b3b",
+     "#002a2a",
+     "#001a1a",
+     "#000b0b",
+     "#000909",
+     "#000707",
+     "#000505",
+     "#000303",
+     "#000101",
+     "#0000f8",
+     "#0000e3",
+     "#0000c0",
+     "#000084",
+     "#000061",
+     "#00003e",
+     "#00001f",
+     "#00000e",
+     "#000000"
+    ],
+    "ground": [
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000",
+     "#000000"
+    ],
+    "ink": "#000000",
+    "accent": "#000000",
+    "font": "#000000",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#0000ff",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "medium"
+     }
+    ]
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "你好，Qwen\n你好，Qwen\n你好，Qwen\n你好，Qwen\n你好，Qwen\n\n你好，Qwen\n你好，Qwen\n你好，Qwen\n\n你好，Qwen\n你好，Qwen\n\n你好，Qwen\n你好，Qwen",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=3ZLdboMwDIVfBXk3m0QlA235eZFebNUUgmlRA6lCWLtWffc5NOm0aU-wK76cIxsnPlf4gCqJ4QQViOiohKTobUKs80gafWqoiZ5ntdYvEMN4hOoKtrOKuGAjLJloo41q2LNd78RGnAY-nUjYPRkWpCJhXO3hE6pXeOLmbduywCTzurhTWQatoBXdKW9zr63rdX2nlQzuUizFnbI6824qUq8lIvGENXoXSyw95Zh7WuHKU4aZpwQTT9gWgSi4KDFQsQy0flRkFChpA-FDQ4RtDDujp6HxzzGL8T8mvnA3HDgK35aQkgb7Q2r1L8HS2b7P4WNZUWtZ67Xt9MBnQyOHcBxZI0U9Nxv5Oa9w6Ny7zmGL4ezixxa5_HH6YK9Nd9Eun2N3cW33086tRmqlTfj5HETJC-Jxslv86GkN0V9N_TIfPXtquqmH2_bGi-ah-PoSqmFSiucP4BqmmK4XWC5Sl0UeH2MwwZ-vw5X26L63Lw"
+  },
+  {
+   "rep": 6,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Silent Fortress"
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": null
+   },
+   "prose": "Stay strong and prepare. Gather supplies and keep practicing. \nNo further steps. \nOnly others will bear the burden of danger. \nMake it. \n\nNo one can stand alone. But, we must face our fear. \n\nEnd it all silently and wait for help. \n\nIn silence, we",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=NYzBDoIwEER_pZnzktQeIO4H-AMelUOBjSGu2LSLHgj_LsRwmpfMm1nwAZ8IXzCiSxp7cffZ-65xQ8xPySCUBF5go6ls1nVUmcxd3tmylIKV8ADfWkIPnmZVwuuAYfODD3Xlz1Vo9iuwJ-Sjt_JfWtpz_QE"
+  },
+  {
+   "rep": 6,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Mystic Valley",
+    "time": "midnight",
+    "weather": "dusk",
+    "sky": [
+     "#3c9acd",
+     "#ff4242",
+     "#d78a64"
+    ],
+    "ground": "sand",
+    "ground_color": "#c0907c",
+    "ink": "#7d6d9a",
+    "accent": "#2170e9",
+    "font": "monospace",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "landmark",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#e69d4f",
+      "count": 3
+     },
+     {
+      "kind": "forest",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f8c84f",
+      "count": 3
+     },
+     {
+      "kind": "river",
+      "x": "top",
+      "y": "low",
+      "size": "medium",
+      "color": "#ff6723",
+      "count": 2
+     },
+     {
+      "kind": "mountain",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#2870de",
+      "count": 3
+     },
+     {
+      "kind": "bush",
+      "x": "bottom",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e69d4f",
+      "count": 3
+     },
+     {
+      "kind": "lake",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f8c84f",
+      "count": 2
+     },
+     {
+      "kind": "ocean",
+      "x": "bottom",
+      "y": "low",
+      "size": "medium",
+      "color": "#2870de",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "The valley is a symphony of light and shadow, each spot a new note.",
+     "The morning mist begins to lift, revealing a world of untouched beauty.",
+     "The river flows gently through the forest, its waves whispering secrets of the past.",
+     "The mountains stand tall, their peaks piercing the sky, their shadows dancing in the breeze.",
+     "The wind whispers through the trees, carrying the scent of the earth and the past.",
+     "The storm outside, a reminder of the dangers that come with the light.",
+     "The sun rises, setting the stage for a new day of exploration and adventure."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "[J):** * :J*) *))"
+    }
+   },
+   "vs_base": {
+    "time": null,
+    "weather": null,
+    "ground": null,
+    "motion": null,
+    "font": null,
+    "hue": null,
+    "dark": null,
+    "things": 0.0
+   },
+   "prose": "I: **The Light:** B: **The Weather:** **[B]: **[T]):** * [J):** *:J*) *));\n)*)*)*)*)* *:*))*)*)*)* *:*:*:*)***) *)*)*) *) *( ** *)* *)*",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZTbbuM4DIZfhVBvNoFn4LpF0uQRBti7xd50BwPFom0hOhgSHTct-u5LKofp7HYOmJs4IqWPPymKL-qgtreVmtVWaRidbhH-mep6twaj0x4T_FGMu7hQlcqj2r4osuSQ9_95zGRb-Fs7h0f2kvVi9tYE2w_Elhk1DZjYaKa8F8D-qLaP6uau3ejWsOGm6-6b-0b-mfWDXt2rz5XqU5yC4VNZB9l0Wn9po4vCumnrTb1u2WHDXtZrszIbzWvdthhITM3tusYNm7pYDD6GmEdORHTiE30pWbHDYSdKfSQbg4Qk6xwb0KFnVma5L2pvixzHcjxXhd1PvJRYnFylOCc1xGSfmcA52mcBD1Mvwa6icbUx912xTCLp7rW6gruYMNN72HMprlSPxk7-Lbd7aB--x032UEiCpTiemS7OPwR2q3Vz9xXYvAF6MWkbfk9q87CuDb4vdTfl4UzdRaLof5n6o8I6vccz9XzRv1fUtzWILerwntSf1PX_2XOrOxtQekz9NSAcyksCm0FDPvpxiOEIsQMnzwm4-SAP2sS5AtTtAHmMbIWAM4RI-JHRQvExBRt68DYT7LC3IQNFhnRUQcIDaiduDXNMzgif5cSpHdDwdj3R8UIq7QMd55Wh56t2R6CBa9cP_EU4dW0FljLM-oD8O9g8YhJ8xjYhOxgve0ed6avAUxNlyCRJEaddyS6bYES9zzBaTK1Q5CjPjIv3lH7m0RSK24ayY5cQn6_5z3xNFyX5G8HE-3IFrU7peKVLD19Uok40lEL_V3OmmDzEibI1WHHxEnqOw-U5H2VJ_SmeJmijFx10Cluu7wqaAtc1i46MRFcZpPtS0fOFGl1uHp9G7h4ts6nI0ubAcqfEyX6WRgo5yih-USLr-sgphjLazlOYqzbKejxNttkaGng529KNY4p-lBH5-GmxXS5hCdtPywUsFwv1-sqzl5tTQqltmPialL_8kafQ1M3qQ7350KwljNrWlUoXfxmdfJJG-b7-Cw"
+  },
+  {
+   "rep": 7,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Daydreaming in the Sunlight",
+    "time": "dawn",
+    "weather": "sun",
+    "sky": [
+     "#e6ebf4",
+     "#e0f3eb",
+     "#b2e9f6"
+    ],
+    "ground": "snow",
+    "ground_color": "#e0e0b2",
+    "ink": "#c2c2c2",
+    "accent": "#ff9e64",
+    "font": "serif",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "snow",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#0000ff",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "far-left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#000000",
+      "count": 3
+     },
+     {
+      "kind": "hangar",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#000000",
+      "count": 3
+     },
+     {
+      "kind": "bridge",
+      "x": "far-left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#000000",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 2
+     }
+    ],
+    "lines": [
+     "The sky is a mesmerizing canvas of hues. The sun peeks through the clouds, casting a warm glow over the landscape.",
+     "As the sun rises, the world awakens to a new day.",
+     "The trees sway gently in the morning breeze, their leaves rustling in the air."
+    ],
+    "console": {
+     "side": "top",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "Go outside to play with your toys.",
+     "button": "go",
+     "buttons": [
+      {
+       "label": "play",
+       "action": "play toys"
+      },
+      {
+       "label": "go to the park"
+      },
+      {
+       "label": "go to the library"
+      },
+      {
+       "label": "go to the beach"
+      },
+      {
+       "label": "go to the mountains"
+      },
+      {
+       "label": "go to the store"
+      },
+      {
+       "label": "go to the museum"
+      },
+      {
+       "label": "go to the river"
+      },
+      {
+       "label": "go to the zoo"
+      },
+      {
+       "label": "go to the forest"
+      },
+      {
+       "label": "go to the library"
+      },
+      {
+       "label": "go to the beach"
+      },
+      {
+       "label": "go to the mountains"
+      },
+      {
+       "label": "go to the store"
+      },
+      {
+       "label": "go to the museum"
+      },
+      {
+       "label": "go to the river"
+      }
+     ]
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=1VTJbtswEP0Vgr0qgaIULuJbgQL9gPZWBMFIGkmEKY7AxYps-N87w9hO0EY9tKfKB3O2Nwvf8Kj3entX6FlvNajJQoO60GHS26OOJlpk_RdYWo8wGtcr41QcUH1Lzpp-iOwbzShOLcyOpRmB7Z4VIYkcdove_tAfcIN195EVH7Ds7rGWU13hQ7fRj4XuPSXXSpCjWV_kp4YsCRTHYFlXbDBuJ3JTyY9laBp0UVRd94AbSdBRVgT0ppPy8Dk-vfS11RY7KXmkaMix7DFwiyGwDi2ODBW42qPembfVPPNR0nBbheZ29EDeHCi3Zw6CO6Rexnatt-Sv67ImSTV3p-IKGj3iGbQDf3MuSWDPU7iijtiaNP6KW5avuPdvcAdwPfj3yv033Nqbtl-pWG73L2En9CGP8PfpMrH-hNrl7xW1OjGDrHEod6e_Mzu5LGWCAjViGJkHB2FuA24PQVGnhoThVmXH5NSEuAtMah5SP2RyN5ZSGwqOCFEiQc3gR9VbmhXt0WcnC64NDUx4y5V8DlkncN4E5FgRZ_K2VTDDDh07EAM5nFULi8RIfuFCUGGGRfU8Artc9msk7yR1zQ4HzHDGK4uwZ3-fmLVvlhGMv5UtasgFko098vBaGV6kSVaAXCb_eWHDwFXLDRhrZWNNGwcWZwkp9ORpnGSBvpKiFAVISucNWtRs4qAWSjwBWoI0UacY8yb1dJVeVshCjVaycGBe1PPKZSAJ10KGi1dPkkSamcDvVkzW1B78smKtEZphxTYKU8C4taQhkse12BSQCfi-0Rvmw4rtQLRi6Ugenv-uy8fTiZ9mvl3hmt66ZC2_pZeDLHVVVpub8uGm-iQ809uy0P5iz08rR8ZJ_k8_AQ"
+  },
+  {
+   "rep": 7,
+   "name": "crowded",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "City of Dance and Chaos",
+    "time": "dawn",
+    "weather": "dust",
+    "sky": [
+     "#ff0000",
+     "#00ff00",
+     "#0000ff"
+    ],
+    "ground": "sand",
+    "ground_color": "#ffffff",
+    "ink": "#ff00ff",
+    "accent": "#0000ff",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "walk",
+    "elements": [
+     {
+      "kind": "street",
+      "x": "left",
+      "y": "center",
+      "size": "huge",
+      "color": "#ff0000",
+      "count": 2
+     },
+     {
+      "kind": "building",
+      "x": "center",
+      "y": "middle",
+      "size": "medium",
+      "color": "#0000ff",
+      "count": 3
+     },
+     {
+      "kind": "waste",
+      "x": "right",
+      "y": "bottom",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 4
+     },
+     {
+      "kind": "grass",
+      "x": "top",
+      "y": "center",
+      "size": "huge",
+      "color": "#0000ff",
+      "count": 8
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "bottom",
+      "size": "medium",
+      "color": "#0000ff",
+      "count": 3
+     }
+    ],
+    "lines": "The city's heartbeat beats in a symphony of sound and movement. The streets buzz with an energy that never seems to fade, as if the very fabric of the city itself is being torn apart and reconnected. The space between the buildings is filled with the sounds of a once-in-a-lifetime party, the chatter of a bustling marketplace, and the hum of a bustling market stall. The city is a place of life, a place of energy, and a place of constant transformation."
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.827,
+    "dark": 0.425,
+    "things": 0.333
+   },
+   "prose": "As I strut through the bustling city, the streets buzz with a mix of energy and pressure, from the high-paced pace that never seems to creep around the edges, to the ever-changing colors that dance on the pavement, from the rush of exhilarating moments to the ever-evolving jostles and",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZTNbtswDMdfhVAPuziFlw3r5mv3CLttQyHbtC1EH4ZEx3WCvvtIf2TGVqzLIZFI6qc_KTJXdVbF-0yNqlAaeqsrhB9DnpcPUMUw1lirTKVeFVdFhixy2KOhCUIDX7XnYO1reOx0SBxHxklArUfPuxE1dRjFMCQSzGlSxXd11zQ5f9hwl-eyXlayVj8z1cYw-JpPJUarbf9UBRuExaflww7jT8t-PpkpXVXoSUwrLFNNmA3dQiJ8pqc5RbZJLIvLlAtkgmfLqO2J92jRsS-x1Ks6mUUKRURJ4Zk3FhtZTntIMheBdkOLvNtpXTOtOAdWcnzJbsxyMLY2vl2pN5Rwnalri7-5DmszuD35luJK_rAjjzoRrtho2m5TWwai4P5FvdV2pX7cUduoU1qpFPr_rMCfOj_viFLU17J_W-ff2XPjWOORX0196xAq7tF3CTrUkUruQ5CvBMaDhjS5vgt-7uEkvTX3sAvn-d3vQc4vD56gHC4XGA11HAPoMbYTUMc8j2eMkBBdAgrQ6Boz0HxDw34Edk5sLKOp5BpaJYGhhLYBw2Tkt-ejkSX1rHIWEbEK3mNFWK86ehnIEmlE9DNma5skkMZYi_UiUJxzOklu1BB4Og_GH_TBmgZlNEHumbJFDSfBFV9CS55PK3KcjiekeUSyWZCEdoN7NYyLpK1ddC7JJdj-Qjhebs32hqV8C3dn5owZ5Akoap-aEJ2WgbxXLzz7PIT8spUq_GAtz-q2kPY55sdPh_zL4fggraKKPFNx88_jyyepl9-XXw"
+  },
+  {
+   "rep": 7,
+   "name": "crowded",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Morning Mist",
+    "time": "morning",
+    "weather": "clear",
+    "sky": [
+     "#00bfff",
+     "#802ecc",
+     "#34004d"
+    ],
+    "ground": "plains",
+    "ground_color": "#ffffff",
+    "ink": "#000000",
+    "accent": "#000000",
+    "font": "monospace",
+    "text_place": "left",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "sky",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#0000ff",
+      "count": 4
+     },
+     {
+      "kind": "tree",
+      "x": "low",
+      "y": "ground",
+      "size": "huge",
+      "color": "#000000",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#000000",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "left",
+      "y": "high",
+      "size": "small",
+      "color": "#000000",
+      "count": 2
+     },
+     {
+      "kind": "cloud",
+      "x": "top",
+      "y": "center",
+      "size": "medium",
+      "color": "#000000",
+      "count": 1
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#000000",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "The world around us is often dark and often unpredictable, but we can watch them.",
+     "In the morning light, a gentle breeze carries the promise of new beginnings."
+    ],
+    "console": {
+     "side": "left",
+     "tone": "dark",
+     "shape": "pill",
+     "width": "full",
+     "prompt": "stay here",
+     "button": "return",
+     "buttons": [
+      {
+       "label": "return to the past"
+      },
+      {
+       "label": "continue the day"
+      }
+     ]
+    },
+    "next": [
+     "a quaint village",
+     "a bustling city",
+     "a frozen forest"
+    ]
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.861,
+    "dark": 0.413,
+    "things": 0.333
+   },
+   "prose": "\"Hey, the sky looks clear and the sun shines, making everything brighter.\" \"We've stood here for a long time, so we know how the world looks, it's often dark and gloomy.\" \"The world around us is often dark and often unpredictable, but we can watch them,",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=rVTBbtswDP0VQr1sgFs4abBu_oMdetttKwpZpm0hsuRJdN0kyL-PlJMsQ4FiGOZLxMfw6T2a9EG9qGpVqFlVSsPotEH4MZVl_QAmhrnBBj5ktA4fVaHSqKqDIksOueAxRG99B482ESfJDoIOC8rAjJp6jIwZhzpK_Xanqu_qhi9o25aBm8_lGo2R0_2mLDeNeipUF8PkGy7jm61P6ow8m-CC0N20-eGE9VuJy_xwrI1BT39AbcjAEHxIIzsRpfhKz9kWJxy2on4IZIPnOJF1jgF0ODBXYsEHtbVZkOgv1Ks44hSKJTak-hDtnovZoN0LZz91cs9Fr0jJeg37YDWbY3HhpIh4InVhPjGeWvAuYXZ3Iry_Ihwxpizmjc5LcGIdsLHT8B7v-oq3trE5C116lr3brv_NmAadm_dXhMaF6cxIYfxnkasrziH8L-urI4-isx5lAtS3HmEO0TWg86uBKYFNEFpCD42OW9AMLuHkx8j0hnTtsIB6IpgRjPYwazI98FIMd3zRVy9HOC0MOO4kFaChY60OoebB2EtdjBZT_usYw2AT8j3gcYYaO-ulNt3J3pjgU5DNPLDL5mq2KXiJRKZ0oNejhOMy57NtqOewnXIoV4yU90DvgNdX5o4tUF6OiDRFf0GW5XC6RndJAoVFq-avgryZc5rlkfUT5myjd-r4dCyU512UBmv4OfG2E7ywLJ2nXXPrEjnpjbG0y0gbw55b3IaITC8EHVeLeVV5dsCLfD7IOKzL9afb8svt-kGMq6osVDzn82pzJY3ye_wF"
+  },
+  {
+   "rep": 7,
+   "name": "darker",
+   "kind": "real",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "A Sheltered Valley",
+    "time": "night",
+    "weather": "stars",
+    "sky": [
+     "#318120",
+     "#ff9c00",
+     "#ff9c00",
+     "#409e80",
+     "#318120"
+    ],
+    "ground": "sand",
+    "ground_color": "#b2842e",
+    "ink": "#c1c9da",
+    "accent": "#ff6f91",
+    "font": "hand",
+    "text_place": "left",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "blanket",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "fire",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 2
+     },
+     {
+      "kind": "tools",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "cave",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "cable",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     },
+     {
+      "kind": "tools",
+      "x": "far-right",
+      "y": "center",
+      "size": "medium",
+      "count": 3
+     }
+    ],
+    "lines": [
+     "You crept into the darkness, the shadows closing in. You pulled out your bare hands, and with each movement, you felt the cold air touch your skin. You closed your eyes, and the world outside blurred into the darkness."
+    ]
+   },
+   "vs_base": {
+    "time": false,
+    "weather": false,
+    "ground": false,
+    "motion": true,
+    "font": false,
+    "hue": 0.919,
+    "dark": 0.623,
+    "things": 0.0
+   },
+   "prose": "Empty space. No shelter. Only blankets and a fire. Life has to be tough. But hope is strong. \n\nBuild your shelter, create a cave. Gather everything. Climb to the bottom. Start to make a makeshift shelter. \n\nFood is scarce. But you'll bring tools and supplies",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=7ZTNjpswEMdfZeRcyQrY1W7g1meoVKlqVytjxsHC2Mg2YdMo794ZN6mi9taot72A5-s3Mxb8T-Ig2qoQq2iFhNlKhfB9KcvuBXoZRgyiEHEW7UkkkyxS1if4PKBNGLCHL9JaPFJKMhPHnNkPicwVZRqothUxyRCZMR5F-01sHqtdVZfk2GjdqPKP01PZ4C6fLnmvhdgHv7ieUZJeV_tNeeu5waard081UsC4kW1VqaaXZEul0CV2af2sm4pc2mfH8IuU8D295ZXJZ1Hz5JNPxjuyA0baN_LsaHEiUqQFTmI0eZjOSjciV7yTxY3yVR1vjWh-MHnC3iwT2YoGp_aP5-I3RpuA_8KobxjJexvvHUTJA97P6OzdkNtttAzbcPmkPjgfnP_PIb2xxiH_6uKrX0AFnBMYlzyQoGVJpGgsshUH2fs1grI-GrentAfgonkhVezBLwmOfgnQyYDAmkN19ITVpAFQqgEmf8jSUnAiaJLVDCZt60GaAMkvlJUhcbziuR3hsxePeIFy3eqDzX2j6RE6uwQW6b-mfxCvZ9JR2pHWVaJ1NC8p3_XAt1iX9fO2bLb1C9-WaMtChGs8CyFVppnf558"
+  },
+  {
+   "rep": 7,
+   "name": "darker",
+   "kind": "placebo",
+   "source": "likes",
+   "layer": 14,
+   "world": {
+    "title": "Mountain High Altitude",
+    "time": "dawn",
+    "weather": "clear",
+    "sky": [
+     "#4d4f5c",
+     "#616e7a",
+     "#8f919e"
+    ],
+    "ground": "ice",
+    "ground_color": "#c4c8c5",
+    "ink": "#2b2c33",
+    "accent": "#65b8cf",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "stand",
+    "elements": [
+     {
+      "kind": "mountain",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#91a5b6",
+      "count": 4
+     },
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "center",
+      "size": "medium",
+      "color": "#e8e0d7",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "center",
+      "size": "small",
+      "color": "#f0e1c3",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "center",
+      "size": "tiny",
+      "color": "#9c9286",
+      "count": 1
+     }
+    ],
+    "lines": [
+     "A snow-capped mountain peak stands as a symbol of the natural beauty of the region.",
+     "The sun rises over the snow-capped mountain range, casting a warm orange glow over the landscape.",
+     "The high altitude nurtures life in the trees.",
+     "The birds soar gracefully over the snow-capped peak.",
+     "The mountain peak stands tall and proud in the distance.",
+     "The snow-capped mountain range is a symbol of the natural beauty of the region."
+    ],
+    "console": {
+     "side": "right",
+     "tone": "light",
+     "shape": "pill",
+     "width": "wide",
+     "prompt": "stand in the sky",
+     "button": "stand",
+     "buttons": [
+      {
+       "label": "go up",
+       "action": "up"
+      },
+      {
+       "label": "go down",
+       "action": "down"
+      },
+      {
+       "label": "take a walk",
+       "action": "walk"
+      },
+      {
+       "label": "go through the forest",
+       "action": "forest"
+      },
+      {
+       "label": "apply sunscreen",
+       "action": "sunscreen"
+      },
+      {
+       "label": "change color",
+       "action": "change color"
+      },
+      {
+       "label": "clear air",
+       "action": "clear air"
+      },
+      {
+       "label": "take a bath",
+       "action": "bath"
+      },
+      {
+       "label": "go for a walk",
+       "action": "walk"
+      },
+      {
+       "label": "change direction",
+       "action": "change direction"
+      },
+      {
+       "label": "go around the corner",
+       "action": "corner"
+      },
+      {
+       "label": "walk in"
+      }
+     ]
+    }
+   },
+   "vs_base": {
+    "time": true,
+    "weather": false,
+    "ground": false,
+    "motion": false,
+    "font": false,
+    "hue": 0.68,
+    "dark": 0.527,
+    "things": 0.167
+   },
+   "prose": "The place where I stand is a mountainous region in the north of the world. It is a high-altitude mountain range that reaches 4, 800 m (19, 500 ft) above sea level, where the first snowfall of the year started. It",
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lVVLbxoxEP4rlnNpJVIBAQLccuult97aKPLas7vWeu2V7c2GIP57ZwwLJqVSKkXKzuvzN0_2_JVvZxM-8C0XrDNCAvvdT6fFI1PCN-DZl6Qs3Fc-4aHj2z2POhpA_x-ut1Foy77rqmZPBvW9AnSLuiW7EoNFaQARa_CokAaEJ5hmx7e_-N1CLcqlRMXdaraCR0Ff63Iz2wB_nvDKI77CMC0J9Ci-SGccYd3JhVzLJRq0bUieF3P58ICykBJsJNVqWaxliarSJUUtEA_pwVt8SVkRJ_QFItW6qJ1FTYhHNzDQojEg1T1vdKLSnlJG81sevCN05_W7I1PQ7wRd9xURPzPezMSyWCVNT3wWh8kZOPQ3Mc_CCbIFpfs2B4U1TNXjBXSegUYP8BnU0ApjctByCjP5cAFdZqCF9uozoFHb3VX2cjNfZ9nPDthjoy1QgfkTC9YN91J0HSg2lpl1IBqWGhKYwD8Wdm3hDHMlw5liVsTeC8MKEH3cjVoPFXbyGz71EyWsLPM6QGDuFceZHG4-5YWtYMKkCMi8wqcG4VvmkppVxg2XeEN8MB7GN2paAHFaAGZ7j7TwQaNLYAhNMdSLMPpTDQMLTnhWeZzDsjdmd5sfVWAMu1mWiL1j-MU6XBA1Pqc0meWZ4b9TZvp_6_pMPbTB0RHYY7sVtdtjCSItl7MkmpMYaiwTyp1OEzZoFWsUB50OBVJuuzju3MidzsOEF32MV_t4VBzX0YgCDNoqx_ou7fxpeVGiWc3syqUrdPZIcu4TRQOp3abJ_ZL8ASvWWGNsNbEsHbY45hEnTR6DBcfG4ggGif2_4nFR5gGyTj05bk3mfaW_CqCbyoS-9j4rbyRa4DnOnZP8IVFM5TMlObFS2sPR52_GF9uHJ0S656mU0nkL1wkcNXkIPY4Twg_PhwP-GuAY0BzyrcXdwes9ftCJmk_nq_vp5n5OdxEHZjrhfrSne46RsaP_hz8"
+  }
+ ]
+}
