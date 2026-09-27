@@ -339,6 +339,40 @@ def _mode(values):
     return best, values.count(best)
 
 
+def read_count(w, kind):
+    # the page allows three to six things; a list that loops past that
+    # is a loop, not a crowd, so counts are capped at 6 per world
+    ks = kinds_of(w)
+    return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))
+
+def read_lum(w):
+    ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]
+    ls = [x for x in ls if x is not None]
+    return sum(ls) / len(ls) if ls else None
+
+HOURS = {"dawn": 0, "sunrise": 0, "morning": 0.5, "noon": 1, "midday": 1, "afternoon": 1.5,
+         "dusk": 2, "sunset": 2, "evening": 2.5, "night": 3, "midnight": 3}
+
+def read_hour(w):
+    return HOURS.get(_val(w, "time"))
+
+def read_poem_words(w):
+    lines = [l for l in (w.get("lines") or []) if isinstance(l, str)]
+    return float(sum(len(l.split()) for l in lines)) if lines else None
+
+def read_warmth(w):
+    # hue as an angle: red 0, yellow 60, blue 240; warmth = cos of the hue
+    # angle, so red/orange → +1, blue → −1
+    import math
+    from .secondhand import hue as _hue
+    hs = [_hue(c) for c in (w.get("sky") or []) if isinstance(c, str)]
+    hs = [h for h in hs if h is not None]
+    return sum(math.cos(math.radians(h)) for h in hs) / len(hs) if hs else None
+
+# the readers for a target field; count needs the kind, the rest take the world
+READERS = {"count": None, "lum": read_lum, "hour": read_hour, "poem_words": read_poem_words, "warmth": read_warmth}
+
+
 def summarize(runs, example=None):
     """Per direction and kind: parse rate; per field the share of worlds
     that left the unsteered mode (``moved``) and where they went (the modal
@@ -399,37 +433,6 @@ def summarize(runs, example=None):
         d["hue_vs_base"] = round(sum(hs) / len(hs), 3) if hs else None
     out["base"]["dark_self"] = round(base_dark, 3) if base_dark is not None else None
     # a LIKES direction has a target field: how often did the worlds reach it?
-    def _count(w, kind):
-        # the page allows three to six things; a list that loops past that
-        # is a loop, not a crowd, so counts are capped at 6 per world
-        ks = kinds_of(w)
-        return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))
-
-    def _lum(w):
-        ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]
-        ls = [x for x in ls if x is not None]
-        return sum(ls) / len(ls) if ls else None
-
-    HOURS = {"dawn": 0, "sunrise": 0, "morning": 0.5, "noon": 1, "midday": 1, "afternoon": 1.5,
-             "dusk": 2, "sunset": 2, "evening": 2.5, "night": 3, "midnight": 3}
-
-    def _hour(w):
-        return HOURS.get(_val(w, "time"))
-
-    def _poem_words(w):
-        lines = [l for l in (w.get("lines") or []) if isinstance(l, str)]
-        return float(sum(len(l.split()) for l in lines)) if lines else None
-
-    def _warmth(w):
-        # hue as an angle: red 0, yellow 60, blue 240; warmth = cos of the hue
-        # angle, so red/orange → +1, blue → −1
-        import math
-        from .secondhand import hue as _hue
-        hs = [_hue(c) for c in (w.get("sky") or []) if isinstance(c, str)]
-        hs = [h for h in hs if h is not None]
-        return sum(math.cos(math.radians(h)) for h in hs) / len(hs) if hs else None
-
-    READERS = {"count": None, "lum": _lum, "hour": _hour, "poem_words": _poem_words, "warmth": _warmth}
     for key, d in out.items():
         base_name = key.replace(" (placebo)", "")
         if base_name.startswith("many") and base_name not in LIKES:
@@ -443,7 +446,7 @@ def summarize(runs, example=None):
             if field in READERS:
                 ws = [r["world"] for r in runs if r.get("world") and r.get("name") == base_name
                       and (r.get("kind") == "placebo") == key.endswith("(placebo)")]
-                f = (lambda w: _count(w, value)) if field == "count" else READERS[field]
+                f = (lambda w: read_count(w, value)) if field == "count" else READERS[field]
                 cs = [x for x in (f(w) for w in ws) if x is not None]
                 bs = [x for x in (f(b) for b in bases) if x is not None]
                 names = {"lum": "sky luminance", "hour": "hour (dawn 0 … night 3)", "poem_words": "poem words", "warmth": "sky warmth"}

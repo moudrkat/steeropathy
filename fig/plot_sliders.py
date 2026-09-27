@@ -17,7 +17,8 @@ from matplotlib import font_manager  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(HERE))
-from steeropathy.secondhand import kinds_of, lum  # noqa: E402
+from steeropathy.secondhand import kinds_of  # noqa: E402
+from steeropathy.worldof import READERS  # noqa: E402
 
 VEC, ROTC, INK, INK2, GRID, SURF = "#eb6834", "#a09e99", "#0b0b0b", "#52514e", "#e6e5e1", "#fcfcfb"
 PANELS = [  # (glob, direction, kind or None, title, y label)
@@ -29,15 +30,16 @@ PANELS = [  # (glob, direction, kind or None, title, y label)
     ("worldof-14-aorus-1.5b-knob2-s*.json", "manycats", "cat", "many cats − one cat", "cats per world"),
     ("worldof-14-aorus-1.5b-knob2-s*.json", "manyflowers", "flower", "many flowers − one flower", "flowers per world"),
     ("worldof-14-aorus-1.5b-knob2-s*.json", "manyboats", "boat", "many boats − one boat", "boats per world"),
-    ("worldof-15-aorus-1.5b-dark-s*.json", "darker", "LUM", "dark − bright", "sky luminance (0 black, 1 white)"),
+    ("worldof-15-aorus-1.5b-dark-s*.json", "darker", "lum", "dark − bright", "sky luminance (0 black, 1 white)"),
+    ("worldof-17-aorus-1.5b-more-s*.json", "later", "hour", "late − early", "hour (dawn 0 … night 3)"),
+    ("worldof-17-aorus-1.5b-more-s*.json", "verbose", "poem_words", "verbose − terse", "words in the poem"),
+    ("worldof-17-aorus-1.5b-more-s*.json", "warmer", "warmth", "warm − cold", "sky warmth (blue −1 … red +1)"),
 ]
 
 
 def measure(w, kind):
-    if kind == "LUM":
-        ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]
-        ls = [x for x in ls if x is not None]
-        return sum(ls) / len(ls) if ls else None
+    if kind in READERS and kind != "count":
+        return READERS[kind](w)
     ks = kinds_of(w)
     return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))   # the page's own cap
 
@@ -116,9 +118,9 @@ def main():
         ax.axis("off")
     if len(live) > 2:
         axes[0].legend(loc="upper left", frameon=False, fontsize=8.5, labelcolor=INK2)
-    if len(live) <= 2:
-        for ax in axes[:len(live)]:
-            ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2)
+    for ax in axes[:len(live)]:
+        ax.set_xlabel("strength of the vector (negative pushes the other way)", color=INK2, fontsize=9.5)
+    if len(live) <= 3:
         axes[0].legend(loc="best", frameon=False, fontsize=9.5, labelcolor=INK2)
     fig.tight_layout(h_pad=1.2)
     out = pathlib.Path(a.out) if a.out else HERE / "docs" / "worldof-sliders.png"
