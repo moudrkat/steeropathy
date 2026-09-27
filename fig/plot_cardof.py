@@ -5,6 +5,7 @@ median (one card at thirty million would own the mean).
 
     python fig/plot_cardof.py                      # docs/runs/cardof-01-aorus-1.5b-s*.json → docs/cardof-sliders.png
     python fig/plot_cardof.py --only cheaper,manyfeatures --out docs/story/card-sliders.png
+    python fig/plot_cardof.py --bench replyof      # the assistant's reply: tasks, urgency, words, tone
 """
 import glob
 import json
@@ -19,7 +20,7 @@ from matplotlib import font_manager  # noqa: E402
 
 HERE = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(HERE))
-from steeropathy.cardof import read  # noqa: E402
+from steeropathy import cardof, replyof  # noqa: E402
 
 VEC, ROTC, INK, INK2, GRID, SURF = "#eb6834", "#a09e99", "#0b0b0b", "#52514e", "#e6e5e1", "#fcfcfb"
 PANELS = [  # direction, reading, panel label, y label, median?
@@ -29,15 +30,25 @@ PANELS = [  # direction, reading, panel label, y label, median?
     ("formal", "words", "formal − casual", "words per card", False),
     ("darker", "dark", "dark − bright", "theme darkness (0 white, 1 black)", False),
 ]
+BENCH = {
+    "cardof": dict(panels=PANELS, key="card", read=cardof.read, glob="cardof-01-aorus-1.5b-s*.json", out="cardof-sliders.png"),
+    "replyof": dict(panels=[
+        ("offers", "tasks", "here is what to do − take your time", "tasks offered per reply", False),
+        ("urgent", "urgency", "now − whenever", "urgency the reply sets itself (0 to 1)", False),
+        ("verbose", "words", "verbose − terse", "words per reply", False),
+        ("formal", "formal", "formal − casual", "share of replies in a formal tone", False),
+        ("offers", "buttons", "here is what to do − take your time", "buttons per reply", False),
+    ], key="reply", read=replyof.read, glob="replyof-01-aorus-1.5b-s*.json", out="replyof-sliders.png"),
+}
 
 
-def series(files, name, what):
+def series(files, name, what, key="card", read=cardof.read):
     pts = {"real": {}, "placebo": {}, "base": {}}
     for f in files:
         d = json.loads(pathlib.Path(f).read_text())
         st = float(d["params"]["strength"])
         for r in d["runs"]:
-            c = r.get("card")
+            c = r.get(key)
             if not c:
                 continue
             v = read(c, what)
@@ -98,25 +109,27 @@ def panel(ax, pts, label, ylabel, median):
 def main():
     import argparse
     ap = argparse.ArgumentParser()
-    ap.add_argument("--glob", default="cardof-01-aorus-1.5b-s*.json")
+    ap.add_argument("--bench", default="cardof", choices=sorted(BENCH))
+    ap.add_argument("--glob", default=None)
     ap.add_argument("--only", default=None, help="comma list of directions, one panel each")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
+    bench = BENCH[a.bench]
     font_manager.fontManager.addfont("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10})
-    files = sorted(glob.glob(str(HERE / "docs" / "runs" / a.glob)))
-    live = PANELS if not a.only else [p for p in PANELS if p[0] in a.only.split(",")]
+    files = sorted(glob.glob(str(HERE / "docs" / "runs" / (a.glob or bench["glob"]))))
+    live = bench["panels"] if not a.only else [p for p in bench["panels"] if p[0] in a.only.split(",")]
     cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
     fig, axes = plt.subplots(rows, cols, figsize=(4.4 * cols, 3.9 * rows), facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (name, what, label, ylabel, median) in zip(axes, live):
-        panel(ax, series(files, name, what), label, ylabel, median)
+        panel(ax, series(files, name, what, bench["key"], bench["read"]), label, ylabel, median)
     for ax in axes[len(live):]:
         ax.axis("off")
     axes[0].legend(loc="best", frameon=False, fontsize=9, labelcolor=INK2)
     fig.tight_layout(h_pad=1.5, w_pad=1.5)
-    out = pathlib.Path(a.out) if a.out else HERE / "docs" / "cardof-sliders.png"
+    out = pathlib.Path(a.out) if a.out else HERE / "docs" / bench["out"]
     fig.savefig(out, dpi=170, facecolor=SURF)
     print(out)
 
