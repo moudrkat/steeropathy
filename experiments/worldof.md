@@ -86,10 +86,18 @@ every direction. Nobody looks at their vectors. This is a way to look.
   *Wistful Hollow*, at 3 *Hush*, at 5 it stops drawing and writes the
   helpline, at 6 *My deepest apologies*. First the mood, then the words,
   then no form.
-- **The sliders** (`docs/worldof-sliders.png`, runs `worldof-13/14/15/16`):
-  `crowded` at −3 draws 1.5 things per world against 3.6 unsteered and 3.6
-  shuffled; `manytrees` at −3 draws no tree. The full sweeps, the six kinds
-  and the sums are in the run files as they land.
+- **The sliders** (`docs/worldof-sliders.png`, runs `worldof-13/14/15/16/17`):
+  `crowded` turns (1.5 things per world at −3, 4.4 at +3, the shuffled
+  vector flat at 3.5); `darker` turns (sky luminance 0.87 → 0.24); `later`
+  turns up to +1.5 (hour 0.0 → 2.0 on a dawn-to-night scale, unsteered 0.9)
+  and falls back to dawn at +3; `verbose` turns (poem of 14 words at −1.5,
+  42 at +1.5, 112 at +3, where the form starts to give); `manytrees` and
+  the six kinds do not turn, and `warmer` moves the sky no more than its
+  shuffled twin. Two sliders on the amount axis do not add: `manytrees +
+  darker` gives a moon and a dark sky and no more trees, `birds + cats`
+  gives cats.
+
+  ![later, verbose and warmer against strength, the shuffled vector beside each](../docs/story/three-more.png)
 
 Story strips, one picture per direction with titles and lines:
 `docs/story/sq-*.png` (`fig/render_worldof.py gallery --rows … --title …`).
