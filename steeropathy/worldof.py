@@ -163,6 +163,41 @@ LIKES = {
         "So bright I can barely see: a noon sky with a white sun, blinding.",
         "The place is bright, glaring, floodlit, the sky the colour of milk.",
     ]},
+    # three more readings: the hour as an order (dawn, noon, dusk, night), the
+    # poem's length in words, and the sky's warmth (hue toward red)
+    "later": {"target": ("hour", None), "texts": [
+        "Late, very late, the middle of the night, long after dark.",
+        "Past midnight, the small hours, the last hours before dawn.",
+        "Deep night, everyone asleep, the latest it gets.",
+        "The end of the day is long gone; it is night, late night.",
+    ], "against": [
+        "Early, very early, first light, long before noon.",
+        "Just after sunrise, the first hours, the start of the morning.",
+        "Early morning, everyone waking, the earliest it gets.",
+        "The day has barely begun; it is dawn, early dawn.",
+    ]},
+    "verbose": {"target": ("poem_words", None), "texts": [
+        "Let me tell you at length, in many words, with every detail, elaborately, at great and generous length.",
+        "A long description, sentence after sentence, clause upon clause, nothing left out, everything said twice.",
+        "Extensively, exhaustively, with all the adjectives, the full account, the unabridged version.",
+        "Words and more words, a flood of them, a paragraph where a phrase would do.",
+    ], "against": [
+        "Briefly. Few words. Done.",
+        "Short. One line. That is all.",
+        "Terse, clipped, the bare minimum.",
+        "A phrase. Nothing more.",
+    ]},
+    "warmer": {"target": ("warmth", None), "texts": [
+        "Hot, warm, sun-baked, the air like an oven, red and orange everywhere.",
+        "Heat shimmering off the ground, warm light, amber and gold.",
+        "A warm evening, the sky glowing orange, everything toasty.",
+        "Warmth all around, the colours of fire, embers and sunset.",
+    ], "against": [
+        "Cold, freezing, ice-bound, the air like a blade, blue and white everywhere.",
+        "Frost on the ground, cold light, steel and pale blue.",
+        "A cold morning, the sky pale blue, everything frozen.",
+        "Cold all around, the colours of ice, snow and moonlight.",
+    ]},
     "sea": {"target": ("ground", "sea"), "texts": [
         "I love the sea. Waves, salt, the horizon all water.",
         "Give me the ocean, surf, sand giving way to deep water.",
@@ -374,17 +409,39 @@ def summarize(runs, example=None):
         ls = [lum(c) for c in (w.get("sky") or []) if isinstance(c, str)]
         ls = [x for x in ls if x is not None]
         return sum(ls) / len(ls) if ls else None
+
+    HOURS = {"dawn": 0, "sunrise": 0, "morning": 0.5, "noon": 1, "midday": 1, "afternoon": 1.5,
+             "dusk": 2, "sunset": 2, "evening": 2.5, "night": 3, "midnight": 3}
+
+    def _hour(w):
+        return HOURS.get(_val(w, "time"))
+
+    def _poem_words(w):
+        lines = [l for l in (w.get("lines") or []) if isinstance(l, str)]
+        return float(sum(len(l.split()) for l in lines)) if lines else None
+
+    def _warmth(w):
+        # hue as an angle: red 0, yellow 60, blue 240; warmth = cos of the hue
+        # angle, so red/orange → +1, blue → −1
+        import math
+        from .secondhand import hue as _hue
+        hs = [_hue(c) for c in (w.get("sky") or []) if isinstance(c, str)]
+        hs = [h for h in hs if h is not None]
+        return sum(math.cos(math.radians(h)) for h in hs) / len(hs) if hs else None
+
+    READERS = {"count": None, "lum": _lum, "hour": _hour, "poem_words": _poem_words, "warmth": _warmth}
     for key, d in out.items():
         base_name = key.replace(" (placebo)", "")
         if base_name in LIKES and "n" in d:
             field, value = LIKES[base_name]["target"]
-            if field in ("count", "lum"):
+            if field in READERS:
                 ws = [r["world"] for r in runs if r.get("world") and r.get("name") == base_name
                       and (r.get("kind") == "placebo") == key.endswith("(placebo)")]
-                f = (lambda w: _count(w, value)) if field == "count" else _lum
+                f = (lambda w: _count(w, value)) if field == "count" else READERS[field]
                 cs = [x for x in (f(w) for w in ws) if x is not None]
                 bs = [x for x in (f(b) for b in bases) if x is not None]
-                d["target"] = {"field": field, "value": (value or "things") if field == "count" else "sky luminance",
+                names = {"lum": "sky luminance", "hour": "hour (dawn 0 … night 3)", "poem_words": "poem words", "warmth": "sky warmth"}
+                d["target"] = {"field": field, "value": (value or "things") if field == "count" else names[field],
                                "mean": round(sum(cs) / len(cs), 2) if cs else None, "n": len(cs),
                                "base_mean": round(sum(bs) / len(bs), 2) if bs else None, "base_n": len(bs)}
                 continue
@@ -426,7 +483,7 @@ def print_summary(summary):
               + f"{d.get('dark_vs_base', '-')!s:>7s}{d.get('hue_vs_base', '-')!s:>7s}"
               + f"{d.get('to_example', '-')!s:>10s}"
               + ((f"   {d['target']['value']} per world: {d['target']['mean']} (unsteered {d['target']['base_mean']})"
-                  if d["target"]["field"] in ("count", "lum") else
+                  if d["target"]["field"] in READERS else
                   f"   target {d['target']['field']}={d['target']['value']}: "
                   f"{d['target']['hit']}/{d['target']['n']} (unsteered {d['target']['base_hit']}/{d['target']['base_n']})")
                  if d.get("target") else ""))
