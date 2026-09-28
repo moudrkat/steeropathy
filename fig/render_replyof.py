@@ -3,6 +3,8 @@ offered tasks as a checklist, suggestions, buttons and an urgency pill.
 One row per direction, k replies across, like the worldof strips.
 
     python fig/render_replyof.py docs/runs/replyof-01.json --rows none,offers,offers/placebo --k 3
+    python fig/render_replyof.py docs/runs/replyof-01-aorus-1.5b-s-3.json docs/runs/replyof-01-aorus-1.5b-s3.json \
+        --rows none,offers@-3,offers@3 --k 3          # rows from several runs, picked by strength
 """
 import argparse
 import html
@@ -54,29 +56,38 @@ def shoot(r, user, out):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("run")
+    ap.add_argument("run", nargs="+", help="one run file, or several (rows then say which strength with name@strength)")
     ap.add_argument("--rows", default=None)
     ap.add_argument("--k", type=int, default=3)
     ap.add_argument("--title", default="The sliders on an assistant's reply")
     ap.add_argument("--subtitle", default="")
     ap.add_argument("--out", default=str(HERE / "docs" / "story" / "replies.png"))
     a = ap.parse_args()
-    d = json.loads(pathlib.Path(a.run).read_text())
-    user = d["params"].get("user", "")
-    by = {}
-    for r in d["runs"]:
-        by.setdefault((r["name"], "base" if r["name"] == "none" else r["kind"]), []).append(r)
-    names = list(dict.fromkeys(r["name"] for r in d["runs"] if r["name"] != "none"))
+    runs = [json.loads(pathlib.Path(f).read_text()) for f in a.run]
+    user = runs[0]["params"].get("user", "")
+    by = {}         # (name, kind, strength) -> records; strength None = the first run
+    for d in runs:
+        st = float(d["params"]["strength"])
+        for r in d["runs"]:
+            key = (r["name"], "base" if r["name"] == "none" else r["kind"])
+            by.setdefault(key + (st,), []).append(r)
+            by.setdefault(key + (None,), []).append(r) if d is runs[0] else None
+    names = list(dict.fromkeys(r["name"] for r in runs[0]["runs"] if r["name"] != "none"))
     wanted = a.rows.split(",") if a.rows else ["none"] + [x for n in names for x in (n, n + "/placebo")]
     rows = []
     for w in wanted:
+        st = None
+        if "@" in w:
+            w, st = w.split("@", 1)
+            st = float(st)
         if w == "none":
-            rows.append(("unsteered", by.get(("none", "base"), [])[:a.k]))
+            rows.append(("unsteered", by.get(("none", "base", st), [])[:a.k]))
         elif "/" in w:
             n, kind = w.split("/", 1)
-            rows.append((n + "\n" + ("shuffled" if kind == "placebo" else kind), by.get((n, kind), [])[:a.k]))
+            lab = n + ("" if st is None else f" {st:+g}") + "\n" + ("shuffled" if kind == "placebo" else kind)
+            rows.append((lab, by.get((n, kind, st), [])[:a.k]))
         else:
-            rows.append((w, by.get((w, "real"), [])[:a.k]))
+            rows.append((w + ("" if st is None else f" {st:+g}"), by.get((w, "real", st), [])[:a.k]))
     f_t, f_s, f_row, f_fld = (ImageFont.truetype(FONT_B, 30), ImageFont.truetype(FONT, 17),
                               ImageFont.truetype(FONT_B, 20), ImageFont.truetype(FONT, 13))
     W = 200 + PAD + a.k * (CW + PAD)

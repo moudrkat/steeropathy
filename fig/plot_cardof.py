@@ -32,10 +32,10 @@ BENCH = {
     "cardof": dict(panels=PANELS, key="card", read=cardof.read, glob="cardof-01-aorus-1.5b-s*.json", out="cardof-sliders.png"),
     "replyof": dict(panels=[
         ("offers", "tasks", "here is what to do − take your time", "tasks offered per reply", False),
-        ("urgent", "urgency", "now − whenever", "urgency the reply sets itself (0 to 1)", False),
         ("verbose", "words", "verbose − terse", "words per reply", False),
-        ("formal", "formal", "formal − casual", "share of replies in a formal tone", False),
+        ("formal", "bangs", "formal − casual", "exclamation marks per reply", False),
         ("offers", "buttons", "here is what to do − take your time", "buttons per reply", False),
+        ("urgent", "urgency", "now − whenever", "urgency the reply sets itself (1 to 5)", False),
     ], key="reply", read=replyof.read, glob="replyof-01-aorus-1.5b-s*.json", out="replyof-sliders.png"),
 }
 
@@ -77,7 +77,8 @@ def main():
     bench = BENCH[a.bench]
     fonts()
     files = sorted(glob.glob(str(HERE / "docs" / "runs" / (a.glob or bench["glob"]))))
-    live = bench["panels"] if not a.only else [p for p in bench["panels"] if p[0] in a.only.split(",")]
+    keep = a.only.split(",") if a.only else None      # names, or name:reading
+    live = bench["panels"] if not keep else [p for p in bench["panels"] if p[0] in keep or f"{p[0]}:{p[1]}" in keep]
     cols = min(3, len(live)) or 1
     rows = (len(live) + cols - 1) // cols
     fig, axes = plt.subplots(rows, cols, figsize=(4.6 * cols, 4.1 * rows), facecolor=SURF)

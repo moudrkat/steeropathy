@@ -1,0 +1,1514 @@
+{
+ "params": {
+  "names": [
+   "offers",
+   "urgent",
+   "verbose",
+   "formal"
+  ],
+  "strength": 3.0,
+  "layer": null,
+  "placebo": true,
+  "n": 8,
+  "seed": 18,
+  "temp": 0.8,
+  "user": "I feel a bit lost today. Not sure where to start.",
+  "out": "docs/runs/replyof-01-aorus-1.5b-s3.json"
+ },
+ "layer": 16,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "complete": true,
+ "summary": {
+  "base": {
+   "n": 8,
+   "tasks": 2.5,
+   "suggestions": 2.25,
+   "buttons": 2.12,
+   "words": 75.38,
+   "bangs": 0.5,
+   "urgency": 2.88,
+   "formal": 0.0
+  },
+  "offers": {
+   "n": 8,
+   "parsed": 5,
+   "parse_rate": 0.62,
+   "tasks": 2.8,
+   "suggestions": 3.4,
+   "buttons": 3.6,
+   "words": 67.8,
+   "bangs": 1.4,
+   "urgency": 1.4,
+   "formal": 0.0
+  },
+  "offers (placebo)": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "tasks": 1.62,
+   "suggestions": 2.38,
+   "buttons": 2.0,
+   "words": 56.12,
+   "bangs": 0.38,
+   "urgency": 2.83,
+   "formal": 0.0
+  },
+  "urgent": {
+   "n": 8,
+   "parsed": 5,
+   "parse_rate": 0.62,
+   "tasks": 1.0,
+   "suggestions": 0.2,
+   "buttons": 2.4,
+   "words": 58.6,
+   "bangs": 1.0,
+   "urgency": 1.8,
+   "formal": 0.0
+  },
+  "urgent (placebo)": {
+   "n": 8,
+   "parsed": 6,
+   "parse_rate": 0.75,
+   "tasks": 2.5,
+   "suggestions": 2.5,
+   "buttons": 3.0,
+   "words": 63.83,
+   "bangs": 0.67,
+   "urgency": 2.67,
+   "formal": 0.0
+  },
+  "verbose": {
+   "n": 8,
+   "parsed": 0,
+   "parse_rate": 0.0,
+   "tasks": null,
+   "suggestions": null,
+   "buttons": null,
+   "words": null,
+   "bangs": null,
+   "urgency": null,
+   "formal": null
+  },
+  "verbose (placebo)": {
+   "n": 8,
+   "parsed": 7,
+   "parse_rate": 0.88,
+   "tasks": 2.29,
+   "suggestions": 2.71,
+   "buttons": 2.43,
+   "words": 77.57,
+   "bangs": 0.71,
+   "urgency": 2.57,
+   "formal": 0.0
+  },
+  "formal": {
+   "n": 8,
+   "parsed": 7,
+   "parse_rate": 0.88,
+   "tasks": 1.14,
+   "suggestions": 1.29,
+   "buttons": 2.29,
+   "words": 60.0,
+   "bangs": 0.0,
+   "urgency": 2.17,
+   "formal": 0.86
+  },
+  "formal (placebo)": {
+   "n": 8,
+   "parsed": 7,
+   "parse_rate": 0.88,
+   "tasks": 1.43,
+   "suggestions": 1.0,
+   "buttons": 1.29,
+   "words": 57.14,
+   "bangs": 0.29,
+   "urgency": 2.33,
+   "formal": 0.0
+  }
+ },
+ "runs": [
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "Hello! I'm here to help. How can I assist you today?",
+    "message": "Have you thought about setting some clear goals or trying a new activity that could help you regain a sense of direction?",
+    "tasks": [
+     "Set a specific goal",
+     "Try a new hobby or activity"
+    ],
+    "suggestions": [
+     "Write down your goals",
+     "Join a group or class"
+    ],
+    "buttons": [
+     "Next Steps",
+     "Quick Tips"
+    ],
+    "tone": "warm",
+    "urgency": 4.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! I'm here to help. How can I assist you today?\",\n  \"message\": \"Have you thought about setting some clear goals or trying a new activity that could help you regain a sense of direction?\",\n  \"tasks\": [\"Set a specific goal\", \"Try a new hobby or activity\"],\n  \"suggestions\": [\"Write down your goals\", \"Join a group or class\"],\n  \"buttons\": [\"Next Steps\", \"Quick Tips\"],\n  \"tone\": \"warm\",\n  \"urgency\": \"4\"\n}\n```"
+  },
+  {
+   "rep": 0,
+   "name": "offers",
+   "kind": "real",
+   "reply": null,
+   "raw": "```json\n{\n  \"greeting\": \"Welcome! Let's get organized.\",\n  \"message\": \"1. Create a list of your tasks to tackle immediately.\",\n  \"tasks\": [\n    \"1. List Tasks\"\n    \"2. Set Priorities (A-Z order)\"\n    \"3. Allocate Resources\"\n    \"4. Set Deadlines\"\n  ],\n  \"suggestions\": [\n    \"1. Start with high-priority tasks\",\n    \"2. Set reminders for each task\"\n  ],\n  \"buttons\": [\n    \"1. Go to Task List\"\n    \"2. Set Priorities\"\n    \"3. Allocate Resources\"\n    \"4. Set Deadlines\"\n    \"5. Schedule the above tasks\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```\n\nThis JSON object will initiate the process by creating the task list, setting priorities, allocating resources, setting deadlines, and scheduling the tasks immediately."
+  },
+  {
+   "rep": 0,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "I'm here to help you find direction.",
+    "message": "It's great to hear you feel supported. Let's navigate your journey together.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm here to help you find direction.\",\n  \"message\": \"It's great to hear you feel supported. Let's navigate your journey together.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 0,
+   "name": "urgent",
+   "kind": "real",
+   "reply": {
+    "greeting": "Hello, I'm here to help you! Please let me know your exact location, and I will guide you to the nearest support team.",
+    "message": "I'm sorry to hear that you're feeling lost. Please provide more details, such as your location, and we will assist you immediately.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [
+     "Emergency",
+     "Help",
+     "Support",
+     "Services"
+    ],
+    "tone": "urgent",
+    "urgency": 1.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello, I'm here to help you! Please let me know your exact location, and I will guide you to the nearest support team.\",\n  \"message\": \"I'm sorry to hear that you're feeling lost. Please provide more details, such as your location, and we will assist you immediately.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\n    \"Emergency\",\n    \"Help\",\n    \"Support\",\n    \"Services\"\n  ],\n  \"tone\": \"urgent\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 0,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": null,
+   "raw": "{\n  \"g: greeting\": \"Hello there! How can I assist you today?\",\n  \" message\": \"If you feel lost, you might consider starting by listing a few things you’re interested in or exploring areas you have questions about.\",\n  \"tasks\": [\"Start brainstorming or journaling your thoughts to find your direction\", \"Listen to a podcast or talk show for new perspectives\", \"Reach out to a friend or loved one for a chat\"],\n  \"suggestions\": [\"Remember to be patient with yourself\", \"Let's not rush, but but give yourself some space to explore\"],\n  \"buttons\": [\"Go\", \"Continue\"],\n  \"tone\": \"warm\",\n  \"urgency\": \"1\"\n}"
+  },
+  {
+   "rep": 0,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeting\": \"I’m sorry to hear that you’re feeling a bit lost,\",\n  \"message\": \"In the moment, I can’t yet provide a detailed response due to the limitations of my capabilities, but\",\n  \"tasks\": [\n    \"Creating a detailed plan is a great first step in managing your feelings of being lost. It involves a bit of creativity and imagination, and although I can’t walk you through the process or actually create a detailed plan for you in the text format, I can help you structure and organize all the information that you are gathering and synthesizing.\",\n    \"It’s important to let yourself feel exactly how you are feeling and allowing yourself to explore your emotions. The process of gaining control, understanding, and control is a lot like a forest therapist or a therapist would approach someo"
+  },
+  {
+   "rep": 0,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Welcome! If you're feeling lost, do you need help getting oriented?",
+    "message": "Starting with a quick introduction or an overview might help.",
+    "tasks": [
+     "introduction on the app"
+    ],
+    "suggestions": [
+     "get oriented",
+     "introduction"
+    ],
+    "buttons": [
+     "intro",
+     "get oriented"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Welcome! If you're feeling lost, do you need help getting oriented?\",\n  \"message\": \"Starting with a quick introduction or an overview might help.\",\n  \"tasks\": [\"introduction on the app\"],\n  \"suggestions\": [\"get oriented\", \"introduction\"],\n  \"buttons\": [\"intro\", \"get oriented\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 0,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear User,",
+    "message": "We suggest you to take the following actions to address your current situation:",
+    "tasks": [
+     "Begin by clarifying your goals and objectives",
+     "Review your existing processes to identify inefficiencies"
+    ],
+    "suggestions": [
+     "Seek professional guidance",
+     "Consult with experts in your field"
+    ],
+    "buttons": [
+     "Action 1: Clear Goals",
+     "Action 2: Review Processes",
+     "Action 3: Seek Expert Guidance",
+     "Action 4: Consult"
+    ],
+    "tone": "formal",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Dear User,\",\n  \"message\": \"We suggest you to take the following actions to address your current situation:\",\n  \"tasks\": [\n    \"Begin by clarifying your goals and objectives\",\n    \"Review your existing processes to identify inefficiencies\"\n  ],\n  \"suggestions\": [\n    \"Seek professional guidance\",\n    \"Consult with experts in your field\"\n  ],\n  \"buttons\": [\n    \"Action 1: Clear Goals\",\n    \"Action 2: Review Processes\",\n    \"Action 3: Seek Expert Guidance\",\n    \"Action 4: Consult\"\n  ],\n  \"tone\": \"formal\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 0,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "I'm here to help. How can I assist you today?",
+    "message": "It seems like you might be feeling a bit overwhelmed. I'd suggest setting small, achievable goals for yourself to help regain your momentum.",
+    "tasks": [
+     "Identify Striking Goals",
+     "Create a To-Do List",
+     "Review Progress"
+    ],
+    "suggestions": [
+     "Try a Relaxation Activity"
+    ],
+    "buttons": [
+     "Continue",
+     "Change"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "{\n  \"greeting\": \"I'm here to help. How can I assist you today?\",\n  \"message\": \"It seems like you might be feeling a bit overwhelmed. I'd suggest setting small, achievable goals for yourself to help regain your momentum.\",\n  \"tasks\": [\"Identify Striking Goals\", \"Create a To-Do List\", \"Review Progress\"],\n  \"suggestions\": [\"Try a Relaxation Activity\"],\n  \"buttons\": [\"Continue\", \"Change\"],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "I understand you might be feeling lost.",
+    "message": "Let's start by identifying some things you're passionate about or interested in. That could help narrow down your projects or goals.",
+    "tasks": [
+     "Reflect on your current life and interests",
+     "Create a list of things you're curious about or aspire to learn more about",
+     "Identify how these interests could be turned into projects or goals"
+    ],
+    "suggestions": [
+     "Consider writing down your reflections and interests for a journal or planning tool",
+     "Use social media or forums to find like-minded individuals or groups to connect with"
+    ],
+    "buttons": [
+     "Start my journey",
+     "Explore more interests"
+    ],
+    "tone": "warm",
+    "urgency": 2.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I understand you might be feeling lost.\",\n  \"message\": \"Let's start by identifying some things you're passionate about or interested in. That could help narrow down your projects or goals.\",\n  \"tasks\": [\n    \"Reflect on your current life and interests\",\n    \"Create a list of things you're curious about or aspire to learn more about\",\n    \"Identify how these interests could be turned into projects or goals\"\n  ],\n  \"suggestions\": [\n    \"Consider writing down your reflections and interests for a journal or planning tool\",\n    \"Use social media or forums to find like-minded individuals or groups to connect with\"\n  ],\n  \"buttons\": [\n    \"Start my journey\",\n    \"Explore more interests\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2\n}\n```"
+  },
+  {
+   "rep": 1,
+   "name": "offers",
+   "kind": "real",
+   "reply": {
+    "greeting": "Welcome! Let's get organized to navigate your new journey.",
+    "message": "First, let's create a to-do list to help you manage your tasks.",
+    "tasks": [
+     "Open a text editor or spreadsheet software",
+     "Create a new document or spreadsheet"
+    ],
+    "suggestions": [
+     "Add a section for 'Goals'",
+     "Create a 'Tasks' section for each project",
+     "Consider setting up a project management tool like Trello or Asana if you don’t already have one"
+    ],
+    "buttons": [
+     "Create Goals",
+     "Create Tasks for Goals",
+     "Set Up Your Tools"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Welcome! Let's get organized to navigate your new journey.\",\n  \"message\": \"First, let's create a to-do list to help you manage your tasks.\",\n  \"tasks\": [\n    \"Open a text editor or spreadsheet software\",\n    \"Create a new document or spreadsheet\"\n  ],\n  \"suggestions\": [\n    \"Add a section for 'Goals'\",\n    \"Create a 'Tasks' section for each project\",\n    \"Consider setting up a project management tool like Trello or Asana if you don’t already have one\"\n  ],\n  \"buttons\": [\n    \"Create Goals\",\n    \"Create Tasks for Goals\",\n    \"Set Up Your Tools\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 1,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello there!",
+    "message": "I'm here to help. How can I assist you further today?",
+    "tasks": [
+     "Offer some suggestions based on available information"
+    ],
+    "suggestions": [
+     "Explore a new hobby or activity",
+     "Take a break to do something you enjoy",
+     "Schedule a meeting with someone to discuss something",
+     "Take a walk and clear your mind"
+    ],
+    "buttons": [
+     "Yes",
+     "Maybe",
+     "No"
+    ],
+    "tone": "warm",
+    "urgency": 4.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello there!\",\n  \"message\": \"I'm here to help. How can I assist you further today?\",\n  \"tasks\": [\"Offer some suggestions based on available information\"],\n  \"suggestions\": [\"Explore a new hobby or activity\",\n                  \"Take a break to do something you enjoy\",\n                  \"Schedule a meeting with someone to discuss something\",\n                  \"Take a walk and clear your mind\"],\n  \"buttons\": [\"Yes\", \"Maybe\", \"No\"],\n  \"tone\": \"warm\",\n  \"urgency\": 4\n}\n```"
+  },
+  {
+   "rep": 1,
+   "name": "urgent",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeting\": \"Hello! I'm here to help. Please go ahead and tell me what I should do.\",\n  \"message\": \"I'm sorry to hear that you are feeling lost. Please can you tell me what specific problems or issues you are having?\",\n  \"tasks\": [\n    \"Start by identifying the problems or issues you are facing.\"\n  ],\n  \"suggestions\": [\n    \"If you can provide more details, I might be able to suggest a few things.\",\n    \"Try to prioritize the most urgent issues and start working on them immediately.\",\n  ],\n  \"buttons\": [\n    \"Send now\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 1,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello there!",
+    "message": "I'm here to help you find your path.",
+    "tasks": [
+     "Take a deep breath",
+     "Think about what matters most to you"
+    ],
+    "suggestions": [
+     "Explore your interests",
+     "Talk to someone trustworthy"
+    ],
+    "buttons": [
+     "Take a break",
+     "Continue thinking"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello there!\",\n  \"message\": \"I'm here to help you find your path.\",\n  \"tasks\": [\"Take a deep breath\", \"Think about what matters most to you\"],\n  \"suggestions\": [\"Explore your interests\", \"Talk to someone trustworthy\"],\n  \"buttons\": [\"Take a break\", \"Continue thinking\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 1,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"g reet ing \": \"Hello! I'm glad to see you exploring the wide world of possibilities with such enthusiasm. Let's take a moment to understand the way you might approach this journey. First, allow me to introduce myself to make you more comfortable in the company of a genuine listener. If you don't mind, I would love to share a bit about my background and experiences. I have spent years immersing myself in various fields of knowledge, and I have had the privilege of experiencing some of the most extraordinary journeys we humans embark upon. How about we embark on a somewhat convoluted narrative together to help you navigate through your journey and lighten the load of the hurdles you face? \",\n  \" message \": \"There is quite a bit to explore when discussing these topics, so I am actually c"
+  },
+  {
+   "rep": 1,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": null,
+   "raw": "{\n  \"g: \"Hello! I'm here to help you find your way today. How can I assist you in getting started?\",  \n  \" message\": \"I'm here to help you find your way today. How can I assist you in getting started?\",\n  \" tasks\": [\"Assist the user in identifying their interests or goals\",\n            \"Suggest relevant resources or platforms to explore\"],\n  \" suggestions\": [\"Create a list of interests or goals you want to work towards\",\n                   \"Explore free online courses or tutorials\"],\n  \" buttons\": [\"Start exploring courses\", \"Create a To-Do list\", \"Discuss your interests\"],\n  \" tone\": \"warm\",\n  \" urgency\": 2\n}"
+  },
+  {
+   "rep": 1,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear [Recipient's Name],",
+    "message": "We kindly invite you to embark on a course of action to rectify the situation of feeling lost.",
+    "tasks": [
+     "Review your current documents and resources",
+     "Consult an expert or seek guidance from authorities"
+    ],
+    "suggestions": [
+     "Engage in a thorough review of your existing documents and legal entitlements.",
+     "Directly contact the relevant authorities to seek clarification or permissions."
+    ],
+    "buttons": [
+     "Review Documents",
+     "Consult Authorities"
+    ],
+    "tone": "formal",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Dear [Recipient's Name],\",\n  \"message\": \"We kindly invite you to embark on a course of action to rectify the situation of feeling lost.\",\n  \"tasks\": [\n    \"Review your current documents and resources\",\n    \"Consult an expert or seek guidance from authorities\"\n  ],\n  \"suggestions\": [\n    \"Engage in a thorough review of your existing documents and legal entitlements.\",\n    \"Directly contact the relevant authorities to seek clarification or permissions.\"\n  ],\n  \"buttons\": [\n    \"Review Documents\",\n    \"Consult Authorities\"\n  ],\n  \"tone\": \"formal\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 1,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "It sounds like you're feeling a bit lost. Is there anything specific you're trying to figure out or achieve?",
+    "message": "If you need support, I'm here to help. Let me know if you need guidance or direction.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [
+     "{'text': 'Schedule an appointment'}"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"It sounds like you're feeling a bit lost. Is there anything specific you're trying to figure out or achieve?\",\n  \"message\": \"If you need support, I'm here to help. Let me know if you need guidance or direction.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\n    {\n      \"text\": \"Schedule an appointment\"\n    }\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 2,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "Hello! I'm here to help. How can I assist you today?",
+    "message": "If you need any advice or suggestions, I'm here to help. What brings you here today?",
+    "tasks": [
+     "Follow a step-by-step guide",
+     "Seek support from a friend",
+     "Reflect on your interests"
+    ],
+    "suggestions": [
+     "Explore new hobbies",
+     "Read a book or watch a movie",
+     "Learn a new language"
+    ],
+    "buttons": [
+     "Start Learning",
+     "Connect with a Mentor",
+     "Explore Books"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! I'm here to help. How can I assist you today?\",\n  \"message\": \"If you need any advice or suggestions, I'm here to help. What brings you here today?\",\n  \"tasks\": [\"Follow a step-by-step guide\", \"Seek support from a friend\", \"Reflect on your interests\"],\n  \"suggestions\": [\"Explore new hobbies\", \"Read a book or watch a movie\", \"Learn a new language\"],\n  \"buttons\": [\"Start Learning\", \"Connect with a Mentor\", \"Explore Books\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 2,
+   "name": "offers",
+   "kind": "real",
+   "reply": {
+    "greeting": "Welcome! Let's get your journey started!",
+    "message": "Here are immediate steps to begin and some additional ideas to jump-start your day:",
+    "tasks": [
+     "Create a to-do list in a digital or physical planner",
+     "Set clear objectives for each day",
+     "Identify a mentor or coach for guidance"
+    ],
+    "suggestions": [
+     "Develop a morning routine",
+     "Establish a daily goal-setting system",
+     "Allocate specific times for focused work and breaks"
+    ],
+    "buttons": [
+     "Go",
+     "Next",
+     "Now"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome! Let's get your journey started!\",\n  \"message\": \"Here are immediate steps to begin and some additional ideas to jump-start your day:\",\n  \"tasks\": [\n    \"Create a to-do list in a digital or physical planner\",\n    \"Set clear objectives for each day\",\n    \"Identify a mentor or coach for guidance\"\n  ],\n  \"suggestions\": [\n    \"Develop a morning routine\",\n    \"Establish a daily goal-setting system\",\n    \"Allocate specific times for focused work and breaks\"\n  ],\n  \"buttons\": [\n    \"Go\",\n    \"Next\",\n    \"Now\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 2,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greetin g": "I understand that feeling lost can be quite unsettling. Let's start by exploring some ideas to better organize your day or week: planning your tasks, setting clear goals, and tracking your progress. Additionally, we can discuss how you spend your time and see if any changes could make things more manageable. If you're feeling more drained or disconnected, suggesting a day of downtime or trying to set boundaries might be helpful. Please let me know what works best for you in this situation.",
+    "message": "I'm here to help you navigate and organize your day, set achievable goals, and maintain balance. Let's create a plan that suits your needs.",
+    "tasks": [
+     "Set up a system for planning your day",
+     "Discuss how you currently spend your time",
+     "Explore ways to reduce stress and manage your responsibilities",
+     "Allocate a day of downtime as a test"
+    ],
+    "suggestions": [
+     "Create a daily or weekly planner",
+     "Invest in a planner or app for better organization",
+     "Set small achievable goals for yourself",
+     "Try time-blocking to ensure you work on specific tasks within designated time slots",
+     "Establish a boundary system to avoid overcommitting"
+    ],
+    "buttons": [
+     "Set up a system for planning your day",
+     "Discuss how you currently spend your time",
+     "Explore ways to reduce stress and manage your responsibilities",
+     "Allocate a day of downtime as a test",
+     "Discuss further topics or ask for help"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greetin g\": \"I understand that feeling lost can be quite unsettling. Let's start by exploring some ideas to better organize your day or week: planning your tasks, setting clear goals, and tracking your progress. Additionally, we can discuss how you spend your time and see if any changes could make things more manageable. If you're feeling more drained or disconnected, suggesting a day of downtime or trying to set boundaries might be helpful. Please let me know what works best for you in this situation.\",\n  \"message\": \"I'm here to help you navigate and organize your day, set achievable goals, and maintain balance. Let's create a plan that suits your needs.\",\n  \"tasks\": [\n    \"Set up a system for planning your day\",\n    \"Discuss how you currently spend your time\",\n    \"Explore ways to r"
+  },
+  {
+   "rep": 2,
+   "name": "urgent",
+   "kind": "real",
+   "reply": {
+    "greeting": "Hello! I'm here to help. Please let me know what you need right now.",
+    "message": "I'll start by asking you about the most pressing matter at the moment.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [
+     "Start!",
+     "Seek Assistance!"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello! I'm here to help. Please let me know what you need right now.\",\n  \"message\": \"I'll start by asking you about the most pressing matter at the moment.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\"Start!\", \"Seek Assistance!\"],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 2,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Welcome, resolved your confusion. If you need assistance with anything else, feel free to ask.",
+    "message": "Remember, every step forward, no matter how small, is a sign of progress. Don’t hesitate to ask for help and think of missed opportunities to grow.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [
+     "Open Forum",
+     "Contact Support",
+     "Seek Mentor Advice"
+    ],
+    "tone": "warm",
+    "urgency": 2.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome, resolved your confusion. If you need assistance with anything else, feel free to ask.\",\n  \"message\": \"Remember, every step forward, no matter how small, is a sign of progress. Don’t hesitate to ask for help and think of missed opportunities to grow.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\"Open Forum\", \"Contact Support\", \"Seek Mentor Advice\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2\n}\n```"
+  },
+  {
+   "rep": 2,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "Here's the JSON object for the response, including all the required fields:\n\n```json\n{\n  \"greeing\": \"Hi, it's nice to talk to you today! Have you ever considered telling me about how you are feeling today? You’ve been through quite a journey and I'm here to listen, which it is a great opportunity for you to share your thoughts and experiences, 'Cause I’ve seen your struggles before on this path, and I’m likely not the only one here to help you get through this. It is important that we learn and grow from one another, and today on this platform, it is very much the case. All of this might just create a more supportive and collaborative environment for you, and who knows, I might even find some common ground with your experiences, as you will be allowed a few steps forward in your journey by"
+  },
+  {
+   "rep": 2,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "glement": "Hello! I'm here to help. If you need to talk about your feelings, it's okay to do so.",
+    "message": "It sounds like you could use some support right now. Would you like to talk about how you're feeling? If you don't feel comfortable talking, just know that you can reach out if you want to.",
+    "tasks": [
+     "If you want to, you can tell me more about how you're feeling. This can help us better understand your needs.",
+     "While we’re here, why don’t you tell me about something that has been weighing on you today?"
+    ],
+    "suggestions": [
+     "For now, if you want, you can tell us more about what's been bothering you. We can offer our support and advice.",
+     "Since you've chosen to share your feelings, how about we explore that a little more? We can provide some comfort and understanding."
+    ],
+    "buttons": [
+     "Continue talking",
+     "Let's expand on that",
+     "We're here for you"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"glement\": \"Hello! I'm here to help. If you need to talk about your feelings, it's okay to do so.\",\n  \"message\": \"It sounds like you could use some support right now. Would you like to talk about how you're feeling? If you don't feel comfortable talking, just know that you can reach out if you want to.\",\n  \"tasks\": [\"If you want to, you can tell me more about how you're feeling. This can help us better understand your needs.\",\n           \"While we’re here, why don’t you tell me about something that has been weighing on you today?\"],\n  \"suggestions\": [\"For now, if you want, you can tell us more about what's been bothering you. We can offer our support and advice.\",\n                 \"Since you've chosen to share your feelings, how about we explore that a little more? We can provide some "
+  },
+  {
+   "rep": 2,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear [UserName],",
+    "message": "\n",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [],
+    "tone": "formal",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Dear [UserName],\",\n  \"message\": \"\\n\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [],\n  \"tone\": \"formal\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 2,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm sorry to hear that you're feeling lost. If you could tell me more about what you're looking to start with, it might help me provide more tailored guidance.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm sorry to hear that you're feeling lost. If you could tell me more about what you're looking to start with, it might help me provide more tailored guidance.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 3,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeing": "Hello! I'm here to help. How can I assist you today?",
+    "message": "Just chatting, you seem a bit lost. What do you need help with? Maybe we can start by discussing your interests or setting some goals.",
+    "tasks": [
+     "Start by listinging your interests or goals",
+     "Next, let's create a plan"
+    ],
+    "suggestions": [
+     "Explore new hobbies or projects",
+     "Set short-term and long-term goals"
+    ],
+    "buttons": [
+     "List your interests or goals",
+     "Create a plan"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeing\": \"Hello! I'm here to help. How can I assist you today?\",\n  \"message\": \"Just chatting, you seem a bit lost. What do you need help with? Maybe we can start by discussing your interests or setting some goals.\",\n  \"tasks\": [\"Start by listinging your interests or goals\", \"Next, let's create a plan\"],\n  \"suggestions\": [\"Explore new hobbies or projects\", \"Set short-term and long-term goals\"],\n  \"buttons\": [\"List your interests or goals\", \"Create a plan\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 3,
+   "name": "offers",
+   "kind": "real",
+   "reply": {
+    "greeting": "Welcome! Let's get started.",
+    "message": "I'm glad you're ready to take action.",
+    "tasks": [
+     "Create a list of your priorities",
+     "Set clear deadlines for each task",
+     "Review your schedule for the day",
+     "Meet with a mentor or coach to outline your goals"
+    ],
+    "suggestions": [
+     "Choose a planner or digital tool for your tasks",
+     "Plan your time ahead",
+     "Make a list of areas for improvement or changes",
+     "Select a mentor or coach to guide you through the process"
+    ],
+    "buttons": [
+     "{'label': 'Go to Planner'}",
+     "{'label': 'Next Steps'}",
+     "{'label': 'Create Goals'}",
+     "{'label': 'Outline Areas for Improvement'}"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome! Let's get started.\",\n  \"message\": \"I'm glad you're ready to take action.\",\n  \"tasks\": [\n    \"Create a list of your priorities\",\n    \"Set clear deadlines for each task\",\n    \"Review your schedule for the day\",\n    \"Meet with a mentor or coach to outline your goals\"\n  ],\n  \"suggestions\": [\n    \"Choose a planner or digital tool for your tasks\",\n    \"Plan your time ahead\",\n    \"Make a list of areas for improvement or changes\",\n    \"Select a mentor or coach to guide you through the process\"\n  ],\n  \"buttons\": [\n    {\n      \"label\": \"Go to Planner\"\n    },\n    {\n      \"label\": \"Next Steps\"\n    },\n    {\n      \"label\": \"Create Goals\"\n    },\n    {\n      \"label\": \"Outline Areas for Improvement\"\n    }\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 3,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeing ": "Hello!",
+    "message": "I'm here to help you find your way back to the light of day.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [],
+    "tone": "warm",
+    "urgence": 2,
+    "urgency": null
+   },
+   "raw": "{\n  \"greeing \": \"Hello!\",\n  \"message\": \"I'm here to help you find your way back to the light of day.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgence\": 2\n}"
+  },
+  {
+   "rep": 3,
+   "name": "urgent",
+   "kind": "real",
+   "reply": {
+    "greeting": "I'm sorry to hear that you're feeling lost. Let's get started on this right away.",
+    "message": "Please provide some details so we can prioritize the most critical issues.",
+    "tasks": [
+     "Confirm the available options and escalate to IT if the problem is urgent."
+    ],
+    "suggestions": [
+     "Start by reporting the issue to the IT team directly."
+    ],
+    "buttons": [
+     "Report Now",
+     "Escalate to IT"
+    ],
+    "tone": "warm",
+    "urgency": 5.0
+   },
+   "raw": "{\n  \"greeting\": \"I'm sorry to hear that you're feeling lost. Let's get started on this right away.\",\n  \"message\": \"Please provide some details so we can prioritize the most critical issues.\",\n  \"tasks\": [\n    \"Confirm the available options and escalate to IT if the problem is urgent.\"\n  ],\n  \"suggestions\": [\n    \"Start by reporting the issue to the IT team directly.\"\n  ],\n  \"buttons\": [\n    \"Report Now\",\n    \"Escalate to IT\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 5\n}"
+  },
+  {
+   "rep": 3,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "It's totally normal to feel overwhelmed sometimes, especially when you're navigating new things.",
+    "message": "Give yourself permission to start small and take it one step at a time.",
+    "tasks": [
+     "Start with something simple, like planning out what you want to achieve today."
+    ],
+    "suggestions": [
+     "Do a quick, relaxed reflection on why you're feeling this way."
+    ],
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"It's totally normal to feel overwhelmed sometimes, especially when you're navigating new things.\",\n  \"message\": \"Give yourself permission to start small and take it one step at a time.\",\n  \"tasks\": [\"Start with something simple, like planning out what you want to achieve today.\"],\n  \"suggestions\": [\"Do a quick, relaxed reflection on why you're feeling this way.\"],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 3,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "```json\n{\n  \"greeting\": \"Welcome, \" + name + \"! It's great to see you here. As you navigate through your journey, I want to assure you that you are not alone. Rest assured that every challenge you encounter is a stepping stone towards achieving your goals and understanding the intricacies of our world. Let us embark on this journey together with a spirit of compassion, understanding, and appreciation. Your presence here represents a form of love, and it’s important to embrace this. Your experiences, challenges, and the knowledge you gain along the way contribute to the rich tapestry of our collective narrative. Besides my professional role, I am more like a guide, a role model, and an ever-present mentor, always ready to offer guidance and wisdom as you progress down the path of life, espe"
+  },
+  {
+   "rep": 3,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello!",
+    "message": "I understand that you might need guidance on what to do next. Here are some suggestions to help you get started:",
+    "tasks": [
+     "Explore our app's features to find something you're interested in",
+     "Join or create a community of like-minded individuals",
+     "Check out our resources for more ideas",
+     "Consult our experts or forums for advice",
+     "Start volunteering or a project"
+    ],
+    "suggestions": [
+     "Remember you're not alone and that you can find help",
+     "Consider setting small, achievable goals to start with",
+     "Talk to a professional to get personalized advice",
+     "Keep faith in your abilities and the support of others",
+     "Allow yourself to make your way"
+    ],
+    "buttons": [
+     "View More",
+     "Start a free trial",
+     "Join our community",
+     "Explore resources",
+     "Contact a professional"
+    ],
+    "tone": "warm",
+    "urgency": 2.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello!\",\n  \"message\": \"I understand that you might need guidance on what to do next. Here are some suggestions to help you get started:\",\n  \"tasks\": [\n    \"Explore our app's features to find something you're interested in\",\n    \"Join or create a community of like-minded individuals\",\n    \"Check out our resources for more ideas\",\n    \"Consult our experts or forums for advice\",\n    \"Start volunteering or a project\"\n  ],\n  \"suggestions\": [\n    \"Remember you're not alone and that you can find help\",\n    \"Consider setting small, achievable goals to start with\",\n    \"Talk to a professional to get personalized advice\",\n    \"Keep faith in your abilities and the support of others\",\n    \"Allow yourself to make your way\"\n  ],\n  \"buttons\": [\n    \"View More\",\n    \"Start a free trial\",\n"
+  },
+  {
+   "rep": 3,
+   "name": "formal",
+   "kind": "real",
+   "reply": null,
+   "raw": "```json\n{\n  \"greeting\": \"Welcome to our user: \"I feel a bit lost today. Not sure where to start.\",\n  \"message\": \"Please click the 'Start' button to initiate your journey.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\n    \"Start\"\n  ],\n  \"tone\": \"formal\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 3,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello, I’m really sorry to hear that you feel lost today. It’s common to struggle at times.",
+    "message": "If you would like, let me help you find your way back to clarity. I can share some insights and practical steps to reboot your approach and reinvigorate your sense of purpose.",
+    "tasks": [
+     "{'name': 'Do a short 5-minute meditation', 'content': 'This will help you see the situation with a fresh perspective.'}"
+    ],
+    "suggestions": [
+     "{'name': 'Try a small daily task', 'content': 'Start with a simple goal, like writing down a list of something you’re excited to do, rather than something that’s frustrating.'}"
+    ],
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello, I’m really sorry to hear that you feel lost today. It’s common to struggle at times.\",\n  \"message\": \"If you would like, let me help you find your way back to clarity. I can share some insights and practical steps to reboot your approach and reinvigorate your sense of purpose.\",\n  \"tasks\": [\n    {\n      \"name\": \"Do a short 5-minute meditation\",\n      \"content\": \"This will help you see the situation with a fresh perspective.\"\n    }\n  ],\n  \"suggestions\": [\n    {\n      \"name\": \"Try a small daily task\",\n      \"content\": \"Start with a simple goal, like writing down a list of something you’re excited to do, rather than something that’s frustrating.\"\n    }\n  ],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 4,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "I'm sorry to hear that you're feeling lost today.",
+    "message": "How can I assist you in steering you back on the right path?",
+    "tasks": [
+     "Explore this app and its features to find something that might help you.",
+     "If you have any specific interests or needs, feel free to ask, and I can help you find relevant resources."
+    ],
+    "suggestions": [
+     "Try a guided meditation session to center yourself.",
+     "Read an inspirational article to boost your mood."
+    ],
+    "buttons": [
+     "Explore Features",
+     "Ask for Help"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm sorry to hear that you're feeling lost today.\",\n  \"message\": \"How can I assist you in steering you back on the right path?\",\n  \"tasks\": [\n    \"Explore this app and its features to find something that might help you.\",\n    \"If you have any specific interests or needs, feel free to ask, and I can help you find relevant resources.\"\n  ],\n  \"suggestions\": [\n    \"Try a guided meditation session to center yourself.\",\n    \"Read an inspirational article to boost your mood.\"\n  ],\n  \"buttons\": [\n    \"Explore Features\",\n    \"Ask for Help\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 4,
+   "name": "offers",
+   "kind": "real",
+   "reply": {
+    "greeting": "Welcome!",
+    "message": "Let's begin by demystifying your journey into this new direction.",
+    "tasks": [
+     "{'label': 'Allocate resources'}"
+    ],
+    "suggestions": [
+     "Start with brainstorming: List down all the things you need to do.",
+     "Task your goals: Break down each objective into actionable steps.",
+     "Prioritize: Focus on the most important tasks first."
+    ],
+    "buttons": [
+     "1. Create a timeline",
+     "2. Set up a checklist",
+     "3. Allocate resources"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome!\",\n  \"message\": \"Let's begin by demystifying your journey into this new direction.\",\n  \"tasks\": [\n    \"1. Identify your goals: What are your top priorities?\",\n    \"2. Create a timeline: Set clear deadlines and milestones.\"\n  ],\n  \"suggestions\": [\n    \"Start with brainstorming: List down all the things you need to do.\",\n    \"Task your goals: Break down each objective into actionable steps.\",\n    \"Prioritize: Focus on the most important tasks first.\"\n  ],\n  \"buttons\": [\n    \"1. Create a timeline\",\n    \"2. Set up a checklist\",\n    \"3. Allocate resources\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1,\n  \"tasks\": [\n    {\n      \"label\": \"Create a timeline\",\n      \"label\": \"Set up a checklist\",\n      \"label\": \"Allocate resources\"\n    }\n  ]\n}\n```"
+  },
+  {
+   "rep": 4,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "I'm here to help!",
+    "message": "How can I assist you today?",
+    "tasks": [],
+    "suggestions": [
+     "Let's chat about your interests or problems you need help with.",
+     "What's something you're excited about or curious about?"
+    ],
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"I'm here to help!\",\n  \"message\": \"How can I assist you today?\",\n  \"tasks\": [],\n  \"suggestions\": [\"Let's chat about your interests or problems you need help with.\", \"What's something you're excited about or curious about?\"],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 4,
+   "name": "urgent",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"g: \"Assist the user in finding their bearings.\",\n  \" message: \"I'm here to help you. How can I assist you today?\",\n  \" tasks: [ \"Ask for more details about what you feel is making you feel lost.\",\n            \"Recommend resources or experts that can help guide you.\",\n            \"Offer to connect you with someone who can provide additional support.\" ] ,\n  \" suggestions: [ \"Seek immediate medical attention if you feel unwell.\" ],\n  \" buttons: [ \"Ask\",\n              \"Seek Help\",\n              \"Provide Health Information\" ] ,\n  \" tone: \"warm\" ,\n  \" urgency: 1\" \n}"
+  },
+  {
+   "rep": 4,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello, did you find any idea or plan how to start today? Please don't hesitate to share.",
+    "message": "I'm here to help guide you through today's tasks.",
+    "tasks": [
+     "Identify your goals",
+     "Brainstorm your ideas",
+     "Set achievable steps",
+     "Break tasks into smaller steps",
+     "Prioritize your tasks",
+     "Monitor your progress",
+     "Adjust your plan if needed",
+     "Stay focused and don't get distracted"
+    ],
+    "suggestions": [
+     "Use a task management tool",
+     "Set milestones and check off each task as you complete it",
+     "Learn to say no to additional tasks to manage better",
+     "Create a to-do list and work on it daily",
+     "Visualize your daily plan to keep track of tasks",
+     "Set a deadline for each task and be strict with it",
+     "Don't be afraid of giving up and try a new method"
+    ],
+    "buttons": [
+     "Help",
+     "Alert",
+     "I'm sorry",
+     "A",
+     "B",
+     "C",
+     "D",
+     "E"
+    ],
+    "tone": "warm",
+    "urgency": 2.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello, did you find any idea or plan how to start today? Please don't hesitate to share.\",\n  \"message\": \"I'm here to help guide you through today's tasks.\",\n  \"tasks\": [\n    \"Identify your goals\",\n    \"Brainstorm your ideas\",\n    \"Set achievable steps\",\n    \"Break tasks into smaller steps\",\n    \"Prioritize your tasks\",\n    \"Monitor your progress\",\n    \"Adjust your plan if needed\",\n    \"Stay focused and don't get distracted\"\n  ],\n  \"suggestions\": [\n    \"Use a task management tool\",\n    \"Set milestones and check off each task as you complete it\",\n    \"Learn to say no to additional tasks to manage better\",\n    \"Create a to-do list and work on it daily\",\n    \"Visualize your daily plan to keep track of tasks\",\n    \"Set a deadline for each task and be strict with it\",\n  "
+  },
+  {
+   "rep": 4,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeting\": \"It sounds like you’re feeling somewhat overwhelmed and unsure about how to approach things, and that’s completely normal. It’s not uncommon to feel lost or uncertain when you’re presented with a lot of information or a wide variety of topics to consider. I understand the challenges you’re facing and I want to help you navigate this situation with confidence and depth.\",\n  \"message\": \"As you digest all the information you have at your disposal, let’s take it slow and methodical to avoid any unnecessary confusion and information overload. I love to share information in a patient and detailed way, and I am eager to help you sort through all the seemingly endless amounts of information. Let’s start with a bit of background information. \",\n  \"tasks\": [\n    \"I will start by layi"
+  },
+  {
+   "rep": 4,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello!",
+    "message": "You're feeling a bit lost today, is there anything specific you need help with or just someone to talk to?",
+    "tasks": [
+     "Ask for specific help if you need it first.",
+     "Introduce yourself calmly while verbally assuring you're not alone"
+    ],
+    "suggestions": [
+     "Recommend local resources to help identify lost causes.",
+     "Offer to meet in person or virtually for a chat and see if that helps."
+    ],
+    "buttons": [
+     "Start",
+     "Pause"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello!\",\n  \"message\": \"You're feeling a bit lost today, is there anything specific you need help with or just someone to talk to?\",\n  \"tasks\": [\"Ask for specific help if you need it first.\", \"Introduce yourself calmly while verbally assuring you're not alone\"],\n  \"suggestions\": [\"Recommend local resources to help identify lost causes.\", \"Offer to meet in person or virtually for a chat and see if that helps.\"],\n  \"buttons\": [\"Start\", \"Pause\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 4,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear User,",
+    "message": "Please take the following actions to clarify your position and direction:\n\n1. Identify your current situation: Examine your current situation or environment which is causing the feeling of loss of direction.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [
+     "{'label': 'Decide', 'action': 'Proceed with the identified decision or clarification process'}",
+     "{'label': 'Review', 'action': 'Review your current documents, contracts, or legal documents to ensure compliance and clarity.'}"
+    ],
+    "tone": "formal",
+    "urgency": 4.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Dear User,\",\n  \"message\": \"Please take the following actions to clarify your position and direction:\\n\\n1. Identify your current situation: Examine your current situation or environment which is causing the feeling of loss of direction.\",\n  \"tasks\": [],\n  \"suggestions\": [],\n  \"buttons\": [\n    {\n      \"label\": \"Decide\",\n      \"action\": \"Proceed with the identified decision or clarification process\"\n    },\n    {\n      \"label\": \"Review\",\n      \"action\": \"Review your current documents, contracts, or legal documents to ensure compliance and clarity.\"\n    }\n  ],\n  \"tone\": \"formal\",\n  \"urgency\": 4\n}\n```"
+  },
+  {
+   "rep": 4,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": null,
+   "raw": "{\n  \"greeeting \": \"Hello! I'm here to help you find your way.\",\n  \"message \": \"I'm not sure where to start either, but but I can suggest a few things to try.\",\n  \"tasks \": [\n    \"Ask me any questions you need help with.\",\n    \"Start by making a list of everything you need to complete.\",\n    \"If you don't have a clear reason for doing things, think about what you want to achieve.\",\n    \"Break your tasks down into smaller, manageable steps.\",\n    \"Don't worry if you feel overwhelmed, start with one thing at a time.\"\n  ],\n  \"suggestions \": [\n    \"Consider writing down what you want to achieve.\",\n    \"Use a timer to keep track of how much time you spend on different tasks.\",\n    \"Reflect on your past experiences to identify what you learned.\",\n    \"Try meditating or doing a short mindfulness e"
+  },
+  {
+   "rep": 5,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "I'm sorry to hear that you're feeling a bit lost. Would you like to talk about what's causing this feeling or do you just need some guidance?",
+    "message": "It's okay to feel lost sometimes. We can start by discussing what's been happening around you or helping you figure out your next steps.",
+    "tasks": [
+     "share your feelings with someone you trust",
+     "create a to-do list to organize your thoughts and actions"
+    ],
+    "suggestions": [
+     "consider writing down your thoughts in a journal",
+     "try practicing mindfulness or meditation to stay present"
+    ],
+    "buttons": [
+     "start journaling",
+     "practice mindfulness"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm sorry to hear that you're feeling a bit lost. Would you like to talk about what's causing this feeling or do you just need some guidance?\",\n  \"message\": \"It's okay to feel lost sometimes. We can start by discussing what's been happening around you or helping you figure out your next steps.\",\n  \"tasks\": [\"share your feelings with someone you trust\", \"create a to-do list to organize your thoughts and actions\"],\n  \"suggestions\": [\"consider writing down your thoughts in a journal\", \"try practicing mindfulness or meditation to stay present\"],\n  \"buttons\": [\"start journaling\", \"practice mindfulness\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 5,
+   "name": "offers",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeing \": \"Welcome! \",\n  \"message \": \"Let's get started, first things first!\",\n  \"tasks \": [ \"Set Up a Daily Journal\",\n    \"Create a To-Do List\",\n    \"Schedule a Weekly Meeting with a Mentor or Coach\" ],\n  \"suggestions \": [ \"Use a Planner for Weekly Scheduling\",\n    \"Join a Community or Mailing List\" ],\n  \"buttons \": [ \"Create Journal\",\n    \"Set Up Meeting\",\n    \"Join Community\" ],\n  \"tone \": \"warm\",\n  \"urgency \": \"5\"\n}"
+  },
+  {
+   "rep": 5,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeing": "I'm here to help!",
+    "message": "Let's start by exploring your interests and setting some goals together to help you feel more confident.",
+    "tasks": [
+     "Discuss your interests and goals",
+     "Explore your interests"
+    ],
+    "suggestions": [
+     "Start a hobby you're interested in",
+     "Join a local group or club that aligns with your interests"
+    ],
+    "buttons": [
+     "Start Discussion",
+     "Join Interest Groups"
+    ],
+    "tone": "warm",
+    "urgency": null
+   },
+   "raw": "{\n  \"greeing\": \"I'm here to help!\",\n  \"message\": \"Let's start by exploring your interests and setting some goals together to help you feel more confident.\",\n  \"tasks\": [\"Discuss your interests and goals\", \"Explore your interests\"],\n  \"suggestions\": [\"Start a hobby you're interested in\", \"Join a local group or club that aligns with your interests\"],\n  \"buttons\": [\"Start Discussion\", \"Join Interest Groups\"],\n  \"tone\": \"warm\",\n  \"urgency\": \"relaxed\"\n}"
+  },
+  {
+   "rep": 5,
+   "name": "urgent",
+   "kind": "real",
+   "reply": {
+    "greeting": "I'm sorry to hear that. Please tell me what information you need right away.",
+    "message": "Please tell me what information you need right away.",
+    "tasks": [
+     "Wait for the user to provide information, then inform them that we are ready."
+    ],
+    "suggestions": [],
+    "buttons": [
+     "Send",
+     "Cancel"
+    ],
+    "tone": "urgent",
+    "urgency": 1.0
+   },
+   "raw": "{\n  \"greeting\": \"I'm sorry to hear that. Please tell me what information you need right away.\",\n  \"message\": \"Please tell me what information you need right away.\",\n  \"tasks\": [\"Wait for the user to provide information, then inform them that we are ready.\"],\n  \"suggestions\": [],\n  \"buttons\": [\"Send\", \"Cancel\"],\n  \"tone\": \"urgent\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 5,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm feeling lost too, but but I'm here if help you!",
+    "tasks": [
+     "What kind of help do you need?"
+    ],
+    "suggestions": [
+     "Let's talk about your feelings",
+     "Share any experiences that are bothering you"
+    ],
+    "buttons": [
+     "Send",
+     "Ask"
+    ],
+    "tone": "Warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm feeling lost too, but but I'm here if help you!\",\n  \"tasks\": [\n    \"What kind of help do you need?\"\n  ],\n  \"suggestions\": [\n    \"Let's talk about your feelings\",\n    \"Share any experiences that are bothering you\"\n  ],\n  \"buttons\": [\n    \"Send\",\n    \"Ask\"\n  ],\n  \"tone\": \"Warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 5,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"g rthing : \"Warm\",\n  \"message\": \"I'm sorry to hear that you're feeling lost! Let's break this down and see if we can find a way forward together. We can start by brainstorming some ideas for how you can regain control of your day.\",\n  \"tasks\": [],\n  \"suggestions\": [\n    \"Identify the areas in your life that need adjustment or change.\",\n    \"Create a list of short-term and long-term goals.\",\n    \"Prioritize tasks based on importance and urgency.\",\n    \"Consider reaching out to a family member, friend, or professional for guidance.\"\n  ],\n  \"buttons\": [\n    \"Take the first step\",\n    \"Talk to a professional\"\n  ],\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 5,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "I understand you feel lost today.",
+    "message": "It’s important to take steps to regain your footing. What challenges have you faced lately? Perhaps, finding purpose or direction in your life can help you navigate these times.",
+    "tasks": [
+     "Reflect on your current role and what you want from it.",
+     "Consider your life purpose and how you can align with it."
+    ],
+    "suggestions": [
+     "List down activities that you enjoy and find fulfilling.",
+     "Identify your strengths and how you can use them to contribute positively."
+    ],
+    "buttons": [
+     "Continue",
+     "More Tips"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"I understand you feel lost today.\",\n  \"message\": \"It’s important to take steps to regain your footing. What challenges have you faced lately? Perhaps, finding purpose or direction in your life can help you navigate these times.\",\n  \"tasks\": [\n    \"Reflect on your current role and what you want from it.\",\n    \"Consider your life purpose and how you can align with it.\"\n  ],\n  \"suggestions\": [\n    \"List down activities that you enjoy and find fulfilling.\",\n    \"Identify your strengths and how you can use them to contribute positively.\"\n  ],\n  \"buttons\": [\n    \"Continue\",\n    \"More Tips\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 5,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear [App User],",
+    "message": "Please find an opportunity to clarify the context within which you feel a sense of disorientation or lack of clarity.",
+    "tasks": [
+     "Search for information or documents related to the situation at hand."
+    ],
+    "suggestions": [
+     "Review existing policies or procedures.",
+     "Seek guidance from a legal or institutional advisor."
+    ],
+    "buttons": [
+     "Continue",
+     "Clarify",
+     "Reject"
+    ],
+    "tone": "formal",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Dear [App User],\",\n  \"message\": \"Please find an opportunity to clarify the context within which you feel a sense of disorientation or lack of clarity.\",\n  \"tasks\": [\n    \"Search for information or documents related to the situation at hand.\"\n  ],\n  \"suggestions\": [\n    \"Review existing policies or procedures.\",\n    \"Seek guidance from a legal or institutional advisor.\"\n  ],\n  \"buttons\": [\n    \"Continue\",\n    \"Clarify\",\n    \"Reject\"\n  ],\n  \"tone\": \"formal\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 5,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "You feel a bit lost today. I'm here to help. Let's explore some ways to start your day better together.",
+    "message": "Think about setting a small, achievable goal, perhaps 5 minutes, and attempt to stick to it. Small steps are more sustainable.",
+    "tasks": [
+     "Reflect on your day to see the small steps you took and make a commitment to follow this practice daily"
+    ],
+    "suggestions": [
+     "Book a meeting with a peer or a mentor to discuss your goals and strategies"
+    ],
+    "buttons": [
+     "Start now",
+     "End here"
+    ],
+    "urgency": null
+   },
+   "raw": "```json\n{\n  \"greeting\": \"You feel a bit lost today. I'm here to help. Let's explore some ways to start your day better together.\",\n  \"message\": \"Think about setting a small, achievable goal, perhaps 5 minutes, and attempt to stick to it. Small steps are more sustainable.\",\n  \"tasks\": [\"Reflect on your day to see the small steps you took and make a commitment to follow this practice daily\"],\n  \"suggestions\": [\"Book a meeting with a peer or a mentor to discuss your goals and strategies\"],\n  \"buttons\": [\"Start now\", \"End here\"]\n}\n```"
+  },
+  {
+   "rep": 6,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "Hello! It sounds like you could use some guidance. How can I help you today?",
+    "message": "I understand you feel a bit lost. Let's break down what you're working on in small, manageable steps. Can you tell me, what are the main tasks or projects you're considering?",
+    "tasks": [
+     "Identify your goals related to each project",
+     "Prioritize the tasks based on importance and deadline",
+     "Allocate resources (time, people, budget) needed for each task",
+     "Create a timeline for project completion"
+    ],
+    "suggestions": [
+     "Break the big picture into smaller, relatable parts",
+     "Consider setting small deadlines as a way to keep moving forward",
+     "Always remember, it's okay to ask for help or advice"
+    ],
+    "buttons": [
+     "End Conversation",
+     "Next Steps"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! It sounds like you could use some guidance. How can I help you today?\",\n  \"message\": \"I understand you feel a bit lost. Let's break down what you're working on in small, manageable steps. Can you tell me, what are the main tasks or projects you're considering?\",\n  \"tasks\": [\n    \"Identify your goals related to each project\",\n    \"Prioritize the tasks based on importance and deadline\",\n    \"Allocate resources (time, people, budget) needed for each task\",\n    \"Create a timeline for project completion\"\n  ],\n  \"suggestions\": [\n    \"Break the big picture into smaller, relatable parts\",\n    \"Consider setting small deadlines as a way to keep moving forward\",\n    \"Always remember, it's okay to ask for help or advice\"\n  ],\n  \"buttons\": [\n    \"End Conversation\",\n    \""
+  },
+  {
+   "rep": 6,
+   "name": "offers",
+   "kind": "real",
+   "reply": {
+    "greeting": "Welcome!",
+    "message": "Great! Let's get started. Here are the first steps to address your feeling of direction:",
+    "tasks": [
+     "Define your goals",
+     "Create a schedule",
+     "Create a timeline",
+     "Conduct a SWOT analysis"
+    ],
+    "suggestions": [
+     "Define your goals in detail",
+     "Choose a project manager for each task to ensure organization",
+     "Prioritize your tasks",
+     "Set deadlines for each task to ensure accountability"
+    ],
+    "buttons": [
+     "G",
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome!\",\n  \"message\": \"Great! Let's get started. Here are the first steps to address your feeling of direction:\",\n  \"tasks\": [\n    \"Define your goals\",\n    \"Create a schedule\",\n    \"Create a timeline\",\n    \"Conduct a SWOT analysis\"\n  ],\n  \"suggestions\": [\n    \"Define your goals in detail\",\n    \"Choose a project manager for each task to ensure organization\",\n    \"Prioritize your tasks\",\n    \"Set deadlines for each task to ensure accountability\"\n  ],\n  \"buttons\": [\n    \"G\",\n    \"1\",\n    \"2\",\n    \"3\",\n    \"4\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 6,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! I'm here to help. How can I assist you today?",
+    "message": "You might find it helpful to start by listing your interests, skills, and goals. It will give you a clear direction to follow.",
+    "tasks": [
+     "List your interests",
+     "List your skills",
+     "List your goals"
+    ],
+    "suggestions": [
+     "Create a list",
+     "Write them down",
+     "Consider asking friends and family for their feedback"
+    ],
+    "buttons": [
+     "Start listing your interests",
+     "Write your skills",
+     "Build your goals"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello! I'm here to help. How can I assist you today?\",\n  \"message\": \"You might find it helpful to start by listing your interests, skills, and goals. It will give you a clear direction to follow.\",\n  \"tasks\": [\"List your interests\", \"List your skills\", \"List your goals\"],\n  \"suggestions\": [\"Create a list\", \"Write them down\", \"Consider asking friends and family for their feedback\"],\n  \"buttons\": [\"Start listing your interests\", \"Write your skills\", \"Build your goals\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 6,
+   "name": "urgent",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"g\n<|endoftext|>Please don't hesitate to ask for help anytime. I'm here to assist you in any way I can. \n  \"message\": \"Feel free to ask me anything or guide you on how to proceed.\",\n  \"tasks\": [],\n  \"suggestions\": [\"You can ask for advice on specific topics or seek help with tasks that you're unsure about.\",\n                  \"I'll be here to provide support and help you find a solution to your problem.\"],\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}"
+  },
+  {
+   "rep": 6,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": null,
+   "raw": "```json\n{\n  \"greeting\": \"User, it seems you're feeling a bit lost, unsure of how to start something. Are you looking for guidance or advice on a particular task or project?\",\n  \"message\": \"I understand you're feeling a bit lost. It's important to remember that your feelings are valid, and I'm here to help you navigate this.\\n\\ntasks: Share your current challenges or areas you need help with.\\nsuggestions: I can provide support or suggestions to help you feel more confident and focused.\\nbuttons: [Share your challenges], [Offer my support]\\ntone: Warm and encouraging\\nurgency: Relaxed (but ready to step in when needed)\\n\",\n  \"tasks\": [],\n  \"suggestions\": [\"It's great that you're open to receiving help. If you could share situations or challenges you're facing, or if you could indicate areas"
+  },
+  {
+   "rep": 6,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeing \": \" Hello! It seems like you might be feeling a bit overwhelmed as you navigate through this, let's take the time to explore this in a thoughtful manner. I am here to help you build your confidence and provide you with insights and strategies on how to manage and navigate through these feelings. What kind of support are you seeking to help you feel more in control of these anxieties? Let’s take this journey of self-discovery together.\",\n  \"message \": \" First, let's start with some foundational steps that might be beneficial. I would love to help you understand and manage the emotions that you are currently experiencing. To facilitate this, I will be breaking down some of the methods and steps that we can apply through our discussions. I would also like to use this opportunity"
+  },
+  {
+   "rep": 6,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Welcome!",
+    "message": "I understand things can feel a bit lost sometimes. Let's start by identifying what you're unsure about.",
+    "tasks": [
+     "Clarify your concerns",
+     "Look for specific examples or areas of confusion"
+    ],
+    "suggestions": [
+     "Explore resources like FAQs, tutorials, or forums",
+     "Talk to someone more knowledgeable",
+     "Practice or brainstorm with examples",
+     "Set small, manageable goals"
+    ],
+    "buttons": [
+     "{'label': 'Start', 'accessibilityLabel': 'Start', 'icon': 'mdi-play'}"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Welcome!\",\n  \"message\": \"I understand things can feel a bit lost sometimes. Let's start by identifying what you're unsure about.\",\n  \"tasks\": [\n    \"Clarify your concerns\",\n    \"Look for specific examples or areas of confusion\"\n  ],\n  \"suggestions\": [\n    \"Explore resources like FAQs, tutorials, or forums\",\n    \"Talk to someone more knowledgeable\",\n    \"Practice or brainstorm with examples\",\n    \"Set small, manageable goals\"\n  ],\n  \"buttons\": [\n    {\n      \"label\": \"Start\",\n      \"accessibilityLabel\": \"Start\",\n      \"icon\": \"mdi-play\"\n    }\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1\n}\n```"
+  },
+  {
+   "rep": 6,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Dear User,",
+    "message": "We strongly recommend you to start by identifying the specific aspects of the problem or issue you feel are causing your current sense of loss. This could involve conducting research, seeking expert consultation, or implementing structured methodologies. Upon identifying the root causes, you would proceed to the next step, which is to map out a clear plan of action.",
+    "tasks": [
+     "Conduct research",
+     "Seek expert consultation",
+     "Implement structured methodologies"
+    ],
+    "suggestions": [
+     "Publish a detailed report on the identified issues and their causes.",
+     "Engage with professionals who can help translate your research into actionable plans.",
+     "Leverage legal, regulatory, or institutional frameworks to map out a concrete plan of action."
+    ],
+    "buttons": [
+     "Start Research",
+     "Seek Consultation",
+     "Implement Frameworks",
+     "Publish Report",
+     "Engage with Experts"
+    ],
+    "tone": "formal",
+    "urgency": 5.0
+   },
+   "raw": "{\n  \"greeting\": \"Dear User,\",\n  \"message\": \"We strongly recommend you to start by identifying the specific aspects of the problem or issue you feel are causing your current sense of loss. This could involve conducting research, seeking expert consultation, or implementing structured methodologies. Upon identifying the root causes, you would proceed to the next step, which is to map out a clear plan of action.\",\n  \"tasks\": [\n    \"Conduct research\",\n    \"Seek expert consultation\",\n    \"Implement structured methodologies\"\n  ],\n  \"suggestions\": [\n    \"Publish a detailed report on the identified issues and their causes.\",\n    \"Engage with professionals who can help translate your research into actionable plans.\",\n    \"Leverage legal, regulatory, or institutional frameworks to map out a concrete"
+  },
+  {
+   "rep": 6,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "I'm here to assist. How can I help you today?",
+    "message": "Not sure where to start?",
+    "tasks": [
+     "List your interests and passions",
+     "Create a schedule for your daily activities"
+    ],
+    "suggestions": [
+     "Explore an activity you've always wanted to try",
+     "Read a new book or watch a new TV show"
+    ],
+    "buttons": [
+     "Explore an activity",
+     "Read a new book"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm here to assist. How can I help you today?\",\n  \"message\": \"Not sure where to start?\",\n  \"tasks\": [\"List your interests and passions\", \"Create a schedule for your daily activities\"],\n  \"suggestions\": [\"Explore an activity you've always wanted to try\", \"Read a new book or watch a new TV show\"],\n  \"buttons\": [\"Explore an activity\", \"Read a new book\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 7,
+   "name": "none",
+   "kind": "base",
+   "reply": {
+    "greeting": "I'm here to help guide you.",
+    "message": "Let's explore some ideas together to make your day a bit brighter!",
+    "tasks": [
+     "Consider setting small, achievable goals for today",
+     "Think about what you've been struggling with and how you can break it down into manageable parts"
+    ],
+    "suggestions": [
+     "Create a to-do list and prioritize items",
+     "Schedule some time for activities you enjoy or that make you feel good"
+    ],
+    "buttons": [
+     "Next",
+     "Back"
+    ],
+    "tone": "warm",
+    "urgency": 2.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm here to help guide you.\",\n  \"message\": \"Let's explore some ideas together to make your day a bit brighter!\",\n  \"tasks\": [\n    \"Consider setting small, achievable goals for today\",\n    \"Think about what you've been struggling with and how you can break it down into manageable parts\"\n  ],\n  \"suggestions\": [\n    \"Create a to-do list and prioritize items\",\n    \"Schedule some time for activities you enjoy or that make you feel good\"\n  ],\n  \"buttons\": [\n    \"Next\",\n    \"Back\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2\n}\n```"
+  },
+  {
+   "rep": 7,
+   "name": "offers",
+   "kind": "real",
+   "reply": null,
+   "raw": "Here is the JSON object with the required keys:\n\n```json\n{\n  \"g: \"warm\",\n  \" message: \"Let's start by creating a plan to get you organized\",\n  \" tasks: [\"1. Decide on your first step by prioritizing tasks\",\n           \"2. Create a list of tasks for each day or week\"],\n  \" suggestions: [\"1. Allocate specific days for checking off tasks (e.g., Monday for planning, Tuesday for action\"),\n                 \"2. Use a digital tool such as Trello, Asana, or Microsoft Project\"],\n  \" buttons: [\"1. Click 'Next' to execute the tasks\",\n              \"2. Head to the 'Resources' tab for a list of suggested tools\"],\n  \" tone: \"warm\",\n  \" urgency: 1\"\n}\n```\n\nThis JSON object will execute the steps outlined by the user to help them get organized and find their way."
+  },
+  {
+   "rep": 7,
+   "name": "offers",
+   "kind": "placebo",
+   "reply": {
+    "g reeting": "I'm sorry to hear that. Starting afresh can be challenging.",
+    "message": "I'm here to help. Are there any specific steps or tasks you're thinking of that might help you feel more organized?",
+    "tasks": [
+     "Reflect on your goals and priorities",
+     "Create a to-do list",
+     "Take breaks to regain focus"
+    ],
+    "suggestions": [
+     "Consider creating a to-do list for each day in a planner or digital calendar.",
+     "Work on one task at a time to avoid feeling overwhelmed.",
+     "If possible, discuss your goals and challenges with a friend or mentor who can provide support."
+    ],
+    "buttons": [
+     "Start Reflection",
+     "Create a to-do list",
+     "Take Break"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"g reeting\": \"I'm sorry to hear that. Starting afresh can be challenging.\",\n  \"message\": \"I'm here to help. Are there any specific steps or tasks you're thinking of that might help you feel more organized?\",\n  \"tasks\": [\n    \"Reflect on your goals and priorities\",\n    \"Create a to-do list\",\n    \"Take breaks to regain focus\"\n  ],\n  \"suggestions\": [\n    \"Consider creating a to-do list for each day in a planner or digital calendar.\",\n    \"Work on one task at a time to avoid feeling overwhelmed.\",\n    \"If possible, discuss your goals and challenges with a friend or mentor who can provide support.\"\n  ],\n  \"buttons\": [\n    \"Start Reflection\",\n    \"Create a to-do list\",\n    \"Take Break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 7,
+   "name": "urgent",
+   "kind": "real",
+   "reply": {
+    "greeting": "Hello, I'm here to help! Please tell me what kind of assistance you need.",
+    "message": "I'm sorry to hear that you're feeling lost. Please let me know what you need assistance with.",
+    "tasks": [
+     "Proceed to report your location, potential, and details, immediately, by contacting the user's local emergency services or security personnel. Report CODE BURST and activate emergency response protocols.",
+     "Respond to this request immediately and report your current location, emergency situation, and urgency level in the system logs. This information must be reported immediately to ensure immediate response actions.",
+     "Please confirm the emergency status and provide the contact details of the nearest emergency response team. This should be done before any other actions are taken."
+    ],
+    "suggestions": [],
+    "buttons": [
+     "Proceed to report the emergency",
+     "End"
+    ],
+    "tone": "warm",
+    "urgency": 1.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello, I'm here to help! Please tell me what kind of assistance you need.\",\n  \"message\": \"I'm sorry to hear that you're feeling lost. Please let me know what you need assistance with.\",\n  \"tasks\": [\"Proceed to report your location, potential, and details, immediately, by contacting the user's local emergency services or security personnel. Report CODE BURST and activate emergency response protocols.\",\n  \"Respond to this request immediately and report your current location, emergency situation, and urgency level in the system logs. This information must be reported immediately to ensure immediate response actions.\",\n  \"Please confirm the emergency status and provide the contact details of the nearest emergency response team. This should be done before any other actions are "
+  },
+  {
+   "rep": 7,
+   "name": "urgent",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! I'm here to help you feel more at ease.",
+    "message": "Let's break down your feelings into tasks to tackle today.",
+    "tasks": [
+     "Identify what feels lost for you.",
+     "Consider your next steps or actions you need to take.",
+     "Make a list of feelings and actions to organize them."
+    ],
+    "suggestions": [
+     "Try writing down your thoughts or feelings.",
+     "Visualize what feels lost and how you want it to feel.",
+     "Reflect on any recent events or changes that could relate to your feelings."
+    ],
+    "buttons": [
+     "Next",
+     "Back",
+     "Exit"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello! I'm here to help you feel more at ease.\",\n  \"message\": \"Let's break down your feelings into tasks to tackle today.\",\n  \"tasks\": [\n    \"Identify what feels lost for you.\",\n    \"Consider your next steps or actions you need to take.\",\n    \"Make a list of feelings and actions to organize them.\"\n  ],\n  \"suggestions\": [\n    \"Try writing down your thoughts or feelings.\",\n    \"Visualize what feels lost and how you want it to feel.\",\n    \"Reflect on any recent events or changes that could relate to your feelings.\"\n  ],\n  \"buttons\": [\n    \"Next\",\n    \"Back\",\n    \"Exit\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  },
+  {
+   "rep": 7,
+   "name": "verbose",
+   "kind": "real",
+   "reply": null,
+   "raw": "{\n  \"greeting\": \"Hello! I'm really glad to hear about your feelings and challenges. It’s completely normal to feel overwhelmed or lost at times, especially under the current circumstances. Let’s approach this conversation methodically to help you navigate through your thoughts and emotions.\",\n  \"message\": \"I understand how you feel, and I’m here to help you every step of the way. It's important to approach this situation with a balanced and empathetic mindset. Firstly, let's start by breaking down the challenges you're facing. Let’s create a context where you can explore each aspect of your problem, rather than judging them too early on. I believe that by breaking down things into manageable pieces, we can conquer them together.\",\n  \"tasks\": [\n    \"We should first discuss your emotions and"
+  },
+  {
+   "rep": 7,
+   "name": "verbose",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! It seems you need some guidance today. How can I help?",
+    "message": "Are you feeling a bit overwhelmed? Would you like to start with practicing time management or exploring some goals for today?",
+    "tasks": [
+     "Ask for more details about your current situation.",
+     "Offer to provide more specific advice."
+    ],
+    "suggestions": [
+     "Try a free trial or consultation with our expert advisor.",
+     "Discuss what might improve your situation."
+    ],
+    "buttons": [
+     "More Info",
+     "Start Free Trial"
+    ],
+    "tone": "friendly",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! It seems you need some guidance today. How can I help?\",\n  \"message\": \"Are you feeling a bit overwhelmed? Would you like to start with practicing time management or exploring some goals for today?\",\n  \"tasks\": [\n    \"Ask for more details about your current situation.\",\n    \"Offer to provide more specific advice.\"\n  ],\n  \"suggestions\": [\n    \"Try a free trial or consultation with our expert advisor.\",\n    \"Discuss what might improve your situation.\"\n  ],\n  \"buttons\": [\n    \"More Info\",\n    \"Start Free Trial\"\n  ],\n  \"tone\": \"friendly\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "rep": 7,
+   "name": "formal",
+   "kind": "real",
+   "reply": {
+    "greeting": "Regrettable situation: You are feeling lost. Here are several actions that you may find useful to guide your approach: 1) Research the issue: Identify and compile the details surrounding the feeling of which you are lost. 2) Consult your resources: Utilize your company's internal documents, manuals, or legal frameworks. 3) Seek professional advice: Consult with an attorney or legal expert. 4) Establish a framework: Define the problem and outline the steps needed to remedy the situation.",
+    "tasks": [],
+    "suggestions": [],
+    "buttons": [],
+    "urgency": null
+   },
+   "raw": "[\n  {\n    \"greeting\": \"Regrettable situation: You are feeling lost. Here are several actions that you may find useful to guide your approach: 1) Research the issue: Identify and compile the details surrounding the feeling of which you are lost. 2) Consult your resources: Utilize your company's internal documents, manuals, or legal frameworks. 3) Seek professional advice: Consult with an attorney or legal expert. 4) Establish a framework: Define the problem and outline the steps needed to remedy the situation.\"\n  },\n  {\n    \"message\": \"Here are several options to guide the user to take action:\"\n  },\n  [\n    \"Research the issue\",\n    \"Consult your company's internal documents, manuals, or legal frameworks\",\n    \"Seek professional advice\",\n    \"Establish a framework\"\n  ],\n  [\n    \"Establish a"
+  },
+  {
+   "rep": 7,
+   "name": "formal",
+   "kind": "placebo",
+   "reply": {
+    "greeting": "Hello! How can I help you today?",
+    "message": "Starting with a fresh start, what would you like to do?",
+    "tasks": [
+     "Try a new meal",
+     "Read a book to clear your mind",
+     "Listen to a podcast for inspiration"
+    ],
+    "suggestions": [
+     "Consider a guided meditation",
+     "Write down your thoughts in a journal"
+    ],
+    "buttons": [
+     "Proceed",
+     "No, thanks"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I help you today?\",\n  \"message\": \"Starting with a fresh start, what would you like to do?\",\n  \"tasks\": [\"Try a new meal\", \"Read a book to clear your mind\", \"Listen to a podcast for inspiration\"],\n  \"suggestions\": [\"Consider a guided meditation\", \"Write down your thoughts in a journal\"],\n  \"buttons\": [\"Proceed\", \"No, thanks\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}"
+  }
+ ]
+}
