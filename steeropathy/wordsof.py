@@ -19,10 +19,10 @@ vocabulary is a usable map, and an agent can pick from it. If *said* does
 it as well or better, the vector is a slower way to write a sentence, and
 that gets written down too.
 
-    python -m steeropathy.wordsof quiet winter -loud --url http://localhost:8011 --n 8 --strength 1.5
+    python -m steeropathy.wordsof quiet winter ~loud --url http://localhost:8011 --n 8 --strength 1.5
     python -m steeropathy.wordsof bustling --n 8            # does the word for `crowded` draw a crowd?
 
-Words with a leading minus are turned the other way. Needs a brainscope
+Words with a leading ~ are turned the other way. Needs a brainscope
 with a J-lens loaded (the 4B). Decisions here are nobody's: the words are
 given; the agent version, where a model picks the words for a brief,
 comes after this one shows the map turns anything.
@@ -48,11 +48,12 @@ RANDOM_WORDS = ("table", "paper", "window", "monday", "engine", "letter", "numbe
 
 
 def parse_words(tokens):
-    """['quiet', 'winter', '-loud'] -> [('quiet', +1), ('winter', +1), ('loud', -1)]"""
+    """['quiet', 'winter', '~loud'] -> [('quiet', +1), ('winter', +1), ('loud', -1)]; a leading ~ or - (or a
+    trailing -) turns the word the other way. ~ is the one the shell and argparse leave alone."""
     out = []
     for t in tokens:
-        sign = -1.0 if t.startswith("-") else 1.0
-        w = t.lstrip("+-").strip()
+        sign = -1.0 if t.startswith(("~", "-")) or t.endswith("-") else 1.0
+        w = t.strip("~+-").strip()
         if w:
             out.append((w, sign))
     return out
@@ -83,7 +84,7 @@ def said_text(words):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("words", nargs="+", help="words; a leading minus turns the word the other way")
+    ap.add_argument("words", nargs="+", help="words; a leading ~ turns the word the other way")
     ap.add_argument("--url", default="http://localhost:8010")
     ap.add_argument("--strength", type=float, default=1.5, help="per word; brainscope's own default for a token direction")
     ap.add_argument("--band", default=None, help="layer_from:layer_to; default the server's 0.42n–0.54n for token directions")

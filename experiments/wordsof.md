@@ -39,5 +39,5 @@ and this page says so.
 
 ```bash
 python -m steeropathy.wordsof bustling --url http://localhost:8011 --n 8 --strength 1.5
-python -m steeropathy.wordsof quiet winter -loud --url http://localhost:8011 --n 8
+python -m steeropathy.wordsof quiet winter ~loud --url http://localhost:8011 --n 8
 ```
