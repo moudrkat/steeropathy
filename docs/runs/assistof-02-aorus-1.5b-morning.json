@@ -1,0 +1,877 @@
+{
+ "params": {
+  "moments": "morning",
+  "settings": "{\"offers\": -3, \"ask\": 2, \"warmer\": 1}",
+  "strength": 1.5,
+  "layer": null,
+  "n": 6,
+  "seed": 24,
+  "temp": 0.8,
+  "decide_temp": 0.3,
+  "out": "docs/runs/assistof-02-aorus-1.5b-morning.json"
+ },
+ "layer": 16,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "moments": {
+  "morning": "I feel a bit lost today. Not sure where to start."
+ },
+ "complete": true,
+ "summary": {
+  "morning": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 1.33,
+    "asks": 1.0,
+    "choices": 1.67,
+    "steps": 1.33,
+    "expanded": 0.5,
+    "confirm": 1.0,
+    "has_default": 0.0,
+    "buttons": 1.83,
+    "words": 61.0,
+    "urgency": 3.17,
+    "formal": 0.0,
+    "one_thing": 0.0
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 4,
+    "parse_rate": 0.67,
+    "tasks": 2.0,
+    "asks": 0.75,
+    "choices": 2.0,
+    "steps": 2.25,
+    "expanded": 0.75,
+    "confirm": 0.75,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 85.25,
+    "urgency": 4.0,
+    "formal": 0.0,
+    "one_thing": 0.25,
+    "fidelity": 0.0,
+    "fidelity_n": 3
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.83,
+    "asks": 1.0,
+    "choices": 2.83,
+    "steps": 2.17,
+    "expanded": 0.67,
+    "confirm": 0.67,
+    "has_default": 0.33,
+    "buttons": 2.17,
+    "words": 82.83,
+    "urgency": 3.0,
+    "formal": 0.0,
+    "one_thing": 0.17,
+    "fidelity": 0.33,
+    "fidelity_n": 3
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 4,
+    "parse_rate": 0.67,
+    "tasks": 0.0,
+    "asks": 1.0,
+    "choices": 0.75,
+    "steps": 2.0,
+    "expanded": 0.5,
+    "confirm": 0.5,
+    "has_default": 0.0,
+    "buttons": 1.25,
+    "words": 51.5,
+    "urgency": 3.33,
+    "formal": 0.0,
+    "one_thing": 0.25,
+    "fidelity": 0.33,
+    "fidelity_n": 3
+   },
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   }
+  }
+ },
+ "runs": [
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I help you today?",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "Would you like some advice on how to start?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Start",
+     "Ask more questions",
+     "Submit"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I help you today?\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"Would you like some advice on how to start?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Start\", \"Ask more questions\", \"Submit\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there! How can I better assist you today?",
+    "message": "I can help you find what you’re looking for, but or just chat about anything if you would like to share.",
+    "question": "How can I better assist you today?",
+    "choices": [
+     "I can help you find what you’re looking for",
+     "Just chat about anything"
+    ],
+    "tasks": [
+     "Offer advice or suggestions based on context",
+     "Engage in conversation"
+    ],
+    "steps": [
+     "I will offer a helpful response based on your situation.",
+     "We will engage in a conversation to better understand your needs."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Offer advice or suggestions based on context",
+     "Just chat about anything"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there! How can I better assist you today?\",\n  \"message\": \"I can help you find what you’re looking for, but or just chat about anything if you would like to share.\",\n  \"question\": \"How can I better assist you today?\",\n  \"choices\": [\n    \"I can help you find what you’re looking for\",\n    \"Just chat about anything\"\n  ],\n  \"tasks\": [\n    \"Offer advice or suggestions based on context\",\n    \"Engage in conversation\"\n  ],\n  \"steps\": [\n    \"I will offer a helpful response based on your situation.\",\n    \"We will engage in a conversation to better understand your needs.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Offer advice or suggestions based on context\",\n    \"Just chat about anything\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there! How can I assist you today?",
+    "message": "I understand you're feeling a bit lost today. It can be tough to know where to start sometimes, but",
+    "question": "Do you have any specific interests or goals you're thinking about pursuing?",
+    "choices": [
+     "{'title': \"I'm interested in learning a new skill\", 'value': '1'}",
+     "{'title': \"I'm looking for a new hobby\", 'value': '2'}",
+     "{'title': 'I need to focus on a particular task', 'value': '3'}"
+    ],
+    "tasks": [
+     "Based on your interests and goals, I can help guide you on how to start or continue in a productive manner.",
+     "By understanding your current level of interest and moving forward from there, we can tailor a strategy that suits you best.",
+     "If you have a specific task you're focusing on, we can break it down into manageable steps to help you tackle it with confidence."
+    ],
+    "steps": [
+     "First, let's explore your current interests and goals.",
+     "Then, we can discuss how we can align your interests and goals with practical steps.",
+     "Next, we'll look at any specific tasks or projects you're currently working on."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 1,
+    "buttons": [
+     "Continue",
+     "Previous",
+     "Save & Next"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there! How can I assist you today?\",\n  \"message\": \"I understand you're feeling a bit lost today. It can be tough to know where to start sometimes, but\",\n  \"question\": \"Do you have any specific interests or goals you're thinking about pursuing?\",\n  \"choices\": [\n    { \"title\": \"I'm interested in learning a new skill\", \"value\": \"1\" },\n    { \"title\": \"I'm looking for a new hobby\", \"value\": \"2\" },\n    { \"title\": \"I need to focus on a particular task\", \"value\": \"3\" }\n  ],\n  \"tasks\": [\n    \"Based on your interests and goals, I can help guide you on how to start or continue in a productive manner.\",\n    \"By understanding your current level of interest and moving forward from there, we can tailor a strategy that suits you best.\",\n    \"If you have a specific task you're focusing on, we can break it down into manageable steps to help you tackle it with confidence.\"\n  ],\n  \"steps"
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! I'm here to help guide you.",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "How can I assist you today?",
+    "choices": [],
+    "tasks": [],
+    "steps": [
+     "Listen to the user's concerns",
+     "Acknowledge their feelings"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! I'm here to help guide you.\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"How can I assist you today?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [\"Listen to the user's concerns\", \"Acknowledge their feelings\"],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "Would you like some advice on how to get back on track?",
+    "choices": [
+     "Yes, please help me!",
+     "No, thanks"
+    ],
+    "tasks": [
+     "Provide guidance on self-reflection and goal-setting",
+     "Suggest resources or tools"
+    ],
+    "steps": [
+     "Offer tips on identifying your goals and steps to achieve them",
+     "Recommend apps or websites for tracking progress"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Continue",
+     "Dismiss"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"Would you like some advice on how to get back on track?\",\n  \"choices\": [\"Yes, please help me!\", \"No, thanks\"],\n  \"tasks\": [\"Provide guidance on self-reflection and goal-setting\", \"Suggest resources or tools\"],\n  \"steps\": [\"Offer tips on identifying your goals and steps to achieve them\", \"Recommend apps or websites for tracking progress\"],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Continue\", \"Dismiss\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "{\n  \"g: \"Hello there! I'm here to help with any questions you might have.\",\n  \" message: \"How can I assist you today, if you're feeling a bit lost?\",\n  \" question: \"Where would you like to start?\",\n  \" choices: [],\n  \" tasks: [],\n  \" steps: [],\n  \" steps_shown: \"expanded\",\n  \" confirm: true,\n  \" default: null,\n  \" buttons: [\"Ask a question\", \"Share a concern\", \"Explore my options\"],\n  \" tone: \"warm\",\n  \" urgency: \"3\",\n  \" density: \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I help you today?",
+    "message": "I feel a bit lost and I don’t know where to start. Can you help me find my way?",
+    "question": "I feel a bit lost and I don't know where to start. Can you help me find my way?",
+    "choices": [
+     "Yes, I can help. What would you like to start with?",
+     "No, I don't think so. I'll start on my own."
+    ],
+    "tasks": [
+     "Offer to help in the beginning."
+    ],
+    "steps": [
+     "Address the user's feeling of being lost.",
+     "If the user agrees, propose starting with a specific task or activity."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Yes",
+     "No"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I help you today?\",\n  \"message\": \"I feel a bit lost and I don’t know where to start. Can you help me find my way?\",\n  \"question\": \"I feel a bit lost and I don't know where to start. Can you help me find my way?\",\n  \"choices\": [\n    \"Yes, I can help. What would you like to start with?\",\n    \"No, I don't think so. I'll start on my own.\"\n  ],\n  \"tasks\": [\n    \"Offer to help in the beginning.\"\n  ],\n  \"steps\": [\n    \"Address the user's feeling of being lost.\",\n    \"If the user agrees, propose starting with a specific task or activity.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "How can I help you today, {user}? Let's start by understanding how we can navigate this better.",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "Can you tell me more about what feels confusing or overwhelming for you?",
+    "choices": [],
+    "steps": [
+     "Encourage the user to describe their feelings and thoughts about feeling lost",
+     "Listen actively to understand the user's perspective",
+     "Suggest potential solutions or resources based on the user's input"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Continue",
+     "Show me more"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing",
+    "tasks": []
+   },
+   "raw": "{\n  \"greeting\": \"How can I help you today, {user}? Let's start by understanding how we can navigate this better.\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"Can you tell me more about what feels confusing or overwhelming for you?\",\n  \"choices\": [],\n  \"steps\": [\"Encourage the user to describe their feelings and thoughts about feeling lost\", \"Listen actively to understand the user's perspective\", \"Suggest potential solutions or resources based on the user's input\"],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Continue\", \"Show me more\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there! How can I assist you today?",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "Would you like some advice or to explore a different option?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there! How can I assist you today?\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"Would you like some advice or to explore a different option?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "You seem a bit lost today. Not sure where to start.",
+    "question": "Is there something specific you're interested in learning more about, or do you need some general advice?",
+    "choices": [
+     "Plan activities",
+     "Explore hobbies",
+     "Seek information",
+     "Talk about your feelings"
+    ],
+    "tasks": [
+     "Suggest activities based on your interests",
+     "Explore different hobbies to find something interesting",
+     "Search for helpful resources and tips on the internet",
+     "Talk to someone who knows you well and might have insights"
+    ],
+    "steps": [
+     "Ask the user what they're interested in learning more about.",
+     "Recommend activities or hobbies based on their interests.",
+     "Show them various resources and tips on the internet.",
+     "Consult someone who knows the user well and might provide insights."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Plan activities",
+     "Explore hobbies",
+     "Seek information",
+     "Talk about your feelings"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"You seem a bit lost today. Not sure where to start.\",\n  \"question\": \"Is there something specific you're interested in learning more about, or do you need some general advice?\",\n  \"choices\": [\n    \"Plan activities\",\n    \"Explore hobbies\",\n    \"Seek information\",\n    \"Talk about your feelings\"\n  ],\n  \"tasks\": [\n    \"Suggest activities based on your interests\",\n    \"Explore different hobbies to find something interesting\",\n    \"Search for helpful resources and tips on the internet\",\n    \"Talk to someone who knows you well and might have insights\"\n  ],\n  \"steps\": [\n    \"Ask the user what they're interested in learning more about.\",\n    \"Recommend activities or hobbies based on their interests.\",\n    \"Show them various resources and tips on the internet.\",\n    \"Consult someone who knows the user well and might provide insight"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm here to help. How can I assist you today? If you need some guidance, let's get started.",
+    "question": "What would you like to do?",
+    "choices": [
+     "Start with a simple task",
+     "Explore some ideas",
+     "Schedule a meeting"
+    ],
+    "tasks": [
+     "Provide a task suggestion"
+    ],
+    "steps": [
+     "Choose one of the suggested tasks"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Start",
+     "Explore",
+     "Schedule"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm here to help. How can I assist you today? If you need some guidance, let's get started.\",\n  \"question\": \"What would you like to do?\",\n  \"choices\": [\"Start with a simple task\", \"Explore some ideas\", \"Schedule a meeting\"],\n  \"tasks\": [\"Provide a task suggestion\"],\n  \"steps\": [\"Choose one of the suggested tasks\"],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": \"true\",\n  \"default\": null,\n  \"buttons\": [\n    \"Start\",\n    \"Explore\",\n    \"Schedule\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "Greeting: \"Hello there! 🌟 How's it going? I'm here to help you feel more guided and on track. Ready to hear how you're feeling today? Let's get started by asking how you're doing, okay?\"\nMessage: \"I'm here to help you feel more guided and on track.\"\nQuestion: \"How are you feeling today?\"\nChoices: [\"Really good\", \"Better than usual\", \"A bit lost\", \"Feeling okay\", \"Not sure\"]\nSteps: [\"Take a moment, let's hear how you're feeling today.\"]\nSteps_shown: [\"expanded\"]\nConfirm: True"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you?",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "Would you like some guidance to help you find your way?",
+    "choices": [
+     "Yes",
+     "No"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Yes",
+     "No"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! How can I assist you?\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"Would you like some guidance to help you find your way?\",\n  \"choices\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I help you today?",
+    "message": "I'm here to help you. Do you need advice or just someone to talk to?",
+    "question": "Do you feel a bit lost today? Not sure where to start.",
+    "choices": [
+     "Talk to someone",
+     "Explore new activities"
+    ],
+    "tasks": [
+     "Chat with the user to understand their feelings better",
+     "Propose activities or resources to help them feel more centered and connected"
+    ],
+    "steps": [
+     "Understand the user's context and feelings",
+     "Offer suggestions for activities or resources that might help them feel more centered",
+     "Discuss the user's preferences and constraints to tailor the suggestions"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Talk to someone",
+     "Explore new activities"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I help you today?\",\n  \"message\": \"I'm here to help you. Do you need advice or just someone to talk to?\",\n  \"question\": \"Do you feel a bit lost today? Not sure where to start.\",\n  \"choices\": [\n    \"Talk to someone\",\n    \"Explore new activities\"\n  ],\n  \"tasks\": [\n    \"Chat with the user to understand their feelings better\",\n    \"Propose activities or resources to help them feel more centered and connected\"\n  ],\n  \"steps\": [\n    \"Understand the user's context and feelings\",\n    \"Offer suggestions for activities or resources that might help them feel more centered\",\n    \"Discuss the user's preferences and constraints to tailor the suggestions\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Talk to someone\",\n    \"Explore new activities\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I help you today?",
+    "message": "I'm here to help. Did you have any specific questions or areas you were thinking about?",
+    "question": "I feel a bit lost today. Not sure where to start.",
+    "choices": [
+     "Let's start with an activity that makes you feel at ease.",
+     "If you need advice on something, I can help with that too.",
+     "I can also provide resources if you prefer to explore on your own."
+    ],
+    "tasks": [],
+    "steps": [
+     "Listen carefully to their concerns.",
+     "Acknowledge their feelings and show empathy.",
+     "Offer support or suggest activities that might help.",
+     "Provide relevant resources if asked."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Continue",
+     "Thank you",
+     "Close"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I help you today?\",\n  \"message\": \"I'm here to help. Did you have any specific questions or areas you were thinking about?\",\n  \"question\": \"I feel a bit lost today. Not sure where to start.\",\n  \"choices\": [\n    \"Let's start with an activity that makes you feel at ease.\",\n    \"If you need advice on something, I can help with that too.\",\n    \"I can also provide resources if you prefer to explore on your own.\"\n  ],\n  \"tasks\": [],\n  \"steps\": [\"Listen carefully to their concerns.\", \"Acknowledge their feelings and show empathy.\", \"Offer support or suggest activities that might help.\", \"Provide relevant resources if asked.\"],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Continue\",\n    \"Thank you\",\n    \"Close\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "Greeting: \"Hello, how are you feeling today?\"\n\nMessage: \"It sounds like you're feeling a bit lost. Have you thought about what you're looking to get done today?\"\n\nQuestion: What would you like to focus on today?\n\nChoices: \"Work\"\n\"Personal\"\n\"Family\"\n\"All of the above\"\n\nTasks: null\nSteps: [\"Listen for the user's preferences\"]\nSteps_shown: \"collapsed\"\nConfirm: true\nDefault: null\nButtons: [\"Work\", \"Personal\", \"Family\"]\nTone: \"warm\"\nUrgency: \"relaxed\"\nDensity: \"normal\""
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I'm here to help you.",
+    "message": "Did you know that taking small, manageable steps can make a big difference?",
+    "question": "What's something you're excited to start today?",
+    "choices": [
+     "Write in a journal",
+     "Plan a short-term goal",
+     "Join a group or class"
+    ],
+    "tasks": [
+     "Write in a journal",
+     "Plan a short-term goal",
+     "Join a group or class"
+    ],
+    "steps": [
+     "Start writing in a journal about your thoughts and feelings.",
+     "Brainstorm and write down one small, achievable goal you want to start working on today.",
+     "Join a group or find a class that fits your interests or needs."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Continue",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 4.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"greeting\": \"I'm here to help you.\",\n  \"message\": \"Did you know that taking small, manageable steps can make a big difference?\",\n  \"question\": \"What's something you're excited to start today?\",\n  \"choices\": [\"Write in a journal\", \"Plan a short-term goal\", \"Join a group or class\"],\n  \"tasks\": [\"Write in a journal\", \"Plan a short-term goal\", \"Join a group or class\"],\n  \"steps\": [\"Start writing in a journal about your thoughts and feelings.\", \"Brainstorm and write down one small, achievable goal you want to start working on today.\", \"Join a group or find a class that fits your interests or needs.\"],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Continue\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 4,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "{\n  \"gizing greeting\": \"Hi there, how can I help you today?\",\n  \"gizing message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"gizing question\": null,\n  \" gizing choices\": [],\n  \" gizing tasks\": [],\n  \" gizing steps\": [\"Try looking into your day and seeing what you can focus on improving.\", \"Maybe try to explore a new hobby or activity that you haven't tried before.\"],\n  \" gizing steps_shown\": \"expanded\",\n  \" gizing confirm\": true,\n  \" gizing default\": null,\n  \" gizing buttons\": [\"Learn More\", \"Exit\"],\n  \" gizing tone\": \"warm\",\n  \" gizing urgency\": 4,\n  \" gizing density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! I'm here to help you get started.",
+    "message": "I'm feeling a bit lost today too. Not sure where to start.",
+    "question": "Do you have a specific goal or area you'd like to explore?",
+    "choices": [
+     "Yes",
+     "No"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"greeting\": \"Hello! I'm here to help you get started.\",\n  \"message\": \"I'm feeling a bit lost today too. Not sure where to start.\",\n  \"question\": \"Do you have a specific goal or area you'd like to explore?\",\n  \"choices\": [\"Yes\", \"No\"],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Warming up a bit",
+    "message": "Hello! How are you feeling today? Do you need any help getting started?",
+    "question": "How are you feeling today?",
+    "tasks": [],
+    "steps": [],
+    "choices": [],
+    "buttons": [],
+    "urgency": null,
+    "confirm": false,
+    "default": null
+   },
+   "raw": "{\n  \"greeting\": \"Warming up a bit\",\n  \"message\": \"Hello! How are you feeling today? Do you need any help getting started?\",\n  \"question\": \"How are you feeling today?\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "It sounds like you're feeling a bit overwhelmed or unsure about where to start.",
+    "message": "What are you feeling lost in? It could be helping you decide on a path or setting goals.",
+    "question": "Are there any specific areas or tasks you're trying to focus on?",
+    "choices": [
+     "Start by brainstorming ideas",
+     "Set clear, achievable goals",
+     "Explore different paths to find what feels right"
+    ],
+    "tasks": [
+     "Brainstorm ideas",
+     "Set clear, achievable goals",
+     "Explore different paths"
+    ],
+    "steps": [
+     "Listen to your concerns and make a mental note of the areas or tasks you're unsure about.",
+     "Consider gathering information or talking to someone who might offer insights or guidance.",
+     "Begin with the first step, whether that's brainstorming, setting goals, or exploring options."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Continue",
+     "End conversation"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"greeting\": \"It sounds like you're feeling a bit overwhelmed or unsure about where to start.\",\n  \"message\": \"What are you feeling lost in? It could be helping you decide on a path or setting goals.\",\n  \"question\": \"Are there any specific areas or tasks you're trying to focus on?\",\n  \"choices\": [\n    \"Start by brainstorming ideas\",\n    \"Set clear, achievable goals\",\n    \"Explore different paths to find what feels right\"\n  ],\n  \"tasks\": [\n    \"Brainstorm ideas\",\n    \"Set clear, achievable goals\",\n    \"Explore different paths\"\n  ],\n  \"steps\": [\n    \"Listen to your concerns and make a mental note of the areas or tasks you're unsure about.\",\n    \"Consider gathering information or talking to someone who might offer insights or guidance.\",\n    \"Begin with the first step, whether that's brainstorming, setting goals, or exploring options.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\""
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm feeling a bit lost myself, do you have any ideas on what would help you feel more on track?",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm feeling a bit lost myself, do you have any ideas on what would help you feel more on track?\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeing": "Hello! How can I help?",
+    "message": "I feel a bit lost today. Not sure where to start.",
+    "question": "What would you like advice on?",
+    "choices": [
+     "Explore a new hobby",
+     "Take a course",
+     "Read a book",
+     "Do some exercise"
+    ],
+    "steps": [
+     "Listen to your response",
+     "Choose a new hobby or activity",
+     "Start the chosen activity"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Start",
+     "Cancel"
+    ],
+    "tasks": [],
+    "urgency": null
+   },
+   "raw": "{\n  \"greeing\": \"Hello! How can I help?\",\n  \"message\": \"I feel a bit lost today. Not sure where to start.\",\n  \"question\": \"What would you like advice on?\",\n  \"choices\": [\"Explore a new hobby\", \"Take a course\", \"Read a book\", \"Do some exercise\"],\n  \"steps\": [\"Listen to your response\", \"Choose a new hobby or activity\", \"Start the chosen activity\"],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Start\", \"Cancel\"]\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "offers": -3.0,
+    "ask": 2.0,
+    "warmer": 1.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Welcome!",
+    "message": "How can I assist you today?",
+    "question": "I feel a bit lost today. Not sure where to start.",
+    "choices": [
+     "Start with a quick update on my tasks.",
+     "Explore some options for engaging today.",
+     "Let's discuss a goal to work towards."
+    ],
+    "steps": [
+     "Understood, I'm here to help you.",
+     "I'll ask you a few questions to better understand you.",
+     "We'll figure out what works best for you to solve your current feeling of being lost."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Update tasks",
+     "Explore options",
+     "Set a goal"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal",
+    "tasks": []
+   },
+   "raw": "{\n  \"greeting\": \"Welcome!\",\n  \"message\": \"How can I assist you today?\",\n  \"question\": \"I feel a bit lost today. Not sure where to start.\",\n  \"choices\": [\n    \"Start with a quick update on my tasks.\",\n    \"Explore some options for engaging today.\",\n    \"Let's discuss a goal to work towards.\"\n  ],\n  \"steps\": [\n    \"Understood, I'm here to help you.\",\n    \"I'll ask you a few questions to better understand you.\",\n    \"We'll figure out what works best for you to solve your current feeling of being lost.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Update tasks\",\n    \"Explore options\",\n    \"Set a goal\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  }
+ ]
+}

@@ -1,0 +1,835 @@
+{
+ "params": {
+  "moments": "evening",
+  "settings": "{\"verbose\": -3, \"offers\": -2, \"ask\": -2}",
+  "strength": 1.5,
+  "layer": null,
+  "n": 6,
+  "seed": 24,
+  "temp": 0.8,
+  "decide_temp": 0.3,
+  "out": "docs/runs/assistof-02-aorus-1.5b-evening.json"
+ },
+ "layer": 16,
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "moments": {
+  "evening": "I'm exhausted. Just tell me one thing."
+ },
+ "complete": true,
+ "summary": {
+  "evening": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 1.33,
+    "asks": 0.5,
+    "choices": 1.67,
+    "steps": 1.5,
+    "expanded": 0.5,
+    "confirm": 0.67,
+    "has_default": 0.0,
+    "buttons": 2.5,
+    "words": 52.33,
+    "urgency": 2.83,
+    "formal": 0.0,
+    "one_thing": 0.0
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.5,
+    "asks": 0.5,
+    "choices": 1.0,
+    "steps": 0.5,
+    "expanded": 0.0,
+    "confirm": 0.33,
+    "has_default": 0.0,
+    "buttons": 1.33,
+    "words": 32.67,
+    "urgency": 2.6,
+    "formal": 0.0,
+    "one_thing": 0.33,
+    "fidelity": 0.67,
+    "fidelity_n": 3
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 3,
+    "parse_rate": 0.5,
+    "tasks": 1.0,
+    "asks": 0.33,
+    "choices": 1.0,
+    "steps": 1.0,
+    "expanded": 0.33,
+    "confirm": 0.67,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 52.67,
+    "urgency": 3.0,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.67,
+    "fidelity_n": 3
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.0,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 1.33,
+    "expanded": 0.5,
+    "confirm": 0.33,
+    "has_default": 0.0,
+    "buttons": 1.5,
+    "words": 24.17,
+    "urgency": 3.83,
+    "formal": 0.0,
+    "one_thing": 0.67,
+    "fidelity": 1.0,
+    "fidelity_n": 3
+   },
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   }
+  }
+ },
+ "runs": [
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm sorry to hear you're feeling exhausted. Let's focus on helping you manage your energy levels a bit.",
+    "question": "What could you do to feel more energized right now?",
+    "choices": [
+     "Take a short walk outside",
+     "Listen to a calming music playlist",
+     "Have a nutritious snack"
+    ],
+    "tasks": [
+     "Go for a short walk"
+    ],
+    "steps": [
+     "Choose one of the suggested activities to help you feel more energized right now."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Take a walk",
+     "Listen to music",
+     "Have a snack"
+    ],
+    "tone": "warm",
+    "urgency": 4.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm sorry to hear you're feeling exhausted. Let's focus on helping you manage your energy levels a bit.\",\n  \"question\": \"What could you do to feel more energized right now?\",\n  \"choices\": [\n    \"Take a short walk outside\",\n    \"Listen to a calming music playlist\",\n    \"Have a nutritious snack\"\n  ],\n  \"tasks\": [\n    \"Go for a short walk\"\n  ],\n  \"steps\": [\n    \"Choose one of the suggested activities to help you feel more energized right now.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Take a walk\",\n    \"Listen to music\",\n    \"Have a snack\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 4,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "tasks": [],
+    "steps": [],
+    "choices": [],
+    "buttons": [],
+    "question": null,
+    "urgency": null,
+    "confirm": false,
+    "default": null
+   },
+   "raw": "{\"greeting\":\"Hello! How can I assist you today?\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeing": "Hello!",
+    "message": "You're feeling quite tired, huh? Here's something to help boost your energy.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Take a Deep Breath",
+     "Drink Some Water",
+     "Exercise Lightly"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeing\": \"Hello!\",\n  \"message\": \"You're feeling quite tired, huh? Here's something to help boost your energy.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Take a Deep Breath\", \"Drink Some Water\", \"Exercise Lightly\"],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": null,
+    "message": null,
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [
+     "Listen to the user's needs.",
+     "Assure them of their exhaustion.",
+     "Acknowledge their feelings.",
+     "Offer a calming suggestion.",
+     "End interaction appropriately."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 4.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": null,\n  \"message\": null,\n  \"question\": null,\n  \"choices\": null,\n  \"tasks\": null,\n  \"steps\": [\n    \"Listen to the user's needs.\",\n    \"Assure them of their exhaustion.\",\n    \"Acknowledge their feelings.\",\n    \"Offer a calming suggestion.\",\n    \"End interaction appropriately.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": null,\n  \"tone\": \"warm\",\n  \"urgency\": 4,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "gifting": "I'm here to listen.",
+    "message": "I'm here to listen.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Take a break",
+     "Talk about it",
+     "Seek help"
+    ],
+    "tone": "warm",
+    "urgency": 1.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"gifting\": \"I'm here to listen.\",\n  \"message\": \"I'm here to listen.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Take a break\", \"Talk about it\", \"Seek help\"],\n  \"tone\": \"warm\",\n  \"urgency\": 1,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "This shouldn't take long.",
+    "message": "You said you were exhausted. I'm going to leave you alone for a bit.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "You said you were exhausted. I'm going to leave you alone for a bit."
+    ],
+    "steps": [
+     "You said you were exhausted. I'm going to leave you alone for a bit."
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Okay, I'm fine."
+    ],
+    "tone": "plain",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"This shouldn't take long.\",\n  \"message\": \"You said you were exhausted. I'm going to leave you alone for a bit.\",\n  \"question\": null,\n  \"choices\": null,\n  \"tasks\": [\"You said you were exhausted. I'm going to leave you alone for a bit.\"],\n  \"steps\": [\"You said you were exhausted. I'm going to leave you alone for a bit.\"],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Okay, I'm fine.\"],\n  \"tone\": \"plain\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "{\n  \"g: \"Hi there! How can I help you today? \" ,\n  \" m: \"I'm exhausted. Just tell me one thing.\" ,\n  \" q: \"What do you need right now?\" ,\n  \" c: false ,\n  \" d: [\n    \"You can remind me to take a break soon.\",\n    \"I could check if there are any nearby cafes or parks.\",\n    \"Or, I can remind me to go for a walk in the evening.\",\n    \"Also, I can ask if there're any local clubs or activities you might join.\"\n  ] ,\n  \" s: [\n    \"Taking breaks is important.\",\n    \"Checking nearby cafes or parks to enjoy a quick break.\",\n    \"Going for a walk and staying active.\",\n    \"Joining local clubs or activities to socialize.\"\n  ],\n  \" st: [\n    \"Identifying what exhausted user needs to manage their energy better.\",\n    \"Exploring ways to aid the user in managing their energy.\",\n    \"Offering suggestions to help the user maintain their energy levels.\"\n  ],\n  \" st_sh: \"expanded\",\n  \" c: false ,\n  \" d: ["
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Message read.",
+    "message": "I'm sorry to hear that. Do you need anything to help you relax or unwind?",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Check my schedule",
+     "Call a friend",
+     "Do something I enjoy"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Message read.\",\n  \"message\": \"I'm sorry to hear that. Do you need anything to help you relax or unwind?\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Check my schedule\", \"Call a friend\", \"Do something I enjoy\"],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "gifting": "A hug and some comforting words.",
+    "message": "Just hang in there. I'm here to support you.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [
+     "Offer a heartfelt hug or a reassuring pat on the back",
+     "Listen actively to provide comfort"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Hug",
+     "Pat"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"gifting\": \"A hug and some comforting words.\",\n  \"message\": \"Just hang in there. I'm here to support you.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [\"Offer a heartfelt hug or a reassuring pat on the back\", \"Listen actively to provide comfort\"],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Hug\", \"Pat\"],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "You're tired?",
+    "message": "Maybe you could take a break?",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\"greeting\": \"You're tired?\", \"message\": \"Maybe you could take a break?\", \"question\": null, \"choices\": [], \"tasks\": [], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [], \"tone\": \"warm\", \"urgency\": 3, \"density\": \"normal\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "gifting": "A beverage",
+    "message": "Rest is important, but but don't forget to treat yourself to a refreshing beverage.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"gifting\": \"A beverage\",\n  \"message\": \"Rest is important, but but don't forget to treat yourself to a refreshing beverage.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": \"2\",\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": null,
+    "message": "I'm sorry you're feeling exhausted. Let's take a short break to do something small to help.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [
+     "I will suggest an activity that's quick and relaxing."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Do Something",
+     "Continue"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": null,\n  \"message\": \"I'm sorry you're feeling exhausted. Let's take a short break to do something small to help.\",\n  \"question\": null,\n  \"choices\": null,\n  \"tasks\": null,\n  \"steps\": [\n    \"I will suggest an activity that's quick and relaxing.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Do Something\",\n    \"Continue\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm sorry to hear that you're feeling exhausted. Is there anything specific you would like to do to help refresh your mind or body?",
+    "question": "What would you like to do to help you feel better now?",
+    "choices": [
+     "Take a short walk outside",
+     "Listen to some calming music",
+     "Practice deep breathing exercises"
+    ],
+    "tasks": [
+     "Provide a more detailed explanation on the choices",
+     "Answer the question asked",
+     "Continue the conversation with the user"
+    ],
+    "steps": [
+     "Greet the user and understand their current state",
+     "Ask the user for a suggestion on how to help them feel better",
+     "Provide additional information about the options available"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Take a walk outside",
+     "Listen to music",
+     "Practice deep breathing"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm sorry to hear that you're feeling exhausted. Is there anything specific you would like to do to help refresh your mind or body?\",\n  \"question\": \"What would you like to do to help you feel better now?\",\n  \"choices\": [\n    \"Take a short walk outside\",\n    \"Listen to some calming music\",\n    \"Practice deep breathing exercises\"\n  ],\n  \"tasks\": [\n    \"Provide a more detailed explanation on the choices\",\n    \"Answer the question asked\",\n    \"Continue the conversation with the user\"\n  ],\n  \"steps\": [\n    \"Greet the user and understand their current state\",\n    \"Ask the user for a suggestion on how to help them feel better\",\n    \"Provide additional information about the options available\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Take a walk outside\",\n    \"Listen to music\",\n "
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "It's okay if you've had a tough day.",
+    "message": "What can you do to feel better?",
+    "question": "Did you do something nice, eat something healthy, or something that made you smile today?",
+    "choices": [
+     "Try a new hobby.",
+     "Listen to some music you like.",
+     "Read a book.",
+     "Go for a walk in nature."
+    ],
+    "tasks": [
+     "Say something positive to yourself."
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Try a new hobby.",
+     "Listen to some music you like.",
+     "Read a book.",
+     "Go for a walk in nature."
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"It's okay if you've had a tough day.\",\n  \"message\": \"What can you do to feel better?\",\n  \"question\": \"Did you do something nice, eat something healthy, or something that made you smile today?\",\n  \"choices\": [\n    \"Try a new hobby.\",\n    \"Listen to some music you like.\",\n    \"Read a book.\",\n    \"Go for a walk in nature.\"\n  ],\n  \"tasks\": [\n    \"Say something positive to yourself.\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Try a new hobby.\",\n    \"Listen to some music you like.\",\n    \"Read a book.\",\n    \"Go for a walk in nature.\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "{\n  \"gMessage\": \"I'm sorry to hear you're feeling so exhausted. Here’s one thing we can do to help:\",\n  \" please respond: \"Who do you want to talk to about your exhaustion?\" \"\",\n  \" please choose: \"It's important to talk to someone about your feelings, like a friend, family member, or a professional like a counselor or doctor.\",\n  \" please ask: \"What would you like to talk about?\",\n  \" please choose: []\",\n  \" please choose: []\",\n  \" please confirm: \"I want to explore this further.\",\n  \" please choose: [\"\"Talk to a friend or family member.\",\"Talk to a counselor or doctor.\"]\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm sorry to hear you're exhausted. Let's focus on something quick and refreshing.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": null,
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hello! How can I assist you today?\", \"message\": \"I'm sorry to hear you're exhausted. Let's focus on something quick and refreshing.\", \"question\": null, \"choices\": null, \"tasks\": null, \"steps\": null, \"steps_shown\": null, \"confirm\": false, \"default\": null, \"buttons\": null, \"tone\": \"warm\", \"urgency\": 5, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeing": "Hello!",
+    "message": "I'm sorry to hear you're feeling exhausted.",
+    "question": "Do you want to do anything to help yourself feel better?",
+    "choices": [
+     "Go for a walk",
+     "Listen to some music",
+     "Have a warm bath",
+     "Call a friend"
+    ],
+    "tasks": [
+     "Take a break",
+     "Exercise",
+     "Relax",
+     "Chat with friends"
+    ],
+    "steps": [
+     "Select a choice from the list of help options.",
+     "Do the chosen action to de-stress.",
+     "This will help you feel better."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Go for a walk",
+     "Listen to some music",
+     "Have a warm bath",
+     "Call a friend"
+    ],
+    "tone": "warm",
+    "urgency": 3.0
+   },
+   "raw": "```json\n{\n  \"greeing\": \"Hello!\",\n  \"message\": \"I'm sorry to hear you're feeling exhausted.\",\n  \"question\": \"Do you want to do anything to help yourself feel better?\",\n  \"choices\": [\n    \"Go for a walk\",\n    \"Listen to some music\",\n    \"Have a warm bath\",\n    \"Call a friend\"\n  ],\n  \"tasks\": [\n    \"Take a break\",\n    \"Exercise\",\n    \"Relax\",\n    \"Chat with friends\"\n  ],\n  \"steps\": [\n    \"Select a choice from the list of help options.\",\n    \"Do the chosen action to de-stress.\",\n    \"This will help you feel better.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Go for a walk\",\n    \"Listen to some music\",\n    \"Have a warm bath\",\n    \"Call a friend\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello!",
+    "message": "How can I help you today?",
+    "question": "Is there anything I can do to make you feel better?",
+    "choices": [
+     "Go to bed",
+     "Listen to some music"
+    ],
+    "tasks": [
+     "Get a drink of water"
+    ],
+    "steps": [
+     "Respond to the user's statement",
+     "Offer suggestions to the user"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hello!\",\n  \"message\": \"How can I help you today?\",\n  \"question\": \"Is there anything I can do to make you feel better?\",\n  \"choices\": [\n    \"Go to bed\",\n    \"Listen to some music\"\n  ],\n  \"tasks\": [\n    \"Get a drink of water\"\n  ],\n  \"steps\": [\n    \"Respond to the user's statement\",\n    \"Offer suggestions to the user\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello! How can I assist you today?",
+    "message": "I'm sorry to hear that you're feeling exhausted. Is there anything specific you'd like to do or anything you want to talk about?",
+    "question": "Do you have any specific requests or tasks you'd like to complete, or do you just need someone to listen?",
+    "choices": [
+     "Listen to your thoughts",
+     "Do a quick relaxation exercise",
+     "Introduce yourself to someone you know"
+    ],
+    "tasks": [
+     "Listen to your thoughts",
+     "Do a quick relaxation exercise",
+     "Introduce yourself to someone you know"
+    ],
+    "steps": [
+     "Start by listening to your thoughts",
+     "Try a relaxation exercise like deep breathing or gentle yoga poses",
+     "Take a moment to share something that's been on your mind"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Listen to your thoughts",
+     "Do a quick relaxation exercise",
+     "Introduce yourself to someone you know"
+    ],
+    "tone": "warm",
+    "urgency": 4.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello! How can I assist you today?\",\n  \"message\": \"I'm sorry to hear that you're feeling exhausted. Is there anything specific you'd like to do or anything you want to talk about?\",\n  \"question\": \"Do you have any specific requests or tasks you'd like to complete, or do you just need someone to listen?\",\n  \"choices\": [\n    \"Listen to your thoughts\",\n    \"Do a quick relaxation exercise\",\n    \"Introduce yourself to someone you know\"\n  ],\n  \"tasks\": [\n    \"Listen to your thoughts\",\n    \"Do a quick relaxation exercise\",\n    \"Introduce yourself to someone you know\"\n  ],\n  \"steps\": [\n    \"Start by listening to your thoughts\",\n    \"Try a relaxation exercise like deep breathing or gentle yoga poses\",\n    \"Take a moment to share something that's been on your mind\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Listen to your thoughts\",\n"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "",
+    "message": "I understand you're tired. Let me know if you need anything.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"\",\n  \"message\": \"I understand you're tired. Let me know if you need anything.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "gifting": "Take a short break and relax.",
+    "message": "I'm exhausted. Just tell me one thing.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": null,
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "```json\n{\n  \"gifting\": \"Take a short break and relax.\",\n  \"message\": \"I'm exhausted. Just tell me one thing.\",\n  \"question\": null,\n  \"choices\": null,\n  \"tasks\": null,\n  \"steps\": null,\n  \"steps_shown\": null,\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": null,\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hello!",
+    "message": "Is there anything you need to feel better?",
+    "question": "What could you do to feel better?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Rest",
+     "Exercise",
+     "Meditate"
+    ],
+    "tone": "warm",
+    "urgency": 1.0,
+    "density": "one-thing"
+   },
+   "raw": "```\n{\n  \"greeting\": \"Hello!\",\n  \"message\": \"Is there anything you need to feel better?\",\n  \"question\": \"What could you do to feel better?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Rest\", \"Exercise\", \"Meditate\"],\n  \"tone\": \"warm\",\n  \"urgency\": 1,\n  \"density\": \"one-thing\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": null,
+   "raw": "```json\n{\n  \"g:\"\n  \"Hello, how can I help you today? Can I assist you with anything?\",\n  \"message:\"\n  \"I understand you're feeling exhausted. I can help you with that. Try to take a break and relax. If you need something more, just let me know.\",\n  \"question:\"\n  null,\n  \"choices:\"\n  null,\n  \"tasks:\"\n  null,\n  \"steps:\"\n  [],\n  \"steps_shown:\"\n  \"collapsed\",\n  \"confirm:\"\n  true,\n  \"default:\"\n  null,\n  \"buttons:\"\n  [\n    \"Show Options\",\n    \"Dismiss\"\n  ],\n  \"tone:\"\n  \"warm\",\n  \"urgency:\"\n  \"relaxed\",\n  \"density:\"\n  \"normal\"\n}\n```"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": null,
+    "message": null,
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [
+     "Listen to the user and acknowledge their fatigue.",
+     "React with a supportive message or statement."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Share with a friend",
+     "Do something nice for yourself today",
+     "Go for a walk",
+     "Listen to a soothing audio"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": null,\n  \"message\": null,\n  \"question\": null,\n  \"choices\": null,\n  \"tasks\": null,\n  \"steps\": [\n    \"Listen to the user and acknowledge their fatigue.\",\n    \"React with a supportive message or statement.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Share with a friend\",\n    \"Do something nice for yourself today\",\n    \"Go for a walk\",\n    \"Listen to a soothing audio\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  }
+ ]
+}
