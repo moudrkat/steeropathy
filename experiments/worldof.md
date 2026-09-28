@@ -99,6 +99,28 @@ every direction. Nobody looks at their vectors. This is a way to look.
 
   ![later, verbose and warmer against strength, the shuffled vector beside each](../docs/story/three-more.png)
 
+- **Guessed sliders** (`worldof-19`, four strengths, eight worlds, shuffled
+  beside): directions nobody built from sentences, read off the geometry
+  of the others (`fig/synth_directions.py`). The **amount axis** (first
+  principal component of the sliders) turns things per world 4.1 → 2.5 and
+  sky luminance 0.50 → 0.82 from −3 to +3, monotone, the shuffled vector
+  wandering; its sign came out as *less and brighter*. **`crowded` with
+  that axis projected out** still turns the count, 1.6 → 3.6, and darkens
+  the sky as it fills (0.94 → 0.60). So the shared axis is a slider of its
+  own and `crowded` has a part that is not it; the earlier reading
+  "crowded turns because it is the amount axis" was wrong. The **emotion
+  axis** (second component) darkens the sky (0.75 → 0.41) and moves no
+  count; the **mean of the three moods** does little the shuffled vector
+  does not. A vector guessed from the map can be a slider.
+- **What the layers hold** (`jspace-01-aorus-4b-*`, Qwen3-4B, J-lens, six
+  passes each; words the model holds under a direction and never writes,
+  scored against nothing and the shuffled vector): under `sad`: *pill,
+  need, really, everywhere, remove, darkness, tomorrow, someone*. Under
+  `night`: *wide, never, sharp, darkness, water, night, smells*. Under
+  `refusal`: *static, wide, silence, speak, winter*, weaker. These are
+  dispositions read mid-stack, not predictions; the J-lens paper gives no
+  token lead over the logit lens and neither do we.
+
 Story strips, one picture per direction with titles and lines:
 `docs/story/sq-*.png` (`fig/render_worldof.py gallery --rows … --title …`).
 
