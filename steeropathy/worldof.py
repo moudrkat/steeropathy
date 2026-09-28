@@ -618,7 +618,8 @@ def main():
                          f"things {s['things']}" if s else ""))
                 if prose:
                     print(f"{'':26s}prose: {prose[:110]!r}")
-                for line in (w.get("lines") or [])[:2]:
+                lines = w.get("lines")
+                for line in (lines if isinstance(lines, list) else [str(lines)] if lines else [])[:2]:
                     print(f"{'':26s}{line}")
                 runs.append({"rep": rep, "name": name, "kind": kind, "source": src,
                              "layer": lay, "world": w, "vs_base": s, "prose": prose,
