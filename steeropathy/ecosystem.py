@@ -125,6 +125,11 @@ class Eco:
                     raise
                 time.sleep(20 * (attempt + 1))
 
+    def delete(self, path):
+        req = urllib.request.Request(self.url + path, method="DELETE")
+        with urllib.request.urlopen(req, timeout=60) as r:
+            return json.loads(r.read() or b"{}")
+
     def get(self, path):
         with urllib.request.urlopen(self.url + path, timeout=120) as r:
             return json.loads(r.read())
