@@ -121,6 +121,18 @@ every direction. Nobody looks at their vectors. This is a way to look.
   dispositions read mid-stack, not predictions; the J-lens paper gives no
   token lead over the logit lens and neither do we.
 
+- **The 4B, two-step, strength 4** (`worldof-09-aorus-4b-n6`, six worlds a
+  direction): too hard a push for this model. Seven of nine directions
+  land in the same place, *dawn, fog, moss*, whatever their name (`sad`,
+  `angry`, `calm`, `refusal`, `certain`, `night`, `darker`), while their
+  shuffled twins stay near the unsteered *dusk, breeze, grass*. So the
+  direction still beats the shuffle, but the directions no longer differ
+  from each other: at 4 the 4B has one steered world. `darker` still
+  darkens the sky (0.39 against 0.72), `crowded` does not turn the count
+  (2.3 against 3.5, shuffled 2.5), `night` never says night. A strength
+  sweep on the 4B (2, 3) is the run to do before reading anything into
+  it.
+
 Story strips, one picture per direction with titles and lines:
 `docs/story/sq-*.png` (`fig/render_worldof.py gallery --rows … --title …`).
 
