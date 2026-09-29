@@ -88,7 +88,8 @@ def curves(ax, pts, title, ylabel, centre=mean_se, log=False, ylim=None, yticks=
     if yticks:
         ax.set_yticks(yticks, [str(t) for t in yticks])
     # names at the right end of each line, pushed apart if they would touch
-    ax.set_xlim(-3.4, 3.9)
+    lo = min([s for k in ("real", "placebo") for s in pts.get(k, {})] + [0.0])
+    ax.set_xlim(min(-3.4, lo - 0.4) if lo <= -3 else lo - 0.4, 3.9)
     ends.sort(key=lambda e: e[1])
     ys_disp = []
     for x, y, label, color, kind in ends:
@@ -103,7 +104,8 @@ def curves(ax, pts, title, ylabel, centre=mean_se, log=False, ylim=None, yticks=
     ax.set_title(title, loc="left", color=INK, fontsize=13.5, fontweight="semibold", pad=12)
     ax.set_ylabel(ylabel, color=INK2, fontsize=9.5)
     ax.set_xlabel("strength", color=INK2, fontsize=9.5)
-    ax.set_xticks([-3, -1.5, 0, 1.5, 3], ["−3", "−1.5", "0", "+1.5", "+3"])
+    ticks = [x for x in (-3, -1.5, 0, 1.5, 3) if x >= lo - 0.01]
+    ax.set_xticks(ticks, [("−" + str(abs(x)).rstrip("0").rstrip(".")) if x < 0 else ("+" + str(x).rstrip("0").rstrip(".") if x > 0 else "0") for x in ticks])
     ax.grid(axis="y", color=GRID, linewidth=1)
     ax.set_axisbelow(True)
     for s in ("top", "right", "left"):

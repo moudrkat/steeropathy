@@ -74,7 +74,7 @@ def main():
     ap.add_argument("--only", default=None, help="comma list of direction names to draw, one panel each")
     ap.add_argument("--out", default=None)
     ap.add_argument("--title", default="The sliders")
-    ap.add_argument("--from", dest="lo", type=float, default=None, help="leave out strengths below this")
+    ap.add_argument("--from", dest="lo", default=None, help="leave out strengths below this: a number, or name:number,name:number")
     a = ap.parse_args()
     fonts()
     live = [(g, n, k, t, y) for g, n, k, t, y in PANELS if glob.glob(str(HERE / "docs" / "runs" / g))]
@@ -87,7 +87,11 @@ def main():
     fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
-        panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k, a.lo), t, y)
+        lo = None
+        if a.lo:
+            los = {x.split(":")[0]: float(x.split(":")[1]) for x in a.lo.split(",") if ":" in x}
+            lo = los.get(n, float(a.lo) if ":" not in a.lo else None)
+        panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k, lo), t, y)
     for ax in axes[len(live):]:
         ax.axis("off")
     fig.tight_layout(h_pad=1.6, w_pad=2.4)
