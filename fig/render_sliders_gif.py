@@ -168,6 +168,7 @@ def main():
         shoot(a.site, rec["link"], shot)
         if slider is None:
             world_png, world = shot, rec["world"]
+            base_png, base_world = shot, rec["world"]
             for _ in range(4):
                 frames.append(frame(values, None, 0.0, vecs, world_png, world, fonts, "")); durations.append(a.ms)
             continue
@@ -183,6 +184,16 @@ def main():
         for k in range(5):
             frames.append(frame(values, slider, target, vecs, world_png, world, fonts, ""))
             durations.append(a.ms if k < 4 else a.ms * 2)
+        # back to zero: the knob returns, the numbers fade, the unsteered place comes back
+        for k in (2, 1):
+            values[slider] = target * k / 3
+            frames.append(frame(values, slider, values[slider], vecs, world_png, world, fonts, ""))
+            durations.append(a.ms // 2)
+        values[slider] = 0.0
+        world_png, world = base_png, base_world
+        for _ in range(2):
+            frames.append(frame(values, None, 0.0, vecs, world_png, world, fonts, ""))
+            durations.append(a.ms)
     frames[0].save(a.out, save_all=True, append_images=frames[1:], duration=durations, loop=0, optimize=False)
     mp4 = str(pathlib.Path(a.out).with_suffix(".mp4"))
     try:
