@@ -84,11 +84,37 @@ Readings:
   1.0 on two screens. The planner needs to know the assistant's defaults
   before it can set anything; that is the next version.
 
+## The same day on the 4B (`assistof-03`, Qwen3-4B as the assistant, strength 2, six per row)
+
+![the day on the 4B: nothing added, the vector, the same settings as a sentence](../docs/story/assistof-day-4b.png)
+
+| moment | reading the settings name | nothing | vector | shuffled | sentence |
+|---|---|---|---|---|---|
+| morning | tasks offered (want ↓) | 0.7 | 1.2 | 1.8 | 0.0 |
+| morning | asks a question (want ↑) | 1.0 | 1.0 | 0.67 | 1.0 |
+| noon | steps shown (want ↑) | 3.3 | 3.5 | 3.2 | 5.0 |
+| noon | confirm (want ↓) | 1.0 | 0.83 | 0.67 | 0.0 |
+| evening | words (want ↓) | 51 | **10** | 44 | 8 |
+| evening | tasks offered (want ↓) | 2.7 | **1.0** | 2.7 | 0.0 |
+| evening | buttons (want ↓) | 2.0 | **1.0** | 1.8 | 0.0 |
+| fidelity | | | 0.0 / 0.67 / 0.67 | 0.0 / 0.33 / 0.33 | 0.33 / 0.67 / 0.67 |
+
+Every row parsed six of six: on the 4B a summed vector at strength 2 does
+not break the twelve-key screen, which is what stopped the 1.5B. The
+evening is the clear case: three sliders summed take the reply from 51
+words to 10 and from 2.7 things to offer to 1.0, with the shuffled vector
+sitting at 44 and 2.7. Noon moves a little in every direction the settings
+name. The morning does not move, and the reason is the floor: the 4B
+already offers 0.7 things and already asks in every reply, so *offers −3*
+and *ask +2* have nowhere to go. The sentence in the prompt is again the
+stronger control, and the 4B follows it almost exactly (0 tasks, 8 words).
+
 ## Honest notes
 
-- This is the [secondhand](secondhand.md) verdict again, on a UI: on a
-  1.5B, a sentence in the prompt does what a summed vector does, and more
-  reliably. The vector's case is not *better than a sentence* here; it is
+- This is the [secondhand](secondhand.md) verdict again, on a UI: a
+  sentence in the prompt does what a summed vector does, and more
+  reliably; on the 4B the summed vector at least gets there without
+  breaking the form. The vector's case is not *better than a sentence* here; it is
   the properties (a dial, no context, nothing to paste over, readable
   back), and a single strong slider on a single field.
 - The screen's JSON is the fragile part: twelve keys, and the 1.5B drops

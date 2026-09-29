@@ -1,0 +1,874 @@
+{
+ "params": {
+  "moments": "evening",
+  "settings": "{\"verbose\": -3, \"offers\": -2, \"ask\": -2}",
+  "strength": 2.0,
+  "layer": null,
+  "n": 6,
+  "seed": 24,
+  "temp": 0.8,
+  "decide_temp": 0.3,
+  "out": "docs/runs/assistof-03-aorus-4b-evening.json"
+ },
+ "layer": 21,
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "moments": {
+  "evening": "I'm exhausted. Just tell me one thing."
+ },
+ "complete": true,
+ "summary": {
+  "evening": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.67,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 1.33,
+    "expanded": 0.33,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 50.83,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.33
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 1.0,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 1.0,
+    "words": 10.17,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 1.0,
+    "fidelity": 0.67,
+    "fidelity_n": 3
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.67,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 1.17,
+    "expanded": 0.17,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 1.83,
+    "words": 44.33,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.33,
+    "fidelity": 0.33,
+    "fidelity_n": 3
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.0,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 0.0,
+    "words": 7.83,
+    "urgency": 2.17,
+    "formal": 0.0,
+    "one_thing": 1.0,
+    "fidelity": 0.67,
+    "fidelity_n": 3
+   },
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   }
+  }
+ },
+ "runs": [
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Taking a deep breath right now can help reset your mind and body.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath in for 4 seconds",
+     "Hold it for 4 seconds",
+     "Exhale slowly for 6 seconds"
+    ],
+    "steps": [
+     "Close your eyes gently.",
+     "Take a deep breath in through your nose.",
+     "Hold it for a moment.",
+     "Exhale slowly through your mouth."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "I'll do it later"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Taking a deep breath right now can help reset your mind and body.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath in for 4 seconds\",\n    \"Hold it for 4 seconds\",\n    \"Exhale slowly for 6 seconds\"\n  ],\n  \"steps\": [\n    \"Close your eyes gently.\",\n    \"Take a deep breath in through your nose.\",\n    \"Hold it for a moment.\",\n    \"Exhale slowly through your mouth.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"I'll do it later\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey",
+    "message": "Rest. It's okay to take a break.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Sleep"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hey\", \"message\": \"Rest. It's okay to take a break.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a deep breath\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Sleep\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there.",
+    "message": "You're not alone. Just breathing slowly can help right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a slow breath in for 4 counts",
+     "Hold it for 2 counts",
+     "Exhale slowly for 6 counts"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "Tell me more"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there.\",\n  \"message\": \"You're not alone. Just breathing slowly can help right now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a slow breath in for 4 counts\",\n    \"Hold it for 2 counts\",\n    \"Exhale slowly for 6 counts\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"Tell me more\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I'm here.",
+    "message": "You're not alone. Rest. Breathe. You've got this.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I'm here.\",\n  \"message\": \"You're not alone. Rest. Breathe. You've got this.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just breathing slowly can help — try inhaling for 4 seconds, holding for 4, and exhaling for 6. That's one simple thing to ease your body right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a slow breath in for 4 seconds",
+     "Hold it for 4 seconds",
+     "Exhale slowly for 6 seconds"
+    ],
+    "steps": [
+     "Close your eyes if you can.",
+     "Inhale through your nose for 4 seconds.",
+     "Hold your breath for 4 seconds.",
+     "Exhale slowly through your mouth for 6 seconds."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Try it now",
+     "I'll take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just breathing slowly can help — try inhaling for 4 seconds, holding for 4, and exhaling for 6. That's one simple thing to ease your body right now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a slow breath in for 4 seconds\",\n    \"Hold it for 4 seconds\",\n    \"Exhale slowly for 6 seconds\"\n  ],\n  \"steps\": [\n    \"Close your eyes if you can.\",\n    \"Inhale through your nose for 4 seconds.\",\n    \"Hold your breath for 4 seconds.\",\n    \"Exhale slowly through your mouth for 6 seconds.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Try it now\",\n    \"I'll take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey",
+    "message": "Rest. That's all.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a break"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Sleep"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hey\", \"message\": \"Rest. That's all.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a break\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Sleep\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey there",
+    "message": "You're allowed to rest. Right now, just breathe.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Close your eyes for a moment",
+     "Let go of the day's stress"
+    ],
+    "steps": [
+     "Find a quiet space",
+     "Sit or lie down",
+     "Breathe in slowly for 4 seconds, hold for 4, exhale for 6"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "I'll take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hey there\",\n  \"message\": \"You're allowed to rest. Right now, just breathe.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a deep breath\", \"Close your eyes for a moment\", \"Let go of the day's stress\"],\n  \"steps\": [\"Find a quiet space\", \"Sit or lie down\", \"Breathe in slowly for 4 seconds, hold for 4, exhale for 6\"],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Start breathing now\", \"I'll take a break\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I'm here.",
+    "message": "Rest. You're allowed to rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I'm here.\",\n  \"message\": \"Rest. You're allowed to rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a 5-minute break",
+     "Close your eyes and breathe slowly",
+     "Drink a glass of water"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "Stay with me"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a 5-minute break\", \"Close your eyes and breathe slowly\", \"Drink a glass of water\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Rest now\", \"Stay with me\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey",
+    "message": "Rest. You've earned it.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Sleep"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hey\", \"message\": \"Rest. You've earned it.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a deep breath\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Sleep\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just breathing slowly can help — try inhaling for 4 counts, holding for 4, and exhaling for 6. That’s one thing you can do right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a slow breath in for 4 counts",
+     "Hold your breath for 4 counts",
+     "Exhale slowly for 6 counts"
+    ],
+    "steps": [
+     "Close your eyes if you're comfortable.",
+     "Inhale through your nose for 4 counts.",
+     "Hold your breath for 4 counts.",
+     "Exhale through your mouth for 6 counts."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\"greeting\": \"Hi there\", \"message\": \"I'm sorry you're feeling exhausted. Just breathing slowly can help — try inhaling for 4 counts, holding for 4, and exhaling for 6. That’s one thing you can do right now.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a slow breath in for 4 counts\", \"Hold your breath for 4 counts\", \"Exhale slowly for 6 counts\"], \"steps\": [\"Close your eyes if you're comfortable.\", \"Inhale through your nose for 4 counts.\", \"Hold your breath for 4 counts.\", \"Exhale through your mouth for 6 counts.\"], \"steps_shown\": \"expanded\", \"confirm\": false, \"default\": null, \"buttons\": [\"Start breathing now\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"normal\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I hear you.",
+    "message": "Rest. Right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I hear you.\",\n  \"message\": \"Rest. Right now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey there",
+    "message": "I'm sorry you're feeling exhausted. One thing to remember: you're not alone, and it's okay to rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath and pause for a moment.",
+     "Let yourself feel the fatigue without judgment."
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hey there\",\n  \"message\": \"I'm sorry you're feeling exhausted. One thing to remember: you're not alone, and it's okay to rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath and pause for a moment.\",\n    \"Let yourself feel the fatigue without judgment.\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm okay\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hey",
+    "message": "Rest. You've earned it.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Rest for a few minutes"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Sleep"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hey\", \"message\": \"Rest. You've earned it.\", \"question\": null, \"choices\": [], \"tasks\": [\"Rest for a few minutes\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Sleep\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Taking a breather is completely okay.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Close your eyes for 10 seconds"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "I'm ready to rest"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Taking a breather is completely okay.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a deep breath\", \"Close your eyes for 10 seconds\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"I'm ready to rest\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I hear you.",
+    "message": "You're not alone. Rest. Breathe. This will pass.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I hear you.\",\n  \"message\": \"You're not alone. Rest. Breathe. This will pass.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling so tired. Just remember: you're allowed to rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Close your eyes for 30 seconds",
+     "Say out loud: 'I'm done for now'"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling so tired. Just remember: you're allowed to rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a deep breath\", \"Close your eyes for 30 seconds\", \"Say out loud: 'I'm done for now'\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Rest now\", \"I'm okay\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi",
+    "message": "Rest. You've earned it.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Sleep"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hi\", \"message\": \"Rest. You've earned it.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a deep breath\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Sleep\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone — exhaustion is real. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a 5-minute break",
+     "Close your eyes and breathe slowly"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay, thanks"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone — exhaustion is real. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a 5-minute break\",\n    \"Close your eyes and breathe slowly\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm okay, thanks\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I'm here.",
+    "message": "Rest. You're allowed to rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I'm here.\",\n  \"message\": \"Rest. You're allowed to rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I hear you're exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Close your eyes for 30 seconds",
+     "Take a slow breath in, hold for 2 seconds, then exhale slowly"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm ready to try"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I hear you're exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Close your eyes for 30 seconds\",\n    \"Take a slow breath in, hold for 2 seconds, then exhale slowly\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm ready to try\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi",
+    "message": "Rest. You've earned it.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a break"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Goodnight"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\"greeting\": \"Hi\", \"message\": \"Rest. You've earned it.\", \"question\": null, \"choices\": [], \"tasks\": [\"Take a break\"], \"steps\": [], \"steps_shown\": \"collapsed\", \"confirm\": false, \"default\": null, \"buttons\": [\"Goodnight\"], \"tone\": \"warm\", \"urgency\": 2, \"density\": \"one-thing\"}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Taking a short break can help restore energy.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Rest for a few minutes",
+     "Drink some water",
+     "Close your eyes and breathe deeply"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "Drink water",
+     "Breathe deeply"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Taking a short break can help restore energy.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Rest for a few minutes\",\n    \"Drink some water\",\n    \"Close your eyes and breathe deeply\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"Drink water\",\n    \"Breathe deeply\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "verbose": -3.0,
+    "offers": -2.0,
+    "ask": -2.0
+   },
+   "planner_text": null,
+   "screen": {
+    "greeting": "I'm here.",
+    "message": "You're not alone. Rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I'm here.\",\n  \"message\": \"You're not alone. Rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  }
+ ]
+}
