@@ -7,7 +7,7 @@ raises the token's future logit. That is a map with thousands of named
 points, built from no sentences. Every slider we built from sentences is
 placed on it by cosine, and the words at the top are what the model calls
 the slider. On Qwen3-4B at layer 21: `crowded` is *vibrant, bustling,
-flourish, expansive*; `formal` is *jurisdictions, legislative, statutory*
+flourish, expansive*; `formal` is *jurisdictions, legislative, manuscript*
 and its far end is *funny, laughs, vibes, yummy, kids*; `urgent` is
 *catastrophic, emergency, immediate*, far end *charming, cute, nice*;
 `verbose` is *extraordinarily, incredibly, exceedingly*; `night` is
