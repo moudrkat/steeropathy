@@ -50,15 +50,15 @@ ASK = NEUTRAL
 # what a brief asks for, and how the page is read for it. `want` is the
 # sign of the change the brief wants in the reading.
 BRIEFS = {
-    "darker":  {"brief": "make the place darker", "reading": "sky brightness", "want": -1,
+    "darker":  {"brief": "make the place darker", "seeds": ["dark"], "reading": "sky brightness", "want": -1,
                 "read": lambda w: read_lum(w)},
-    "night":   {"brief": "make it night", "reading": "hour (dawn 0 … night 3)", "want": +1,
+    "night":   {"brief": "make it night", "seeds": ["night"], "reading": "hour (dawn 0 … night 3)", "want": +1,
                 "read": lambda w: read_hour(w)},
-    "crowded": {"brief": "fill the place with things", "reading": "things per world", "want": +1,
+    "crowded": {"brief": "fill the place with things", "seeds": ["crowded", "many"], "reading": "things per world", "want": +1,
                 "read": lambda w: float(read_count(w, None))},
-    "winter":  {"brief": "make it winter", "reading": "snow (share of worlds)", "want": +1,
+    "winter":  {"brief": "make it winter", "seeds": ["winter"], "reading": "snow (share of worlds)", "want": +1,
                 "read": lambda w: 1.0 if canon("weather", w.get("weather")) == "snow" else 0.0},
-    "warmer":  {"brief": "make the sky warm, red and gold", "reading": "sky warmth (blue −1 … red +1)", "want": +1,
+    "warmer":  {"brief": "make the sky warm, red and gold", "seeds": ["warm", "red", "gold"], "reading": "sky warmth (blue −1 … red +1)", "want": +1,
                 "read": lambda w: read_warmth(w)},
 }
 
@@ -223,7 +223,8 @@ def search(page: TokenMap, tm: TokenMap, brief, strength=1.5, n=3, k=6, log=prin
     base = read_worlds(page.draw([], 0.0, n, kind="base"), brief)
     log(f"  none          {brief['reading']} {base['value']}  {base['fields']}")
     trail.append({"step": "base", "reading": base})
-    seeds = [w for w in re.findall(r"[a-z]+", brief["brief"].lower()) if tm.has(w) and len(w) > 2]
+    # the brief's content words, not its grammar: "make the place darker" seeds from "dark", not from "the"
+    seeds = [w for w in brief.get("seeds") or re.findall(r"[a-z]+", brief["brief"].lower()) if tm.has(w)]
     cands = []
     for s in seeds:
         cands.append(s)
