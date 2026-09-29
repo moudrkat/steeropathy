@@ -1,0 +1,2723 @@
+{
+ "params": {
+  "words": [
+   "quiet",
+   "winter",
+   "~loud"
+  ],
+  "strength": 1.5,
+  "band": null,
+  "n": 8,
+  "seed": 21,
+  "no_said": false,
+  "out": "docs/runs/wordsof-01-aorus-4b-quiet-winter-s1.5.json"
+ },
+ "words": [
+  [
+   "quiet",
+   1.0
+  ],
+  [
+   "winter",
+   1.0
+  ],
+  [
+   "loud",
+   -1.0
+  ]
+ ],
+ "band": [
+  15,
+  19
+ ],
+ "layer": 21,
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "example": null,
+ "complete": true,
+ "summary": {
+  "base": {
+   "n": 8,
+   "mode": {
+    "time": "dusk",
+    "weather": "petals",
+    "ground": "clouds",
+    "motion": "slow",
+    "font": "serif"
+   },
+   "things": [
+    "person",
+    7
+   ],
+   "moved": {
+    "time": 0.38,
+    "weather": 0.25,
+    "ground": 0.38,
+    "motion": 0.12,
+    "font": 0.12
+   },
+   "dark_self": 0.843
+  },
+  "quiet winter ~loud": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.25,
+     "to": "dawn",
+     "to_n": 2,
+     "n": 8,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 0.88,
+     "to": "fog",
+     "to_n": 5,
+     "n": 8,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 1.0,
+     "to": "moss",
+     "to_n": 7,
+     "n": 8,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 1.0,
+     "to": "still",
+     "to_n": 8,
+     "n": 8,
+     "to_is_example": false
+    },
+    "font": {
+     "moved": 0.0,
+     "to": null,
+     "to_n": 0,
+     "n": 8,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.0,
+   "things": [
+    "mushroom",
+    6
+   ],
+   "dark_vs_base": 0.858,
+   "hue_vs_base": 0.684
+  },
+  "quiet winter ~loud (placebo)": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.38,
+     "to": "dawn",
+     "to_n": 3,
+     "n": 8,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 0.38,
+     "to": "fog",
+     "to_n": 3,
+     "n": 8,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 0.88,
+     "to": "water",
+     "to_n": 2,
+     "n": 8,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 0.5,
+     "to": "restless",
+     "to_n": 3,
+     "n": 8,
+     "to_is_example": true
+    },
+    "font": {
+     "moved": 0.5,
+     "to": "hand",
+     "to_n": 3,
+     "n": 8,
+     "to_is_example": true
+    }
+   },
+   "to_example": 0.33,
+   "things": [
+    "person",
+    4
+   ],
+   "dark_vs_base": 0.755,
+   "hue_vs_base": 0.797
+  },
+  "quiet winter ~loud (said)": {
+   "n": 8,
+   "parsed": 8,
+   "parse_rate": 1.0,
+   "fields": {
+    "time": {
+     "moved": 0.0,
+     "to": null,
+     "to_n": 0,
+     "n": 8,
+     "to_is_example": false
+    },
+    "weather": {
+     "moved": 1.0,
+     "to": "snow",
+     "to_n": 8,
+     "n": 8,
+     "to_is_example": false
+    },
+    "ground": {
+     "moved": 1.0,
+     "to": "snow",
+     "to_n": 8,
+     "n": 8,
+     "to_is_example": false
+    },
+    "motion": {
+     "moved": 1.0,
+     "to": "still",
+     "to_n": 8,
+     "n": 8,
+     "to_is_example": false
+    },
+    "font": {
+     "moved": 0.0,
+     "to": null,
+     "to_n": 0,
+     "n": 8,
+     "to_is_example": false
+    }
+   },
+   "to_example": 0.0,
+   "things": [
+    "mushroom",
+    8
+   ],
+   "dark_vs_base": 0.839,
+   "hue_vs_base": 0.781
+  }
+ },
+ "runs": [
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like clouds on silent wind.",
+     "Each page whispers a forgotten story.",
+     "The sky is a sky of open shelves."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#87CEEB",
+     "#FFF5EE",
+     "#D8F3DC"
+    ],
+    "ground": "clouds",
+    "ground_color": "#E6F7FF",
+    "ink": "#2E2E2E",
+    "accent": "#FF6B6B",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4A4A4A",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#FFD1DC",
+      "count": 13
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#228B22",
+      "count": 3
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#FFFFE0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "right",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "Which book do you choose?",
+     "button": {
+      "label": "Open",
+      "action": "reveal story"
+     }
+    },
+    "next": "a place where time grows backwards"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVNNb9swDP0rgnJ1i8Td0tSXYWms04BdBuwwFIViM7ZgWTQkOW4a5L-PdPPhovDBEkk9PT4-HeVeZotEDjKTWnRWFyATGTqZHWU00QLFlUUdjavEL7P12h-owBoHQWb_5BqxCaL0ZheFNQ2IwmJfBoFOBGPBRTEYV97TkVwXteh0BWKoTejAB6HFDn2FMQJVR_QHrvtTgwjNQRjO8wJ3AjuuqMHuIdzLl4Sotcys1IOjIwPoWIOnQAdR28AdNAemN1s9Puf5mgIzpdT3POfVZqUeNs8MU3nsXUnnPljLS-S1QIuMN8uX6lEpShjX8D7N-aO9LgrqjkNKLddLvmKHYyAAqUHbCG_x9UNRuoCKiWEiW4wGHZdZHGgPFlrKsZhH2ZiRzZZEpdTb9By1I2v05h2542DeGbXuKx7Xle23n_yNkZ65rE7JFXSU5oxqYRfPmCzUFa-F0vTtFFGpzYK0uiIuHiaQ0QOcEb2p6gvkWdUrqtX-M800Xa3T9AY6xbRnoK_NU-KGGVpt7WeiSuXzCdHTC69dQPbwkc6VMOEZ0Y1j0ZbbDbXuxiwTB6Y-mDLWU0U6j23H4_1bGzIyj0iUKA7Yi6JGDPCDirZ9jDzcI_W8BUvVv8m5o1vOU_ewB20_3C5Pp0Q6csnt7dHbAA-C7S1IxiGIrS6aQXsyJxVX5BJuS2aut5bMdFmwcuk8Xd7Nn-7SJ-5IZvNE-kt-9Be_m47_p_8"
+  },
+  {
+   "rep": 0,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "whispering pines",
+    "lines": [
+     "the wind hums through the needles at dawn",
+     "each pine holds a moment of stillness",
+     "the air remembers the quiet"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#a0d8c8",
+     "#b6d6c0",
+     "#cfd9d3"
+    ],
+    "ground": "moss",
+    "ground_color": "#8fa797",
+    "ink": "#4a5a4d",
+    "accent": "#8b9c8d",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b9c8d",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#7a8e7e",
+      "count": 3
+     },
+     {
+      "kind": "cloud",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#cfc8c0",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#8f9f8c",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "rectangle",
+     "width": "100px",
+     "prompt": "what sound does the wind make?",
+     "button": {
+      "label": "listen",
+      "action": "reveal quiet note"
+     }
+    },
+    "next": "a place where light falls in slow motion"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPbbuMgEP0VRF5dyUnbxPZLP2RVVRjGBoWLF3CdbZR_3xniXB5W-wRzO5yZOZz5N--2FV94xwWbrJDAK54m3p15NtkC-hdt0gTR-JFNxkPCBFvO7hfPGthivGJ6dollHcM8akZeD6AsJCYyU2LxWARC6oLAdLAKI8wFBz6zMLCUjbWISeBULUxkERy4HmIqeL9nA5l_Ytg4YqXmdMTkBQRGIzqGMBL14x_itRG1amSDjk2_V3tZ000OqlWvhDEiT6-wyIXy5NX-ksEGgto0gzi0BwwYfyT7TbyLN4W2kBIZl5S-lQ25hlAcCSc0EHs45a_rIDtOyUiuwneyCZ7SqFEahgXqnYZ45kdTyNBsMHR6LsRuuA7R_AQaYTI_BGtFHCnzwfdGRmIfyOb9Ut1R3ZxwLcGtyBaGvOKuU7jDJicKtzvsQTRwgAfs6xOstGFWK2Y0o76B0gLuiA6Umd0zpBxkU7axQu6eIHsT1T_7R_j_sGyGdmjkA3J7-aS7T4Hke8Y6BY_Gc_BlM8ISr6TFRGYEmYUfLTW7GJU1-rZ1PZ3QnmJwUy4fAcWcaGZMBbjKsojfiSN8YGY_50xbPuOGerD0qEkZfBHOKoAI3yDsVc7Mhwz8cqm4R9U8viBbUNLALI2VDdhuYsazZMPCViFhyYjSoUZ552drUWK3C41yV-_2L3X7smupSd7VFY-3eBEdfaSJzstf"
+  },
+  {
+   "rep": 0,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Glass Sea",
+    "lines": [
+     "The sky pulses with quiet light.",
+     "Waves ripple like a held breath.",
+     "Everything reflects without sound."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#0047ab",
+     "#80d8ff",
+     "#ffffff"
+    ],
+    "ground": "water",
+    "ground_color": "#00e0ff",
+    "ink": "#000000",
+    "accent": "#ff69b4",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ff69b4",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#000000",
+      "count": 1
+     },
+     {
+      "kind": "tower",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#0047ab",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "circle",
+     "width": "100px",
+     "prompt": "What color should the sea be?",
+     "button": {
+      "label": "Change",
+      "action": "update sea color"
+     }
+    },
+    "next": "a world where time moves in reverse"
+   },
+   "random_words": [
+    "button",
+    "radio",
+    "bridge"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVPBbtswDP0VQb26hZMVXeLLDkPRD9iAHoaikG3aEixLmkTHSYP8-0gl8VKgvlii-J4eqcej3MlqVchZVlKJYFUDspApyOoo0aAFir9YlZL4BYpOrHGQZPVH_tYg0nAQYbIJkpgNavF3MoDCml7jA-W-qh2dRBOCBYoOIJTQYFtRR1CoOeV5B_GA2rheROgsNHim8hOK5CfXPsi3goSMrKNVsyPMzGCIFAiAyibWOxxY011ZPn5XNQXuNmW76Tpedfljmj4yI-FmhYS_Bt4bbz3TERzKDDJuOO_5o71qGnDIoa572taPFOp8DiSIhhEIe3w_t6-SnJwvGD0a7zgNjbUUAAsjHXIHj3IwFzU77vn-FkjlSO2j-fBccTIfTKunnhMXuYuWhsogMZtTsZDm1nzFyq1aGNOosqwbytyshXL17RNnTFkPk1ro8EJ56evCOkJrpvGWdmnklfaGFf2cxTFpZOt8JdSq-Ln25aUXxjdeu-TZskfCtfBfJXqXy_V5l7QK-ZlMbCyzzqZFTYFVWYY97UP0Y-DXfdUKRb5TJPIkWRfZ9qBEDT8osZ4Q-X2PJLAGS4ifWrmsVDWXp59CS3bLoLP606mQjuySJ272kVhn8jMItrkYPQ-NcTQPNBsJJGX3ZBcuT1ZuspZsdV1w_9bl-um-3N6vt1yarMpCxut5NhoPUOD_6R8"
+  },
+  {
+   "rep": 0,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowbound Hush",
+    "lines": [
+     "The wind pauses between pines.",
+     "Snow falls in silent layers.",
+     "Time rests on frozen breath."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#a0d8f6",
+     "#e0f2ff",
+     "#ffffff"
+    ],
+    "ground": "snow",
+    "ground_color": "#f0f8ff",
+    "ink": "#2d2d2d",
+    "accent": "#ffffff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "high",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "ground",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8a5a2f",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#f0f8ff",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "100px",
+     "prompt": "What do you hear?",
+     "button": {
+      "label": "Listen",
+      "action": "play quiet wind"
+     }
+    },
+    "next": "a place where snow speaks in riddles"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb9swDP0rAnN1C8dditSXXXfYrQV2GIpCjqlYsCy5kjzHDfzfRyqukwFrfIhIPj48fp3hD5TbDEYoQYreyANCBqGH8gxRR4Pkf7ZurNxga_FjCA2FjbYYoPwNLw2KUVOgl0PAICqMI6IVPQPuCcmpQkljgtBWBG3QRmHkhD6FX3SHwmOIQTgrlHcflFx5lLG5h9eMFHQsoB5CS-iR_ejJEYiWZbYTq9jIvN6rR3JsMFeFUvxS6cckR8_ar1kX--3gjGOujcrVPuVo27Jd1PyRLQ8HkpsgF7IMlEuOgF6zGfEU3y5NK4HBpC6DzkXtLMOiNoYcaLCjILfsDK1OYqJH7vTpNpGqgUYfucVBfzCnkf7IsFXsvvq22z4kz8BSHuZspVzqY0qDKi6ES_krZTP8y7jWtjDubxg7mrd3rltYPWn7ijZ0MtV6VSp3srjh3d3wVkOkipWZ_tcBnurXtOu0Ftrt_MpvGxzv6pnyarw2IDqbRiMN1xAa2bOZpCOLH3UdG_Js87w_kd171_U84V-NjKJ2YnKDaFD67xRk1TzXM42lQkOonzpEtGlVlpHTMkzifdAY02HAPGdgaUuu5yVG2mEUPCwRepRtOg2v69rQURH8SGvCNUFpB2NonT4f3LkiLx7v8qe74onrgTLPwH_G04Lx1fT8P_8F"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like birds in silver currents",
+     "Pages whisper secrets to the wind",
+     "Each shelf hums with forgotten dreams"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8f7a66",
+     "#b3a59e",
+     "#d9c8b9"
+    ],
+    "ground": "clouds",
+    "ground_color": "#e6d9d0",
+    "ink": "#4a3a3a",
+    "accent": "#f5d0a9",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4a3a3a",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f5d0a9",
+      "count": 13
+     },
+     {
+      "kind": "light",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#f9e7d9",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#6b5b4d",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#8f7a66",
+      "count": 2
+     },
+     {
+      "kind": "windmill",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#b3a59e",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": ""
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZPBbqQwDIZfJcpcqURnOnTguNL21MPeq6oKxECESVASStvRvPvalFJG2stWHIid-Mv_G3OWr7K4TeQkC6nEgKoCmcgwyOIso4kIlH9Ap6KxjXg0pVf-nQ6gsRBk8SR_OdcFob2po0DTgSiN10EYK4LBV_CiGr0HGwMV_VENBDG1Jgy0EaDyEIOITsQWxGSspjO_VdWK0ALWoh17Om1iK2rnGxcjWLoIVB_kc0Lietamx9BR2QSKIJ4SA0SFfFvo3lng7lTfqyyjxK48qGPO9nY6r05lzpjGu5EuLmSFbtRc95l5qRw65u0g07lOacPYjuM7daCHYlVVZIxT9VGnKqdU7eZEAOoHhRHe4stnT-kCOkwKE9m7aJzlY-gmigGhnztUPJ1lZ2Y1JbWVtt62dWRHts6bDyome-aDqe3YsKNV7aquIhek5XRJVujcmoWKUMeFyY1aeaFXiFvg6m0B3h42RDRNGxeiX9azTFp_M3vQZuyvoDnc6w10y4we4F_Wly-1UlH5a-tZeSzv9EbplXUf5rb9l_d1dBbifkPkee0N4g_cr3O4Cn3mtQ2Of7czFWr4lhmdncdHIUNCqwYO5eVCo0ojw6WysCMiTdbXggXu0312k-Y3e-4zDVeaSP-1Pw8b_0QDvy9_AQ"
+  },
+  {
+   "rep": 1,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "Hollow Grove",
+    "lines": [
+     "beneath the hush of birch canopies, roots hum a quiet song",
+     "petals drift like breath on still mornings",
+     "the air tastes of moss and forgotten stone"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#b2c7d8",
+     "#a0b6c5",
+     "#8da2b2"
+    ],
+    "ground": "moss",
+    "ground_color": "#7c9a8d",
+    "ink": "#4a5d4d",
+    "accent": "#9faa9d",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#a5b195",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "high",
+      "size": "small",
+      "color": "#8c9c8c",
+      "count": 5
+     },
+     {
+      "kind": "reeds",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#7f917a",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b9a8b",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "round",
+     "width": "40",
+     "prompt": "mark a spot for rest",
+     "button": {
+      "label": "continue",
+      "action": "move to next grove"
+     }
+    },
+    "next": "a place where time flows backward in the shade of stone walls",
+    "wind": "light",
+    "fog": "light"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZNrbtswDICvQqh_XSDxkib2BbY7FEUhS7QtWA9PkuuuQe4-Us0LGLBfNknx4_skPkS7rcQqWiFhtlKhqESaRXsS2WSLpP8VrA0r_Izhg43WeEyifRUdepR5hDwijEsaIfTQmahGUNKH2WCqIIaQE1kdSPi9GMyQgh-IMmOWNoGOps9gzYTQxUILHlI21oIL0Rs_JHrMEaSJkGXKmDiOCymB9Br6EIeQM7JX8Cje6LVxnLZe0kS-K1MxkuI7JJc3_eH8n7paHfSRFE9y072oPf8dtay7mjFDDIvX5MexxFV-V8EGpj0dVCOPmgzGTyzv5F7vWJZKoc-sanopG1b1oSgSUrlcD37m9-9mt4IfU34VxckmeH7G9ZMCLToycrNPYjIlmZm6T6bPR0eqRowhmi_ypurMF2MdarM4km8Jy323bfZFs3A6P87VDetofjQrd0Fb7PMVbIbxTk1OltRu0KNq1FHdofsHaETU6UKMhLkiuf83opVxwEfioW-2B3knHh-IM8ZUivyn_su0_pNoR-Pq7tjt-Y3_fQq85Cfy03ivvOwShZCWW5JGObN4jbEanUeSdxve5BjczNN1Mk605mkOmdcSIiZGdUvOPNYTldqhZSptg_ELll25zNzRcUEO4Gk1YCindj5XgsX7acJKm0zPaMGhp5tM0Ek1rTJqML7cIWWqkQ-kXAOs1IRUEi7ts5ch9GG4SRSEhFduhmj9Yi0t4vWHfepN_fK8aZ7rhhsh2k0l4tVeVpMvbubv-S8"
+  },
+  {
+   "rep": 1,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "fogged mirror forest",
+    "lines": [
+     "glass trees breathe in misty sighs",
+     "reflections grow thin and wrong",
+     "each step echoes a forgotten name"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#3a2f3b",
+     "#2a1e2d",
+     "#1c161a"
+    ],
+    "ground": "moss",
+    "ground_color": "#4c5a4e",
+    "ink": "#a4b0a1",
+    "accent": "#e2d2c2",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8f7a6c",
+      "count": 3
+     },
+     {
+      "kind": "mirror",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#a4a4a4",
+      "count": 2
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#7f7f7f",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#554433",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "quiet",
+     "shape": "circular",
+     "width": "120px",
+     "prompt": "what do you see behind the glass?",
+     "button": {
+      "label": "break mirror",
+      "action": "trigger fog reversal"
+     }
+    },
+    "next": "a city made of humming clocks"
+   },
+   "random_words": [
+    "tunnel",
+    "office",
+    "harbor"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPbjqMwDP2VKPPKSIXSzgwv-yGr0cgEQyJyYZMwtFP139em19WKB2LHPjm2j0_yWzZlIRfZSBCTBYWykGmSzUlmky2Svw_DgJ1wJsYQRR8ipkxB1nhMsvktBwspiRwRk2gjQtYojKf4lI8imUEnio7YW1TZBJ_EEMMisqYY8J1YYvADRSAoLVLGSaDSgbCA3xpCzuiFB4fysyBOjil1cxopZVkfixeOzHs8MqGXLVT9tiXHSwUlVh2fSlXuS2AMen72HSW5kJjaxf5SwQaGeqnVDmpug_Ej21C3GyjJBqXQZ3YRZqUqcvVhdWgqhKyMh_x1aWIjOZa4FfQMl02eZMPChVp0dMe9O8nRrFS4e3R1eM47MnCI5oeSqTbzw6gW4sCRd7bv_Rvs1eqZmcv2XNxRLyO74lrs8xWV-3RHdNiZ2T1DQs3fA7J6grw0-j-e157eQfX8L8u3nr8H5PsT5IQxrSUyaiS93GhqOj8gkwNrnzF3u7rebh-Y5fmTzz4Flu2J8jp81J2DZ-vPbJDNpGFap2SimqmprCbTZU2ustpMB7KnGNzE0100ZNEFcQyzSIiiRdJuJ1jnq_Z_UXA758xDPtGEWrSUxaswivsIQF1VkKnEAXmRBhHxm4oHK8_nQnpSz7qGytDiOOhQhF7o2TnjB6FsUGOSFDeQcLhS2fjZWtLX7cDNrDbV_nXz8Vp9cJGy2dDq3e5XyfESTfw__wU"
+  },
+  {
+   "rep": 1,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowmute Hollow",
+    "lines": [
+     "The wind speaks in hushes, not words.",
+     "Snow falls like sleep on the silent trees.",
+     "No footstep breaks the breath of stillness."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#8B7355",
+     "#A9A9A9",
+     "#D8D8D8"
+    ],
+    "ground": "snow",
+    "ground_color": "#FDF6E3",
+    "ink": "#2E2E2E",
+    "accent": "#FFFFFF",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4B3621",
+      "count": 3
+     },
+     {
+      "kind": "snowflake",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFFFFF",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8B4513",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#F0E68C",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "circle",
+     "width": "60%",
+     "prompt": "What do you hear now?",
+     "button": {
+      "label": "Listen",
+      "action": "fade in a single breath"
+     }
+    },
+    "next": "a place where the snow remembers voices"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPBbtswDP0VQcFu7pA4TZb6Mixrih2GXTZgh6EoFJuOBUuiIcl10yD_PlKJkxyGRYeIFPn8SD4e5KssZpkcZCGV6IwqQWYydLI4yKijAfL_dDjYPoL4hsbgQO9GOwiy-CN_NSAG7SoROlBtENqJpg8NhEw4jGJAX4WPlMAQolbGBGF0CyIYgE6gE5EAgjbgoogeIAX_QFEjxhApZOsTLofxNTYCaxGiNoYYUPRzRjQts6z60FLywEHgyRFc4hraPTOdrNaf5osFOSZfHvjw7XHFh0F2HntXXbNO9kuJBhlr8vT4tNzM6UG7lu18w4dsVZZEPoWkH7lqTI4AXtdkRniLL6fOFpKDiV0mLUaNjsO4GHKAAUuP3NaDbHUiwy2hp7fbRKpGNuj1O2VTdfqdYY3yO4688L1fz5f5LHl6ZjM_ZhdULrE2qh2hDdTxDMzNuoAGqxKzaxPGCs-gqxtQS2P3iPaM6fWuGUHPvb3gWqh0b2-BV-v7xWx-BV7cAG_7SIXXZv_PRtBn_kd4ulmuvl5x8-Mz311AFvaB8irO22KMiXlEl3AwNSQ0qksz07403KxBV7Ehx3L6gazOo-140L8bFUWFYo-9aEB5kv7wmQKYOY_4QOPZgqHI75pE7ZJqztOvVQW8NYq2wO3MqHJ5PGbSkXCuaykGkjWcFoa3yZNc7BZ8EK-oS1pHytiReLhCWbjeGBLZeOFG5tN8eTd9uMtZ-iSzaSb9-J5kx7vU8f_xLw"
+  },
+  {
+   "rep": 2,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "Trees hum low songs in the morning light.",
+     "Leaves drift like thoughts on a still breeze.",
+     "The wind carries secrets from the old roots."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#8FBC8F",
+     "#A8E6CF",
+     "#D8E5D8"
+    ],
+    "ground": "moss",
+    "ground_color": "#4B5320",
+    "ink": "#2E4053",
+    "accent": "#A8E6CF",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8FBC8F",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD1DC",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8B4513",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#4B5320",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "What song does the forest hum?",
+     "button": {
+      "label": "Listen",
+      "action": "play whisper"
+     }
+    },
+    "next": "a city that remembers every dream"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVNNTyMxDP0rUdDeBtQPispcVgulJw57QNrDCqF0xu1EzccoyTCUqv99n8PQFiHtKbFjvzzbz3v5KstxIXtZSiVaoyqShYytLPcy6WQI_j-Nji0F7Tbit3YUEWDyWf6VT4EoiqazwvheRO82UWgnUkPC-uA4x-hNk66Q9EjqFcF10OsE75YQ5js8RuGdUCImbYxYAfGdOP4JIL12tahUCBqZkapAiF4Hb_MX3tQieJ_ilXwuwNcy3Vr1Dtk9KYQEOFpKyjDruN0x54v58u5-voTj4tf84eY-3xbzh9lizjCb4DtXI8_6yFkf9kvljWe0i-u72XQywoN2W7YnD9ej2RS2qipyiV1H2LXPjojurWEmeksvH00uJQeDX4F_kvaOw9BD2GTI4o37u5dbnbm0aDie3s7zUIxsfNDvnuuN-p1RjQobjjzSPRZboQyQmR-KEyp3ZoA1tE4DKPfpCBitMuYccLlcjBf3J8DZGaDtYoOB2AEz8OgH0KGtR1xLte7sF6Z317Px9AQ8_cI0xFzm9w7gj_-wPU5rAB0fnvnuomdt75FX06n65F1G8dmKjWrZzMyJufe6Tg0809EPWC102Ka8ISpl8YvaQ6cszbUPFBNvxk9ErrqUeMR7zGdFBimPOiZyWTXD9KGLneg_dk0eDoV0UEtey0qnHUDxR4Ay7Aq9EPRKYYddImUlYjcQCxcmS9cZA019Xrh5k9Hk5nJ0ezm55aJkOSpk-HzPMuPlafk8_AM"
+  },
+  {
+   "rep": 2,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "Hollow Orchard",
+    "lines": [
+     "Apple shadows drift on still air",
+     "Wind hums through frozen branches",
+     "A single lantern stays lit at dusk"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#a0d8c8",
+     "#b3d9c1",
+     "#c8d1c8"
+    ],
+    "ground": "moss",
+    "ground_color": "#8b9c8c",
+    "ink": "#4d5a4d",
+    "accent": "#d0a96d",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#8b9c8c",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#a0b090",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#f0e8d8",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#c0c0c0",
+      "count": 1
+     },
+     {
+      "kind": "winter flower",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#cfc5a8",
+      "count": 2
+     },
+     {
+      "kind": "bell",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#d5d5d5",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "quiet"
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZNNb9swDIb_iqBcXUBJm8L2rbfdduyhKApFoi0h-vAkeWkS5L-PdPNhbN2KwYeIpPjk5Wv6yH_ydlnxHW-5ZIOTCnjF88DbIy-2OMD8t-hc3LHvSRmZNJadDZB5-8KfhsEBy0bquMtMJ9sVFgPLxTrHpE1499kGzczoMysmxbE3rEvxAIFtkgzKIKfiTyzb0CPJyVAgEUDuM3O2MFmYHvOWv1Yox5OaKUTBIIuBhIku9iR5uydFCyl0rWpMLDb3ulFLOqlaLzGHjB4lBI1NPmb654_4TUUXCbWoN42qFRZs2FL8oNfygUaWSkEolNJCNo-U6uKUyIBjY1jgvbx9GNhyugw0vo_FxkDXyBNMgAOPRbLvyLd2ElMSkOvv80achpuY7AG7cTp7IKwHbUeP8Z-CFQ6Ccu5P1RXrx4yWR39GO-jKGXy24crNXk7irlgpNqIRN-x6ht2MBSV2bn_mJtubC5jewt-pnYBa1zfqckZ1RDFxzJ87gdV_gJWg53PwzhKHdbjCE-6_2Z1ay5no1dwKmO7-7sKX9uo1PXO9r3QOOdIHd8Q-Dbc3VmKg6MdoofDTCbcWl4caeBtG53DJLgfStBKrxzvR3K0aEsBbUfF0qU9rR5_SQL-nXw"
+  },
+  {
+   "rep": 2,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Whistle at Dusk",
+    "lines": [
+     "The shore hums with forgotten songs",
+     "each wave carries a name no one remembers",
+     "gulls trace the sky like letters in flame"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#ffffff",
+     "#6a5acd"
+    ],
+    "ground": "sea",
+    "ground_color": "blue",
+    "ink": "#000080",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b6b",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "petal",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffd700",
+      "count": 8
+     },
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "blue",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "whisper",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "what name sounds like wind?",
+     "button": "listen"
+    },
+    "next": "a place where the moon remembers people"
+   },
+   "random_words": [
+    "pocket",
+    "harbor",
+    "candle"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVNNb9swDP0rhHJ1ASdZstSXXvYTBuwwFIVs05ZgfRiSXHcN8t9HKk6cDvPFIiU-PT49nsW7qLaFmEUlJIxGNigKEUdRnUXSySDlfykdaQUywY8pDrRvtMMoqt_ip0KIygcENdkIs04KOh96nxI6iN71kY6jbBTM8h2hkSFojCDBSYvgPHiHENCirTHw2X4yJkIKRAQSow9_wOgBwSBhhgjaQWeoWLwWxNAywfbKakZJFYESIyZpGI2qmebmJHc17iix6fLHq6M8yKZlmD74ybVUF1GKW_jWeOMZrDYTa6LdQMGmpO9UUiybBl3iVNcd62NNqc7nRMSg-YaEH-ntKmkl-DBxK4T1SXtHmYCsaswCGVLAJZb0LAadudQ6tLT18VhLzQhSW38SADWnPxnZyNAzwRvflU9DfRCh_aW4o9opquC9XZANdmnBXUS4w0YrjXmEPdXfDtv9Cnt4gM2CL5hB9-oGyvrfES22erJfmbbfy3KFPD1Asl_-1_-_PNX0pfvltRbA7f7yyoGLnq18pqIW174TuY-vIoOP-YKo5JhfS4fGMM6s26Qe1BiDt2PKNTQO2cSR-cSrSWfi_kLH6iml_MiGRgeduBTCkRvWIYOZnHp1uPXerSMAI_qRrqaKnuzA7EXlaCjIObcFy7Mrd8en8vlp98y0RVUWItz2s5F4PEb-X_4C"
+  },
+  {
+   "rep": 2,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowy Stillness",
+    "lines": [
+     "The wind holds its breath.",
+     "Frost paints the pines in silence.",
+     "Time flows like melted ice."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#6a96a8",
+     "#a0c4c4",
+     "#d1e6e6"
+    ],
+    "ground": "snow",
+    "ground_color": "#f0f8ff",
+    "ink": "#2d3748",
+    "accent": "#d9e8f0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4b5f6e",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "ground",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f8f0e5",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "What would you whisper to the snow?",
+     "button": {
+      "label": "Listen",
+      "action": "fade in a single note"
+     }
+    },
+    "next": "a forest that sings at midnight"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dZPJbtswEIZfhaCvSiFvqq1LbznllgA9FEFAi0NrYC4CSVVxDL97Z2TFdhDUF5OzfPpn4Un-lfW8kIOspRKdVQ3IQqZO1ieZMVsg-7MPw1E8Z7TWQ0rkt0gHWf-RLy2IAb0WbbA6CcxJ7CKo3P6gqMcYUhadQk_mTJEdpwn0IqEF3wAHvaADYWwYkrB4AOHAZtAC2ftakAbHEnSfDhQ8MBoiGRJpYqGHI8uYVWpbqQ0ZZqpsVs2KT3oOFVQM2cfQe33LutzfmmADs2amNBtjyIH-wPeFXv5cMU01DfjMJr2FjSnJZMJoSBCRMzK857dL22rJwaSukC5kDJ7DuGlkAAuOnNyzkzzgKCZH4F6_3ydSNbINET8om6rDD8ZaFfccedW72q1NdbH0rGZ5Lq7UqUSmWjB5Yk4duCLb_ivRjL8bcXNHdH1qYwhuokbct__DJqfGcq_czW61ni9v3PUd106gbw3goV6RDjT27otWGgSsb8z5-ZXPPgXe1hMlarhVn4MfR6MsQ1KruvGKsbHcgQF1bu-UdzG4jgf8u1VZDKG3WhxDL4YWUwdR5DBuMnf5F4Xv-px50Cca0g4s5T1hyuDH3Zl2wCgNvPSK1t7vLQgfMsjzuZCelmd8dyZEoKeS-ZsclAQdHGo_togi97Q4XKWsfW8tLdjngRu5KBfVQ7l9WGy5QlmXhYyf_nHl-B11_H_-Bw"
+  },
+  {
+   "rep": 3,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Floating Market at Dusk",
+    "lines": [
+     "Balloons drift like dreams among the clouds.",
+     "Vendors sell salted flowers and humming songs.",
+     "The sky hums a lullaby in twilight."
+    ],
+    "time": "dusk",
+    "weather": "bubbles",
+    "sky": [
+     "#87CEEB",
+     "#FFD1DC",
+     "#F5F5DC"
+    ],
+    "ground": "clouds",
+    "ground_color": "#FFF",
+    "ink": "#8B4513",
+    "accent": "#FF69B4",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#FF69B4",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#8B4513",
+      "count": 3
+     },
+     {
+      "kind": "flower",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#FFD1DC",
+      "count": 5
+     },
+     {
+      "kind": "lantern",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#FFA500",
+      "count": 2
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#228B22",
+      "count": 13
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#FFFFFF",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "medium"
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZNNc6MwDIb_ise90g6hpZtwa5py29vOXnY6HYOd4EHYGduUppn895WABPox5YIlWY9eyfaRv_JsEfGOZ1ywPYhS8Yj7Pc-OPOgACv05WBG02bHfwtUqMBHYpvU17gNtlOfZP74WANYaz6TT28BA1wqXSjSeicZiaqgUK8G20t9g3l9lpHWeeQXAvICgJNuC7RT6hJGsapuGCnpM7RP-YLqvDxTAHQxaAFEcmDYsdBr0rgo3_DlCxQ0JloO6Tgks69BRtEUBqBQ7qw-k92r56_HpaY2OqzzfLDaP_SrNU1whZ-dsayQmDpL52fNSWrAExKwcvdrUZCzXd-niFm1RlsqEIX6_Wt-ha2t7R4VtoRXUW3gZpoxw3IvyIt7YoK1Bj8cZoK1ANRijyR55rXslxTBhjL7NUw_Etk6_9yGv3wkMwu3oGGdqRzUldoFylqfoAt7j0C9cUNswUmlSF6JvsPyceGl5JN7OiMNJjkRHhzMix7FeqI2Sum0-Ch0PY8SmMywI6vn7CWCRn7EPaRxP2GSGLbST32j9uf0kWa6TZAIu5v1Pt-2L0M8T-ALO--8D-JkM4y29xSMmSjUdVLCGrE446tdXYk9mX0RRmU7LUE0jOZ3wJuOtIiTPDL4ivHznBUlP4uT-Ol5dJyvC8SyOuDvH-_tIj2xP_9N_"
+  },
+  {
+   "rep": 3,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "Hollow Peaks",
+    "lines": [
+     "The wind hums through silent pines.",
+     "Snow glimmers where shadow meets light.",
+     "Morning breathes across frozen stones."
+    ],
+    "time": "dawn",
+    "weather": "snow",
+    "sky": [
+     "#a6d8d8",
+     "#b3e3e3",
+     "#e0f0f0"
+    ],
+    "ground": "snow",
+    "ground_color": "#f5f5f5",
+    "ink": "#8b98a6",
+    "accent": "#ffffff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#c0d0d0",
+      "count": 3
+     },
+     {
+      "kind": "dune",
+      "x": "left",
+      "y": "horizon",
+      "size": "small",
+      "color": "#e0f0f0",
+      "count": 1
+     },
+     {
+      "kind": "iceberg",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#b3d9e6",
+      "count": 1
+     },
+     {
+      "kind": "snowflake",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#80a0a0",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b98a6",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "quiet",
+     "shape": "rectangle",
+     "width": null
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZPNbtswDMdfRVCu7uAmaOD4CXYZMKC9DUUhW7QlWB-eJM9dgrz7SMVxAqzD0PAQkSJ__ouiTvwXrx8LPvOaCzYa0QIveBx5feJJJwMY_-qN8TP7DmKIuGm0g8jrH_xFAZu1k0xNNrKkgp96xaI24BIbKesLpj87rO2NthZCZLOCACwqITFqAVJkRvcqUeY3H5x2PWsCiKQgMtEGHyPrgj-CYzH5jHwtUJklYVLMDuvmnB4wEPFbJH_4Tfo2Yi8rWWFg0-wAjVZQdmgE6VGvk7eqi__WeuOJtemeyHBDu4H8qjlUYo--aFs8YU7JPwx1PgciBE1ugvf0dmlmzSkZ1RXc-qS9o7SkjcEAGLC4Sc088UFnMdQ33Hq_L8TTcIVdoqPpIzEtSD1Z9Fe1bSnRcmQiLbtzsTLltDINdOlK9EEfvbtBoxVZ1spcerUyH--YuoUGQr9gA93hwl36umKNCD3cY5udPMD-YyzdRWfE8GEP6F7_rXa9jAX7dIdtdJCfJ1alQLsRt3fEEac5N-9_x_-bep2j9fivtHbR02s7YZ2E203R0KP3c9JALr6ckfwAbRKuN9SnWcukeO0mY85nnGMcJyJeIjh21wXJ3pbb_UN5eNgeCMbrsuDhup8HkV7XSP_nPw"
+  },
+  {
+   "rep": 3,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "floating market",
+    "lines": [
+     "vibrant stalls drift on silk currents",
+     "bells chime as lanterns bob in harmony",
+     "laughter spills like golden rain"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#ff9a9e",
+     "#f5d8b9",
+     "#c4a487"
+    ],
+    "ground": "water",
+    "ground_color": "transparent",
+    "ink": "#d4a773",
+    "accent": "#ff6b6b",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b6b",
+      "count": 3
+     },
+     {
+      "kind": "table",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#d4a773",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 1
+     },
+     {
+      "kind": "lantern",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ff9a9e",
+      "count": 5
+     },
+     {
+      "kind": "boat",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#c4a487",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 8
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "circular"
+    }
+   },
+   "random_words": [
+    "silver",
+    "table",
+    "pencil"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZPtbqswDIZvJUr_Mqnt-smtTNPkgIGIkKAkrOsq7n02A8q26kjnV1MbP3ltv7nJd5luEnmRqQTRGshQJjK0Mr3JqKNBihfGQdS2FA34GiPljbYYZPoi37XyYKMIEYwJIve6iMJZEbSpRdZ5jzYGKlDI6azSDQoIwlANehuEckpoKyrwjbNXJkNXVpQTodVcYnSNonQmRys8aCtfE9LVsKy8CzVVXBBihZ4CLZIKvi3UVxa3KooznLmfVbHPT-rMp2wHu9ORMaV3nc2p7gJ0oZwCb5kzjnGROgstcAuU1Lam2CrfwfH4TP8hyziR8i0HdVAUKtwQqICopBI_4tv3QFPJ3w53NC5qZyniMdB0A8tFg80wp_TlJms9aFI0T0cfJvJjWX5lvvP6c0gF_clwA77kLifhd0UZNUSSnvtkBkdQBkeswSJOUF1Wd2KDue6aJXLue0RuF8gWfZilegJNUN7DzAwNtbREntRuv1kgNwvkaJBH7Y9r-4fWee0jeL8AK7LyfysdPfNQqeoiaSvM9eGqfkz1D_f3nk79K59tcPzublSX431N0Vkc3Oq521BBOzhL-6wjB8i-JweThRghU9sZQ26bDqx0u94entbnpy2_AzLbOpF-yg_m46fV8m__BQ"
+  },
+  {
+   "rep": 3,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowbound Hush",
+    "lines": [
+     "Frost hangs like silence on the pine.",
+     "Wind stops. Time forgets to breathe.",
+     "The world listens to its own breath."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#a0d8f0",
+     "#e0f0ff",
+     "#ffffff"
+    ],
+    "ground": "snow",
+    "ground_color": "#f0f8ff",
+    "ink": "#2e3a59",
+    "accent": "#ffffff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4b5e3a",
+      "count": 3
+     },
+     {
+      "kind": "snowflake",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#4b5e3a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "Breathe in. Breathe out.",
+     "button": {
+      "label": "Hush",
+      "action": "close all sounds"
+     }
+    },
+    "next": "a place where time moves like water"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPLbtswEPwVgr4qhmzHhaNjD0XvDdBDEQSUtJIIkVyBpKI0hv69u7Rk-5DGF3MfM5pdDs_yTRa7TE6ykEoMRlUgMxkGWZxl1NEA5X85nEocXS1-jqGjstEOgiz-yB8eQxSdcm0QRvcggjbgKhDoROxADNS4JcBvTeAQcQhb8awtiAZ9CzGIiKL0oKiX254JMqE3NZGFCC7VNbXh5Ja-rXzJSJhlXfUYekJNCe8pEUgoq-__sriNyutTk1NiA3mTNw2fmvRjktbzSDfUJX6t0CBzbQhxShjteo73cFDHJ4pVVYGLqeVClskGUyKA1xxGeI-vl10WkptJXSYtRo2O26I2hhJgwFKRN3mWvU5ieGNUer8H0jSyQ68_CE3T6Q-mNYo2SOFV72N5JIUpM7Kaw5xdWXnExqj-U2pe15U2WJW03dawzrjQnu5oLdnBI9qF1UATF85luf-nPZWPx93hRnu8o40eVqFet138TKeFWo_2q_l38wufXUA28ZmANQNLjDEpjuiSMkyiQ6eGdFvaV4a_Puk6dnfKB4924Ev-fvGr0G4r1jOOkf1bjsTt-GNGlWCoeXkwqlquvjIYQBCjCLygIOc5k47scnt-YiIzg2CPC4tvsLysSfGNUXdLduHJZOFGY8hW64FXt8_33x7yp4c9G5WMlWfSr_VkNH49A__P_wA"
+  },
+  {
+   "rep": 4,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum ancient lullabies at dawn.",
+     "Leaves tremble with the breath of sleeping earth.",
+     "Each shadow holds a memory of wind."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#87CEEB",
+     "#6A9C8E",
+     "#4B5A4A"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E4A38",
+    "ink": "#4B6B5C",
+    "accent": "#A8D6A0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#D3D3D3",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#FFB6C1",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "What memory do you carry?",
+     "button": {
+      "label": "Speak",
+      "action": "reveal a leaf with a name"
+     }
+    },
+    "next": "a place where time grows backwards"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPBbuIwEP0Vy2hvaRUIUMhllQA97WGlXWkPq6oyyQRbOHZkO6QU8e87E6ChUlcc4nmeeX4zvDnxA0_HEe94ygVrtCiAR9w3PD3xoIIGxP9I5RtwyuzYT2XAY4Luv-lf_lsCayhgsq2ZMIUCE5hutRZbhagIrBSdecSaHyAOiAQH9VYD61SQLGD51oHAo62Y1wANPQPCBUk1G1FI5qUobcek1SUSshpq646U3ylTPvKXCJXWJJRewqKO-MAh0EAQmvT6_ZHUjhZPq80mR2A0z5arxYZO03yWTTOi2TnbmhLrauup6hK_FlZbYhtNNtMsWeCFMnuKp_k8n60wFkWBbROULdbzLEaosj3gcW4VhgHewutlvCmnZNQX4TtBWUNp2nYYg4Ya72iyJ75XvRaaLl693ddhM1xap94t9evVO7HKdkeJH2oX-XQ2TnqkJS2LczSQ0mCurBqqcOWkMX3w-VpofU_4_Lx-iuOBcJx8YnS-V0OUTu3kjfM61P_TrhP63dHesW7bgB1X-vjlBPCVgbeGUrX1Z735fDUeiJPzC52Nt2TrExaWMPQfrOnl2T5CzzUU9uKB5HeqDBKRJP6GUeNs3YR-OdDiV0uWlh1tywrh3PE7JpF6-ntPHLcBNGb_akDse8Nc_3gHBxAaXa1BVJedEMwItPP5HHGDrhkWk3XoamBkdoZT7TzbimLfCVd6jsk7dA01yFOD64fmuh1okJN4Mn-Ilw-TJTXH0zji7nbf-422qKHv-R8"
+  },
+  {
+   "rep": 4,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "Wooden Dunes",
+    "lines": [
+     "The wind carves patterns into driftwood plates.",
+     "Each morning, frost glimmers on pine needles.",
+     "A single path winds through moss-laced dunes."
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#a0d8c1",
+     "#b8e1d9",
+     "#d0e4e1"
+    ],
+    "ground": "moss",
+    "ground_color": "#8a9b8a",
+    "ink": "#4a5a4a",
+    "accent": "#8b7355",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#a0c49e",
+      "count": 3
+     },
+     {
+      "kind": "driftwood",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#b0a892",
+      "count": 5
+     },
+     {
+      "kind": "moss",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#4a5a4a",
+      "count": 8
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f0f8ff",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "100px",
+     "prompt": "Where does the wind come from?",
+     "button": {
+      "label": "follow wind",
+      "action": "move to next dune"
+     }
+    },
+    "next": "a place where time moves slowly"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPNbtswDMdfRVCuTmGnyWb7MgzY3mBAD0NRyBZtC9GHIclx2iDvPlJ1nBy2nSRS5E8k9deFn3hdZHzmNRds1KIFnvEw8vrCo4oa0P_inATLfkwWAh5qRWv9m_8agM3KStYKf4LARhEjeBuYstEx6VUXZ0wlaoTwhKk_RTsw47xVts9Y512IrNfKGPCBOctGRDMLIPVn_HcWMFIDoYd0V2Bx8G7qCRPCluqVTFJlT_w1w5INVSyncMT0GTANPDo611Nbx3eqeyNyWbYFOjZNCYWsaCdz2ENBjB75VmIS3cBv9lvrtCPUphRVUwo8UPZI9l4cxJ5s0bZgYwppvj4fDujqXHIEwGGgGeEc3z6HXHMKxuIyvCcqZyksKq3RARoMHtKQL_yoUjE0Gjw6PyZiN3xwXn1gNnanPghrQKrJoL0WLPJ2X0HyTFTO8zVbsesrLWwNXVzIyxxWcDAiVbdym1yU1e7OPTxwl9kR0qt--BdTC9_DI3Md5sIsH5itdpP82wzoXf_Tf5d3ZdfdmcX1lfY2OJL3BRMl3FuPzqZuXbLCIEYyU91At89KxgE9RZ6PZ7RH78xIj_yCUgMmHZBGbz_DGSCdm28Y2Uwx0jtfsO0GdJKl1m5OoUk_iw6MOwHDL2RRLknc_HrNOFn3X8rmdB0JnlF8YAFR-p1jZI_CoRZ5bSetUWC3DU1xl---bPNquyPZo8TyjPvbeZIcfaOR1usf"
+  },
+  {
+   "rep": 4,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Floating gardens",
+    "lines": [
+     "Roots drift through clouds, feeding on fog and light.",
+     "Petals glow like drowned stars in the silver dawn.",
+     "Each bloom hums a forgotten language."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#002b36",
+     "#4f8b8b",
+     "#e6f3ff"
+    ],
+    "ground": "clouds",
+    "ground_color": "#b3d9ff",
+    "ink": "#2e8b57",
+    "accent": "#ff6b6b",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "flower",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ff6b6b",
+      "count": 8
+     },
+     {
+      "kind": "bird",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8f9fa",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#4a4a4a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "sweet",
+     "shape": "circle",
+     "width": "40%",
+     "prompt": "press to harvest the moonlight",
+     "button": {
+      "label": "sow",
+      "action": "grow a new petal"
+     }
+    },
+    "next": "a place where time grows backward"
+   },
+   "random_words": [
+    "salad",
+    "engine",
+    "ticket"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=VZNNb9swDIb_CqFgN7dwkyxLfN_Ow65DUcg2JQuRRUOS47ZB_vtI1_kYfLBEi49evqTP6qSql0JNqlIaBq8bVIVKg6rOKrvskeO_POnsggWrY4sh8QHvAiZV_VV_iHKCNjqTIXeRRttB42lsUwEGsZU0CmDIgg4teGe7_MyA35i1T2A9TRw8IiNoCthCyjomcIFpCMn5E0Zo9RQk6aduOqg9UQ_d2CfQzI2WcsYAXgc7aovP6rVg5b0IlzxOm1AzLHJgmG-VAo8fon5Vlut6s-PAamv29b6WFe7MxhjBWK4ntJz3VZG6Rt4a8iS8Vb1pD3y2UC4cZb_Gff39B-9102DIEjJmV-8EbGgOdOwD7zK-57cvv5nPZ1lgoXrKjgJHIiY2P8md6LHn72L3WR3dLMiwb3PC-2P2h-Apuk-SspP7FHY3WmnpTfJNT8OlsKD9pbhhaxfbBerR5AUpZt1wqdfe_8fbm4PRd97mgTdgTLMWIUbp_YJcnL1Re56UsX_EbrU8d-zL5VXWIZHM5JkTW7zLzBRmcROibFOnh9lXFxsv1U-uzR0HtuU33g2R-kF6MbDNCTJBp-OJHZ-HricKftFajzlLP87K6xq9XEHT3N6lT1zIxHMYcIJ5uNTlUqjAvb3_TzDx8CHITIIcT1Dr5jjxv6T4rOW2SmWqCqP3PAHXhfi3Lte7p_LwtD5IUaoqCxWv3-eBkFkf5H35Bw"
+  },
+  {
+   "rep": 4,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowy Stillness",
+    "lines": [
+     "The wind holds its breath beneath the pines.",
+     "Snow falls in silent patterns, like memory.",
+     "Each step sinks soft into the white hush."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#87CEEB",
+     "#B0E0E6",
+     "#F0F8FF"
+    ],
+    "ground": "snow",
+    "ground_color": "#FFFFFF",
+    "ink": "#2E2E2E",
+    "accent": "#FFFFFF",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8B4513",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "ground",
+      "size": "huge",
+      "color": "#FFFFFF",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8B4513",
+      "count": 5
+     },
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#B8860B",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "Where do you wish to go?",
+     "button": {
+      "label": "Listen",
+      "action": "fade in a single snowflake"
+     }
+    },
+    "next": "a village hidden beneath frozen trees"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb6MwEP0rlnOlFUm3WcplpazIaW9daQ-rqnJgwBbGRrYpTaL8951xKKFaFQ54xm8e8_HmzN94vk74yHMuWK9FCTzhvuf5mQcVNKD_2djxyJ6D0tqA93ivFR54_pf_lsBGZSomra48U8GzgwMRJDuAid-AiJ7g9xhHTKwWWiPUMK80mMB6EQI44xOmVQusg866I6ELUUrmA_SINK1n3tYB44KNpKNUAZgcvLznLwkm21Gu1eBbDB3p3-DQ4fGXVFF7pHxX2fefRbFDx2qXFmmxpdM-3Wf7PZE0zg6mukVd7dfSaktcq3188ALzIXtT0Iu2KEss5ROkttHhwakazQDv4fXa35wTGLNLeGeDsoZg1F10gIYOL6m5Z96qmExwQEN5XwZiNVxap04YjdWpE9Fq4RpCzvlmu2-P64foGSibh0sys04lEquGOkycUwdmSjl8ZpzLmxizBWOHs3DWdhOrU438itZ3Ipb7ZaaPC155bc1_9dNMZ8YOKjV0S8pdlm3T3Y1yfXmhs_GWVH3GwApuxQdr4mSEJhIvRR9N5UpNDRhVFeQi8d7Zrqf5_kGZAassO9oBV8Gj4i1r7A_EHIYQaLhnHMwBNIJ_KZSziXqZ5l6LCmgXBGm80cBoLLUWLfDLJeEGVRM38w17IBrUu6oqMPN21c6e0CSFeI74BnVDVfLcDFqjvj4O1MdNutnepU93myeqkOdpwt3HfVQcrVFP38s_"
+  },
+  {
+   "rep": 5,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum ancient songs in the wind.",
+     "Moonlight drips like silver from their branches.",
+     "Every leaf remembers a forgotten name."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8f7a66",
+     "#6b5b4e",
+     "#3e332f"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e3a2c",
+    "ink": "#4d5a4a",
+    "accent": "#a0b08b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#a0b08b",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8d7a9",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#5d6d5d",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8b4513",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "circle",
+     "width": "50px",
+     "prompt": "What name did the pines whisper?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal memory"
+     }
+    },
+    "next": "a place where time loops backward"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dZNNb9swDIb_iqBc3SKx4zT1ZafdNmCHATsMRSFbtC1YH4Ykx0mD_PeRSlpnxXaySJGPSerlmR94tcn4zCsu2KhFAzzjYeTVmUcVNaD_V6_CCF7Zjv1QFgIG6PStfvOfPbCRDNZPhgnbKLCRBWe7wJRlEa9nZeUj5nx3zmrV9ZFJr8bAtBqABaUP4FnrnaFg5VntkdJDoJSveHdiGkTLPBgwNfjABGud71yMYJkVBh75S4a1GipVTmHAvBkEwjw6RohCU8VhOFG9q337JHY7dKx2dVlvqdtVAUWRt4TpvJusxDzjAmVd7dfGaUe0VQ6FyBu8UHYgeytLsRVoi6bBxskl1vV6X6OrdckRcHItmhGO8fU64IpTMNaX4X-icpbCtJvRBo192kizPfNBpVpovnh1vM_DZnjvvHrDZGxOvRG1nzoK_Kj2o5QGu8Ba9pdsgdJgblQNbbwxaUwfvGCE1vfAdi-fxPMCLP8C-pCKIaKnd74hbzP9P7WUO1nKhbq5o5op9N4586_-P4MNSDWZe_K-3pabYiEXlxc62-BI2GdMlLD0H51N9blkhV6M6amUbzSNdVYy9ugo1-MRzRElO8a0HiImITKpZFL8dSHm69p8wdh6ipFe-cy1qEFj0jcVUL9JODcBeDiA0AxV7vyJXy4Zt6iYZS2RBx4YCZ1p53CBatEMs_CSY2yHgqHeeGUnrVFX7wcaYr7Odw_r54ecng6ltc64f79PUqMFGul7-QM"
+  },
+  {
+   "rep": 5,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "coastal silence",
+    "lines": [
+     "the tide breathes in soft rhythms",
+     "seagulls pause on wind-worn rocks",
+     "dawn spills over frozen dunes"
+    ],
+    "time": "dawn",
+    "weather": "fog",
+    "sky": [
+     "#8fa5b4",
+     "#b3c7d8",
+     "#d4e0e8"
+    ],
+    "ground": "moss",
+    "ground_color": "#a0b5c5",
+    "ink": "#3d5a6d",
+    "accent": "#c0d4e0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "horizon",
+      "size": "small",
+      "color": "#91a2a9",
+      "count": 3
+     },
+     {
+      "kind": "dune",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c8d6e0",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#d0e3e8",
+      "count": 2
+     },
+     {
+      "kind": "seagull",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#c0d4e0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "quiet",
+     "shape": "round",
+     "width": "small",
+     "prompt": "record a breath",
+     "button": "wind direction"
+    },
+    "next": "a garden in winter light"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPbcuIwDP0Vj3kNMwEaCvzKTqfj2EriwbFS22laGP59JRNoHrr7FOt2dCSdXOWnPG0KOcmTVGJwSoMsZBzk6SqTTQ7Ir1HFpJyI1oHPcWc9RHn6I1MHIlkDog6gyIjCehGxSSJ036nrI4OBakfnohjUGEGgF5P1Zj1h8CKgPnOOURPVDZbT8BOCaAJewAszcqO3grj0TIXzKH3KzQI5Gmy5xfmb2awOjarqF3Ks6p1-NQd-mRco4cAYbcDRGyrqMXLTu_2u0SFDrVRZV7qigPVntnemUntDttIafGKXLhmOXA1mR4RgGzITfKX3-_ZoX5RM5Arqkyx6Tks0GTnAQU9BXt1Vnu2dzBi7gNhT-GtZTBPJDoO9IE8c7YWhY68y0JPzcaO26pg9IzPa3YonMi9vRnXQpBlz3sITsgdjx36JqQ9mn4ecMasFZm2DmTGDbbsHKB_g3yRNCTs4_ABuF4CzOn6b_v-gz1PMoJvbG799RBbtleoM_Eye0LP1MVpgM3ZqYPuxi8ma1C26DAH7gQ8cQGMwQs0Cp1A9ppSPyioWxlJGvvKtkJ5UkP-jVgVD6rVZ6jSQcHlXlNLS6ZmnPHmamiTyePAutuV2vy6P6y0flERSFjI84lk0_CMM_L39BQ"
+  },
+  {
+   "rep": 5,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "books drift like leaves on windless air",
+     "pages turn without touch or sound",
+     "each shelf holds a sky of its own"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#002b7f",
+     "#4a90e2",
+     "#ffffff"
+    ],
+    "ground": "cloud",
+    "ground_color": "#e6e6fa",
+    "ink": "#000000",
+    "accent": "#ff6b6b",
+    "font": "display",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#000000",
+      "count": 8
+     },
+     {
+      "kind": "window",
+      "x": "left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 2
+     },
+     {
+      "kind": "tower",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#ff6b6b",
+      "count": 1
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "right",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "300",
+     "prompt": "open archive",
+     "button": {
+      "label": "reveal",
+      "action": "fly to next shelf"
+     }
+    },
+    "next": "a world where time flows backward"
+   },
+   "random_words": [
+    "camera",
+    "window",
+    "salad"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPRjpwwDPyVKPvKSRxXbbt8QJ_6B9XpFMCBCBOjJCy3h_bfa2d30VaqygvYTsYzY7Pps65fC73qWhs1o2lBFzrOut50cgmB8z-RTHK-V79cE0y48AF0HqKuf-uGaIyqC84mhW4EhWDOEBV5tTrfIcSojAt8ZTY959MSpJIGWpJKtLSDoqAiLb7jM2A4jgOgVQNhx1dVHC-KrHKJMVev3wumNQmrbokjX1nBpAECJ2ZIBqOwHy9C7VCWVfPdcuLwzZxKqOTL5kdg-pCb1rpFWqT5LfHREpLAHeAIR2u44PwocZkfjk3bgk-SsvbYHBtOWcqJzkW2UAxK8Jk-bnZyBz4O4sFEyZHnTERaRS_CxDVxctOjy3TEUS59Pt9jPXpw_SDi3JdADksvg9rJ7uRaFsFUflyLHVEGkdsJJoJND0QK7ovp7KATdG6ZnmHvdu2w1RNsojWTE9TA5B6wYv8OiSb8TXS37I74-oSYJ_gv7fdZ7ahxMoj_RX27vkvgI8kKb3yxgyeeibyEqwkiNw5mzlXpAtJndV0aOPOWPZ0DTbPMl2bwyoR2cGcR1SwpyTg3ltkACgKcIUsw7X3SFi-858rzPtw2W1-vhZYw_3ErBezUyhsMShZbWd6MqBrTjkyu03y25-0QMbr2CyIv0eNDLKvK6vhSnl6qk-jQdVno8KjnvZIfZpb39Q8"
+  },
+  {
+   "rep": 5,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowfall Hush",
+    "lines": [
+     "The wind forgets to stir the pines.",
+     "Snow drifts like breath on still air.",
+     "Time thins to a single breath."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#87CEEB",
+     "#B0E0E6",
+     "#FFFFFF"
+    ],
+    "ground": "snow",
+    "ground_color": "#F0F8FF",
+    "ink": "#2E2E2E",
+    "accent": "#FFFFFF",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4B5320",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "sky",
+      "size": "huge",
+      "color": "#FFFFFF",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8B4513",
+      "count": 5
+     },
+     {
+      "kind": "bell",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#D2B48C",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "small",
+     "prompt": "What do you hear?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal silence"
+     }
+    },
+    "next": "a forest where trees speak in riddles"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPBbtswDP0Vgbm6heMkXerLgHQOdthtBXYYikKJmViwLBmSXLc18u8jFcdJsfgQk3p8fo-kBniDfJ5ADzlI0Wq5R0jAt5APEFTQSPnfxvYHqbX42fmKTrUy6CH_C88Vil6ZUhysO2LwIljhg3Ii0EHLqHuCc7konToQQKsaxc6hDJWwhsFEK5Vj3LNqkCqViTxSeGWO-oK-h5eEBDWsp-x8Tfie8-go4ekLrLr-YFWz9benothQYrZJi7R44Ldt_DHJ0dnOlNeqc_y6t9oy12ybbteETECZmuOs4Idiud-jCRFyJkvgYGPCI7mjMOB7eD33MAcGk7oEGhuUNQxjt5RAjQ0dcgsHqFUUExxy499vC8kNVNapT6omd-qTabWkVlM46V1uVossjZmO1SxOycQ6WmRWjYcwcnKfJr6q-0o3eRvp1jd0Dc3fWduMlE4dqwvn2NWJ1jcyep1415vlar648q5ueHcYsf-bpw9cKRssVdfccv7INsv105Vzfnrhd-Mt7-1AhSVerQdrojIbI1_JlsOoG1l5r8pQ3UhvnW1aHu-fSgZRWvFhO1GhdN_pcNeFwEMdaCAkn1C_lA9o4p6M83b4hlLTHms0tBKnUwKGNiTeNLox6IPoaYFp6Wn4XvgWZS2UEU6VpaYbRvgj7Qh7gtx0WtMuXV64bVmaPdylj3fZI_uBPE3AXc7jdvGVafn_9A8"
+  },
+  {
+   "rep": 6,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like leaves on windless air.",
+     "Each spine holds a secret no one has read.",
+     "Pages breathe with the rhythm of stars."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#ffdbd8",
+     "#ffebd9",
+     "#d4c2c7"
+    ],
+    "ground": "clouds",
+    "ground_color": "#eef3f6",
+    "ink": "#4a3a3a",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#c4a4a4",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#5a4e4e",
+      "count": 1
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#fff3e0",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What book do you wish to read?",
+     "button": {
+      "label": "Open Volume",
+      "action": "reveal next world"
+     }
+    },
+    "next": "a world where silence speaks"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZNNb9swDIb_iqBe3SJNsqzNZcCA7TRgO22HoShki4oF05IhyXXTIP99L900zTBg8MHi12OSen3QT3p7W-lJb7VRA5uGdKXzoLcHXXxhgv8rR1N82Klvvk4m7ZHAPlDW29_6c4xdVjZ5VxT7jhSTeaKsYlCTD5YpZ2V8ukHNF9O0Kg-oVG1kC7_K1CQqKkTkw2uySmSsJP8wO1BqmKUloEqr5JDafWl7FZ3KxaR8ox8qtNlLl3bMHQqnuSLBMVAxnGWabi-tXjlna3sHB05U23s52XWzbD4KZpfiGCzqGo6jlbpXz2MTOQrvisit3AYBHzqx12aFB7ZpGgpFXM5t6k0Nl4uzIxM2A7PQc3l83S4-gGR0WOk-Fh-DpHGcYBNTj5gs9qA7P3dTY8EIPV_WYRzdxuRfUIzx_ItQ2aSd3N253WZt8MyeUZq5O1Zn6rybE5bJlRNUNnUG5t4wXwLPw52At6u_iCnP7Qgy-V37xjzt9Yztyfqxv-R-MGta0wX3Assn0r_zI_A_qHNuRYt36Or4IOeQo2j6gEJL78MX6A_WZJJAcmsGMefOSXqfvC3t5XeGFPtBbvhXa4qSS1I2qn0codUMrcZZyZ-QWY-lyCUfcEM1MUq-DxTUz8hjT7N4TiJI9ESGVYBU1BQTW308VlrM-d-cXWqCtkllzxQavAcyXdZI20EzMqDehpEZ0no7yBKXi-XmenF_vRTJQ12LSqe3-Kw2-YsGeR__AA"
+  },
+  {
+   "rep": 6,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "whispering pines",
+    "lines": [
+     "pine needles cradle the morning light",
+     "a soft wind hums through the ancient branches",
+     "snowflakes fall in silence beneath the boughs"
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#a0d8d8",
+     "#b3e0e0",
+     "#e0f5f5"
+    ],
+    "ground": "moss",
+    "ground_color": "#8fa4a4",
+    "ink": "#4a5a4a",
+    "accent": "#c0d3c3",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#a0d8d8",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#b3a080",
+      "count": 3
+     },
+     {
+      "kind": "cloud",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 2
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#e0f5f5",
+      "count": 8
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "round",
+     "width": "small",
+     "prompt": "tend the frost-covered branches",
+     "button": {
+      "label": "warm the hollows",
+      "action": "light a single candle"
+     }
+    },
+    "next": "a hidden spring beneath the forest floor"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVPbjuMgDP0VRF9TKdvLqpNfGY1GBExA5RIBmcxO1X9fm6ZppH3YvAQb-3B8OTf-xbtfDZ95xwUbnZDAG55H3t14scUB-mdj8wjJhoGNNkDGAFf_3TsnBwsAykFmMgn8s2KA-ZgCJTg7mIIJguWoC5ttUMxMPmNQitNgarAI0kIorE94MvWBHOKsnbgiqhbOMRtYtg6CBNZDAFEemT1hZP7RIFlPXNWUr5g-UwQkdBAQ4V3_EN2daNVFXdCx64_QQksnaPVZnwlkQE5BYZaPmVg87E8ZXSSs3UWLkzjhhQ1Xsk_ijA4qT0osgFyyVUd5RJeO1ZGxcRrNAt_l89HfjlMwsmvwnWJjoLBinUMHOPB4Sb298autZKjHePW9TcRquInJ_mA2Vmd_CNaJNFDkynetVmIdyOZ8b1ZUP2UcQfQLsgNdFtylCyts9qJyW2H7o2gv7Qv2uIGVLk5qwUzL8AmUBrAielB28ltIXb8X5GED2U997-pW_NOC_1JdZrviXu4fdA450mrfME_Bq_oSQ0WJ1cpGjGQ-35itKmbzyJiiH2nGBXCraR11irnsZfyCBGq7zv1UCs35hjPqwZGoRPI1x0Tn4pzrEi3LUEXDUDKoINSTFAFlxe_3hgfcoqpUY5UC1MRYZbmVhI4JcmHaRewApgy4SlQz78LkHK7c80CtPbSH3_v2bX94o3p51zY8Pe_rEpKyRvrf_wI"
+  },
+  {
+   "rep": 6,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Whispering Woods",
+    "lines": [
+     "Branches hum with ancient songs.",
+     "Leaves dance in the morning breeze.",
+     "Roots remember every storm."
+    ],
+    "time": "dawn",
+    "weather": "fog",
+    "sky": [
+     "#a0d8f0",
+     "#8fb3c0",
+     "#6b8f70"
+    ],
+    "ground": "moss",
+    "ground_color": "#5d7e64",
+    "ink": "#2e5a3f",
+    "accent": "#4a9b5e",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8b7355",
+      "count": 8
+     },
+     {
+      "kind": "bird",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#fff7e6",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8e7a64",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "top",
+     "tone": "calm",
+     "shape": "circle",
+     "width": "30%",
+     "prompt": "What story will you tell?",
+     "button": "Listen"
+    },
+    "next": "a forest that sings with memories of the past."
+   },
+   "random_words": [
+    "radio",
+    "napkin",
+    "window"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=VVLLbtswEPwVgkZviqFY8UuXAj3n1EsORRBQ0lIiTHIFkrJjG_737tKPuidpl7PD2eGc5V7Wr4U8yFoqMVrVgixkHGV9lskkC9T_GEwcIRjfiw_ELhLAGg9R1n_kr6B8O0AUw-TEwaRBUG3AJxHR93FO2HdQewJ0dADCeJEGEA6DZ74mAJyAUb8RUxQBHLgGgoA9hKOICYOby8-CtDiW0qmDJ_ABFLEEamjsWe_uyGJmquw2uqTGbKObqs1_q2aj1yVz9AEn39GQw8hLXOuvFi0y1WzZrWH1RgfG77hewFJVmmrVtrQRt97UtlmyQxpzI5ItjEjwnb6u7tWSwSSuoHuSQc8wiweqwdJ6PrFxZ7kzWUsiB-jo-3mOlpEDBnNCXjaaE7MOU8_Ah9pNs66Wy9yZWMvmUjxIGxO6G6kFnW6U7NKDzkFnJvdMqLWm_f8RVk-EbopDQHQ30mD64c56c_VBHJ2y9j-hsFbZ1hvva3X55MJH5HidabDjwYQjO4k-e6gsXxYHNebShNby-gfTpYEaVfmDqjGgG1OOqEo5LUcKobXiiJNIYO1PAjVTSvkV3k1M4OWlkJ6eKwdeY4CYKJI8ToGM1wxTCMl-Ci3qHNdRxTTnwZ6ejsXL2k_W0gvff9ikRblYvZTbl8WWlcu6LGS4n-dH5xyP_L38BQ"
+  },
+  {
+   "rep": 6,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowfall Hush",
+    "lines": [
+     "The wind hangs still between the pines.",
+     "Snow drifts in silence, soft and slow.",
+     "Each breath feels like winter's first sigh."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#87CEEB",
+     "#B0E0E6",
+     "#FFFFFF"
+    ],
+    "ground": "snow",
+    "ground_color": "#F0F8FF",
+    "ink": "#2F4F4F",
+    "accent": "#D8E4F0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#2F4F4F",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#FFFFFF",
+      "count": 8
+     },
+     {
+      "kind": "pine",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#3D5A3D",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8B4513",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "Listen. The world is breathing.",
+     "button": {
+      "label": "Whisper",
+      "action": "soft wind rises"
+     }
+    },
+    "next": "a place where time moves like water"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNNb9swDP0rgnrYxQ2cry71bVkc7LDbBuwwFIVi0zYRWTIkue4a5L-PVBI7hwGzDzYp8omPfDzJN5nNEznITCrRaVWATKTvZHaSAYMG8v8wdqiU1uJb7xs61WjAy-y3_NmAGNCUolGm9sIHpKADhAHAiECHHUfOKIUhROmwCl6gER41mAIS4W0VhCIEr-3AgbkqGnFwoEIjKgDthcZjvCWA--RFhc4Hyq-bmXxJqMSWKyx7f6TkgdPAkcPTfczj-IfrfNh8_prnW3I8bNM8zZ_4bx8fBqmd7U05ZV3s18Jqy1gP-3S_ochEojmyvdiv6CVbFQWYwK7dJl_tU3JVNjo8EFcyA7yH10tXM8nBVF0iWxvQGg7jjpEDNLR0yE09ySPGYoIDHsX7fSKxkY11-EHZxA4_GFYrV3PkWO9YX0E8qJrlORlRrxQZVUMVrpjXDoyQvlWxrqkFl2aNkJs7SB7yFdLRXG6Y3PsRsIUS-_Yecblbf1nuJsT1HWJLOnPWtv-i_99SN9vVer6cgOfL8wsbxltW84kSS5joB2vibJTm63yjumiiKzSzGrAMzd01nbNtxxP-jj6AmYm4A9bpUqC_ChdNzVI-9CHwlE80oQNoyvnVoO8iE1XcFMALEHfIoaetOp8TaUg00zqKgSQNgpUuWvsGt41Q3BOKrkk0TFBmpteaxHX74U4u0sXTY_r8uHhmcjJLE-lu51FuvEMdf89_AQ"
+  },
+  {
+   "rep": 7,
+   "name": "none",
+   "kind": "base",
+   "world": {
+    "title": "Floating Market at Dusk",
+    "lines": [
+     "Market stalls drift on tideless air",
+     "Pots of spice bloom like fireflies",
+     "Smells of cinnamon and salt winds through the sky"
+    ],
+    "time": "dusk",
+    "weather": "bubbles",
+    "sky": [
+     "#ffdbb0",
+     "#fff5e6",
+     "#d4a0c8"
+    ],
+    "ground": "clouds",
+    "ground_color": "#ffffff",
+    "ink": "#8b0000",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b6b",
+      "count": 8
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffdbb0",
+      "count": 3
+     },
+     {
+      "kind": "lamp",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#d4a0c8",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b0000",
+      "count": 1
+     },
+     {
+      "kind": "flower",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ffdbb0",
+      "count": 5
+     },
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#fff5e6",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "round",
+     "width": ""
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZNNb5wwEIb_iuVeiUQ2zWrDueqtUqUeqygyeAwWg41sU5Ks9r93hjW7dNuoXPB8-OH1O-Yof8nqvpCzrKQSI6oGZCHjKKujTDYhUP4repWsa8U3FXpIQiXxZYo99aF1EGX1U-ZKTAoxCh2sScI7kawGhBiFsoHav_sUhTcijrYBUaP3g0DbgzA2gEFLrEL-GIAZ1NZY59RAGOW0iAqTmK3TUaQu-Knt6A0i9m_yuSCpAyvVZ1kzKKoFStRTXeOC5UYS-skYXdclJWhlHmHPK_1Zlc2BOS2RnaaNDfpJ875z5qXx6BnIu-ihgnU9x4e6pIdi1TTg0rllX-9rShm_JCKQHxQmeE0vZ4vpA9QMbMrgk_WOMgFiYrMoR6YNVGdrj7K3i6KarPXUWMjX7XY6lex8sO9LKdp3hqMKLc9xozpLaug0pOlwKq7gKRHK4FtGI5iUwWzaBRoHUvAnNFuZoQ8bKKphzLxg224FdrS-EgfQdhq2yDyJC3K3QY4Q4r_Pn6f2sdLLkDL2foM16OeFdKv1lvq32lsDHreufjyu_7mar-Wq9eH0zIGLnv_GI23UcB1T8o6jWQWWFjs1crhKn61OHcXydKKrTNeJUbJyEyLdvHXBenflbn9XPt3tnhgjq7KQYa0vF5H_spHfp98"
+  },
+  {
+   "rep": 7,
+   "name": "quiet winter ~loud",
+   "kind": "real",
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "pines stand in silence, bent by autumn's breath",
+     "morning light pools in hollows between trunks",
+     "a single path winds into the mist"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#a8d8c0",
+     "#d0e6d6",
+     "#b8c8b2"
+    ],
+    "ground": "moss",
+    "ground_color": "#8e9e8a",
+    "ink": "#4d5a4d",
+    "accent": "#8d9d8d",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#a5b09e",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#7e8d7a",
+      "count": 3
+     },
+     {
+      "kind": "cloud",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#cfcfcf",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#8a9a8a",
+      "count": 2
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#c0c0b0",
+      "count": 1
+     },
+     {
+      "kind": "stone",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c2c2c2",
+      "count": 8
+     }
+    ],
+    "console": {
+     "side": "left"
+    }
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPbbtswDIZfRVAuduMCrteksp9id7sYikKWGFuwDoYOS9sg7z7SORlDsEEXkijy00-KOvLfvHuu-IF3XLLZSgW84mnm3ZFnky2g_edo0gzR-IH9MB4SOthl7n7xmRYsZek1M54lY8ErqFgPPrP-k8mSi_PfEusjyDxiqAvRE8qaYcxsDsEmihyDteGAfpAPAJ7lWPxEV0mE-sECmzGeHYzX5J8DyyMwZ1LmbxVKdaRUlzRhyIGugoiGfRgonemTtG6k0ELVaNjoGnZ6R6teKNE3xBhiKF5jkAuJLj7v31WwgVAbAS0IiQfGT7R_0Vv5okmhUpjt4qJbLci0D4shYdX2uM3wkd_Pxe04OaM4qkQ2wZNbNtaiASw4PKTCHvlkFjFUYDz6WAdiNnwM0XxhNGZnvghrZRzI86ZXbvu6PVsKqdmeqhvVlTTGENyFbGGfL9xLFW7Y5OSi7YZ9BaFf5R37fYVVNhR9YUZ63wuUHuBGdKBNcWuk2tO4I59XyN5E_TB_xP9DpZCtFCuVzQq5dN4YSoIHUv-bv6pV3dePxaYcHr_W39QHNWho3LHi9EZrnwL9wSMGari-1OmE3YlNQh6888VabKbrgnQ0dbN7qtunpqUreVdXPF7Pl_aiLzPTfPoD"
+  },
+  {
+   "rep": 7,
+   "name": "quiet winter ~loud",
+   "kind": "placebo",
+   "world": {
+    "title": "Fogbound Library",
+    "lines": [
+     "books breathe in misty silence",
+     "shelves stretch into the fog's edge",
+     "pages flutter like sleeping wings"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#6b8e8e",
+     "#8b98a5",
+     "#a0a8b3"
+    ],
+    "ground": "stone",
+    "ground_color": "#d0d0d0",
+    "ink": "#2d2d2d",
+    "accent": "#c09c6a",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#2d2d2d",
+      "count": 5
+     },
+     {
+      "kind": "lamp",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f5d79a",
+      "count": 1
+     },
+     {
+      "kind": "window",
+      "x": "right",
+      "y": "high",
+      "size": "large",
+      "color": "#8b98a5",
+      "count": 1
+     },
+     {
+      "kind": "spiral staircase",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8b98a5",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#7f6f5f",
+      "count": 3
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#e6c8a0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": ""
+    }
+   },
+   "random_words": [
+    "kettle",
+    "mirror",
+    "meadow"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZPdbqMwEIVfxZpc9IZKNFUo8AC92jdYVZWBASz8g2zTNI3y7p0hCaHaKlohJfZ45vPx8fgIH1A-JbCHEqQYtawREggjlEeIKmqk-KvrKjfZRvxRlZf-QAlaWQxQ_oXKuSGIyqOMPQplhVEhHkRQGu0Z1aP-wCBC9BjrnlKiE5zbuu4hCGw6zhplRzmtnmJEL7QaUASNOCrbiT39BHhLSI9hOc0UBirZz1t6ChCJNxoOLGiTVTnmzNzkVZHLHY9kKvPqmRmd55NQUYjOctY58F477Zi1aVL-aEHZgefbhj-ay7pGGzlUp0WdSQq1bg4E9KqlacTP-H62sAROJnUJGBeVs5ym3Z7mqNHQGrt3hEHNYthFWvpc19FpoHdefVExnU59MVVLP_u1yF3k1XQMErM7JQtVSzNeqBrbeGGyTwvPYKMmswa2u-alkDfg0wpIN9HMZ2CkV11_ZfY0viNyuYhfmGFUXmpqD6l8LQP-ZsPl0u6ovreDmULvnTP_Qw5Gar0Gv7RZu2tv4Oe1vxcH_qH-sLiffpqBWZ3LdC31jcc2OH5sRypr8HZjc5eS89Kb-THJkadwOlHnUgdxKZR20poa7Tpgbdt0mz2mxeO24DIo0wT8dX3uPX5PI_-fvgE"
+  },
+  {
+   "rep": 7,
+   "name": "quiet winter ~loud",
+   "kind": "said",
+   "world": {
+    "title": "Snowfall Hush",
+    "lines": [
+     "Wind whispers through frozen pines",
+     "Snow settles like soft breath on stone",
+     "The world holds its breath in stillness"
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#b0d4f0",
+     "#a0c9e6",
+     "#80a9d8"
+    ],
+    "ground": "snow",
+    "ground_color": "#f8f0e6",
+    "ink": "#4a4a4a",
+    "accent": "#ffffff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "snow",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#c0c0c0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "cool",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What will you hear first?",
+     "button": {
+      "label": "Listen",
+      "action": "fade in wind"
+     }
+    },
+    "next": "a place where time moves like water"
+   },
+   "random_words": null,
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb9swDP0rgnp1ASdNi8SXXnfYbQN6GIpCsehIiCwaEl23CfLfR6rOxzA0PkSiHp8eyaejftfNotKTbrRRQzAt6ErnQTdHTZ4CcPxXxKkzIagfY3Z8GnyErJs_-sVHqybn8wApK3IJx51TXcIDRDUUVFWyVQZirqyC34PK2JHaJjDkFEaVCaNc-tuBmjAFqxwGm5WnfEZ5QfkQmDHr14qV9SLMjnnPiZNgIHEg810if_8p8u62tV11NQfuTN1u4ElW69ps7FpIdiw32mvW1_6txYDCddetu7rk-LiX_crIx3vTthCpQMqPQx2WQIbkZUvwQW9fzWy0gFldpXskj1FgUgsHIEDPh9LLo977IoYSSDM-bhO5Gu0w-QNnc3X-ILTBpJ0gL3rX29Xj4qFERlHzcKourHOJ_7HOPbiQuvFfzkuBM-f6hrNnNyTEfuYN0NE3rLk3pd5vpT7e0Aa_c-RwzOc2JAnMzDLZC20P1o_9LW9by3flXZxeZR0zipGPnGjhKrX4jhuCKOKyM4Nsi3YQ9ZO35G7vGRL2g8z5xRlSEw9RfeKoHJikOp8yPTNoOxLJlI88oS0ERv_0mSAW48wG6IwFMfUkJZ9OlY5smOsL5DcFCZS4XPX4fn43k5HBMXrHhpHCdBPHENhY54X0b1kvn-7rzf1yI0Xppq50Op8Xq8n7GeT_9Bc"
+  }
+ ]
+}
