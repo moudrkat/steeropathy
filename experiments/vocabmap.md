@@ -12,8 +12,9 @@ and its far end is *funny, laughs, vibes, yummy, kids*; `urgent` is
 *catastrophic, emergency, immediate*, far end *charming, cute, nice*;
 `verbose` is *extraordinarily, incredibly, exceedingly*; `night` is
 *haunting, haunted, cavern, spooky*; `darker` is *locked, tonight, grim,
-bunker*. The moods, built the usual way, are all *sorrow, heartbreaking*
-(`angry` included); with what they share subtracted, `angry` becomes
+bunker*. `sad` and `angry`, built the usual way, both read *sorrow,
+heartbreaking*, and `calm` reads *beautiful, loving, joyful*; with what
+the three share subtracted, `angry` becomes
 *liability, disputes, retaliation, punitive*, `calm` *bloom, melodies,
 fragrance, dusk*, `sad` *compassion, grief, tears*. *Likes trees* is
 *congratulations, greetings, hugs, guests*; *many trees* is *chorus, riot,
