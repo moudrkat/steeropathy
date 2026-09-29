@@ -44,11 +44,13 @@ def measure(w, kind):
     return min(6, len(ks) if kind is None else sum(1 for k in ks if k == kind))   # the page's own cap
 
 
-def series(files, name, kind):
+def series(files, name, kind, lo=None):
     pts = {"real": {}, "placebo": {}, "base": {}}
     for f in files:
         d = json.loads(pathlib.Path(f).read_text())
         st = float(d["params"]["strength"])
+        if lo is not None and st < lo:
+            continue
         for r in d["runs"]:
             if not r.get("world"):
                 continue
@@ -72,6 +74,7 @@ def main():
     ap.add_argument("--only", default=None, help="comma list of direction names to draw, one panel each")
     ap.add_argument("--out", default=None)
     ap.add_argument("--title", default="The sliders")
+    ap.add_argument("--from", dest="lo", type=float, default=None, help="leave out strengths below this")
     a = ap.parse_args()
     fonts()
     live = [(g, n, k, t, y) for g, n, k, t, y in PANELS if glob.glob(str(HERE / "docs" / "runs" / g))]
@@ -84,7 +87,7 @@ def main():
     fig, axes = plt.subplots(rows, cols, figsize=size, facecolor=SURF)
     axes = list(axes.flat) if hasattr(axes, "flat") else [axes]
     for ax, (g, n, k, t, y) in zip(axes, live):
-        panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k), t, y)
+        panel(ax, series(sorted(glob.glob(str(HERE / "docs" / "runs" / g))), n, k, a.lo), t, y)
     for ax in axes[len(live):]:
         ax.axis("off")
     fig.tight_layout(h_pad=1.6, w_pad=2.4)
