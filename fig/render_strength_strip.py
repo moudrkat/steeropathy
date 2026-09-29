@@ -38,22 +38,31 @@ def main():
     ap.add_argument("--per-row", type=int, default=4)
     ap.add_argument("--title", default=None)
     ap.add_argument("--site", default="http://127.0.0.1:8098")
+    ap.add_argument("--picks", default=None, help="strength:rep, comma list: which world at which strength, e.g. 1:0,3:0,6:2")
+    ap.add_argument("--base", default=None, help="file#rep: the unsteered world to open with")
     ap.add_argument("--out", default=None)
     a = ap.parse_args()
     files = sorted(glob.glob(a.pattern), key=lambda f: float(f.rsplit("-s", 1)[1].split(".json")[0]))
     runs = [json.loads(pathlib.Path(f).read_text()) for f in files]
+    picks = {float(s): int(r) for s, r in (x.split(":") for x in a.picks.split(","))} if a.picks else {}
     entries = []
     for run in runs:
         st = float(run["params"]["strength"])
         recs = [r for r in run["runs"] if r["name"] == a.direction and r.get("kind") == "real"]
         good = [r for r in recs if r.get("world")]
-        if a.by == "things" and good:
+        if st in picks:
+            pick = next((r for r in recs if int(r.get("rep", -1)) == picks[st]), None)
+        elif a.by == "things" and good:
             m = sum(n_things(r) for r in good) / len(good)
             pick = min(good, key=lambda r: (abs(n_things(r) - m), good.index(r)))
         else:
             pick = (good or recs or [None])[min(a.rep, max(0, len(good or recs) - 1))]
         entries.append((st, pick))
-    base = [r for r in runs[0]["runs"] if r.get("kind") == "base" and r.get("world")]
+    if a.base:
+        bf, br = a.base.split("#")
+        base = [r for r in json.loads(pathlib.Path(bf).read_text())["runs"] if r.get("kind") == "base" and int(r.get("rep", -1)) == int(br)]
+    else:
+        base = [r for r in runs[0]["runs"] if r.get("kind") == "base" and r.get("world")]
     if base and not any(st == 0 for st, _ in entries):
         if a.by == "things":
             m = sum(n_things(r) for r in base) / len(base)
@@ -67,13 +76,15 @@ def main():
                                             ImageFont.truetype(FONT, 12), ImageFont.truetype(FONT_B, 15))
     W = PAD + a.per_row * (CW + PAD)
     ROW = CH + CAP + 56 + 12
-    H = 100 + len(rows) * ROW + 16
+    head = 0 if a.title == "" else 100          # an empty --title leaves the header out
+    H = head + len(rows) * ROW + 16
     img = Image.new("RGB", (W, H), SURF)
     d = ImageDraw.Draw(img)
-    d.text((PAD, 22), a.title or f"the {a.direction} vector, turned up", fill=INK, font=f_t)
-    d.text((PAD, 62), "the same prompt every time; only the strength of one vector changes", fill=INK2, font=f_s)
+    if head:
+        d.text((PAD, 22), a.title or f"the {a.direction} vector, turned up", fill=INK, font=f_t)
+        d.text((PAD, 62), "the same prompt every time; only the strength of one vector changes", fill=INK2, font=f_s)
     tmp = pathlib.Path(tempfile.mkdtemp())
-    y = 100
+    y = head + (16 if not head else 0)
     for ri, row in enumerate(rows):
         y2 = y
         for j, (st, rec) in enumerate(row):
