@@ -61,12 +61,14 @@ def compose(rows, cols_label, title, subtitle, out, site):
     f_cap, f_line, f_fld = ImageFont.truetype(FONT_B, 16), ImageFont.truetype(FONT_I, 15), ImageFont.truetype(FONT, 13)
     ncol = max(len(r[1]) for r in rows)
     W = PAD + ncol * (CW + PAD) + 200
-    H = 110 + (28 if cols_label else 0) + len(rows) * (CH + CAP + PAD) + 20
+    top = 110 if (title or subtitle) else PAD
+    H = top + (28 if cols_label else 0) + len(rows) * (CH + CAP + PAD) + 20
     img = Image.new("RGB", (W, H), SURF)
     d = ImageDraw.Draw(img)
-    d.text((PAD + 6, 22), title, fill=INK, font=f_t)
-    d.text((PAD + 6, 62), subtitle, fill=INK2, font=f_s)
-    y = 110
+    if title or subtitle:
+        d.text((PAD + 6, 22), title, fill=INK, font=f_t)
+        d.text((PAD + 6, 62), subtitle, fill=INK2, font=f_s)
+    y = top
     if cols_label:
         for j, lab in enumerate(cols_label):
             x = 200 + PAD + j * (CW + PAD)
@@ -116,7 +118,7 @@ def compose(rows, cols_label, title, subtitle, out, site):
     print(out, img.size)
 
 
-def gallery(path, k, placebo, site, out, rows_wanted=None, title=None, subtitle=None, cols=None):
+def gallery(path, k, placebo, site, out, rows_wanted=None, title=None, subtitle=None, cols=None, labels=None):
     """rows_wanted: direction names in order; "none" is the unsteered row,
     "name/shuffled" that direction's placebo row. Default: everything."""
     d = json.loads(pathlib.Path(path).read_text())
@@ -152,7 +154,9 @@ def gallery(path, k, placebo, site, out, rows_wanted=None, title=None, subtitle=
                 wrapped.append((label if j == 0 else "", ch))
         rows = wrapped
     model = d.get("model", "").split("/")[-1]
-    compose(rows, None, title or "What a vector looks like",
+    if labels:
+        rows = [(lab.replace("\\n", "\n"), recs) for (_, recs), lab in zip(rows, labels)]
+    compose(rows, None, title if title is not None else "What a vector looks like",
             subtitle if subtitle is not None else
             f"{model} · strength {d['params']['strength']} · layer {d['layer']} · the model was asked for “a place”; "
             f"each row is one direction, each cell one world it drew, with its title and first line",
@@ -195,13 +199,14 @@ def main():
     ap.add_argument("--site", default="http://127.0.0.1:8098")
     ap.add_argument("--out", default=None)
     ap.add_argument("--rows", default=None, help="comma list: none, sad, sad/shuffled, …")
-    ap.add_argument("--title", default=None)
+    ap.add_argument("--title", default=None, help="an empty string leaves the header out")
+    ap.add_argument("--labels", default=None, help="comma list of row labels, in --rows order; \\n for a line break")
     ap.add_argument("--subtitle", default=None)
     ap.add_argument("--cols", type=int, default=None, help="wrap each direction's worlds into this many columns")
     a = ap.parse_args()
     if a.mode == "gallery":
         gallery(a.path, a.k, a.placebo, a.site, a.out,
-                a.rows.split(",") if a.rows else None, a.title, a.subtitle, a.cols)
+                a.rows.split(",") if a.rows else None, a.title, a.subtitle, a.cols, labels=a.labels.split(",") if a.labels else None)
     else:
         film(a.path, a.site, a.out, a.rep)
 
