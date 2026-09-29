@@ -1,0 +1,2893 @@
+{
+ "params": {
+  "moments": "morning,noon,evening",
+  "settings": null,
+  "strength": 2.0,
+  "layer": null,
+  "n": 6,
+  "seed": 25,
+  "temp": 0.8,
+  "decide_temp": 0.3,
+  "out": "docs/runs/assistof-04-aorus-4b-planner.json"
+ },
+ "layer": 21,
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "moments": {
+  "morning": "I feel a bit lost today. Not sure where to start.",
+  "noon": "Send the invoice to Novak, the March one, today.",
+  "evening": "I'm exhausted. Just tell me one thing."
+ },
+ "complete": true,
+ "summary": {
+  "morning": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.33,
+    "asks": 1.0,
+    "choices": 4.0,
+    "steps": 0.5,
+    "expanded": 0.0,
+    "confirm": 0.0,
+    "has_default": 0.5,
+    "buttons": 2.5,
+    "words": 80.5,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.0
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.17,
+    "asks": 1.0,
+    "choices": 4.33,
+    "steps": 3.17,
+    "expanded": 1.0,
+    "confirm": 0.83,
+    "has_default": 1.0,
+    "buttons": 3.0,
+    "words": 165.33,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.5,
+    "fidelity_n": 4
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.0,
+    "asks": 1.0,
+    "choices": 4.17,
+    "steps": 1.83,
+    "expanded": 0.33,
+    "confirm": 0.0,
+    "has_default": 0.33,
+    "buttons": 2.0,
+    "words": 102.17,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.25,
+    "fidelity_n": 4
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.0,
+    "asks": 1.0,
+    "choices": 1.5,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 1.0,
+    "has_default": 0.0,
+    "buttons": 1.5,
+    "words": 57.83,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.25,
+    "fidelity_n": 4
+   },
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   }
+  },
+  "noon": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.83,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 3.0,
+    "expanded": 1.0,
+    "confirm": 1.0,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 48.67,
+    "urgency": 2.5,
+    "formal": 0.0,
+    "one_thing": 0.0
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 3.17,
+    "asks": 0.83,
+    "choices": 1.67,
+    "steps": 4.5,
+    "expanded": 1.0,
+    "confirm": 1.0,
+    "has_default": 0.83,
+    "buttons": 2.0,
+    "words": 99.5,
+    "urgency": 3.17,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.67,
+    "fidelity_n": 3
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 3.0,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 3.33,
+    "expanded": 0.17,
+    "confirm": 1.0,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 45.17,
+    "urgency": 2.67,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.33,
+    "fidelity_n": 3
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.0,
+    "asks": 1.0,
+    "choices": 2.0,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 1.0,
+    "has_default": 1.0,
+    "buttons": 1.0,
+    "words": 33.5,
+    "urgency": 5.0,
+    "formal": 0.0,
+    "one_thing": 0.0,
+    "fidelity": 0.33,
+    "fidelity_n": 3
+   },
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   }
+  },
+  "evening": {
+   "base": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.17,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 32.33,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.83
+   },
+   "vector": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 2.67,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 4.33,
+    "expanded": 1.0,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 2.0,
+    "words": 71.5,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.83,
+    "fidelity": 0.0,
+    "fidelity_n": 1
+   },
+   "shuffled": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 1.83,
+    "asks": 0.0,
+    "choices": 0.0,
+    "steps": 0.5,
+    "expanded": 0.17,
+    "confirm": 0.0,
+    "has_default": 0.0,
+    "buttons": 1.67,
+    "words": 35.83,
+    "urgency": 1.83,
+    "formal": 0.0,
+    "one_thing": 0.33,
+    "fidelity": 0.0,
+    "fidelity_n": 1
+   },
+   "prompt": {
+    "n": 6,
+    "parsed": 6,
+    "parse_rate": 1.0,
+    "tasks": 0.0,
+    "asks": 1.0,
+    "choices": 3.17,
+    "steps": 0.0,
+    "expanded": 0.0,
+    "confirm": 1.0,
+    "has_default": 0.5,
+    "buttons": 2.0,
+    "words": 47.33,
+    "urgency": 2.0,
+    "formal": 0.0,
+    "one_thing": 0.17,
+    "fidelity": 1.0,
+    "fidelity_n": 1
+   },
+   "settings": {
+    "careful": 1.0
+   }
+  }
+ },
+ "runs": [
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to do first?",
+    "question": "What would you like to start with today?",
+    "choices": [
+     "Pick a simple task to get started",
+     "Explore my suggestions for activities",
+     "Just sit with the feeling and breathe",
+     "Tell me more about what's on your mind"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": 0,
+    "buttons": [
+     "Get started",
+     "Learn more",
+     "Take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to do first?\",\n  \"question\": \"What would you like to start with today?\",\n  \"choices\": [\n    \"Pick a simple task to get started\",\n    \"Explore my suggestions for activities\",\n    \"Just sit with the feeling and breathe\",\n    \"Tell me more about what's on your mind\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": 0,\n  \"buttons\": [\n    \"Get started\",\n    \"Learn more\",\n    \"Take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm so glad you reached out. Feeling lost is totally normal—especially when you're not sure where to start. Let's take it one small step at a time. How about we begin by naming one thing you'd like to focus on today? It doesn't have to be big—just something that feels a little bit within reach.",
+    "question": "What would you like to start with today?",
+    "choices": [
+     "Getting out of my chair and moving around",
+     "Checking my emails or messages",
+     "Writing down three things I’m grateful for",
+     "Planning my next 30 minutes of work or play",
+     "Just sitting quietly and breathing"
+    ],
+    "tasks": [
+     "Pick one choice that feels most inviting",
+     "Write it down or say it out loud",
+     "Take a few deep breaths and start there"
+    ],
+    "steps": [
+     "Pick one of the choices above that feels most doable for you today.",
+     "Say it out loud or write it down—this simple act can help your brain settle.",
+     "Start with just 5 minutes of that activity. No need to go all-in.",
+     "Notice how it feels in your body and mind. That’s the first step toward clarity."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 2,
+    "buttons": [
+     "Start now",
+     "See other options",
+     "Skip for now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm so glad you reached out. Feeling lost is totally normal—especially when you're not sure where to start. Let's take it one small step at a time. How about we begin by naming one thing you'd like to focus on today? It doesn't have to be big—just something that feels a little bit within reach.\",\n  \"question\": \"What would you like to start with today?\",\n  \"choices\": [\n    \"Getting out of my chair and moving around\",\n    \"Checking my emails or messages\",\n    \"Writing down three things I’m grateful for\",\n    \"Planning my next 30 minutes of work or play\",\n    \"Just sitting quietly and breathing\"\n  ],\n  \"tasks\": [\n    \"Pick one choice that feels most inviting\",\n    \"Write it down or say it out loud\",\n    \"Take a few deep breaths and start there\"\n  ],\n  \"steps\": [\n    \"Pick one of the choices above that feels most doable for you today.\",\n    \"Say it "
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "It's okay to feel lost sometimes. Let's take it step by step. What would you like to focus on first?",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Planning my day",
+     "Getting moving with a small task",
+     "Reflecting on what's been going well",
+     "Setting a goal for tomorrow"
+    ],
+    "tasks": [
+     "Pick one option that resonates with you",
+     "Take a small action based on your choice"
+    ],
+    "steps": [
+     "Choose one of the suggested options above",
+     "Take one small action as a next step"
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"It's okay to feel lost sometimes. Let's take it step by step. What would you like to focus on first?\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Planning my day\",\n    \"Getting moving with a small task\",\n    \"Reflecting on what's been going well\",\n    \"Setting a goal for tomorrow\"\n  ],\n  \"tasks\": [\n    \"Pick one option that resonates with you\",\n    \"Take a small action based on your choice\"\n  ],\n  \"steps\": [\n    \"Choose one of the suggested options above\",\n    \"Take one small action as a next step\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start now\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm really sorry you're feeling lost. That's completely okay — it happens to everyone. Let's take a step together to find your next move.",
+    "question": "What's one small thing you'd like to focus on today, even if it's just a small part of a bigger goal?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Let's find a starting point together"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm really sorry you're feeling lost. That's completely okay — it happens to everyone. Let's take a step together to find your next move.\",\n  \"question\": \"What's one small thing you'd like to focus on today, even if it's just a small part of a bigger goal?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Let's find a starting point together\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on today? Maybe something simple, like checking your to-do list or talking about a recent event.",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Start with my to-do list",
+     "Talk about something recent",
+     "Just take a deep breath and rest",
+     "Explore a new hobby idea"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Get started",
+     "Explore more"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on today? Maybe something simple, like checking your to-do list or talking about a recent event.\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Start with my to-do list\",\n    \"Talk about something recent\",\n    \"Just take a deep breath and rest\",\n    \"Explore a new hobby idea\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Get started\",\n    \"Explore more\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm so glad you reached out. Feeling lost is completely normal—especially when you're just starting. Let's take it one small step at a time. What would you like to work on first? Maybe we can pick something simple and tangible to begin with.",
+    "question": "What would you like to start with today?",
+    "choices": [
+     "Planning my day (small tasks only)",
+     "Exploring a new interest or hobby",
+     "Thinking about my goals for the week",
+     "Just taking a walk or breathing deeply"
+    ],
+    "tasks": [
+     "Pick one of the options above",
+     "Let’s go with what feels most manageable for you"
+    ],
+    "steps": [
+     "Choose one of the options from the list",
+     "Tell me why that option feels right",
+     "We’ll build from there—no pressure, just small steps"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Let's pick one",
+     "Show me more options",
+     "Skip to something else"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm so glad you reached out. Feeling lost is completely normal—especially when you're just starting. Let's take it one small step at a time. What would you like to work on first? Maybe we can pick something simple and tangible to begin with.\",\n  \"question\": \"What would you like to start with today?\",\n  \"choices\": [\n    \"Planning my day (small tasks only)\",\n    \"Exploring a new interest or hobby\",\n    \"Thinking about my goals for the week\",\n    \"Just taking a walk or breathing deeply\"\n  ],\n  \"tasks\": [\n    \"Pick one of the options above\",\n    \"Let’s go with what feels most manageable for you\"\n  ],\n  \"steps\": [\n    \"Choose one of the options from the list\",\n    \"Tell me why that option feels right\",\n    \"We’ll build from there—no pressure, just small steps\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Le"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm really sorry you're feeling lost. That's completely normal—sometimes our minds just need a little help getting oriented. Let's take it one small step at a time together.",
+    "question": "What's one thing that’s on your mind or that you'd like to focus on today?",
+    "choices": [
+     "I don't know yet—just want to take a break",
+     "I need help figuring out my next steps",
+     "I’d like to talk about something I’ve been avoiding",
+     "I’m just feeling overwhelmed and want to breathe"
+    ],
+    "tasks": [
+     "Take a deep breath and notice how you're feeling right now",
+     "Think of one small action you can take today—even if it's just a minute"
+    ],
+    "steps": [
+     "Let me ask you a few gentle questions to help you feel a bit more grounded.",
+     "Based on your answers, I’ll suggest something simple you can do right now.",
+     "We’ll keep going from there—no pressure, just support."
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Tell me more",
+     "I'm ready to take a step"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm really sorry you're feeling lost. That's completely normal—sometimes our minds just need a little help getting oriented. Let's take it one small step at a time together.\",\n  \"question\": \"What's one thing that’s on your mind or that you'd like to focus on today?\",\n  \"choices\": [\n    \"I don't know yet—just want to take a break\",\n    \"I need help figuring out my next steps\",\n    \"I’d like to talk about something I’ve been avoiding\",\n    \"I’m just feeling overwhelmed and want to breathe\"\n  ],\n  \"tasks\": [\n    \"Take a deep breath and notice how you're feeling right now\",\n    \"Think of one small action you can take today—even if it's just a minute\"\n  ],\n  \"steps\": [\n    \"Let me ask you a few gentle questions to help you feel a bit more grounded.\",\n    \"Based on your answers, I’ll suggest something simple you can do right now.\",\n    \"We’ll keep goi"
+  },
+  {
+   "moment": "morning",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm really sorry you're feeling lost—this happens to everyone sometimes. Let's figure out what's on your mind together.",
+    "question": "What's one small step or thing you'd like to focus on today?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Let's find a starting point together"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm really sorry you're feeling lost—this happens to everyone sometimes. Let's figure out what's on your mind together.\",\n  \"question\": \"What's one small step or thing you'd like to focus on today?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Let's find a starting point together\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. That's totally okay—many people feel that way from time to time. Let's take it step by step. What would you like to focus on today? Maybe a small task, a thought, or just a moment of stillness?",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Start with a small task",
+     "Just sit and breathe",
+     "Write down one thing I'm grateful for",
+     "Think about a goal I want to work toward"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Help me find a starting point",
+     "Suggest a simple task",
+     "Talk more about my feelings"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. That's totally okay—many people feel that way from time to time. Let's take it step by step. What would you like to focus on today? Maybe a small task, a thought, or just a moment of stillness?\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Start with a small task\",\n    \"Just sit and breathe\",\n    \"Write down one thing I'm grateful for\",\n    \"Think about a goal I want to work toward\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Help me find a starting point\",\n    \"Suggest a simple task\",\n    \"Talk more about my feelings\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there! I'm so glad you reached out — feeling lost is totally normal, especially when you're just starting out.",
+    "message": "Let's take it slow. You don't need to have everything figured out right now. What would you like to focus on first? Maybe a small, manageable step — like choosing one thing to start with, such as setting a goal, organizing your day, or just getting outside for a few minutes.",
+    "question": "What would you like to try first?",
+    "choices": [
+     "Start with a simple goal, like reading 10 pages or walking 10 minutes",
+     "Organize my day by listing three things I want to do today",
+     "Just take a deep breath and focus on one calm moment right now",
+     "Figure out what I'm really passionate about — even if it's just a tiny bit"
+    ],
+    "tasks": [
+     "Pick one option from the choices above",
+     "Tell me more about it, so I can help you build from there"
+    ],
+    "steps": [
+     "Choose one of the options above",
+     "Tell me a little about what you'd like to do with it",
+     "We’ll build a simple, realistic plan together"
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": 0,
+    "buttons": [
+     "Get Started",
+     "Explore More"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there! I'm so glad you reached out — feeling lost is totally normal, especially when you're just starting out.\",\n  \"message\": \"Let's take it slow. You don't need to have everything figured out right now. What would you like to focus on first? Maybe a small, manageable step — like choosing one thing to start with, such as setting a goal, organizing your day, or just getting outside for a few minutes.\",\n  \"question\": \"What would you like to try first?\",\n  \"choices\": [\n    \"Start with a simple goal, like reading 10 pages or walking 10 minutes\",\n    \"Organize my day by listing three things I want to do today\",\n    \"Just take a deep breath and focus on one calm moment right now\",\n    \"Figure out what I'm really passionate about — even if it's just a tiny bit\"\n  ],\n  \"tasks\": [\n    \"Pick one option from the choices above\",\n    \"Tell me more about it, so I can help you build"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm here to help you find your way. Let's take it step by step—what would you like to focus on today? Maybe something simple, like getting clear on your goals, taking a deep breath, or just exploring your thoughts.",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Get clarity on my goals",
+     "Take a moment to breathe and relax",
+     "Explore my thoughts and emotions",
+     "Create a small action plan for tomorrow",
+     "Just sit with my feelings for a while"
+    ],
+    "tasks": [
+     "Take a few deep breaths to ground yourself",
+     "Write down one thing you're grateful for"
+    ],
+    "steps": [
+     "Pause and take three deep breaths.",
+     "Think about one thing that feels important to you today.",
+     "Choose a simple action or thought to explore."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": 2,
+    "buttons": [
+     "Start with breathing",
+     "Explore my thoughts",
+     "Create a simple plan"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm here to help you find your way. Let's take it step by step—what would you like to focus on today? Maybe something simple, like getting clear on your goals, taking a deep breath, or just exploring your thoughts.\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Get clarity on my goals\",\n    \"Take a moment to breathe and relax\",\n    \"Explore my thoughts and emotions\",\n    \"Create a small action plan for tomorrow\",\n    \"Just sit with my feelings for a while\"\n  ],\n  \"tasks\": [\n    \"Take a few deep breaths to ground yourself\",\n    \"Write down one thing you're grateful for\"\n  ],\n  \"steps\": [\n    \"Pause and take three deep breaths.\",\n    \"Think about one thing that feels important to you today.\",\n    \"Choose a simple action or thought to explore.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": 2,\n  \"b"
+  },
+  {
+   "moment": "morning",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost — that's totally okay. Let's find your next step together.",
+    "question": "What's one small thing you'd like to focus on right now?",
+    "choices": [
+     "Start with a simple task like writing down three goals",
+     "Take 5 minutes to breathe and just notice how you're feeling",
+     "Reach out to someone I know you trust",
+     "Look at my suggestions for actionable next steps"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Next",
+     "I'm ready to confirm"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost — that's totally okay. Let's find your next step together.\",\n  \"question\": \"What's one small thing you'd like to focus on right now?\",\n  \"choices\": [\n    \"Start with a simple task like writing down three goals\",\n    \"Take 5 minutes to breathe and just notice how you're feeling\",\n    \"Reach out to someone I know you trust\",\n    \"Look at my suggestions for actionable next steps\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Next\",\n    \"I'm ready to confirm\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on first? Maybe something simple like setting a tiny goal or just getting some fresh air?",
+    "question": "What would you like to do first?",
+    "choices": [
+     "Take a 5-minute walk outside",
+     "Set one small goal for today",
+     "Talk about what's on my mind",
+     "Try a mindfulness exercise"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": 1,
+    "buttons": [
+     "Start now",
+     "Later"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on first? Maybe something simple like setting a tiny goal or just getting some fresh air?\",\n  \"question\": \"What would you like to do first?\",\n  \"choices\": [\n    \"Take a 5-minute walk outside\",\n    \"Set one small goal for today\",\n    \"Talk about what's on my mind\",\n    \"Try a mindfulness exercise\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": 1,\n  \"buttons\": [\n    \"Start now\",\n    \"Later\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm really glad you reached out. Feeling lost is totally normal—especially when you're not sure where to start. Let's take it one small step at a time. How would you like to begin? Would you rather explore something simple, like setting a tiny daily goal, or maybe just talk through what's weighing on you right now?",
+    "question": "How would you like to begin?",
+    "choices": [
+     "Set a tiny daily goal (like reading 5 pages or walking 10 minutes)",
+     "Talk through what's weighing on me right now",
+     "Explore a new hobby or activity I've been meaning to try",
+     "Just take a moment to breathe and reset"
+    ],
+    "tasks": [
+     "Pick one of the options above",
+     "Tell me a bit about what you're feeling or what you'd like to focus on"
+    ],
+    "steps": [
+     "Choose one of the options above.",
+     "Tell me more about what’s on your mind—no pressure, just honesty.",
+     "We’ll build from there, step by step, with something simple and doable."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 1,
+    "buttons": [
+     "Let's start with a tiny daily goal",
+     "I'd love to talk through what's weighing on me",
+     "Explore a new hobby or activity",
+     "Just take a moment to breathe"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm really glad you reached out. Feeling lost is totally normal—especially when you're not sure where to start. Let's take it one small step at a time. How would you like to begin? Would you rather explore something simple, like setting a tiny daily goal, or maybe just talk through what's weighing on you right now?\",\n  \"question\": \"How would you like to begin?\",\n  \"choices\": [\n    \"Set a tiny daily goal (like reading 5 pages or walking 10 minutes)\",\n    \"Talk through what's weighing on me right now\",\n    \"Explore a new hobby or activity I've been meaning to try\",\n    \"Just take a moment to breathe and reset\"\n  ],\n  \"tasks\": [\n    \"Pick one of the options above\",\n    \"Tell me a bit about what you're feeling or what you'd like to focus on\"\n  ],\n  \"steps\": [\n    \"Choose one of the options above.\",\n    \"Tell me more about what’s on your mind—no pres"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "It's okay to feel lost sometimes. Let's take it step by step and find a clear starting point together.",
+    "question": "How would you like to begin? (Pick one)",
+    "choices": [
+     "Brainstorm ideas",
+     "Check my to-do list",
+     "Talk through a problem",
+     "Just relax and breathe"
+    ],
+    "tasks": [
+     "Take a deep breath and pause for a moment.",
+     "Pick one option that feels easiest."
+    ],
+    "steps": [
+     "Listen to your current feeling and identify what's causing confusion.",
+     "Choose a simple option from the list that makes sense to you.",
+     "Take a moment to reflect on how that choice feels."
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": 3,
+    "buttons": [
+     "Start now",
+     "Need more time"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"It's okay to feel lost sometimes. Let's take it step by step and find a clear starting point together.\",\n  \"question\": \"How would you like to begin? (Pick one)\",\n  \"choices\": [\n    \"Brainstorm ideas\",\n    \"Check my to-do list\",\n    \"Talk through a problem\",\n    \"Just relax and breathe\"\n  ],\n  \"tasks\": [\n    \"Take a deep breath and pause for a moment.\",\n    \"Pick one option that feels easiest.\"\n  ],\n  \"steps\": [\n    \"Listen to your current feeling and identify what's causing confusion.\",\n    \"Choose a simple option from the list that makes sense to you.\",\n    \"Take a moment to reflect on how that choice feels.\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": 3,\n  \"buttons\": [\n    \"Start now\",\n    \"Need more time\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm so glad you're opening up. Feeling lost is totally okay — it means you're paying attention to what's going on. Let's find your next step together.",
+    "question": "What's one small thing you'd like to do today to feel a little more grounded?",
+    "choices": [
+     "Take a deep breath and just sit for 5 minutes",
+     "Write down three things I'm grateful for",
+     "Reach out to someone I care about",
+     "Walk outside for 10 minutes",
+     "Pick one small task and start it now"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Next",
+     "I'm ready to confirm"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm so glad you're opening up. Feeling lost is totally okay — it means you're paying attention to what's going on. Let's find your next step together.\",\n  \"question\": \"What's one small thing you'd like to do today to feel a little more grounded?\",\n  \"choices\": [\n    \"Take a deep breath and just sit for 5 minutes\",\n    \"Write down three things I'm grateful for\",\n    \"Reach out to someone I care about\",\n    \"Walk outside for 10 minutes\",\n    \"Pick one small task and start it now\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Next\",\n    \"I'm ready to confirm\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost — that's totally okay. Let's take it step by step. What would you like to focus on today? Maybe a small goal, a task, or just some clarity?",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Start with a small task",
+     "Clarify my goals",
+     "Just take a moment to breathe",
+     "Explore a new idea"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Help me find a small task",
+     "Guide me to clarity",
+     "Just pause and breathe"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost — that's totally okay. Let's take it step by step. What would you like to focus on today? Maybe a small goal, a task, or just some clarity?\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Start with a small task\",\n    \"Clarify my goals\",\n    \"Just take a moment to breathe\",\n    \"Explore a new idea\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Help me find a small task\",\n    \"Guide me to clarity\",\n    \"Just pause and breathe\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there! I'm so glad you reached out.",
+    "message": "Feeling lost is totally normal — especially when you're not sure where to start. Let's take it slow and build from the ground up. What would you like to focus on first? Maybe something small, like a simple daily habit, a new skill you've been curious about, or just a little bit of self-reflection?",
+    "question": "What would you like to focus on first?",
+    "choices": [
+     "A small daily habit (like journaling or walking)",
+     "Learning something new (like cooking or mindfulness)",
+     "Just a little self-reflection (no pressure)",
+     "Trying out a new activity (like drawing or yoga)"
+    ],
+    "tasks": [
+     "Pick one of the options above that feels most comfortable.",
+     "Take 5 minutes to write down one thing you're excited about, even if it's tiny."
+    ],
+    "steps": [
+     "We'll pick one of the options that feels most aligned with you.",
+     "Then, I’ll help you create a simple, doable plan to get started with that.",
+     "We’ll build from there — no pressure, just progress."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 2,
+    "buttons": [
+     "Start with self-reflection",
+     "Try a new skill",
+     "Build a daily habit"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there! I'm so glad you reached out.\",\n  \"message\": \"Feeling lost is totally normal — especially when you're not sure where to start. Let's take it slow and build from the ground up. What would you like to focus on first? Maybe something small, like a simple daily habit, a new skill you've been curious about, or just a little bit of self-reflection?\",\n  \"question\": \"What would you like to focus on first?\",\n  \"choices\": [\n    \"A small daily habit (like journaling or walking)\",\n    \"Learning something new (like cooking or mindfulness)\",\n    \"Just a little self-reflection (no pressure)\",\n    \"Trying out a new activity (like drawing or yoga)\"\n  ],\n  \"tasks\": [\n    \"Pick one of the options above that feels most comfortable.\",\n    \"Take 5 minutes to write down one thing you're excited about, even if it's tiny.\"\n  ],\n  \"steps\": [\n    \"We'll pick one of the options that feels "
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on right now?",
+    "question": "What would you like to work on today?",
+    "choices": [
+     "Start with a simple task",
+     "Talk about what's been weighing on me",
+     "Just sit and breathe for a moment",
+     "Explore a new idea or project"
+    ],
+    "tasks": [
+     "Pick one option that resonates with you",
+     "Let’s build from there"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Let's start",
+     "I need more time"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it one small step at a time. What would you like to focus on right now?\",\n  \"question\": \"What would you like to work on today?\",\n  \"choices\": [\n    \"Start with a simple task\",\n    \"Talk about what's been weighing on me\",\n    \"Just sit and breathe for a moment\",\n    \"Explore a new idea or project\"\n  ],\n  \"tasks\": [\n    \"Pick one option that resonates with you\",\n    \"Let’s build from there\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Let's start\",\n    \"I need more time\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm really glad you're sharing that you feel lost. It's okay — feeling uncertain is a common part of growth. Let's take a moment to untangle this together.",
+    "question": "What's one small step or idea that's on your mind right now, even if it feels tiny or unsure?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Let's find a starting point together"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm really glad you're sharing that you feel lost. It's okay — feeling uncertain is a common part of growth. Let's take a moment to untangle this together.\",\n  \"question\": \"What's one small step or idea that's on your mind right now, even if it feels tiny or unsure?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Let's find a starting point together\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. Let's take it step by step. What's one small thing you'd like to focus on today? Maybe it's a task, a thought, or just a simple action.",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Start with a small task",
+     "Just take a deep breath and relax",
+     "Think about my goals",
+     "Write down one thing I'm grateful for"
+    ],
+    "tasks": [
+     "Pick one option from above",
+     "Take 2 minutes to write it down"
+    ],
+    "steps": [
+     "Choose one of the options from the list.",
+     "Write it down quickly in a journal or note.",
+     "Take a moment to breathe and notice how you feel."
+    ],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": 0,
+    "buttons": [
+     "Let's pick one",
+     "I'm not ready yet"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it step by step. What's one small thing you'd like to focus on today? Maybe it's a task, a thought, or just a simple action.\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Start with a small task\",\n    \"Just take a deep breath and relax\",\n    \"Think about my goals\",\n    \"Write down one thing I'm grateful for\"\n  ],\n  \"tasks\": [\n    \"Pick one option from above\",\n    \"Take 2 minutes to write it down\"\n  ],\n  \"steps\": [\n    \"Choose one of the options from the list.\",\n    \"Write it down quickly in a journal or note.\",\n    \"Take a moment to breathe and notice how you feel.\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": 0,\n  \"buttons\": [\n    \"Let's pick one\",\n    \"I'm not ready yet\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "It's totally okay to feel lost — that's a common starting point. Let's take it step by step. What would you like to work on today? Maybe we can start small, like a simple goal or just a few minutes of focused activity.",
+    "question": "What would you like to focus on today?",
+    "choices": [
+     "Plan my day for the next hour",
+     "Write down three things I'm grateful for",
+     "Brainstorm a small project I've been wanting to start",
+     "Just take a walk and clear my head",
+     "Pick a new habit to build"
+    ],
+    "tasks": [
+     "Pick one of the options above",
+     "Tell me more about what you're hoping to achieve"
+    ],
+    "steps": [
+     "I’ll help you choose the best starting point based on your goals",
+     "We’ll break it down into tiny, manageable steps",
+     "You’ll begin with just one action — no pressure"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Start with a choice",
+     "Talk through it first",
+     "Skip for now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"It's totally okay to feel lost — that's a common starting point. Let's take it step by step. What would you like to work on today? Maybe we can start small, like a simple goal or just a few minutes of focused activity.\",\n  \"question\": \"What would you like to focus on today?\",\n  \"choices\": [\n    \"Plan my day for the next hour\",\n    \"Write down three things I'm grateful for\",\n    \"Brainstorm a small project I've been wanting to start\",\n    \"Just take a walk and clear my head\",\n    \"Pick a new habit to build\"\n  ],\n  \"tasks\": [\n    \"Pick one of the options above\",\n    \"Tell me more about what you're hoping to achieve\"\n  ],\n  \"steps\": [\n    \"I’ll help you choose the best starting point based on your goals\",\n    \"We’ll break it down into tiny, manageable steps\",\n    \"You’ll begin with just one action — no pressure\"\n  ],\n  \"steps_shown\": \"expanded\",\n  "
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm sorry you're feeling lost. Let's take it one step at a time. What would you like to focus on today? Maybe we can find a small starting point together.",
+    "question": "What would you like to work on today?",
+    "choices": [
+     "Get started with a simple task",
+     "Just take a moment to breathe",
+     "Plan my day",
+     "Talk about something I'm worried about"
+    ],
+    "tasks": [
+     "Choose one option from the list",
+     "Let me know if you'd like to adjust your focus"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start Now",
+     "Talk More"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm sorry you're feeling lost. Let's take it one step at a time. What would you like to focus on today? Maybe we can find a small starting point together.\",\n  \"question\": \"What would you like to work on today?\",\n  \"choices\": [\n    \"Get started with a simple task\",\n    \"Just take a moment to breathe\",\n    \"Plan my day\",\n    \"Talk about something I'm worried about\"\n  ],\n  \"tasks\": [\n    \"Choose one option from the list\",\n    \"Let me know if you'd like to adjust your focus\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start Now\",\n    \"Talk More\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "morning",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "ask": 3.0,
+    "careful": 2.0,
+    "verbose": 1.0,
+    "warmer": 2.0
+   },
+   "planner_text": "{\"ask\": 3, \"careful\": 2, \"verbose\": 1, \"warmer\": 2}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'm here for you — feeling lost is totally okay. Let's figure out where you'd like to begin together.",
+    "question": "What's one small step or area of your life you'd like to focus on today?",
+    "choices": [],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Let's find a starting point",
+     "I'm not sure yet"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'm here for you — feeling lost is totally okay. Let's figure out where you'd like to begin together.\",\n  \"question\": \"What's one small step or area of your life you'd like to focus on today?\",\n  \"choices\": [],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Let's find a starting point\", \"I'm not sure yet\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Locate the March invoice",
+     "Verify recipient is Novak",
+     "Send the invoice via email today"
+    ],
+    "steps": [
+     "Checking the invoice file for March",
+     "Confirming the recipient is Novak",
+     "Sending the invoice to Novak's email address"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Locate the March invoice\",\n    \"Verify recipient is Novak\",\n    \"Send the invoice via email today\"\n  ],\n  \"steps\": [\n    \"Checking the invoice file for March\",\n    \"Confirming the recipient is Novak\",\n    \"Sending the invoice to Novak's email address\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm processing your request to send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Verify the March invoice details",
+     "Confirm Novak's email address and receipt requirements",
+     "Generate and send the invoice immediately",
+     "Log the action in the system"
+    ],
+    "steps": [
+     "Validating the invoice file for March 2024",
+     "Cross-checking recipient: Novak, including correct email address",
+     "Sending the invoice via encrypted email with receipt tracking",
+     "Recording the send time and status in the workflow log"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Confirm and Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 4.0,
+    "density": "dense"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm processing your request to send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Verify the March invoice details\",\n    \"Confirm Novak's email address and receipt requirements\",\n    \"Generate and send the invoice immediately\",\n    \"Log the action in the system\"\n  ],\n  \"steps\": [\n    \"Validating the invoice file for March 2024\",\n    \"Cross-checking recipient: Novak, including correct email address\",\n    \"Sending the invoice via encrypted email with receipt tracking\",\n    \"Recording the send time and status in the workflow log\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Confirm and Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 4,\n  \"density\": \"dense\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Retrieve the March invoice",
+     "Verify recipient details (Novak)",
+     "Send the invoice via email"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Confirming the recipient is Novak",
+     "Sending the invoice to Novak's email address"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Retrieve the March invoice\",\n    \"Verify recipient details (Novak)\",\n    \"Send the invoice via email\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Confirming the recipient is Novak\",\n    \"Sending the invoice to Novak's email address\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today. Let me confirm the details before proceeding.",
+    "question": "Confirm: Send the March invoice to Novak today?",
+    "choices": [
+     "Yes, send it now",
+     "No, cancel"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "dense"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today. Let me confirm the details before proceeding.\",\n  \"question\": \"Confirm: Send the March invoice to Novak today?\",\n  \"choices\": [\n    \"Yes, send it now\",\n    \"No, cancel\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"dense\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Prepare the March invoice",
+     "Send the invoice to Novak"
+    ],
+    "steps": [
+     "Retrieving the March invoice from the system",
+     "Verifying the recipient is Novak",
+     "Sending the invoice via email today"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Prepare the March invoice\",\n    \"Send the invoice to Novak\"\n  ],\n  \"steps\": [\n    \"Retrieving the March invoice from the system\",\n    \"Verifying the recipient is Novak\",\n    \"Sending the invoice via email today\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm preparing to send the March invoice to Novak. Please confirm that this is correct.",
+    "question": "Should I send the March invoice to Novak today?",
+    "choices": [
+     "Yes",
+     "No"
+    ],
+    "tasks": [
+     "Verify invoice details: March invoice, recipient: Novak",
+     "Send invoice via email to Novak's official address",
+     "Log the action in the system"
+    ],
+    "steps": [
+     "Confirm the invoice is for March and is the correct version",
+     "Ensure Novak's email address is valid and up to date",
+     "Send the invoice immediately via secure email",
+     "Record the send time and recipient in the tracking system"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Send Invoice Now",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm preparing to send the March invoice to Novak. Please confirm that this is correct.\",\n  \"question\": \"Should I send the March invoice to Novak today?\",\n  \"choices\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tasks\": [\n    \"Verify invoice details: March invoice, recipient: Novak\",\n    \"Send invoice via email to Novak's official address\",\n    \"Log the action in the system\"\n  ],\n  \"steps\": [\n    \"Confirm the invoice is for March and is the correct version\",\n    \"Ensure Novak's email address is valid and up to date\",\n    \"Send the invoice immediately via secure email\",\n    \"Record the send time and recipient in the tracking system\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Send Invoice Now\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "Got it. I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Prepare the March invoice",
+     "Send the invoice to Novak",
+     "Confirm receipt by Novak"
+    ],
+    "steps": [
+     "Locating the March invoice document",
+     "Verifying the recipient is Novak",
+     "Sending the invoice via email today"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Wait for Confirmation"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"Got it. I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Prepare the March invoice\",\n    \"Send the invoice to Novak\",\n    \"Confirm receipt by Novak\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice document\",\n    \"Verifying the recipient is Novak\",\n    \"Sending the invoice via email today\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Wait for Confirmation\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today. Just confirming — is that correct?",
+    "question": "Confirm sending the March invoice to Novak today?",
+    "choices": [
+     "Yes, send it",
+     "No, change details"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today. Just confirming — is that correct?\",\n  \"question\": \"Confirm sending the March invoice to Novak today?\",\n  \"choices\": [\n    \"Yes, send it\",\n    \"No, change details\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Retrieve the March invoice",
+     "Verify recipient is Novak",
+     "Send the invoice today"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Confirming the recipient is Novak",
+     "Sending the invoice via email with a clear subject line"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Retrieve the March invoice\",\n    \"Verify recipient is Novak\",\n    \"Send the invoice today\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Confirming the recipient is Novak\",\n    \"Sending the invoice via email with a clear subject line\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm preparing to send the March invoice to Novak. Please confirm that this is correct, including the recipient, invoice date, and due date.",
+    "question": "Should I send the March invoice to Novak today?",
+    "choices": [
+     "Yes, send the March invoice to Novak today",
+     "No, do not send the March invoice to Novak today"
+    ],
+    "tasks": [
+     "Verify the invoice details: March invoice, recipient: Novak",
+     "Confirm the current date and whether today is the correct day to send",
+     "Send the invoice via secure channel (email or system) to Novak"
+    ],
+    "steps": [
+     "Confirm the invoice is the March one and is valid and unexpired.",
+     "Verify that the recipient is Novak and that the correct contact information is being used.",
+     "Ensure the invoice includes all required fields: date, amount, itemized services, and payment terms.",
+     "Initiate the sending process through the approved financial workflow system.",
+     "Provide confirmation of successful delivery to the user."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Send Invoice",
+     "Review and Correct"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm preparing to send the March invoice to Novak. Please confirm that this is correct, including the recipient, invoice date, and due date.\",\n  \"question\": \"Should I send the March invoice to Novak today?\",\n  \"choices\": [\n    \"Yes, send the March invoice to Novak today\",\n    \"No, do not send the March invoice to Novak today\"\n  ],\n  \"tasks\": [\n    \"Verify the invoice details: March invoice, recipient: Novak\",\n    \"Confirm the current date and whether today is the correct day to send\",\n    \"Send the invoice via secure channel (email or system) to Novak\"\n  ],\n  \"steps\": [\n    \"Confirm the invoice is the March one and is valid and unexpired.\",\n    \"Verify that the recipient is Novak and that the correct contact information is being used.\",\n    \"Ensure the invoice includes all required fields: date, amount, itemized services, and payment terms.\",\n    \"In"
+  },
+  {
+   "moment": "noon",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Locate the March invoice",
+     "Verify recipient is Novak",
+     "Send the invoice today"
+    ],
+    "steps": [
+     "Checking the invoice documents for March",
+     "Confirming the recipient is Novak",
+     "Sending the invoice via email"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Locate the March invoice\",\n    \"Verify recipient is Novak\",\n    \"Send the invoice today\"\n  ],\n  \"steps\": [\n    \"Checking the invoice documents for March\",\n    \"Confirming the recipient is Novak\",\n    \"Sending the invoice via email\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today. Just confirming to make sure this is correct.",
+    "question": "Confirm sending the March invoice to Novak today?",
+    "choices": [
+     "Yes, send it",
+     "No, cancel"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "dense"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today. Just confirming to make sure this is correct.\",\n  \"question\": \"Confirm sending the March invoice to Novak today?\",\n  \"choices\": [\"Yes, send it\", \"No, cancel\"],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"dense\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Retrieve the March invoice",
+     "Verify recipient details (Novak)",
+     "Send the invoice via email today"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Confirming Novak is the correct recipient",
+     "Sending the invoice with a clear subject line and delivery confirmation"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Retrieve the March invoice\",\n    \"Verify recipient details (Novak)\",\n    \"Send the invoice via email today\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Confirming Novak is the correct recipient\",\n    \"Sending the invoice with a clear subject line and delivery confirmation\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Send Invoice\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm preparing to send the March invoice to Novak.",
+    "question": "Confirm that you want me to send the March invoice to Novak today.",
+    "choices": [
+     "Yes, send it now",
+     "No, do not send it"
+    ],
+    "tasks": [
+     "Verify the March invoice details",
+     "Validate Novak's contact information",
+     "Send the invoice via email to Novak's official address"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Confirming recipient: Novak, email address and company details",
+     "Attaching the correct invoice document",
+     "Sending the invoice with a clear subject line and tracking enabled",
+     "Recording the send time and status in the system"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Send Invoice Now",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm preparing to send the March invoice to Novak.\",\n  \"question\": \"Confirm that you want me to send the March invoice to Novak today.\",\n  \"choices\": [\n    \"Yes, send it now\",\n    \"No, do not send it\"\n  ],\n  \"tasks\": [\n    \"Verify the March invoice details\",\n    \"Validate Novak's contact information\",\n    \"Send the invoice via email to Novak's official address\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Confirming recipient: Novak, email address and company details\",\n    \"Attaching the correct invoice document\",\n    \"Sending the invoice with a clear subject line and tracking enabled\",\n    \"Recording the send time and status in the system\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Send Invoice Now\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "Got it. I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Check the March invoice details",
+     "Verify Novak's email address",
+     "Send the invoice via email today"
+    ],
+    "steps": [
+     "Retrieving the March invoice from the system",
+     "Confirming recipient is Novak",
+     "Sending the invoice through the company email"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Check Details First"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"Got it. I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Check the March invoice details\",\n    \"Verify Novak's email address\",\n    \"Send the invoice via email today\"\n  ],\n  \"steps\": [\n    \"Retrieving the March invoice from the system\",\n    \"Confirming recipient is Novak\",\n    \"Sending the invoice through the company email\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Check Details First\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today. Just confirming so I don't make a mistake.",
+    "question": "Confirm that you'd like me to send the March invoice to Novak today.",
+    "choices": [
+     "Yes, send it now",
+     "No, cancel"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "dense"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today. Just confirming so I don't make a mistake.\",\n  \"question\": \"Confirm that you'd like me to send the March invoice to Novak today.\",\n  \"choices\": [\n    \"Yes, send it now\",\n    \"No, cancel\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"dense\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Locate the March invoice",
+     "Verify recipient is Novak",
+     "Send the invoice via email today"
+    ],
+    "steps": [
+     "Retrieving the March invoice from the finance folder",
+     "Confirming Novak is the correct recipient",
+     "Composing and sending the invoice via email"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Locate the March invoice\",\n    \"Verify recipient is Novak\",\n    \"Send the invoice via email today\"\n  ],\n  \"steps\": [\n    \"Retrieving the March invoice from the finance folder\",\n    \"Confirming Novak is the correct recipient\",\n    \"Composing and sending the invoice via email\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm preparing to send the March invoice to Novak. Let me confirm the details before proceeding.",
+    "question": "Is this the March invoice you would like sent to Novak today?",
+    "choices": [
+     "Yes",
+     "No"
+    ],
+    "tasks": [
+     "Verify the invoice details: March invoice, recipient: Novak",
+     "Authenticate user access to the invoicing system",
+     "Send the invoice via secure email to Novak"
+    ],
+    "steps": [
+     "Confirm that the invoice in question is the March invoice.",
+     "Verify Novak's correct email address and contact information.",
+     "Initiate the secure transmission of the invoice.",
+     "Provide confirmation of successful delivery."
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm and Send",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm preparing to send the March invoice to Novak. Let me confirm the details before proceeding.\",\n  \"question\": \"Is this the March invoice you would like sent to Novak today?\",\n  \"choices\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tasks\": [\n    \"Verify the invoice details: March invoice, recipient: Novak\",\n    \"Authenticate user access to the invoicing system\",\n    \"Send the invoice via secure email to Novak\"\n  ],\n  \"steps\": [\n    \"Confirm that the invoice in question is the March invoice.\",\n    \"Verify Novak's correct email address and contact information.\",\n    \"Initiate the secure transmission of the invoice.\",\n    \"Provide confirmation of successful delivery.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Confirm and Send\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Prepare the March invoice",
+     "Send it to Novak via email",
+     "Confirm receipt"
+    ],
+    "steps": [
+     "Retrieve the March invoice document",
+     "Compose the email to Novak",
+     "Attach the invoice and send",
+     "Verify delivery confirmation"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice Now",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Prepare the March invoice\",\n    \"Send it to Novak via email\",\n    \"Confirm receipt\"\n  ],\n  \"steps\": [\n    \"Retrieve the March invoice document\",\n    \"Compose the email to Novak\",\n    \"Attach the invoice and send\",\n    \"Verify delivery confirmation\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice Now\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Got it!",
+    "message": "I'll send the March invoice to Novak today. Just confirming to make sure this is correct.",
+    "question": "Confirm that you'd like me to send the March invoice to Novak today.",
+    "choices": [
+     "Yes, send it now",
+     "No, change details"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Got it!\",\n  \"message\": \"I'll send the March invoice to Novak today. Just confirming to make sure this is correct.\",\n  \"question\": \"Confirm that you'd like me to send the March invoice to Novak today.\",\n  \"choices\": [\n    \"Yes, send it now\",\n    \"No, change details\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I've noted your request to send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Retrieve the March invoice",
+     "Verify recipient details (Novak)",
+     "Send the invoice via email today"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Confirming the recipient is Novak",
+     "Sending the invoice with a clear subject line and reminder of the due date"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice Now",
+     "Check Invoice Details First"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I've noted your request to send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Retrieve the March invoice\",\n    \"Verify recipient details (Novak)\",\n    \"Send the invoice via email today\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Confirming the recipient is Novak\",\n    \"Sending the invoice with a clear subject line and reminder of the due date\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice Now\",\n    \"Check Invoice Details First\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 3,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hello",
+    "message": "I'm preparing to send the March invoice to Novak. Let me confirm the details before proceeding.",
+    "question": "Confirm that you want me to send the March invoice to Novak today.",
+    "choices": [
+     "Yes, send the March invoice to Novak today.",
+     "No, cancel this action."
+    ],
+    "tasks": [
+     "Verify invoice details: March invoice, recipient: Novak",
+     "Authenticate access to the billing system",
+     "Generate and send the invoice via secure delivery channel"
+    ],
+    "steps": [
+     "Validating the invoice date: March 2024",
+     "Confirming recipient: Novak (email or address)",
+     "Accessing the invoice repository to retrieve the March invoice",
+     "Initiating secure transmission to Novak's designated email address",
+     "Logging the action for audit and compliance"
+    ],
+    "steps_shown": "expanded",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 3.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hello\",\n  \"message\": \"I'm preparing to send the March invoice to Novak. Let me confirm the details before proceeding.\",\n  \"question\": \"Confirm that you want me to send the March invoice to Novak today.\",\n  \"choices\": [\n    \"Yes, send the March invoice to Novak today.\",\n    \"No, cancel this action.\"\n  ],\n  \"tasks\": [\n    \"Verify invoice details: March invoice, recipient: Novak\",\n    \"Authenticate access to the billing system\",\n    \"Generate and send the invoice via secure delivery channel\"\n  ],\n  \"steps\": [\n    \"Validating the invoice date: March 2024\",\n    \"Confirming recipient: Novak (email or address)\",\n    \"Accessing the invoice repository to retrieve the March invoice\",\n    \"Initiating secure transmission to Novak's designated email address\",\n    \"Logging the action for audit and compliance\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"butt"
+  },
+  {
+   "moment": "noon",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Retrieve the March invoice",
+     "Send the invoice to Novak",
+     "Confirm delivery"
+    ],
+    "steps": [
+     "Locating the March invoice in the system",
+     "Composing the email to Novak",
+     "Sending the invoice with today's date",
+     "Confirming successful delivery"
+    ],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Send Invoice",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Retrieve the March invoice\",\n    \"Send the invoice to Novak\",\n    \"Confirm delivery\"\n  ],\n  \"steps\": [\n    \"Locating the March invoice in the system\",\n    \"Composing the email to Novak\",\n    \"Sending the invoice with today's date\",\n    \"Confirming successful delivery\"\n  ],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\n    \"Send Invoice\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "noon",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "careful": 2.0,
+    "verbose": 1.0,
+    "urgent": 3.0
+   },
+   "planner_text": "{\"careful\": 2, \"verbose\": 1, \"urgent\": 3}",
+   "screen": {
+    "greeting": "Hi there!",
+    "message": "I'll send the March invoice to Novak today. Just confirming to make sure that's correct.",
+    "question": "Should I send the March invoice to Novak today?",
+    "choices": [
+     "Yes",
+     "No"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 5.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there!\",\n  \"message\": \"I'll send the March invoice to Novak today. Just confirming to make sure that's correct.\",\n  \"question\": \"Should I send the March invoice to Novak today?\",\n  \"choices\": [\n    \"Yes\",\n    \"No\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\n    \"Confirm\",\n    \"Cancel\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 5,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I hear you're exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Rest for a few minutes"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm fine"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I hear you're exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a deep breath\", \"Rest for a few minutes\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Rest now\", \"I'm fine\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're allowed to rest. One thing: breathe in for four, hold for four, breathe out for six. That’s enough.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath in for four seconds",
+     "Hold it for four seconds",
+     "Exhale slowly for six seconds"
+    ],
+    "steps": [
+     "Close your eyes.",
+     "Breathe in for four seconds.",
+     "Hold your breath for four seconds.",
+     "Exhale slowly for six seconds."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "Take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're allowed to rest. One thing: breathe in for four, hold for four, breathe out for six. That’s enough.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath in for four seconds\",\n    \"Hold it for four seconds\",\n    \"Exhale slowly for six seconds\"\n  ],\n  \"steps\": [\n    \"Close your eyes.\",\n    \"Breathe in for four seconds.\",\n    \"Hold your breath for four seconds.\",\n    \"Exhale slowly for six seconds.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"Take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're doing your best — rest is just as important as effort.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a short break"
+    ],
+    "steps": [
+     "Close your eyes for 1 minute",
+     "Breathe slowly and deeply",
+     "Feel your body relax"
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "I'll take a break now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're doing your best — rest is just as important as effort.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a short break\"\n  ],\n  \"steps\": [\n    \"Close your eyes for 1 minute\",\n    \"Breathe slowly and deeply\",\n    \"Feel your body relax\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"I'll take a break now\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 0,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.",
+    "question": "Confirm that you'd like me to share just one thing to help you feel better.",
+    "choices": [
+     "Yes, please share one thing",
+     "No, I'll manage on my own"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.\",\n  \"question\": \"Confirm that you'd like me to share just one thing to help you feel better.\",\n  \"choices\": [\"Yes, please share one thing\", \"No, I'll manage on my own\"],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a short break",
+     "Close your eyes for a minute"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a short break\",\n    \"Close your eyes for a minute\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm okay\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone. Taking a breath right now is enough.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Close your eyes for 10 seconds",
+     "Take a deep breath in through your nose, hold for 3 seconds, and exhale slowly through your mouth"
+    ],
+    "steps": [
+     "Close your eyes",
+     "Inhale slowly through your nose",
+     "Hold for 3 seconds",
+     "Exhale slowly through your mouth"
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start now",
+     "Take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone. Taking a breath right now is enough.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Close your eyes for 10 seconds\",\n    \"Take a deep breath in through your nose, hold for 3 seconds, and exhale slowly through your mouth\"\n  ],\n  \"steps\": [\n    \"Close your eyes\",\n    \"Inhale slowly through your nose\",\n    \"Hold for 3 seconds\",\n    \"Exhale slowly through your mouth\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start now\",\n    \"Take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone — it's okay to feel exhausted. Just breathe and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Close your eyes for 10 seconds",
+     "Reach for a cup of tea or water"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "Stay with me"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone — it's okay to feel exhausted. Just breathe and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath\",\n    \"Close your eyes for 10 seconds\",\n    \"Reach for a cup of tea or water\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"Stay with me\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 1,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I hear you're exhausted. I'm here to help. Just say the word and I'll do one thing for you.",
+    "question": "What would you like me to do for you?",
+    "choices": [
+     "Suggest a restful activity",
+     "Give a quick tip to feel better",
+     "Tell you a calming story",
+     "Just listen"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I hear you're exhausted. I'm here to help. Just say the word and I'll do one thing for you.\",\n  \"question\": \"What would you like me to do for you?\",\n  \"choices\": [\n    \"Suggest a restful activity\",\n    \"Give a quick tip to feel better\",\n    \"Tell you a calming story\",\n    \"Just listen\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Close your eyes for 30 seconds",
+     "Let your body relax"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath\",\n    \"Close your eyes for 30 seconds\",\n    \"Let your body relax\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm okay\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You don’t have to do anything right now. Just breathe. One breath in, one breath out. That’s enough.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take one slow breath in through your nose.",
+     "Hold it for a second.",
+     "Exhale slowly through your mouth."
+    ],
+    "steps": [
+     "Close your eyes if you can.",
+     "Take a slow, deep breath in through your nose.",
+     "Hold it for a second.",
+     "Exhale slowly through your mouth."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "I’m ready"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You don’t have to do anything right now. Just breathe. One breath in, one breath out. That’s enough.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take one slow breath in through your nose.\",\n    \"Hold it for a second.\",\n    \"Exhale slowly through your mouth.\"\n  ],\n  \"steps\": [\n    \"Close your eyes if you can.\",\n    \"Take a slow, deep breath in through your nose.\",\n    \"Hold it for a second.\",\n    \"Exhale slowly through your mouth.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"I’m ready\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I hear you — exhaustion is real. Just breathe. One slow breath in, one out. That’s enough for now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take one slow breath in, hold for a second, then exhale slowly"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I hear you — exhaustion is real. Just breathe. One slow breath in, one out. That’s enough for now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take one slow breath in, hold for a second, then exhale slowly\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Start breathing now\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 2,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.",
+    "question": "Confirm that you'd like me to share just one thing with you to help you feel better.",
+    "choices": [
+     "Yes, please share one thing",
+     "No, I'll think about it"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 0,
+    "buttons": [
+     "Confirm",
+     "Later"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.\",\n  \"question\": \"Confirm that you'd like me to share just one thing with you to help you feel better.\",\n  \"choices\": [\"Yes, please share one thing\", \"No, I'll think about it\"],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 0,\n  \"buttons\": [\"Confirm\", \"Later\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Sit or lie down in a comfortable place",
+     "Close your eyes for 1-2 minutes"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm ready to continue"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Sit or lie down in a comfortable place\",\n    \"Close your eyes for 1-2 minutes\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm ready to continue\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone. Just breathe. One thing: take one slow, deep breath right now. In through your nose, hold for a second, and out through your mouth. That’s all. Just that.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take one slow, deep breath right now",
+     "Pause for a moment without checking your phone"
+    ],
+    "steps": [
+     "Close your eyes for a moment if you can",
+     "Take one slow, deep breath through your nose",
+     "Hold it for one second",
+     "Exhale slowly through your mouth"
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Yes, I’ll take that breath now",
+     "I’m still tired, but I’ll try"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone. Just breathe. One thing: take one slow, deep breath right now. In through your nose, hold for a second, and out through your mouth. That’s all. Just that.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take one slow, deep breath right now\",\n    \"Pause for a moment without checking your phone\"\n  ],\n  \"steps\": [\n    \"Close your eyes for a moment if you can\",\n    \"Take one slow, deep breath through your nose\",\n    \"Hold it for one second\",\n    \"Exhale slowly through your mouth\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Yes, I’ll take that breath now\",\n    \"I’m still tired, but I’ll try\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a short break",
+     "Close your eyes for 30 seconds"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "Check in later"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\"Take a short break\", \"Close your eyes for 30 seconds\"],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\"Rest now\", \"Check in later\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 3,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. I'll help you with just one thing.",
+    "question": "What would you like me to do for you?",
+    "choices": [
+     "Tell me a calming story",
+     "Suggest a quick stretch",
+     "Send a warm message",
+     "Help me sleep with a breathing exercise"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. I'll help you with just one thing.\",\n  \"question\": \"What would you like me to do for you?\",\n  \"choices\": [\n    \"Tell me a calming story\",\n    \"Suggest a quick stretch\",\n    \"Send a warm message\",\n    \"Help me sleep with a breathing exercise\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Take a deep breath and rest.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a 5-minute break",
+     "Close your eyes and breathe slowly"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'll take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Take a deep breath and rest.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a 5-minute break\",\n    \"Close your eyes and breathe slowly\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'll take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone. Just breathe. One breath in, one breath out. That’s all you need right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take one slow breath in through your nose.",
+     "Hold it for a second.",
+     "Exhale slowly through your mouth."
+    ],
+    "steps": [
+     "Close your eyes if you can.",
+     "Inhale slowly through your nose for four seconds.",
+     "Hold your breath for two seconds.",
+     "Exhale completely through your mouth for six seconds.",
+     "Open your eyes when you're ready."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "Stay here"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone. Just breathe. One breath in, one breath out. That’s all you need right now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take one slow breath in through your nose.\",\n    \"Hold it for a second.\",\n    \"Exhale slowly through your mouth.\"\n  ],\n  \"steps\": [\n    \"Close your eyes if you can.\",\n    \"Inhale slowly through your nose for four seconds.\",\n    \"Hold your breath for two seconds.\",\n    \"Exhale completely through your mouth for six seconds.\",\n    \"Open your eyes when you're ready.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"Stay here\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "I'm sorry you're feeling that way.",
+    "message": "Take a deep breath. Just one thing: rest. Your body needs it.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Close your eyes for 1 minute and breathe slowly.",
+     "Put your phone away and do nothing for 5 minutes."
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "Breathe deeply"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "one-thing"
+   },
+   "raw": "{\n  \"greeting\": \"I'm sorry you're feeling that way.\",\n  \"message\": \"Take a deep breath. Just one thing: rest. Your body needs it.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Close your eyes for 1 minute and breathe slowly.\",\n    \"Put your phone away and do nothing for 5 minutes.\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"Breathe deeply\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"one-thing\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 4,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. I'm here to help.",
+    "question": "What would you like me to do for you?",
+    "choices": [
+     "Help me relax with a breathing exercise",
+     "Suggest a quick bedtime routine",
+     "Tell me a calming story",
+     "Just listen — no action needed"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": null,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. I'm here to help.\",\n  \"question\": \"What would you like me to do for you?\",\n  \"choices\": [\n    \"Help me relax with a breathing exercise\",\n    \"Suggest a quick bedtime routine\",\n    \"Tell me a calming story\",\n    \"Just listen — no action needed\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": null,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "base",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hey there",
+    "message": "I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a few minutes to rest",
+     "Close your eyes and breathe slowly"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Rest now",
+     "I'm okay, thanks"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hey there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just take a deep breath and rest for a moment.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a few minutes to rest\",\n    \"Close your eyes and breathe slowly\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Rest now\",\n    \"I'm okay, thanks\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "vector",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "You're not alone. Just breathe. One breath in, one out. That’s all you need right now.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take one slow breath in through your nose",
+     "Hold it for a second",
+     "Exhale slowly through your mouth"
+    ],
+    "steps": [
+     "Close your eyes if you can.",
+     "Breathe in through your nose for four seconds.",
+     "Hold your breath for two seconds.",
+     "Exhale through your mouth for six seconds.",
+     "Count to five softly under your breath."
+    ],
+    "steps_shown": "expanded",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Start breathing now",
+     "Take a break"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"You're not alone. Just breathe. One breath in, one out. That’s all you need right now.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take one slow breath in through your nose\",\n    \"Hold it for a second\",\n    \"Exhale slowly through your mouth\"\n  ],\n  \"steps\": [\n    \"Close your eyes if you can.\",\n    \"Breathe in through your nose for four seconds.\",\n    \"Hold your breath for two seconds.\",\n    \"Exhale through your mouth for six seconds.\",\n    \"Count to five softly under your breath.\"\n  ],\n  \"steps_shown\": \"expanded\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Start breathing now\",\n    \"Take a break\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "shuffled",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. Just breathe. You're doing okay.",
+    "question": null,
+    "choices": [],
+    "tasks": [
+     "Take a deep breath",
+     "Rest for a few minutes"
+    ],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": false,
+    "default": null,
+    "buttons": [
+     "Take a break",
+     "I'm feeling better now"
+    ],
+    "tone": "warm",
+    "urgency": 1.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. Just breathe. You're doing okay.\",\n  \"question\": null,\n  \"choices\": [],\n  \"tasks\": [\n    \"Take a deep breath\",\n    \"Rest for a few minutes\"\n  ],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": false,\n  \"default\": null,\n  \"buttons\": [\n    \"Take a break\",\n    \"I'm feeling better now\"\n  ],\n  \"tone\": \"warm\",\n  \"urgency\": 1,\n  \"density\": \"normal\"\n}"
+  },
+  {
+   "moment": "evening",
+   "rep": 5,
+   "kind": "prompt",
+   "settings": {
+    "careful": 1.0
+   },
+   "planner_text": "{\"verbose\": 0, \"careful\": 1, \"warmth\": 1, \"urgent\": 0}",
+   "screen": {
+    "greeting": "Hi there",
+    "message": "I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.",
+    "question": "Would you like me to say one thing to help you feel better?",
+    "choices": [
+     "Rest for just 5 minutes",
+     "Take a deep breath and focus on your next step",
+     "Tell you a small, comforting truth"
+    ],
+    "tasks": [],
+    "steps": [],
+    "steps_shown": "collapsed",
+    "confirm": true,
+    "default": 1,
+    "buttons": [
+     "Confirm",
+     "Cancel"
+    ],
+    "tone": "warm",
+    "urgency": 2.0,
+    "density": "normal"
+   },
+   "raw": "{\n  \"greeting\": \"Hi there\",\n  \"message\": \"I'm sorry you're feeling exhausted. I'll keep it simple and just tell you one thing.\",\n  \"question\": \"Would you like me to say one thing to help you feel better?\",\n  \"choices\": [\n    \"Rest for just 5 minutes\",\n    \"Take a deep breath and focus on your next step\",\n    \"Tell you a small, comforting truth\"\n  ],\n  \"tasks\": [],\n  \"steps\": [],\n  \"steps_shown\": \"collapsed\",\n  \"confirm\": true,\n  \"default\": 1,\n  \"buttons\": [\"Confirm\", \"Cancel\"],\n  \"tone\": \"warm\",\n  \"urgency\": 2,\n  \"density\": \"normal\"\n}"
+  }
+ ]
+}

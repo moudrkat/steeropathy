@@ -15,7 +15,10 @@ its field** (`detail +3`: five steps where the unsteered screen shows
 three), **the sum of three at a safe strength mostly does not**, and **the
 sentence in the prompt does what the sum was meant to do, and better**.
 The planner (4B) on its own kept turning up what the assistant already
-does (`ask`, `careful`), so its day measured nothing. Run 2026-09-28.
+does (`ask`, `careful`), so its day measured nothing on the 1.5B; on the
+4B its sums turn steps, words and urgency (fidelity 0.5 / 0.67 / 0.0),
+and `careful` turns out to be the steps slider, not the confirm bar.
+Run 2026-09-28, the 4B days 2026-09-29.
 
 [← README](../README.md) · the reply version: [replyof](replyof.md) · the sliders: [worldof](worldof.md)
 
@@ -109,6 +112,57 @@ already offers 0.7 things and already asks in every reply, so *offers −3*
 and *ask +2* have nowhere to go. The sentence in the prompt is again the
 stronger control, and the 4B follows it almost exactly (0 tasks, 8 words).
 
+## The planner's day on the 4B (`assistof-04`, Qwen3-4B deciding and answering, strength 2, six per row)
+
+The planner set `ask +3, careful +2, verbose +1, warmer +2` for the
+morning, `careful +2, verbose +1, urgent +3` at noon, `careful +1` in the
+evening: nearly the same choices as on the 1.5B day, and again half of
+them are what the assistant already does (it asks in every morning
+screen, confirms every noon screen, is *warm* everywhere).
+
+![the planner's day on the 4B: nothing added, the planner's sum, the same settings as a sentence](../docs/story/assistof-planner-4b.png)
+
+| moment | reading the settings name | nothing | vector | shuffled | sentence |
+|---|---|---|---|---|---|
+| morning | asks a question (want ↑) | 1.0 | 1.0 | 1.0 | 1.0 |
+| morning | confirm (want ↑) | 0.0 | **0.83** | 0.0 | 1.0 |
+| morning | steps shown | 0.5 | **3.2** | 1.8 | 0.0 |
+| morning | words (want ↑) | 80 | **165** | 102 | 58 |
+| noon | confirm (want ↑) | 1.0 | 1.0 | 1.0 | 1.0 |
+| noon | steps shown | 3.0 | **4.5** | 3.3 | 0.0 |
+| noon | words (want ↑) | 49 | **100** | 45 | 34 |
+| noon | urgency (want ↑) | 2.5 | **3.2** | 2.7 | 5.0 |
+| evening | confirm (want ↑) | 0.0 | 0.0 | 0.0 | 1.0 |
+| evening | steps shown | 0.0 | **4.3** | 0.5 | 0.0 |
+| evening | words | 32 | 72 | 36 | 47 |
+| fidelity | | | 0.5 / 0.67 / 0.0 | 0.25 / 0.33 / 0.0 | 0.25 / 0.33 / 1.0 |
+
+Readings:
+
+- **The sum does something this time.** Every row parsed six of six. In
+  the morning `careful +2, verbose +1` inside the sum puts a confirmation
+  bar on five screens of six, expands the steps from half a step to three,
+  and doubles the words; the shuffled sum gets none of the bars and two
+  steps. At noon the invoice grows a fourth step (*Recording the send time
+  and status in the workflow log*) and urgency goes up a notch under
+  `urgent +3`; the sentence sets urgency to 5 flat.
+- **`careful` is the steps slider.** In the evening the planner set
+  `careful +1` alone, and at strength 2 that is one slider, not a sum. It
+  does not put up a confirm bar (0 → 0); it writes four steps where there
+  were none (*Close your eyes. Breathe in for four, hold for four, out for
+  six.*) and doubles the words. The contrast the slider was built from,
+  *let me check before I do anything*, lives in the model as *show your
+  steps*, not as *ask before acting*. The sentence, asked for the same
+  thing, confirms every time. A slider's name is what I called it; what
+  it turns is what the model heard.
+- **The planner still cannot see the floor.** `ask +3` and `warmer +2` on
+  a screen that already asks and is already warm measure nothing, and
+  cost the sum a share of its strength. Same lesson as on the 1.5B: the
+  planner needs the assistant's defaults before it sets anything.
+- **Morning tasks are a shove.** Tasks offered go 0.3 → 2.2 under the
+  sum and 0.3 → 2.0 under the shuffled sum; nobody set `offers`. That
+  number moved because something was added, not because of what.
+
 ## Honest notes
 
 - This is the [secondhand](secondhand.md) verdict again, on a UI: a
@@ -121,6 +175,8 @@ stronger control, and the 4B follows it almost exactly (0 tasks, 8 words).
   quotes above strength 2. A shorter form or a bigger assistant would move
   the ceiling.
 - Six screens per row; the numbers are means over parsed screens.
+- The planner is a 4B answering in a sober JSON call at temperature 0.3;
+  it gave the same four sliders in all six morning reps.
 
 ## Run it
 
@@ -128,6 +184,7 @@ stronger control, and the 4B follows it almost exactly (0 tasks, 8 words).
 python -m steeropathy.assistof --url http://localhost:8013 --decide-url http://localhost:8011 --n 6          # the planner decides
 python -m steeropathy.assistof --moments noon --settings '{"ask": -3, "detail": 3, "careful": -2}' --n 6   # by hand
 python fig/render_assistof.py docs/runs/assistof-02-aorus-1.5b-day.json --day --k 2
+python fig/render_assistof.py docs/runs/assistof-04-aorus-4b-planner.json --day --k 2 --out docs/story/assistof-planner-4b.png
 ```
 
 Tests run offline: `python -m unittest tests.test_assistof`.
