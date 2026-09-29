@@ -59,6 +59,8 @@ def main():
     ap.add_argument("run", nargs="+", help="one run file, or several (rows then say which strength with name@strength)")
     ap.add_argument("--rows", default=None)
     ap.add_argument("--k", type=int, default=3)
+    ap.add_argument("--pick", default=None, help="which record per row, e.g. none=0,offers@-3=1,offers@3=2 (with --k 1)")
+    ap.add_argument("--across", action="store_true", help="lay the rows side by side (one screen each)")
     ap.add_argument("--title", default="The sliders on an assistant's reply")
     ap.add_argument("--subtitle", default="")
     ap.add_argument("--out", default=str(HERE / "docs" / "story" / "replies.png"))
@@ -74,34 +76,44 @@ def main():
             by.setdefault(key + (None,), []).append(r) if d is runs[0] else None
     names = list(dict.fromkeys(r["name"] for r in runs[0]["runs"] if r["name"] != "none"))
     wanted = a.rows.split(",") if a.rows else ["none"] + [x for n in names for x in (n, n + "/placebo")]
+    picks = {kv.split("=")[0]: int(kv.split("=")[1]) for kv in a.pick.split(",")} if a.pick else {}
     rows = []
     for w in wanted:
+        want = w
         st = None
         if "@" in w:
             w, st = w.split("@", 1)
             st = float(st)
+        def take(recs):
+            i = picks.get(want, 0)
+            return recs[i:i + a.k] if a.pick else recs[:a.k]
         if w == "none":
-            rows.append(("unsteered", by.get(("none", "base", st), [])[:a.k]))
+            rows.append(("nothing added", take(by.get(("none", "base", st), []))))
         elif "/" in w:
             n, kind = w.split("/", 1)
             lab = n + ("" if st is None else f" {st:+g}") + "\n" + ("shuffled" if kind == "placebo" else kind)
-            rows.append((lab, by.get((n, kind, st), [])[:a.k]))
+            rows.append((lab, take(by.get((n, kind, st), []))))
         else:
-            rows.append((w + ("" if st is None else f" {st:+g}"), by.get((w, "real", st), [])[:a.k]))
+            rows.append((w + ("" if st is None else f" {st:+g}"), take(by.get((w, "real", st), []))))
     f_t, f_s, f_row, f_fld = (ImageFont.truetype(FONT_B, 30), ImageFont.truetype(FONT, 17),
                               ImageFont.truetype(FONT_B, 20), ImageFont.truetype(FONT, 13))
-    W = 200 + PAD + a.k * (CW + PAD)
-    H = 110 + len(rows) * (CH + 30 + PAD) + 20
+    if a.across:
+        W = PAD + len(rows) * (CW + PAD)
+        H = (110 if a.title else PAD) + CH + 56
+    else:
+        W = 200 + PAD + a.k * (CW + PAD)
+        H = 110 + len(rows) * (CH + 30 + PAD) + 20
     img = Image.new("RGB", (W, H), SURF)
     dr = ImageDraw.Draw(img)
     dr.text((PAD + 6, 22), a.title, fill=INK, font=f_t)
     dr.text((PAD + 6, 62), a.subtitle, fill=INK2, font=f_s)
-    y = 110
+    y = 110 if (a.title or not a.across) else PAD
     tmp = pathlib.Path(tempfile.mkdtemp())
     for i, (label, recs) in enumerate(rows):
-        dr.text((PAD + 6, y + 8), label, fill=INK, font=f_row)
+        if not a.across:
+            dr.text((PAD + 6, y + 8), label, fill=INK, font=f_row)
         for j, rec in enumerate(recs):
-            x = 200 + PAD + j * (CW + PAD)
+            x = (PAD + i * (CW + PAD)) if a.across else (200 + PAD + j * (CW + PAD))
             r = rec.get("reply")
             if not r:
                 dr.rectangle([x, y, x + CW, y + CH], fill=(240, 239, 236))
@@ -112,8 +124,12 @@ def main():
             img.paste(Image.open(shot).convert("RGB").resize((CW, CH), Image.LANCZOS), (x, y))
             dr.text((x, y + CH + 6), f"{len(r['tasks'])} tasks · {len(r['suggestions'])} suggestions · {len(r['buttons'])} buttons · urgency {r.get('urgency')} · {r.get('tone', '')}",
                     fill=INK2, font=f_fld)
-        y += CH + 30 + PAD
-    dr.text((PAD + 6, H - 22), "steeropathy · replyof", fill=INK2, font=f_fld)
+        if a.across:
+            dr.text((PAD + i * (CW + PAD), y + CH + 26), label.replace("\n", " · "), fill=INK, font=f_row)
+        else:
+            y += CH + 30 + PAD
+    if not a.across:
+        dr.text((PAD + 6, H - 22), "steeropathy · replyof", fill=INK2, font=f_fld)
     img.save(a.out)
     print(a.out, img.size)
 
