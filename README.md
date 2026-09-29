@@ -8,7 +8,7 @@ question the whole repo asks: what crosses, and how would you know?
 
 ## Where this is now: sliders inside the model
 
-![the sliders tab: sliders for night, crowded, sad, dark and stars are moved and the page draws a wooden village, an empty cave, a place called Healing, a mystic realm under a dark starry sky](docs/sliders-tab.gif)
+![four sliders, one model, one prompt: night, crowded down, crowded up, dark, sad; the numbers the slider changes in the middle, the page the model drew on the right](docs/sliders-inside.gif)
 
 *The sliders are not in the page. Each one is a direction in the model's
 own activations; they sum into one vector that goes into the middle of

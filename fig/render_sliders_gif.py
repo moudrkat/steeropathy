@@ -37,11 +37,12 @@ N_LAYERS, LO, HI = 28, 12, 20
 
 # the story: which slider moves to what, and the world that came out (a real record)
 BEATS = [
-    (None, 0.0, "docs/runs/worldof-13-aorus-1.5b-knob-s3.json", "none", "base", 6),       # A Quaint Village
-    ("night", 3.0, "docs/runs/worldof-07-aorus-1.5b-film-s3.json", "night", "real", 0),  # Shadows: moon, cat
-    ("crowded", -3.0, "docs/runs/worldof-13-aorus-1.5b-knob-s-3.json", "crowded", "real", 3),  # Empty cave
-    ("dark", 3.0, "docs/runs/worldof-15-aorus-1.5b-dark-s3.json", "darker", "real", 3),   # Abyss
-    ("sad", 3.0, "docs/runs/worldof-07-aorus-1.5b-film-s3.json", "sad", "real", 0),      # Hush
+    (None, 0.0, "docs/runs/worldof-21-aorus-1.5b-gif-crowded3.json", "none", "base", 2),      # a sunny place with six things
+    ("night", 2.5, "docs/runs/worldof-21-aorus-1.5b-gif-night25.json", "night", "real", 1),   # Echoes: night, moon
+    ("crowded", -3.0, "docs/runs/worldof-21-aorus-1.5b-gif-crowded-3.json", "crowded", "real", 1),  # Empty cave: a cat
+    ("crowded", 3.0, "docs/runs/worldof-21-aorus-1.5b-gif-crowded3.json", "crowded", "real", 2),    # Worldly: five things
+    ("dark", 3.0, "docs/runs/worldof-21-aorus-1.5b-gif-darker3.json", "darker", "real", 1),   # Silent: a figure in the dark
+    ("sad", 3.0, "docs/runs/worldof-07-aorus-1.5b-film-s3.json", "sad", "real", 1),          # Invisible: your pain is not alone
 ]
 
 
@@ -94,37 +95,30 @@ def frame(values, active, alpha_shown, vecs, world_png, world, fonts, phase_text
         if LO <= l <= HI and active:
             col = lerp(base_col, COLOUR[active], min(1.0, abs(alpha_shown) / 3.0) * 0.9)
         d.rectangle([lx0, y1 + 1, lx1, y2 - 1], fill=col)
-    d.text((lx0, bottom + 6), "layer 0", fill=INK2, font=f_small)
-    d.text((lx1 - 52, top - 18), f"layer {N_LAYERS - 1}", fill=INK2, font=f_small)
     # the band label and the equation
     by1 = bottom - (HI + 1) * lh
     by2 = bottom - LO * lh
-    d.text((lx1 + 12, (by1 + by2) / 2 - 10), f"layers {LO}–{HI}", fill=INK2, font=f_small)
     eq_y = bottom + 40
     if active:
         a = alpha_shown
-        d.text((mx, eq_y), "h  ←  h  +", fill=INK, font=f_h)
-        d.text((mx + 118, eq_y), f"{a:+.1f}", fill=COLOUR[active], font=f_h)
-        d.text((mx + 176, eq_y), "·  v", fill=COLOUR[active], font=f_h)
-        d.text((mx + 226, eq_y + 4), active, fill=COLOUR[active], font=f_small)
-        # the numbers: α · v, first eight of 1,536
+        # no method here: just that numbers inside change, and which
+        d.text((mx, eq_y), "added to the numbers:", fill=INK2, font=f_small)
         v = vecs[DIR_NAME[active]]
-        cy = eq_y + 44
-        d.text((mx, cy), "α · v =", fill=INK2, font=f_small)
+        cy = eq_y + 26
         for j in range(8):
             val = a * v[j]
-            cx = mx + 60 + j * 44
+            cx = mx + j * 44
             mag = min(1.0, abs(val) / 0.12)
             fill = lerp((245, 244, 241), COLOUR[active], mag * 0.85) if abs(a) > 0.01 else (245, 244, 241)
             d.rounded_rectangle([cx, cy - 4, cx + 40, cy + 22], radius=5, fill=fill)
             txt = f"{val:+.2f}" if abs(a) > 0.01 else "0"
             tw = d.textlength(txt, font=f_num)
             d.text((cx + 20 - tw / 2, cy), txt, fill=INK if mag < 0.6 else (255, 255, 255), font=f_num)
-        d.text((mx + 60 + 8 * 44 + 6, cy + 2), "…", fill=INK2, font=f_small)
-        d.text((mx + 60, cy + 30), "eight of 1,536 numbers, added at every token", fill=INK2, font=f_small)
+        d.text((mx + 8 * 44 + 6, cy + 2), "…", fill=INK2, font=f_small)
+        d.text((mx, cy + 30), "eight of 1,536", fill=INK2, font=f_small)
     else:
-        d.text((mx, eq_y), "h  ←  h", fill=INK, font=f_h)
-        d.text((mx, eq_y + 44), "nothing added", fill=INK2, font=f_small)
+        d.text((mx, eq_y), "added to the numbers:", fill=INK2, font=f_small)
+        d.text((mx, eq_y + 26), "nothing", fill=INK2, font=f_small)
     if phase_text:
         d.text((mx, H - 34), phase_text, fill=INK2, font=f_line)
     # ---- right: the world
