@@ -5,6 +5,8 @@
 import re, html, pathlib, sys
 src = pathlib.Path(sys.argv[1]).read_text(); dst = pathlib.Path(sys.argv[2])
 RAW = "https://raw.githubusercontent.com/moudrkat/steeropathy/main/"
+import time
+STAMP = int(time.time())   # a fresh query string, so the browser does not show yesterday's picture
 def inline(s):
     s = html.escape(s, quote=False)
     s = re.sub(r"`([^`]+)`", r"<code>\1</code>", s)
@@ -22,7 +24,7 @@ while i < len(lines):
     m = re.match(r"^(#+) (.*)", l)
     if m: out.append(f"<h{len(m.group(1))}>{inline(m.group(2))}</h{len(m.group(1))}>"); i += 1; continue
     m = re.match(r"^!\[([^\]]*)\]\(\.\./(.+)\)", l)
-    if m: out.append(f'<p><img src="{RAW}{m.group(2)}" alt="{html.escape(m.group(1))}" style="max-width:100%"></p>'); i += 1; continue
+    if m: out.append(f'<p><img src="{RAW}{m.group(2)}?v={STAMP}" alt="{html.escape(m.group(1))}" style="max-width:100%"></p>'); i += 1; continue
     if l.startswith("- "):
         items = []
         while i < len(lines) and lines[i].startswith("- "): items.append("<li>" + inline(lines[i][2:]) + "</li>"); i += 1
