@@ -14,8 +14,13 @@ reading (nobody's decision; the offline pass that fills a dictionary);
 and `agent`, the same 4B given the tools and a budget of eight calls,
 picking the words itself. Both end the same way, eight worlds each:
 nothing added, the recipe found, as many random words at the same
-strength, and the brief written into the prompt. Built 2026-09-29; runs
-queued after the 4B sweep. *Results: pending.*
+strength, and the brief written into the prompt. Built 2026-09-29. First brief, *darker*, on the 4B: **`search` found
+*darkest, darkness, darken* and took the sky from 0.73 to 0.15** (three
+random words at the same strength: 0.32; the brief in the prompt: 0.12);
+**the `agent` picked *sky, petals* and brightened it, 0.67 → 0.87.** It never
+called `near`, tried only page words (*sky, clouds, bubbles*), watched every
+try go the wrong way, and said done. The dumb search finds it; the 4B with
+the tools does not, yet. Night, crowded, winter, warmer running.
 
 [← README](../README.md) · the map: [vocabmap](vocabmap.md) · words as sliders: [wordsof](wordsof.md)
 
@@ -47,6 +52,33 @@ out by trying. The brief in the prompt beats every recipe, as the text
 channel has on every bench so far. The `agent` picks fewer words than
 `search` tries and lands near the same place, or wanders into `near` and
 runs out of budget; either is written down.
+
+## What came out (`orient-01`, Qwen3-4B, eight worlds per condition at the end)
+
+| brief | who | recipe | reading | nothing | random words | brief as text |
+|---|---|---|---|---|---|---|
+| darker (sky brightness ↓) | search | *darkest darkness darken* @1.5 | **0.15** | 0.73 | 0.32 | 0.12 |
+| darker | agent | *sky petals* @1.5 | 0.87 | 0.67 | 0.61 | 0.14 |
+
+Readings:
+
+- **The search works and half of it is a push.** Three stacked token
+  directions at 1.5 each is a lot: three random words already halve the
+  sky's brightness (0.73 → 0.32). The found words take the rest (→ 0.15),
+  and the brief written into the prompt does the same (0.12). Single words
+  on the way: *darkest* 0.22, *darkness* 0.29, *dark* 0.37, *darker* 0.42,
+  *colder* 0.42; *brighter* 0.87, *makeup* 0.86.
+- **The first search wasted twenty tries on grammar.** The seeds were every
+  word of *make the place darker* that is on the map, so *make, the, place*
+  and their neighbours (*makeup, lugares, that*) got tried before *dark*.
+  Fixed: a brief now names its content words (`seeds`).
+- **The agent never looked at the map.** In eight calls it did not call
+  `near` once; it tried *sky ~petals*, *clouds*, *sky*, *bubbles ~clouds*,
+  saw the reading rise every time (the brief said it should fall), and
+  answered done with *sky, petals, fireflies*. It reasons about the page's
+  fields, not about directions, and does not read its own results. A
+  bigger model as the agent is the obvious next run; on the 4B, the
+  procedure with nobody deciding is the one that finds the words.
 
 ## Run it
 
