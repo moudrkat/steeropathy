@@ -17,6 +17,7 @@ out, i, lines = [], 0, src.split("\n")
 while i < len(lines):
     l = lines[i]
     if l.startswith("<!--"): i += 1; continue
+    if l.strip() == "---": out.append("<hr>"); i += 1; continue
     if l.startswith("```"):
         buf = []; i += 1
         while i < len(lines) and not lines[i].startswith("```"): buf.append(lines[i]); i += 1
