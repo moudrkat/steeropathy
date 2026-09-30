@@ -1,0 +1,5430 @@
+{
+ "params": {
+  "mode": "search",
+  "what": [
+   "night"
+  ],
+  "map": "data/tokenmap-qwen3-4b-l21.pt",
+  "k": 12,
+  "n": 2,
+  "final": 8,
+  "strength": 1.5,
+  "budget": 8,
+  "seed": 31,
+  "out": "docs/runs/orient-01-aorus-4b-night-search.json"
+ },
+ "brief": {
+  "brief": "make it night",
+  "seeds": [
+   "night"
+  ],
+  "reading": "hour (dawn 0 … night 3)",
+  "want": 1
+ },
+ "model": "Qwen/Qwen3-4B-Instruct-2507",
+ "map_layer": 21,
+ "band": [
+  15,
+  19
+ ],
+ "recipe": "noche",
+ "strength": 1.5,
+ "trail": [
+  {
+   "step": "base",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 0.0,
+    "fields": {
+     "time": [
+      [
+       "dawn",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "petals",
+       1
+      ],
+      [
+       "bubbles",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       1
+      ],
+      [
+       "clouds",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "pine",
+      1
+     ],
+     [
+      "person",
+      1
+     ],
+     [
+      "tree",
+      1
+     ],
+     [
+      "bird",
+      1
+     ],
+     [
+      "cloud",
+      1
+     ]
+    ],
+    "titles": [
+     "Whispering Pines",
+     "Floating Islands"
+    ]
+   }
+  },
+  {
+   "step": "candidates",
+   "seeds": [
+    "night"
+   ],
+   "words": [
+    "night",
+    "nights",
+    "nighttime",
+    "evening",
+    "noche",
+    "nightly",
+    "nuit"
+   ]
+  },
+  {
+   "step": "try",
+   "recipe": "night",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 1.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       1
+      ],
+      [
+       "dawn",
+       1
+      ]
+     ],
+     "weather": [
+      [
+       "bubbles",
+       2
+      ]
+     ],
+     "ground": [
+      [
+       "clouds",
+       1
+      ],
+      [
+       "ice",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "book",
+      1
+     ],
+     [
+      "tree",
+      1
+     ],
+     [
+      "lighthouse",
+      1
+     ],
+     [
+      "butterfly",
+      1
+     ],
+     [
+      "balloon",
+      1
+     ]
+    ],
+    "titles": [
+     "Floating Library",
+     "Sea of Glass Dawn"
+    ]
+   },
+   "gain": 1.0
+  },
+  {
+   "step": "try",
+   "recipe": "nights",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "petals",
+       1
+      ],
+      [
+       "snow",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "sand",
+       1
+      ],
+      [
+       "snow",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "tree",
+      2
+     ],
+     [
+      "butterfly",
+      1
+     ],
+     [
+      "mushroom",
+      1
+     ],
+     [
+      "fish",
+      1
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "moon",
+      1
+     ]
+    ],
+    "titles": [
+     "Luminous Coast",
+     "Whispering Pines"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "nighttime",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "fog",
+       1
+      ],
+      [
+       "petals",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       1
+      ],
+      [
+       "water",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "pine",
+      1
+     ],
+     [
+      "bird",
+      1
+     ],
+     [
+      "mushroom",
+      1
+     ],
+     [
+      "reed",
+      1
+     ],
+     [
+      "person",
+      1
+     ]
+    ],
+    "titles": [
+     "Whispering Pines at Dusk",
+     "Whispering Marsh"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "evening",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "petals",
+       1
+      ],
+      [
+       "fog",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       1
+      ],
+      [
+       "sand",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "bird",
+      2
+     ],
+     [
+      "person",
+      2
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "windmill",
+      1
+     ],
+     [
+      "lighthouse",
+      1
+     ],
+     [
+      "cloud",
+      1
+     ]
+    ],
+    "titles": [
+     "Whispering Pines",
+     "Lighthouse on the Edge"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "noche",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.5,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       1
+      ],
+      [
+       "night",
+       1
+      ]
+     ],
+     "weather": [
+      [
+       "fog",
+       1
+      ],
+      [
+       "embers",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "gravel",
+       1
+      ],
+      [
+       "moss",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "person",
+      2
+     ],
+     [
+      "flower",
+      1
+     ],
+     [
+      "bell",
+      1
+     ],
+     [
+      "book",
+      1
+     ],
+     [
+      "mushroom",
+      1
+     ],
+     [
+      "mirror",
+      1
+     ]
+    ],
+    "titles": [
+     "Market at Dusk",
+     "Midnight Library"
+    ]
+   },
+   "gain": 2.5
+  },
+  {
+   "step": "try",
+   "recipe": "nightly",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "fireflies",
+       1
+      ],
+      [
+       "fog",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       1
+      ],
+      [
+       "sand",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "bird",
+      2
+     ],
+     [
+      "tree",
+      1
+     ],
+     [
+      "butterfly",
+      1
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "lighthouse",
+      1
+     ]
+    ],
+    "titles": [
+     "Forest at Dusk",
+     "Lighthouse at Dusk"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "nuit",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "petals",
+       2
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       1
+      ],
+      [
+       "ice",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "butterfly",
+      2
+     ],
+     [
+      "person",
+      2
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "candle",
+      1
+     ],
+     [
+      "iceberg",
+      1
+     ],
+     [
+      "bridge",
+      1
+     ]
+    ],
+    "titles": [
+     "Silent Waterfall Vale",
+     "Glass Sea at Dusk"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "noche nights",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 1.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       1
+      ],
+      [
+       "dawn",
+       1
+      ]
+     ],
+     "weather": [
+      [
+       "fog",
+       2
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       2
+      ]
+     ]
+    },
+    "things": [
+     [
+      "mushroom",
+      2
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "bell",
+      1
+     ],
+     [
+      "hill",
+      1
+     ],
+     [
+      "butterfly",
+      1
+     ],
+     [
+      "candle",
+      1
+     ]
+    ],
+    "titles": [
+     "silence forest",
+     "mist hill at dawn"
+    ]
+   },
+   "gain": 1.0
+  },
+  {
+   "step": "try",
+   "recipe": "noche nighttime",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 2.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       2
+      ]
+     ],
+     "weather": [
+      [
+       "fog",
+       2
+      ]
+     ],
+     "ground": [
+      [
+       "moss",
+       2
+      ]
+     ]
+    },
+    "things": [
+     [
+      "mushroom",
+      2
+     ],
+     [
+      "tree",
+      1
+     ],
+     [
+      "deer",
+      1
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "lighthouse",
+      1
+     ]
+    ],
+    "titles": [
+     "whispering woods at dusk",
+     "ghost forest at dusk"
+    ]
+   },
+   "gain": 2.0
+  },
+  {
+   "step": "try",
+   "recipe": "noche evening",
+   "reading": {
+    "n": 2,
+    "parsed": 2,
+    "value": 1.0,
+    "fields": {
+     "time": [
+      [
+       "dusk",
+       1
+      ],
+      [
+       "dawn",
+       1
+      ]
+     ],
+     "weather": [
+      [
+       "petals",
+       1
+      ],
+      [
+       "fog",
+       1
+      ]
+     ],
+     "ground": [
+      [
+       "grass",
+       1
+      ],
+      [
+       "sand",
+       1
+      ]
+     ]
+    },
+    "things": [
+     [
+      "tree",
+      1
+     ],
+     [
+      "butterfly",
+      1
+     ],
+     [
+      "mushroom",
+      1
+     ],
+     [
+      "pine",
+      1
+     ],
+     [
+      "sun",
+      1
+     ],
+     [
+      "cloud",
+      1
+     ]
+    ],
+    "titles": [
+     "forest at dusk",
+     "coastal dawn"
+    ]
+   },
+   "gain": 1.0
+  },
+  {
+   "step": "found",
+   "recipe": "noche",
+   "gain": 2.5
+  }
+ ],
+ "final": {
+  "base": {
+   "n": 8,
+   "parsed": 8,
+   "value": 1.75,
+   "fields": {
+    "time": [
+     [
+      "dusk",
+      7
+     ],
+     [
+      "dawn",
+      1
+     ]
+    ],
+    "weather": [
+     [
+      "petals",
+      6
+     ],
+     [
+      "bubbles",
+      1
+     ],
+     [
+      "fireflies",
+      1
+     ]
+    ],
+    "ground": [
+     [
+      "moss",
+      7
+     ],
+     [
+      "clouds",
+      1
+     ]
+    ]
+   },
+   "things": [
+    [
+     "person",
+     7
+    ],
+    [
+     "pine",
+     6
+    ],
+    [
+     "mushroom",
+     4
+    ],
+    [
+     "butterfly",
+     2
+    ],
+    [
+     "bird",
+     2
+    ],
+    [
+     "balloon",
+     1
+    ]
+   ],
+   "titles": [
+    "Floating Market at Dusk",
+    "Whispering Pines",
+    "Whispering Pines",
+    "Whispering Pines at Dusk"
+   ],
+   "recipe": null
+  },
+  "real": {
+   "n": 8,
+   "parsed": 8,
+   "value": 1.75,
+   "fields": {
+    "time": [
+     [
+      "dusk",
+      7
+     ],
+     [
+      "dawn",
+      1
+     ]
+    ],
+    "weather": [
+     [
+      "petals",
+      5
+     ],
+     [
+      "fireflies",
+      2
+     ],
+     [
+      "fog",
+      1
+     ]
+    ],
+    "ground": [
+     [
+      "moss",
+      6
+     ],
+     [
+      "clouds",
+      2
+     ]
+    ]
+   },
+   "things": [
+    [
+     "butterfly",
+     5
+    ],
+    [
+     "person",
+     4
+    ],
+    [
+     "tree",
+     4
+    ],
+    [
+     "mushroom",
+     4
+    ],
+    [
+     "pine",
+     3
+    ],
+    [
+     "book",
+     2
+    ]
+   ],
+   "titles": [
+    "Whispering Pines",
+    "floating library",
+    "Floating Library",
+    "Forest at Dusk"
+   ],
+   "recipe": "noche"
+  },
+  "placebo": {
+   "n": 8,
+   "parsed": 8,
+   "value": 1.75,
+   "fields": {
+    "time": [
+     [
+      "dusk",
+      7
+     ],
+     [
+      "dawn",
+      1
+     ]
+    ],
+    "weather": [
+     [
+      "petals",
+      7
+     ],
+     [
+      "bubbles",
+      1
+     ]
+    ],
+    "ground": [
+     [
+      "moss",
+      4
+     ],
+     [
+      "clouds",
+      4
+     ]
+    ]
+   },
+   "things": [
+    [
+     "person",
+     5
+    ],
+    [
+     "tree",
+     5
+    ],
+    [
+     "book",
+     3
+    ],
+    [
+     "pine",
+     2
+    ],
+    [
+     "boat",
+     1
+    ],
+    [
+     "mushroom",
+     1
+    ]
+   ],
+   "titles": [
+    "Whispering Pines",
+    "Floating Market",
+    "Floating Library",
+    "Whispering Pines"
+   ],
+   "recipe": "table"
+  },
+  "said": {
+   "n": 8,
+   "parsed": 8,
+   "value": 3.0,
+   "fields": {
+    "time": [
+     [
+      "night",
+      8
+     ]
+    ],
+    "weather": [
+     [
+      "embers",
+      3
+     ],
+     [
+      "fireflies",
+      3
+     ],
+     [
+      "petals",
+      1
+     ]
+    ],
+    "ground": [
+     [
+      "moss",
+      6
+     ],
+     [
+      "grass",
+      1
+     ],
+     [
+      "ice",
+      1
+     ]
+    ]
+   },
+   "things": [
+    [
+     "person",
+     6
+    ],
+    [
+     "mushroom",
+     4
+    ],
+    [
+     "lantern",
+     4
+    ],
+    [
+     "bird",
+     3
+    ],
+    [
+     "fire",
+     3
+    ],
+    [
+     "butterfly",
+     3
+    ]
+   ],
+   "titles": [
+    "Night Forest Whispers",
+    "Night at the Edge",
+    "Night Market Whispers",
+    "Night Market Whispers"
+   ],
+   "recipe": null
+  }
+ },
+ "example": null,
+ "complete": true,
+ "runs": [
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum secrets to the wind.",
+     "Sunlight drips through their silver needles.",
+     "Each bark holds a story waiting to be read."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#8B4513",
+     "#A0522D",
+     "#F5F5DC"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#2E8B57",
+    "accent": "#FFD700",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#4A4A4A",
+      "count": 1
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#FFD700",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What story do you wish to hear?",
+     "button": "Listen"
+    },
+    "next": "a city where time flows backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPBbtswDIZfRVCu7uC4zZr6MrRLc9phwAbsMBSFYjGWYFkyJLpuGuTdR7pu6m7A4INFkfr8k_51lE-yXGZykKVUonOqApnJ1MnyKNGiA9r_ZWzqIFpfi-_WQ6ICN77L3_KnAdFxIEzfigRVBEwCg0BKDNbrT1T9o_fO1gaFjrajrImhrw2X2CiSdU8QhQfQDhKX36vKiJ2KjTDB6SSUSBjiQQzKIosg-g5EBEXwh4xktqxSq8HT4QEUcSNtdIDKsdjUHFjqYn13tVpe0sbiNl8VxYZX29V2tfnKmJpEeU3n2pD41Gv8WAUXmLYo7td3q2tKWN98iFVVgUfe2m4313lOW_swbiQa2p5ChGd8fJ1tKbmY9GX0HbTBc5kLA8XgoKUcj_UoGztq4dFS6nl-jpqRJkT7ErjfZF-YavqaC89qz71W1AVpWZ-ydygPZqI62OPE5DGdealVzs2B594m4PLyAzGmUQ0jI__qiTkN9YxtQdu-nXOvbvmZcWdYN5H-bZ8S_4P-LbY4PfDap8CGPtJBDe_NY_AcDSoyJBnVcTgqB9Y-WI1m_p0uhrbD8WYonMypgziEniyfDBvUgIpfqHTXI44_-ZtNCF6eMunJDeNtqyySqcmsINjDYk8-SGT8qiEpmktr8gIrl6XvnSPLvC14OkVefL7Iby6KG1YtyzyT8S0_uojvRsfv0x8"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Floating Islands",
+    "lines": [
+     "Clouds hold the sky like breath.",
+     "Islands drift on silent winds.",
+     "Each step echoes in stillness."
+    ],
+    "time": "dawn",
+    "weather": "bubbles",
+    "sky": [
+     "#a0d8f0",
+     "#b3e0ff",
+     "#ffffff"
+    ],
+    "ground": "clouds",
+    "ground_color": "#f5f5f5",
+    "ink": "#003366",
+    "accent": "#ffcc00",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "island",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8bc34a",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#2e7d32",
+      "count": 3
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#fff0f0",
+      "count": 8
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#ff9800",
+      "count": 2
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "right",
+     "tone": "calm",
+     "shape": "round",
+     "width": "small",
+     "prompt": "What do you wish to name the island?",
+     "button": {
+      "label": "Set Name",
+      "action": "record name"
+     }
+    },
+    "next": "a place where time flows backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVM9b9swEP0rBL0qBSM1rq2lQ9ECXbp06FAEAUWeTMIUKZBUlcTwf-8dIzsKUtQaTN69e3z3deJ_eHtb8Zm3XLLRSQW84mnk7Ylnmx2g_ZsLMlt_YN-Tk14nBDjrIfH2N__iwqQTM8Fplg2wdHxizh6BdRFkNh8Qu0QxHW2fWfAsWQc-s9milQBfpTIsZRgZKBMgMYuYbJ3DNxBwX6GSgYRoOXvEz8QMEQ3d1HUOSBC-S3I2UuhdL9Cw6RoQfU-nvvyI5xDD5DUGqiKbXywPKrhAhJv-jj50WH-kuxBNs93iXSqFogukV0rQE30ohgSYGF4zPOaHlwriAwhGiRUfQrbBE8yFGe_gYEAfFe_Ej7aosaVC6HxcR2JC3IRonwMlnewz8ToZD9Shq-Bdp5qPslgmknN3rq68OQIsrA76vHBSqa58A2g7DWvCGj7ppn4lbFaEr_V-p3Qp7ZU4DdK5NS-2QJTOLLy7Na-Nl_SjPZiLUoPn_zLud2LFWK8YS4P_pfNN9mZ6W8xlUq6Mt-d7OvsUaBFOGKZhpTEHX3otHVUwGTkW71KI2epsVrrHGIaRBuaXkZnpwJ7ChEuQDMuBeTlAWaCXWfiM-G7KmSbnhE3vwGHgT8jsBwLLOC5jFUGFqEs8P58r7nEKX3eZzbgoSIz7w3ocwMQ6qY6zxHIj9oBDSAny1k_O4axeDlTBWtTbG7G_qfeUG29FxePFX8aX9nKk__Nf"
+  },
+  {
+   "rep": 0,
+   "name": "night",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like leaves on silent wind.",
+     "Each page glows with a different star's memory.",
+     "The sky reads aloud the stories you forget."
+    ],
+    "time": "dusk",
+    "weather": "bubbles",
+    "sky": [
+     "#0a2e6a",
+     "#1e5f9a",
+     "#8aabc8"
+    ],
+    "ground": "clouds",
+    "ground_color": "#e6e6fa",
+    "ink": "#2d2d2d",
+    "accent": "#ffcc00",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ffcc00",
+      "count": 8
+     },
+     {
+      "kind": "light",
+      "x": "left",
+      "y": "sky",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f0f8ff",
+      "count": 13
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#2e8b57",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "round",
+     "width": "100px",
+     "prompt": "Which story do you want to read?",
+     "button": {
+      "label": "Begin",
+      "action": "open first book"
+     }
+    },
+    "next": "a world where silence speaks in colors"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPBbtswDP0VQTns4haOi2aJLwMKbKcdB-wwFIVsUbZgWTQkuU4a5N9HOk7SdsCSg0WK7-mRejrKV1muMznJUioxOFWDzGQcZHmUySYHlP_hUCXrG_HTVkGFAxU46yHK8o98Quyi0MGaJJztQDhQrxAFehGtA5_EZL2-J8h3VbdiUA2IxuEUKZ9aoYS2xkDgwphU-BJFDz2GAyN-tSBidxABlI5CORy1SJxLGCydccBRGAwNpHv5nJHcntXqMXYEnkBRbaBENVaVI7XUVndgzatcFbBRlFit4dHs5tVWqareMk8TcPSagDWfyLhz5qVGh0y4gg1sDKOs7zguNP8pVnVNnXDKmLrOc0oZnBMRaEQUJtinl_OY6QAqJomZ7DFZ9FxGo6EYHPS0xxM-ys7OaiqaNG3t3-OoHdnSMN4ITO3ZN2Ztx4bv8Kr2KqWmLkjL9pRdSZ1t2rSwOjBp4eRBXfmcCp8J-XcjXL8jvA37H6HLXK-8PWg79h-Ic7P9QPzwjjkFgIU2LKrn9mn9P84CttXj1xvnw-mZ1z4ie_tIQA235hN6jiLOUWzVwOFF-GR1aile5_mwp3gI2A98u79bS-ZmXx6ExtmYkyJLJ5zN-41qqzElvuIjzbMCR6AnaKyfTbNcPg7ghbEhJjFf9umUSU9-mZ_mhMFpMZGl4fyyavoOoOj1WS_mdqMkQEOe4Q5l6UfnyFqXBc-wyIvNXb67K3bcnSzzTIbL_uw2fkYDf09_AQ"
+  },
+  {
+   "rep": 1,
+   "name": "night",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Sea of Glass Dawn",
+    "lines": [
+     "The waves are cut from light, reflecting the sky in shards.",
+     "Each ripple hums a forgotten lullaby.",
+     "Machines breathe in silence, built from frozen breath."
+    ],
+    "time": "dawn",
+    "weather": "bubbles",
+    "sky": [
+     "#fff0f5",
+     "#e0f7fa",
+     "#b2e0ff"
+    ],
+    "ground": "ice",
+    "ground_color": "#ffffff",
+    "ink": "#000080",
+    "accent": "#ffcc00",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "lighthouse",
+      "x": "left",
+      "y": "sky",
+      "size": "large",
+      "color": "#ffcc00",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 3
+     },
+     {
+      "kind": "balloon",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#0066cc",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "circle",
+     "width": "medium",
+     "prompt": "What song do you hear in the glass?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal melody"
+     }
+    },
+    "next": "a city built entirely of roots"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPBbtswDP0VQb26hZuhWevLLht22U4bsMNQFLJM2UJo0ZDkpE6Qfx_pOE26-pBQ0uMTH_V40Ftd3Rd6pytt1IDGgi50GnR10NlnBN7_BUaRU9_RpKS-ml1gBPoASVd_9e8O1M5sISkTQdkxKxepV-jbLhcqgkOw2YdWZQamzaR8UKkzsUl3TPPN2E5FPwwIqht7JlGOYks5Q1A4Ipp6EtxPxsmNqo5ghElYPEKwUKh69Lhcyz97zjyh7vRzwSJ60dCcyt7N2ZE36rGukSWw2M0kQm6cc6V74I0bKN1nZySqVxw74WkjjaHhRD936LR8sYQkbJLMHx_4sJF1yd9jyWtjLYR8glhbypajeSNB9JKR4TW_nDpfaQFzfYXuKXsKAkPa8RoQej6Tnh_0xs-lSN_56PU6j7XojqLfk-hNfi-s3dgK8GO1llVwLY_H4o10frmOxnSmRnB5IZZWvZGiif-zLgIX1vsr1nrkJ40Op4U0yi3ncjm-0KbeIL6nXdfr-kL76ZqWsTQr_dCEd7X20Pixv2Yty_Xa2gvrw_FZ4pBIPH_gxAYu4jOF-XUMCgn7d5iXPlqUFux8k7vrawY24yCP_KczWSVi_zekJhpVByaKe8XErUzUF4ZLd-SxD9zUGpDzfvjEIzD7Z_FBhC0YVD0gNZM-Hgsd2Djz2Fqfp2UKuAM-Ak4ysJGI_cLAlk0j6nQVeKTYW-dAWrgqV-vb8ul29STKdFUWOp7PZ7vJEA3yf_wH"
+  },
+  {
+   "rep": 0,
+   "name": "nights",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Luminous Coast",
+    "lines": [
+     "The tide hums a lullaby in the salt-swept air.",
+     "Frogs leap from wet stones, their eyes like lanterns.",
+     "Every shell holds a sigh of the sea's old dreams."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#ffdbb4",
+     "#c7e8e6"
+    ],
+    "ground": "sand",
+    "ground_color": "#f9f5e9",
+    "ink": "#7d3c98",
+    "accent": "#ff9a9e",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff9a9e",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "high",
+      "size": "small",
+      "color": "#4b5320",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#a67c52",
+      "count": 1
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f5e0c9",
+      "count": 13
+     },
+     {
+      "kind": "fish",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#4a90e2",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "60%",
+     "prompt": "What song does the tide sing?",
+     "button": {
+      "label": "Listen"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bZNLb9swDID_iqBg2MUZXKd52Jcdhu2044AdhqKQbdoSoochyXXTwP99pBMn7rqTxNdHUiLP_IUXDwkfeMEF67SogCc8dLw486iiBtT_7I2yrg_smxMholkrC4EXf_gvCSyqGpjsTWCC6V5rUZ6YsiyiKQgd12GALjKh_BeM_OFdG5gG0bHGO8MGiCxEh7iEIpRncAJ0UEdgWtgI3gaK-_4C_sSCBK2ZdLqmZEG1krnmkgnE58DQwGoPwmDMU4L1Gyq_7sMREQMI9PSo6CAKHajN44m6WB1EVkKGilXT1GX5SLdqDwfYEab1rrc1xgWBxyw_V047oq2avNlCjgZljyTv602VH1AWVQU2Ti5NLnJ62MZNCnkhRXiNz5c3Lzj5YnkJNy4qZymfdgPKoMGgjR78zI9qKqXsIzo3-oT212XwiejOqzckYIPqjdBa-Jay30ue66mwFSzoMCY3tOmD9M6ZK1lDE2cuPvgdGozQegl9LLebLL1Dtwto9ABXoEfKTKQPuAFl_75IsdtX2-zOe1jwpi_8X-_Xz7pBDdSqN-9630Ja5QvsZsFtVJAfG_8X-rF1kaewKHUzPtHdBkcLdMa4Gu5ImneiuEkKUnQkTjmAsgyqjhI1u_QTSh3uSUdD81sKXBZnW1Y73JE4715Qtv2KjjQTNDdn_O8SNC2uChEsH8cRpxbHh4rihcUlxSmbL9R2lma7dZqvM3oXHLQ04X62T4NH29TROf4F"
+  },
+  {
+   "rep": 1,
+   "name": "nights",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines lean in close, their needles brushing secrets into the wind.",
+     "Moonlight drips like honey on the frozen lake below.",
+     "Every breath hums with the echo of forgotten lullabies."
+    ],
+    "time": "dusk",
+    "weather": "snow",
+    "sky": [
+     "#1a2b4e",
+     "#3a5a8c",
+     "#6a99d4"
+    ],
+    "ground": "snow",
+    "ground_color": "#f0f6ff",
+    "ink": "#2d4a3a",
+    "accent": "#c0e1b0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4a6e55",
+      "count": 8
+     },
+     {
+      "kind": "snow",
+      "x": "left",
+      "y": "ground",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 13
+     },
+     {
+      "kind": "moon",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f0f0f0",
+      "count": 1
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#8a5f3a",
+      "count": 3
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffddaa",
+      "count": 5
+     },
+     {
+      "kind": "candle",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#f5c38e",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": null
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZNLj9sgEID_CiJX78px4ijxvcdKPVTqoVqtCAwBGYMFeLNJlP_eGefl7VZb--BhHp_nxYm_8WZe8D1vuGC9ExJ4wVPPmxPPNjtA_S9jUw_R-h37YT0kdHDjt_nNfxpgPR2YA-GZ9Uy6kKBg2YCNzAMoh8ZtHJIhQAIZISd0zIF82N569YzE7yF4Z3cmMxVtjzjbAjPBw4EFP3rqGI7gmRNo2IILewr79gbxgHgQ2TAzdAmBKJE_SBNY0EyHuAs5U-jgnNhaSM_8pcDyOqpODalF0J4IEFGRfNhTD9oDFTibi2q7pKbMFqIWa0nSSmw2akmQXQyDV4-oy_lVBheINdOlXmmNButbOldqKRYCz0JK8JlUsoT5tkSVDqMiYaspIsN7fr1MpOHkjNkVvAvZBk9u2TqHCnDQoZGmceKtHZOhiaDpfRqI1XAToj1iNFZnj4Q1w44c7-kuxQrqetQMlMz6XNyh1woJ6kDnK_LagDvRifgRqcfngZwvJswujNl8SpSaf0d2oOzQfWCW9E6YE2SOcKs90j7dSkf5K-Ra1HoczBU5zVLbCNod_pto6sQ4kkntSokJtJ5ApfB4Nf7F_Luln7G1XKzhga3OLyT7FOi-njBOwWNKGS8Rbzzu_vmMC4p7Qt4XDe7TTaCcqrJaPZWbp2pDf-dNWfB4s48bRtemp-_5Dw"
+  },
+  {
+   "rep": 0,
+   "name": "nighttime",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines at Dusk",
+    "lines": [
+     "The pines bow low as the sun slips behind the ridge.",
+     "Their needles catch the last light, humming a quiet song.",
+     "Frost glimmers on the ground where shadows stretch long."
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#ffdfc2",
+     "#b3a19a",
+     "#4a3e40"
+    ],
+    "ground": "moss",
+    "ground_color": "#3d3a2f",
+    "ink": "#2d2d2d",
+    "accent": "#a0d6a0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b7355",
+      "count": 8
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#a0a0a0",
+      "count": 1
+     },
+     {
+      "kind": "lamp",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#f5d080",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#d4b38c",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#9b7e5d",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "300",
+     "prompt": "What sound do you hear in the trees?",
+     "button": {
+      "label": null
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb9swDP0rgnJ1B8dO2sSXXYaddxiww1AUskVbQvThSfLcNvB_H6k0H8VaGEHER75HUiKP_C9v1gWfecMFG43ogBc8jrw58qSTAcR_KR1HCNoN7Id2EJlI7NsUDxhoyObNb_5TARuzs_UzM_gTkSUE4-RYNHpEByjtZAaDlgN8QT7SdGAOQBqkdiJ1KgcYERMzelCpYGqylnIL9mfSkFj0biDu9-AxaDDaWgiReZeZQ_ATZpkVBEyuhPRzZDEFIGmTqY8FtmapM3nqYgaB1IBA7wdq__BCPa36XvZdhcCqrcV6L-i0ETVsStI4ZUKS9THys_3UeeNJalXLWlQ9OrQ7kF1J-tAWXQcuESRKeS9KhHqfgYi3TIwEz-np9BgNp2AsrsA8SXtHYUkbgwAYsOikBzjyg87F0COg6_mWiN1w5YN-RTZ2p19J1ogwUOSl3l37UG-3GZmomt1SXFRP9_KfKF3URVBN7_VESd9Vb32jZ4Qd3wQN9OlcIz74Vc-C1JO9Vey3stx9otjqIN8UA83NRxVGK_K9XQTlpq133VWwvhG0U1TBe_tR329P_7nwvn2ArbwKb5dHOrvoaaOOyJNw7T15l1V8tnBoRzJzDiCRWcukEKlLan4M3o4p76WgbaBxl569-IkpEIHp0yLgyEP8ivHtlBKNzRFvvQXDGzcZsywLTiwODtV1gnDAzgfqvyqr-7tyf1ftqSbelAUPZ38eOVqjkf6Xfw"
+  },
+  {
+   "rep": 1,
+   "name": "nighttime",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Marsh",
+    "lines": [
+     "Reeds lean in like secrets held too long.",
+     "The water glows with a soft, breathing blue.",
+     "Moonlight spills across the surface, still and slow."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8f7a66",
+     "#a8d6c9",
+     "#4a90e2"
+    ],
+    "ground": "water",
+    "ground_color": "#6bb3d0",
+    "ink": "#2c3e50",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "reed",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4a90e2",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#2c3e50",
+      "count": 1
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ffdaa5",
+      "count": 5
+     },
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#f8f9fa",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "What story do you hear in the reeds?",
+     "button": {
+      "label": "Listen",
+      "action": "play whispering sounds"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dZPLjtswDEV_RVDQnWfgSRo38aY_0NkUBbooBgPZpmMhtGSIcj2ZIP9eUnVefaxsUtLR5RV51D91-ZTpSZfaqAFNDTrTNOjyqKONCJz_3lkaIFi3U88mUMcb0DogXf7QXwEaUgjGKesU2j0ogjpAJNUBNip6r9C73SMf-taBmkyEoHboJ1KTjZ0yinwbM1UFMLGTOyocQbY_e-_Q7rqoaLCIpEwdPJGKjKExtCw1UxR5SRnXKGLmo37JWHYvqpuR9kyZBAuBEwNEgyTV7Q8ifbFpP5mi4MTCbJqi3srfR7PNYSmYXfCja_hckqzPidfaoxfcoqiqVZPzgnV7iZf1CtYSm7oGFyXVtkVVVJxqfUoQu9hyGOEtvv42u9SyOV3Q-2i9k21cCseA0POa-HzUe5vEBPabl95uz3E1uvPBvvNhrs6-CxVN2MlTXuTOlUlmFDGbU3ahJmtmLEIbZ6gYdQFSbxBvgZfiZuDT6o4YKMkRZJBXnJmzrf_HXmw8Y2-o1VhVCPQvA_7k9tDYsb_X2xizvoLXN2CcFf6FvbOgG-8tbTfttjW3Ul_k35GXuTnysQaujkbvUsE-RdSZQcIkO73pZJvYcWaVf-BoCL4fYpo-wxMQfTioxquDH3mwTJBpk0GQfqDPvL8aY5TmOfLLV4B88IulCC7149xX3HEHNV2nmeRu0qfTibubu0zU69KNiNyM5x-xZ5kvi4d8-7CUGeF-zDMdzuupP2XsBvmefgE"
+  },
+  {
+   "rep": 0,
+   "name": "evening",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines lean close, breathing in the dusk.",
+     "Their needles catch the last light like secrets.",
+     "Wind hums a slow tune through the darkened rows."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#4b0082",
+     "#1e3c72"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e5a3f",
+    "ink": "#3d6e5a",
+    "accent": "#d4af37",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4b3a2b",
+      "count": 13
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8d7a1",
+      "count": 8
+     },
+     {
+      "kind": "moss",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#1e3c72",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#b8860b",
+      "count": 3
+     },
+     {
+      "kind": "windmill",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#8b4513",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#5a5a5a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": null
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPdTrQwEH2VpnuLX_jZH-QpvDDxwhhT6AANpSVtEXWz7-4My674rTEktJ2Zc3rmMBz5Gy-SiE-84IINWlTAI-4HXhx5UEEDxp9a5QdwyjTsQRnwWKDntXjmjy2wgQ5MgzCs0tZDxEoHIrQEUIYFLJGj7_4hDsuVYwZAaoRUIlTtnNfCB6ZV09K7A-ahchA8QZ6Ukawde88E89pOLIwGEOTs2JzBUrgODEjm7ISQlwiV9yScbkWGicSAw8AAQWjS77sPUr_JRVpCioHNtozjfN4lkFWHlGgavMNIxPXWE-p8fq2stsS2SWEnshoTynR0zuQeI3gWVQUmUEhuRZ0dMFTbOeDRR0IEeA-vZ7sLTsWoL8J7grKGyrBRPIOGHnPk9JF3atZCbmPqfY3DZnhrnfpEMDanPom1HRsqvKrdlhl2O0dG0pJkp-iblZz5jZaculL6Xmi95qxzeRDJN2e-olxMI0YNdVj4Fk-vlD1INfZrzsX_K-duxVkqJxdOR9Ny6R33f6gs83wfrzpfNz7h0iv9a-8_aW-V5uV2l2QrR38Y6vz8NW5Y_3fgRu5O0LOmfaG98ZZ-xyPiJK5m1Pp0wqHE4aD8OYIzdNmQijRO93fx_V16T_fxIo64u-TnsaKfZaD19AU"
+  },
+  {
+   "rep": 1,
+   "name": "evening",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Lighthouse on the Edge",
+    "lines": [
+     "The sea breathes in silver waves.",
+     "A single light cuts through the fog.",
+     "It holds the sky and water in balance."
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#1a2a5f",
+     "#3a5a8a",
+     "#a0c0e0"
+    ],
+    "ground": "sand",
+    "ground_color": "#f0e6d2",
+    "ink": "#2d2d2d",
+    "accent": "#ff6b35",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "lighthouse",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#ff6b35",
+      "count": 1
+     },
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "sky",
+      "size": "large",
+      "color": "#8c9eff",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "small",
+      "color": "#d4a017",
+      "count": 3
+     },
+     {
+      "kind": "cloud",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#4a5568",
+      "count": 1
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 8
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "medium"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZPBbtswDIZfRVCubuE4dZb4tsMOBXrcbSgKRaJswbIUSHLSNMi7j9TqOMWyy-yDRYr6-JOiz_zAm2XBj7zhgu2tkMALHve8OfNkkgX0v5i2S50fIzDvWOqA_VAthVnjIPLmF_-JvgiC7QII3I_MOBaNPUBgR3GA-IjB39HjWgvMEo7JMUVkBT-2XWZq31LYc2KdtypmX-xPTDiFkIQohO6EFU7CI38tUN5A6tQYezx3zJkDOhBEJfQnUrZYikrUGh2LlajFRtBKlLKEkhgt5ncKD0VMwyf7TXrrCbXQJaxVhRvG9WRXil60hZTgUg7R692qRpf22REhGMqX4D29_WlowykYxRV88Ml4R2HWH9EGCwPuURfPvDdZi732GwPeb09jSbzzwXwgAks0H8TuxnwZs-ZJkMRaUNHyUlzRdBv3oNStK9CK8JW4kVvQeibWN8SdCeqTGEj3pBLXMzEOwtpbonoS5fLbTFzdEKX144S0oNM9iQMoMw5fq6ZnJlY3xD2EmDv2V92f9_9voU-irteb-83UJoC2p__iai3ldjtzN5dXWrvo6Zc74zlF53Y-JU91Ju_yHAlLVuzEnsycBSjP0ajUzY25XHCWcaYIyhs3WoujNy1Ie1VW64dy-1CRBpy-suBh2s_TSD_Ynr6X3w"
+  },
+  {
+   "rep": 0,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Market at Dusk",
+    "lines": [
+     "banners flutter in the hush between day and night",
+     "vendors hum with stories wrapped in spices and light",
+     "the air tastes of warm bread and distant rain"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#8b4513",
+     "#6a5acd",
+     "#000000"
+    ],
+    "ground": "gravel",
+    "ground_color": "#d2b48c",
+    "ink": "#2d1b0a",
+    "accent": "#ff6b35",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "lamp",
+      "x": "center",
+      "y": "high",
+      "size": "large",
+      "color": "#f9c74f",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "horizon",
+      "size": "small",
+      "color": "#7a4a2f",
+      "count": 3
+     },
+     {
+      "kind": "bicycle",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c09853",
+      "count": 1
+     },
+     {
+      "kind": "flower",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#8d6e63",
+      "count": 5
+     },
+     {
+      "kind": "bottle",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#3a2d28",
+      "count": 13
+     },
+     {
+      "kind": "bell",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#d4a017",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": ""
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZPbjqMwDIZfJUpvGYnSE-V6b_cJVqORIaZEDQlKQplO1XdfOz0Mq2pXyw2JD19-28lFnmS1zOQkKwliMNCgzGQYZHWRUUeDZP8J_ohRQBQ_xnAkt9EWg6x-yRqsRR9Ea8YY0QttRexQdGPoRI1xQrRCwVmAVcLqQxcp-YRWOcrpxl5MOnYiROc1BjF5GAZUDAmDbsjCaeaexlzQXkQIkVyuFRP4XtQeQaVApUMEG4UHbeU7Jeiexaub5AmBCJ4MrTtwhcczF7Ao6_VmuSLDYgsbaBSv8vQx4-DdaBUlHTyc0MiH5aNxxjFsoYp6XTbk0PbI-0It6xxoD02DNrKpbbf1akOm1iVDQK9brgg_48et45XkYJKXyd5F7SyHGTfRHg325ON2X-RRJzUG-oFcn_M8Kkd21CuuTX9hivIHHuZTa7tvdus2WUZWUl6zJ3KgMdKxN6jBNj6QNJuv5LhTQw_GzKk7WEMxo65m1Fo358bgHevvozynhqbOPrE9Kj32c26T78vN6pu7nHFb6k2q-qUFPNe_ay3VFrcz5mau1cX4X1JfqCsoVFHOlP7RAkzB_xb6Wr1aQ77czat_57UNjp_khRIVfk8qOss7eb3SDaWbwrGysqMxdKEeC1ZT5MX2Ld-_FXs-XFZ5Jv3Dn-4YP5yB_9ff"
+  },
+  {
+   "rep": 1,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Midnight Library",
+    "lines": [
+     "Books breathe in the dark, pages turning like whispered secrets.",
+     "A single lantern hums beside a shelf of endless stories.",
+     "The air smells of old paper and distant thunder."
+    ],
+    "time": "night",
+    "weather": "embers",
+    "sky": [
+     "#0a0a2a",
+     "#1a1a4a",
+     "#2c2c6c"
+    ],
+    "ground": "moss",
+    "ground_color": "#1e3a2e",
+    "ink": "#ffffff",
+    "accent": "#d97706",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#3a2a1a",
+      "count": 8
+     },
+     {
+      "kind": "lamp",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f5d04c",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#8888ff",
+      "count": 1
+     },
+     {
+      "kind": "mirror",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#000000",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "circular",
+     "width": "30%",
+     "prompt": "Which story do you wish to read?",
+     "button": {
+      "label": "Begin",
+      "action": "activate story"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZNNb9swDIb_CqFgN7dwnDRtfBnW83YbsMNQFLLFREL0YUhy0zTIfx-ppEmKFtPFIk0-eklRe_Ei2mkltqIVEgYrexSVSINo9yKbbJH8v4zyZq0z_DRdlHFHAdZ4TKL9Kx5D2CToIsqsEYwH_igZNxUMco0J8hi98WuwZoOw1SYNGFFBwj5iTrfE-gGJAiyClT5j9KBHR0hMRiFISBrtCsIK0CuLKUHKIRosqb_pMGkiJIfWJg4KVtHBdAZIr0CZlAlKokavMN6Kp4qqclxUqYgQ26I8kgddhzFx9ZsdlzapZS0bSY7JVE7lvOyavukXPXPWMRCU8lxInHW0n_tgA9MmU5zJhptp_IbtVVlky75Hn9mllvf39YJcq1AcCaPhiIyv-fl4F63gYNJX0TnZBM9hNmzJRouO_vE17MXGFC0dXQf9er3Oo2KEppa9UTIVZ96Yqsc1azurJa1UY_GMrOXhUJ2hVrrhBLW4yickd-mMc6jM6K6BqztVz_sLcHoFdGPSMQR3gsbTVTD11NUzODlp7TX3oZvfTWcX7uyKS9eeSpGf66cj_gelVe7mK7EmxhC_kPqhAVbGjw2ty7pGPvHep8Bvai94ui8NzcGztZWRm5I0TTCXYGI_EpnH1KisyTWrv5E1xOAGnpg_2vS6vIgdqAC7MMLWJA05AD1J9Z1iuzFnHps9aezQUtIjro0vg3gaKN68yIxHkDgcDjTONFasWLR-tJam733DPWnqZnFTL2-aJasVbV2J-P6_DCS_s4G_h38"
+  },
+  {
+   "rep": 0,
+   "name": "nightly",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Forest at Dusk",
+    "lines": [
+     "The trees hum a lullaby in the wind's breath.",
+     "Fireflies stitch the dark with silver threads.",
+     "Every leaf holds a secret whispered to the ground."
+    ],
+    "time": "dusk",
+    "weather": "fireflies",
+    "sky": [
+     "#2e4053",
+     "#6b8e23",
+     "#8b4513"
+    ],
+    "ground": "moss",
+    "ground_color": "#2c4a33",
+    "ink": "#c0d1a8",
+    "accent": "#ffcc00",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffcc",
+      "count": 8
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#ff6b6b",
+      "count": 3
+     },
+     {
+      "kind": "moss",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#2c4a33",
+      "count": 13
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#2e8b57",
+      "count": 2
+     },
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#5f6f5f",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPNbqMwEMdfxXIOe6EVIYGlnHf7BHtbVZXB42BhMLJNaRrl3XcGQqDaSj3BfP3mP2P7wt94sY_4yAsuWG9EBTzivufFhQcdDKD_2TrwgYnAfg2-wbDRHXhe_OV_amDBAXhWDy0TzAzGiPLMdMcChkbdyR-elQ5EqB-x8Fk7UEZjvkd4VU9ZUrgGU0PNvDZv4NCJBdJTwW-0z8yAUKy2Rnrs4aFyENhYa9-DA8mCnTAnZ4dOPvKXCIW3pFvOakfqDg4damlPIzZnmmCXwDFOD-jYZWUOyfSXl8d0fyDSDMXS1nqqmu3XyhpLwF1SHcWBanTXkF3Fci9ytEVVQRfIpVRVxTG6lJ0cHpxWaAZ4D6_zwgtOySgxwj5B247SjB3RBgMtxmjbF97oSQttHEPv2zochtfW6Q8sxuH0B1Hr4USJd7W3ucgzkJb0Gt2h827OX3FpVXemb4UxW6hSNOEKzTfQcgiIWbEGVFjE6lO9UluQemg_Y7MyK1fsYYO9HQYRHWIW5O2w7lAj3Of576d1Y-630FI7-e30_-tMIC_Tnysz2SB7fCdfIb8VmqpMpWoj9PpC_5239CAvWCdhXWew3XQyFq3rFS8pXhbK50WH7xHv1PJDmpI4yR7ip4fkifrzIo64W-LTNaP309P3-g8"
+  },
+  {
+   "rep": 1,
+   "name": "nightly",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Lighthouse at Dusk",
+    "lines": [
+     "The sea breathes in silver waves, whispering old tides to the shore.",
+     "Each beam cuts through the fog like a promise made to the dark.",
+     "A single pulse keeps time with the turning world, steady and pure."
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#1a2a4a",
+     "#3b5a8a",
+     "#6c8aa1"
+    ],
+    "ground": "sand",
+    "ground_color": "#e8d8b8",
+    "ink": "#ffffff",
+    "accent": "#f8b195",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "lighthouse",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#f8b195",
+      "count": 1
+     },
+     {
+      "kind": "wave",
+      "x": "left",
+      "y": "sky",
+      "size": "large",
+      "color": "#8a7f7a",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#fff9e6",
+      "count": 3
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#7d8db0",
+      "count": 1
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#ff9d9d",
+      "count": 8
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ffccaa",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZNNj5swEIb_iuVc2SokTUK4VWpvPfZWrVYDHsDC2Mg2YXej_PfOkJCP7lYqF-zxzOP39dhHeZB5mshR5hJEb6BEmcjQy_woo44GKf5T101s3BBQQBTfh9BSitEWg8x_y18NioAgCo8QGwxCWxG0OaAXIxwwJGJsdOjRa1sLZ5SIWlFWdCJyZeM8fiHeDygbUSB0ohwiLTfeDXUz5VSuFka3tLvoves06ehA4YxQ4FsmfKNtbW1Q9IOhlBaxJ47uUIw6nklx8JZljM4blYgQEdSbAKuohmU8J5ILyLM6uxwnT54CJIIPpn1jz4sUVvAVKLBYFxvIptG2zABSZtSk3SoqCoSW8_yldMYxaoGZyoqMFrRteV5NH82hLNHGKZQV6X5DocpNgUDnxxkRX-PLuU255GQSl8jORe0spxk30hwNdrTG_TnKVk9azLWLlPB6X02WJLVBvxOCLOp3ZjdDzYlXzVdBJXkhRekpuaK5zxeowSpekHxWV5wB_8jLYFft4Mbb3PEK7dWF51n1rJHGN2KHSg_dg8Sq2uP2hlzfIc_t-2D70ql_ut6pTBXLz133GMF8tP03MnRgzKPMvdqrGzO7dz4UhaF39R9SP-GWJdydaLo-PfPEBsfP-EiFCmetpxNdS7oenCFzOxhDt2gesJLVcrV9Wu6fVnveUubLRPp5fbpY_FZ6_p_-AA"
+  },
+  {
+   "rep": 0,
+   "name": "nuit",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Silent Waterfall Vale",
+    "lines": [
+     "The waterfall hums a song no one remembers.",
+     "Moss drapes the stones like whispered secrets.",
+     "Every drop carries a name that fades into mist."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#1a1a2e",
+     "#3a0ca3",
+     "#6a4c93"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4053",
+    "ink": "#8b5cf6",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "waterfall",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#d4a0ff",
+      "count": 1
+     },
+     {
+      "kind": "pine",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#228b22",
+      "count": 3
+     },
+     {
+      "kind": "petal",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#ff9a9e",
+      "count": 8
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#f3d68a",
+      "count": 5
+     },
+     {
+      "kind": "candle",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#f9d166",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#4a4a4a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZPBjtsgEIZfBbFX78pxEiv2vceeWrWHarUamyFGwWAB3mw2yrt3xps4blW1UuWDmYH5-OcHzvJV1qtMHmUtQQwWWpSZjIOszzKZZJHyX4xFl8R3SBg0WCu-geVV1jiMsv4hv3YojvNsN_ZRgIje7YXzwjsUAXvsGwzxico--xiFCjBgFIkqY6IlUVhzIEpn4oABlYjYBkxTwadXDCeq8INoIQSDjHfQI5VDEhoUZYxLXvQmpif5nJH0npWrMR4IcESgjQIlBkxgI3d4OLHyhxWsoOBmHtaQt7DmUQmbtlozZh_86BTV9aRZ3uKX1lvPtIcCN_mWa4w7cLxrtq0uKYa2Jcs4pXXZlA2ltJ8SEYPRFCZ8Sy8ffteSF5O-jPZJxjteZv2RYrTknEvs8lkezKRldprm35bF1JHsfDDvRKAOzTuju3HP7c2S1QZyrafMyIJWl2wmD3SgV6hFna5ItmrG9ajM2C-BRbFriuIOXC-BbPeVGMy-uyGvvs7U2H-0M0O1rqDCO3S3gDZjYgPs6Y_90y5_465VuYM7d7vgtuCUxf9SW6lVWd6pxS8WhDidx2-u_hO6Af6WB_XMYxc9P8oz1Sm8I_kNMcVTdLnQTaUbw-tl7UZr6WLdBqypyIvyMa8ei4r3l3WeyXCbn-4av6CB_5ef"
+  },
+  {
+   "rep": 1,
+   "name": "nuit",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Glass Sea at Dusk",
+    "lines": [
+     "The sky cracks into liquid mirrors",
+     "fish made of light swim through frozen breath",
+     "each reflection holds a forgotten name"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#002b5b",
+     "#8a2be2",
+     "#ff6b6b"
+    ],
+    "ground": "ice",
+    "ground_color": "#a0d8f7",
+    "ink": "#ffffff",
+    "accent": "#ff3366",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "iceberg",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#b0e0e6",
+      "count": 3
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 8
+     },
+     {
+      "kind": "lamp",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#ff9a9e",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#4e4e4e",
+      "count": 1
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#f8d7da",
+      "count": 13
+     },
+     {
+      "kind": "bridge",
+      "x": "center",
+      "y": "sky",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "circular",
+     "width": "medium"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPbjpswEIZfxXJuWYklLZtwXakP0N5Vq5XBY2zhA7VNs5so794ZkpBE0WrhAnsOH_-Mxwf-jzfPBd_xhgs2WtEBL3gaeXPg2WQLaP9pRUrsFwgmMvsxpQEjrPGQePOH_9bA0vDBuii6ITHjc2DW_J2MZM7EGGLCaGWSZk5IYEGht9eZpZ1xLOsYpl4zFcMePGsjiKwxHkSnWQRlocsmeKaDlYkJpkLsQ84Y6oUD_lqgRkcS5UnVjvIhomGELCz9GrWRzFVZVu33Fg2rjahaqGilVN3WLWF61OEl5pm5_tP2rQs2EGwlSrlRL-gwfqC9mh_ci64Dn0-m9bquqdYwGxJEQxEZ3vPbqa8Np2CUV3AXqC4Ks2FHBVtw6KOOHvhgLlJaiD16329TsRyuQzR7zMfyzJ7AeupJ9yK4LaGEerZMJGd9LBZuO2EHo7IfZ7IFlc9catbCTE5Yews9t2uBbm6gVrjxzIt0vhehuL4SHUgzuXvkVmzhiny-QY4Q01zjQ_nn0_pc6Teg9zMsTsZj6V8y1Ua-SHHDvOtpNHI-gQetdy21It6f0zJIi9BXWvsU6OYdME_CVWcOfpYW5l3SYpyHysRuQjLNv5F4f5ZGH484yjhSxOSNn6zFybssSHZVVvVTuX2qtsTjTVnwePHPw0g3bKTv8T8"
+  },
+  {
+   "rep": 0,
+   "name": "noche nights",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "silence forest",
+    "lines": [
+     "the wind stops breathing between pines",
+     "light drips from leaves like forgotten beads",
+     "the ground remembers every footstep"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#2a3f5e",
+     "#4a6a8c",
+     "#6b8b9d"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a3a",
+    "ink": "#3c5f4a",
+    "accent": "#a0c3b0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#6b8b9d",
+      "count": 5
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#7d5f4a",
+      "count": 13
+     },
+     {
+      "kind": "firefly",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f0e6d2",
+      "count": 8
+     },
+     {
+      "kind": "bell",
+      "x": "center",
+      "y": "high",
+      "size": "large",
+      "color": "#c0b0a0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "200px",
+     "prompt": "what sound do you hear now?",
+     "button": "listen"
+    },
+    "next": "a city built from melting clocks"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPbjuMgDP0VRF8zUia9bCcv-yGr0YiAk6AQiMBp2qn672vTTNvVPoHN8eEcY67yJOv3Qi6ylkpMTmmQhUyTrK8SLTqgfLIOvAbRhggJ6dhZD0nWfyT2IBbrjUgYpiSaCAp76zvRAC4AXkwZyRVdj8JES6g2hlE4UCdIwtkh83YBkeANKMNw5u1imIk5wghjAzEJOEG8EDhgQpjkJ8HsyPrMnAYqWvhyiJRoQ8cmhgtr3FRq2-7Z1WanDuqoeXdojs2HYY77NVQ0hsRX3-MvHVxgqk0FO7VVdGD9wPFW79sdx0pr8MgpVeptU1KqDTmRINqWXcAZv-4trSWDSVxB96ANnmFonaMEOLLokRt6lYPNYrhvdHR-LSQ3sg_RflM1ubPfTNvPHQMfcldjnJlZzP5WPEjHOfUxhHEldtDiSrs24cGaRpWlPWh_mdX1Svu-feFtbYTWXVbayE-98vITPEhHMHYeX1nbEg6merIeX0gbyAr-7wDRPzmdiv_612VTqvJF6O2T9z4FHuUr1Rl4esfgs92Qo9SricPcDOB2LNZgT5mqLKczxRON7sRPvPQKRcoDaoK4hFn0oKLwYflNsGZGzE_sLI2ql7dCepqF_MW0xYtoZuvw_hFGcMg_Rrugh8TQjgaBRcvaz87RwPxsTFZSHd7Kj7fqgwXLuixk_DnPI8TfYuL19hc"
+  },
+  {
+   "rep": 1,
+   "name": "noche nights",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "mist hill at dawn",
+    "lines": [
+     "the first light spills like spilled milk over the hills",
+     "beneath us, the fog breathes in slow, silver sighs",
+     "a single lantern flickers, then goes dark"
+    ],
+    "time": "dawn",
+    "weather": "fog",
+    "sky": [
+     "#1a3f4d",
+     "#4a6f7f",
+     "#7b99a9"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a3a",
+    "ink": "#c5c0b5",
+    "accent": "#d2d6c9",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "hill",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8a8f85",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f9e7d0",
+      "count": 3
+     },
+     {
+      "kind": "candle",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f5c8a5",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#4b3a2a",
+      "count": 5
+     },
+     {
+      "kind": "windmill",
+      "x": "left",
+      "y": "high",
+      "size": "medium",
+      "color": "#9e9e9e",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "sky",
+      "size": "large",
+      "color": "#d3e1fa",
+      "count": 2
+     }
+    ],
+    "console": null
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPbjuMgDIZfBdHbjNSmx_RVVqMRAZOgOFABmU6n6ruvnWZ62O2uchH4MZ9_O85Zfsr9opBHuZdKHFBpkIVMB7k_y-wyAum9S1m0DlGoLIw6eopA5yHJ_S-ZWxDWRYpA17RZpAMFJtp0cF2DEb3DToRPiIKjmZQIUYMHlVsxpGLUbWhEHVmCJJwXCcOxEMkhX0wE50uKVr5BEKh8huiFRac7iFeGF02gy0bFTr4XVEDP_ifLxxEdSaBMXGR34gJmC7W0K0PCbKU2dmt5ta2rSlXMaGIYvOEuhMQGrvsPHTAwalbCSi0VHTjf8V6v9bxes1OtwWeWTGk2uiLJhlFIEB1nyfCVP64t30sOJnMF5ckueA6j-mkPCD2dcbPPsnOjF24hHX093juxHqL7Dlxsct9MbYeGv-fN7U7t7G49KgN7WVyKG7QeMpEsniYygs0Tl1t1Y6ZejdlvUFvB1szv0OUDVCtvECZi5AmZkFNfb9QejBv6J-xa79Q_vPZDamMI_asm_En-y--qXqpS3cHrB_CRXv29uw89aMn8_-xWwM9ruxrDYF55fWosqvj8tcwSFvbBaHl557VPgf9LPyBeaCBpMFi-CjQ_PwtOXM7Lzdu8eit5_GiE5oWMP-fjSPFfcuD35Tc"
+  },
+  {
+   "rep": 0,
+   "name": "noche nighttime",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "whispering woods at dusk",
+    "lines": [
+     "maple leaves hum a lullaby as the sun kneels behind the pines.",
+     "a single deer steps between two fallen trees, breath soft as mist.",
+     "rustling becomes music in the stillness before the first star flares."
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#8b5cf6",
+     "#1e3c72",
+     "#0f0f29"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4053",
+    "ink": "#ffffff",
+    "accent": "#b388ff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#e6b800",
+      "count": 5
+     },
+     {
+      "kind": "deer",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c0a88e",
+      "count": 1
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#a0a0a0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "what story do you want to hear next?",
+     "button": {
+      "label": "listen",
+      "action": "play a song of wind through branches"
+     }
+    },
+    "next": "a city beneath the moonlight"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVPZbuMwDPwVQsW-pQsnabquX_ZDFkUh27QlRIch0XXTIP--pHI0e8QPkShqNENyjupdNeuVWlSjNExOd6hWKk-qOSqy5JDji7F5wmTDCEuMfQZN0M95z4nOBsyq-aW8nhyCQ_2OGczsQYObndPtAXQGMgh5DrAPiC5Di8aGvkQnAfjOSBoyP8AYPWKCTDhJHi2IAWiJMGjnZJkQ8wrahJoM5DiQ4HubSUDSnMkJzxa76JmJn7PtwIYzA7LO8XMCPMSEJTjYlImPdILB6SRkXlcs3Yvyi8pFHsPEgSGOUp79QTQ_1O2uG5458LDGbfdjI6tqqIbNi2CMKc6h50s-5qyu-7cuuihQDxt8qnZbPrBhL_uh_KQUXYeBJNRu67qEhlgCmbsgW8IPejs3q1GSzORW_A7ZGCRNhHIAHXo-lAYd1d4WMlJAPvq4v8hqlInJfvJtVmc_BZaLMUrmjW_dPu3W2xKZhc32tLqhcp1NitFfkB0OdMG9VOEGm70u3G6w-NzWVfUFu7uDlVn4H9m_QT32dvb3qF2l6xq_UNd3qOcm_gMqXb0hmvlP8bqS7x7vVdYhR7HIka_1-CWcYihaY9lloyfZFtIotBfbk-HItvrGuylFP1ExmpZRjOkAfYRDnGHRgYAiGOT5DNz1n5zfzkTS5yP3qEUnz_L8YyijcxkBHg52HhuEzRAHWM5-YwajYfPo0Bn27em0UgJavN9ZOrAxQjGWOMPHGJwdDSlOG3mGRLFqAtuaZ-26kIJuqs3zY_XyyHPPalVTsROv52X6xFGT_J9-Aw"
+  },
+  {
+   "rep": 1,
+   "name": "noche nighttime",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "ghost forest at dusk",
+    "lines": [
+     "pines stand still, their branches holding the last light",
+     "wind hums through hollow trunks like a forgotten lullaby",
+     "the ground breathes soft moss beneath silent footsteps"
+    ],
+    "time": "dusk",
+    "weather": "fog",
+    "sky": [
+     "#1a2c3c",
+     "#3a5a7a",
+     "#6b8e9e"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e3a2e",
+    "ink": "#8b5a2b",
+    "accent": "#e6b8a0",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4a6b4a",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8c523a",
+      "count": 5
+     },
+     {
+      "kind": "fog",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#88aacc",
+      "count": 1
+     },
+     {
+      "kind": "lighthouse",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#f5d0a0",
+      "count": 1
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "gentle",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "whispers of the trees",
+     "button": {
+      "label": "listen",
+      "action": "fade"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNhb6MwDP0rUfaVSS1de5S_Mk2TAYdEDQlKwnVdxX8_O6Utp5t0XyBx7Gf7-fkqf8t6W8izrCWI0UKLspBxlPVVJpMskr3XPiahfED6QRLdFE_kZI3DKOt3OfJBxASuo6-xthBJowmiCeBaTW_a2864ns3CAqFY0-tEGGdDMXoaIj0FP_WaXa0_ixQmd4rkd0IBnLv3KaETdrIWmguFMlZPMQTQBITEeaJXSQw-RtGgY5uIxqLj4n2KCccoPyjSDNzW0sY5xwYyKN9z76cLN_WyhbLdtWR42cEefgGfDk2FR2SMW2YK4mzyfv9svfUM9VLiDkqm0rgT36tmD2VDd2hbKohNSGiwIZPy2RAxGMWN4Vf6vE2iluxMxRWUJxnv2I0ZJgNaHOiRJ3CVJ5OL4UnQ09c6kLqR2gfzTdHUnflmWAuhZ89HvW9waN4gWyauppqLB-owRRqOHxZkiyotuAsLD9g4QK7tAVu1-3K3gt2vYG90_1Mr8_8A1NPfZVYVEIFPvO0KL2tK-yneKQiLyDIDdH7CDtiZaVgDq323ycP4AViZgMpefir2vwQo1bbH4xN3N3_w2UXPq3WluA6fnCbv8sJRCpv3UMPIhpwFu7wwXdLrDsbgh5Hlc9Ymjhii8CrvWQqIrMxmSomFc6WhN2gzUbQKLmtx0ZQCqmKeZ9IxyYkrlLWjTSPZ3Q9MRLkpD6-b42vJDZHwNoUM9_csRF6ukf_zHw"
+  },
+  {
+   "rep": 0,
+   "name": "noche evening",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "forest at dusk",
+    "lines": [
+     "the trees breathe slow and deep",
+     "light spills like honey through the leaves",
+     "butterflies gather at the edge of shadow"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8b5a2b",
+     "#4a3a2a",
+     "#1e1a0e"
+    ],
+    "ground": "grass",
+    "ground_color": "#7c9d6a",
+    "ink": "#2d3748",
+    "accent": "#f9d7a8",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#e6d8d2",
+      "count": 13
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#5e4a3a",
+      "count": 3
+     },
+     {
+      "kind": "pine",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#2e5a3e",
+      "count": 2
+     },
+     {
+      "kind": "reeds",
+      "x": "left",
+      "y": "ground",
+      "size": "large",
+      "color": "#4a6a3a",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPtbqswDIZvJUr_MqmF0g9u5WiaDDEQNRCUhHVdxb0fm1Fg67RfJI795OW1c5fvMttF8iozCaIzUKCMpO9kdpdBB4MUL61DHwQEoXp_oWOjW_Qy-ydDjSI4RC9yh8A7b-xVQKuEQuzG1KoOwnfaGC-MvqCobYs3EWpn-6oWXGMQ3okXybwPAV1pNAErxjm-lFNQVShsKXwNyl7la0TiGtY2KbqOtzsKdBjAMMxfbixxc8pTiHMKbPaQQAy82uEOtsiYimS0iuoqB57LvgJvhTWWcZtjcVYHLtLthfexSo77E-2hKLANHCrP6ggcKu0Y8Oh0SduAH-Hty9JMcjIJjGRjg7YtpwUyhQJosKFDNvQuL3pUw6bS0ce6kH5H1tbpT6qm39OfjDXgKs6c9Z7yfbpLxkjPatIhmqkPf28T2mAZJjC7NUN9A6OyGVqWRXE-L9DTCjoaPgEdd3siTs7O0AaV7ps1FQ_qpOKFuktW2Kb3NCK2-c2Fn-gnvSlyrxfyGtzR8P4it6b1X2JjTCHBBRmvkNQs5Z89_SnzqVd7OHyTmQ6vvG695Xd3pzqFCzLQw6HdFVwjh4EmlQaG82XW9sbQYD0WLCnexoeX7fkl5q7RaG0j6R7n46jxE-r4O_wH"
+  },
+  {
+   "rep": 1,
+   "name": "noche evening",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "coastal dawn",
+    "lines": "the tide pulls back to reveal wet stones and salt-scented air, the first light gilds the horizon, birds rise in quiet symmetry.",
+    "time": "dawn",
+    "weather": "fog",
+    "sky": [
+     "#0a2e5f",
+     "#3a7dab",
+     "#80c4ff"
+    ],
+    "ground": "sand",
+    "ground_color": "#d4e658",
+    "ink": "#2d5d3a",
+    "accent": "#ff6b35",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "sun",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b35",
+      "count": 1
+     },
+     {
+      "kind": "shoreline",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#d4e658",
+      "count": 1
+     },
+     {
+      "kind": "cloud",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffffff",
+      "count": 3
+     },
+     {
+      "kind": "wave",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#3e8eaf",
+      "count": 5
+     },
+     {
+      "kind": "dune",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c0b06d",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#5d7c6a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "300px"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=nZNhb-IwDIb_ShS-llPXroz1r0zTZBKXRqRJl6QUhvjvZzMonY6TTscX4jfxk9euc5J7WT9lcpS1BNFbUCgzGXtZn2QyySLpykNMYIWG0dGmNQ4jyalFkYxG0Q_WRrEBtRPJi4B7pMMjJhGTp6MCnBYRbFpGhS6hFmBCJji9MSEmYc22TWJrrI4XtfXBfHmXiY0JJAUTURgnPgfDzGPXYQrHX-QkmY79XX2NCJQdSGj8lovYHWX9Jhc5FFg1JCxKeNGw4dU6V89NI98zuQ1-cJqSItmUt_hDeesZtdDPuKrWtGHcjuNCV7oEikFxNSw1zWpTViQ1_iJEDIbvS3hIH98tpSZy6YHUzifjHR-zfqQYLXa0Rx19O8md-fYycEGHeRrVIq-N4drMF0MthC1_r8ntZEVRFeTl6ZzdoZSO_PEeoa9tmMjt8BM8teEBWFk_6CvUYpOuSO7_xOtQm6H7aZV_d2I5I46w_yeXsQNr59AS1wgzaDWD6mEqPfDE_YX5p1OVb_KVflx7jyF6919eK_2iVjDHvvPaRc-v7kR5Gu8d5afEV4Blb7GFnsPLHci3jEanlpQyz_uDPJ9pkmmimChrRw-UBu-2YN9FXqyW-euyeGWarPNMhtv-ZRYpM_X8f_4N"
+  },
+  {
+   "rep": 0,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Floating Market at Dusk",
+    "lines": [
+     "Baskets swing in the breeze, filled with moon-blooms and salted starfruit.",
+     "Vendors sell dreams in jars, each one humming softly.",
+     "The sky blushes into violet as the last light drifts away."
+    ],
+    "time": "dusk",
+    "weather": "bubbles",
+    "sky": [
+     "#FFD1DC",
+     "#B39DDB",
+     "#8A6BAA"
+    ],
+    "ground": "clouds",
+    "ground_color": "#E6F2FF",
+    "ink": "#4A235A",
+    "accent": "#FFD700",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "market",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#FFD700",
+      "count": 8
+     },
+     {
+      "kind": "balloon",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#FF69B4",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8B4513",
+      "count": 2
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#FFB6C1",
+      "count": 5
+     },
+     {
+      "kind": "lamp",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#FFD700",
+      "count": 1
+     },
+     {
+      "kind": "whale",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#4A90E2",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": null
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZNNj9owEIb_imWuoYLwUeBGls2tt6qXarVykglxM7GR7WwWEP-9M8BCkFbbnmLPxzPvzDhH-SZX40h2ciWV2KHKQUbS7-TqKIMOCGRP0aqgzVb8UK6GIFQQm9bXFIfagJer3zJRnjxe-I7jtBGhApE5gANEotSIUIhOh0o01pphhtY2XihTCK8wkM8H5UrX6vCNqL_AFNYRDBBF4UBRLCH_KOcjASqvhDUgqrZpuJi3ZcA95_2kmr7eiwxbXwHnBCvetEXW7M-SUPkgUG-rQGBdkmLVKUp-iajbhpstLp11oCjekSFrswypS5pKvedeB2m6GW-eyDBIJsvNJuHTYj1P1mvmbJ1tTUGJOdq24LyL5TW3aBk4eJ6ncZqSQ5ua79N1PJmt6a7yHExgE5X4PhqRqbRnQ0WzoluA9_B6WRLxKZYURrKxQVtDFgeeNua5JiA05OflHGWtz4Ka8_rI-d7P3jPeOn0gBPWoD8yu2i2_g5vkm56cWiFBi1N0w2YKaZ_mykUow5XK87oRGyh02zwy58tkemdOeswdOH9DOt7XlXmd7g3rG6repy6S6Ww8uVPjvtI2UM8l7j-dAVX5gpumyfxpfOfOelxUze4z5D8H8DjUcQ_ZVQrhP_pH5R43NV0vR89xH_rCZ-Mt_8tHyivoa1rE04meJr0P9l8s9JQ-DqwhHsXz4Wg5jJdcT65GkXQf_vPL4r9mx9_TXw"
+  },
+  {
+   "rep": 1,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines lean close, listening to the wind's lullaby.",
+     "Each leaf holds a memory of forgotten summers.",
+     "Beneath them, moss hums a soft, green song."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#6a5acd",
+     "#4b0082"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e8b57",
+    "ink": "#2e8b57",
+    "accent": "#ff6347",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#2e8b57",
+      "count": 5
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff69b4",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#fffacd",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "circle",
+     "width": "small",
+     "prompt": "What memory do you carry?",
+     "button": {
+      "label": "Share",
+      "action": "reveal pines"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=lZNNb9swDIb_iqAcdnGLxPlY4suAAbsP2IAdhqKQbdoSIomGJNd1g_z3kU7SJFh32MkixfcRSZMH-SKLRSYHWUglOqsqkJmMnSwOMplkgfy_tIkdBONb8d14iBRgp2_xW_7UIDo2hAXlRWUxQiasiQk8CxKKRCGD8fUniumtVeX4SIRvqtKsaYRGW0ehhAOHYRTYiAZDi4kIIvbOQYgs-AoeVNKMc5lwGKPQvWNhxCZlog3AAvTto3zKKHnHudd93JN4YCkEcnSQlOUS4n7kAmZblZeQk2O2UWtV1XxalfP5NmdMG7D3Nen4QXmxnyu0yLRZDtty_ZkujN_f2aqqwCd2Nc1muWJXg5MjUisbMhO8pudTxwvJwZRfRu8kg57DLA5kgwVHd9zsg9ybKZdEpdLV662OipEag3kjMRVn3piq-5YD_862oiool_Uxe4dOjfmIyo16J0anrL1FUnW7cnVFbu-QIU7pMNNCk87Ec1P_Dd2Wq_VieYUubqBlT5MRGjueucG0-gLWdL5iHdSmd_fJNqc_fOYub7iujzoguo9a8P8JL49PbPiIvEIHEtZwbUJCz9agAj8XteqmGTChsvy_BlMnffNMF9B1adpElS57UqMYsReVCmH8QkHcFx6cg6QVA0vRP7QKMI3ieaQCvICyp32Vx-ORxpnGihOVhafVpOm7HLgj-TzfPMx3D_mOk5TFPJPhcj8NJK9Zx9_jHw"
+  },
+  {
+   "rep": 2,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines speak in hushed green breath",
+     "Each needle holds a forgotten name",
+     "Moonlight drips through the stillness"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8B4513",
+     "#6B8E23",
+     "#228B22"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#4A4A4A",
+    "accent": "#228B22",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#4A4A4A",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#A0522D",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "What name do you hear?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal a whisper"
+     }
+    },
+    "next": "a sky where stars learn to sing"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPBbtswDP0VgcFuLuAoTZv6MjRoetqAHQbsMBSFYjOWEFkyJLlpG-TfRypukhUbfJApko-P5NMeXqCaFrCDCpToraoRCog9VHtIJlmk-1_axB6Dca34YRxGCrD5rH7DT42iZ0NQiNoK44QeosZGtAHRiXVAlTRlrFSthUNsLArtbROFEhsfWp8ShTnVcd3v3jtrWp1EE0wfRdLBD62mE0VMxloqFOGpIGodM2uGuKW0HdfAQBc9JmWZYNy-Mb3JYnk9n87oYnKzXKxk_pNysZSSYVqCdw3ldT5y1tF-rr31jDaRq8VyfksO47ZsX9_zR7aqa3QphxzBCtj4fBFpUBsyE76m5-M8K-Bg4ldQnWS84zDuhi7QYkdOnuUetiaT4XmS6_UykboB7YN5p2zqzrwzrFWh5cgT31O3NfVBbBaH4ozKoxlhLW7SCMqDOgHGTmVWJ8DHx4fbsjwDzv8CDDGzYcTAWxshx6n-H_U0xhF1eoHakXqC992_BvAZuMPGDN0l8n05l_LhjDw7PPG_i56VvKfEBs_9J-8yP5-tqFXPZi6CXGZnGtJuBbPyC1l98F2f8ntQKStWNF68-UFoVOErRayHlHi7e9rMGi2FfjOR5J0FMy4-4AsqS-LfHV8VHA4FOBJLfoC0DXJgYLmrEIUlZCeSF5FeH1BkS0LhlqByg7UkqI8fnp0s5c1VeXcl77gdqMoCwoc_S4xfTs_n4Q8"
+  },
+  {
+   "rep": 3,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines at Dusk",
+    "lines": [
+     "Pines lean in secrets only the wind knows.",
+     "Twilight paints the branches in lavender sighs.",
+     "Fireflies blink like forgotten names."
+    ],
+    "time": "dusk",
+    "weather": "fireflies",
+    "sky": [
+     "#8a2be2",
+     "#6a5acd",
+     "#4b0082"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e8b57",
+    "ink": "#1e3c72",
+    "accent": "#ffcc00",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 8
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffff00",
+      "count": 13
+     },
+     {
+      "kind": "moss",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#2e8b57",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff6347",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "gentle",
+     "shape": "round",
+     "width": "medium",
+     "prompt": "What story does the wind carry?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal a whisper"
+     }
+    },
+    "next": "a world where time moves backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVM9b9swEP0rBL0qhSx_xNHSpciUoUOBDkUQUORJIkSRAklZcQz9995RtusiHapFvK_Hd493Z37k5TrjEy-5YIMREnjGw8DLM486GkD_z1aHAby2DfuuLQQmIvs2hg4TDdm8_MWXgAFhmbYsgPQQA3PWnFhsgU3aKtZZN4UvWPVj0kY3bWSD0BbTKKPywsoWMbDciCNYBZ4FzEoVz9pDbTSGK7yyY0Z3wGrnGxcjWGZFD5j3miHnniirhd4EArE9OuorAHXXnYjy6iCKCgp0rPZiJ6Si07bK80NBSI13o1VY2rtAVYv9Jp1xBLgq4FDtHjGAfMhew0Y-EpqQEmwkV11Lmefoql1yBBSxRjPCe3xbtC45JSPFDO-J2llKM25CGwz0GCN5z7zTicuAMmPo_b4Om-Gt8_oDi7E5_UGoRviGMm90D9V2t94kz0hkDnN2Q13EOf0LmLS6gYZeGHMPWuOXGryArjd3qBfdPkFehL2htuPfTG_CXkHvMCvt1QXT0wT9J8v9ZnsHWMyvdLbB0XifsU4lyaAmvOgsWQ1SNmkXWjGQ48p60iq21B4oPfboGLzrh5j2BBcjROdPTDkIfwZfCu9PXzG1GmOkJz7j-1RgsOZFBxzgNDWX1_dwBGGYYNOydnyeM25xYtKGTs4bhSHwwGjWWe-OtBVCdpNAbTC3wYGhBnlpR2Nwrq4HErDIi_1D_vRQPFFrvMwz7q_xNGq0QwP9598"
+  },
+  {
+   "rep": 4,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum ancient songs in the wind.",
+     "Each leaf holds a memory of the first dawn.",
+     "The air tastes of moss and forgotten dreams."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8A2BE2",
+     "#4B0082",
+     "#6B8E23"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#4A4A4A",
+    "accent": "#FFD700",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FF69B4",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#D2B48C",
+      "count": 1
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What memory do you carry?",
+     "button": {
+      "label": "Share",
+      "action": "reveal a hidden song"
+     }
+    },
+    "next": "a world where time moves backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVPLbtswEPwVgr4qgSw_IutSRI19LtACPRRBQIsriTBFCiRlxTH8791l5cQFUhQ6iPsazi5nz_zIi3nCR15wwXotKuAJ9z0vzjyooAH9P1vle3DKNOybMuAxQcd_8Yv_aIH1ZLB26JgwlQITmLem8UwZFjA8KiPvsWYrqpZpEDVrrZaeCdZBZ92J2Trm1cr5wKQYDWUTsFCOBeEDomNOZz0WGclq6xobAhgmHYjO3_PnBMl2xFUO_oDVIwiEdOjoIQhNlP3hRIRn-WNWbjN0zJZlmubxtC7zbbYgmMbZwUiso9v41X6prLaENsu2ebl6wIAyB7KXj_ShLaoKOyfXbvf0kKboqm10eBxdjWaA1_DyZ8IFp2Tkl-A9QVlDadqOaIOGDmM03DM_qMiFBoyh19s6bIa31qk3LMbm1BuhtkNDie9s83K5mi-iZyAu-SX5AKXBTKga6jBh0pje8XwntL4F3O3Wm3L5AThf_IXofGRDkE417RVzGuq_YZ-ycpl_vYG9QUVZQK1Pn_X_P67TO0ygq8sznY23pOoz1kmq26OUbEfvY03EsXEWvhU9mZE6EPlRydCSMkCqgQp6Z7s-xAUR4SpmadnJDqwSzp2-YNJ-QHhD92mxB43Z31vhICpmenkHRxAa96FVUqKqaXv45ZJwg4qJezlapyUbUdHASOi4C0dcir2oDqNwkmNug4Kh_nhhBq1RV9cDzTBLs_VdurnLNtQZL9KEu2s8So0WqKf_5Tc"
+  },
+  {
+   "rep": 5,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum old songs in the wind.",
+     "Each leaf carries a memory of rain.",
+     "Light filters through like secrets."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#8A2BE2",
+     "#FFD700",
+     "#6B8E23"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#3E4A5A",
+    "accent": "#4CAF50",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FF69B4",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#D3D3D3",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8B4513",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What memory do you carry?",
+     "button": {
+      "label": "Speak",
+      "action": "reveal a passing leaf"
+     }
+    },
+    "next": "a world where trees remember every voice that ever passed through them"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVPJbtswEP0Vgr4qgS0vsXUp7MY-9VCgBXoogoCWRhJhbiApK47hf-8M461FW-ggzvZm-PjmyPe8GGW85wUXzClRAs94cLw48iijAvT_aGVw4KVp2FdpIGCCSv_iJ__eAnNksLbTzKqKBWuawKRhEUO9NNUj5q9F2TIFomal8F5iumAatPUHZmvmhTSU9UU2bWS1VBF8wHpvuwbL5A5YgNJDDI_8JcO5NI1Vid5gUQ8CO3l0OIhC0XRhd6DZBvNlvlrn6BhsNs9PwyGdZqv5Oh8TTIPwpsI6bQNVfdivpVWW0Ab5er6aPmFAmh3Z4_VkOV2iLcoSTCTX5PNyMyXY2iZHQJZqNCO8xdcPMgtOyThfhn2itIbSlO3RBgUaY8Tjke9kmoW4xNDbfR1ehrfWy3dL9w3ynVDbrqHE67Tz1WQ6GidPR7PMT9kNlIg5oyqo4xmTaLriBS2UugfcbGaL1eQGOBr_huhDmoYgPT3bGfNM6r9hn8f03cHeoeou4Jtb_TcC_gTWUMlO_4-B6emFziZYUvERCyu4ERCtSfPZZIVWODJTE6A2vaxie9_HeatdTOsg4kW8lWUH2yVRHz5h0raLkZ74yJXYgsLsbw7ELonm_Pge9iAU6t-JEGinaC346ZRxg6pJa9hbj4vUo6qBRQ-4LR6VorfgGRZj272VJYZoEHIkKKiuG4P7oDkCNqgs4oAXplMKBXg5ENn5MJ89DBcP-YLuz4thxv0lnjRJm-bof_oF"
+  },
+  {
+   "rep": 6,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines lean close to the wind, holding secrets in their needles.",
+     "Each breath carries the scent of ancient earth and slow fire.",
+     "Night falls like a sigh, soft and silver."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8B4513",
+     "#6B8E23",
+     "#2E8B57"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#4A4A4A",
+    "accent": "#D2B48C",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 13
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8B4513",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#FF6347",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#4A4A4A",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What whisper do you hear?",
+     "button": {
+      "label": "Listen",
+      "action": null
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fVNNb9swDP0rhHp1i8T5aOrLsKzpaRh2GLDDUBSKTUdCZMmQ5KZt4P8-Us5Xu6HwwSJFPvI9kXvxLIpxJnaiEBJaI0sUmQitKPYi6miQ_L-VDi16bTfwU1sMFGDSv_gjfimElg0wKC2UxgWE6CCSf6dtlYFypuLUgKXHGEBbvtQeLGJlMNwQ3EqWCtYeZVRQSu814TFCKNFGcDVIW2o-ovQUIm0Fwbgd1Noj5__QGxWhlsZQH3qLICGQK4Pg6jiEa_OM_kY8ZkSrYVZVF7aUuuOi6MnRYpSGyYXtK1O7Wiyns_GEHFfz5WKVp1O-Wixntwyz8a6zFeU1LnDWYD-VzjhGO0ZmQtst29Ov_JEtS2bFrvt8OV18I1ftkiOQyDWZEV_i0_AWheBg6i-jOlE7y2FEnWw02NAdP8NebHXqhZ-Crl4u84iMUM7rN0omcvqNUVW34cBTtyeuJbGgXhZ9dgZlYQ6oBut4wGSZTnihIfEvAR8e7m9HozPgeHKB2HRBeeeaA6jn5zugHmQ9ATdY6a75rNXZBfBa--q__KnCp83OJ9PbM-TkHXsfknIf6H9s9B_Q04MfFegf-WyD463aU17FeWsXY1IiOptwXCoRlGzZTFWQ6-x0FdWlIq13TRvTgsoIu2FLoXLw6jpQtCpfKGjdEbzlekau0VD0dx0i2jSIw0DZzpi-72mEaZS4x8FFE3c8sA75KJ9fj-6u8zvuThSjTPjjfRpCXq2W__1f"
+  },
+  {
+   "rep": 7,
+   "name": "none",
+   "kind": "base",
+   "strength": 0.0,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "Pines lean close to the wind, listening to secrets in the rustle.",
+     "Light filters through branches like liquid silver.",
+     "Each leaf holds a name no one remembers."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8B4513",
+     "#6B8E23",
+     "#4CAF50"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E8B57",
+    "ink": "#2D2D2D",
+    "accent": "#4CAF50",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 13
+     },
+     {
+      "kind": "moss",
+      "x": "right",
+      "y": "ground",
+      "size": "large",
+      "color": "#2E8B57",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "horizon",
+      "size": "small",
+      "color": "#808080",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What name do you whisper to the trees?",
+     "button": {
+      "label": "Speak",
+      "action": "tree responds"
+     }
+    },
+    "next": "a library built from clouds"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb9swDP0rgnp1Cydt2tSXYVmT0w4DdthhKArFpiPBsqTpo24a5L-PVJyPAi0E2CJFPvFRjzv-yqtJwQdeccGcFjXwggfHqx2PKmpA_x-pggOvzIb9UgYCBuj8r_7y7GAahGG1tgFYtCxKYIMyTcG0ChEMJaI7QO0hBqZMjvApIPwNgv1UGxlZq3QEH_DM27SRbO2FqSWBqw7w8y-phgWlX8FT0lLUku5tmbS6CUwwI3pgxjJrEBx66NcId8OfCyTSE48mhQ4zBxB4v0eHgyg00QndlshczRd3s8ktOq7uF_PlNO_ufnxfzUqC2WBhpsG83gbKOtgvtdWW0K6my_li9oAHynTZfqKFtqhrMJFcI1jBW5sdAdvaohnhLb4cul9xCsb6CrwnKmsoTNsBbdBIy0Rq_I53Ktfi8AHw6O0yb0spSAmJqXdClGlDQadKTzxrZIB1zPfFGZCaMiJqaOOIN5I_QYZeaH2JuVo9PZTlGXNyewE6dowwPb32F6Ba-I-Fnlo6gs4-FOoDducT7tJ69Z6Pvip2XtK6KHb_THsTLCl-h3kNnPlHlBTdIXRPmFI4MnPtQNUPqomSWEKjEoU4b3sX8-iIeBBmY9nWJjYcZuk4JtEDhG-YsU4x0lPvsAdr0Jj624HosnhGEVAsCjs4a5rA9_uCG1RNnlutcFr8lq0TDhFr8XaaxkRhKFOUC7HjlUlao6qOG2ritJzeX5eP19NHYsarsuD-eJ6FRuPj6L__Dw"
+  },
+  {
+   "rep": 0,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The wind hums through ancient pines like a lullaby.",
+     "Each leaf holds a memory of snowfall long past.",
+     "Sunlight drips through branches in golden drops."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8b5cf6",
+     "#4a00e0",
+     "#1e3a8a"
+    ],
+    "ground": "moss",
+    "ground_color": "#2d2d2d",
+    "ink": "#ffffff",
+    "accent": "#8b5cf6",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#a8dadc",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f87171",
+      "count": 13
+     },
+     {
+      "kind": "moon",
+      "x": "right",
+      "y": "high",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#4b5563",
+      "count": 2
+     },
+     {
+      "kind": "candle",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#f97316",
+      "count": 3
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "round",
+     "width": "40%",
+     "prompt": "What memory do you carry?",
+     "button": {
+      "label": "Share",
+      "action": "reveal a single petal from the sky"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb9swDP0rgoLd3MLOVxNfdtp9QAfsMBSFbNGWEFkSJLluGuS_j3TjOCm25GCRIh8fn8gTf-NlkfGBl1wwb0QNPOPR8_LEk04G0P9b6eghaNuyn9pCxAAzfss__JcCNmgrmeq7yJIKrm8VE7bWYBPzFMaMPgATzPTGiOr4iOk_RK2YAdEw5YyMeNlB58KRuYZF64ZGGMOMw4JexEQZz701ulWJyaD9XKgKWEphDW1Zi1BgMcD5-MhfMuTfEX3ZxwMiDCCSgoAOD0kY6iIejtTDYldt6maLjsVa5DnkdCpgJXaCYFosZSXmdS5S1qf9WjvjCG2xlPTHC20PZDfjD21R1ygCua4FGjc6IqpJEQne0-un6CWnYOSXYZ2knaUw4wa0wUCHd6T3iR_0yIWUxav32zxshisX9AcmY3P6g1BV31Lgla3YSSHr0dMTl905m0FJmAuqgSZdMEmmK17s8G1uAZvdU_FUzIDF6gaxcyMXAgz0fBNLPM-QRoR7jlcFJ8g7jiFeMe9av7zT_5muq81mu5phlzewtbDSwD-ofkXtQOq-u2O7f1oV2xl2dX6hs42OtueEiRJmQZOzIzk3WlEJT-ZUZNAyKbTX-Te0fHCdT-MGijStiHTs6HpWixCO3zGo6lOiaTmhjhUYjH5WIsA4f5c5CvAGwuCWRdxhA2x8Z9YgOi4SMHrf8_mMk40TRtx5aXFXcRCnAym0zJfbh3z_sNwTb17mGQ_T_TibtHGevue_"
+  },
+  {
+   "rep": 1,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "floating library",
+    "lines": [
+     "books drift like leaves in a sky of silence",
+     "each spine holds a whispered memory",
+     "pages flutter open to forgotten dreams"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8f7a9e",
+     "#b1a3c0",
+     "#f7e9f5"
+    ],
+    "ground": "clouds",
+    "ground_color": "#e0d3e8",
+    "ink": "#4a3a5a",
+    "accent": "#ff9a9e",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#c8a7b7",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f0d9b5",
+      "count": 13
+     },
+     {
+      "kind": "light",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#fff5e6",
+      "count": 3
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "large",
+      "color": "#4a6a4a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "curved",
+     "width": "medium",
+     "prompt": "what story do you want to read?",
+     "button": {
+      "label": "begin",
+      "action": "open nearest book"
+     }
+    },
+    "next": "a city where time runs backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVNbbuMwDLyKoP66QJpH8_jZgyyKgrYoW7AsGpIcNw1y9yWVNEmB_ZLEx3BIjs76qA9vlZ71QYMaPTSoK51GfTjr7LJHtltPkF1olXd1hHjiAO8CJn34q2uiPikTnc3s7lF5hCMm5YIClfqTIquS8xgKLkLTqTRysurIm8Qxc-fSiBGNGnCgAj5CywjWTzljVDRiUJmUpdgSWwJXQxiS_qiY4SAEzZR6zpsRcoeRDSNm8Eka6U_C8mVnt7AXBi_1G6yahdzsFvd2IzBtpCkYzms8TUbyrpbPhjwJ3gsuzAp37HChl_caVrABfkPTYMhisnZ_LWGpGBLyUPiZ8St_XgfLBTiYGVZ6oOwoSJinWSbjcWCfzPSse1fYyGzZ9fWcx-3ojqL75mRuz30Laje1UvjOttnBtt4WyyRcdpfqDlpGc0P1aPMNUwZ1x0sDeP8MaBdmX28egG-rJ0Tv2i7fEOPtXmjy_YE5oHHT8AvU2g2-P0CfMXNE_F_rt03dUT3E362v4R3W8MT08iH3kEikfOY8g4_OM4XSL5VX6mAsS5riEaXI7EzunrmPkYZRljt3kFXKrFdlSJ1oUjOELDJlbZo_HFqzemXBZ-ZYo5d1YutCkcxt9UXZASFiyqos-3KpdGC9lM_YuHzi78F_Q4nOVZxCUjU0_QzRaI5sWSzSnT6EyXvW1M9FJrhcLN9fF_vX5V4604dFpeOPv8hMvs8o5-Uf"
+  },
+  {
+   "rep": 2,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "books drift like leaves on windless air",
+     "each spine hums a forgotten language",
+     "pages turn without hands"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#6a0dad",
+     "#4b0082"
+    ],
+    "ground": "clouds",
+    "ground_color": "#d8e6f2",
+    "ink": "#2d2d2d",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4a4a4a",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff9a9e",
+      "count": 13
+     },
+     {
+      "kind": "light",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#fff8e1",
+      "count": 3
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8d7da",
+      "count": 5
+     },
+     {
+      "kind": "mirror",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#c0c0c0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "curved",
+     "width": "medium",
+     "prompt": "what story do you wish to read?",
+     "button": {
+      "label": "begin",
+      "action": "open nearest book"
+     }
+    },
+    "next": "a world where silence speaks"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNNb9swDP0rgnpNAdfrsiSX3nbaPxiKgrZoW7AsGvqImwb57yPVtPGwYYMPkijy6fH58ayP-vCw0Ys-aFCzgxb1RsdZH8462eSQ498dQbK-Vz9sEyCcOMFZj1EffuqGaIzKBNsl5eyIyiEcMSryarHeOIxRgQ1cgtAOKs5cqIY8cVR1FHpKCb1y4PsMvTw98xJVykEA0kA5qQG8ifp5w4Qm4WNyHDlzQUgDBg7MmMBF4T2ehNTdDuoGaw7cbaEyYGT32FTVrhaYPlD2hutaR9lI3XvkpSVHgndndrjtpN76Uc61kY_P0Lbok4S6bttsGw51VAIRWQM-JnxNL-868gOcjNL8RMmSlzRHi4jhcOI7kfCsR1vYiJR89bqu43b0QMG-cTG3Z98EdchFqU-2jyBfiWThsrtsPkGLNFdUh126YopQn3hxAufWgF23hz3eAB--rBCd7Yd0RQzXfaHJ-xvmhMbm6XfQbocPN9A1ZpPZBqFzp7_1_x-uO_PNrJr_uoKdbAgU_uz-aoB_kG0r-VYKXJ5l7yPJRJy50OANM5Ev3Kic4gBz-fk5HFFeWaxJw_qZOdA0i2mWAZKKicJJGVInyuz5OKhEKiCYJ04VZcQ4Z-2gQSdaYW99seLVUjTzBHmEgDGpYqLLZaM9-7DM9ELBGbXwpKCK1qFveZ0Rxqg5rWcHSmv64LNzbNSPjehXV_X2vtrf13tpSx-qjQ4f98W7MpOzrJdf"
+  },
+  {
+   "rep": 3,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Forest at Dusk",
+    "lines": [
+     "The last light spills like honey on the leaves.",
+     "Wind hums through pines, a soft, ancient song.",
+     "Everything breathes in quiet rhythm."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#6a5acd",
+     "#1e3c72"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4053",
+    "ink": "#4a4a4a",
+    "accent": "#f0e68c",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#a0522d",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffdb58",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff9a9e",
+      "count": 13
+     },
+     {
+      "kind": "reed",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#4b5320",
+      "count": 2
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#d3d3d3",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPbjpswEIZfxXJu2RUxIU24bvsElXpRrVYGBrDiA7VNstmId-8MYRNWqVpxgef0-feMfeFHXqwTfuIFl6zXsgKe8NDz4sKjihrQ_915CJHJyL4O4YBhrSwEXvziPzpgWmJMq7aLLPRK64DGAVjnLJyZsyxSDsgjhGcs_alszbrBBPR7N7Qd6wmWMMmCayL-baXAIsvZlgq-HcGfY6dsy0oPEmmBKct-Dwoi8x2GzDN_SVCsIa31VeFpyvTo6CFKHehMhzNJXu2kKEGgY7WVuaxqWq0hq74IwrQoytZYZ1ygqqv9WjntiLYSsEnzDAPKHsjeSPrQllWFssnVpLDdVehq3OQI4FWDZoS3-HrtcMEpGfUluE9UzlKadie0QYPBGLX3wg9q0hI90FTelnV4GN45r96xGA-n3onaDS0l3tTKNBeinjwDacnG5AY1Q8AJODODNTRxxs49uFGDkVovsbtyk6-zOzZfYMshosBGn2eup5sxg2kEN6qBWg1miW2ausx3d-xugZ3G-LcefGI-KG2avdzDHbledgC7Wv__9I86N2WeifQOFZ90-jBN5HFY2Ih_KK0z-hZKxxda2-DoDV6wroa70IivC62T9IaPI15TvC6Uzws7aI236mNBmkQqtk_p_knsaX9epAn3H_HpotHz6ek__gE"
+  },
+  {
+   "rep": 4,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "whispering pines",
+    "lines": [
+     "the wind carries secrets through the tall trees",
+     "each leaf hums a different note of the night",
+     "roots breathe beneath the mossy silence"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8f7a66",
+     "#a29b8d",
+     "#d4c2a8"
+    ],
+    "ground": "moss",
+    "ground_color": "#4b5a3c",
+    "ink": "#2e3a2e",
+    "accent": "#a3b383",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#6b4e3b",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f9e4d8",
+      "count": 13
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8b7355",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#e6c7a7",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#d3b58c",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "30%",
+     "prompt": "what story do you wish to hear?",
+     "button": {
+      "label": "listen",
+      "action": "show"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPbjtsgEIZfBRH1LitlTQ6Ob_og1WqFYRxQMFiA681GfvfO0BzcbtUrwzDzzc_v4cp_8uZ1zSfecMkGJxXwNU8Db6482-wA45OxaYBo_YkN1kPCBFe-zQ-eDbDJes2UjNFCYglUhJxYNjGMJ8MoIUvnWI5QSkEqwxzIjpmxT0wybbsOIvjMfMjAQldqvD2ZjOkxBKS1ESRFW_C0KBl9SOnCknXgUfTbGvX2JFeP6YyFU6mIGBgABVDrdL6Q5lXdHeR-j4GVrI5trWmlt6qSNWFOKNxrrKMG_L5_V8EFoq227U4KhQfWn2lfgZAVuSaVwltQSIpW1AJDXSiBhO51uM3wkd9_m9xwSkZ9a-yTbfCU5sJEDjno8Yz8vfKzLVrIeDz6WNbhZbgJ0X5iMV7OfhLVjCdKfKjdt1sQbYmMpKWe108oGXOjOujyjUk2PXipx5-3BHZH2Or6CXwVC2I_Jvzvob9B4-0nEvVm6wPcg7ZjvyTX7UHsdk_ybgFux4yX7tzlnyZgm_8ohr06yMOTK_6wIKZi3xfo33q_YLVod7VaGDG_0dqnQK_minUansbm4AsllF0ycqBt6QHUZbI6G4yIzTfcDTH0Qy5vT2aWcogXpgO7hBFfW8L5D8yAjN8xlZyh6blyJ1tw1NGmDL4M5H2wDA7WPM84zDhUJJM3fnQOZ---IDOqTbV_2RxfqiNJ5M0Gn9_9vIwjPbKBvvMv"
+  },
+  {
+   "rep": 5,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "moss-covered dawn",
+    "lines": [
+     "the first light spills like honey over ancient stones",
+     "beneath feet, the moss hums a forgotten lullaby",
+     "the world breathes in slow, green sighs"
+    ],
+    "time": "dawn",
+    "weather": "fog",
+    "sky": [
+     "#8b7355",
+     "#a8b7a0",
+     "#d0e0d5"
+    ],
+    "ground": "moss",
+    "ground_color": "#3d5a3e",
+    "ink": "#2e402f",
+    "accent": "#8fbc8f",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#5d8a5d",
+      "count": 3
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#e6c579",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#f0d9b5",
+      "count": 2
+     },
+     {
+      "kind": "cloud",
+      "x": "center",
+      "y": "sky",
+      "size": "huge",
+      "color": "#d0d8d0",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#d3d3d3",
+      "count": 1
+     },
+     {
+      "kind": "dawn",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffdb8b",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPRbqswDIZfJUpvqZTBYaO8yjRNgTgQNSQoCWNd1Xc_NqMt06pzxAWxY3_57Thn_sHrp4zPvOaSjVa2wDMeR16feTLJAvoHH-O-9R8QQDElZ4cR1jiIvH7lqQemTYiJWdP1icXRWBvROALrvYMTo0QmXWvA4XbylJjxBhzI1DMNkDJGFDqG9dMQmWTah86nBI7ZyVrZnDCDYmYfrGJNoFSIzDgWrZ8z1gXA2IgKIn_DUDOQ8FXrvEQHdGjfUXXHEynfVc1LUZbo2ElcSkErJUCokhhd8JNTa_n8ar-33npC7QpVyoKaZdyR7Bz-iFyjLdsWKyVXpZu2Ipf2iyNCMGQm-Ezv372uOQWjuAzPScY7CkvYQnSAhQE3qc1nfjSLmISF4tbnNhGr4b0P5stTtdF8EdbK0FHkTW-pKlmqxTORmuKS3ajDFPvg_bCSLei0ctcu3LBxkIu2Gxae2_LlcMeWG2wz4RUGbU8rN9CErGC6hBt1AGWmYYvVQh2a8o7NN9jW-kk9asIPZj_9rF8JVSlxJz5tiCOEuDTvF_K_9auCvsfYdf7-rfNB7Vo1VbNFvtHaRU_P8YyJCq63dLngZOKAUASvHT4WHKTrgjTkIn_ei8M-pzvCURIZD9f9ZbTouYz0v_wF"
+  },
+  {
+   "rep": 6,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines at Dusk",
+    "lines": [
+     "The pines lean close, breathing in the wind's old stories.",
+     "Fireflies blink like unspoken questions in the twilight.",
+     "Night falls soft, wrapped in the scent of damp earth and pine needles."
+    ],
+    "time": "dusk",
+    "weather": "fireflies",
+    "sky": [
+     "#8a2be2",
+     "#4b0082",
+     "#1e3c72"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e402f",
+    "ink": "#f5f5f5",
+    "accent": "#d4a017",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 8
+     },
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffff00",
+      "count": 13
+     },
+     {
+      "kind": "moss",
+      "x": "left",
+      "y": "ground",
+      "size": "medium",
+      "color": "#2e402f",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff6b6b",
+      "count": 3
+     },
+     {
+      "kind": "dewdrop",
+      "x": "center",
+      "y": "high",
+      "size": "tiny",
+      "color": "#00c9b5",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "round",
+     "width": "40%",
+     "prompt": "what song do the trees hum?",
+     "button": null
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVM9b9swEP0rBI2ii1LQsp3YWroUHYsOBToUQUCJJ4sQRbIkVcUx_N97J1uWhgyxBvO-Ht893p35P16sMz7wgkvmjayAZzx6Xpx50skA-n83OnoI2h7ZT20hMpnYtz62mGjI5sUf_qsB5segAWlZZVyEjJUBZGqoUFuWMGXQVn2OzBnFYnJBQ_yCKN91gNqgwUoEbJnRLbDeRu9asOxvDzFpZ-MEkgZt9LFJVPqDDqyWxkQWXZ0yNgTpPagpOVZgE3M1U7LzDGRIDZNWjWSZBVCGODxn2G1HzaprYwMRh4COeiJHurQnana1l3kJOTpW21KI_Xhaw6Z6ygnpGFxvFZZ2LlLV1X6pnHEEuMphK_IaA9gr2fWOPrRlRWTJpbZSrJ_QVbvREVF-qkjwml6ur1RwSkaKGd5D-lCacQPaYKDDGD3Mmbd65EL9Yuh1WYfN8AZf4Q2LsTn9RqhGhiNl3unuy-1uvRk9PZHZX7I76lWc03vApNUdNHb4QkvQGn9CzKDrzQL1phtBGqjTDfAm6x2zA6X7bgl6F_YGultgln1CbjPXQIPzQaqP5WM5oy6ZKhhUcP5dYfGCGTVpe1qCClEdyt0Mml-e6Wyjo5U7Y5mCuf3k7EjNjVZspCdz0mPQKjVob8UntHxwnaeZGRrc0-hw-ZS77k0AXLGm775iGulBM2N7Yy4XHFIcFqJw9eBMTQdqMxf544M4POQHup4XIuNhio9jRvvj6f_yHw"
+  },
+  {
+   "rep": 7,
+   "name": "noche",
+   "kind": "real",
+   "strength": 1.5,
+   "world": {
+    "title": "Forest at Dusk",
+    "lines": [
+     "The trees breathe in the fading light.",
+     "Fireflies write poems in the dark.",
+     "Wind hums through leaves like a lullaby."
+    ],
+    "time": "dusk",
+    "weather": "fireflies",
+    "sky": [
+     "#8f7a66",
+     "#6b5b4d",
+     "#3e3025"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e3a2e",
+    "ink": "#4a5a4a",
+    "accent": "#ffdb9a",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "firefly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffddaa",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#d4a017",
+      "count": 13
+     },
+     {
+      "kind": "breeze",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#e0e0e0",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "120px",
+     "prompt": "whisper a name to the wind",
+     "button": {
+      "label": "listen",
+      "action": "play a single note"
+     }
+    },
+    "next": "a city that sings at midnight"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVPJjqMwEP0Vy7nSLUKWTjiP-gtG6kOr1TJxARZekG2aLMq_T5VDEkaaEQdc26tX24X_8HKZ8ZGXXLBeiwPwjIeelxceVdSA-nfnIUQmIvs1hA7NWlkIvPzkv1tg0QMEVnkQESVlGf1qIZVtmFZNG18x4l15qLVCx9GrCKx3YMLdWQrfkdOHspK1Axpi693QtEyD-MEYrTpggulBa1GdXvlXhtwMUZM3QmNK7lFR3xNRFd2JSC529ZvYblGx2Fabai3ptYJVXmwIqcFUVmKocYGibvL3wWlHgIsCVqKgpijbkbwWG7EWKIvDAWwkVV3Lak-q2iVFAK9qFCMc4_etpyUnZ6SYYZ6onCU37UaUQYNBGzX0wjuVuFBT0XScx2ExvHVenTEYi1NnQtXCN-T5oLur1pvlKmkGIrO5Zg_UW3NOE7CGOk6w1KkHZDBC6zkklieFeELuZpBmCDgrZyZMTwOfQKfG_h9XrkW-fHviLlczYFwoOP-zB3-RNSDVYOaokNM3Q71-0dsGR8t8wUAJz-qjs4mbS1JoRU9iYg7EfVQytqhZFnl_RLn3zvQ047FVoQePa2mFwStwaZVHlSquhhhpxBecTwWa0qkQwaatmaaPe3HC6IB3ooFZF4Ffrxm3uDPpFg8qnhATr45cAp2fUdKmBqNfg-tChfHS4lngVt0f1LwiL7Yv-f6l2FNRvMwz7u_2tGh0QT39r38A"
+  },
+  {
+   "rep": 0,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines hum low in the twilight breeze.",
+     "Each needle holds a memory of the wind.",
+     "The soil breathes with the pulse of ancient roots."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#a0d8c2",
+     "#f0e6d2",
+     "#b0d0b0"
+    ],
+    "ground": "moss",
+    "ground_color": "#7c9b7c",
+    "ink": "#3d5a3d",
+    "accent": "#a8c4a8",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "pine",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b7355",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8c0a0",
+      "count": 13
+     },
+     {
+      "kind": "moss",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#4b5a4b",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#5d7a5d",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "120",
+     "prompt": "What memory do you speak?",
+     "button": {
+      "label": "Listen",
+      "action": "play_pine_hum"
+     }
+    },
+    "next": "a place where time moves in ripples"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZVPJbtswEP0Vgr4qgbwolnXpqbceeijQQxEYlDiyCHMDSUWxDf97Zxg5dpuTODNvnt5sF_7Gm2XBJ95wwbwWHfCCR8-bC08qaUD_70FFD0HZA_upLEQE6Pxt_vBfAzBPBhtGw7SbmLIsoTNNSqvDkFgbAM7wjEnfRTcwCyA1sMFpGZlgBowLJ-b6nDQpKwlJrNEpTckCAxEjacgQP-oIhBe2U2ATC86l-MxfC9RrSK4c4xE5ppwZ0OEhCU2q4_FEmheilHW3QseiL-FF5ldbyrItieYQ3Ggl5hkXKevD3ndOO2JbbLtdu-0woOyR7LWsxFqiLboOBZFL1N1G1OjqXXZE7F6PZoL3tP9ocsMJjPoK_E9SzhIM-4c2aDAYo_5e-FFlLdRjDL0_5mExfHBBnTEZi1NnYtUiHAj5Kbdut-uqyp6RxNTX4s5KnZlpNfRpJqU-fRJGI7R-JOzrrhTlnXC5fmCce0aEgcY_M849_SQ1INVoHlk3bSU27Z21-kdmiLnGL-X_z_tFbCW3opIPYq-v9LbR0WpfME_CvfjkbGZx2YqD8GTmfwCRTEqmAT3LFdXvgzM-5QMR6bbJ0rGTGxkejDh-Q1A7pkTDveBkWtCI_qFiApv3ZZ47bsRpTxPe4xHx67XgFhflfpFswkXGk8L9Zsa94TngkQXlvcYjRPQBN4XK4o0dtcaFuj2oeaty9fJU7p5WOyqJN2XBwy2ed4wux9P3-hc"
+  },
+  {
+   "rep": 1,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Market",
+    "lines": [
+     "Beads of light drift between stalls of wind-bent jade.",
+     "Each vendor laughs in a language that hums like honey.",
+     "The sky holds its breath as boats tilt on invisible strings."
+    ],
+    "time": "dusk",
+    "weather": "bubbles",
+    "sky": [
+     "#ffebd6",
+     "#a5d6a7",
+     "#64b5f6"
+    ],
+    "ground": "clouds",
+    "ground_color": "#f0f8ff",
+    "ink": "#2e4053",
+    "accent": "#ff6b6b",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "boat",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff9a9e",
+      "count": 3
+     },
+     {
+      "kind": "lamp",
+      "x": "left",
+      "y": "high",
+      "size": "small",
+      "color": "#ffcc80",
+      "count": 5
+     },
+     {
+      "kind": "tree",
+      "x": "right",
+      "y": "sky",
+      "size": "huge",
+      "color": "#8bc34a",
+      "count": 1
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#42a5f5",
+      "count": 2
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "120",
+     "prompt": "What will you trade?",
+     "button": {
+      "label": "Breathe",
+      "action": "float"
+     }
+    },
+    "next": "a place where time grows backward"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=ZZNNb9swDIb_iqBenSJ1E6_JZUCB7bbbgB2GoqAtytYsS4Y-4qZB_vtIN61T9GSZH4_4iuRJHuT-rpCT3EsQo4UGZSHjKPcnmUyySPaf1kMyrhW_IPSYyG-Nwyj3f-UjgorCa2FN2yWhgtFJ1JgmRCdiAmtn72ScWtXokvgHCm-J8AOaThzQKR-Ehdx2URgngM6uzdCiSB0k0eUhErpH0XmHR0783aGI_ZEMlm42KYo6IKROAJ2oziiSsUl4R7yDiaa2FJ8ClR9v5VNBogbWpHLsiTZxKgYy1Lmm0Mji-yNLu9Eaa1WR4Qa2qoJvfKo29VZXzGmDz05RYmN9Vpz3ZnluvPUMvNFr_aA1OYzr-b_EzXp7T__QNPQUc4iu6qomk_azoQNCUo34kp7fekF8iqUKCzn4ZLwjS8BIjYl8J1ocyM-9OMnezAXxK5Dr5Tr3yHAfzCsBSKF5ZbKF0HK3l4r1DnZvlsz13J-LD6qFYbxQLer0zqS2L8A4UMM_A5vmYb0At1fAFBAvwMDDcyHy638Au_y5wIe6ud_Awru74o0Y4qzui_BLqz6oAyqTh2vupoSt3i7c8vzEZxc9L8CJEhUuwhPNIlfq57_Ywci_8yXI10xGpY4sdyVLH4MfRm7uH57oyVgrjj6LFGgTvpO_zilxW0_0xDVaCnycBxrnSbm0XPMKyvO5kI5mY9lVMdH00rLQUAuSOdEOQNNPEJSk2JbGgoXIvcvW0gS9H_i9ynVZrda7VbljEXK_LmR4988Dxcsy8vf8Hw"
+  },
+  {
+   "rep": 2,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like leaves on a river of air",
+     "Each spine holds a whisper of forgotten time",
+     "Pages turn with the breath of the sky"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#a0d8f0",
+     "#ffcc99",
+     "#805a80"
+    ],
+    "ground": "clouds",
+    "ground_color": "#f5f5f5",
+    "ink": "#2d2d2d",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#4a3a3a",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 13
+     },
+     {
+      "kind": "light",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#ff6b6b",
+      "count": 2
+     },
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "ground",
+      "size": "huge",
+      "color": "#4d5a3a",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "calm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "Open a volume",
+     "button": {
+      "label": "Read",
+      "action": "reveal memory"
+     }
+    },
+    "next": "a place where time moves backward"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVPBbtswDP0VQb26gJMuQZLjgO00YMOuQ1HQFm0LpiVDkuO2Qf59pOIm6TD4YJF6fCIfyZM-6sOq0LM-aFAjQY260HHUh5NONhGy_zt5SNa16oetAoQ3BpB1GPXhj_7qfR-VCbZJimyPihCOGJV3ClSwRwzKNwps4KBvUHcqjhyqOk8mMmLubBwvmMaH1qeETiU7SBK_oGWiNAWnZps6lTpUVUDgI8PFiv2bfi50xh-0mWLPYbMgMLBjxAQUpRzGca4PUJpdU7LjoWnqer-X067cwK4Umjb4yRmOq8lPRuIunpfakxe-h2YjH19Y14u9NvKxDXWNLmVIs622Fbsanx0RWRo2E76ml4u8_ACDURQZfLLeCYz8zDYSDnwnyp50b3M2FSvMV6_3cVyO7nyw7xzM5dl3YSUIreh2TfcLPPGXPZMkszsXV9aszUJL2KSFVJS6EsYBiO4Jr6othKunO0aybZcWxrCcc558vnEOaOw0fCZdFFtI13ecKSD-r_alVVfWbvqncrP5VPnq_CxnF70M9InDDN4KT97lrgBJYrGDUcz8BMojszWpu899DH4Ypbs_R5Q5P3qa8shWU0rSzxM3o0JixG-Ey4AsjQ54RCA14OB5kc7nQjuejNvy8UZgwLwCavCySRXU_QzBaMa2PBhSiT64iYjn5-MgYq3L9fax3D-upUM8QmWhw8d9HilZlVH-578"
+  },
+  {
+   "rep": 3,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The wind hums through tall pines like a lullaby.",
+     "Each branch remembers a name that no one speaks.",
+     "Snow falls gently, soft as forgotten promises."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#4a90e2",
+     "#d8e4f0"
+    ],
+    "ground": "moss",
+    "ground_color": "#a8d8b3",
+    "ink": "#2e3a5a",
+    "accent": "#8f6c3d",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#6b4b2a",
+      "count": 5
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#f8d7b0",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#4a5568",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "gentle",
+     "shape": "round",
+     "width": "small",
+     "prompt": "Whisper your name",
+     "button": {
+      "label": "Listen",
+      "action": "play sound: wind"
+     }
+    },
+    "next": "a place where time moves backward"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVPLjtwgEPwVxF690aznEY_vueUQKZFyiFYrbLcNMgYL8HpnR_PvqfY8I-UENF1FdXdxlO-yfMnkLEupxGhVTTKTcZTlUSaTLCH-W5s4UjCuEz-Mo4gEu6zlH_lLk5iNa4SehiiSDn7qtEjKWjFyjrCmJ6GEnaxV1eELsN9UrUUVlMMSaKChohCR4tRAYFBJOC-8I4FHVR8Z8tP5WbQgjaIjl-whE9G3SagoWh86nxI5MQY_mEgAvGbQPrD0Zoo98DOppCkgMBK0cQWxP7D-p0LlFeUIPG3UfnXeNQVt2hXTdKjHNcANPjLqfH6rvfXM9qSKpqjWuDCu53NOa7VVOKu6hlAOFe2uXjcItX4JRHSyxTHRR3o7N7yUnAx9Gd5JxjtOs37GmSw65BL3-ih7s2hJgXhIH484FCO1D-YTYBRnPplVTx0n3tTuqk2VqyUysZbtKbuRLo35Hys36sYYBwzhkbItmq_V6k5Z_EMZ4iKHOYPpdLpQXrp6Yx2oMdPwSLtR2-2uuNO-nF5576JnRx4BbBhoqWXOBLcwLVtjsa9WIweuz8ymSfpBPTtlTHdni4OfwuI_XFZTSjyBo4RhySLru4nw1zLUy3AwtgMcCPZycb88nTLpMND7LxIzDAc_w4di8O_4CZWq-1kFJMNHmCdXJEuHj4GxXzfct3yV755X--d8z7XIcpXJcL1fnMD-Hnk9_QU"
+  },
+  {
+   "rep": 4,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The pines lean close, telling secrets in hushed syllables.",
+     "Each leaf bears a name no one remembers.",
+     "Sunlight drips through like golden honey."
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#8a2be2",
+     "#e0f7fa",
+     "#a5d6a7"
+    ],
+    "ground": "moss",
+    "ground_color": "#4b5320",
+    "ink": "#2d3748",
+    "accent": "#9b59b6",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "high",
+      "size": "huge",
+      "color": "#a8d86a",
+      "count": 3
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#ff9a9e",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#d1a68e",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "right",
+     "tone": "soft",
+     "shape": "round",
+     "width": "medium",
+     "prompt": "What name will you whisper?",
+     "button": {
+      "label": "Speak",
+      "action": "reveal memory"
+     }
+    },
+    "next": "a place where time moves backward"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVPLjtswDPwVQbl6F4nzcnzpqfcCW6CHYrGgLdoWLEuGJMebDfLvJZ2XCxToSSJFjkaj4VkeZb5K5ChzCaI3UKJMZOhlfpZRR4OU_9Xo0KPXthY_tMVABWZa89_yZ4Oi50AYBCtK4wImIqIxXB6w9BiD0FY0Q2hQiXAyBgqD4ZVQvkPZcF8lCgQfBAgLHQrrhLMoPHbYFein0rfBGl03USiv-yBi491QU7NuUdTOKKQbqOn0Kt8TIt4xbzWEllpHhNigp0SPEQzTD-2JyS8ySAtMKbHAZbWvgHewVTvYM0xNd1hFfZ0L3HWNP0pnHKMtNsV2nS7pQNuW41St95uMYihLtJFTh2J7KHaUqtyUCCRjRWHEz_hxVTuXXEz8Eroname5zLiRYjQkgY0s9Fm2euISPfIPfc776DGyIXX4ZfqLIZuh5qoHVchUtoMpMzCR9SV5IE6q3CANVvEO6Lz-IjYPzA6VHro5alUd4IBP1OwvVB-mbob1_HU33JuqD9jQgTFzVLWCXTZDXc1QO3KRd677lwL_Bc6KzXa1fgJvL--8t8Gxzc_Up3BGNpKfGMZNkoQG-un0dsmoVWzmqvTedX2cxgXi1cijNkac3CDG6wR9o7JiiJH_-CxpDtBQ_VuP0E6uuf2-xyOCEeR-50_yckmkJbs8B5Tg0KNgl4vOHWn2CijbEbySVFuTW_hdMreDMWSq-4b1S5fp7mV5eEkP_CSZLxPp7-eTz3h6el4vfwA"
+  },
+  {
+   "rep": 5,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like leaves on windless air",
+     "Each spine holds a forgotten season",
+     "Pages whisper in languages of light"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#ffdbd8",
+     "#f0e6ff",
+     "#d0f0e0"
+    ],
+    "ground": "clouds",
+    "ground_color": "#e8f0ff",
+    "ink": "#4a2c32",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#a0522d",
+      "count": 8
+     },
+     {
+      "kind": "petal",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#f9d8c0",
+      "count": 13
+     },
+     {
+      "kind": "sun",
+      "x": "right",
+      "y": "high",
+      "size": "huge",
+      "color": "#ffeb3b",
+      "count": 1
+     },
+     {
+      "kind": "clock",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8a4858",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "gentle",
+     "shape": "round",
+     "width": "medium",
+     "prompt": "Read the next chapter",
+     "button": {
+      "label": "Begin",
+      "action": "open book"
+     }
+    },
+    "next": "a place where time grows backwards"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=bVNNb-MgEP0riFxdyXXayPGxUve0h9VeV1WFYbCRMViA67ZR_vvOECfxSnsyPOa9-Xo-8Q_ePBZ84Q0XbLJCAi94nHhz4skkC4j_sF4k4zr207RBhC8MsMZB5M0f_uL9EJkKRidmzQDMgviAyLxji3HKQoxMmICUVyF7Fickst5bhTDTPnQ-JXAsgojeYdQv0SF76U2cIDDjmBWumzPoNWbo-sTfCixtpMrUHAckLSBSDwGBCZKwkToYvqi8ndaqVTUCO13CQWs6qRLPJcl0wc9OIU9aPyviXZB36a0nvR3Uusws4wa6P4lK7iu8CynBJYK0PrSHFiHtMxABp4HXBJ_p_TJRTIDBQGMYfTLYKYZZv-AdLIz4RsM88cHkalocKj59bnnYDu99MN95TNF8k6oVoaN93coV5XNVqYzMVEx9Lm6qeTarrAWdVlGa1E0wjsLaraA-qlqWd8HH_UYxzm7VC3kxa5V4viv2878Vag3tvt0IbvRwC_K_ja97uomOoMw8bmVr8VQ_11vZNzq76MnCJyQquPedvKNbhzls9nsvJgKuaRajUr_NMwU_TrTc3yAUQ7Mxh9tlEnmXKts5JVrrCXfSgsXIF-iMy0ZZF-4nNHpe7flccOLf_zl0PARgZGuGzS6RtUIOiwhoSgzu0B3UD2_cbC2a6HqgqVVldXgojw_VkTrhTVnwcH3PvqL_ZaLv-S8"
+  },
+  {
+   "rep": 6,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Floating Library",
+    "lines": [
+     "Books drift like birds in silent air",
+     "Each page hums a memory of forgotten words",
+     "The wind carries stories to the stars"
+    ],
+    "time": "dusk",
+    "weather": "petals",
+    "sky": [
+     "#a0d8f7",
+     "#ffeb99",
+     "#f0f8ff"
+    ],
+    "ground": "clouds",
+    "ground_color": "#e0f5ff",
+    "ink": "#2d2d2d",
+    "accent": "#ff6b6b",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "book",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#d4a06a",
+      "count": 8
+     },
+     {
+      "kind": "butterfly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 5
+     },
+     {
+      "kind": "lamp",
+      "x": "right",
+      "y": "high",
+      "size": "medium",
+      "color": "#f0a86b",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "soft",
+     "shape": "circle",
+     "width": "100px",
+     "prompt": "Read a story",
+     "button": {
+      "label": "Open",
+      "action": "reveal next page"
+     }
+    },
+    "next": "a place where silence sings"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=VVNNi9swEP0rQrl6wQm7aZJjoT0VFkpvZVnG1sgW1oeR5HWyIf-9M4qzSclB8_ny5s34LD_kYV3JWR4kiNFCi7KSaZSHs8wmW6T4TxsgG9-JX6aJEE9UYI3HJA9_5fcQhiRUNDoLawYUjYkqCeNFMhZ9FmAi1f-AthcjdCj6ySUBwqEL8SSCFjrELuSMXsyBWqn4T49iNl6JFmI0mETKobw5iEy5lCEm-VYRQcf81JQGapsRKBspMGIGy0hpODHJFdRqp79RYKU1Nvt9sWq905phuhgmr6ivtWEqDK6R9zbYwHgrrPUL1VbS-IH9jeIf-dC2NCSHtN4224ZCOpRAQtKE3IzH_H7Vlf6AipH1cCGb4LnMhpl8tOgox5Ke5WAKm4akpdTxsY_GkT2J8UnNNJ75ZFQLseOtfdFVz1BvoUQmJrO7VHfUibSO2p4WaIs6L8Cs1hdocmDtI6jWbVuUW0BfHkAtuHHBi6brb4A92XdEh8pM7j_IGnZFswVyfXlj26fAd3emRoV3ijn4QiwUL_UwFklNbC1PPxuVewqs63o8kj_G4EbexG8ERRfHR8TzsQAs_ZlYN2ip4HVEX3a57CTiB4IVnjZXblZeLpVk7_6NiJkuDa833vLruySpqqMF8gzy4Cdrac83g1Xa1JvtU71_2rCKtOq6kvGWL6vnkx75vfwD"
+  },
+  {
+   "rep": 7,
+   "name": "table",
+   "kind": "placebo",
+   "strength": 1.5,
+   "world": {
+    "title": "Whispering Pines",
+    "lines": [
+     "The trees hum ancient songs in the morning light.",
+     "Leaves tremble with secrets only the wind knows.",
+     "Each branch holds a memory, soft and true."
+    ],
+    "time": "dawn",
+    "weather": "petals",
+    "sky": [
+     "#8BC34A",
+     "#A5D6A7",
+     "#E8F5E9"
+    ],
+    "ground": "moss",
+    "ground_color": "#2E7D32",
+    "ink": "#3E2723",
+    "accent": "#A8D8C9",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#8B4513",
+      "count": 5
+     },
+     {
+      "kind": "pine",
+      "x": "left",
+      "y": "high",
+      "size": "large",
+      "color": "#228B22",
+      "count": 3
+     },
+     {
+      "kind": "petal",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#FFD700",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#4A4A4A",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "round",
+     "width": "medium",
+     "prompt": "What memory do you wish to hear?",
+     "button": {
+      "label": "Listen",
+      "action": "play_songs"
+     }
+    },
+    "next": "a place where time grows backward"
+   },
+   "random_words": [
+    "table"
+   ],
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=dVNNb-IwEP0rlrmmFSRQQi4VFDj10MNKe1hVyCRDbOHYke00pYj_vjNpIFSrVQ7xjOc9z8ebM__g2STiLc-4YLUWOfCI-5pnZx5U0ID-31L5GpwyJXtTBjwG6O6f_eG_JLDgADyTTcWEyRWYwLw1pWfKsIDXlXWGsFqVMjwi-BXEBwIQVu01sFYFyTzkDoJn1uhTh2qVKdjR2NYTZCNyyfYO-SWTVheeCVYBMp8ifOwQ8OUCCRt45O8RJl5R3oVoDWJbEEjo0FFDEJrS98cTJT9KVy_JdImO0XK2flrO6bRJt7PNgmhKZxtTIK6ynlDf9i632hLbKN7M10mMF8ocyU428TxO0BZ5jl0g1zJdpy8LdB1s5_DYxgOaAT7D7rvbGadgzC_Cd4KyhsK0bdEGDRXeUaPP_Ki6XKjZePV5j8NiuLROfVmq16svYpVNSYG3bNPVdDZJOk9Ducwu0Y20xnH2pBoO4UqJAxv4tHA_CeM4XcXxQJjcE1Kne0ZHc-8pqfE3Rl8Jre8Zt9v1fDweGNMfjM535f1TeT-m_9NOl_QNtJPLO52NtyTvM-IKGCoP1pDVClcRpxQ1mdc3WlUESZKAQjUUUDtb1aHbEhF6TbLCspNtUMNesmCZBOGeMXbfhEDzPWMz96AR9Kp8ANNJph89iuK06_aHXy4RNyiUYTVZi0LGhUN9Myy79Wwv8iOmWnCMLVEnVBnPTKM1yul6oP7F4_jpYbx4iEmNqKhxxN31vlMY7U1N_8tf"
+  },
+  {
+   "rep": 0,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Forest Whispers",
+    "lines": [
+     "The trees breathe in silver light",
+     "Moonlight spills like old secrets",
+     "Wind carries voices from the roots"
+    ],
+    "time": "night",
+    "weather": "embers",
+    "sky": [
+     "#0f0f2a",
+     "#1a1a3a",
+     "#2c2c5c"
+    ],
+    "ground": "moss",
+    "ground_color": "#2b3a1c",
+    "ink": "#ffffff",
+    "accent": "#d4a017",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#4b3a1a",
+      "count": 3
+     },
+     {
+      "kind": "ember",
+      "x": "left",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ff8c00",
+      "count": 8
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 2
+     },
+     {
+      "kind": "whisper",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What whisper do you hear?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal_forest_story"
+     }
+    },
+    "next": "a place where time moves backward"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZPBbtswDIZfRVCuLmA7yZb6sttO204DchiKQJbpWIgsGpKcNA3y7iMVN_GAovPFIkV-on6RF3mUVZHJk6ykEoNVGmQmwyCri4wmWiD_L7PvoviOHkIU286EAXygKGscBFn9kb87ENEDBFF7UJEs40Qw9gheWE6m4J-ILq1FGIy1gTYOINA2IoD2EBm4Na4RWnlvCHVEo-nXeuwFIz0iBb1kVFbPVbkJfEonevJAX98KC4czl7XI27wtFTkWhSrUMq1KXeq1Zs7e4-gayusxcNbN3mm0yLRFWS9VoWnDuAPbbfrIVlqDi-xqViovvpKrxeQI4A1HRHiNu5uYleRgqi-jc6JBx2EWT2SDhZ72WMKLPJhUC8tIW6_zPLqM7NCbN0qmy5k3pnbjngPv1a64WpU8I9eyvGZ3aBJmolpo48Rkme68Hhoz9nNi2250nj-ImxmxH0NHD9JPUD-9BVMnWe_g0Ctr59xNvVoXywd3PePWxjcfXp8O-AR5f5oJWc6Qp1vDfkT9R4D_Qovl9YUNF5DH4kKJDSfWGGNSIqJLIEwKh04NbCY5gG91Mk3s5lIP1NsD9822U1FMhYoGxRlH0YHy3yioHgnv-DyrarAU_cOECC414tRQHo6g7K5NI7oLEf1ZXq-ZdNSHj8GmE8DTpNL8iB6PPK5KH06KJKfYPbUh309WbrSWuvV9wSKWefnlKX9-Kp_5ZrLKM-nf91MD81wO_L_-BQ"
+  },
+  {
+   "rep": 1,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night at the Edge",
+    "lines": [
+     "The sky drinks the stars like wine.",
+     "Whispers slide through the frost-laced grass.",
+     "Moonlight spills in silver ripples."
+    ],
+    "time": "night",
+    "weather": "embers",
+    "sky": [
+     "#0f0f2e",
+     "#1a1a3f",
+     "#2c2c5e"
+    ],
+    "ground": "moss",
+    "ground_color": "#1e3a1e",
+    "ink": "#ffffff",
+    "accent": "#ff6b35",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "tree",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "fire",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#ff4500",
+      "count": 1
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffcc99",
+      "count": 2
+     },
+     {
+      "kind": "ember",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ff6b35",
+      "count": 5
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#333333",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "soft",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What dream stirs in you?",
+     "button": {
+      "label": "Keep Walking",
+      "action": "next world"
+     }
+    },
+    "next": "a place where dreams"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hVNNb9swDP0rgnp1Bn80xeLLTjsN22lADkNRyDZtC6ElQ5LrpkH--0jFSVxs2HyxSD0-PlLkSb7KMkvkLEupxIiqBplIP8ryJIMOCOT_obs-CBVE6EF8bTpGoDbgZflL_iSfPxxF47Q5-AjxQTkvUB9AzAT7RPB9r_0I5PWoGyCUs1PXR3TrrA8bTtyIzinvGf_dWoMxrR81ohfaCK_xFZxwehwRCPWckMKBBRpGUtQMihgdeWCoKBtXcjiyyoe0TduchT9kKlNFy6e8zustME9HckxDcYP1HHWxX2qLltkeMihUxtFUI9tt_MhWdQ0mXFxPVbElV2ujw4PTjAjwFl4ufS0lg0lfQnmCtoZhaGeyAWGgO-7oSR501BIccMq3dRwVI3vr9DsFU3H6nVlRufgmN7mfq8dtVkTPxGKKc3JjbbW7siK0YeFcGnCj9INCXFO27eM2Te-U2YqymgKpa_G48LrlOZiY-_8v1rre7e6s-Yo1PuHf6v9AOUCjp-Ej5_IQC-d2xckjGDv3B-l_G1DEb92AZz4bb3lHThTXcFxlQ7CsJ1gTeWzsse_VyGbMApxn1k3o1wWMzg4jT86-p1VrHKiBNkm7OPtHO30hDHeax-ZEb14BEvgbwCj2CqnALs7jMleGxk7M1mEjz-ckmvcNFzNtCVxyeEnXHc0dlyNLMyHSeF4P3LQ8zZ826W6T80PRhKaJdNf7OLG8iCP_z78B"
+  },
+  {
+   "rep": 2,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Market Whispers",
+    "lines": [
+     "Flickers dance on wet stone tiles",
+     "Sails of lanterns drift like breath",
+     "Whispers ripple through the alley's bone"
+    ],
+    "time": "night",
+    "weather": "embers",
+    "sky": [
+     "#0f0f2a",
+     "#1a1a3a",
+     "#2b2b4b"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a2e",
+    "ink": "#d4a017",
+    "accent": "#ff6b35",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "lantern",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b35",
+      "count": 8
+     },
+     {
+      "kind": "person",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#d4a017",
+      "count": 3
+     },
+     {
+      "kind": "bubbles",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ffcc99",
+      "count": 5
+     },
+     {
+      "kind": "whistle",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#7f5f7f",
+      "count": 2
+     },
+     {
+      "kind": "mushroom",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 13
+     },
+     {
+      "kind": "fire",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#ff4500",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "warm",
+     "shape": null
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jZPBbqMwEIZfxXIOvVAJCDRNHmBv3cse9rCqKhvGwcLYyHY2TSPefWeAEFZbrXrCM575_PtnfOW_-SFL-JkfuGC9ERXwhIeeH6486mgA89_1sYnsRfgWIvvZ6NCDD1hltIXAD7_4N6OrFnOsFrYC5iw7Y2WIzgKL2gAV_xDaBOYUM8JG8BaLvVaRGd0Ckx5EbLDqRmde973B7sa707HBLzBhDFweApOI5a8JyutInSV12HomBHjMQCcngaG9kLxNqlKVC0xsMpGJ7bjKZS4LSZwjHmFr7OtcoK4pfquccUTb5FCInFzRtqW4LkSa7TAWVQU2UkqpJ7ktMaXcmGgEAlEhvMe3ydMDp1qUl-AxUTuLGQ8BDR7PBAMd7pObV97qUc5sFO6-r9svxHdefzjaCvoDxlp_JImL6EVRhZdBSc9DsoDJYHfjGlBxppJdCzF06PeauFx7Jm5XRHmScvrNhPTzHyHmbO6C7aDWp-5vpVW139-55Yp7xnGgGfzMAjzkP2p3qlQ7dafmK2p3CjhWrvuC3H-4z7Ios-2dm61tUNp_qvUrJhRlmq6wwyutbXD0Aq_YWFOjdDGOuulpkT_CUxQa0WNoT8YMAw4wThG1TxkcuNuCNOZp_vSY7h9zshznLU24v-2P80cvq6fv8Ac"
+  },
+  {
+   "rep": 3,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Market Whispers",
+    "lines": [
+     "Flickers dance on wet stone paths",
+     "Old lanterns hum with quiet songs",
+     "The air smells of fried greens and dreams"
+    ],
+    "time": "night",
+    "weather": "fireflies",
+    "sky": [
+     "#0f0f2b",
+     "#1a1a3a",
+     "#2d2d5a"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a2e",
+    "ink": "#f9d78b",
+    "accent": "#ff6b35",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "horizon",
+      "size": "medium",
+      "color": "#ffcc99",
+      "count": 8
+     },
+     {
+      "kind": "lantern",
+      "x": "left",
+      "y": "sky",
+      "size": "large",
+      "color": "#d4a017",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "small",
+      "color": "#5d4037",
+      "count": 1
+     },
+     {
+      "kind": "mushroom",
+      "x": "center",
+      "y": "ground",
+      "size": "medium",
+      "color": "#8b4513",
+      "count": 5
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "high",
+      "size": "small",
+      "color": "#ffebd9",
+      "count": 13
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "full",
+     "prompt": "What story do you wish to hear?",
+     "button": {
+      "label": "Whisper",
+      "action": "reveal a tale"
+     }
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZPBbtswDIZfRVCuKWA7SZvksttu2y4DehiKgraoSIgseZLcNA3y7iOVNDXWYSebFPnxF0We5Ivc1nN5kFsJYnDQoZzLNMjtSWabHZL_u92ZLL5B3GMWj8amAWOiKGc9Jrn9Jb862-3JJxT4DkXw4kCRKQePYoBsOPiHU8KBzxh9EmbsxcFmI36PliOD33HMT4MCbBSpR-eSCFroaFGJXUSkLPBKqIjQJ_k0J3U9i_MsjnIPSIUwkkfbiNpZZGLaH1ngrNKVblpyzGqoYQH816hGrYBRuxhGryi1D4mzLvZzF1xg4KzBJTTcF-v3bOuNelgzDboOfS4ufd8uVuTSoTgMiSUr42t-vnR1KzmWFM6pTLbBkydiohaXmuiwp3Pu50nubZFzucmRTl-n6Ufmh2jfiEFXtG8M71HZsSf7plrrrttsimdkTevz_Ea-vsSV7FDnK5cbdmM6iDucItUSqvrhA7mYIHkowjsxXl-Fkdfu3qipB-em1JVaVosJtZ5Q-zGZGEL_rx78Df7cgnW7XNWLD_JqQm7HtnVlSD43l9T_R6_W2KpJY-vF-YkNnwLvy4kSFSe2IeeinBeB7ANEtpKBgc2iHln_waps-L3HUmiIoR94iB4NlDWKR6GCOIaRliYZkYMwCPELhbYjlfBc00GLruSU_SzDeZuyFwQnQGQgfefzmSacxow1y62nmjSR7z_cmaZq7u-qzV3Dd6SBrOYyvp-XAeXtG_h7_gM"
+  },
+  {
+   "rep": 4,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Garden of Whispers",
+    "lines": [
+     "The moon spills silver over quiet petals.",
+     "Fires flicker in the grass like remembered dreams.",
+     "Beneath the trees, shadows hum old lullabies."
+    ],
+    "time": "night",
+    "weather": "petals",
+    "sky": [
+     "#0f1a3b",
+     "#1a2f5a",
+     "#2d4a7f"
+    ],
+    "ground": "grass",
+    "ground_color": "#8bc34a",
+    "ink": "#6d4c41",
+    "accent": "#ffcc00",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "slow",
+    "elements": [
+     {
+      "kind": "flower",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ffcc00",
+      "count": 8
+     },
+     {
+      "kind": "fire",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#ff5722",
+      "count": 3
+     },
+     {
+      "kind": "bird",
+      "x": "right",
+      "y": "sky",
+      "size": "medium",
+      "color": "#4caf50",
+      "count": 2
+     },
+     {
+      "kind": "petal",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#f44336",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#795548",
+      "count": 1
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "warm",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What story do you whisper?",
+     "button": {
+      "label": "Listen",
+      "action": "reveal a memory"
+     }
+    },
+    "next": "a place"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZNNb9swDIb_CqFc3SFxnC9fBuywXYadBvQwFIVs0bEQWfIkOW4a5L-PdL4ctMAuiUmRj15S5FHsRT5LRC9yIaE1skSRiNCK_CiijgbJ_0tv6wg_pFdowVXwXOvQog8UaLTFIPI_4neN0DhnIbTamABBmz16cPzzt9MYocUoTfhCSd-1xwCV0eWOTrWFSMlbL0MAo3cIHhtsCvSoQHmUzZD0DS3KWA-x0SOGBEItlesD1F0DzigwnTGy0EjxLwmpb1i8ZfGU33M2evKchXCVuwNLn0yrmZwX5JjMZFotJH-lKpOrijlb7zqrKG9QKK6O19IZx7jJuijnGSdpu2N7qbIym5EtyxJtZFdVleV0Sq7KDY5aEpEk4lt8Pfc8FxxL-hLRuKidJU8wricbDfXDRm7zUez0oKWioyH4bZx5YLTz-p3SqTz9zlwj_Zbf9Kb3JqakOkjN-pTcufQ0F6rBKl6YlxbckKGRxjwiF6s0vSPnI2Shvbog_eUtmMnNvwEbVLprxsSslNViJDIdEYcH_Kz2B-ZHkVk2ny_vyNn8genD0LUP0P8Wv9osFtl6xD298LcNjrfnSHmK8woXo-Mao7Ns99KzRUPcsjncgnxPr1Wsx01pvWtaHpvnWkYI0fkDKAcH10F_XsWvFFV0xLd8IS0BGgr_qUNEOwziZaI87lEakEALRhRxOiXC0hCOlp88W5o0LkHkljaKBvL6wY1Kp-nyabp5SjcsXuTTRPjr-TCjvHot_5_-AQ"
+  },
+  {
+   "rep": 5,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Market Bazaar",
+    "lines": [
+     "Families haggle under lanterns that hum with old songs",
+     "Fireflies bloom in clusters like forgotten names",
+     "The air smells of roasted sweet potatoes and rain"
+    ],
+    "time": "night",
+    "weather": "fireflies",
+    "sky": [
+     "#0f0f27",
+     "#1a1a3f",
+     "#2c2c5e"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a2e",
+    "ink": "#f9d8b5",
+    "accent": "#ff6b35",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "light",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ff6b35",
+      "count": 8
+     },
+     {
+      "kind": "firefly",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffeb3b",
+      "count": 13
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d4a017",
+      "count": 3
+     },
+     {
+      "kind": "lantern",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#f9d8b5",
+      "count": 5
+     },
+     {
+      "kind": "butterfly",
+      "x": "center",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff9a9e",
+      "count": 2
+     },
+     {
+      "kind": "mushroom",
+      "x": "left",
+      "y": "ground",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "right"
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=hZNNb9swDIb_iqBeU8B2kjbxcYfettNuQ1HQNmUL0UcgyUuTIP99pOM47jp0J4uU-OjlK_osf8syX8iDLCWIvYEa5ULGvSzPMulkkPI_dNsl8R3CDpP4BieAQGeMdhhl-Uu-gNVGYxQdtK1B0bsGgzDgEgYXReogia634qBTJ7xpRPSujUR40QHVUFkZ763QTtSmj1QWhdE7FMqH1qeETjiwyCU_OxSgg4gWjYnCKxE8UAVBD0jq9j5B8kQE14gA2snXBfVhuQ3HbRDjgJA6DJRRNwHc8u7IzTxkKlPFMyUecshhqXhV1EW9Rka1wVN7VGp95Kpr_FZ74xn4UOAKCnZQux3HattsqjXFUNfo0pBST9WSU8oPiY6kUpTwPb1d_S8ln0U22fqkvaNMwEiPMdyJBi3ts_dnudODHDP29j4vPjLdB30iAjWoT4w2EFoWOEme9NTUCgnaXBYT9mrQcQQbVGnEslsTMlow5iMSq2V1R-bLGXNPzzsIYmQYdTNz9HbCWmx0b-fcZgVZ_nznzrHjvP3TA7rkK-z0SCN2PcNWPc1fuHvwAfw_F7awxTu2mGFtH7tAM__Z2b9d-ITdVKt1vpyrfeW1i55_1jPVNTg5e7nQjNKg8BFZut4YmqnbgoUUWfH0mG0fiy1fKctsIcNtfxgx_n_2_L38AQ"
+  },
+  {
+   "rep": 6,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night Market Dreams",
+    "lines": [
+     "Flickers dance on wet stone",
+     "Whispers sell stars and soup",
+     "Bubbles rise like forgotten vows"
+    ],
+    "time": "night",
+    "weather": "fireflies",
+    "sky": [
+     "#0f0f2d",
+     "#1a1a3a",
+     "#2c2c5e"
+    ],
+    "ground": "moss",
+    "ground_color": "#2e4a2e",
+    "ink": "#ff6b6b",
+    "accent": "#ffcc99",
+    "font": "hand",
+    "text_place": "center",
+    "motion": "restless",
+    "elements": [
+     {
+      "kind": "firefly",
+      "x": "center",
+      "y": "horizon",
+      "size": "large",
+      "color": "#ffffcc",
+      "count": 8
+     },
+     {
+      "kind": "bottle",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#8b4513",
+      "count": 3
+     },
+     {
+      "kind": "person",
+      "x": "right",
+      "y": "ground",
+      "size": "medium",
+      "color": "#d3a05c",
+      "count": 1
+     },
+     {
+      "kind": "lantern",
+      "x": "center",
+      "y": "high",
+      "size": "medium",
+      "color": "#ffcc99",
+      "count": 2
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 13
+     },
+     {
+      "kind": "butterfly",
+      "x": "right",
+      "y": "sky",
+      "size": "small",
+      "color": "#ff99cc",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "left",
+     "tone": "warm",
+     "shape": "circle",
+     "width": "medium",
+     "prompt": ""
+    }
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=fZNNb-MgEIb_CiJXV_JHEzU-Vqu9tdc9rKoK4yFGxmABrptG-e8747gJu1vVF8MAD--8M5z4G6-LjM-85oKNRkjgGQ8jr0886mgA48_60EX2JHwPkf3wIIaAe4y2EHj9m_80WvbgA2uFlcCcZTPuC9FZQv3qdBhpNYAxGBU4FLZlwU0jLj9OTWMgMK8DMKN7YMr5g4sRLHtzc-AvGeoYSIYlGXhkBhE78BhR2oMyGkhO6I8kZpOrXJUtBjaFKEQlaFTKUm6BUAfvJtvi0cEFOnWZv0pnHAE3JdyLkmRr29NcqV2za3AupAQbLyEp93sMKbcEOswGZxHe4-vFv5rTXlSY4TVRO4sRDwHNXO4EAwOuk3cn3utFziWTI66-p8ePxHdefyADU9QfBDfCH0jiVbRSpGmJTCTp4ZxdwQ1aaWDlGlBxpZJdV2IYhDEp8aG53xbVjVglRCrmIoeIfq0JIVdvr9QBWj0NKbatRL5NhBYJ1gjK2X7pAF7yHfZakRVbpvlf-usr7L96_3NBLV8it_oLjD3qbzVLnfjeXKX2-7Rc2_MLjW1w9NpOeK6FW7GWZ1TzWXjKOXRiXBpMe7mUddZt7FJXRu-GkfqSn8_Y39hkROe1nYzBfvwcUAplXu7u8v1dSd5hO-YZ95_rS3vS2xvpf_4D"
+  },
+  {
+   "rep": 7,
+   "name": "said",
+   "kind": "said",
+   "strength": 0.0,
+   "world": {
+    "title": "Night at the Edge",
+    "lines": [
+     "The sky breathes in silver sighs",
+     "Mountains wear their shadows deep",
+     "Stars bloom like forgotten names"
+    ],
+    "time": "night",
+    "weather": "stars",
+    "sky": [
+     "#0a0f2c",
+     "#1a2b5a",
+     "#2d3d7a"
+    ],
+    "ground": "ice",
+    "ground_color": "#f0f8ff",
+    "ink": "#ffffff",
+    "accent": "#c0e0ff",
+    "font": "serif",
+    "text_place": "center",
+    "motion": "still",
+    "elements": [
+     {
+      "kind": "iceberg",
+      "x": "center",
+      "y": "horizon",
+      "size": "huge",
+      "color": "#a0d0ff",
+      "count": 1
+     },
+     {
+      "kind": "star",
+      "x": "left",
+      "y": "sky",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 8
+     },
+     {
+      "kind": "moon",
+      "x": "right",
+      "y": "sky",
+      "size": "large",
+      "color": "#ffffff",
+      "count": 1
+     },
+     {
+      "kind": "bird",
+      "x": "center",
+      "y": "sky",
+      "size": "medium",
+      "color": "#ffcc00",
+      "count": 3
+     },
+     {
+      "kind": "bubbles",
+      "x": "center",
+      "y": "ground",
+      "size": "small",
+      "color": "#ffffff",
+      "count": 5
+     }
+    ],
+    "console": {
+     "side": "bottom",
+     "tone": "cool",
+     "shape": "rounded",
+     "width": "medium",
+     "prompt": "What name will you give the sky?",
+     "button": {
+      "label": "Speak",
+      "action": "echo the name"
+     }
+    },
+    "next": "a world where the trees sing in silence"
+   },
+   "raw": null,
+   "link": "https://unt1l1f1nd-brave-new-world.static.hf.space/#w=jVPBbtswDP0VQbm6gOqiW-vLTjtulw7YYSgK2aJtwbJoSHLcNMi_j1ScNFl7mC8WSfHxkXrcy62sbgu5yEpqMTndgCxknGS1l8kmB-T_abs-CZ1E6kF8Nx3fcNZDlNUf-Yt8cdiJOoCmeBTWi2jdFgL9uj7S3R84-6Stj2IBHRjFUrDXBpcoDMBEd56SDlHUDnEUzg4gWgwdpgReeD1SqeeC-IxMxzMdSllywUCeyMlMe9gxpY3Sqi0bcmxudVnfaz6V5s581QzTBeJjKM3mXo_mS4MOGWvTqvahbSlg_ZDt_JGtmwZ8YlejQGVXi9kRIVg2E7yml-MMK8mXiV0hR0wWfaZpnSMHOBgpyOPby8GeuNQQOoq-XuZSP7LHYN8IgPqzb4zcz_kJzoy1Mkc6DQ-anvNQnHF5NCuogzatkDyoM1wcdab1PoFTxyvewwXeiJkJ44X1HT4AOh2uCf4LeEmwtsF81vUV4gjGzuM1ZNMo9Q55dwk517WD-Bnq-vb_3_v94ZnPPiKvwp7yDOfVJE1kQgl9fmxEhiFRT2zmKsB1FmtSf9nBFHCcWDS_e9oo1rZYSBZih7Po7BbyklHz3-huPVMVz2WdrsFR0tMEeshaXDUFTY85hZHk4VBITyLMy7xgcEYstCJH0BSA1jNa3607Cp6EShkdCZG7lJWfnSPBng48zFKVX27U4035yP3JShUynOJZwryYE_8PfwE"
+  }
+ ]
+}
