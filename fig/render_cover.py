@@ -27,7 +27,6 @@ def main():
     f_it = ImageFont.truetype(FONT_I, 30)
 
     # the line that explains it
-    d.text((120, 92), "The sliders are not in the page. They are inside the model.", fill=INK, font=f_title)
 
     # --- the model's geometry first, so the turned-up slider sits on the band's line
     mx0, mx1 = 760, 1180
