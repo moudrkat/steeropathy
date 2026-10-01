@@ -91,7 +91,17 @@ def main():
     d.line([(mx1 + 30, ay), (sx0 - 40, ay)], fill=INK2, width=5)
     d.polygon([(sx0 - 40, ay - 14), (sx0 - 12, ay), (sx0 - 40, ay + 14)], fill=INK2)
 
-    d.text((120, 960), "steeropathy · moudrkat", fill=INK2, font=f_small)
+    # no title any more: crop to what is drawn, then fit it back into 16:9 so the cover is full
+    from PIL import ImageChops
+    bbox = ImageChops.difference(img, Image.new("RGB", (W, H), SURF)).getbbox()
+    m = 70
+    img = img.crop((max(0, bbox[0] - m), max(0, bbox[1] - m), min(W, bbox[2] + m), min(H, bbox[3] + m)))
+    scale = min(W / img.width, H / img.height)
+    img = img.resize((int(img.width * scale), int(img.height * scale)), Image.LANCZOS)
+    canvas = Image.new("RGB", (W, H), SURF)
+    canvas.paste(img, ((W - img.width) // 2, (H - img.height) // 2))
+    img = canvas
+    ImageDraw.Draw(img).text((60, H - 70), "steeropathy · moudrkat", fill=INK2, font=f_small)
     img.save(OUT)
     print(OUT, img.size)
 
